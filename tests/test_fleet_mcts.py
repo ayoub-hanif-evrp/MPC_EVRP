@@ -22,6 +22,13 @@ def test_fleet_mcts_serves_released_work_and_preserves_lexicographic_value():
     empty = problem.initial({})
     full = problem.initial(result.routes)
     assert problem.value(full) > problem.value(empty)
+    assert full.score[0] == 0
+    assert len(full.score) == 5
+    assert len(empty.score) == 7
+    assert result.best_components["unserved_customers"] == 0
+    assert 0 <= result.best_components["operational_cost"] <= 1
+    assert result.validated[0].actions == result.routes[0]
+    assert {"A", "B"} <= set(result.criticality)
 
 
 def test_fleet_mcts_does_not_insert_hidden_customer():

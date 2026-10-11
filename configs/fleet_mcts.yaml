@@ -8,7 +8,7 @@ route_continuity: true
 regret_repair: true
 fleet_mcts_iterations: 64
 fleet_mcts_depth: 4
-fleet_mcts_branch_limit: 12
+fleet_mcts_branch_limit: 24
 candidate_position_limit: 3
 rollout_regret_k: 2
 uct_c: 1.4

@@ -1,13 +1,13 @@
 """Fleet-level MCTS over released customer sequences and EV assignments."""
 
 from dataclasses import dataclass, field
-from math import log, sqrt
+from math import floor, isfinite, sqrt
 from random import Random
 from time import perf_counter
 
-from .instance import distance
-from .model import Action, Observation, VehicleState
-from .mpc import MPCConfig
+from .instance import distance, energy, travel_time
+from .model import EPS, Action, Observation, VehicleState, escape, transition
+from .mpc import MPCConfig, MPCProposal
 from .planning_budget import PlanningDeadlineExceeded, check_deadline, remaining_time
 from .repair import build_route, regret_repair, route_proposal
 
@@ -17,15 +17,20 @@ class FleetPlan:
     sequences: tuple[tuple[str, ...], ...]
     actions: tuple[tuple[Action, ...], ...]
     costs: tuple[float, ...]
-    score: tuple[int, int, float]
+    proposals: tuple[MPCProposal | None, ...]
+    score: tuple[float, ...]
+    components: dict[str, float]
 
 
 @dataclass(frozen=True)
 class FleetMCTSResult:
     routes: dict[int, tuple[Action, ...]]
-    initial_score: tuple[int, int, float]
-    seed_score: tuple[int, int, float]
-    best_score: tuple[int, int, float]
+    validated: dict[int, MPCProposal]
+    initial_score: tuple[float, ...]
+    seed_score: tuple[float, ...]
+    best_score: tuple[float, ...]
+    best_components: dict[str, float]
+    criticality: dict[str, dict]
     iterations: int
     nodes_expanded: int
     tree_improvements: int
@@ -41,6 +46,7 @@ class _Node:
     value: float = 0.0
     candidates: list[FleetPlan] | None = None
     children: list["_Node"] = field(default_factory=list)
+    prior: float = 1.0
 
 
 class _FleetProblem:
@@ -56,31 +62,146 @@ class _FleetProblem:
         self.pending = frozenset(observation.customer_by_id) - observation.committed_ids - served
         self.dscale = max(1.0, sum(distance(observation.infrastructure.depot,
                                             observation.customer_by_id[c]) for c in self.pending))
+        self.initial_owners: dict[str, int] = {}
+        self.route_metrics: dict[tuple[int, tuple[Action, ...]], dict[str, float]] = {}
+        self.criticality_cache: dict[tuple[tuple[str, ...], ...], list[tuple[str, int, float, float, float]]] = {}
+        self.target_stats: dict[str, dict[str, int]] = {}
         # The origin and observation are fixed for this MPC epoch, so this local
         # cache cannot cross incompatible vehicle states or release sets.
-        self.decoded: dict[tuple[int, tuple[str, ...]], tuple[tuple[Action, ...], float] | None] = {}
+        self.decoded: dict[tuple[int, tuple[str, ...]], tuple[tuple[Action, ...], MPCProposal | None] | None] = {}
+
+    @staticmethod
+    def _unit(value: float) -> float:
+        return max(0.0, min(1.0, value))
+
+    def _metrics(self, k: int, actions: tuple[Action, ...]) -> dict[str, float]:
+        key = (k, actions)
+        if key in self.route_metrics:
+            return self.route_metrics[key]
+        state = self.origins[k]
+        p = self.observation.infrastructure.parameters
+        tw, battery = [], []
+        for action in actions:
+            step = transition(state, action, self.observation)
+            state = step.after
+            if step.served:
+                customer = self.observation.customer_by_id[step.served]
+                width = max(EPS, customer.due - customer.ready)
+                tw.append(1.0 - self._unit((customer.due - step.service_start) / width))
+            if action.kind in {"serve", "charge"}:
+                safe_energy = min(energy(state.location, node, p) for node in
+                                  (self.observation.infrastructure.depot,) + self.observation.infrastructure.stations)
+                battery.append(1.0 - self._unit((state.battery - safe_energy) / p.battery))
+        duration = max(0.0, state.time - self.origins[k].time)
+        result = dict(tw=(sum(tw) / len(tw) + max(tw)) / 2 if tw else 0.0,
+                      battery=(sum(battery) / len(battery) + max(battery)) / 2 if battery else 0.0,
+                      capacity=1.0 - self._unit(state.load / p.capacity) if actions else 0.0,
+                      duration=self._unit(duration / max(EPS, self.observation.infrastructure.depot.due - self.observation.time)),
+                      charge=self._unit((state.charging_time - self.origins[k].charging_time) /
+                                        max(EPS, self.observation.infrastructure.depot.due - self.observation.time)),
+                      wait=self._unit((state.waiting_time - self.origins[k].waiting_time) /
+                                      max(EPS, self.observation.infrastructure.depot.due - self.observation.time)))
+        self.route_metrics[key] = result
+        return result
 
     def _score(self, sequences, actions, costs):
         owned = {c for sequence in sequences for c in sequence}
-        return (len(self.pending - owned),
-                sum(self.origins[k].departed or bool(actions[index])
-                    for index, k in enumerate(self.ids)), sum(costs))
+        uncovered = self.pending - owned
+        vehicles = sum(self.origins[k].departed or bool(actions[index])
+                       for index, k in enumerate(self.ids))
+        risks = [self._metrics(k, actions[index]) for index, k in enumerate(self.ids) if actions[index]]
+        mean = lambda field: sum(r[field] for r in risks) / len(risks) if risks else 0.0
+        tw = mean("tw")
+        battery = mean("battery")
+        capacity = mean("capacity")
+        route_distance = sum(costs)
+        normalized_distance = self._unit(route_distance / max(1.0, self.dscale * 2))
+        durations = [r["duration"] for r in risks]
+        balance = max(durations) - min(durations) if len(durations) > 1 else 0.0
+        moved = sum(self.initial_owners.get(c, k) != k for index, k in enumerate(self.ids)
+                    for c in sequences[index])
+        instability = moved / max(1, len(owned))
+        if uncovered:
+            critical = self._criticality(tuple(sequences))
+            zero = sum(count == 0 for _, count, _, _, _ in critical)
+            one = sum(count == 1 for _, count, _, _, _ in critical)
+            components = dict(unserved_customers=len(uncovered), zero_option_customers=zero,
+                              one_option_customers=one, time_window_risk=tw,
+                              battery_risk=battery, capacity_risk=capacity,
+                              normalized_distance=normalized_distance,
+                              activated_vehicles=vehicles, distance=route_distance,
+                              route_instability=instability)
+            score = (len(uncovered), zero, one, tw, battery, capacity, normalized_distance)
+        else:
+            operational = sum((normalized_distance, mean("duration"), mean("charge"),
+                               mean("wait"), tw, battery, balance)) / 7
+            components = dict(unserved_customers=0, zero_option_customers=0,
+                              one_option_customers=0, time_window_risk=tw,
+                              battery_risk=battery, capacity_risk=capacity,
+                              normalized_distance=normalized_distance,
+                              normalized_route_duration=mean("duration"),
+                              normalized_charging_time=mean("charge"),
+                              normalized_waiting_time=mean("wait"),
+                              route_balance_risk=balance, operational_cost=operational,
+                              activated_vehicles=vehicles, distance=route_distance,
+                              route_instability=instability)
+            score = (0, vehicles, operational, route_distance, instability)
+        return score, components
+
+    def _criticality(self, sequences: tuple[tuple[str, ...], ...]):
+        if sequences in self.criticality_cache:
+            return self.criticality_cache[sequences]
+        owned = {c for seq in sequences for c in seq}
+        ranked = []
+        p = self.observation.infrastructure.parameters
+        for customer_id in self.pending - owned:
+            customer = self.observation.customer_by_id[customer_id]
+            options = []
+            for index, k in enumerate(self.ids):
+                sequence = sequences[index]
+                if customer.demand > self.origins[k].load - sum(
+                        self.observation.customer_by_id[c].demand for c in sequence) + EPS:
+                    continue
+                for pos in range(len(sequence) + 1):
+                    before = self.origins[k].location if pos == 0 else self.observation.customer_by_id[sequence[pos - 1]]
+                    after = (self.observation.infrastructure.depot if pos == len(sequence)
+                             else self.observation.customer_by_id[sequence[pos]])
+                    delta = distance(before, customer) + distance(customer, after) - distance(before, after)
+                    # This is an optimistic geometric screen; exact route decoding
+                    # remains the final feasibility test for every selected action.
+                    arrival = max(self.origins[k].time + travel_time(self.origins[k].location, customer, p),
+                                  customer.ready)
+                    if arrival <= customer.due + EPS:
+                        options.append((delta, customer.due - arrival, k, pos))
+            options.sort()
+            regret = options[1][0] - options[0][0] if len(options) > 1 else float("inf")
+            slack = min((option[1] for option in options), default=-1.0)
+            ranked.append((customer_id, len(options), regret, slack,
+                           options[0][0] if options else float("inf")))
+        ranked.sort(key=lambda row: (row[1] != 0, row[1] != 1, -row[2], row[3],
+                                     self.observation.customer_by_id[row[0]].due, row[0]))
+        self.criticality_cache[sequences] = ranked
+        return ranked
+
+    def _track(self, customer: str, field: str) -> None:
+        stats = self.target_stats.setdefault(customer, {})
+        stats[field] = stats.get(field, 0) + 1
 
     def _decode(self, k: int, sequence: tuple[str, ...]):
         check_deadline()
         key = (k, sequence)
         if key not in self.decoded:
             if not sequence:
-                self.decoded[key] = ((), 0.0)
+                self.decoded[key] = ((), None)
             else:
                 actions = build_route(self.origins[k], sequence, self.observation, self.config)
                 proposal = (route_proposal(self.origins[k], actions, self.observation, self.config)
                             if actions is not None else None)
-                self.decoded[key] = (actions, proposal.cost) if proposal is not None else None
+                self.decoded[key] = (actions, proposal) if proposal is not None else None
         return self.decoded[key]
 
     def initial(self, routes: dict[int, tuple[Action, ...]]) -> FleetPlan:
-        sequences, actions, costs = [], [], []
+        sequences, actions, costs, proposals = [], [], [], []
         for k in self.ids:
             route = tuple(routes.get(k, ()))
             sequence = tuple(a.destination for a in route if a.kind == "serve")
@@ -89,31 +210,36 @@ class _FleetProblem:
             proposal = route_proposal(self.origins[k], route, self.observation, self.config) if route else None
             if route and proposal is None:
                 raise ValueError("Infeasible fleet incumbent")
-            self.decoded[k, sequence] = (route, proposal.cost if proposal else 0.0)
+            self.decoded[k, sequence] = (route, proposal)
             sequences.append(sequence)
             actions.append(route)
             costs.append(proposal.cost if proposal else 0.0)
+            proposals.append(proposal)
         if len({c for seq in sequences for c in seq}) != sum(map(len, sequences)):
             raise ValueError("Duplicate customer in fleet incumbent")
-        return FleetPlan(tuple(sequences), tuple(actions), tuple(costs),
-                         self._score(sequences, actions, costs))
+        self.initial_owners = {c: k for index, k in enumerate(self.ids) for c in sequences[index]}
+        score, components = self._score(sequences, actions, costs)
+        return FleetPlan(tuple(sequences), tuple(actions), tuple(costs), tuple(proposals), score, components)
 
     def change(self, plan: FleetPlan, changes: dict[int, tuple[str, ...]]) -> FleetPlan | None:
         sequences = list(plan.sequences)
         actions = list(plan.actions)
         costs = list(plan.costs)
+        proposals = list(plan.proposals)
         for k, sequence in changes.items():
             check_deadline()
             index = self.ids.index(k)
             decoded = self._decode(k, sequence)
             if decoded is None:
                 return None
-            sequences[index], actions[index], costs[index] = sequence, *decoded
+            route, proposal = decoded
+            sequences[index], actions[index], costs[index], proposals[index] = (
+                sequence, route, proposal.cost if proposal else 0.0, proposal)
         owned = [c for seq in sequences for c in seq]
         if len(set(owned)) != len(owned) or any(c not in self.pending for c in owned):
             return None
-        return FleetPlan(tuple(sequences), tuple(actions), tuple(costs),
-                         self._score(sequences, actions, costs))
+        score, components = self._score(sequences, actions, costs)
+        return FleetPlan(tuple(sequences), tuple(actions), tuple(costs), tuple(proposals), score, components)
 
     def _positions(self, plan: FleetPlan, k: int, customer: str):
         index = self.ids.index(k)
@@ -128,9 +254,7 @@ class _FleetProblem:
 
     def _urgent(self, plan: FleetPlan, limit: int):
         owned = {c for seq in plan.sequences for c in seq}
-        return sorted(self.pending - owned,
-                      key=lambda c: (self.observation.customer_by_id[c].due,
-                                     self.observation.customer_by_id[c].ready, c))[:limit]
+        return [row[0] for row in self._criticality(plan.sequences)[:limit]]
 
     def _nearest_vehicles(self, plan: FleetPlan, customer: str, limit: int = 3):
         target = self.observation.customer_by_id[customer]
@@ -141,7 +265,7 @@ class _FleetProblem:
         return sorted(self.ids, key=lambda k: (proximity(k), k))[:limit]
 
     def _regret_rollout(self, plan: FleetPlan, limit: int,
-                        forced: tuple[str, ...] = ()) -> FleetPlan:
+                        forced: tuple[str, ...] = (), regret_k: int | None = None) -> FleetPlan:
         targets = [c for c in forced if c in self.pending and
                    all(c not in seq for seq in plan.sequences)]
         targets += [c for c in self._urgent(plan, limit) if c not in targets]
@@ -154,7 +278,8 @@ class _FleetProblem:
                                  self.observation.committed_customers)
         routes = {k: plan.actions[index] for index, k in enumerate(self.ids)}
         repaired, _ = regret_repair(self.origins, routes, restricted, self.config,
-                                    regret_k=self.regret_k, position_limit=self.position_limit)
+                                    regret_k=regret_k or self.regret_k,
+                                    position_limit=self.position_limit)
         changed = {k: tuple(a.destination for a in repaired[k] if a.kind == "serve")
                    for index, k in enumerate(self.ids) if repaired[k] != plan.actions[index]}
         return self.change(plan, changed) or plan if changed else plan
@@ -162,9 +287,9 @@ class _FleetProblem:
     def candidates(self, plan: FleetPlan, branch_limit: int) -> list[FleetPlan]:
         found: dict[tuple[tuple[str, ...], ...], FleetPlan] = {}
         unserved = self._urgent(plan, 3)
-        insert_cap = max(1, branch_limit // 2)
-        rescue_cap = max(1, branch_limit // 6)
-        move_cap = max(1, branch_limit // 6)
+        insert_cap = max(1, branch_limit // 3)
+        rescue_cap = max(1, branch_limit // 2)
+        move_cap = max(1, branch_limit // 4)
         inserted = rescued = moved_count = 0
         for customer in unserved:
             if inserted >= insert_cap:
@@ -176,45 +301,54 @@ class _FleetProblem:
                 sequence = plan.sequences[index]
                 for position in self._positions(plan, k, customer):
                     check_deadline()
+                    self._track(customer, "insert_attempts")
                     candidate = self.change(plan, {k: sequence[:position] + (customer,) + sequence[position:]})
                     if candidate is not None and candidate.sequences not in found:
                         found[candidate.sequences] = candidate
                         inserted += 1
+                        self._track(customer, "insert_feasible")
                     if inserted >= insert_cap:
                         break
-        if unserved:
-            target = unserved[0]
-            for k in self._nearest_vehicles(plan, target, 4):
+        for target in unserved[:2]:
+            if rescued >= rescue_cap:
+                break
+            routes = sorted(self.ids, key=lambda k: (
+                min(self._gap_delta(plan, k, target, pos) for pos in
+                    range(len(plan.sequences[self.ids.index(k)]) + 1)), k))[:3]
+            for k in routes:
                 if rescued >= rescue_cap:
                     break
                 index = self.ids.index(k)
                 sequence = plan.sequences[index]
-                related = sorted(sequence, key=lambda c: (distance(self.observation.customer_by_id[c],
-                                                      self.observation.customer_by_id[target]), c))[:2]
-                for displaced in related:
-                    check_deadline()
-                    position = sequence.index(displaced)
-                    ejected = sequence[:position] + (target,) + sequence[position + 1:]
-                    candidate = self.change(plan, {k: ejected})
-                    if candidate is not None:
-                        candidate = self._regret_rollout(candidate, 1, (displaced,))
+                for position in self._positions(plan, k, target)[:2]:
+                    adjacent = tuple(sequence[pos] for pos in (position - 1, position)
+                                     if 0 <= pos < len(sequence))
+                    eject_sets = ((), *((customer,) for customer in adjacent))
+                    if len(adjacent) == 2:
+                        eject_sets += (adjacent,)
+                    for displaced in eject_sets:
+                        check_deadline()
+                        self._track(target, "rescue_attempts")
+                        reduced = tuple(c for c in sequence if c not in displaced)
+                        new_position = position - int(position > 0 and sequence[position - 1] in displaced)
+                        ejected = reduced[:new_position] + (target,) + reduced[new_position:]
+                        candidate = self.change(plan, {k: ejected})
+                        if candidate is None:
+                            continue
+                        self._track(target, "rescue_feasible")
+                        if displaced:
+                            candidate = self._regret_rollout(candidate, len(displaced), displaced,
+                                                             regret_k=3 if len(displaced) == 2 else 2)
+                            if all(c in {item for seq in candidate.sequences for item in seq}
+                                   for c in displaced):
+                                self._track(target, "rollout_reinserted")
                         if candidate.sequences not in found:
                             found[candidate.sequences] = candidate
                             rescued += 1
+                        if rescued >= rescue_cap:
+                            break
                     if rescued >= rescue_cap:
                         break
-                if rescued < rescue_cap and len(related) == 2:
-                    check_deadline()
-                    displaced = tuple(related)
-                    position = min(sequence.index(c) for c in displaced)
-                    reduced = tuple(c for c in sequence if c not in displaced)
-                    ejected = reduced[:position] + (target,) + reduced[position:]
-                    candidate = self.change(plan, {k: ejected})
-                    if candidate is not None:
-                        candidate = self._regret_rollout(candidate, 2, displaced)
-                        if candidate.sequences not in found:
-                            found[candidate.sequences] = candidate
-                            rescued += 1
         # These moves restructure future suffixes without touching busy actions.
         for source_index, source in enumerate(self.ids):
             if moved_count >= move_cap:
@@ -222,7 +356,7 @@ class _FleetProblem:
             sequence = plan.sequences[source_index]
             if not sequence:
                 continue
-            customer = sequence[-1]
+            customer = sequence[-1] if unserved else sequence[0]
             for target in self._nearest_vehicles(plan, customer, 3):
                 if moved_count >= move_cap:
                     break
@@ -231,14 +365,14 @@ class _FleetProblem:
                 target_index = self.ids.index(target)
                 target_sequence = plan.sequences[target_index]
                 for position in self._positions(plan, target, customer)[:1]:
-                    moved = self.change(plan, {source: sequence[:-1],
+                    moved = self.change(plan, {source: tuple(c for c in sequence if c != customer),
                                                target: target_sequence[:position] + (customer,) + target_sequence[position:]})
                     if moved is not None:
                         if moved.sequences not in found:
                             found[moved.sequences] = moved
                             moved_count += 1
                 if sequence and target_sequence:
-                    swapped = self.change(plan, {source: sequence[:-1] + (target_sequence[-1],),
+                    swapped = self.change(plan, {source: tuple(c for c in sequence if c != customer) + (target_sequence[-1],),
                                                  target: target_sequence[:-1] + (customer,)})
                     if swapped is not None:
                         if swapped.sequences not in found:
@@ -275,23 +409,38 @@ class _FleetProblem:
                     break
         return sorted(found.values(), key=lambda p: p.score)[:branch_limit]
 
+    def _gap_delta(self, plan: FleetPlan, k: int, customer: str, position: int) -> float:
+        sequence = plan.sequences[self.ids.index(k)]
+        target = self.observation.customer_by_id[customer]
+        before = self.origins[k].location if position == 0 else self.observation.customer_by_id[sequence[position - 1]]
+        after = (self.observation.infrastructure.depot if position == len(sequence)
+                 else self.observation.customer_by_id[sequence[position]])
+        return distance(before, target) + distance(target, after) - distance(before, after)
+
     def value(self, plan: FleetPlan) -> float:
-        unserved, vehicles, route_distance = plan.score
-        k = len(self.ids)
-        served = len(self.pending) - unserved
-        return (served + (k - vehicles) / (k + 1)
-                + (1 / (2 * (k + 1))) / (1 + route_distance / self.dscale))
+        metrics = plan.components
+        served = len(self.pending) - metrics["unserved_customers"]
+        flexibility = 1.0 - self._unit((metrics["zero_option_customers"] +
+                                         0.5 * metrics["one_option_customers"]) /
+                                        max(1, metrics["unserved_customers"]))
+        return (served + 0.30 * flexibility + 0.20 * (1 - metrics["time_window_risk"])
+                + 0.15 * (1 - metrics["battery_risk"])
+                + 0.10 * (1 - metrics["capacity_risk"])
+                + 0.08 * (1 - metrics["activated_vehicles"] / max(1, len(self.ids)))
+                + 0.05 * (1 - metrics["normalized_distance"])
+                + 0.02 * (1 - metrics["route_instability"]))
 
 
 def solve_fleet_mcts(origins: dict[int, VehicleState], routes: dict[int, tuple[Action, ...]],
                      observation: Observation, config: MPCConfig, *, seed: int,
-                     iterations: int = 64, depth: int = 4, branch_limit: int = 12,
+                     iterations: int = 64, depth: int = 4, branch_limit: int = 24,
                      position_limit: int = 3, regret_k: int = 2) -> FleetMCTSResult:
     if min(iterations, depth, branch_limit, position_limit) < 1 or regret_k not in {2, 3}:
         raise ValueError("Invalid fleet MCTS configuration")
     started = perf_counter()
     problem = _FleetProblem(origins, observation, config, position_limit, regret_k)
     root_plan = problem.initial(routes)
+    root_criticality = problem._criticality(root_plan.sequences)
     best = root_plan
     root = _Node(root_plan, 0)
     rng = Random(seed)
@@ -309,7 +458,7 @@ def solve_fleet_mcts(origins: dict[int, VehicleState], routes: dict[int, tuple[A
             best = improved
         seed_score = best.score
         root = _Node(best, 0)
-        for _ in range(iterations):
+        for iteration in range(iterations):
             check_deadline()
             node = root
             path = [root]
@@ -317,8 +466,17 @@ def solve_fleet_mcts(origins: dict[int, VehicleState], routes: dict[int, tuple[A
                 check_deadline()
                 if node.candidates is None:
                     node.candidates = problem.candidates(node.plan, branch_limit)
-                if node.candidates:
-                    child = _Node(node.candidates.pop(0), node.depth + 1)
+                allowed = min(branch_limit, 1 + floor(2 * sqrt(node.visits)))
+                if node.candidates and len(node.children) < allowed:
+                    parent_plan = node.plan
+                    rank = len(node.children)
+                    total = len(node.candidates) + rank
+                    prior = (total - rank) / (total * (total + 1) / 2)
+                    child = _Node(node.candidates.pop(0), node.depth + 1, prior=prior)
+                    for customer in problem.pending:
+                        if (all(customer not in seq for seq in parent_plan.sequences)
+                                and any(customer in seq for seq in child.plan.sequences)):
+                            problem._track(customer, "explored")
                     node.children.append(child)
                     node = child
                     path.append(node)
@@ -326,12 +484,12 @@ def solve_fleet_mcts(origins: dict[int, VehicleState], routes: dict[int, tuple[A
                     break
                 if not node.children:
                     break
-                scale = sqrt(log(max(2, node.visits + 1)))
+                scale = sqrt(node.visits + 1)
                 node = max(node.children, key=lambda child: (
-                    child.value / child.visits + config.uct_c * scale / sqrt(child.visits)
-                    if child.visits else float("inf"), rng.random()))
+                    (child.value / child.visits if child.visits else problem.value(child.plan))
+                    + config.uct_c * child.prior * scale / (1 + child.visits), rng.random()))
                 path.append(node)
-            rollout = problem._regret_rollout(node.plan, 2)
+            rollout = problem._regret_rollout(node.plan, 2, regret_k=2 if iteration % 2 == 0 else 3)
             if rollout.score < best.score:
                 best = rollout
                 tree_improvements += 1
@@ -343,7 +501,16 @@ def solve_fleet_mcts(origins: dict[int, VehicleState], routes: dict[int, tuple[A
     except PlanningDeadlineExceeded:
         deadline_reached = True
     seed_score = root.plan.score
+    criticality = {customer: dict(estimated_insertion_gaps=count,
+                                  estimated_regret=regret if regret != float("inf") else None,
+                                  minimum_optimistic_slack=slack,
+                                  cheapest_geometric_delta=delta if isfinite(delta) else None,
+                                  **problem.target_stats.get(customer, {}))
+                   for customer, count, regret, slack, delta in root_criticality}
     return FleetMCTSResult({k: best.actions[index] for index, k in enumerate(problem.ids)},
-                           root_plan.score, seed_score, best.score, completed, expanded,
+                           {k: best.proposals[index] for index, k in enumerate(problem.ids)
+                            if best.proposals[index] is not None},
+                           root_plan.score, seed_score, best.score, best.components, criticality,
+                           completed, expanded,
                            tree_improvements,
                            perf_counter() - started, deadline_reached)

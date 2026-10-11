@@ -240,11 +240,15 @@ class EventDrivenSimulator:
                         resolved += duplicates
                     routes = dict(frozen)
                     routes.update({k: service_prefix(p.actions) for k, p in selected.items()})
+                    fallback_routes = dict(routes)
+                    fallback_validated = {k: route_proposal(origins[k], a, observation, config.mpc)
+                                          for k, a in routes.items() if a}
+                    if any(p is None for p in fallback_validated.values()):
+                        raise RuntimeError("Selected incumbent is not replay-feasible")
                     coordinated_coverage = reserved_customers(routes)
                     vehicles_before_repair = sum(origins[k].departed or bool(routes.get(k)) for k in origins)
-                    distance_before_repair = sum(p.total_predicted_distance for k, a in routes.items() if a
-                                                 for p in (route_proposal(origins[k], a, observation, config.mpc),)
-                                                 if p is not None)
+                    distance_before_repair = sum(p.total_predicted_distance
+                                                 for p in fallback_validated.values())
                     insertions = []
                     compactions = []
                     lns_record = None
@@ -305,10 +309,24 @@ class EventDrivenSimulator:
                             deadline_events += 1
                     if deadline_token is not None:
                         reset_deadline(deadline_token)
+                        deadline_token = set_deadline(started + config.total_planning_time_limit)
                     # Reconcile all future suffixes before dispatching any physical action.
                     assert_unique_routes(routes)
-                    validated = {k: route_proposal(origins[k], a, observation, config.mpc)
-                                 for k, a in routes.items() if a}
+                    try:
+                        validated = {k: route_proposal(origins[k], a, observation, config.mpc)
+                                     for k, a in routes.items() if a}
+                    except PlanningDeadlineExceeded:
+                        if fleet_mcts_record is None:
+                            routes, validated = fallback_routes, fallback_validated
+                        else:
+                            validated = fleet_mcts_record.validated
+                        if set(validated) != {k for k, a in routes.items() if a} or any(
+                                validated[k].actions != routes[k] for k in validated):
+                            raise RuntimeError("Fleet fallback does not match validated incumbent")
+                        deadline_events += 1
+                    if deadline_token is not None:
+                        reset_deadline(deadline_token)
+                        deadline_token = None
                     if any(p is None for p in validated.values()):
                         raise RuntimeError("Repair failed final route reconciliation")
                     final_coverage = reserved_customers(routes)
@@ -341,6 +359,8 @@ class EventDrivenSimulator:
                                     fleet_mcts=(dict(initial_score=fleet_mcts_record.initial_score,
                                                      seed_score=fleet_mcts_record.seed_score,
                                                      best_score=fleet_mcts_record.best_score,
+                                                     best_components=fleet_mcts_record.best_components,
+                                                     criticality=fleet_mcts_record.criticality,
                                                      iterations=fleet_mcts_record.iterations,
                                                      nodes_expanded=fleet_mcts_record.nodes_expanded,
                                                      tree_improvements=fleet_mcts_record.tree_improvements,
