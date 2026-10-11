@@ -16,7 +16,8 @@ from .instance import load_instance
 from .mpc import MPCConfig
 from .reference import ReferenceConfig, ReferenceSchedule, solve_reference
 from .scenario import DynamicScenario, generate
-from .simulator import EventDrivenSimulator, ExperimentResult, SimulationConfig, SimulationEvent
+from .simulator import (FLEET_LNS_ALGORITHMS, EventDrivenSimulator, ExperimentResult,
+                        SimulationConfig, SimulationEvent)
 from .storage import BENCHMARK, ROOT, benchmark_hashes, identifier, save_json, load_json
 from .versions import OBJECTIVE_VERSION, REFERENCE_SOLVER_VERSION, RESULT_SCHEMA_VERSION, SCENARIO_GENERATOR_VERSION
 
@@ -214,7 +215,7 @@ def audit_result(result: ExperimentResult, instance, scenario) -> dict:
             for insertion in decision.get("route_insertions", ()):
                 assert insertion["customer"] in decision["available"], "Unreleased route insertion"
                 assert insertion["vehicle_id"] in states, "Insertion owner outside fixed fleet"
-                if result.effective_config["algorithm"] not in {"ROLLING_ALNS", "MPC_MCTS_ALNS"}:
+                if result.effective_config["algorithm"] not in FLEET_LNS_ALGORITHMS:
                     assert insertion["customer"] in owners, "Inserted customer lost during compaction"
             claimed = set(decision.get("background_intents", ()))
             for vehicle_id, plan in decision["plans"].items():

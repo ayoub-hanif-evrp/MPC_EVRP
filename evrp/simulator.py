@@ -18,9 +18,11 @@ from .observation import get_agent_observation, initial_global_state
 from .scenario import DynamicScenario
 from .storage import save_json
 
+ROLLING_LNS_ALGORITHMS = {"ROLLING_LNS", "ROLLING_ALNS"}
+HYBRID_LNS_ALGORITHMS = {"MPC_MCTS_LNS", "MPC_MCTS_ALNS"}
+FLEET_LNS_ALGORITHMS = ROLLING_LNS_ALGORITHMS | HYBRID_LNS_ALGORITHMS
 ALGORITHMS = {"GREEDY", "RH_REGRET", "MPC_MCTS_H1", "INDEPENDENT_MPC_MCTS",
-              "COORDINATED_MPC_MCTS", "ROLLING_ALNS", "MPC_MCTS_ALNS"}
-FLEET_LNS_ALGORITHMS = {"ROLLING_ALNS", "MPC_MCTS_ALNS"}
+              "COORDINATED_MPC_MCTS"} | FLEET_LNS_ALGORITHMS
 
 
 @dataclass(frozen=True)
@@ -186,7 +188,7 @@ class EventDrivenSimulator:
                     results, cache = [], {}
                     for job in jobs:
                         agent, vehicle, obs, seed, algorithm = job
-                        if algorithm in {"RH_REGRET", "ROLLING_ALNS"}:
+                        if algorithm == "RH_REGRET" or algorithm in ROLLING_LNS_ALGORITHMS:
                             result = PlanningResult((), idle_proposal(vehicle, obs, config.mpc))
                         else:
                             key = unused_symmetry_key(vehicle, obs, config.mpc) if config.symmetry_reuse else None
@@ -207,7 +209,7 @@ class EventDrivenSimulator:
                               if p.proposals and p.proposals[0].first.kind == "serve"]
                     duplicates = len(firsts)-len(set(firsts))
                     conflicts += duplicates
-                    if config.algorithm in {"GREEDY", "RH_REGRET", "INDEPENDENT_MPC_MCTS", "ROLLING_ALNS"}:
+                    if config.algorithm in {"GREEDY", "RH_REGRET", "INDEPENDENT_MPC_MCTS"} | ROLLING_LNS_ALGORITHMS:
                         selected, count = independent_selection(plans, exclusive_routes=True)
                         resolved += count
                     else:
@@ -238,7 +240,7 @@ class EventDrivenSimulator:
                         inserted_requests += len(insertions)
                         compacted_vehicles += len(compactions)
                     if config.algorithm in FLEET_LNS_ALGORITHMS:
-                        if config.algorithm == "MPC_MCTS_ALNS":
+                        if config.algorithm in HYBRID_LNS_ALGORITHMS:
                             rh_routes, _ = regret_repair(origins, frozen, observation, config.mpc, position_limit=5)
                             if fleet_score(origins, rh_routes, observation, config.mpc) < fleet_score(
                                     origins, routes, observation, config.mpc):
@@ -275,7 +277,7 @@ class EventDrivenSimulator:
                     coverage = set().union(*(set(p.unique_predicted_customer_set) for p in selected.values()))
                     coverages.append(len(coverage))
                     new_activations += sum(p.new_activation for p in selected.values())
-                    replans += len(results) if config.algorithm not in {"RH_REGRET", "ROLLING_ALNS"} else 0
+                    replans += len(results) if config.algorithm != "RH_REGRET" and config.algorithm not in ROLLING_LNS_ALGORITHMS else 0
                     background = reserved_customers(tails)
                     candidate_intents = sorted(set().union(*(set(p.unique_predicted_customer_set)
                                                for r in plans.values() for p in r.candidates)))
@@ -308,7 +310,7 @@ class EventDrivenSimulator:
                     for k, r in measured:
                         simulations += r.statistics.iterations
                         expanded += r.statistics.nodes_expanded
-                        if config.algorithm not in {"GREEDY", "RH_REGRET", "ROLLING_ALNS"}:
+                        if config.algorithm not in {"GREEDY", "RH_REGRET"} | ROLLING_LNS_ALGORITHMS:
                             local_times.append(r.statistics.elapsed)
                         if config.trace_level != "none":
                             details = asdict(r.statistics)

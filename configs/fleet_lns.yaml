@@ -13,6 +13,7 @@ route_continuity: true
 regret_repair: true
 lns_iterations: 100
 lns_time_limit: 1.5
+# Target fraction before the implementation's four-customer destroy cap.
 lns_destroy_fraction: 0.1
 dynamic_selection_mode: exact_count
 parallel_agents: false

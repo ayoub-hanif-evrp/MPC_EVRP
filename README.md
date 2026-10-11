@@ -4,9 +4,10 @@
 
 An additional fleet-wide LNS prototype and its six-instance, single-seed
 development gate are documented in
-[Fleet-LNS development](docs/fleet_lns_development.md). It passed the static
-service prerequisite but did not establish an MCTS-over-ALNS advantage; its
-holdout was not run. The method and study below describe the earlier
+[Fleet-LNS development](docs/fleet_lns_development.md). Rolling LNS passed its
+six-instance static service prerequisite; the hybrid static check remains
+incomplete and the dynamic comparison did not establish an MCTS-over-LNS
+advantage. The holdout was not run. The method and study below describe the earlier
 coordinator track, which remains available as an ablation.
 
 This training-free research implementation asks whether persistent route coordination

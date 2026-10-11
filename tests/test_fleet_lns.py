@@ -1,6 +1,8 @@
 from dataclasses import replace
 
-from evrp.fleet_lns import fleet_score, improve_fleet
+import pytest
+
+from evrp.fleet_lns import _destroy_count, fleet_score, improve_fleet
 from evrp.model import Action, Observation, transition
 from evrp.mpc import MPCConfig
 from evrp.simulator import EventDrivenSimulator
@@ -35,16 +37,23 @@ def test_fleet_lns_starts_after_immutable_action_and_cannot_see_hidden_work():
     assert state.current_committed_action is None
 
 
-def test_fleet_lns_algorithms_replay_on_synthetic_case():
+@pytest.mark.parametrize("algorithm", ("ROLLING_LNS", "MPC_MCTS_LNS",
+                                       "ROLLING_ALNS", "MPC_MCTS_ALNS"))
+def test_fleet_lns_algorithms_replay_on_synthetic_case(algorithm):
     base = synthetic(release=5, fleet=2)
-    for algorithm in ("ROLLING_ALNS", "MPC_MCTS_ALNS"):
-        config = simulation_config(dict(algorithm=algorithm, mcts_iterations=4,
-                                        lns_iterations=4, lns_time_limit=0.2))
-        result = EventDrivenSimulator(base.instance, base.scenario, config).run()
-        assert result.metrics["customers_served"] == 2
-        assert result.metrics["vehicles_activated"] <= base.scenario.fleet_size
-        assert all(audit_result(result, base.instance, base.scenario).values())
-        assert result.metrics["lns_iterations"] >= 0
+    config = simulation_config(dict(algorithm=algorithm, mcts_iterations=4,
+                                    lns_iterations=4, lns_time_limit=0.2))
+    result = EventDrivenSimulator(base.instance, base.scenario, config).run()
+    assert result.metrics["customers_served"] == 2
+    assert result.metrics["vehicles_activated"] <= base.scenario.fleet_size
+    assert all(audit_result(result, base.instance, base.scenario).values())
+    assert result.metrics["lns_iterations"] >= 0
+
+
+def test_destroy_fraction_is_capped_to_four_customers():
+    assert _destroy_count(100, 0.1) == 4
+    assert _destroy_count(20, 0.1) == 2
+    assert _destroy_count(1, 0.1) == 1
 
 
 def test_regret_three_option_preserves_compatibility():
@@ -68,11 +77,13 @@ def test_shortlisted_insertions_fall_back_when_cheapest_position_is_infeasible()
     assert {a.destination for a in routes[0] if a.kind == "serve"} == {"A", "B", "X"}
 
 
-def test_one_station_decoder_replays_feasible_reference_sequences_offline():
+@pytest.mark.parametrize("instance_name", ("c101_21", "c201_21", "r101_21",
+                                           "r201_21", "rc101_21", "rc201_21"))
+def test_one_station_decoder_replays_feasible_reference_sequences_offline(instance_name):
     from evrp.experiments import prepare
     from evrp.observation import initial_global_state
     from evrp.repair import build_route, route_proposal
-    instance, reference, scenario, _ = prepare("r101_21", {"dynamicity": 0.0})
+    instance, reference, scenario, _ = prepare(instance_name, {"dynamicity": 0.0})
     origins = initial_global_state(instance, scenario).vehicles
     observation = Observation(0, instance.infrastructure, instance.customers)
     config = MPCConfig()

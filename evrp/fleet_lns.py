@@ -57,6 +57,10 @@ def _restricted(observation: Observation, included: set[str]) -> Observation:
                        observation.committed_customers)
 
 
+def _destroy_count(owned_count: int, destroy_fraction: float) -> int:
+    return min(owned_count, 4, max(1, round(owned_count * destroy_fraction)))
+
+
 def improve_fleet(origins: dict[int, VehicleState], routes: dict[int, tuple[Action, ...]],
                   observation: Observation, config: MPCConfig, *, seed: int,
                   iterations: int = 100, time_limit: float = 3.0,
@@ -112,8 +116,7 @@ def improve_fleet(origins: dict[int, VehicleState], routes: dict[int, tuple[Acti
             current, current_score = working, candidate_score
             continue
         operator = ("rescue", "random", "worst", "related")[iteration % 4]
-        count = min(len(owned), max(1, round(len(owned) * destroy_fraction)))
-        count = min(count, 4)
+        count = _destroy_count(len(owned), destroy_fraction)
         target = None
         if operator == "rescue" and unserved:
             target = unserved[iteration % len(unserved)]
