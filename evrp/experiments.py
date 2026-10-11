@@ -54,7 +54,13 @@ def simulation_config(config: dict) -> SimulationConfig:
                             regret_repair=config.get("regret_repair", True),
                             lns_iterations=config.get("lns_iterations", 100),
                             lns_time_limit=config.get("lns_time_limit", 3.0),
-                            lns_destroy_fraction=config.get("lns_destroy_fraction", 0.1))
+                            lns_destroy_fraction=config.get("lns_destroy_fraction", 0.1),
+                            total_planning_time_limit=config.get("total_planning_time_limit"),
+                            fleet_mcts_iterations=config.get("fleet_mcts_iterations", 64),
+                            fleet_mcts_depth=config.get("fleet_mcts_depth", 4),
+                            fleet_mcts_branch_limit=config.get("fleet_mcts_branch_limit", 12),
+                            candidate_position_limit=config.get("candidate_position_limit", 3),
+                            rollout_regret_k=config.get("rollout_regret_k", 2))
 
 
 def results_path(path):

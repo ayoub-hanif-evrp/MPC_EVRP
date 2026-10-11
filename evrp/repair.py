@@ -16,6 +16,7 @@ from .instance import distance, energy, travel_time
 from .model import (EPS, Action, InfeasibleAction, InfeasibilityReason,
                     Observation, VehicleState, escape, transition)
 from .mpc import MPCConfig, MPCPlanningProblem, MPCProposal, action_key
+from .planning_budget import check_deadline
 from .reference import full_charge_connection
 
 
@@ -37,6 +38,7 @@ def _evaluate(state, actions, observation, config):
     try:
         # predict enforces the plant/charging policy; done would impose Hp.
         for action in actions:
+            check_deadline()
             predicted, step = problem.predict(predicted, action)
             distance += step.distance
             if step.served is not None:
@@ -72,6 +74,7 @@ def build_route(state: VehicleState, customer_sequence: tuple[str, ...],
     failure, by a bounded one-station-per-gap charging decoder. Neither pass
     uses reference schedules or unreleased customer information.
     """
+    check_deadline()
     sequence = tuple(customer_sequence)
     if (not _valid_origin(state, observation) or len(set(sequence)) != len(sequence)
             or any(c not in observation.customer_by_id or c in observation.committed_ids
@@ -82,6 +85,7 @@ def build_route(state: VehicleState, customer_sequence: tuple[str, ...],
         return None
     earliest, location = state.time, state.location
     for customer in customers:
+        check_deadline()
         earliest = max(earliest + travel_time(location, customer, observation.infrastructure.parameters),
                        customer.ready)
         if earliest > customer.due + EPS:
@@ -93,6 +97,7 @@ def build_route(state: VehicleState, customer_sequence: tuple[str, ...],
     energy_failures = {InfeasibilityReason.BATTERY,
                        InfeasibilityReason.UNREACHABLE_SAFE_CONTINUATION}
     for customer in sequence:
+        check_deadline()
         goal = Action("serve", customer)
         try:
             predicted, _ = problem.predict(predicted, goal)
@@ -106,6 +111,7 @@ def build_route(state: VehicleState, customer_sequence: tuple[str, ...],
         # Aim bounded MPC charge candidates at this gap, not unrelated work.
         candidates = problem.charge_actions(replace(predicted, remaining=frozenset({customer})))
         for charge in candidates:
+            check_deadline()
             try:
                 charged, first = problem.predict(predicted, charge)
                 served, last = problem.predict(charged, goal)
@@ -150,12 +156,15 @@ def _decode_one_station(state: VehicleState, sequence: tuple[str, ...],
         output.append((step.after, actions + (goal,)))
 
     for customer_id in sequence:
+        check_deadline()
         goal = Action("serve", customer_id)
         customer = observation.customer_by_id[customer_id]
         next_labels: list[tuple[VehicleState, tuple[Action, ...]]] = []
         for current, actions in labels:
+            check_deadline()
             add_goal(current, actions, goal, next_labels)
             for station in observation.infrastructure.stations:
+                check_deadline()
                 if energy(current.location, station, p) > current.battery + EPS:
                     continue
                 arrival_battery = current.battery - energy(current.location, station, p)
@@ -166,6 +175,7 @@ def _decode_one_station(state: VehicleState, sequence: tuple[str, ...],
                            {p.battery, *(p.battery * fraction for fraction in config.charge_fractions),
                             min(p.battery, max(arrival_battery + 1e-6, needed))})
                 for target in sorted(targets):
+                    check_deadline()
                     if target <= arrival_battery + EPS:
                         continue
                     charge = Action("charge", station.id, target)
@@ -180,6 +190,7 @@ def _decode_one_station(state: VehicleState, sequence: tuple[str, ...],
         for candidate in sorted(next_labels, key=lambda item: (item[0].distance_travelled,
                                    item[0].time, -item[0].battery,
                                    tuple(action_key(a) for a in item[1]))):
+            check_deadline()
             new = candidate[0]
             if any(old.time <= new.time + EPS and old.battery >= new.battery - EPS
                    and old.distance_travelled <= new.distance_travelled + EPS
@@ -194,12 +205,14 @@ def _decode_one_station(state: VehicleState, sequence: tuple[str, ...],
                         tuple(action_key(a) for a in item[1])))[:24]
     ranked = []
     for end, actions in labels:
+        check_deadline()
         safe = escape(end, observation.infrastructure)
         if safe is None or safe.completion > observation.infrastructure.depot.due + EPS:
             continue
         ranked.append((end.distance_travelled - state.distance_travelled + safe.distance,
                        end.time, tuple(action_key(a) for a in actions), actions))
     for _, _, _, actions in sorted(ranked):
+        check_deadline()
         if route_proposal(state, actions, observation, config) is not None:
             return actions
     return None
@@ -286,11 +299,14 @@ def regret_repair(origins: dict[int, VehicleState], routes: dict[int, tuple[Acti
     cache: dict[int, dict[str, tuple[_Insertion, ...]]] = {k: {} for k in baselines}
     records = []
     for _ in range(len(pending)):
+        check_deadline()
         ranked = []
         for customer_id in sorted(pending):
+            check_deadline()
             customer = observation.customer_by_id[customer_id]
             options = []
             for k in baselines:
+                check_deadline()
                 if customer_id not in cache[k]:
                     sequence = tuple(a.destination for a in updated[k] if a.kind == "serve")
                     insertions = []
@@ -306,6 +322,7 @@ def regret_repair(origins: dict[int, VehicleState], routes: dict[int, tuple[Acti
                     batches = (positions[:position_limit], positions[position_limit:]) if position_limit else (positions,)
                     for batch in batches:
                         for position in batch:
+                            check_deadline()
                             proposed = sequence[:position] + (customer_id,) + sequence[position:]
                             actions = build_route(origins[k], proposed, observation, config)
                             if actions is None:

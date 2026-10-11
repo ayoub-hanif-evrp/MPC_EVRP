@@ -2,6 +2,12 @@
 
 **Status: final-track development. No final paper-performance claim yet.**
 
+A fleet-level MPC-MCTS redesign is implemented, but its
+[static development gate](docs/fleet_mcts_development.md) failed (598/600 on
+the first complete six-instance source). No dynamic comparison or holdout was
+run for this new method. The method described below is the earlier coordinator
+track retained for ablation and reproducibility.
+
 An additional fleet-wide LNS prototype and its six-instance, single-seed
 development gate are documented in
 [Fleet-LNS development](docs/fleet_lns_development.md). Rolling LNS passed its
