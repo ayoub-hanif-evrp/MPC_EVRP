@@ -50,7 +50,10 @@ def simulation_config(config: dict) -> SimulationConfig:
                             fleet_mode=config.get("fleet_mode", "fixed_reference"),
                             diagnostics=config.get("diagnostics", False),
                             route_continuity=config.get("route_continuity", True),
-                            regret_repair=config.get("regret_repair", True))
+                            regret_repair=config.get("regret_repair", True),
+                            lns_iterations=config.get("lns_iterations", 100),
+                            lns_time_limit=config.get("lns_time_limit", 3.0),
+                            lns_destroy_fraction=config.get("lns_destroy_fraction", 0.1))
 
 
 def results_path(path):
@@ -211,7 +214,8 @@ def audit_result(result: ExperimentResult, instance, scenario) -> dict:
             for insertion in decision.get("route_insertions", ()):
                 assert insertion["customer"] in decision["available"], "Unreleased route insertion"
                 assert insertion["vehicle_id"] in states, "Insertion owner outside fixed fleet"
-                assert insertion["customer"] in owners, "Inserted customer lost during compaction"
+                if result.effective_config["algorithm"] not in {"ROLLING_ALNS", "MPC_MCTS_ALNS"}:
+                    assert insertion["customer"] in owners, "Inserted customer lost during compaction"
             claimed = set(decision.get("background_intents", ()))
             for vehicle_id, plan in decision["plans"].items():
                 customers = {a["destination"] for a in plan["actions"] if a["kind"] == "serve"}

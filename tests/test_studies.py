@@ -87,13 +87,14 @@ def screen_config():
 
 def test_exact_configs_and_defaults():
     assert {p.stem for p in (REPO / "configs").glob("*.yaml")} == {
-        "debug", "validation", "smoke", "screening", "final", "main", "ablations", "realtime"}
+        "debug", "validation", "smoke", "screening", "final", "main", "ablations", "realtime",
+        "fleet_lns"}
     for path in (REPO / "configs").glob("*.yaml"):
         config = load_config(path)
         assert config["fleet_mode"] == "fixed_reference"
         assert config["route_continuity"] is True
         assert config["regret_repair"] is True
-        assert config["proposal_selection"] == ("coverage_diverse" if path.stem == "final" else "quality")
+        assert config["proposal_selection"] == ("coverage_diverse" if path.stem in ("final", "fleet_lns") else "quality")
         assert config["max_idle_wait"] == 0
 
 

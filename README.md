@@ -2,6 +2,13 @@
 
 **Status: final-track development. No final paper-performance claim yet.**
 
+An additional fleet-wide LNS prototype and its six-instance, single-seed
+development gate are documented in
+[Fleet-LNS development](docs/fleet_lns_development.md). It passed the static
+service prerequisite but did not establish an MCTS-over-ALNS advantage; its
+holdout was not run. The method and study below describe the earlier
+coordinator track, which remains available as an ablation.
+
 This training-free research implementation asks whether persistent route coordination
 between independently planned EVs improves dynamic EVRPTW performance over independent
 MPC-MCTS and rolling-horizon regret insertion. Local Schneider benchmark files are
@@ -112,6 +119,7 @@ Its Stage 2 was not run. See `results/screening/GATE.md` for its failed gate.
 - [Assumptions](docs/assumptions.md): physics, information, and limitations.
 - [Experiment protocol](docs/experiment_protocol.md): study design and gates.
 - [Reproducibility](docs/reproducibility.md): provenance, validation, and execution.
+- [Fleet-LNS development](docs/fleet_lns_development.md): prototype, matched results, and holdout decision.
 - [Output policy](results/README.md): generated artifacts and Git exclusions.
 
 Generated evidence is intentionally ignored by Git; the CLI writes it locally.

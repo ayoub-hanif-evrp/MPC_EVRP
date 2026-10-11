@@ -9,10 +9,12 @@ multi-hop paths, so construction failure is not a proof of infeasibility.
 """
 
 from dataclasses import dataclass, replace
+from functools import lru_cache
 from math import inf, isfinite
 
+from .instance import distance, energy, travel_time
 from .model import (EPS, Action, InfeasibleAction, InfeasibilityReason,
-                    Observation, VehicleState)
+                    Observation, VehicleState, escape, transition)
 from .mpc import MPCConfig, MPCPlanningProblem, MPCProposal, action_key
 from .reference import full_charge_connection
 
@@ -60,20 +62,32 @@ def route_proposal(state: VehicleState, actions: tuple[Action, ...],
     return evaluated[0] if evaluated is not None else None
 
 
+@lru_cache(maxsize=16384)
 def build_route(state: VehicleState, customer_sequence: tuple[str, ...],
                 observation: Observation, config: MPCConfig) -> tuple[Action, ...] | None:
     """Build actions through the last service, or None if construction fails.
 
     An empty sequence returns () only when the origin has a feasible safe return.
-    Customer order is fixed. A bridge minimizes distance, then completion time,
-    then action keys; full charging obeys the same policy as local MPC. This helper
-    uses no reference schedules and no unreleased customer information.
+    Customer order is fixed. The fast constructive pass is followed, only on
+    failure, by a bounded one-station-per-gap charging decoder. Neither pass
+    uses reference schedules or unreleased customer information.
     """
     sequence = tuple(customer_sequence)
     if (not _valid_origin(state, observation) or len(set(sequence)) != len(sequence)
             or any(c not in observation.customer_by_id or c in observation.committed_ids
                    or c in state.served_customers for c in sequence)):
         return None
+    customers = [observation.customer_by_id[c] for c in sequence]
+    if sum(c.demand for c in customers) > state.load + EPS:
+        return None
+    earliest, location = state.time, state.location
+    for customer in customers:
+        earliest = max(earliest + travel_time(location, customer, observation.infrastructure.parameters),
+                       customer.ready)
+        if earliest > customer.due + EPS:
+            return None
+        earliest += customer.service
+        location = customer
     problem = MPCPlanningProblem(observation, state, config)
     predicted, actions = problem.initial, ()
     energy_failures = {InfeasibilityReason.BATTERY,
@@ -86,7 +100,7 @@ def build_route(state: VehicleState, customer_sequence: tuple[str, ...],
             continue
         except InfeasibleAction as error:
             if error.reason not in energy_failures:
-                return None
+                return _decode_one_station(state, sequence, observation, config) if actions else None
 
         choices = []
         # Aim bounded MPC charge candidates at this gap, not unrelated work.
@@ -105,17 +119,90 @@ def build_route(state: VehicleState, customer_sequence: tuple[str, ...],
         else:
             connection = full_charge_connection(predicted.vehicle, goal, observation)
             if connection is None:
-                return None
+                return _decode_one_station(state, sequence, observation, config)
             bridge = tuple(step.action for step in connection)
             try:
                 for action in bridge:
                     predicted, _ = problem.predict(predicted, action)
             except InfeasibleAction:
-                return None
+                return _decode_one_station(state, sequence, observation, config)
         actions += bridge
     if not isfinite(problem.terminal_cost(predicted)):
-        return None
+        return _decode_one_station(state, sequence, observation, config)
     return actions
+
+
+def _decode_one_station(state: VehicleState, sequence: tuple[str, ...],
+                        observation: Observation, config: MPCConfig
+                        ) -> tuple[Action, ...] | None:
+    """Pareto-label charging fallback with at most one station per service gap."""
+    p = observation.infrastructure.parameters
+    if sum(observation.customer_by_id[c].demand for c in sequence) > state.load + EPS:
+        return None
+    labels: list[tuple[VehicleState, tuple[Action, ...]]] = [(state, ())]
+
+    def add_goal(current: VehicleState, actions: tuple[Action, ...], goal: Action,
+                 output: list[tuple[VehicleState, tuple[Action, ...]]]) -> None:
+        try:
+            step = transition(current, goal, observation)
+        except InfeasibleAction:
+            return
+        output.append((step.after, actions + (goal,)))
+
+    for customer_id in sequence:
+        goal = Action("serve", customer_id)
+        customer = observation.customer_by_id[customer_id]
+        next_labels: list[tuple[VehicleState, tuple[Action, ...]]] = []
+        for current, actions in labels:
+            add_goal(current, actions, goal, next_labels)
+            for station in observation.infrastructure.stations:
+                if energy(current.location, station, p) > current.battery + EPS:
+                    continue
+                arrival_battery = current.battery - energy(current.location, station, p)
+                nearest_safe = min(distance(customer, node) for node in
+                                   (observation.infrastructure.depot,) + observation.infrastructure.stations)
+                needed = energy(station, customer, p) + nearest_safe * p.consumption
+                targets = ({p.battery} if config.charging_mode == "full" else
+                           {p.battery, *(p.battery * fraction for fraction in config.charge_fractions),
+                            min(p.battery, max(arrival_battery + 1e-6, needed))})
+                for target in sorted(targets):
+                    if target <= arrival_battery + EPS:
+                        continue
+                    charge = Action("charge", station.id, target)
+                    try:
+                        step = transition(current, charge, observation)
+                    except InfeasibleAction:
+                        continue
+                    add_goal(step.after, actions + (charge,), goal, next_labels)
+        if not next_labels:
+            return None
+        frontier: list[tuple[VehicleState, tuple[Action, ...]]] = []
+        for candidate in sorted(next_labels, key=lambda item: (item[0].distance_travelled,
+                                   item[0].time, -item[0].battery,
+                                   tuple(action_key(a) for a in item[1]))):
+            new = candidate[0]
+            if any(old.time <= new.time + EPS and old.battery >= new.battery - EPS
+                   and old.distance_travelled <= new.distance_travelled + EPS
+                   for old, _ in frontier):
+                continue
+            frontier = [(old, old_actions) for old, old_actions in frontier
+                        if not (new.time <= old.time + EPS and new.battery >= old.battery - EPS
+                                and new.distance_travelled <= old.distance_travelled + EPS)]
+            frontier.append(candidate)
+        labels = sorted(frontier, key=lambda item: (item[0].distance_travelled,
+                        item[0].time, -item[0].battery,
+                        tuple(action_key(a) for a in item[1])))[:24]
+    ranked = []
+    for end, actions in labels:
+        safe = escape(end, observation.infrastructure)
+        if safe is None or safe.completion > observation.infrastructure.depot.due + EPS:
+            continue
+        ranked.append((end.distance_travelled - state.distance_travelled + safe.distance,
+                       end.time, tuple(action_key(a) for a in actions), actions))
+    for _, _, _, actions in sorted(ranked):
+        if route_proposal(state, actions, observation, config) is not None:
+            return actions
+    return None
 
 
 @dataclass(frozen=True)
@@ -135,7 +222,8 @@ class _Insertion:
 
 
 def regret_repair(origins: dict[int, VehicleState], routes: dict[int, tuple[Action, ...]],
-                  observation: Observation, config: MPCConfig
+                  observation: Observation, config: MPCConfig, *, regret_k: int = 2,
+                  position_limit: int | None = None
                   ) -> tuple[dict[int, tuple[Action, ...]], list[dict]]:
     """Insert released unassigned requests without changing fleet or ownership.
 
@@ -156,6 +244,10 @@ def regret_repair(origins: dict[int, VehicleState], routes: dict[int, tuple[Acti
     """
     if set(routes) - set(origins):
         raise ValueError("Route keys must belong to the fixed fleet origins")
+    if regret_k not in {2, 3}:
+        raise ValueError("Only regret-2 and regret-3 are supported")
+    if position_limit is not None and position_limit < 1:
+        raise ValueError("Insertion position limit must be positive")
     if any(k != state.id or state.finished for k, state in origins.items()):
         raise ValueError("Origins must have matching vehicle IDs and never be finished")
     updated = {k: tuple(routes.get(k, ())) for k in sorted(origins)}
@@ -202,26 +294,40 @@ def regret_repair(origins: dict[int, VehicleState], routes: dict[int, tuple[Acti
                 if customer_id not in cache[k]:
                     sequence = tuple(a.destination for a in updated[k] if a.kind == "serve")
                     insertions = []
-                    for position in range(len(sequence) + 1):
-                        proposed = sequence[:position] + (customer_id,) + sequence[position:]
-                        actions = build_route(origins[k], proposed, observation, config)
-                        if actions is None:
-                            continue
-                        evaluated = _evaluate(origins[k], actions, observation, config)
-                        if evaluated is None:
-                            continue
-                        proposal, starts = evaluated
-                        insertions.append(_Insertion(
-                            k, position, proposal, proposal.cost - baselines[k],
-                            customer.due - starts[customer_id],
-                            not origins[k].departed and not updated[k]))
+                    positions = list(range(len(sequence) + 1))
+                    if position_limit is not None and len(positions) > position_limit:
+                        def cheap_delta(position):
+                            before = origins[k].location if position == 0 else observation.customer_by_id[sequence[position - 1]]
+                            after = (observation.infrastructure.depot if position == len(sequence)
+                                     else observation.customer_by_id[sequence[position]])
+                            return (distance(before, customer) + distance(customer, after)
+                                    - distance(before, after), position)
+                        positions.sort(key=cheap_delta)
+                    batches = (positions[:position_limit], positions[position_limit:]) if position_limit else (positions,)
+                    for batch in batches:
+                        for position in batch:
+                            proposed = sequence[:position] + (customer_id,) + sequence[position:]
+                            actions = build_route(origins[k], proposed, observation, config)
+                            if actions is None:
+                                continue
+                            evaluated = _evaluate(origins[k], actions, observation, config)
+                            if evaluated is None:
+                                continue
+                            proposal, starts = evaluated
+                            insertions.append(_Insertion(
+                                k, position, proposal, proposal.cost - baselines[k],
+                                customer.due - starts[customer_id],
+                                not origins[k].departed and not updated[k]))
+                        if insertions:
+                            break
                     cache[k][customer_id] = tuple(insertions)
                 options.extend(cache[k][customer_id])
             if not options:
                 continue
             options.sort(key=lambda option: option.key)
             best = options[0]
-            regret = options[1].incremental_cost - best.incremental_cost if len(options) > 1 else inf
+            regret = (options[min(regret_k - 1, len(options) - 1)].incremental_cost
+                      - best.incremental_cost) if len(options) > 1 else inf
             priority = (len(options) != 1, -regret, best.slack, customer.due, customer_id)
             ranked.append((priority, customer_id, best, regret, len(options)))
         if not ranked:

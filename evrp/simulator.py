@@ -1,4 +1,4 @@
-"""Fixed-fleet event-driven MPC with persistent routes and one repair pass."""
+"""Fixed-fleet event-driven MPC with optional fleet-level neighborhood search."""
 
 from concurrent.futures import ProcessPoolExecutor
 from dataclasses import asdict, dataclass, field, replace
@@ -18,7 +18,9 @@ from .observation import get_agent_observation, initial_global_state
 from .scenario import DynamicScenario
 from .storage import save_json
 
-ALGORITHMS = {"GREEDY", "RH_REGRET", "MPC_MCTS_H1", "INDEPENDENT_MPC_MCTS", "COORDINATED_MPC_MCTS"}
+ALGORITHMS = {"GREEDY", "RH_REGRET", "MPC_MCTS_H1", "INDEPENDENT_MPC_MCTS",
+              "COORDINATED_MPC_MCTS", "ROLLING_ALNS", "MPC_MCTS_ALNS"}
+FLEET_LNS_ALGORITHMS = {"ROLLING_ALNS", "MPC_MCTS_ALNS"}
 
 
 @dataclass(frozen=True)
@@ -35,6 +37,9 @@ class SimulationConfig:
     diagnostics: bool = False
     route_continuity: bool = True
     regret_repair: bool = True
+    lns_iterations: int = 100
+    lns_time_limit: float = 3.0
+    lns_destroy_fraction: float = 0.1
 
     def __post_init__(self):
         if self.algorithm not in ALGORITHMS or self.workers < 1 or self.max_events < 1:
@@ -47,6 +52,10 @@ class SimulationConfig:
             raise ValueError("Route continuity requires at least a summary trace")
         if self.algorithm == "RH_REGRET" and not (self.route_continuity and self.regret_repair):
             raise ValueError("RH_REGRET requires persistent routes and regret repair")
+        if self.algorithm in FLEET_LNS_ALGORITHMS and not (self.route_continuity and self.regret_repair):
+            raise ValueError("Fleet LNS requires persistent routes and regret repair")
+        if self.lns_iterations < 1 or self.lns_time_limit <= 0 or not 0 < self.lns_destroy_fraction <= 1:
+            raise ValueError("Invalid fleet LNS budget")
 
 
 @dataclass(frozen=True)
@@ -123,13 +132,15 @@ class EventDrivenSimulator:
 
     def run(self):
         from .repair import compact_unused_routes, regret_repair, route_proposal
+        from .fleet_lns import fleet_score, improve_fleet
         from .diagnostics import ServiceDiagnostics
         state, instance, config = self.state, self.instance, self.config
         events, steps, decisions, searches, timings = [], [], [], [], []
         tails, coverages, local_times = {}, [], []
         epochs = replans = conflicts = resolved = waits = simulations = expanded = reused = 0
         new_activations = inserted_requests = compacted_vehicles = 0
-        repair_seconds = 0.
+        repair_seconds = lns_seconds = 0.
+        lns_iterations = lns_improvements = 0
         diagnostic = ServiceDiagnostics(instance, self.scenario) if config.diagnostics else None
         pool = ProcessPoolExecutor(max_workers=config.workers) if config.parallel_agents else None
         try:
@@ -175,7 +186,7 @@ class EventDrivenSimulator:
                     results, cache = [], {}
                     for job in jobs:
                         agent, vehicle, obs, seed, algorithm = job
-                        if algorithm == "RH_REGRET":
+                        if algorithm in {"RH_REGRET", "ROLLING_ALNS"}:
                             result = PlanningResult((), idle_proposal(vehicle, obs, config.mpc))
                         else:
                             key = unused_symmetry_key(vehicle, obs, config.mpc) if config.symmetry_reuse else None
@@ -196,7 +207,7 @@ class EventDrivenSimulator:
                               if p.proposals and p.proposals[0].first.kind == "serve"]
                     duplicates = len(firsts)-len(set(firsts))
                     conflicts += duplicates
-                    if config.algorithm in {"GREEDY", "RH_REGRET", "INDEPENDENT_MPC_MCTS"}:
+                    if config.algorithm in {"GREEDY", "RH_REGRET", "INDEPENDENT_MPC_MCTS", "ROLLING_ALNS"}:
                         selected, count = independent_selection(plans, exclusive_routes=True)
                         resolved += count
                     else:
@@ -214,15 +225,38 @@ class EventDrivenSimulator:
                                                  if p is not None)
                     insertions = []
                     compactions = []
+                    lns_record = None
                     if config.regret_repair:
                         repair_start = perf_counter()
                         eligible = origins if config.route_continuity else {k: origins[k] for k in ready}
-                        routes, insertions = regret_repair(eligible, routes, observation, config.mpc)
-                        routes, compactions = compact_unused_routes(eligible, routes, observation, config.mpc)
+                        routes, insertions = regret_repair(
+                            eligible, routes, observation, config.mpc,
+                            position_limit=5 if config.algorithm in FLEET_LNS_ALGORITHMS else None)
+                        if config.algorithm not in FLEET_LNS_ALGORITHMS:
+                            routes, compactions = compact_unused_routes(eligible, routes, observation, config.mpc)
                         repair_seconds += perf_counter()-repair_start
                         inserted_requests += len(insertions)
                         compacted_vehicles += len(compactions)
-                    # One final reconciliation; never cycle repair and coordination.
+                    if config.algorithm in FLEET_LNS_ALGORITHMS:
+                        if config.algorithm == "MPC_MCTS_ALNS":
+                            rh_routes, _ = regret_repair(origins, frozen, observation, config.mpc, position_limit=5)
+                            if fleet_score(origins, rh_routes, observation, config.mpc) < fleet_score(
+                                    origins, routes, observation, config.mpc):
+                                routes = rh_routes
+                        lns_record = improve_fleet(
+                            origins, routes, observation, config.mpc,
+                            seed=agent_seed(config.experiment_seed, self.scenario.scenario_seed, epochs, -1),
+                            iterations=config.lns_iterations, time_limit=config.lns_time_limit,
+                            destroy_fraction=config.lns_destroy_fraction)
+                        routes = lns_record.routes
+                        lns_seconds += lns_record.elapsed
+                        lns_iterations += lns_record.iterations
+                        lns_improvements += lns_record.improvements
+                        released = set(observation.customer_by_id) - observation.committed_ids
+                        if released <= reserved_customers(routes) | state.served_customers:
+                            routes, compactions = compact_unused_routes(origins, routes, observation, config.mpc)
+                            compacted_vehicles += len(compactions)
+                    # Reconcile all future suffixes before dispatching any physical action.
                     assert_unique_routes(routes)
                     validated = {k: route_proposal(origins[k], a, observation, config.mpc)
                                  for k, a in routes.items() if a}
@@ -241,7 +275,7 @@ class EventDrivenSimulator:
                     coverage = set().union(*(set(p.unique_predicted_customer_set) for p in selected.values()))
                     coverages.append(len(coverage))
                     new_activations += sum(p.new_activation for p in selected.values())
-                    replans += len(results) if config.algorithm != "RH_REGRET" else 0
+                    replans += len(results) if config.algorithm not in {"RH_REGRET", "ROLLING_ALNS"} else 0
                     background = reserved_customers(tails)
                     candidate_intents = sorted(set().union(*(set(p.unique_predicted_customer_set)
                                                for r in plans.values() for p in r.candidates)))
@@ -250,6 +284,11 @@ class EventDrivenSimulator:
                                     candidate_intents=candidate_intents, background_intents=sorted(background),
                                     unique_intention_coverage=sorted(coverage), route_insertions=insertions,
                                     route_compactions=compactions,
+                                    fleet_lns=(dict(initial_score=lns_record.initial_score,
+                                                    best_score=lns_record.best_score,
+                                                    iterations=lns_record.iterations,
+                                                    improvements=lns_record.improvements,
+                                                    elapsed=lns_record.elapsed) if lns_record else None),
                                     route_owners_after_repair={a.destination: k for k, actions in routes.items()
                                                                for a in actions if a.kind == "serve"},
                                     customers_available=len(observation.customers),
@@ -269,7 +308,7 @@ class EventDrivenSimulator:
                     for k, r in measured:
                         simulations += r.statistics.iterations
                         expanded += r.statistics.nodes_expanded
-                        if config.algorithm not in {"GREEDY", "RH_REGRET"}:
+                        if config.algorithm not in {"GREEDY", "RH_REGRET", "ROLLING_ALNS"}:
                             local_times.append(r.statistics.elapsed)
                         if config.trace_level != "none":
                             details = asdict(r.statistics)
@@ -332,7 +371,8 @@ class EventDrivenSimulator:
                        duplicate_service_violations=0, hidden_information_violations=0,
                        symmetry_reused_replans=reused, mcts_iterations=simulations, nodes_expanded=expanded,
                        route_insertions=inserted_requests, route_compactions=compacted_vehicles,
-                       repair_seconds=repair_seconds,
+                       repair_seconds=repair_seconds, lns_seconds=lns_seconds,
+                       lns_iterations=lns_iterations, lns_improvements=lns_improvements,
                        deadline_overrun_rate=float(np.mean(np.array(local_times) > config.mpc.time_limit))
                        if local_times and config.mpc.budget_mode == "wall_clock" else None)
         for name, fn in [("mean", np.mean), ("median", np.median), ("p95", lambda x: np.percentile(x, 95)), ("maximum", np.max), ("total", np.sum)]:
