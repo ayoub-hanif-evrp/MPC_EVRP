@@ -1,13 +1,13 @@
 """Fleet-level MCTS over released customer sequences and EV assignments."""
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from math import floor, isfinite, sqrt
 from random import Random
 from time import perf_counter
 
 from .instance import distance, energy, travel_time
 from .model import EPS, Action, Observation, VehicleState, escape, transition
-from .mpc import MPCConfig, MPCProposal
+from .mpc import MPCConfig, MPCPlanningProblem, MPCProposal
 from .planning_budget import PlanningDeadlineExceeded, check_deadline, remaining_time
 from .repair import build_route, regret_repair, route_proposal
 
@@ -70,6 +70,7 @@ class _FleetProblem:
                                             observation.customer_by_id[c]) for c in self.pending))
         self.initial_owners: dict[str, int] = {}
         self.route_metrics: dict[tuple[int, tuple[Action, ...]], dict[str, float]] = {}
+        self.control_metrics: dict[tuple[int, tuple[Action, ...]], dict[str, float]] = {}
         self.criticality_cache: dict[tuple[tuple[str, ...], ...], list[tuple[str, int, float, float, float]]] = {}
         self.target_stats: dict[str, dict[str, int]] = {}
         self.search_until: float | None = None
@@ -120,6 +121,42 @@ class _FleetProblem:
         self.route_metrics[key] = result
         return result
 
+    def _control_metrics(self, k: int, actions: tuple[Action, ...]) -> dict[str, float]:
+        key = (k, actions)
+        if key in self.control_metrics:
+            return self.control_metrics[key]
+        self._check_search_time()
+        origin = self.origins[k]
+        infra = self.observation.infrastructure
+        p = infra.parameters
+        tw = 0.0
+        if origin.time > self.observation.time + EPS:
+            # The busy action is immutable; origin is already its measured after-state.
+            after = origin
+        else:
+            if actions:
+                first = actions[0]
+            else:
+                idle = MPCPlanningProblem(self.observation, origin,
+                                          replace(self.config, max_idle_wait=0))
+                first = idle.fallback(idle.initial)
+            step = transition(origin, first, self.observation)
+            after = step.after
+            if step.served:
+                customer = self.observation.customer_by_id[step.served]
+                tw = 1.0 - self._unit((customer.due - step.service_start) /
+                                      max(EPS, customer.due - customer.ready))
+        safe_energy = min(energy(after.location, node, p) for node in
+                          (infra.depot,) + infra.stations)
+        horizon = max(EPS, infra.depot.due - self.observation.time)
+        result = dict(tw=tw,
+                      battery=1.0 - self._unit((after.battery - safe_energy) / p.battery),
+                      capacity=1.0 - self._unit(after.load / p.capacity),
+                      time=1.0 - self._unit((infra.depot.due - after.time) / horizon))
+        result["total"] = sum(result.values()) / 4
+        self.control_metrics[key] = result
+        return result
+
     def _score(self, sequences, actions, costs):
         owned = {c for sequence in sequences for c in sequence}
         uncovered = self.pending - owned
@@ -136,6 +173,8 @@ class _FleetProblem:
         time_risk = (sum(active_time_risks) / len(active_time_risks)
                      if active_time_risks else 0.0)
         flexibility_risk = (tw + battery + capacity + time_risk) / 4
+        control_risk = sum(self._control_metrics(k, actions[index])["total"]
+                           for index, k in enumerate(self.ids)) / max(1, len(self.ids))
         route_distance = sum(costs)
         normalized_distance = self._unit(route_distance / max(1.0, self.dscale * 2))
         durations = [r["duration"] for r in risks]
@@ -150,11 +189,12 @@ class _FleetProblem:
             components = dict(unserved_customers=len(uncovered), screened_zero_option_customers=zero,
                               screened_one_option_customers=one, time_window_risk=tw,
                               battery_risk=battery, capacity_risk=capacity, time_reserve_risk=time_risk,
-                              flexibility_risk=flexibility_risk,
+                              flexibility_risk=flexibility_risk, control_risk=control_risk,
                               normalized_distance=normalized_distance,
                               activated_vehicles=vehicles, distance=route_distance,
                               route_instability=instability)
-            score = (len(uncovered), zero, one, tw, battery, capacity, normalized_distance)
+            score = (len(uncovered), zero, one, control_risk, tw, battery,
+                     capacity, normalized_distance)
         else:
             operational = sum((normalized_distance, mean("duration"), mean("charge"),
                                mean("wait"), tw, battery, balance)) / 7
@@ -162,6 +202,7 @@ class _FleetProblem:
                               screened_one_option_customers=0, time_window_risk=tw,
                               battery_risk=battery, capacity_risk=capacity,
                               time_reserve_risk=time_risk, flexibility_risk=flexibility_risk,
+                              control_risk=control_risk,
                               normalized_distance=normalized_distance,
                               normalized_route_duration=mean("duration"),
                               normalized_charging_time=mean("charge"),
@@ -169,7 +210,8 @@ class _FleetProblem:
                               route_balance_risk=balance, operational_cost=operational,
                               activated_vehicles=vehicles, distance=route_distance,
                               route_instability=instability)
-            score = (0, flexibility_risk, vehicles, operational, route_distance, instability)
+            score = (0, control_risk, flexibility_risk, vehicles, operational,
+                     route_distance, instability)
         return score, components
 
     def _screen_profile(self, k: int, sequence: tuple[str, ...]):
@@ -466,6 +508,7 @@ class _FleetProblem:
                             found[swapped.sequences] = swapped
                             moved_count += 1
         if not unserved:
+            self._full_service_moves(plan, found, branch_limit)
             for source_index, source in enumerate(self.ids):
                 self._check_search_time()
                 sequence = plan.sequences[source_index]
@@ -496,7 +539,6 @@ class _FleetProblem:
                     found[candidate.sequences] = candidate
                 if len(found) >= branch_limit:
                     break
-            self._full_service_moves(plan, found, branch_limit)
         return sorted(found.values(), key=lambda p: p.score)[:branch_limit]
 
     def _full_service_moves(self, plan: FleetPlan,
@@ -513,6 +555,32 @@ class _FleetProblem:
             if (candidate is not None and candidate.score[0] == 0
                     and candidate.sequences not in found):
                 found[candidate.sequences] = candidate
+
+        ready = [k for k in self.ids if self.origins[k].time <= self.observation.time + EPS
+                 and plan.sequences[self.ids.index(k)]]
+        control_order = sorted(ready, key=lambda k: (
+            -self._control_metrics(k, plan.actions[self.ids.index(k)])["total"], k))
+        # CONTROL-RELOCATE changes the next service assignment, not just a suffix.
+        for source in control_order[:3]:
+            sequence = plan.sequences[self.ids.index(source)]
+            customer = sequence[0]
+            for target in [k for k in self._nearest_vehicles(plan, customer, 4)
+                           if k != source][:3]:
+                target_seq = plan.sequences[self.ids.index(target)]
+                for gap in self._positions(plan, target, customer)[:self.position_limit]:
+                    keep({source: sequence[1:],
+                          target: target_seq[:gap] + (customer,) + target_seq[gap:]})
+        # CONTROL-SWAP exchanges first/early service across feasible route heads.
+        if control_order:
+            source = control_order[0]
+            sequence = plan.sequences[self.ids.index(source)]
+            customer = sequence[0]
+            for target in [k for k in self._nearest_vehicles(plan, customer, 4)
+                           if k != source][:3]:
+                target_seq = plan.sequences[self.ids.index(target)]
+                for pos, other in enumerate(target_seq[:2]):
+                    keep({source: (other,) + sequence[1:],
+                          target: target_seq[:pos] + (customer,) + target_seq[pos + 1:]})
 
         horizon = max(EPS, self.observation.infrastructure.depot.due - self.observation.time)
         p = self.observation.infrastructure.parameters
@@ -630,15 +698,16 @@ class _FleetProblem:
     def value(self, plan: FleetPlan) -> float:
         metrics = plan.components
         served = len(self.pending) - metrics["unserved_customers"]
-        flexibility = (1.0 - metrics["flexibility_risk"] if metrics["unserved_customers"] == 0
-                       else 1.0 - self._unit((metrics["screened_zero_option_customers"] +
-                                              0.5 * metrics["screened_one_option_customers"]) /
-                                             max(1, metrics["unserved_customers"])))
-        return (served + 0.30 * flexibility + 0.20 * (1 - metrics["time_window_risk"])
-                + 0.15 * (1 - metrics["battery_risk"])
-                + 0.10 * (1 - metrics["capacity_risk"])
+        critical = 1.0 - self._unit((metrics["screened_zero_option_customers"] +
+                                     0.5 * metrics["screened_one_option_customers"]) /
+                                    max(1, metrics["unserved_customers"]))
+        operational = metrics.get("operational_cost", metrics["normalized_distance"])
+        return (served + 0.30 * (1 - metrics["control_risk"])
+                + 0.20 * (1 - metrics["flexibility_risk"])
+                + 0.12 * critical
                 + 0.08 * (1 - metrics["activated_vehicles"] / max(1, len(self.ids)))
-                + 0.05 * (1 - metrics["normalized_distance"])
+                + 0.05 * (1 - operational)
+                + 0.03 * (1 - metrics["normalized_distance"])
                 + 0.02 * (1 - metrics["route_instability"]))
 
 
@@ -650,7 +719,7 @@ def solve_fleet_mcts(origins: dict[int, VehicleState], routes: dict[int, tuple[A
         raise ValueError("Invalid fleet MCTS configuration")
     started = perf_counter()
     problem = _FleetProblem(origins, observation, config, position_limit, regret_k)
-    problem.search_until = perf_counter() + max(0.0, remaining_time() - 0.05)
+    problem.search_until = perf_counter() + max(0.0, remaining_time() - 0.15)
     try:
         root_plan = problem.initial(routes)
     except _SearchBudgetReached as error:

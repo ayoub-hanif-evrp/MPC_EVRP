@@ -200,7 +200,7 @@ class EventDrivenSimulator:
                     observation = get_agent_observation(state, instance)
                     started = perf_counter()
                     deadline_token = (set_deadline(started + config.total_planning_time_limit -
-                                                   min(0.02, config.total_planning_time_limit * 0.1))
+                                                   min(0.15, config.total_planning_time_limit * 0.1))
                                       if config.total_planning_time_limit is not None else None)
                     origins = {k: state.busy[k].after if k in state.busy else v
                                for k, v in state.vehicles.items()
@@ -268,9 +268,19 @@ class EventDrivenSimulator:
                         repair_start = perf_counter()
                         eligible = origins if config.route_continuity else {k: origins[k] for k in ready}
                         try:
-                            routes, insertions = regret_repair(
-                                eligible, routes, observation, config.mpc,
-                                position_limit=5 if config.algorithm in FLEET_LNS_ALGORITHMS else None)
+                            repair_token = None
+                            if (config.algorithm == "ROLLING_LNS"
+                                    and config.total_planning_time_limit is not None):
+                                repair_token = set_deadline(started +
+                                                            0.4 * config.total_planning_time_limit)
+                            try:
+                                routes, insertions = regret_repair(
+                                    eligible, routes, observation, config.mpc,
+                                    position_limit=5 if config.algorithm in FLEET_LNS_ALGORITHMS else None,
+                                    return_partial_on_deadline=config.algorithm == "ROLLING_LNS")
+                            finally:
+                                if repair_token is not None:
+                                    reset_deadline(repair_token)
                             if config.algorithm not in FLEET_LNS_ALGORITHMS:
                                 routes, compactions = compact_unused_routes(eligible, routes, observation, config.mpc)
                         except PlanningDeadlineExceeded:
@@ -324,7 +334,7 @@ class EventDrivenSimulator:
                     assert_unique_routes(routes)
                     validation_started = perf_counter()
                     deadline_fallback = False
-                    replay_reserved = (config.algorithm == "FLEET_MPC_MCTS"
+                    replay_reserved = (config.algorithm in {"FLEET_MPC_MCTS", "ROLLING_LNS"}
                                        and remaining_time() <= 0.02)
                     try:
                         if replay_reserved:
@@ -332,11 +342,14 @@ class EventDrivenSimulator:
                         validated = {k: route_proposal(origins[k], a, observation, config.mpc)
                                      for k, a in routes.items() if a}
                     except PlanningDeadlineExceeded:
-                        if fleet_mcts_record is None:
-                            routes, validated = fallback_routes, fallback_validated
-                        else:
+                        if fleet_mcts_record is not None:
                             routes = fleet_mcts_record.routes
                             validated = fleet_mcts_record.validated
+                        elif lns_record is not None:
+                            routes = lns_record.routes
+                            validated = lns_record.validated
+                        else:
+                            routes, validated = fallback_routes, fallback_validated
                         if set(validated) != {k for k, a in routes.items() if a} or any(
                                 validated[k].actions != routes[k] for k in validated):
                             raise RuntimeError("Fleet fallback does not match validated incumbent")

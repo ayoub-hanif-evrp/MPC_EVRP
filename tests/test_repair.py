@@ -9,6 +9,7 @@ from evrp.instance import Infrastructure, Location, Parameters
 from evrp.model import Action, Observation, VehicleState, transition
 from evrp.mpc import MPCConfig
 from evrp.repair import build_route, compact_unused_routes, regret_repair, route_proposal
+from evrp.planning_budget import PlanningDeadlineExceeded
 
 
 def customer(name, x, due=100, ready=0, demand=1, service=0):
@@ -29,6 +30,28 @@ def serves(*ids):
 
 def claims(routes):
     return [a.destination for actions in routes.values() for a in actions if a.kind == "serve"]
+
+
+def test_anytime_regret_repair_preserves_valid_partial_insertions(monkeypatch):
+    state, observation, config = setup((customer("A", 1), customer("B", 2)))
+    original = repair._regret_repair_impl
+
+    def expire_after_one(*args, on_progress=None, **kwargs):
+        def progress(updated, records):
+            if on_progress is not None:
+                on_progress(updated, records)
+            if len(records) == 1:
+                raise PlanningDeadlineExceeded
+        return original(*args, on_progress=progress, **kwargs)
+
+    monkeypatch.setattr(repair, "_regret_repair_impl", expire_after_one)
+    routes, records = regret_repair({0: state}, {}, observation, config,
+                                    return_partial_on_deadline=True)
+    assert len(records) == 1
+    assert claims(routes) == [records[0]["customer"]]
+    assert route_proposal(state, routes[0], observation, config) is not None
+    with pytest.raises(PlanningDeadlineExceeded):
+        regret_repair({0: state}, {}, observation, config)
 
 
 def test_unique_option_precedes_multiple_options_and_preserves_inputs():

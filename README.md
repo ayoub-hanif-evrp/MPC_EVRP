@@ -1,17 +1,22 @@
-# Coordinated Multi-Agent MPC-MCTS for Dynamic EVRPTW
+# Risk-Aware Fleet-Level MPC-MCTS for Dynamic EVRPTW
 
-**Status: static gate passed; dynamic development gate failed. No holdout or
-final paper-performance claim.**
+**Status: the control-horizon correction is being verified. No holdout or
+final paper-performance claim is made before its new development gate.**
 
-The current [risk-aware fleet-level MPC-MCTS method](docs/risk_aware_fleet_development.md)
-served 600/600 across six static development instances under one committed
-source. A stopped DoD 0.5 development comparison then served 373 customers
-versus Rolling-LNS's 396 across four matched pairs. All eight traces passed
-independent audits; the remaining eight planned pairs and holdout were not run.
-The [manifest and table](docs/risk_aware_fleet_table.md) preserve the evidence.
-The earlier [fleet MCTS attempt](docs/fleet_mcts_development.md) is retained
-as historical development. The method described below is the earlier
-coordinator track retained for ablation and reproducibility.
+The prior frozen `6a1ab7e` Fleet MPC-MCTS campaign is **historical development
+evidence**. It served 600/600 statically and 1005/1200 dynamically versus
+Rolling-LNS's 782/1200 in 12 matched pairs, but failed its severe-collapse and
+strict event-latency gates; its [report and raw archive](results/final/FINAL_REPORT.md)
+remain preserved. An even earlier stopped four-pair campaign is documented in
+the [risk-aware development record](docs/risk_aware_fleet_development.md).
+
+The corrected method protects the state produced by the next MPC control action
+with `R_CTRL`, then the soft route suffix with `R_FLEX`. Fleet MCTS remains the
+optimizer; charging remains in the decoder. Rolling-LNS is an anytime
+conventional comparator, never a post-MCTS step. The fixed 12-pair development
+grid, 90/100 per-run service requirement, and strict five-second event ceiling
+are specified in the [experiment protocol](docs/experiment_protocol.md).
+Only a development PASS permits the untouched holdout.
 
 An additional fleet-wide LNS prototype and its six-instance, single-seed
 development gate are documented in
@@ -27,7 +32,7 @@ MPC-MCTS and rolling-horizon regret insertion. Local Schneider benchmark files a
 immutable. Historical V1/V2 outputs are preserved at Git commit `38d0d01`; they are
 not evidence for the current method.
 
-## Method
+## Historical Coordinator Track
 
 ```text
 Released requests and measured EV states

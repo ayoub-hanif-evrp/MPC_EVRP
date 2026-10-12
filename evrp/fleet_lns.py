@@ -1,13 +1,14 @@
 """Bounded fleet-wide destroy/repair search over released customer routes."""
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from math import exp
 from random import Random
 from time import perf_counter
 
 from .instance import distance
 from .model import Action, Observation, VehicleState
-from .mpc import MPCConfig
+from .mpc import MPCConfig, MPCProposal
+from .planning_budget import PlanningDeadlineExceeded
 from .repair import build_route, regret_repair, route_proposal
 
 
@@ -19,10 +20,12 @@ class FleetLNSResult:
     iterations: int
     improvements: int
     elapsed: float
+    validated: dict[int, MPCProposal] = field(default_factory=dict)
 
 
 def fleet_score(origins: dict[int, VehicleState], routes: dict[int, tuple[Action, ...]],
-                observation: Observation, config: MPCConfig) -> tuple[int, int, float]:
+                observation: Observation, config: MPCConfig,
+                validated: dict[int, MPCProposal] | None = None) -> tuple[int, int, float]:
     """Exact lexicographic score of a complete, customer-disjoint fleet plan."""
     if set(routes) - set(origins):
         raise ValueError("Route outside fixed fleet")
@@ -32,6 +35,8 @@ def fleet_score(origins: dict[int, VehicleState], routes: dict[int, tuple[Action
         proposal = route_proposal(origins[k], actions, observation, config) if actions else None
         if actions and proposal is None:
             raise ValueError("Infeasible fleet route")
+        if proposal is not None and validated is not None:
+            validated[k] = proposal
         for action in actions:
             if action.kind != "serve":
                 continue
@@ -61,10 +66,10 @@ def _destroy_count(owned_count: int, destroy_fraction: float) -> int:
     return min(owned_count, 4, max(1, round(owned_count * destroy_fraction)))
 
 
-def improve_fleet(origins: dict[int, VehicleState], routes: dict[int, tuple[Action, ...]],
-                  observation: Observation, config: MPCConfig, *, seed: int,
-                  iterations: int = 100, time_limit: float = 3.0,
-                  destroy_fraction: float = 0.1) -> FleetLNSResult:
+def _improve_fleet_impl(origins: dict[int, VehicleState], routes: dict[int, tuple[Action, ...]],
+                        observation: Observation, config: MPCConfig, *, seed: int,
+                        iterations: int = 100, time_limit: float = 3.0,
+                        destroy_fraction: float = 0.1, on_progress=None) -> FleetLNSResult:
     """Search across EVs; never alter a physically executing action.
 
     Origins are measured ready states or states after immutable busy actions.
@@ -79,10 +84,14 @@ def improve_fleet(origins: dict[int, VehicleState], routes: dict[int, tuple[Acti
     best = {k: tuple(routes.get(k, ())) for k in sorted(origins)}
     for k, actions in best.items():
         cache[k, _sequence(actions)] = actions
-    initial_score = fleet_score(origins, best, observation, config)
+    best_validated: dict[int, MPCProposal] = {}
+    initial_score = fleet_score(origins, best, observation, config, best_validated)
     best_score = initial_score
     current, current_score = best, best_score
     improvements = completed = 0
+    if on_progress is not None:
+        on_progress(FleetLNSResult(best.copy(), initial_score, best_score, 0, 0,
+                                   perf_counter() - started, best_validated.copy()))
     available = set(observation.customer_by_id) - observation.committed_ids
     available -= {c for state in origins.values() for c in state.served_customers}
 
@@ -107,13 +116,20 @@ def improve_fleet(origins: dict[int, VehicleState], routes: dict[int, tuple[Acti
                 break
             target = unserved[iteration % len(unserved)]
             trial_obs = _restricted(observation, {target})
-            working, _ = regret_repair(origins, current, trial_obs, config, position_limit=5)
-            candidate_score = fleet_score(origins, working, observation, config)
+            working, _ = regret_repair(origins, current, trial_obs, config, position_limit=5,
+                                       return_partial_on_deadline=True)
+            candidate_validated: dict[int, MPCProposal] = {}
+            candidate_score = fleet_score(origins, working, observation, config, candidate_validated)
             completed += 1
             if candidate_score < best_score:
                 best, best_score = working, candidate_score
+                best_validated = candidate_validated
                 improvements += 1
             current, current_score = working, candidate_score
+            if on_progress is not None:
+                on_progress(FleetLNSResult(best.copy(), initial_score, best_score, completed,
+                                           improvements, perf_counter() - started,
+                                           best_validated.copy()))
             continue
         operator = ("rescue", "random", "worst", "related")[iteration % 4]
         count = _destroy_count(len(owned), destroy_fraction)
@@ -153,17 +169,21 @@ def improve_fleet(origins: dict[int, VehicleState], routes: dict[int, tuple[Acti
                 target = unserved[iteration % len(unserved)]
             if target is not None:
                 first_obs = _restricted(observation, owned_now | {target})
-                working, _ = regret_repair(origins, working, first_obs, config, position_limit=5)
+                working, _ = regret_repair(origins, working, first_obs, config, position_limit=5,
+                                           return_partial_on_deadline=True)
             retained = {c for actions in working.values() for c in _sequence(actions)}
             remaining = removed - retained
             if remaining:
                 repair_obs = _restricted(observation, retained | remaining)
                 working, _ = regret_repair(origins, working, repair_obs, config,
-                                           regret_k=3 if iteration % 2 else 2, position_limit=5)
-            candidate_score = fleet_score(origins, working, observation, config)
+                                           regret_k=3 if iteration % 2 else 2, position_limit=5,
+                                           return_partial_on_deadline=True)
+            candidate_validated = {}
+            candidate_score = fleet_score(origins, working, observation, config, candidate_validated)
             completed += 1
             if candidate_score < best_score:
                 best, best_score = working, candidate_score
+                best_validated = candidate_validated
                 improvements += 1
             if candidate_score < current_score:
                 current, current_score = working, candidate_score
@@ -171,5 +191,26 @@ def improve_fleet(origins: dict[int, VehicleState], routes: dict[int, tuple[Acti
                 temperature = max(0.01, current_score[2] * 0.005 * (1 - iteration / iterations))
                 if rng.random() < exp(min(0.0, (current_score[2] - candidate_score[2]) / temperature)):
                     current, current_score = working, candidate_score
+            if on_progress is not None:
+                on_progress(FleetLNSResult(best.copy(), initial_score, best_score, completed,
+                                           improvements, perf_counter() - started,
+                                           best_validated.copy()))
     return FleetLNSResult(best, initial_score, best_score, completed, improvements,
-                          perf_counter() - started)
+                          perf_counter() - started, best_validated)
+
+
+def improve_fleet(origins: dict[int, VehicleState], routes: dict[int, tuple[Action, ...]],
+                  observation: Observation, config: MPCConfig, *, seed: int,
+                  iterations: int = 100, time_limit: float = 3.0,
+                  destroy_fraction: float = 0.1) -> FleetLNSResult:
+    """Return the last validated best fleet even if the event deadline expires."""
+    progress = []
+    try:
+        return _improve_fleet_impl(origins, routes, observation, config, seed=seed,
+                                   iterations=iterations, time_limit=time_limit,
+                                   destroy_fraction=destroy_fraction,
+                                   on_progress=progress.append)
+    except PlanningDeadlineExceeded:
+        if not progress:
+            raise
+        return progress[-1]

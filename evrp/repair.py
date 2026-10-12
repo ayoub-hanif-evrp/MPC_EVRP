@@ -16,7 +16,7 @@ from .instance import distance, energy, travel_time
 from .model import (EPS, Action, InfeasibleAction, InfeasibilityReason,
                     Observation, VehicleState, escape, transition)
 from .mpc import MPCConfig, MPCPlanningProblem, MPCProposal, action_key
-from .planning_budget import check_deadline
+from .planning_budget import PlanningDeadlineExceeded, check_deadline
 from .reference import full_charge_connection
 
 
@@ -234,10 +234,10 @@ class _Insertion:
                 self.position, tuple(action_key(a) for a in self.proposal.actions))
 
 
-def regret_repair(origins: dict[int, VehicleState], routes: dict[int, tuple[Action, ...]],
-                  observation: Observation, config: MPCConfig, *, regret_k: int = 2,
-                  position_limit: int | None = None
-                  ) -> tuple[dict[int, tuple[Action, ...]], list[dict]]:
+def _regret_repair_impl(origins: dict[int, VehicleState], routes: dict[int, tuple[Action, ...]],
+                        observation: Observation, config: MPCConfig, *, regret_k: int = 2,
+                        position_limit: int | None = None, on_progress=None
+                        ) -> tuple[dict[int, tuple[Action, ...]], list[dict]]:
     """Insert released unassigned requests without changing fleet or ownership.
 
     The output has exactly the origins' keys; absent input routes mean empty routes.
@@ -279,6 +279,9 @@ def regret_repair(origins: dict[int, VehicleState], routes: dict[int, tuple[Acti
                 raise ValueError("Input routes contain hidden or committed customers")
             owned.add(customer)
 
+    records = []
+    if on_progress is not None:
+        on_progress(updated, records)
     served = {c for state in origins.values() for c in state.served_customers}
     pending = set(observation.customer_by_id) - owned - observation.committed_ids - served
     baselines = {}
@@ -297,7 +300,6 @@ def regret_repair(origins: dict[int, VehicleState], routes: dict[int, tuple[Acti
                 baselines[k] = cost
 
     cache: dict[int, dict[str, tuple[_Insertion, ...]]] = {k: {} for k in baselines}
-    records = []
     for _ in range(len(pending)):
         check_deadline()
         ranked = []
@@ -359,7 +361,28 @@ def regret_repair(origins: dict[int, VehicleState], routes: dict[int, tuple[Acti
                             incremental_cost=best.incremental_cost, regret2=regret if isfinite(regret) else None,
                             feasible_options=count, remaining_tw_slack=best.slack,
                             new_activation=best.new_activation))
+        if on_progress is not None:
+            on_progress(updated, records)
     return updated, records
+
+
+def regret_repair(origins: dict[int, VehicleState], routes: dict[int, tuple[Action, ...]],
+                  observation: Observation, config: MPCConfig, *, regret_k: int = 2,
+                  position_limit: int | None = None, return_partial_on_deadline: bool = False
+                  ) -> tuple[dict[int, tuple[Action, ...]], list[dict]]:
+    """Repair released routes, optionally retaining the last valid partial solution."""
+    partial = []
+    def remember(updated, records):
+        partial[:] = [(updated, records)]
+    try:
+        return _regret_repair_impl(origins, routes, observation, config,
+                                   regret_k=regret_k, position_limit=position_limit,
+                                   on_progress=remember if return_partial_on_deadline else None)
+    except PlanningDeadlineExceeded:
+        if not return_partial_on_deadline or not partial:
+            raise
+        updated, records = partial[-1]
+        return dict(updated), list(records)
 
 
 def compact_unused_routes(origins: dict[int, VehicleState], routes: dict[int, tuple[Action, ...]],

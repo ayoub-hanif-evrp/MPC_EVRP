@@ -7,12 +7,13 @@ import pytest
 
 from evrp.experiments import audit_result, simulation_config
 from evrp.fleet_mcts import _FleetProblem, solve_fleet_mcts
-from evrp.model import Observation
+from evrp.model import Action, Observation, transition
 from evrp.mpc import MPCConfig
 from evrp.planning_budget import PlanningDeadlineExceeded, remaining_time, reset_deadline, set_deadline
 from evrp.simulator import EventDrivenSimulator
 from tests.test_repair import customer, serves, setup
 from tests.test_simulator import synthetic
+from scripts.final_control_horizon_campaign import cases
 
 
 def test_fleet_mcts_serves_released_work_and_preserves_lexicographic_value():
@@ -27,8 +28,8 @@ def test_fleet_mcts_serves_released_work_and_preserves_lexicographic_value():
     full = problem.initial(result.routes)
     assert problem.value(full) > problem.value(empty)
     assert full.score[0] == 0
-    assert len(full.score) == 6
-    assert len(empty.score) == 7
+    assert len(full.score) == 7
+    assert len(empty.score) == 8
     assert result.best_components["unserved_customers"] == 0
     assert 0 <= result.best_components["operational_cost"] <= 1
     assert result.validated[0].actions == result.routes[0]
@@ -91,7 +92,62 @@ def test_full_coverage_flexibility_precedes_vehicle_count():
     assert compact.score[0] == split.score[0] == 0
     assert split.components["flexibility_risk"] < compact.components["flexibility_risk"]
     assert split.components["activated_vehicles"] > compact.components["activated_vehicles"]
-    assert split.score < compact.score
+    assert split.score[1] == split.components["control_risk"]
+    assert compact.score[1] == compact.components["control_risk"]
+
+
+def test_control_risk_replays_only_first_executed_action():
+    state, observation, config = setup((customer("A", 1), customer("B", 8)))
+    problem = _FleetProblem({0: state}, observation, config, 3, 2)
+    short = problem.initial({0: serves("A")})
+    long = problem.initial({0: serves("A", "B")})
+    metrics = problem._control_metrics(0, serves("A"))
+    assert metrics["tw"] == pytest.approx(0.01)
+    assert metrics["battery"] == pytest.approx(0.02)
+    assert metrics["capacity"] == pytest.approx(0.1)
+    assert metrics["time"] == pytest.approx(0.005)
+    assert short.components["control_risk"] == long.components["control_risk"]
+
+
+def test_control_risk_uses_busy_after_state_and_dispatched_idle_action():
+    state, observation, config = setup((customer("A", 1), customer("B", 2)))
+    problem = _FleetProblem({0: state}, observation, config, 3, 2)
+    assert problem._control_metrics(0, ())["time"] == pytest.approx(1.0)
+    busy = transition(state, Action("serve", "A"), observation).after
+    visible = Observation(0, observation.infrastructure,
+                          (observation.customer_by_id["B"],), (("A", 0),))
+    busy_problem = _FleetProblem({0: busy}, visible, config, 3, 2)
+    assert busy_problem._control_metrics(0, ()) == busy_problem._control_metrics(0, serves("B"))
+
+
+def test_safer_first_action_wins_at_equal_service():
+    state, observation, config = setup((customer("A", 1), customer("B", 8)))
+    problem = _FleetProblem({0: state}, observation, config, 3, 2)
+    safer = problem.initial({0: serves("A", "B")})
+    riskier = problem.initial({0: serves("B", "A")})
+    assert safer.score[0] == riskier.score[0] == 0
+    assert safer.components["control_risk"] < riskier.components["control_risk"]
+    assert safer.score < riskier.score
+
+
+def test_control_head_relocate_and_swap_keep_full_service():
+    state, observation, config = setup((customer("A", 8), customer("B", 9),
+                                        customer("C", 1), customer("D", 2)))
+    origins = {0: state, 1: replace(state, id=1)}
+    problem = _FleetProblem(origins, observation, config, 3, 2)
+    plan = problem.initial({0: serves("A", "B"), 1: serves("C", "D")})
+    found = {}
+    problem._full_service_moves(plan, found, 24)
+    candidates = list(found.values())
+    assert any(candidate.sequences == (("B",), ("A", "C", "D")) or
+               candidate.sequences == (("B",), ("C", "A", "D")) or
+               candidate.sequences == (("B",), ("C", "D", "A"))
+               for candidate in candidates)
+    assert any(candidate.sequences[0][0] == "C" and "A" in candidate.sequences[1]
+               for candidate in candidates)
+    assert all(candidate.score[0] == 0 and
+               {c for seq in candidate.sequences for c in seq} == {"A", "B", "C", "D"}
+               for candidate in candidates)
 
 
 def test_full_service_search_can_continue_past_old_075_second_cap(monkeypatch):
@@ -176,4 +232,27 @@ def test_rolling_lns_accepts_the_same_total_event_budget():
     result = EventDrivenSimulator(base.instance, base.scenario, config).run()
     assert result.metrics["customers_served"] == 2
     assert result.metrics["total_deadline_overrun_rate"] == 0
+    assert result.metrics["maximum_planning_time"] <= 2.0
     assert all(audit_result(result, base.instance, base.scenario).values())
+
+
+def test_final_control_horizon_grid_is_fixed_and_matched():
+    static = list(cases("static"))
+    development = list(cases("development"))
+    assert len(static) == 6
+    assert len(development) == 24
+    assert all(config["dynamicity"] == 0 and config["algorithm"] == "FLEET_MPC_MCTS"
+               for _, config in static)
+    for instance in {name for name, _ in development}:
+        for seed in (0, 1):
+            pair = [config for name, config in development
+                    if name == instance and config["scenario_seed"] == seed]
+            assert {config["algorithm"] for config in pair} == {
+                "FLEET_MPC_MCTS", "ROLLING_LNS"}
+            assert all(config["dynamicity"] == 0.5 and config["experiment_seed"] == 0
+                       and config["total_planning_time_limit"] == 5.0 for config in pair)
+            assert all(config["fleet_mcts_iterations"] == 256 and
+                       config["fleet_mcts_depth"] == 4 and
+                       config["fleet_mcts_branch_limit"] == 24 and
+                       config["candidate_position_limit"] == 3 and
+                       config["uct_c"] == 1.4 for config in pair)
