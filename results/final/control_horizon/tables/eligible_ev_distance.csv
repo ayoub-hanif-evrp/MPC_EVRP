@@ -1,0 +1,7 @@
+instance,seed,service_equal,EV_delta,service_and_EV_equal,distance_delta
+c101_21,0,False,,False,
+c101_21,1,False,,False,
+r101_21,1,False,,False,
+r201_21,1,False,,False,
+rc101_21,0,False,,False,
+rc101_21,1,True,-1,False,

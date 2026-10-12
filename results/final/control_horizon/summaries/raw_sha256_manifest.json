@@ -1,3 +1,376 @@
 {
-  "records": []
+  "records": [
+    {
+      "stage": "static",
+      "path": "results/final/control_horizon/raw/static/c101_21_FLEET_MPC_MCTS_8ebd6520b81a2142ab19.json",
+      "sha256": "006ec1f9bcc3a4645be41d21a4817a84d9526b94137be57ad56db356d1fe6243",
+      "status": "completed",
+      "audit": "pass",
+      "run_id": "8ebd6520b81a2142ab191f13bcd7fc36cd87fbd17c4c419569cf102c9413c8f4",
+      "git_commit": "2577a0e4793a25878722502195bb8e031c77a5d1",
+      "source_sha256": "51d9d72bb1fef24065db805f3b5bf27005b7edfbe81d727291bc830979c1bd22",
+      "config_sha256": "e96c160ac408f21bdc14b15f08f088818ac25292ee4a71e8aa6a115e5c61cf3c",
+      "scenario_hash": "b66fa749527947e566d083ffa9cf3f9d258216e3222b3031c15471cb40a6dab3"
+    },
+    {
+      "stage": "static",
+      "path": "results/final/control_horizon/raw/static/c201_21_FLEET_MPC_MCTS_9259a855f03a57166183.json",
+      "sha256": "9f936071a9e19412ac9570459fe7e8d392bb5494f52200779a3b466baf0121ac",
+      "status": "completed",
+      "audit": "pass",
+      "run_id": "9259a855f03a5716618331a5237e7a2215dff8bc50b16cde0f9b322894601413",
+      "git_commit": "2577a0e4793a25878722502195bb8e031c77a5d1",
+      "source_sha256": "51d9d72bb1fef24065db805f3b5bf27005b7edfbe81d727291bc830979c1bd22",
+      "config_sha256": "e96c160ac408f21bdc14b15f08f088818ac25292ee4a71e8aa6a115e5c61cf3c",
+      "scenario_hash": "697594ab37b2dbcd68eb74ba015160c86a8c70d1a7cdc803e63081c0760fa44f"
+    },
+    {
+      "stage": "static",
+      "path": "results/final/control_horizon/raw/static/r101_21_FLEET_MPC_MCTS_b39622bcf15ad5b818db.json",
+      "sha256": "ee603d1a6a3319d42b74706163a923a0196ef92b9d900f82f83af8e493a8558d",
+      "status": "completed",
+      "audit": "pass",
+      "run_id": "b39622bcf15ad5b818db8c54a60d149e213158b90a8b7e25799d311fd04a0490",
+      "git_commit": "2577a0e4793a25878722502195bb8e031c77a5d1",
+      "source_sha256": "51d9d72bb1fef24065db805f3b5bf27005b7edfbe81d727291bc830979c1bd22",
+      "config_sha256": "e96c160ac408f21bdc14b15f08f088818ac25292ee4a71e8aa6a115e5c61cf3c",
+      "scenario_hash": "698440863acaab789931505fdc1fb100090eb420f4f2e4034f1e5d52c49cef21"
+    },
+    {
+      "stage": "static",
+      "path": "results/final/control_horizon/raw/static/r201_21_FLEET_MPC_MCTS_13b5db5bc3fb31d7cfda.json",
+      "sha256": "51467db36dd225c9aa5bb212d4d6590382d7c0d45f65300057550868b8542204",
+      "status": "completed",
+      "audit": "pass",
+      "run_id": "13b5db5bc3fb31d7cfdade80a44b5b12a54f9ed7e198e005b12513957306899c",
+      "git_commit": "2577a0e4793a25878722502195bb8e031c77a5d1",
+      "source_sha256": "51d9d72bb1fef24065db805f3b5bf27005b7edfbe81d727291bc830979c1bd22",
+      "config_sha256": "e96c160ac408f21bdc14b15f08f088818ac25292ee4a71e8aa6a115e5c61cf3c",
+      "scenario_hash": "0a2d605f477526246db214ae8a0e187b3fa62614a15b9f7fdf67df4314d49fa5"
+    },
+    {
+      "stage": "static",
+      "path": "results/final/control_horizon/raw/static/rc101_21_FLEET_MPC_MCTS_ea06c022027bd9dacbb1.json",
+      "sha256": "73ac00af74cef1956f6173159335fcdc4452f054d5a21324761bb7151aad3429",
+      "status": "completed",
+      "audit": "pass",
+      "run_id": "ea06c022027bd9dacbb194f356c453ef79de2b6052ad9a58c5a9287c1157217c",
+      "git_commit": "2577a0e4793a25878722502195bb8e031c77a5d1",
+      "source_sha256": "51d9d72bb1fef24065db805f3b5bf27005b7edfbe81d727291bc830979c1bd22",
+      "config_sha256": "e96c160ac408f21bdc14b15f08f088818ac25292ee4a71e8aa6a115e5c61cf3c",
+      "scenario_hash": "bc3010af7142b241e77fcbfc37541983047aac420144c5ec8aaaa92236157fee"
+    },
+    {
+      "stage": "static",
+      "path": "results/final/control_horizon/raw/static/rc201_21_FLEET_MPC_MCTS_09ea0935a56aec745c47.json",
+      "sha256": "b97b783f51e28fffa995e8a98b217831f09670f9fc8b3d1296e167d0a7cd0490",
+      "status": "completed",
+      "audit": "pass",
+      "run_id": "09ea0935a56aec745c4730264cac1115c561e8ca187d6521000f753ffae158bf",
+      "git_commit": "2577a0e4793a25878722502195bb8e031c77a5d1",
+      "source_sha256": "51d9d72bb1fef24065db805f3b5bf27005b7edfbe81d727291bc830979c1bd22",
+      "config_sha256": "e96c160ac408f21bdc14b15f08f088818ac25292ee4a71e8aa6a115e5c61cf3c",
+      "scenario_hash": "281c1ab9638962ea74d5bb8132e4c81b71d37e8d3b2a9b221ade373ef9f2c534"
+    },
+    {
+      "stage": "development",
+      "path": "results/final/control_horizon/raw/development/c101_21_FLEET_MPC_MCTS_d4951130a81343d6badf.json",
+      "sha256": "564f2343c914085189bb6bf658ce722b48fb420a766edd84d8f94a87d726a497",
+      "status": "completed",
+      "audit": "pass",
+      "run_id": "d4951130a81343d6badff9b8d2d0d4cbb8d3668c4249397bec9d0ca82f61cced",
+      "git_commit": "2b670e435fb2f43539049a341c8329463a2bc4b7",
+      "source_sha256": "51d9d72bb1fef24065db805f3b5bf27005b7edfbe81d727291bc830979c1bd22",
+      "config_sha256": "fa54022db2ede44093d6f4dd3330d79b039911de3980a6d1a14d035c9879ff61",
+      "scenario_hash": "4e661d4e64a2bbaa7874fb3820e0387024b5c87feca70615229167d74eb8485e"
+    },
+    {
+      "stage": "development",
+      "path": "results/final/control_horizon/raw/development/c101_21_FLEET_MPC_MCTS_e2513ba1f740238c9e16.json",
+      "sha256": "654d6bd2658cd3e61354dd7f0d70789bc16a266b08230ad65b92309163dd776d",
+      "status": "completed",
+      "audit": "pass",
+      "run_id": "e2513ba1f740238c9e16d834fd65029cbb2cf6510467ac6e719777e24fb2e792",
+      "git_commit": "2b670e435fb2f43539049a341c8329463a2bc4b7",
+      "source_sha256": "51d9d72bb1fef24065db805f3b5bf27005b7edfbe81d727291bc830979c1bd22",
+      "config_sha256": "c8fc50e5615e36721b8c373cb6198bb6b8752a6fa9be4a48d9e80cb18c1eceb2",
+      "scenario_hash": "36effcf880a9fa96164abaa2767519ebec30a23ad53c3bff371f65280f13c403"
+    },
+    {
+      "stage": "development",
+      "path": "results/final/control_horizon/raw/development/c101_21_ROLLING_LNS_10b1a7fcea91d1c25ad3.json",
+      "sha256": "e6dd0106a7f8a014046c6f401e325837dcb64813b80e2b1f4f0c0987e8cecfab",
+      "status": "completed",
+      "audit": "pass",
+      "run_id": "10b1a7fcea91d1c25ad3106b49b51b8482d8ff6aba6f30154bf8a2571112227f",
+      "git_commit": "2b670e435fb2f43539049a341c8329463a2bc4b7",
+      "source_sha256": "51d9d72bb1fef24065db805f3b5bf27005b7edfbe81d727291bc830979c1bd22",
+      "config_sha256": "868fb9c13a5df2983e644d80acaef5d68eed240192877aa740440921a07432c8",
+      "scenario_hash": "4e661d4e64a2bbaa7874fb3820e0387024b5c87feca70615229167d74eb8485e"
+    },
+    {
+      "stage": "development",
+      "path": "results/final/control_horizon/raw/development/c101_21_ROLLING_LNS_1333ba3496cea50a9f34.json",
+      "sha256": "9cef2426b36a48a6154fda6d78d35ea8c03826b837cbfe91bf15967e77b3a57a",
+      "status": "completed",
+      "audit": "pass",
+      "run_id": "1333ba3496cea50a9f34c3b18cf2f5c55852adba4e5192d441868fe054e2cd6e",
+      "git_commit": "2b670e435fb2f43539049a341c8329463a2bc4b7",
+      "source_sha256": "51d9d72bb1fef24065db805f3b5bf27005b7edfbe81d727291bc830979c1bd22",
+      "config_sha256": "f0bc73dac6c82293cdfc8034a7ae8e173374e9e1a03ecc2f679f8eb138c58eb2",
+      "scenario_hash": "36effcf880a9fa96164abaa2767519ebec30a23ad53c3bff371f65280f13c403"
+    },
+    {
+      "stage": "development",
+      "path": "results/final/control_horizon/raw/development/c201_21_FLEET_MPC_MCTS_0a79ff3e0ff7be9e7766.json",
+      "sha256": "2afc4a11aded20dfc69b9d0ffe77b203149d743b3feb675f040a6eaec407c4cd",
+      "status": "failed",
+      "audit": [
+        "Engineering watchdog: time=388.2146181935195 loops=315 epochs=315 triggers=311 served=12 committed=4 busy=5 idle=0 mcts_calls=311 last_triggers=['uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work']"
+      ],
+      "run_id": "0a79ff3e0ff7be9e7766e018bcaa72b683313deb341b12e3e86468fae5c0919f",
+      "git_commit": "2b670e435fb2f43539049a341c8329463a2bc4b7",
+      "source_sha256": "51d9d72bb1fef24065db805f3b5bf27005b7edfbe81d727291bc830979c1bd22",
+      "config_sha256": "c8fc50e5615e36721b8c373cb6198bb6b8752a6fa9be4a48d9e80cb18c1eceb2",
+      "scenario_hash": "9ab599bea8692723939603e1b081946a4ebd7f76a1d26675553a2d7862c98003"
+    },
+    {
+      "stage": "development",
+      "path": "results/final/control_horizon/raw/development/c201_21_FLEET_MPC_MCTS_e38197e55d52ca944d8c.json",
+      "sha256": "8ef33c08d620b572d590afa1beb15c6894166ecb8d637223128abca667194288",
+      "status": "failed",
+      "audit": [
+        "Engineering watchdog: time=1063.4337258732337 loops=281 epochs=281 triggers=250 served=39 committed=3 busy=5 idle=0 mcts_calls=250 last_triggers=['uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work']"
+      ],
+      "run_id": "e38197e55d52ca944d8c32c0e6360d92c0896932499ebd686f2cec2a0490a557",
+      "git_commit": "2b670e435fb2f43539049a341c8329463a2bc4b7",
+      "source_sha256": "51d9d72bb1fef24065db805f3b5bf27005b7edfbe81d727291bc830979c1bd22",
+      "config_sha256": "fa54022db2ede44093d6f4dd3330d79b039911de3980a6d1a14d035c9879ff61",
+      "scenario_hash": "7743eb1ac99eee2c73e4f17417cf5415bfd237e8806f088f813ff3ea85df9efb"
+    },
+    {
+      "stage": "development",
+      "path": "results/final/control_horizon/raw/development/c201_21_ROLLING_LNS_aa7e1bfe192afed889b5.json",
+      "sha256": "fe868a10895ebd8e91bd4432ecd5ff62907741536aa7d118dab5ca131541ce5d",
+      "status": "completed",
+      "audit": "pass",
+      "run_id": "aa7e1bfe192afed889b5e745bcaf348659fe926c6c6d8e70476ae99270bf8b7b",
+      "git_commit": "2b670e435fb2f43539049a341c8329463a2bc4b7",
+      "source_sha256": "51d9d72bb1fef24065db805f3b5bf27005b7edfbe81d727291bc830979c1bd22",
+      "config_sha256": "868fb9c13a5df2983e644d80acaef5d68eed240192877aa740440921a07432c8",
+      "scenario_hash": "7743eb1ac99eee2c73e4f17417cf5415bfd237e8806f088f813ff3ea85df9efb"
+    },
+    {
+      "stage": "development",
+      "path": "results/final/control_horizon/raw/development/c201_21_ROLLING_LNS_c47fde65ab74a88406de.json",
+      "sha256": "f760d2beb7858fc2fce4ef28c254a825e3014430efecc5fa6404655ea8a595c4",
+      "status": "completed",
+      "audit": "pass",
+      "run_id": "c47fde65ab74a88406def2251e2a6090315a5933822d16dfa5d54ecfe944fb03",
+      "git_commit": "2b670e435fb2f43539049a341c8329463a2bc4b7",
+      "source_sha256": "51d9d72bb1fef24065db805f3b5bf27005b7edfbe81d727291bc830979c1bd22",
+      "config_sha256": "f0bc73dac6c82293cdfc8034a7ae8e173374e9e1a03ecc2f679f8eb138c58eb2",
+      "scenario_hash": "9ab599bea8692723939603e1b081946a4ebd7f76a1d26675553a2d7862c98003"
+    },
+    {
+      "stage": "development",
+      "path": "results/final/control_horizon/raw/development/r101_21_FLEET_MPC_MCTS_38d8394288ff462240aa.json",
+      "sha256": "c3d80fb219bc096baf74f9e4847c41ececc98eedcbb6e9437c270b68e543a6da",
+      "status": "completed",
+      "audit": "pass",
+      "run_id": "38d8394288ff462240aab87fe97a7c8241d5e38dc15408edb11b119d583cd77f",
+      "git_commit": "2b670e435fb2f43539049a341c8329463a2bc4b7",
+      "source_sha256": "51d9d72bb1fef24065db805f3b5bf27005b7edfbe81d727291bc830979c1bd22",
+      "config_sha256": "fa54022db2ede44093d6f4dd3330d79b039911de3980a6d1a14d035c9879ff61",
+      "scenario_hash": "e6ffe2a03869204eb90e766259ffdebbfc9bb40918834a4df48100fe9a14ee12"
+    },
+    {
+      "stage": "development",
+      "path": "results/final/control_horizon/raw/development/r101_21_FLEET_MPC_MCTS_b87e5d9d25f9ac662965.json",
+      "sha256": "3fdaa4a37047a0e94e6c563dc64d2eed02c0e323e0e90e3f29b60866c2043858",
+      "status": "failed",
+      "audit": [
+        "Engineering watchdog: time=53.42165336062197 loops=1129 epochs=1129 triggers=1114 served=13 committed=18 busy=20 idle=0 mcts_calls=1114 last_triggers=['uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work']"
+      ],
+      "run_id": "b87e5d9d25f9ac662965978506887bbdb8cfbae27ca131ec159220d26cead13d",
+      "git_commit": "2b670e435fb2f43539049a341c8329463a2bc4b7",
+      "source_sha256": "51d9d72bb1fef24065db805f3b5bf27005b7edfbe81d727291bc830979c1bd22",
+      "config_sha256": "c8fc50e5615e36721b8c373cb6198bb6b8752a6fa9be4a48d9e80cb18c1eceb2",
+      "scenario_hash": "89afc6a13ace161299c804b89b155cfbb0ef27b628207f852fa9b81f88148862"
+    },
+    {
+      "stage": "development",
+      "path": "results/final/control_horizon/raw/development/r101_21_ROLLING_LNS_a705254e929541a43671.json",
+      "sha256": "c9541a3734ce1dde1351da6a972eb4f887b4d0c2c6cd550e7082f183031cee8d",
+      "status": "completed",
+      "audit": "pass",
+      "run_id": "a705254e929541a4367156c7b8fcd9f99eb289e2d539e132657b14203aae8237",
+      "git_commit": "2b670e435fb2f43539049a341c8329463a2bc4b7",
+      "source_sha256": "51d9d72bb1fef24065db805f3b5bf27005b7edfbe81d727291bc830979c1bd22",
+      "config_sha256": "f0bc73dac6c82293cdfc8034a7ae8e173374e9e1a03ecc2f679f8eb138c58eb2",
+      "scenario_hash": "89afc6a13ace161299c804b89b155cfbb0ef27b628207f852fa9b81f88148862"
+    },
+    {
+      "stage": "development",
+      "path": "results/final/control_horizon/raw/development/r101_21_ROLLING_LNS_d5f6a38c4038395b0a99.json",
+      "sha256": "c8cecbef79bd8a3ba639c0d37df97970954ac8c899d440cda1e9d82b9ac9bfcd",
+      "status": "completed",
+      "audit": "pass",
+      "run_id": "d5f6a38c4038395b0a995459bb582af9ef5a039334e85940a0dbd34eec9f2a0b",
+      "git_commit": "2b670e435fb2f43539049a341c8329463a2bc4b7",
+      "source_sha256": "51d9d72bb1fef24065db805f3b5bf27005b7edfbe81d727291bc830979c1bd22",
+      "config_sha256": "868fb9c13a5df2983e644d80acaef5d68eed240192877aa740440921a07432c8",
+      "scenario_hash": "e6ffe2a03869204eb90e766259ffdebbfc9bb40918834a4df48100fe9a14ee12"
+    },
+    {
+      "stage": "development",
+      "path": "results/final/control_horizon/raw/development/r201_21_FLEET_MPC_MCTS_3f7fc8243802c13b1bad.json",
+      "sha256": "e29954f9569780a0b8b280cbb554cb7d4068b9f85106a23220813d51c8e40c05",
+      "status": "failed",
+      "audit": [
+        "Engineering watchdog: time=188.46753368903111 loops=204 epochs=204 triggers=192 served=21 committed=2 busy=4 idle=0 mcts_calls=192 last_triggers=['uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work']"
+      ],
+      "run_id": "3f7fc8243802c13b1bad1752dcfcb8fb31be86d61576fa5be327fda97a53a568",
+      "git_commit": "2b670e435fb2f43539049a341c8329463a2bc4b7",
+      "source_sha256": "51d9d72bb1fef24065db805f3b5bf27005b7edfbe81d727291bc830979c1bd22",
+      "config_sha256": "c8fc50e5615e36721b8c373cb6198bb6b8752a6fa9be4a48d9e80cb18c1eceb2",
+      "scenario_hash": "86283904b0ad6c920ca8396f492194ad73646d92604f538ac8bc665d1e64e746"
+    },
+    {
+      "stage": "development",
+      "path": "results/final/control_horizon/raw/development/r201_21_FLEET_MPC_MCTS_9631c947012fa251a596.json",
+      "sha256": "fa50cf939adb1d1a27e5a6f0b7e886ad7c855b49f7198f34940a400261385130",
+      "status": "completed",
+      "audit": "pass",
+      "run_id": "9631c947012fa251a596a3f0a490f63a8215afa3c6a8ad87174e5ab75df4fcc8",
+      "git_commit": "2b670e435fb2f43539049a341c8329463a2bc4b7",
+      "source_sha256": "51d9d72bb1fef24065db805f3b5bf27005b7edfbe81d727291bc830979c1bd22",
+      "config_sha256": "fa54022db2ede44093d6f4dd3330d79b039911de3980a6d1a14d035c9879ff61",
+      "scenario_hash": "ccd29c5a103e1ac93923390020464a030079b329b720bcf2150a31fbf8d50840"
+    },
+    {
+      "stage": "development",
+      "path": "results/final/control_horizon/raw/development/r201_21_ROLLING_LNS_376e58e4a0969b7243e8.json",
+      "sha256": "1c9bc6ebafba1d201c37203674bca4e9b22a972cd1363092fad018cd94ceecca",
+      "status": "completed",
+      "audit": "pass",
+      "run_id": "376e58e4a0969b7243e8abf25f4256bb37843db327b204c25a2b604ceb085b52",
+      "git_commit": "2b670e435fb2f43539049a341c8329463a2bc4b7",
+      "source_sha256": "51d9d72bb1fef24065db805f3b5bf27005b7edfbe81d727291bc830979c1bd22",
+      "config_sha256": "f0bc73dac6c82293cdfc8034a7ae8e173374e9e1a03ecc2f679f8eb138c58eb2",
+      "scenario_hash": "86283904b0ad6c920ca8396f492194ad73646d92604f538ac8bc665d1e64e746"
+    },
+    {
+      "stage": "development",
+      "path": "results/final/control_horizon/raw/development/r201_21_ROLLING_LNS_ab6348d62a0e50ba3dbb.json",
+      "sha256": "07f365e5a353e02969c7996f0ea866ac122cae653fa0e4a1005beb8113864a5d",
+      "status": "completed",
+      "audit": "pass",
+      "run_id": "ab6348d62a0e50ba3dbb5d175cb4aacd8a6679113133626303131e7d3096f669",
+      "git_commit": "2b670e435fb2f43539049a341c8329463a2bc4b7",
+      "source_sha256": "51d9d72bb1fef24065db805f3b5bf27005b7edfbe81d727291bc830979c1bd22",
+      "config_sha256": "868fb9c13a5df2983e644d80acaef5d68eed240192877aa740440921a07432c8",
+      "scenario_hash": "ccd29c5a103e1ac93923390020464a030079b329b720bcf2150a31fbf8d50840"
+    },
+    {
+      "stage": "development",
+      "path": "results/final/control_horizon/raw/development/rc101_21_FLEET_MPC_MCTS_792469fd3c1fd82fca40.json",
+      "sha256": "73e08ba9f11cc5ee9bf418356c7c36546642ee0bef1bc92a4f64d7daf4795f2f",
+      "status": "completed",
+      "audit": "pass",
+      "run_id": "792469fd3c1fd82fca408f850adfd64e99b2dafba51e6dbbc07462b1d6ef6a89",
+      "git_commit": "2b670e435fb2f43539049a341c8329463a2bc4b7",
+      "source_sha256": "51d9d72bb1fef24065db805f3b5bf27005b7edfbe81d727291bc830979c1bd22",
+      "config_sha256": "fa54022db2ede44093d6f4dd3330d79b039911de3980a6d1a14d035c9879ff61",
+      "scenario_hash": "82f3da6e031cbf2e5e923979b300f29e52158d00f2c4f97a98cc5aafa473fabf"
+    },
+    {
+      "stage": "development",
+      "path": "results/final/control_horizon/raw/development/rc101_21_FLEET_MPC_MCTS_7a1e18932414891ed53d.json",
+      "sha256": "4d18708c95fd250707eb4b4cfe858218e3b01dc94cb53968b08b286b5c435e48",
+      "status": "completed",
+      "audit": "pass",
+      "run_id": "7a1e18932414891ed53d4bcad53930aa172f675376c3d0f431cbaa646017831a",
+      "git_commit": "2b670e435fb2f43539049a341c8329463a2bc4b7",
+      "source_sha256": "51d9d72bb1fef24065db805f3b5bf27005b7edfbe81d727291bc830979c1bd22",
+      "config_sha256": "c8fc50e5615e36721b8c373cb6198bb6b8752a6fa9be4a48d9e80cb18c1eceb2",
+      "scenario_hash": "4208fd31438639b8f67328ae68f1c1d5b20c3c87949003fe710e9a91367b453d"
+    },
+    {
+      "stage": "development",
+      "path": "results/final/control_horizon/raw/development/rc101_21_ROLLING_LNS_3093ee8f0ff91cebfffa.json",
+      "sha256": "94292c8d81be60b65c224ad90fac135055b07e0491e59a500b956117a91f1437",
+      "status": "completed",
+      "audit": "pass",
+      "run_id": "3093ee8f0ff91cebfffa59d1740ef38f52b1309cc7916b6dd327d966b0f7fd29",
+      "git_commit": "2b670e435fb2f43539049a341c8329463a2bc4b7",
+      "source_sha256": "51d9d72bb1fef24065db805f3b5bf27005b7edfbe81d727291bc830979c1bd22",
+      "config_sha256": "f0bc73dac6c82293cdfc8034a7ae8e173374e9e1a03ecc2f679f8eb138c58eb2",
+      "scenario_hash": "4208fd31438639b8f67328ae68f1c1d5b20c3c87949003fe710e9a91367b453d"
+    },
+    {
+      "stage": "development",
+      "path": "results/final/control_horizon/raw/development/rc101_21_ROLLING_LNS_8abe33517f3303deec5b.json",
+      "sha256": "ba5703100768f5dc5ae9468434c37412d69ba7a47b460a57179f494500dfcc2b",
+      "status": "completed",
+      "audit": "pass",
+      "run_id": "8abe33517f3303deec5be76b45614185b48123b73d224245911b1c08aea418ad",
+      "git_commit": "2b670e435fb2f43539049a341c8329463a2bc4b7",
+      "source_sha256": "51d9d72bb1fef24065db805f3b5bf27005b7edfbe81d727291bc830979c1bd22",
+      "config_sha256": "868fb9c13a5df2983e644d80acaef5d68eed240192877aa740440921a07432c8",
+      "scenario_hash": "82f3da6e031cbf2e5e923979b300f29e52158d00f2c4f97a98cc5aafa473fabf"
+    },
+    {
+      "stage": "development",
+      "path": "results/final/control_horizon/raw/development/rc201_21_FLEET_MPC_MCTS_e88a6b8d143ba940d0d6.json",
+      "sha256": "88210df8d4718f5f72375219e10a6491f2b3a03a9eb9379ab33249e562ac5e5c",
+      "status": "failed",
+      "audit": [
+        "Engineering watchdog: time=148.05658886176343 loops=195 epochs=195 triggers=194 served=10 committed=4 busy=5 idle=0 mcts_calls=194 last_triggers=['uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work']"
+      ],
+      "run_id": "e88a6b8d143ba940d0d68bea8b2dc913a18623425229e78a54331445117216c1",
+      "git_commit": "2b670e435fb2f43539049a341c8329463a2bc4b7",
+      "source_sha256": "51d9d72bb1fef24065db805f3b5bf27005b7edfbe81d727291bc830979c1bd22",
+      "config_sha256": "fa54022db2ede44093d6f4dd3330d79b039911de3980a6d1a14d035c9879ff61",
+      "scenario_hash": "46d5d69e00a7883bc754189d322c4b7c21ff2e66b5cee0d7fa965b9582ae68da"
+    },
+    {
+      "stage": "development",
+      "path": "results/final/control_horizon/raw/development/rc201_21_FLEET_MPC_MCTS_eb56c0f5cb3a594c5d7d.json",
+      "sha256": "545e1032ffbbd502b78c0cd0a2137700fa38330639cec86fe19636c5b64065a1",
+      "status": "failed",
+      "audit": [
+        "Engineering watchdog: time=497.9386487968374 loops=256 epochs=256 triggers=214 served=52 committed=3 busy=5 idle=0 mcts_calls=214 last_triggers=['uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work', 'uncovered_work']"
+      ],
+      "run_id": "eb56c0f5cb3a594c5d7de2a1cefaa92f391a814c3eefbb79b42dc0a92449c14e",
+      "git_commit": "2b670e435fb2f43539049a341c8329463a2bc4b7",
+      "source_sha256": "51d9d72bb1fef24065db805f3b5bf27005b7edfbe81d727291bc830979c1bd22",
+      "config_sha256": "c8fc50e5615e36721b8c373cb6198bb6b8752a6fa9be4a48d9e80cb18c1eceb2",
+      "scenario_hash": "3111702a772029549ac38fd4867734ba646a0cf02b6e64b701af3f948a5afea7"
+    },
+    {
+      "stage": "development",
+      "path": "results/final/control_horizon/raw/development/rc201_21_ROLLING_LNS_22dba2971828fde3790d.json",
+      "sha256": "b739c30c98b290a4cb7bc67d6f1451c91842c8c403ce01bc3fde55065192b09b",
+      "status": "completed",
+      "audit": "pass",
+      "run_id": "22dba2971828fde3790d08b02665893b4f642dddc3779a128efc8c66c5f60af4",
+      "git_commit": "2b670e435fb2f43539049a341c8329463a2bc4b7",
+      "source_sha256": "51d9d72bb1fef24065db805f3b5bf27005b7edfbe81d727291bc830979c1bd22",
+      "config_sha256": "f0bc73dac6c82293cdfc8034a7ae8e173374e9e1a03ecc2f679f8eb138c58eb2",
+      "scenario_hash": "3111702a772029549ac38fd4867734ba646a0cf02b6e64b701af3f948a5afea7"
+    },
+    {
+      "stage": "development",
+      "path": "results/final/control_horizon/raw/development/rc201_21_ROLLING_LNS_97724893b4d6a99398ff.json",
+      "sha256": "dedc926b02407d6d74ceef9f24d0cf7ee567c42adc3e37502232dd9705678b14",
+      "status": "completed",
+      "audit": "pass",
+      "run_id": "97724893b4d6a99398ff637ebc579e45babd4c5c22f9c58a1aa887abb32f7abd",
+      "git_commit": "2b670e435fb2f43539049a341c8329463a2bc4b7",
+      "source_sha256": "51d9d72bb1fef24065db805f3b5bf27005b7edfbe81d727291bc830979c1bd22",
+      "config_sha256": "868fb9c13a5df2983e644d80acaef5d68eed240192877aa740440921a07432c8",
+      "scenario_hash": "46d5d69e00a7883bc754189d322c4b7c21ff2e66b5cee0d7fa965b9582ae68da"
+    }
+  ]
 }

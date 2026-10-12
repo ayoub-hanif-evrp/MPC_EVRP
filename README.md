@@ -1,8 +1,9 @@
 # Event-Triggered Risk-Aware Fleet MPC-MCTS for Dynamic EVRPTW
 
-**Status: the event-triggered correction completed its six-case static sanity
-check at 600/600 with audited traces. The matched dynamic development gate is
-pending; no holdout or final paper-performance claim is available yet.**
+**Status: the event-triggered correction passed six-case static sanity at
+600/600 but FAILED the frozen matched dynamic development gate. Six Fleet
+dynamic runs hit the 15-minute watchdog; two more completed below 90/100.
+No holdout was run, and no positive final paper-performance claim is supported.**
 
 The prior frozen `6a1ab7e` Fleet MPC-MCTS campaign is **historical development
 evidence**. It served 600/600 statically and 1005/1200 dynamically versus
@@ -27,7 +28,9 @@ Run `python -m scripts.final_control_horizon_campaign static --instance c101_21`
 for one sanity case, then `static` for the six-case grid. The development stage
 is `python -m scripts.final_control_horizon_campaign development`; holdout is
 blocked unless the audited development gate passes under the frozen commit.
-Active outputs are under `results/final/control_horizon/`.
+The [final development report](results/final/FINAL_REPORT.md) and its audited
+tables/PNG figures are under `results/final/control_horizon/`. The negative
+result is retained without post hoc algorithm tuning.
 
 An additional fleet-wide LNS prototype and its six-instance, single-seed
 development gate are documented in
