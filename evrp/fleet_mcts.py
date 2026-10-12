@@ -265,10 +265,18 @@ class _FleetProblem:
         return sorted(self.ids, key=lambda k: (proximity(k), k))[:limit]
 
     def _regret_rollout(self, plan: FleetPlan, limit: int,
-                        forced: tuple[str, ...] = (), regret_k: int | None = None) -> FleetPlan:
+                        forced: tuple[str, ...] = (), regret_k: int | None = None,
+                        due_order: bool = False) -> FleetPlan:
         targets = [c for c in forced if c in self.pending and
                    all(c not in seq for seq in plan.sequences)]
-        targets += [c for c in self._urgent(plan, limit) if c not in targets]
+        if due_order:
+            owned = {c for seq in plan.sequences for c in seq}
+            ordered = sorted(self.pending - owned,
+                             key=lambda c: (self.observation.customer_by_id[c].due,
+                                            self.observation.customer_by_id[c].ready, c))[:limit]
+        else:
+            ordered = self._urgent(plan, limit)
+        targets += [c for c in ordered if c not in targets]
         targets = targets[:limit]
         if not targets:
             return plan
@@ -452,7 +460,7 @@ def solve_fleet_mcts(origins: dict[int, VehicleState], routes: dict[int, tuple[A
         seed_until = perf_counter() + min(remaining_time() * 0.4, 2.0)
         while best.score[0] and perf_counter() < seed_until:
             check_deadline()
-            improved = problem._regret_rollout(best, 2)
+            improved = problem._regret_rollout(best, 2, due_order=True)
             if improved.score >= best.score:
                 break
             best = improved
