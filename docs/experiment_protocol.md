@@ -30,7 +30,8 @@ event budget and includes flexibility relocate, swap, Or-opt, 2-opt, and route
 compaction actions in addition to service-recovery insert/ejection actions.
 
 Both `FLEET_MPC_MCTS` and `ROLLING_LNS` receive a five-second total wall-clock
-budget per event. Fleet MCTS has an iteration ceiling of 256, depth four,
+ceiling per event, with a common 20 ms internal guard for cooperative stop
+overhead. Fleet MCTS has an iteration ceiling of 256, depth four,
 branch limit 24, and at most three candidate insertion positions. It reserves
 approximately 50 ms for final route replay. The single event deadline includes
 incumbent generation, criticality, search, rollout, decoding, and final replay.

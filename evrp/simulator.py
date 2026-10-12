@@ -199,7 +199,8 @@ class EventDrivenSimulator:
                 if ready or revealed:
                     observation = get_agent_observation(state, instance)
                     started = perf_counter()
-                    deadline_token = (set_deadline(started + config.total_planning_time_limit)
+                    deadline_token = (set_deadline(started + config.total_planning_time_limit -
+                                                   min(0.02, config.total_planning_time_limit * 0.1))
                                       if config.total_planning_time_limit is not None else None)
                     origins = {k: state.busy[k].after if k in state.busy else v
                                for k, v in state.vehicles.items()
