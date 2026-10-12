@@ -1,0 +1,100 @@
+{
+  "frozen_git_commit": null,
+  "config_file_sha256": "6a728091f5f25429778371d04cd470642514c64d1046be5e9572ab87e029a57e",
+  "source_sha256": null,
+  "static": {
+    "runs": 0,
+    "served": 0
+  },
+  "development": {
+    "pairs": 0,
+    "fleet_served": 0,
+    "lns_served": 0,
+    "wins": 0,
+    "ties": 0,
+    "losses": 0,
+    "fleet_min_served": null,
+    "family": {
+      "C1": {
+        "fleet": 0,
+        "lns": 0
+      },
+      "C2": {
+        "fleet": 0,
+        "lns": 0
+      },
+      "R1": {
+        "fleet": 0,
+        "lns": 0
+      },
+      "R2": {
+        "fleet": 0,
+        "lns": 0
+      },
+      "RC1": {
+        "fleet": 0,
+        "lns": 0
+      },
+      "RC2": {
+        "fleet": 0,
+        "lns": 0
+      }
+    },
+    "latency": {},
+    "equal_service_pairs": 0,
+    "equal_service_equal_EV_pairs": 0,
+    "MCTS_iterations": 0,
+    "MCTS_nodes": 0,
+    "R_CTRL_full": null,
+    "R_FLEX_full": null,
+    "R_CTRL_service": null,
+    "R_FLEX_service": null
+  },
+  "gate": {
+    "complete_grid": false,
+    "static_600": false,
+    "aggregate_service": true,
+    "wins_at_least_losses": true,
+    "minimum_90": false,
+    "no_family_collapse": false,
+    "all_audits": false,
+    "all_events_within_five": true,
+    "passed": false
+  },
+  "failures": [
+    "Missing ('development', 'c101_21', 0, 'FLEET_MPC_MCTS')",
+    "Missing ('development', 'c101_21', 0, 'ROLLING_LNS')",
+    "Missing ('development', 'c101_21', 1, 'FLEET_MPC_MCTS')",
+    "Missing ('development', 'c101_21', 1, 'ROLLING_LNS')",
+    "Missing ('development', 'c201_21', 0, 'FLEET_MPC_MCTS')",
+    "Missing ('development', 'c201_21', 0, 'ROLLING_LNS')",
+    "Missing ('development', 'c201_21', 1, 'FLEET_MPC_MCTS')",
+    "Missing ('development', 'c201_21', 1, 'ROLLING_LNS')",
+    "Missing ('development', 'r101_21', 0, 'FLEET_MPC_MCTS')",
+    "Missing ('development', 'r101_21', 0, 'ROLLING_LNS')",
+    "Missing ('development', 'r101_21', 1, 'FLEET_MPC_MCTS')",
+    "Missing ('development', 'r101_21', 1, 'ROLLING_LNS')",
+    "Missing ('development', 'r201_21', 0, 'FLEET_MPC_MCTS')",
+    "Missing ('development', 'r201_21', 0, 'ROLLING_LNS')",
+    "Missing ('development', 'r201_21', 1, 'FLEET_MPC_MCTS')",
+    "Missing ('development', 'r201_21', 1, 'ROLLING_LNS')",
+    "Missing ('development', 'rc101_21', 0, 'FLEET_MPC_MCTS')",
+    "Missing ('development', 'rc101_21', 0, 'ROLLING_LNS')",
+    "Missing ('development', 'rc101_21', 1, 'FLEET_MPC_MCTS')",
+    "Missing ('development', 'rc101_21', 1, 'ROLLING_LNS')",
+    "Missing ('development', 'rc201_21', 0, 'FLEET_MPC_MCTS')",
+    "Missing ('development', 'rc201_21', 0, 'ROLLING_LNS')",
+    "Missing ('development', 'rc201_21', 1, 'FLEET_MPC_MCTS')",
+    "Missing ('development', 'rc201_21', 1, 'ROLLING_LNS')",
+    "Missing ('static', 'c101_21', 0, 'FLEET_MPC_MCTS')",
+    "Missing ('static', 'c201_21', 0, 'FLEET_MPC_MCTS')",
+    "Missing ('static', 'r101_21', 0, 'FLEET_MPC_MCTS')",
+    "Missing ('static', 'r201_21', 0, 'FLEET_MPC_MCTS')",
+    "Missing ('static', 'rc101_21', 0, 'FLEET_MPC_MCTS')",
+    "Missing ('static', 'rc201_21', 0, 'FLEET_MPC_MCTS')",
+    "Mixed frozen commits or source hashes"
+  ],
+  "holdout": {
+    "status": "not_run"
+  }
+}

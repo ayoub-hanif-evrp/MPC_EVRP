@@ -1,0 +1,13 @@
+instance,family,seed,status,K_ref,realized_DoD,scenario_hash,fleet_served,lns_served,service_delta,fleet_EV,lns_EV,EV_delta_equal_service,fleet_distance,lns_distance,distance_delta_equal_service_EV,fleet_p95,fleet_max,lns_p95,lns_max,fleet_iterations,fleet_nodes,fleet_R_CTRL_full,fleet_R_FLEX_full,fleet_R_CTRL_service,fleet_R_FLEX_service
+c101_21,C1,0,incomplete,,,,,,,,,,,,,,,,,,,,,,
+c101_21,C1,1,incomplete,,,,,,,,,,,,,,,,,,,,,,
+c201_21,C2,0,incomplete,,,,,,,,,,,,,,,,,,,,,,
+c201_21,C2,1,incomplete,,,,,,,,,,,,,,,,,,,,,,
+r101_21,R1,0,incomplete,,,,,,,,,,,,,,,,,,,,,,
+r101_21,R1,1,incomplete,,,,,,,,,,,,,,,,,,,,,,
+r201_21,R2,0,incomplete,,,,,,,,,,,,,,,,,,,,,,
+r201_21,R2,1,incomplete,,,,,,,,,,,,,,,,,,,,,,
+rc101_21,RC1,0,incomplete,,,,,,,,,,,,,,,,,,,,,,
+rc101_21,RC1,1,incomplete,,,,,,,,,,,,,,,,,,,,,,
+rc201_21,RC2,0,incomplete,,,,,,,,,,,,,,,,,,,,,,
+rc201_21,RC2,1,incomplete,,,,,,,,,,,,,,,,,,,,,,

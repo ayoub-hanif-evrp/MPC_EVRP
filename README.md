@@ -1,7 +1,8 @@
 # Risk-Aware Fleet-Level MPC-MCTS for Dynamic EVRPTW
 
-**Status: the control-horizon correction is being verified. No holdout or
-final paper-performance claim is made before its new development gate.**
+**Status: the frozen control-horizon campaign is incomplete after a technical
+runtime failure in its first static case. No corrected-method development or
+holdout result, and no final paper-performance claim, is available.**
 
 The prior frozen `6a1ab7e` Fleet MPC-MCTS campaign is **historical development
 evidence**. It served 600/600 statically and 1005/1200 dynamically versus
@@ -17,6 +18,8 @@ conventional comparator, never a post-MCTS step. The fixed 12-pair development
 grid, 90/100 per-run service requirement, and strict five-second event ceiling
 are specified in the [experiment protocol](docs/experiment_protocol.md).
 Only a development PASS permits the untouched holdout.
+The [incomplete execution record](results/final/control_horizon/INCOMPLETE_RUN.md)
+separates this attempt from the historical results below.
 
 An additional fleet-wide LNS prototype and its six-instance, single-seed
 development gate are documented in

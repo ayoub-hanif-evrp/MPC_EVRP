@@ -1,5 +1,23 @@
 # Final Risk-Aware Fleet MPC-MCTS Development Report
 
+## Control-horizon correction status
+
+The subsequent MPC-centric control-horizon correction was frozen at commit
+`51308b7e888baceda9b73946decd08c978c828b8`, source SHA-256
+`8068c8c5d5dc5ccdfe728857eba0892ddb236814994448deeffcc46de7d00e57`,
+and configuration-file SHA-256
+`6a728091f5f25429778371d04cd470642514c64d1046be5e9572ab87e029a57e`.
+It passed 293 tests and all four Schneider reference validations. Its first
+static case (`c101_21`) did not finish: after about 90 minutes of active CPU
+time and approximately 1.9 GB private memory, with no result file, execution
+was interrupted to avoid resource exhaustion. The [execution record](control_horizon/INCOMPLETE_RUN.md)
+documents this technical failure. No corrected static result, dynamic pair,
+or holdout result is claimed. The development gate is **not evaluable**, and
+the holdout remains untouched. No post-run method tuning was performed.
+
+The report below is preserved **historical development evidence from `6a1ab7e`**;
+none of its measurements are attributed to the control-horizon correction.
+
 ## Status and provenance
 
 **Development gate: FAIL. Holdout: not run or inspected.** The frozen experimental
