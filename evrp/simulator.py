@@ -44,10 +44,9 @@ class SimulationConfig:
     lns_time_limit: float = 3.0
     lns_destroy_fraction: float = 0.1
     total_planning_time_limit: float | None = None
-    fleet_mcts_iterations: int = 64
+    fleet_mcts_iterations: int = 256
     fleet_mcts_depth: int = 4
     fleet_mcts_branch_limit: int = 12
-    fleet_mcts_full_service_time_limit: float = 0.75
     candidate_position_limit: int = 3
     rollout_regret_k: int = 2
 
@@ -69,8 +68,7 @@ class SimulationConfig:
         if self.total_planning_time_limit is not None and self.total_planning_time_limit <= 0:
             raise ValueError("Invalid total planning deadline")
         if (min(self.fleet_mcts_iterations, self.fleet_mcts_depth, self.fleet_mcts_branch_limit,
-                self.candidate_position_limit) < 1 or self.rollout_regret_k not in {2, 3}
-                or self.fleet_mcts_full_service_time_limit <= 0):
+                self.candidate_position_limit) < 1 or self.rollout_regret_k not in {2, 3}):
             raise ValueError("Invalid fleet MCTS configuration")
         if self.algorithm == "FLEET_MPC_MCTS" and not (self.route_continuity and self.regret_repair):
             raise ValueError("Fleet MPC-MCTS requires persistent routes and regret rollout")
@@ -105,7 +103,15 @@ class ExperimentResult:
         result["searches"] = [{k: v for k, v in s.items() if k not in
                               {"elapsed", "deadline_exceeded", "deadline_overrun_seconds"}} for s in result["searches"]]
         result["metrics"] = {k: v for k, v in result["metrics"].items()
-                             if "planning_time" not in k and "overrun" not in k and k != "repair_seconds"}
+                             if "planning_time" not in k and "overrun" not in k
+                             and k not in {"repair_seconds", "fleet_mcts_service_seconds",
+                                           "fleet_mcts_full_seconds", "final_validation_seconds_total",
+                                           "final_validation_seconds_p95"}}
+        for decision in result["decisions"]:
+            decision.pop("final_validation_seconds", None)
+            if decision.get("fleet_mcts"):
+                for field in ("elapsed", "service_seconds", "full_seconds"):
+                    decision["fleet_mcts"].pop(field, None)
         result["effective_config"].pop("parallel_agents", None)
         result["effective_config"].pop("workers", None)
         return result
@@ -161,6 +167,9 @@ class EventDrivenSimulator:
         repair_seconds = lns_seconds = 0.
         lns_iterations = lns_improvements = 0
         fleet_mcts_iterations = fleet_mcts_expanded = fleet_mcts_improvements = deadline_events = 0
+        fleet_service_seconds = fleet_full_seconds = 0.0
+        final_validation_times = []
+        deadline_fallbacks = 0
         diagnostic = ServiceDiagnostics(instance, self.scenario) if config.diagnostics else None
         pool = ProcessPoolExecutor(max_workers=config.workers) if config.parallel_agents else None
         try:
@@ -190,8 +199,7 @@ class EventDrivenSimulator:
                 if ready or revealed:
                     observation = get_agent_observation(state, instance)
                     started = perf_counter()
-                    deadline_token = (set_deadline(started + config.total_planning_time_limit -
-                                                   min(0.05, config.total_planning_time_limit * 0.1))
+                    deadline_token = (set_deadline(started + config.total_planning_time_limit)
                                       if config.total_planning_time_limit is not None else None)
                     origins = {k: state.busy[k].after if k in state.busy else v
                                for k, v in state.vehicles.items()
@@ -301,20 +309,20 @@ class EventDrivenSimulator:
                                 iterations=config.fleet_mcts_iterations, depth=config.fleet_mcts_depth,
                                 branch_limit=config.fleet_mcts_branch_limit,
                                 position_limit=config.candidate_position_limit,
-                                regret_k=config.rollout_regret_k,
-                                full_service_time_limit=config.fleet_mcts_full_service_time_limit)
+                                regret_k=config.rollout_regret_k)
                             routes = fleet_mcts_record.routes
                             fleet_mcts_iterations += fleet_mcts_record.iterations
                             fleet_mcts_expanded += fleet_mcts_record.nodes_expanded
                             fleet_mcts_improvements += fleet_mcts_record.tree_improvements
+                            fleet_service_seconds += fleet_mcts_record.service_seconds
+                            fleet_full_seconds += fleet_mcts_record.full_seconds
                             deadline_events += int(fleet_mcts_record.deadline_reached)
                         except PlanningDeadlineExceeded:
                             deadline_events += 1
-                    if deadline_token is not None:
-                        reset_deadline(deadline_token)
-                        deadline_token = set_deadline(started + config.total_planning_time_limit)
                     # Reconcile all future suffixes before dispatching any physical action.
                     assert_unique_routes(routes)
+                    validation_started = perf_counter()
+                    deadline_fallback = False
                     try:
                         validated = {k: route_proposal(origins[k], a, observation, config.mpc)
                                      for k, a in routes.items() if a}
@@ -322,11 +330,16 @@ class EventDrivenSimulator:
                         if fleet_mcts_record is None:
                             routes, validated = fallback_routes, fallback_validated
                         else:
+                            routes = fleet_mcts_record.routes
                             validated = fleet_mcts_record.validated
                         if set(validated) != {k for k, a in routes.items() if a} or any(
                                 validated[k].actions != routes[k] for k in validated):
                             raise RuntimeError("Fleet fallback does not match validated incumbent")
                         deadline_events += 1
+                        deadline_fallbacks += 1
+                        deadline_fallback = True
+                    final_validation_seconds = perf_counter() - validation_started
+                    final_validation_times.append(final_validation_seconds)
                     if deadline_token is not None:
                         reset_deadline(deadline_token)
                         deadline_token = None
@@ -367,6 +380,8 @@ class EventDrivenSimulator:
                                                      iterations=fleet_mcts_record.iterations,
                                                      nodes_expanded=fleet_mcts_record.nodes_expanded,
                                                      tree_improvements=fleet_mcts_record.tree_improvements,
+                                                     service_seconds=fleet_mcts_record.service_seconds,
+                                                     full_seconds=fleet_mcts_record.full_seconds,
                                                      elapsed=fleet_mcts_record.elapsed,
                                                      deadline_reached=fleet_mcts_record.deadline_reached)
                                                 if fleet_mcts_record else None),
@@ -383,6 +398,9 @@ class EventDrivenSimulator:
                                     distance_after_repair=distance_after_repair,
                                     selected_firsts=[p.first.destination for p in selected.values() if p.first.kind == "serve"],
                                     plans={str(k): asdict(p) for k, p in selected.items()} if config.trace_level != "none" else {})
+                    if config.algorithm == "FLEET_MPC_MCTS":
+                        decision["final_validation_seconds"] = final_validation_seconds
+                        decision["deadline_fallback"] = deadline_fallback
                     if config.trace_level == "full":
                         decision["candidates"] = {str(k): [asdict(p) for p in r.candidates] for k, r in plans.items()}
                     decisions.append(decision)
@@ -463,6 +481,13 @@ class EventDrivenSimulator:
                                                    if timings and config.total_planning_time_limit is not None else None),
                        deadline_overrun_rate=float(np.mean(np.array(local_times) > config.mpc.time_limit))
                        if local_times and config.mpc.budget_mode == "wall_clock" else None)
+        if config.algorithm == "FLEET_MPC_MCTS":
+            metrics.update(fleet_mcts_service_seconds=fleet_service_seconds,
+                           fleet_mcts_full_seconds=fleet_full_seconds,
+                           final_validation_seconds_total=sum(final_validation_times),
+                           final_validation_seconds_p95=(float(np.percentile(final_validation_times, 95))
+                                                         if final_validation_times else 0.0),
+                           deadline_fallback_count=deadline_fallbacks)
         for name, fn in [("mean", np.mean), ("median", np.median), ("p95", lambda x: np.percentile(x, 95)), ("maximum", np.max), ("total", np.sum)]:
             metrics[f"{name}_planning_time"] = float(fn(timings)) if timings else 0.
         import re
