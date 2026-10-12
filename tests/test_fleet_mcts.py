@@ -49,6 +49,19 @@ def test_candidate_vehicle_ranking_uses_planned_route_geometry():
     assert problem._nearest_vehicles(plan, "X", 1) == [1]
 
 
+def test_full_service_tree_actions_preserve_coverage_and_feasibility():
+    state, observation, config = setup((customer("A", 1), customer("B", 2),
+                                        customer("C", 3), customer("D", 4)))
+    origins = {0: state, 1: replace(state, id=1)}
+    problem = _FleetProblem(origins, observation, config, 3, 2)
+    plan = problem.initial({0: serves("A", "B"), 1: serves("C", "D")})
+    candidates = problem.candidates(plan, 24)
+    assert candidates
+    assert all(candidate.score[0] == 0 for candidate in candidates)
+    assert all({c for seq in candidate.sequences for c in seq} == {"A", "B", "C", "D"}
+               for candidate in candidates)
+
+
 def test_fleet_mcts_expired_budget_returns_validated_incumbent():
     state, observation, config = setup((customer("A", 1),))
     token = set_deadline(perf_counter() - 1)

@@ -389,7 +389,7 @@ class _FleetProblem:
         if not unserved:
             for source_index, source in enumerate(self.ids):
                 sequence = plan.sequences[source_index]
-                if self.origins[source].departed or not 0 < len(sequence) <= 2:
+                if self.origins[source].departed or not 0 < len(sequence) <= 4:
                     continue
                 candidate = plan
                 for customer in sequence:
@@ -415,7 +415,88 @@ class _FleetProblem:
                     found[candidate.sequences] = candidate
                 if len(found) >= branch_limit:
                     break
+            self._full_service_moves(plan, found, branch_limit)
         return sorted(found.values(), key=lambda p: p.score)[:branch_limit]
+
+    def _full_service_moves(self, plan: FleetPlan,
+                            found: dict[tuple[tuple[str, ...], ...], FleetPlan],
+                            branch_limit: int) -> None:
+        if len(found) >= branch_limit:
+            return
+        budget = branch_limit * 2
+
+        def keep(changes):
+            check_deadline()
+            candidate = self.change(plan, changes)
+            if (candidate is not None and candidate.score[0] == 0
+                    and candidate.sequences not in found):
+                found[candidate.sequences] = candidate
+
+        # Try high-detour single-customer moves first; all suffixes remain soft.
+        for source_index, source in enumerate(self.ids):
+            sequence = plan.sequences[source_index]
+            if not sequence or len(found) >= budget:
+                break
+            def removal_saving(pos):
+                before = (self.origins[source].location if pos == 0
+                          else self.observation.customer_by_id[sequence[pos - 1]])
+                current = self.observation.customer_by_id[sequence[pos]]
+                after = (self.observation.infrastructure.depot if pos == len(sequence) - 1
+                         else self.observation.customer_by_id[sequence[pos + 1]])
+                return (distance(before, current) + distance(current, after)
+                        - distance(before, after))
+            ranked = sorted(range(len(sequence)), key=lambda pos: (-removal_saving(pos), pos))
+            for pos in ranked[:2]:
+                customer = sequence[pos]
+                reduced = sequence[:pos] + sequence[pos + 1:]
+                for target in self._nearest_vehicles(plan, customer, 4):
+                    if target == source or len(found) >= budget:
+                        continue
+                    target_seq = plan.sequences[self.ids.index(target)]
+                    for gap in self._positions(plan, target, customer)[:2]:
+                        keep({source: reduced,
+                              target: target_seq[:gap] + (customer,) + target_seq[gap:]})
+                        if len(found) >= budget:
+                            break
+            # Or-opt of length two, and intra-route 2-opt, are single tree actions.
+            if len(sequence) >= 3:
+                for pos in range(min(3, len(sequence) - 1)):
+                    pair = sequence[pos:pos + 2]
+                    rest = sequence[:pos] + sequence[pos + 2:]
+                    for gap in range(len(rest) + 1):
+                        if gap != pos:
+                            keep({source: rest[:gap] + pair + rest[gap:]})
+                        if len(found) >= budget:
+                            break
+                    if len(found) >= budget:
+                        break
+            if len(sequence) >= 4 and len(found) < budget:
+                for first in range(min(3, len(sequence) - 2)):
+                    for last in range(first + 2, min(len(sequence), first + 5)):
+                        keep({source: sequence[:first] + tuple(reversed(sequence[first:last + 1]))
+                              + sequence[last + 1:]})
+                        if len(found) >= budget:
+                            break
+                    if len(found) >= budget:
+                        break
+        # Bounded cross-route swap near existing customers.
+        for source_index, source in enumerate(self.ids):
+            sequence = plan.sequences[source_index]
+            if not sequence or len(found) >= budget:
+                break
+            customer = sequence[0]
+            for target in self._nearest_vehicles(plan, customer, 4):
+                if target == source or len(found) >= budget:
+                    continue
+                target_seq = plan.sequences[self.ids.index(target)]
+                if not target_seq:
+                    continue
+                other = min(target_seq, key=lambda c: (
+                    distance(self.observation.customer_by_id[c],
+                             self.observation.customer_by_id[customer]), c))
+                pos = target_seq.index(other)
+                keep({source: (other,) + sequence[1:],
+                      target: target_seq[:pos] + (customer,) + target_seq[pos + 1:]})
 
     def _gap_delta(self, plan: FleetPlan, k: int, customer: str, position: int) -> float:
         sequence = plan.sequences[self.ids.index(k)]
