@@ -1,0 +1,108 @@
+{
+  "frozen_git_commit": "6a1ab7ea1944a8f06665a72a3da3d90462a93f9b",
+  "source_sha256": "b56e69e4c049ea47553b0c1c1a4b4f09ab766fd3d5755afa25573f299c9eabfd",
+  "static": {
+    "runs": 6,
+    "served": 600,
+    "total_customers": 600,
+    "all_audits_pass": true,
+    "maximum_event_seconds": 5.014294299995527,
+    "overrun_events": 2
+  },
+  "development": {
+    "pairs": 12,
+    "runs": 24,
+    "fleet_served": 1005,
+    "lns_served": 782,
+    "total_customers_per_method": 1200,
+    "wins": 6,
+    "ties": 1,
+    "losses": 5,
+    "fleet_min_served": 57,
+    "fleet_full_service_runs": 5,
+    "lns_full_service_runs": 2,
+    "equal_service_pairs": 1,
+    "EV_delta_equal_service": 2,
+    "equal_service_equal_EV_pairs": 0,
+    "distance_delta_equal_service_EV": 0,
+    "fleet_MCTS_iterations": 347365,
+    "fleet_MCTS_nodes": 271761,
+    "fleet_service_phase_seconds": 1303.6669840964023,
+    "fleet_full_phase_seconds": 3081.851335401647,
+    "fleet_final_validation_seconds": 0.9839491997845471,
+    "fleet_deadline_fallbacks": 455,
+    "mean_full_coverage_flex_risk": 0.47861530930661417,
+    "mean_full_coverage_operational_cost": 0.36762939477491086,
+    "family": {
+      "C1": {
+        "fleet_served": 150,
+        "lns_served": 175,
+        "wins": 0,
+        "ties": 0,
+        "losses": 2
+      },
+      "C2": {
+        "fleet_served": 200,
+        "lns_served": 66,
+        "wins": 2,
+        "ties": 0,
+        "losses": 0
+      },
+      "R1": {
+        "fleet_served": 153,
+        "lns_served": 197,
+        "wins": 0,
+        "ties": 0,
+        "losses": 2
+      },
+      "R2": {
+        "fleet_served": 157,
+        "lns_served": 72,
+        "wins": 2,
+        "ties": 0,
+        "losses": 0
+      },
+      "RC1": {
+        "fleet_served": 182,
+        "lns_served": 199,
+        "wins": 0,
+        "ties": 1,
+        "losses": 1
+      },
+      "RC2": {
+        "fleet_served": 163,
+        "lns_served": 73,
+        "wins": 2,
+        "ties": 0,
+        "losses": 0
+      }
+    },
+    "latency": {
+      "fleet": {
+        "max_run_p95_seconds": 4.983176294981968,
+        "maximum_event_seconds": 5.028353900008369,
+        "overrun_events": 14,
+        "decision_epochs": 1950
+      },
+      "rolling_lns": {
+        "max_run_p95_seconds": 4.995881040010135,
+        "maximum_event_seconds": 5.025567899981979,
+        "overrun_events": 10,
+        "decision_epochs": 1615
+      }
+    }
+  },
+  "gate": {
+    "aggregate_unserved_no_worse": true,
+    "wins_at_least_losses": true,
+    "multi_family_behavior": true,
+    "no_severe_fleet_collapse": false,
+    "all_audits_pass": true,
+    "latency_within_five_seconds": false,
+    "passed": false
+  },
+  "holdout": {
+    "status": "not_run",
+    "reason": "Development gate failed"
+  }
+}

@@ -1,131 +1,120 @@
-# Final MPC-MCTS EVRP Report
+# Final Risk-Aware Fleet MPC-MCTS Development Report
 
-**Development gate: FAIL**
+## Status and provenance
 
-All outputs are development evidence until a separate holdout executes.
+**Development gate: FAIL. Holdout: not run or inspected.** The frozen experimental
+source was Git commit `6a1ab7ea1944a8f06665a72a3da3d90462a93f9b` with
+source SHA-256 `b56e69e4c049ea47553b0c1c1a4b4f09ab766fd3d5755afa25573f299c9eabfd`.
+All 6 static and 24 development records completed, and all 30 passed the
+independent structural, physics, and information audit. The [manifest](summaries/raw_sha256_manifest.json)
+binds each included raw file to its SHA-256, source, scenario, and run identity.
+The [compressed raw archive](raw/frozen_records_6a1ab7e.tar.gz) contains exactly
+those 30 files; its SHA-256 is
+`a18d762a142865f71014c3f86197f39ff0b8e70106642e0b4eee9a21d7993d8b`.
+Earlier files in `raw/static/` from superseded commits are excluded by the
+analysis script. The six development scenarios have target and realized DoD 0.5,
+scenario seeds 0/1, algorithm seed 0, and fixed reference fleet K_ref shared
+within each pair. Conditions were run sequentially for isolated timing.
 
-## Frozen Configuration
+The corrected method retains fleet-level MPC and MCTS. No LNS follows MCTS;
+`ROLLING_LNS` is the conventional comparator. MCTS searches assignment,
+sequence, and fleet restructuring while the decoder handles charging and exact
+route feasibility. The controller uses only released customers and immutable
+busy-vehicle commitments.
 
-```yaml
-study: final_track
-fleet_mode: fixed_reference
-prediction_horizon: 5
-control_horizon: 1
-mcts_iterations: 48
-candidate_limit: 16
-top_L: 5
-proposal_selection: coverage_diverse
-station_candidate_limit: 4
-charge_target_limit: 5
-charging_mode: partial
-route_continuity: true
-regret_repair: true
-dynamic_selection_mode: exact_count
-parallel_agents: false
-workers: 1
-trace_level: summary
-diagnostics: true
-max_idle_wait: 0
-require_root_coverage: false
-budget_mode: iterations
-experiment_seed: 0
-reference_solver_multistarts: 3
-reference_improvement_passes: 1
-reference_seed: 0
-reference_label_limit: 24
-instances: [c101_21, c201_21, r101_21, r201_21, rc101_21, rc201_21]
-holdout_instances: [c109_21, c208_21, r112_21, r211_21, rc108_21, rc208_21]
-gate:
-  static_complete: 6
-  dynamic_mean_service: 0.98
-  dynamic_complete: 5
-  max_p95_planning_seconds: 5.0
-```
+## Frozen objective
 
-## Identity and Verification
+Final plan selection uses lexicographic minimization, never the scalar tree
+reward. For uncovered released customers:
 
-- Source SHA-256: `6bea24e2211d179ba464b202f3fe4f7b1556aa5fbd85f959e3c5be9588cdc0af`.
-- Config SHA-256: `b69a2d9f4ef78b80272c0dac537098729813da402baa93802a761643e113e116`.
-- Git revision at run time: `432fc8b03956b90fd0de8c212996f66418893e3b`.
-- Development manifest: `C:\Users\AYOUB\OneDrive - EMSI\Bureau\PHD_WORK\MPC_MCTS_Multi_agents_EVRP\results\development\attempts\6bea24e2211d_b69a2d9f\manifest.json`.
-- Schneider reference validation: 4/4 passed.
-- Full tests: 253 run, 0 failures, 0 errors.
+`J_A = lexmin(U, screened_Z0, screened_Z1, R_TW, R_BAT, R_CAP, D_normalized)`.
 
-## Development Results
+The zero/one counts are forward/backward *screened* insertion gaps, not exact
+feasible-option counts. At full current coverage:
 
-Customers served out of 100; same K_ref within each matched scenario.
+`J_B = lexmin(R_FLEX, V, C_OP, D, R_STAB)`, with
+`R_FLEX = (R_TW + R_BAT + R_CAP + R_TIME)/4`.
 
-| Instance | K_ref | DoD | RH_REGRET | Independent | Coordinated |
-|---|---:|---:|---:|---:|---:|
-| c101_21 | 13 | 0 | 93 | 91 | 95 |
-| c201_21 | 5 | 0 | 100 | 90 | 76 |
-| r101_21 | 20 | 0 | 89 | 89 | 95 |
-| r201_21 | 4 | 0 | 72 | 73 | 70 |
-| rc101_21 | 21 | 0 | 100 | 98 | 100 |
-| rc201_21 | 5 | 0 | 92 | 77 | 86 |
-| c101_21 | 13 | 0.5 | 81 | 82 | 93 |
-| c201_21 | 5 | 0.5 | 92 | 88 | 86 |
-| r101_21 | 20 | 0.5 | 84 | 87 | 92 |
-| r201_21 | 4 | 0.5 | 76 | 95 | 83 |
-| rc101_21 | 21 | 0.5 | 86 | 92 | 94 |
-| rc201_21 | 5 | 0.5 | 90 | 97 | 83 |
+For active vehicle `k`, the time reserve is
+`clip((T_end - T_finish,k)/(T_end - t), 0, 1)`; `R_TIME` is one minus its
+active-vehicle mean. `C_OP` is the mean of normalized distance, route duration,
+charging time, waiting time, TW risk, battery risk, and route-balance risk.
+The bounded MCTS reward is search guidance only. The hard event budget is five
+seconds with a common 20 ms cooperative-stop guard and approximately 50 ms
+reserved internally for final replay.
 
-- Coordinated static complete: 1/6.
-- Coordinated dynamic complete: 0/6.
-- Coordinated dynamic mean service: 88.500%.
-- Largest coordinated run-level p95: 7.848 s.
-- Gate reason: Coordinated dynamic mean service is below 98%
-- Gate reason: Coordinated dynamic service must be complete on at least five instances
-- Gate reason: Coordinated static service must be complete on all six instances
-- Gate reason: Coordinated run-level p95 planning time exceeds 5 seconds
+## Verification and static results
 
-## Holdout Results
+- Full suite: **287 passed**, recorded in `results/verification/pytest.xml`.
+- Four Schneider small-case reference validations: **4/4 passed** in
+  [reference_validation.csv](reference_validation/reference_validation.csv).
+- Static frozen-commit Fleet validation: **600/600 customers served** on all
+  six development instances; all six independent audits passed.
+- Static timing caveat: two decision events exceeded five seconds; maximum
+  **5.0143 s**. Static service validity does not erase the timing violation.
 
-Not run because the development gate did not pass.
+## Dynamic development
 
-## Development Paired Comparisons
+The full 12-pair DoD 0.5 development grid is complete. Fleet MPC-MCTS served
+**1005/1200** customers versus **782/1200** for Rolling-LNS: **6 wins, 1 tie,
+5 losses** on service. This aggregate advantage is heavily driven by very
+low Rolling-LNS service on type-2 cases. Fleet itself had severe individual
+collapses, including **57/100** on `r201_21` seed 1, **63/100** on `rc201_21`
+seed 1, and **71/100** on `c101_21` seed 1 and `r101_21` seed 0.
 
-Across the 12 matched development scenarios, coordinated-minus-baseline
-unserved customers (negative is better) were:
+| Instance | Seed 0 Fleet/LNS | Seed 1 Fleet/LNS |
+| --- | ---: | ---: |
+| c101_21 | 79/85 | 71/90 |
+| c201_21 | 100/29 | 100/37 |
+| r101_21 | 71/100 | 82/97 |
+| r201_21 | 100/38 | 57/34 |
+| rc101_21 | 82/99 | 100/100 |
+| rc201_21 | 100/36 | 63/37 |
 
-| Baseline | Mean | Median | Coordinated wins / ties / losses |
-|---|---:|---:|---:|
-| Independent MPC-MCTS | +0.500 | -2 | 7 / 0 / 5 |
-| RH_REGRET | +0.167 | -1 | 6 / 1 / 5 |
+Fleet completed service in 5/12 runs; Rolling-LNS in 2/12. C1, R1, and RC1
+mostly favor Rolling-LNS, while C2, R2, and RC2 favor Fleet in aggregate.
+The detailed [paired CSV](tables/development_pairs.csv),
+[LaTeX table](tables/development_service.tex), and
+[service-difference PNG](figures/service_delta_by_pair.png) retain every case.
+The [family PNG](figures/service_by_family.png) shows the type-1/type-2 split;
+both PNGs have source CSVs in `figures/`.
 
-These are descriptive development comparisons, not holdout estimates or
-significance tests. No scenario tied coordinated and independent on service,
-so there is no eligible vehicle or distance comparison for that pair. Against
-RH_REGRET, only static `rc101_21` tied on service; coordinated activated one
-additional EV (21 versus 20), making distance comparison ineligible. Paired
-holdout means, confidence intervals, and wins/ties/losses are unavailable.
+**Conditional secondary outcomes.** Exactly one pair had equal service:
+`rc101_21` seed 1, where both served 100, but Fleet activated 21 EVs versus
+Rolling-LNS's 19. No pair had both equal service and equal EV count, so there
+is **no eligible paired distance comparison**. Unconditional EV or distance
+means are not used to rank the methods.
 
-## Runtime, Failures, and Limitations
+The planned full-coverage Fleet flexibility risk averaged **0.4786** and its
+operational-risk cost **0.3676** across the 11 runs with at least one
+full-coverage MCTS decision (mean of run means). One run had no such decision;
+its value is undefined, not zero. These are internal normalized planned
+objectives, not directly comparable to a Rolling-LNS objective measured on
+the same scale. Realized distance is retained in the paired CSV.
 
-Mean total planning time per development run was 136.01 seconds for RH_REGRET,
-299.31 seconds for independent MPC-MCTS, and 182.84 seconds for coordinated
-MPC-MCTS. The respective maxima were 328.20, 787.71, and 486.95 seconds.
-The largest run-level event-planning p95 was 4.89, 28.44, and 7.85 seconds,
-respectively. These measurements were sequential on this computer; they are
-not isolated cross-machine benchmarks.
+**Computation.** Fleet completed **347,365 MCTS iterations** and expanded
+**271,761 nodes** across 1,950 decision epochs. Its recorded service-phase
+search totaled 1,303.67 s and full-coverage search 3,081.85 s. Final replay
+validation totaled 0.984 s; 455 decisions used an already validated deadline
+fallback. The largest per-run p95 was **4.9832 s** for Fleet and **4.9959 s**
+for Rolling-LNS; these are maxima of run-level p95 values, not pooled p95s.
+Maximum individual events were **5.0284 s** and **5.0256 s**, respectively.
+Fleet had **14/1,950** overrun events and Rolling-LNS **10/1,615**. The
+five-second ceiling was therefore not strictly met by either method.
 
-The coordinated first-decision candidate union / MILP-selected / post-repair
-coverage was 54 / 25 / 74 on static `c201_21`, and 52 / 20 / 60 on static
-`r201_21`, from 100 available customers each. All 24 and 30 final unserved
-customers, respectively, appeared in a top-L proposal at some epoch, yet only
-three from each set appeared in a selected intent. The result points to a
-route-combination and repair limitation; it does not establish that all
-customers were jointly feasible. Raising the candidate limit or MCTS budget
-is not evidence-supported and would worsen latency. No second algorithmic
-correction was made. See `results/final/DIAGNOSIS.md` for the full classification.
+## Gate and interpretation
 
-The 36 audited raw runs and the gate are in `results/development/`. No
-holdout raw files, final statistics, or final figures are claimed. The six
-development instances cannot establish a paper result.
+The preregistered aggregate-service, win/loss, multi-family, and audit checks
+passed. The **no-severe-collapse** check failed (Fleet minimum 57/100), and
+the **strict event-latency** check failed. Consequently the development gate
+**failed**, the untouched holdout was **not run**, and no holdout comparison is
+claimed. The paper hypothesis of a robust, deadline-compliant dynamic
+advantage for Risk-Aware Fleet MPC-MCTS is **not supported by this complete
+development grid**, despite the favorable aggregate customer count.
 
-## Conclusion
-
-The current evidence does not support the coordination hypothesis: coordinated
-MPC-MCTS has mixed paired service outcomes, worse mean unserved customers than
-both development baselines, and fails the service and latency gates. The
-disjoint holdout was correctly withheld, so there is no final paper claim.
+The main limitations are strong type-1 dynamic service losses, extreme
+type-2 Rolling-LNS degradation that makes aggregate comparison fragile,
+optimistic screened rather than exact insertion-option counts, cooperative
+Python timing that occasionally crosses the nominal budget, and only two
+correlated scenario seeds per instance. No individual seed, fleet size, or
+holdout result was used for retuning after this campaign.
