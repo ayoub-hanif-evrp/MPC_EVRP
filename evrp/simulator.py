@@ -323,7 +323,11 @@ class EventDrivenSimulator:
                     assert_unique_routes(routes)
                     validation_started = perf_counter()
                     deadline_fallback = False
+                    replay_reserved = (config.algorithm == "FLEET_MPC_MCTS"
+                                       and remaining_time() <= 0.02)
                     try:
+                        if replay_reserved:
+                            raise PlanningDeadlineExceeded
                         validated = {k: route_proposal(origins[k], a, observation, config.mpc)
                                      for k, a in routes.items() if a}
                     except PlanningDeadlineExceeded:
@@ -340,6 +344,7 @@ class EventDrivenSimulator:
                         deadline_fallback = True
                     final_validation_seconds = perf_counter() - validation_started
                     final_validation_times.append(final_validation_seconds)
+                    timings.append(perf_counter()-started)
                     if deadline_token is not None:
                         reset_deadline(deadline_token)
                         deadline_token = None
@@ -351,7 +356,6 @@ class EventDrivenSimulator:
                     selected = {k: validated.get(k) or idle_proposal(state.vehicles[k], observation, config.mpc)
                                 for k in ready}
                     tails = {k: a for k, a in routes.items() if k not in ready and a} if config.route_continuity else {}
-                    timings.append(perf_counter()-started)
                     measured = list(zip(ready, results))
                     if diagnostic:
                         diagnostic.observe(state, observation, plans, selected, measured, 0, config)

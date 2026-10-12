@@ -93,6 +93,7 @@ class _FleetProblem:
         p = self.observation.infrastructure.parameters
         tw, battery = [], []
         for action in actions:
+            self._check_search_time()
             step = transition(state, action, self.observation)
             state = step.after
             if step.served:
@@ -233,8 +234,10 @@ class _FleetProblem:
             customer = self.observation.customer_by_id[customer_id]
             options = []
             for index, k in enumerate(self.ids):
+                self._check_search_time()
                 sequence = sequences[index]
                 for pos in range(len(sequence) + 1):
+                    self._check_search_time()
                     passed, slack = self._screen_gap(k, sequence, customer_id, pos)
                     if not passed:
                         continue
@@ -274,6 +277,7 @@ class _FleetProblem:
     def initial(self, routes: dict[int, tuple[Action, ...]]) -> FleetPlan:
         sequences, actions, costs, proposals = [], [], [], []
         for k in self.ids:
+            self._check_search_time()
             route = tuple(routes.get(k, ()))
             sequence = tuple(a.destination for a in route if a.kind == "serve")
             if any(c not in self.pending for c in sequence):
@@ -646,8 +650,11 @@ def solve_fleet_mcts(origins: dict[int, VehicleState], routes: dict[int, tuple[A
         raise ValueError("Invalid fleet MCTS configuration")
     started = perf_counter()
     problem = _FleetProblem(origins, observation, config, position_limit, regret_k)
-    root_plan = problem.initial(routes)
     problem.search_until = perf_counter() + max(0.0, remaining_time() - 0.05)
+    try:
+        root_plan = problem.initial(routes)
+    except _SearchBudgetReached as error:
+        raise PlanningDeadlineExceeded from error
     root_criticality = []
     best = root_plan
     root = _Node(root_plan, 0)

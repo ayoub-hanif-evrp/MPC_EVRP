@@ -3,12 +3,13 @@ from time import perf_counter, sleep
 
 import evrp.fleet_mcts as fleet_mcts
 import evrp.repair as repair
+import pytest
 
 from evrp.experiments import audit_result, simulation_config
 from evrp.fleet_mcts import _FleetProblem, solve_fleet_mcts
 from evrp.model import Observation
 from evrp.mpc import MPCConfig
-from evrp.planning_budget import remaining_time, reset_deadline, set_deadline
+from evrp.planning_budget import PlanningDeadlineExceeded, remaining_time, reset_deadline, set_deadline
 from evrp.simulator import EventDrivenSimulator
 from tests.test_repair import customer, serves, setup
 from tests.test_simulator import synthetic
@@ -117,15 +118,14 @@ def test_full_service_search_can_continue_past_old_075_second_cap(monkeypatch):
     assert result.best_score[0] == 0
 
 
-def test_fleet_mcts_expired_budget_returns_validated_incumbent():
+def test_fleet_mcts_expired_before_root_defers_to_simulator_incumbent():
     state, observation, config = setup((customer("A", 1),))
     token = set_deadline(perf_counter() - 1)
     try:
-        result = solve_fleet_mcts({0: state}, {}, observation, config, seed=0)
+        with pytest.raises(PlanningDeadlineExceeded):
+            solve_fleet_mcts({0: state}, {}, observation, config, seed=0)
     finally:
         reset_deadline(token)
-    assert result.deadline_reached
-    assert result.routes == {0: ()}
 
 
 def test_fleet_mcts_simulator_replays_without_future_information():
