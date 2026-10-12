@@ -133,6 +133,9 @@ class _FleetProblem:
         if origin.time > self.observation.time + EPS:
             # The busy action is immutable; origin is already its measured after-state.
             after = origin
+        elif not actions and origin.location.kind == "d" and not origin.departed:
+            # An unused depot EV is an interruptible reserve, not a horizon-long wait.
+            after = origin
         else:
             if actions:
                 first = actions[0]

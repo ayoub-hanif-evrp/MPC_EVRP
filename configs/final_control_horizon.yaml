@@ -31,6 +31,7 @@ route_continuity: true
 station_candidate_limit: 4
 top_L: 3
 total_planning_time_limit: 5.0
+engineering_watchdog_seconds: 900.0
 trace_level: summary
 uct_c: 1.4
 workers: 1

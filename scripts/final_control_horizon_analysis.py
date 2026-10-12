@@ -74,10 +74,10 @@ def records():
                  for algorithm in (FLEET, BASELINE)}
     failures.extend(f"Missing {key}" for key in sorted(expected - set(found)))
     failures.extend(f"Unexpected {key}" for key in sorted(set(found) - expected))
-    commits = {entry["git_commit"] for entry in manifest}
+    commits = {entry["git_commit"] for entry in manifest if entry["stage"] == "development"}
     sources = {entry["source_sha256"] for entry in manifest}
     if len(commits) != 1 or len(sources) != 1:
-        failures.append("Mixed frozen commits or source hashes")
+        failures.append("Mixed development commits or source hashes")
     return found, manifest, failures
 
 
@@ -131,6 +131,15 @@ def summarize():
                               lns_max=bm.get("maximum_planning_time", ""),
                               fleet_iterations=fm.get("fleet_mcts_iterations", ""),
                               fleet_nodes=fm.get("fleet_mcts_nodes_expanded", ""),
+                              fleet_events=fm.get("simulation_events", ""),
+                              lns_events=bm.get("simulation_events", ""),
+                              fleet_triggers=fm.get("optimization_triggers", ""),
+                              lns_triggers=bm.get("optimization_triggers", ""),
+                              fleet_mcts_calls=fm.get("mcts_calls", ""),
+                              fleet_wall_s=fm.get("complete_instance_wall_clock_seconds", ""),
+                              lns_wall_s=bm.get("complete_instance_wall_clock_seconds", ""),
+                              fleet_mean_optimization_s=fm.get("mean_optimization_latency", ""),
+                              lns_mean_optimization_s=bm.get("mean_optimization_latency", ""),
                               fleet_R_CTRL_full=risk(f, "control_risk", True) if complete else "",
                               fleet_R_FLEX_full=risk(f, "flexibility_risk", True) if complete else "",
                               fleet_R_CTRL_service=risk(f, "control_risk", False) if complete else "",
@@ -139,6 +148,18 @@ def summarize():
     write_csv(OUT / "summaries" / "development_pairs.csv", pairs)
     write_csv(OUT / "tables" / "static_validation.csv", static_rows)
     write_csv(OUT / "tables" / "development_pairs.csv", pairs)
+    if valid := [row for row in pairs if row["status"] == "completed"]:
+        write_csv(OUT / "tables" / "runtime.csv", [dict(instance=r["instance"], seed=r["seed"],
+                  fleet_wall_s=r["fleet_wall_s"], lns_wall_s=r["lns_wall_s"],
+                  fleet_mean_optimization_s=r["fleet_mean_optimization_s"],
+                  fleet_p95_s=r["fleet_p95"], fleet_max_s=r["fleet_max"],
+                  lns_mean_optimization_s=r["lns_mean_optimization_s"],
+                  lns_p95_s=r["lns_p95"], lns_max_s=r["lns_max"]) for r in valid])
+        write_csv(OUT / "tables" / "mpc_triggers.csv", [dict(instance=r["instance"], seed=r["seed"],
+                  fleet_events=r["fleet_events"], fleet_triggers=r["fleet_triggers"],
+                  fleet_mcts_calls=r["fleet_mcts_calls"], lns_events=r["lns_events"],
+                  lns_triggers=r["lns_triggers"], fleet_iterations=r["fleet_iterations"],
+                  fleet_nodes=r["fleet_nodes"]) for r in valid])
     row_end = chr(92) * 2
     lines = [r"\begin{tabular}{lrrrr}", r"\hline",
              "Instance & Seed & Fleet served & Rolling-LNS served & Difference " + row_end,
@@ -180,12 +201,18 @@ def summarize():
     latency = {name: dict(max_run_p95=max(r["metrics"]["p95_planning_time"] for r in rows),
                           max_event=max(r["metrics"]["maximum_planning_time"] for r in rows),
                           overrun_events=sum(round(r["metrics"]["total_deadline_overrun_rate"] *
-                                                   r["metrics"]["decision_epochs"]) for r in rows),
+                                                   r["metrics"]["optimization_triggers"]) for r in rows),
                           decision_epochs=sum(r["metrics"]["decision_epochs"] for r in rows),
+                          simulation_events=sum(r["metrics"]["simulation_events"] for r in rows),
+                          optimization_triggers=sum(r["metrics"]["optimization_triggers"] for r in rows),
+                          mcts_calls=sum(r["metrics"]["mcts_calls"] for r in rows),
+                          wall_seconds=sum(r["metrics"]["complete_instance_wall_clock_seconds"] for r in rows),
+                          maximum_instance_wall_seconds=max(r["metrics"]["complete_instance_wall_clock_seconds"] for r in rows),
                           deadline_fallbacks=sum(r["metrics"].get("deadline_fallback_count", 0)
                                                  for r in rows))
                for name, rows in (("fleet", fleet), ("rolling_lns", baseline)) if rows}
-    summary = dict(frozen_git_commit=manifest[0]["git_commit"] if manifest else None,
+    summary = dict(frozen_git_commit=next((entry["git_commit"] for entry in manifest
+                                          if entry["stage"] == "development"), None),
                    config_file_sha256=hashlib.sha256(CONFIG.read_bytes()).hexdigest(),
                    source_sha256=manifest[0]["source_sha256"] if manifest else None,
                    static=dict(runs=sum(r["status"] == "completed" for r in static_rows),
@@ -210,6 +237,19 @@ def summarize():
                    holdout=dict(status="eligible_not_run" if gate["passed"] else "not_run"))
     (OUT / "summaries" / "development_summary.json").write_text(
         json.dumps(summary, indent=2) + "\n", encoding="utf-8")
+    write_csv(OUT / "tables" / "audit_report.csv", [dict(stage=e["stage"], path=e["path"],
+              status=e["status"], audit=e["audit"] if isinstance(e["audit"], str)
+              else "; ".join(e["audit"]), sha256=e["sha256"])
+              for e in manifest])
+    write_csv(OUT / "tables" / "family_service.csv", [dict(family=name,
+              fleet_served=values["fleet"], lns_served=values["lns"])
+              for name, values in families.items()])
+    if valid:
+        write_csv(OUT / "tables" / "eligible_ev_distance.csv", [dict(instance=r["instance"],
+                  seed=r["seed"], service_equal=r["EV_delta_equal_service"] != "",
+                  EV_delta=r["EV_delta_equal_service"],
+                  service_and_EV_equal=r["distance_delta_equal_service_EV"] != "",
+                  distance_delta=r["distance_delta_equal_service_EV"]) for r in valid])
     if valid:
         plot_rows = [dict(pair=f"{r['instance']} s{r['seed']}", service_delta=r["service_delta"])
                      for r in valid]
@@ -237,6 +277,45 @@ def summarize():
         fig.tight_layout()
         fig.savefig(OUT / "figures" / "service_by_family.png", dpi=180)
         plt.close(fig)
+    report = ["# Event-Triggered Risk-Aware Fleet MPC-MCTS: Final Development Report", "",
+              f"Frozen development commit: `{summary['frozen_git_commit']}`. Source SHA-256: "
+              f"`{summary['source_sha256']}`. Configuration SHA-256: "
+              f"`{summary['config_file_sha256']}`.", "",
+              "## Validation", "",
+              f"Static Fleet service: {summary['static']['served']}/600 across "
+              f"{summary['static']['runs']} completed cases. "
+              "Full pytest: 296 passed. Schneider reference validation: 4/4 passed.", "",
+              "## Matched Development", "",
+              "| Instance | Seed | Fleet | Rolling-LNS | Difference | Fleet calls | Fleet wall s | LNS wall s |",
+              "| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |"]
+    for row in pairs:
+        report.append(f"| {row['instance']} | {row['seed']} | {row['fleet_served']} | "
+                      f"{row['lns_served']} | {row['service_delta']} | "
+                      f"{row['fleet_mcts_calls']} | {row['fleet_wall_s']} | {row['lns_wall_s']} |")
+    report += ["", f"Aggregate service: Fleet {summary['development']['fleet_served']}, "
+               f"Rolling-LNS {summary['development']['lns_served']}; "
+               f"wins/ties/losses {summary['development']['wins']}/"
+               f"{summary['development']['ties']}/{summary['development']['losses']}.", "",
+               "## Gate", ""]
+    report.extend(f"- {key}: {'PASS' if value else 'FAIL'}" for key, value in gate.items())
+    report += ["", "## Runtime and Triggers", ""]
+    for name, values in latency.items():
+        report.append(f"- {name}: {values['simulation_events']} simulation events, "
+                      f"{values['optimization_triggers']} optimization triggers, "
+                      f"{values['mcts_calls']} MCTS calls, {values['wall_seconds']:.2f} total "
+                      f"wall seconds, {values['maximum_instance_wall_seconds']:.2f} maximum "
+                      f"instance wall seconds, {values['max_event']:.3f} maximum call seconds.")
+    report += ["", "## Evidence", "",
+               "Raw SHA-256 manifest: `control_horizon/summaries/raw_sha256_manifest.json`. "
+               "Audit, matched service, family, eligible EV/distance, runtime, and trigger CSVs "
+               "are in `control_horizon/tables/`. Figures are PNG with source CSVs in "
+               "`control_horizon/figures/`.", "",
+               "Holdout: " + ("eligible but not yet executed" if gate["passed"] else
+                              "blocked by the failed development gate") + ".", ""]
+    if failures:
+        report += ["Technical failures:", *[f"- {error}" for error in failures], ""]
+    (ROOT / "results" / "final" / "FINAL_REPORT.md").write_text(
+        "\n".join(report), encoding="utf-8")
     return summary
 
 

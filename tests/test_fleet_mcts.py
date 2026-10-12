@@ -112,12 +112,35 @@ def test_control_risk_replays_only_first_executed_action():
 def test_control_risk_uses_busy_after_state_and_dispatched_idle_action():
     state, observation, config = setup((customer("A", 1), customer("B", 2)))
     problem = _FleetProblem({0: state}, observation, config, 3, 2)
-    assert problem._control_metrics(0, ())["time"] == pytest.approx(1.0)
+    assert problem._control_metrics(0, ())["time"] == pytest.approx(0.0)
     busy = transition(state, Action("serve", "A"), observation).after
     visible = Observation(0, observation.infrastructure,
                           (observation.customer_by_id["B"],), (("A", 0),))
     busy_problem = _FleetProblem({0: busy}, visible, config, 3, 2)
     assert busy_problem._control_metrics(0, ()) == busy_problem._control_metrics(0, serves("B"))
+
+
+def test_unused_depot_vehicle_remains_available_reserve():
+    state, observation, config = setup((customer("A", 1),))
+    problem = _FleetProblem({0: state}, observation, config, 3, 2)
+    reserve = problem._control_metrics(0, ())
+    assert reserve["time"] == pytest.approx(0.0)
+    assert reserve["total"] < 0.1
+
+
+@pytest.mark.parametrize("algorithm", ["FLEET_MPC_MCTS", "ROLLING_LNS"])
+def test_deterministic_completion_reuses_validated_suffix(algorithm):
+    base = synthetic(release=0)
+    config = simulation_config(dict(algorithm=algorithm, total_planning_time_limit=1.0,
+                                    fleet_mcts_iterations=8, fleet_mcts_depth=2,
+                                    fleet_mcts_branch_limit=4, lns_iterations=8))
+    result = EventDrivenSimulator(base.instance, base.scenario, config).run()
+    assert result.metrics["customers_served"] == 2
+    assert result.metrics["optimization_triggers"] == 1
+    assert result.metrics["mcts_calls"] == (1 if algorithm == "FLEET_MPC_MCTS" else 0)
+    assert any(d["optimization_trigger_reason"] is None for d in result.decisions)
+    assert all(not d["mcts_called"] for d in result.decisions[1:])
+    assert all(audit_result(result, base.instance, base.scenario).values())
 
 
 def test_safer_first_action_wins_at_equal_service():

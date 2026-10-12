@@ -1,16 +1,23 @@
 # Final Experiment Protocol
 
-Status: preregistered control-horizon correction of Risk-Aware Fleet-Level
+Status: event-triggered control execution of Risk-Aware Fleet-Level
 MPC-MCTS. The `6a1ab7e` campaign and earlier coordinator/dynamic pilots are
 historical development evidence, not results of this corrected method.
 No source or configuration change is permitted after the development campaign
 starts. A failed development gate blocks the holdout.
 
-## Method and event budget
+## Method and trigger budget
 
-At each release/dispatch event, the controller observes only released customers
-and immutable busy-vehicle commitments. MPC generates a feasible soft fleet
-incumbent. Fleet-level MCTS searches customer assignment, sequence, and fleet
+At each physical event, the controller observes only released customers and
+immutable busy-vehicle commitments. It exactly replays retained soft suffixes.
+MPC optimization triggers at the initial epoch, new customer releases, a ready
+vehicle with no valid continuation, an infeasible retained suffix, or released
+uncommitted work absent from the retained fleet plan. Predicted deterministic
+completions dispatch the next validated action without a new global search.
+Only executing actions are hard; future assignments remain soft at the next
+trigger. A deterministic fingerprint of released information, post-commitment
+vehicle states, commitments, and retained customer sequences prevents repeated
+MCTS calls on an unchanged root. Fleet-level MCTS searches customer assignment, sequence, and fleet
 restructuring; charging stations and amounts are chosen by the deterministic
 partial-charging decoder. Every retained candidate is exactly decoded and replay
 validated. No LNS follows MCTS. The root is the best of the previous feasible
@@ -32,30 +39,37 @@ energy divided by battery capacity, residual payload divided by vehicle
 capacity, and remaining depot-horizon reserve divided by the horizon left at
 the current event. Each risk is one minus its clipped reserve; the TW risk is
 zero when the first action does not serve. Busy EVs use their immutable
-committed-action after-state; idle EVs use the validated fallback action's
-after-state. `R_FLEX` remains predicted suffix robustness. The bounded scalar
+committed-action after-state; unused ready depot EVs remain available reserves
+at the current event time rather than receiving a horizon-long WAIT risk.
+`R_FLEX` remains predicted suffix robustness. The bounded scalar
 reward guides MCTS only; it never replaces lexicographic final selection.
 Full-service MCTS adds CONTROL-RELOCATE and CONTROL-SWAP at route heads to
 the existing relocate, swap, Or-opt, 2-opt, and compaction moves.
 
 Both `FLEET_MPC_MCTS` and `ROLLING_LNS` receive a five-second total wall-clock
-ceiling per event, with a common 150 ms internal guard for cooperative stop
+ceiling per actual optimization trigger, with a common 250 ms internal guard for cooperative stop
 overhead. Fleet MCTS has an iteration ceiling of 256, depth four,
 branch limit 24, and at most three candidate insertion positions. It reserves
-another 150 ms before that guard for final replay and bookkeeping. The single event deadline includes
+another 150 ms before that guard for final replay and bookkeeping. The single trigger deadline includes
 incumbent generation, criticality, search, rollout, decoding, and final replay.
 Rolling-LNS receives at most 40% of the event budget for initial regret repair
 and can use the remaining budget for its unchanged LNS operators. Both methods
 retain their last validated incumbent on deadline expiry. Record actual
 iterations, expanded nodes, service/full-coverage search seconds, final replay
-seconds, deadline fallbacks, event p95, and event maximum.
+seconds, deadline fallbacks, simulation events, trigger counts, MCTS calls,
+complete-instance runtime, and optimization mean/p95/maximum latency. A
+15-minute engineering watchdog and repeated-state detector fail a stuck
+100-customer development run with diagnostic state.
 
 ## Verification and source freeze
 
-Before scientific runs, run focused method tests, the complete test suite once
+Before dynamic scientific runs, pass `c101_21` and `r201_21` static sanity,
+all six static cases at 600/600, focused method tests, the complete test suite once
 with `results/verification/pytest.xml` refreshed, and all four Schneider
 reference validations. Commit source, configuration, protocol, tests, and
-verification evidence. Ensure the working tree is clean. Record that commit in
+verification evidence. Ensure the tracked working tree is clean. Static sanity
+may have a pre-freeze Git commit but must share the exact frozen source hash;
+all dynamic development runs must use one frozen commit. Record that commit in
 the final report and every run's provenance. Preserve SHA-256 manifests and
 the independent trace audit. No experiments from uncommitted source.
 
@@ -76,8 +90,8 @@ The preregistered development PASS requires every one of the 12 matched pairs
 to complete; static Fleet service 600/600; aggregate Fleet service at least
 Rolling-LNS service; Fleet service wins at least losses; Fleet service at least
 90/100 in **every** dynamic run; no C/R/RC family-wide severe Fleet collapse;
-all independent physics/information audits pass; and **every measured event**
-for both methods at or below 5.0 seconds. Any failure blocks holdout. Compare EV
+all independent physics/information audits pass; and **every measured optimization call**
+for both methods at or below 5.0 seconds per actual optimization call. Any failure blocks holdout. Compare EV
 count only at equal service; compare distance only at equal service and EV
 count. Report operational-risk cost separately. Failure blocks the holdout;
 do not retune seeds, fleet size, objectives, or instance-specific behavior.

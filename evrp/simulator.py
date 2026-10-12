@@ -3,6 +3,7 @@
 from concurrent.futures import ProcessPoolExecutor
 from dataclasses import asdict, dataclass, field, replace
 from time import perf_counter
+from collections import deque
 
 import numpy as np
 
@@ -17,7 +18,7 @@ from .mpc import MPCConfig, MPCPlanningProblem, PlanningResult
 from .observation import get_agent_observation, initial_global_state
 from .planning_budget import PlanningDeadlineExceeded, remaining_time, reset_deadline, set_deadline
 from .scenario import DynamicScenario
-from .storage import save_json
+from .storage import identifier, save_json
 
 ROLLING_LNS_ALGORITHMS = {"ROLLING_LNS", "ROLLING_ALNS"}
 HYBRID_LNS_ALGORITHMS = {"MPC_MCTS_LNS", "MPC_MCTS_ALNS"}
@@ -49,6 +50,7 @@ class SimulationConfig:
     fleet_mcts_branch_limit: int = 12
     candidate_position_limit: int = 3
     rollout_regret_k: int = 2
+    engineering_watchdog_seconds: float | None = None
 
     def __post_init__(self):
         if self.algorithm not in ALGORITHMS or self.workers < 1 or self.max_events < 1:
@@ -67,6 +69,8 @@ class SimulationConfig:
             raise ValueError("Invalid fleet LNS budget")
         if self.total_planning_time_limit is not None and self.total_planning_time_limit <= 0:
             raise ValueError("Invalid total planning deadline")
+        if self.engineering_watchdog_seconds is not None and self.engineering_watchdog_seconds <= 0:
+            raise ValueError("Invalid engineering watchdog")
         if (min(self.fleet_mcts_iterations, self.fleet_mcts_depth, self.fleet_mcts_branch_limit,
                 self.candidate_position_limit) < 1 or self.rollout_regret_k not in {2, 3}):
             raise ValueError("Invalid fleet MCTS configuration")
@@ -104,6 +108,9 @@ class ExperimentResult:
                               {"elapsed", "deadline_exceeded", "deadline_overrun_seconds"}} for s in result["searches"]]
         result["metrics"] = {k: v for k, v in result["metrics"].items()
                              if "planning_time" not in k and "overrun" not in k
+                             and k not in {"complete_instance_wall_clock_seconds",
+                                           "mean_optimization_latency", "p95_optimization_latency",
+                                           "max_optimization_latency"}
                              and k not in {"repair_seconds", "fleet_mcts_service_seconds",
                                            "fleet_mcts_full_seconds", "final_validation_seconds_total",
                                            "final_validation_seconds_p95"}}
@@ -145,6 +152,15 @@ def idle_proposal(vehicle, observation, config):
     return problem.proposal((problem.fallback(problem.initial),))
 
 
+def optimization_root_hash(observation, origins, committed, tails):
+    return identifier(dict(time=observation.time,
+                           released=sorted(observation.customer_by_id),
+                           origins={str(k): asdict(v) for k, v in sorted(origins.items())},
+                           committed=sorted(committed.items()),
+                           sequences={str(k): [a.destination for a in actions if a.kind == "serve"]
+                                      for k, actions in sorted(tails.items())}))
+
+
 class EventDrivenSimulator:
     def __init__(self, instance: Instance, scenario: DynamicScenario,
                  config: SimulationConfig = SimulationConfig()):
@@ -170,10 +186,38 @@ class EventDrivenSimulator:
         fleet_service_seconds = fleet_full_seconds = 0.0
         final_validation_times = []
         deadline_fallbacks = 0
+        run_started = perf_counter()
+        simulation_events = optimization_triggers = mcts_calls = 0
+        optimization_latencies = []
+        recent_triggers = deque(maxlen=20)
+        seen_states = set()
+        previous_root_hash = None
+        previous_root_routes = None
+        event_triggered = config.algorithm in {"FLEET_MPC_MCTS", "ROLLING_LNS"}
         diagnostic = ServiceDiagnostics(instance, self.scenario) if config.diagnostics else None
         pool = ProcessPoolExecutor(max_workers=config.workers) if config.parallel_agents else None
         try:
-            for _ in range(config.max_events):
+            for loop_count in range(config.max_events):
+                if (config.engineering_watchdog_seconds is not None and
+                        perf_counter() - run_started > config.engineering_watchdog_seconds):
+                    raise RuntimeError(
+                        f"Engineering watchdog: time={state.time} loops={loop_count} "
+                        f"epochs={epochs} triggers={optimization_triggers} "
+                        f"served={len(state.served_customers)} committed={len(state.committed_customers)} "
+                        f"busy={len(state.busy)} idle={len(state.vehicles)-len(state.busy)} "
+                        f"mcts_calls={mcts_calls} last_triggers={list(recent_triggers)}")
+                global_hash = identifier(dict(time=state.time, vehicles={str(k): asdict(v)
+                                                for k, v in sorted(state.vehicles.items())},
+                                              hidden=sorted(state.hidden_customers),
+                                              available=sorted(state.available_customers),
+                                              committed=sorted(state.committed_customers.items()),
+                                              served=sorted(state.served_customers),
+                                              busy={str(k): asdict(v) for k, v in sorted(state.busy.items())},
+                                              idle=sorted(state.idle_until.items())))
+                if global_hash in seen_states:
+                    raise RuntimeError(f"Repeated global state at time={state.time} loop={loop_count}")
+                seen_states.add(global_hash)
+                simulation_events += 1
                 revealed = state.reveal()
                 events.extend(SimulationEvent(state.time, "release", customer_id=c) for c in revealed)
                 for k in sorted(k for k, s in state.busy.items() if s.after.time <= state.time):
@@ -196,11 +240,109 @@ class EventDrivenSimulator:
                         steps.append(step)
                 if not ready and not state.busy:
                     break
-                if ready or revealed:
+                skip_optimization = False
+                trigger_reason = None
+                root_hash = None
+                if event_triggered and (ready or revealed):
+                    observation = get_agent_observation(state, instance)
+                    origins = {k: state.busy[k].after if k in state.busy else v
+                               for k, v in state.vehicles.items()
+                               if not (state.busy[k].after if k in state.busy else v).finished}
+                    assert_unique_routes(tails)
+                    invalid = [k for k, actions in tails.items() if actions and
+                               route_proposal(origins[k], actions, observation, config.mpc) is None]
+                    reasons = []
+                    if epochs == 0:
+                        reasons.append("initial")
+                    if revealed:
+                        reasons.append("release")
+                    if invalid:
+                        reasons.append("suffix_infeasible")
+                        for k in invalid:
+                            tails.pop(k)
+                    uncovered = (set(observation.customer_by_id) -
+                                 reserved_customers(tails) - state.served_customers)
+                    if uncovered:
+                        reasons.append("uncovered_work")
+                    if any(k not in tails and state.vehicles[k].location.kind != "d"
+                           for k in ready):
+                        reasons.append("no_continuation")
+                    root_hash = optimization_root_hash(observation, origins,
+                                                       state.committed_customers, tails)
+                    if reasons:
+                        trigger_reason = ",".join(reasons)
+                        optimization_triggers += 1
+                        recent_triggers.append(trigger_reason)
+                    else:
+                        # Every retained suffix is replayed from the measured state.
+                        validated_tails = {k: route_proposal(origins[k], actions, observation, config.mpc)
+                                           for k, actions in tails.items() if actions}
+                        if any(p is None for p in validated_tails.values()):
+                            raise RuntimeError("Validated continuation changed within one event")
+                        selected = {k: validated_tails.get(k) or
+                                    idle_proposal(state.vehicles[k], observation, config.mpc)
+                                    for k in ready}
+                        frozen = {k: actions for k, actions in tails.items() if k not in ready and actions}
+                        owned = reserved_customers(tails)
+                        background = reserved_customers(frozen)
+                        coverage = set().union(*(set(p.unique_predicted_customer_set)
+                                                 for p in selected.values()))
+                        decisions.append(dict(epoch=epochs, time=state.time,
+                                              optimization_trigger_reason=None,
+                                              optimization_root_hash=root_hash, mcts_called=False,
+                                              available=[c.id for c in observation.customers],
+                                              committed_before=dict(observation.committed_customers),
+                                              candidate_intents=sorted(owned),
+                                              background_intents=sorted(background),
+                                              unique_intention_coverage=sorted(coverage),
+                                              route_insertions=[], route_compactions=[],
+                                              fleet_lns=None, fleet_mcts=None,
+                                              route_owners_after_repair={a.destination: k for k, actions in tails.items()
+                                                                         for a in actions if a.kind == "serve"},
+                                              customers_available=len(observation.customers),
+                                              coverage_before_coordination=len(owned),
+                                              coverage_after_coordination=len(owned),
+                                              uncovered_before_repair=len(set(observation.customer_by_id)-owned),
+                                              repair_insertions=0, coverage_after_repair=len(owned),
+                                              vehicles_before_repair=sum(origins[k].departed or bool(tails.get(k))
+                                                                         for k in origins),
+                                              vehicles_after_compaction=sum(origins[k].departed or bool(tails.get(k))
+                                                                             for k in origins),
+                                              distance_before_repair=sum(p.total_predicted_distance
+                                                                         for p in validated_tails.values()),
+                                              distance_after_repair=sum(p.total_predicted_distance
+                                                                        for p in validated_tails.values()),
+                                              selected_firsts=[p.first.destination for p in selected.values()
+                                                               if p.first.kind == "serve"],
+                                              plans={str(k): asdict(p) for k, p in selected.items()}))
+                        coverages.append(len(coverage))
+                        tails = dict(frozen)
+                        for k, p in selected.items():
+                            step = transition(state.vehicles[k], p.first, observation)
+                            tails[k] = service_tail(p)
+                            events.append(SimulationEvent(state.time, "dispatch", k, step.served, p.first))
+                            if p.first.kind == "wait":
+                                state.idle_until[k] = step.after.time
+                                waits += 1
+                            else:
+                                state.idle_until.pop(k, None)
+                                state.busy[k] = step
+                                state.vehicles[k] = replace(state.vehicles[k], status="busy",
+                                                            current_committed_action=p.first)
+                                if step.served:
+                                    assert step.served in state.available_customers
+                                    state.available_customers.pop(step.served)
+                                    state.committed_customers[step.served] = k
+                        assert_unique_routes(tails)
+                        epochs += 1
+                        state.check_partition(instance)
+                        skip_optimization = True
+                if (ready or revealed) and not skip_optimization:
                     observation = get_agent_observation(state, instance)
                     started = perf_counter()
                     deadline_token = (set_deadline(started + config.total_planning_time_limit -
-                                                   min(0.15, config.total_planning_time_limit * 0.1))
+                                                   min(0.25 if event_triggered else 0.15,
+                                                       config.total_planning_time_limit * 0.1))
                                       if config.total_planning_time_limit is not None else None)
                     origins = {k: state.busy[k].after if k in state.busy else v
                                for k, v in state.vehicles.items()
@@ -314,20 +456,24 @@ class EventDrivenSimulator:
                             deadline_events += 1
                     if config.algorithm == "FLEET_MPC_MCTS":
                         try:
-                            fleet_mcts_record = solve_fleet_mcts(
-                                origins, routes, observation, config.mpc,
-                                seed=agent_seed(config.experiment_seed, self.scenario.scenario_seed, epochs, -1),
-                                iterations=config.fleet_mcts_iterations, depth=config.fleet_mcts_depth,
-                                branch_limit=config.fleet_mcts_branch_limit,
-                                position_limit=config.candidate_position_limit,
-                                regret_k=config.rollout_regret_k)
-                            routes = fleet_mcts_record.routes
-                            fleet_mcts_iterations += fleet_mcts_record.iterations
-                            fleet_mcts_expanded += fleet_mcts_record.nodes_expanded
-                            fleet_mcts_improvements += fleet_mcts_record.tree_improvements
-                            fleet_service_seconds += fleet_mcts_record.service_seconds
-                            fleet_full_seconds += fleet_mcts_record.full_seconds
-                            deadline_events += int(fleet_mcts_record.deadline_reached)
+                            if root_hash == previous_root_hash and previous_root_routes is not None:
+                                routes = dict(previous_root_routes)
+                            else:
+                                mcts_calls += 1
+                                fleet_mcts_record = solve_fleet_mcts(
+                                    origins, routes, observation, config.mpc,
+                                    seed=agent_seed(config.experiment_seed, self.scenario.scenario_seed, epochs, -1),
+                                    iterations=config.fleet_mcts_iterations, depth=config.fleet_mcts_depth,
+                                    branch_limit=config.fleet_mcts_branch_limit,
+                                    position_limit=config.candidate_position_limit,
+                                    regret_k=config.rollout_regret_k)
+                                routes = fleet_mcts_record.routes
+                                fleet_mcts_iterations += fleet_mcts_record.iterations
+                                fleet_mcts_expanded += fleet_mcts_record.nodes_expanded
+                                fleet_mcts_improvements += fleet_mcts_record.tree_improvements
+                                fleet_service_seconds += fleet_mcts_record.service_seconds
+                                fleet_full_seconds += fleet_mcts_record.full_seconds
+                                deadline_events += int(fleet_mcts_record.deadline_reached)
                         except PlanningDeadlineExceeded:
                             deadline_events += 1
                     # Reconcile all future suffixes before dispatching any physical action.
@@ -359,11 +505,16 @@ class EventDrivenSimulator:
                     final_validation_seconds = perf_counter() - validation_started
                     final_validation_times.append(final_validation_seconds)
                     timings.append(perf_counter()-started)
+                    if event_triggered:
+                        optimization_latencies.append(timings[-1])
                     if deadline_token is not None:
                         reset_deadline(deadline_token)
                         deadline_token = None
                     if any(p is None for p in validated.values()):
                         raise RuntimeError("Repair failed final route reconciliation")
+                    if event_triggered:
+                        previous_root_hash = root_hash
+                        previous_root_routes = dict(routes)
                     final_coverage = reserved_customers(routes)
                     distance_after_repair = sum(p.total_predicted_distance for p in validated.values())
                     vehicles_after_compaction = sum(origins[k].departed or bool(routes.get(k)) for k in origins)
@@ -381,6 +532,9 @@ class EventDrivenSimulator:
                     candidate_intents = sorted(set().union(*(set(p.unique_predicted_customer_set)
                                                for r in plans.values() for p in r.candidates)))
                     decision = dict(epoch=epochs, time=state.time, available=[c.id for c in observation.customers],
+                                    optimization_trigger_reason=trigger_reason,
+                                    optimization_root_hash=root_hash,
+                                    mcts_called=fleet_mcts_record is not None,
                                     committed_before=dict(observation.committed_customers),
                                     candidate_intents=candidate_intents, background_intents=sorted(background),
                                     unique_intention_coverage=sorted(coverage), route_insertions=insertions,
@@ -494,6 +648,17 @@ class EventDrivenSimulator:
                        fleet_mcts_iterations=fleet_mcts_iterations,
                        fleet_mcts_nodes_expanded=fleet_mcts_expanded,
                        fleet_mcts_tree_improvements=fleet_mcts_improvements,
+                       simulation_events=simulation_events,
+                       optimization_triggers=optimization_triggers,
+                       mcts_calls=mcts_calls,
+                       mcts_calls_per_simulation_event=mcts_calls / simulation_events if simulation_events else 0.0,
+                       complete_instance_wall_clock_seconds=perf_counter()-run_started,
+                       mean_optimization_latency=(float(np.mean(optimization_latencies))
+                                                  if optimization_latencies else 0.0),
+                       p95_optimization_latency=(float(np.percentile(optimization_latencies, 95))
+                                                 if optimization_latencies else 0.0),
+                       max_optimization_latency=(max(optimization_latencies)
+                                                 if optimization_latencies else 0.0),
                        total_deadline_events=deadline_events,
                        total_deadline_overrun_rate=(float(np.mean(np.array(timings) > config.total_planning_time_limit))
                                                    if timings and config.total_planning_time_limit is not None else None),

@@ -114,7 +114,10 @@ def test_trace_levels_preserve_physical_decisions():
     assert results[0].events == results[1].events == results[2].events
     assert all("candidates" not in d for r in results[1:] for d in r.decisions)
     assert not results[2].searches
-    metrics = lambda r: {k: v for k, v in r.metrics.items() if "planning_time" not in k}
+    timing = {"complete_instance_wall_clock_seconds", "mean_optimization_latency",
+              "p95_optimization_latency", "max_optimization_latency"}
+    metrics = lambda r: {k: v for k, v in r.metrics.items()
+                         if "planning_time" not in k and k not in timing}
     assert metrics(results[0]) == metrics(results[1]) == metrics(results[2])
 
 

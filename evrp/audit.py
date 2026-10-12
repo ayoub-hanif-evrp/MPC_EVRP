@@ -102,6 +102,9 @@ def audit_record(record):
             if expected_config.algorithm == "MPC_MCTS_H1":
                 expected_config = replace(expected_config, mpc=replace(expected_config.mpc, prediction_horizon=1))
             expected_data = asdict(expected_config)
+            if ("engineering_watchdog_seconds" not in config and
+                    "engineering_watchdog_seconds" not in record["effective_config"]):
+                expected_data.pop("engineering_watchdog_seconds")
             if "fleet_mcts_full_service_time_limit" in record["effective_config"]:
                 expected_data["fleet_mcts_full_service_time_limit"] = config.get(
                     "fleet_mcts_full_service_time_limit", 0.75)
