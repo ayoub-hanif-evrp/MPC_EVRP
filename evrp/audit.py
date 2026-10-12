@@ -102,6 +102,8 @@ def audit_record(record):
             if expected_config.algorithm == "MPC_MCTS_H1":
                 expected_config = replace(expected_config, mpc=replace(expected_config.mpc, prediction_horizon=1))
             expected_data = asdict(expected_config)
+            if "fleet_mcts_full_service_time_limit" not in record["effective_config"]:
+                expected_data.pop("fleet_mcts_full_service_time_limit")
             check(identifier(expected_data) == identifier(record["effective_config"]),
                   "unexpected effective configuration mismatch")
         check(record["algorithm"] == record["effective_config"], "algorithm section mismatch")

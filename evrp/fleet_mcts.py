@@ -12,6 +12,10 @@ from .planning_budget import PlanningDeadlineExceeded, check_deadline, remaining
 from .repair import build_route, regret_repair, route_proposal
 
 
+class _FullServiceBudgetReached(Exception):
+    pass
+
+
 @dataclass(frozen=True)
 class FleetPlan:
     sequences: tuple[tuple[str, ...], ...]
@@ -66,9 +70,13 @@ class _FleetProblem:
         self.route_metrics: dict[tuple[int, tuple[Action, ...]], dict[str, float]] = {}
         self.criticality_cache: dict[tuple[tuple[str, ...], ...], list[tuple[str, int, float, float, float]]] = {}
         self.target_stats: dict[str, dict[str, int]] = {}
-        # The origin and observation are fixed for this MPC epoch, so this local
-        # cache cannot cross incompatible vehicle states or release sets.
+        self.full_service_until: float | None = None
+        # This cache belongs only to the immutable root observation and origins.
         self.decoded: dict[tuple[int, tuple[str, ...]], tuple[tuple[Action, ...], MPCProposal | None] | None] = {}
+
+    def _check_full_service_time(self) -> None:
+        if self.full_service_until is not None and perf_counter() >= self.full_service_until:
+            raise _FullServiceBudgetReached
 
     @staticmethod
     def _unit(value: float) -> float:
@@ -359,6 +367,8 @@ class _FleetProblem:
                         break
         # These moves restructure future suffixes without touching busy actions.
         for source_index, source in enumerate(self.ids):
+            if not unserved:
+                self._check_full_service_time()
             if moved_count >= move_cap:
                 break
             sequence = plan.sequences[source_index]
@@ -388,11 +398,13 @@ class _FleetProblem:
                             moved_count += 1
         if not unserved:
             for source_index, source in enumerate(self.ids):
+                self._check_full_service_time()
                 sequence = plan.sequences[source_index]
                 if self.origins[source].departed or not 0 < len(sequence) <= 4:
                     continue
                 candidate = plan
                 for customer in sequence:
+                    self._check_full_service_time()
                     check_deadline()
                     other = [k for k in self._nearest_vehicles(candidate, customer, 5) if k != source]
                     inserted = None
@@ -426,6 +438,7 @@ class _FleetProblem:
         budget = branch_limit * 2
 
         def keep(changes):
+            self._check_full_service_time()
             check_deadline()
             candidate = self.change(plan, changes)
             if (candidate is not None and candidate.score[0] == 0
@@ -434,6 +447,7 @@ class _FleetProblem:
 
         # Try high-detour single-customer moves first; all suffixes remain soft.
         for source_index, source in enumerate(self.ids):
+            self._check_full_service_time()
             sequence = plan.sequences[source_index]
             if not sequence or len(found) >= budget:
                 break
@@ -481,6 +495,7 @@ class _FleetProblem:
                         break
         # Bounded cross-route swap near existing customers.
         for source_index, source in enumerate(self.ids):
+            self._check_full_service_time()
             sequence = plan.sequences[source_index]
             if not sequence or len(found) >= budget:
                 break
@@ -523,8 +538,10 @@ class _FleetProblem:
 def solve_fleet_mcts(origins: dict[int, VehicleState], routes: dict[int, tuple[Action, ...]],
                      observation: Observation, config: MPCConfig, *, seed: int,
                      iterations: int = 64, depth: int = 4, branch_limit: int = 24,
-                     position_limit: int = 3, regret_k: int = 2) -> FleetMCTSResult:
-    if min(iterations, depth, branch_limit, position_limit) < 1 or regret_k not in {2, 3}:
+                     position_limit: int = 3, regret_k: int = 2,
+                     full_service_time_limit: float = 0.75) -> FleetMCTSResult:
+    if (min(iterations, depth, branch_limit, position_limit) < 1
+            or regret_k not in {2, 3} or full_service_time_limit <= 0):
         raise ValueError("Invalid fleet MCTS configuration")
     started = perf_counter()
     problem = _FleetProblem(origins, observation, config, position_limit, regret_k)
@@ -547,8 +564,12 @@ def solve_fleet_mcts(origins: dict[int, VehicleState], routes: dict[int, tuple[A
             best = improved
         seed_score = best.score
         root = _Node(best, 0)
+        if best.score[0] == 0:
+            problem.full_service_until = perf_counter() + min(
+                full_service_time_limit, max(0.0, remaining_time() - 0.05))
         for iteration in range(iterations):
             check_deadline()
+            problem._check_full_service_time()
             node = root
             path = [root]
             while node.depth < depth:
@@ -589,6 +610,8 @@ def solve_fleet_mcts(origins: dict[int, VehicleState], routes: dict[int, tuple[A
             completed += 1
     except PlanningDeadlineExceeded:
         deadline_reached = True
+    except _FullServiceBudgetReached:
+        pass
     seed_score = root.plan.score
     criticality = {customer: dict(estimated_insertion_gaps=count,
                                   estimated_regret=regret if regret != float("inf") else None,

@@ -47,6 +47,7 @@ class SimulationConfig:
     fleet_mcts_iterations: int = 64
     fleet_mcts_depth: int = 4
     fleet_mcts_branch_limit: int = 12
+    fleet_mcts_full_service_time_limit: float = 0.75
     candidate_position_limit: int = 3
     rollout_regret_k: int = 2
 
@@ -68,7 +69,8 @@ class SimulationConfig:
         if self.total_planning_time_limit is not None and self.total_planning_time_limit <= 0:
             raise ValueError("Invalid total planning deadline")
         if (min(self.fleet_mcts_iterations, self.fleet_mcts_depth, self.fleet_mcts_branch_limit,
-                self.candidate_position_limit) < 1 or self.rollout_regret_k not in {2, 3}):
+                self.candidate_position_limit) < 1 or self.rollout_regret_k not in {2, 3}
+                or self.fleet_mcts_full_service_time_limit <= 0):
             raise ValueError("Invalid fleet MCTS configuration")
         if self.algorithm == "FLEET_MPC_MCTS" and not (self.route_continuity and self.regret_repair):
             raise ValueError("Fleet MPC-MCTS requires persistent routes and regret rollout")
@@ -299,7 +301,8 @@ class EventDrivenSimulator:
                                 iterations=config.fleet_mcts_iterations, depth=config.fleet_mcts_depth,
                                 branch_limit=config.fleet_mcts_branch_limit,
                                 position_limit=config.candidate_position_limit,
-                                regret_k=config.rollout_regret_k)
+                                regret_k=config.rollout_regret_k,
+                                full_service_time_limit=config.fleet_mcts_full_service_time_limit)
                             routes = fleet_mcts_record.routes
                             fleet_mcts_iterations += fleet_mcts_record.iterations
                             fleet_mcts_expanded += fleet_mcts_record.nodes_expanded

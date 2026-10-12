@@ -59,6 +59,8 @@ def simulation_config(config: dict) -> SimulationConfig:
                             fleet_mcts_iterations=config.get("fleet_mcts_iterations", 64),
                             fleet_mcts_depth=config.get("fleet_mcts_depth", 4),
                             fleet_mcts_branch_limit=config.get("fleet_mcts_branch_limit", 12),
+                            fleet_mcts_full_service_time_limit=config.get(
+                                "fleet_mcts_full_service_time_limit", 0.75),
                             candidate_position_limit=config.get("candidate_position_limit", 3),
                             rollout_regret_k=config.get("rollout_regret_k", 2))
 
