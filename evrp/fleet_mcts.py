@@ -24,6 +24,21 @@ class FleetPlan:
     proposals: tuple[MPCProposal | None, ...]
     score: tuple[float, ...]
     components: dict[str, float]
+    action_kind: str = "ROOT"
+
+
+@dataclass(frozen=True)
+class _RouteProfile:
+    earliest: tuple[float, ...]
+    latest: tuple[float, ...]
+    demand: float
+    prefix_distance: tuple[float, ...]
+    safe_return_energy: tuple[float, ...]
+
+    def __iter__(self):
+        yield self.earliest
+        yield self.latest
+        yield self.demand
 
 
 @dataclass(frozen=True)
@@ -54,6 +69,26 @@ class FleetMCTSResult:
     exact_decoded_options: int
     service_improvements: int
     objective_only_improvements: int
+    screened_insertions: int = 0
+    screen_cache_hits: int = 0
+    screen_cache_lookups: int = 0
+    ejection_chains_generated: int = 0
+    ejection_chains_feasible: int = 0
+    ejection_chains_selected: int = 0
+
+
+@dataclass(frozen=True)
+class FleetConstructorResult:
+    routes: dict[int, tuple[Action, ...]]
+    insertions: list[dict]
+    retained_score: tuple[float, ...]
+    chosen_score: tuple[float, ...]
+    screened_insertions: int
+    exact_decoder_calls: int
+    zero_option_customers: int
+    cache_hits: int
+    cache_lookups: int
+    candidate: str
 
 
 @dataclass
@@ -85,12 +120,19 @@ class _FleetProblem:
         self.control_metrics: dict[tuple[int, tuple[Action, ...]], dict[str, float]] = {}
         self.criticality_cache: dict[tuple[tuple[str, ...], ...], list[tuple[str, int, float, float, float]]] = {}
         self.option_cache: dict[tuple[tuple[tuple[str, ...], ...], str], tuple[tuple[float, float, int, int, bool], ...]] = {}
+        self.vehicle_option_cache: dict[tuple[int, tuple[str, ...], str], tuple[tuple[float, float, int, int, bool], ...]] = {}
         self.screened_customer_count = 0
         self.screened_vehicle_evaluations = 0
+        self.screened_insertions = 0
         self.exact_decoded_options = 0
+        self.screen_cache_hits = 0
+        self.screen_cache_lookups = 0
+        self.ejection_chains_generated = 0
+        self.ejection_chains_feasible = 0
+        self.ejection_chains_selected = 0
         self.target_stats: dict[str, dict[str, int]] = {}
         self.search_until: float | None = None
-        self.screen_cache: dict[tuple[int, tuple[str, ...]], tuple[tuple[float, ...], tuple[float, ...], float]] = {}
+        self.screen_cache: dict[tuple[int, tuple[str, ...]], _RouteProfile] = {}
         # This cache belongs only to the immutable root observation and origins.
         self.decoded: dict[tuple[int, tuple[str, ...]], tuple[tuple[Action, ...], MPCProposal | None] | None] = {}
 
@@ -235,17 +277,24 @@ class _FleetProblem:
 
     def _screen_profile(self, k: int, sequence: tuple[str, ...]):
         key = (k, sequence)
+        self.screen_cache_lookups += 1
         if key in self.screen_cache:
+            self.screen_cache_hits += 1
             return self.screen_cache[key]
         customer_map = self.observation.customer_by_id
         p = self.observation.infrastructure.parameters
+        safe_nodes = (self.observation.infrastructure.depot,) + self.observation.infrastructure.stations
         forward = [self.origins[k].time]
+        prefix_distance = [0.0]
+        safe_energy = [min(energy(self.origins[k].location, node, p) for node in safe_nodes)]
         location = self.origins[k].location
         demand = 0.0
         for customer_id in sequence:
             customer = customer_map[customer_id]
             start = max(forward[-1] + travel_time(location, customer, p), customer.ready)
             forward.append(start + customer.service)
+            prefix_distance.append(prefix_distance[-1] + distance(location, customer))
+            safe_energy.append(min(energy(customer, node, p) for node in safe_nodes))
             location = customer
             demand += customer.demand
         backward = [0.0] * len(sequence)
@@ -256,48 +305,78 @@ class _FleetProblem:
             latest = min(customer.due, latest - travel_time(customer, next_node, p) - customer.service)
             backward[index] = latest
             next_node = customer
-        profile = (tuple(forward), tuple(backward), demand)
+        profile = _RouteProfile(tuple(forward), tuple(backward), demand,
+                                tuple(prefix_distance), tuple(safe_energy))
         self.screen_cache[key] = profile
         return profile
 
     def _screen_gap(self, k: int, sequence: tuple[str, ...], customer_id: str, position: int) -> tuple[bool, float]:
+        passed, slack, _ = self._screen_gap_detail(k, sequence, customer_id, position)
+        return passed, slack
+
+    def _screen_gap_detail(self, k: int, sequence: tuple[str, ...], customer_id: str,
+                           position: int) -> tuple[bool, float, str]:
         p = self.observation.infrastructure.parameters
         customer = self.observation.customer_by_id[customer_id]
-        forward, backward, demand = self._screen_profile(k, sequence)
-        if demand + customer.demand > self.origins[k].load + EPS:
-            return False, -1.0
+        profile = self._screen_profile(k, sequence)
+        if profile.demand + customer.demand > self.origins[k].load + EPS:
+            return False, -1.0, "capacity"
         before = self.origins[k].location if position == 0 else self.observation.customer_by_id[sequence[position - 1]]
         next_node = (self.observation.infrastructure.depot if position == len(sequence)
                      else self.observation.customer_by_id[sequence[position]])
-        start = max(forward[position] + travel_time(before, customer, p), customer.ready)
+        start = max(profile.earliest[position] + travel_time(before, customer, p), customer.ready)
         if start > customer.due + EPS:
-            return False, customer.due - start
+            return False, customer.due - start, "time_window"
         latest_next = (self.observation.infrastructure.depot.due if position == len(sequence)
-                       else backward[position])
+                       else profile.latest[position])
         if start + customer.service + travel_time(customer, next_node, p) > latest_next + EPS:
-            return False, customer.due - start
+            return False, customer.due - start, "time_window"
         safe_nodes = (self.observation.infrastructure.depot,) + self.observation.infrastructure.stations
         if min(energy(customer, node, p) for node in safe_nodes) > p.battery + EPS:
-            return False, customer.due - start
+            return False, customer.due - start, "safe_return"
         if (position == 0 and energy(before, customer, p) > self.origins[k].battery + EPS
                 and all(energy(before, station, p) > self.origins[k].battery + EPS
                         for station in self.observation.infrastructure.stations)):
-            return False, customer.due - start
-        return True, customer.due - start
+            return False, customer.due - start, "battery"
+        return True, customer.due - start, "feasible"
+
+    def _option_rank(self, option, customer_id: str, sequences):
+        delta, slack, k, pos, _ = option
+        sequence = sequences[self.ids.index(k)]
+        p = self.observation.infrastructure.parameters
+        customer = self.observation.customer_by_id[customer_id]
+        before = self.origins[k].location if pos == 0 else self.observation.customer_by_id[sequence[pos - 1]]
+        after = (self.observation.infrastructure.depot if pos == len(sequence)
+                 else self.observation.customer_by_id[sequence[pos]])
+        capacity_loss = customer.demand / max(EPS, self.origins[k].load)
+        energy_loss = max(0.0, energy(before, customer, p) + energy(customer, after, p)
+                          - energy(before, after, p)) / max(EPS, p.battery)
+        tw_loss = customer.service / max(1.0, slack + customer.service)
+        return (delta + tw_loss + capacity_loss + energy_loss, delta, -slack, k, pos)
 
     def screened_options(self, sequences: tuple[tuple[str, ...], ...], customer_id: str):
         key = (sequences, customer_id)
         if key in self.option_cache:
+            self.screen_cache_lookups += 1
+            self.screen_cache_hits += 1
             return self.option_cache[key]
         self.screened_customer_count += 1
         options = []
         customer = self.observation.customer_by_id[customer_id]
         for index, k in enumerate(self.ids):
             self._check_search_time()
-            self.screened_vehicle_evaluations += 1
             sequence = sequences[index]
+            vehicle_key = (k, sequence, customer_id)
+            self.screen_cache_lookups += 1
+            if vehicle_key in self.vehicle_option_cache:
+                self.screen_cache_hits += 1
+                options.extend(self.vehicle_option_cache[vehicle_key])
+                continue
+            self.screened_vehicle_evaluations += 1
+            vehicle_options = []
             for pos in range(len(sequence) + 1):
                 self._check_search_time()
+                self.screened_insertions += 1
                 passed, slack = self._screen_gap(k, sequence, customer_id, pos)
                 if not passed:
                     continue
@@ -306,8 +385,11 @@ class _FleetProblem:
                 after = (self.observation.infrastructure.depot if pos == len(sequence)
                          else self.observation.customer_by_id[sequence[pos]])
                 delta = distance(before, customer) + distance(customer, after) - distance(before, after)
-                options.append((delta, slack, k, pos, not self.origins[k].departed and not sequence))
-        result = tuple(sorted(options, key=lambda row: (row[0], row[1], row[2], row[3])))
+                vehicle_options.append((delta, slack, k, pos,
+                                        not self.origins[k].departed and not sequence))
+            self.vehicle_option_cache[vehicle_key] = tuple(vehicle_options)
+            options.extend(vehicle_options)
+        result = tuple(sorted(options, key=lambda row: self._option_rank(row, customer_id, sequences)))
         self.option_cache[key] = result
         return result
 
@@ -319,12 +401,14 @@ class _FleetProblem:
         for customer_id in self.pending - owned:
             self._check_search_time()
             options = self.screened_options(sequences, customer_id)
-            regret = options[1][0] - options[0][0] if len(options) > 1 else float("inf")
+            distances = sorted(option[0] for option in options)
+            regret = distances[1] - distances[0] if len(distances) > 1 else float("inf")
             slack = min((option[1] for option in options), default=-1.0)
             ranked.append((customer_id, len(options), regret, slack,
-                           options[0][0] if options else float("inf")))
-        ranked.sort(key=lambda row: (row[1] != 0, row[1] != 1, -row[2], row[3],
-                                     self.observation.customer_by_id[row[0]].due, row[0]))
+                           distances[0] if distances else float("inf")))
+        ranked.sort(key=lambda row: (row[1] != 0, row[1] != 1,
+                                     self.observation.customer_by_id[row[0]].due,
+                                     row[3], row[1], -row[2], row[0]))
         self.criticality_cache[sequences] = ranked
         return ranked
 
@@ -369,7 +453,8 @@ class _FleetProblem:
         score, components = self._score(sequences, actions, costs)
         return FleetPlan(tuple(sequences), tuple(actions), tuple(costs), tuple(proposals), score, components)
 
-    def change(self, plan: FleetPlan, changes: dict[int, tuple[str, ...]]) -> FleetPlan | None:
+    def change(self, plan: FleetPlan, changes: dict[int, tuple[str, ...]],
+               action_kind: str = "STRUCTURAL") -> FleetPlan | None:
         sequences = list(plan.sequences)
         actions = list(plan.actions)
         costs = list(plan.costs)
@@ -388,7 +473,8 @@ class _FleetProblem:
         if len(set(owned)) != len(owned) or any(c not in self.pending for c in owned):
             return None
         score, components = self._score(sequences, actions, costs)
-        return FleetPlan(tuple(sequences), tuple(actions), tuple(costs), tuple(proposals), score, components)
+        return FleetPlan(tuple(sequences), tuple(actions), tuple(costs), tuple(proposals),
+                         score, components, action_kind)
 
     def _positions(self, plan: FleetPlan, k: int, customer: str):
         index = self.ids.index(k)
@@ -427,20 +513,19 @@ class _FleetProblem:
                 target, count, _, _, _ = self._criticality(current.sequences)[0]
                 if count == 0:
                     break
-                feasible = []
-                for _, _, k, pos, _ in self.screened_options(current.sequences, target)[:8]:
+                chosen = None
+                for _, _, k, pos, _ in self.screened_options(current.sequences, target)[:3]:
                     if perf_counter() >= local_until - 0.02:
                         break
                     index = self.ids.index(k)
                     sequence = current.sequences[index]
                     proposed = sequence[:pos] + (target,) + sequence[pos:]
-                    decoded = self._decode(k, proposed)
-                    if decoded is not None:
-                        _, proposal = decoded
-                        feasible.append((proposal.cost - current.costs[index], k, pos, proposed))
-                if not feasible:
+                    if self._decode(k, proposed) is not None:
+                        chosen = k, proposed
+                        break
+                if chosen is None:
                     break
-                _, k, _, proposed = min(feasible)
+                k, proposed = chosen
                 updated = self.change(current, {k: proposed})
                 if updated is None:
                     break
@@ -451,7 +536,131 @@ class _FleetProblem:
             self.search_until = previous_until
         return current
 
+    def _chain_rank(self, candidate: FleetPlan):
+        metrics = candidate.components
+        return (candidate.score[0], metrics["screened_zero_option_customers"],
+                metrics["screened_one_option_customers"], metrics["control_risk"],
+                metrics["flexibility_risk"], metrics["normalized_distance"])
+
+    def _ejection_chain_candidates(self, plan: FleetPlan, customer: str,
+                                    limit: int) -> list[FleetPlan]:
+        # Screen on drafts; decode only complete chains, never partial ejections.
+        gaps = []
+        for index, k in enumerate(self.ids):
+            sequence = plan.sequences[index]
+            for pos in range(len(sequence) + 1):
+                self._check_search_time()
+                passed, slack, reason = self._screen_gap_detail(k, sequence, customer, pos)
+                if passed:
+                    continue
+                gaps.append((reason == "capacity", -slack,
+                             self._gap_delta(plan, k, customer, pos), k, pos))
+        results = {}
+        for _, _, _, source, gap in sorted(gaps)[:3]:
+            source_index = self.ids.index(source)
+            sequence = plan.sequences[source_index]
+            blockers = list(dict.fromkeys(sequence[pos] for pos in (gap - 1, gap)
+                                          if 0 <= pos < len(sequence)))
+            if sequence:
+                blockers.extend(c for c in sorted(sequence, key=lambda c: (
+                    -self.observation.customer_by_id[c].demand,
+                    self.observation.customer_by_id[c].due, c))[:1] if c not in blockers)
+            for displaced in blockers[:3]:
+                self._check_search_time()
+                reduced = tuple(c for c in sequence if c != displaced)
+                new_gap = min(gap - int(sequence.index(displaced) < gap), len(reduced))
+                if not self._screen_gap(source, reduced, customer, new_gap)[0]:
+                    continue
+                source_new = reduced[:new_gap] + (customer,) + reduced[new_gap:]
+                draft = list(plan.sequences)
+                draft[source_index] = source_new
+                for _, _, target, pos, _ in self.screened_options(tuple(draft), displaced)[:3]:
+                    if target == source:
+                        continue
+                    target_index = self.ids.index(target)
+                    target_seq = draft[target_index]
+                    direct = list(draft)
+                    direct[target_index] = target_seq[:pos] + (displaced,) + target_seq[pos:]
+                    self.ejection_chains_generated += 1
+                    candidate = self.change(plan, {source: direct[source_index],
+                                                   target: direct[target_index]},
+                                            "EJECTION_CHAIN_2")
+                    if candidate is not None and candidate.score[0] < plan.score[0]:
+                        self.ejection_chains_feasible += 1
+                        results[candidate.sequences] = candidate
+                    if len(results) >= limit:
+                        break
+                if len(results) >= limit:
+                    break
+                for target in self.ids:
+                    if target == source:
+                        continue
+                    target_index = self.ids.index(target)
+                    target_seq = draft[target_index]
+                    for victim in target_seq[:2]:
+                        reduced_target = tuple(c for c in target_seq if c != victim)
+                        for pos in range(len(reduced_target) + 1):
+                            if not self._screen_gap(target, reduced_target, displaced, pos)[0]:
+                                continue
+                            nested = list(draft)
+                            nested[target_index] = (reduced_target[:pos] + (displaced,)
+                                                    + reduced_target[pos:])
+                            for _, _, last, last_pos, _ in self.screened_options(tuple(nested), victim)[:2]:
+                                if last in {source, target}:
+                                    continue
+                                last_index = self.ids.index(last)
+                                last_seq = nested[last_index]
+                                nested[last_index] = (last_seq[:last_pos] + (victim,)
+                                                      + last_seq[last_pos:])
+                                self.ejection_chains_generated += 1
+                                candidate = self.change(plan, {
+                                    source: nested[source_index], target: nested[target_index],
+                                    last: nested[last_index]}, "EJECTION_CHAIN_2")
+                                if candidate is not None and candidate.score[0] < plan.score[0]:
+                                    self.ejection_chains_feasible += 1
+                                    results[candidate.sequences] = candidate
+                                nested[last_index] = last_seq
+                                if len(results) >= limit:
+                                    break
+                            if len(results) >= limit:
+                                break
+                        if len(results) >= limit:
+                            break
+                    if len(results) >= limit:
+                        break
+                if len(results) >= limit:
+                    break
+            if len(results) >= limit:
+                break
+        return sorted(results.values(), key=self._chain_rank)[:limit]
+
+    def _service_candidates(self, plan: FleetPlan, branch_limit: int) -> list[FleetPlan]:
+        critical = self._criticality(plan.sequences)
+        found = {}
+        for customer, _, _, _, _ in critical[:3]:
+            for _, _, k, pos, _ in self.screened_options(plan.sequences, customer)[:3]:
+                index = self.ids.index(k)
+                sequence = plan.sequences[index]
+                self._track(customer, "insert_attempts")
+                candidate = self.change(plan, {k: sequence[:pos] + (customer,) + sequence[pos:]})
+                if candidate is not None:
+                    self._track(customer, "insert_feasible")
+                    found[candidate.sequences] = candidate
+                if len(found) >= max(3, branch_limit // 2):
+                    break
+            if len(found) >= max(3, branch_limit // 2):
+                break
+        if critical:
+            target = critical[0][0]
+            if not any(target in seq for candidate in found.values()
+                       for seq in candidate.sequences):
+                for candidate in self._ejection_chain_candidates(plan, target, 3):
+                    found[candidate.sequences] = candidate
+        return sorted(found.values(), key=self._chain_rank)[:branch_limit]
+
     def candidates(self, plan: FleetPlan, branch_limit: int) -> list[FleetPlan]:
+        if plan.score[0]:
+            return self._service_candidates(plan, branch_limit)
         found: dict[tuple[tuple[str, ...], ...], FleetPlan] = {}
         urgent = self._urgent(plan, 3)
         owned = {c for sequence in plan.sequences for c in sequence}
@@ -802,6 +1011,8 @@ def solve_fleet_mcts(origins: dict[int, VehicleState], routes: dict[int, tuple[A
                         prior = (total - rank) / (total * (total + 1) / 2)
                         structural = node.candidates.pop(0)
                         child = _Node(structural, node.depth + 1, prior=prior)
+                        if structural.action_kind == "EJECTION_CHAIN_2":
+                            problem.ejection_chains_selected += 1
                         for customer in problem.pending:
                             if (all(customer not in seq for seq in parent_plan.sequences)
                                     and any(customer in seq for seq in child.plan.sequences)):
@@ -864,4 +1075,108 @@ def solve_fleet_mcts(origins: dict[int, VehicleState], routes: dict[int, tuple[A
                            problem.screened_customer_count,
                            problem.screened_vehicle_evaluations,
                            problem.exact_decoded_options,
-                           service_improvements, objective_only_improvements)
+                           service_improvements, objective_only_improvements,
+                           problem.screened_insertions,
+                           problem.screen_cache_hits, problem.screen_cache_lookups,
+                           problem.ejection_chains_generated,
+                           problem.ejection_chains_feasible,
+                           problem.ejection_chains_selected)
+
+
+def construct_fleet_root(origins: dict[int, VehicleState],
+                         routes: dict[int, tuple[Action, ...]],
+                         observation: Observation, config: MPCConfig) -> FleetConstructorResult:
+    """Bounded parallel insertion beside the retained soft incumbent."""
+    problem = _FleetProblem(origins, observation, config, 3, 2)
+    problem.search_until = perf_counter() + max(0.0, remaining_time() - 0.12)
+    retained = problem.initial(routes)
+    current_routes = {k: retained.actions[index] for index, k in enumerate(problem.ids)}
+    sequences = list(retained.sequences)
+    costs = list(retained.costs)
+    pending = set(problem.pending) - {c for seq in sequences for c in seq}
+    insertions = []
+    try:
+        while pending and remaining_time() > 0.20:
+            problem._check_search_time()
+            chosen = None
+            for customer, count, regret, _, _ in problem._criticality(tuple(sequences)):
+                if customer not in pending or count == 0:
+                    continue
+                feasible = None
+                for _, slack, k, pos, activation in problem.screened_options(
+                        tuple(sequences), customer)[:3]:
+                    index = problem.ids.index(k)
+                    sequence = sequences[index]
+                    proposed = sequence[:pos] + (customer,) + sequence[pos:]
+                    decoded = problem._decode(k, proposed)
+                    if decoded is None:
+                        continue
+                    actions, proposal = decoded
+                    feasible = (proposal.cost - costs[index], k, pos, proposed,
+                                actions, proposal, slack, activation)
+                    break
+                if feasible is not None:
+                    chosen = customer, regret, feasible, count
+                    break
+            if chosen is None:
+                break
+            customer, regret, insertion, count = chosen
+            delta, k, pos, proposed, actions, proposal, slack, activation = insertion
+            index = problem.ids.index(k)
+            sequences[index] = proposed
+            costs[index] = proposal.cost
+            current_routes[k] = actions
+            pending.remove(customer)
+            insertions.append(dict(vehicle_id=k, customer=customer, position=pos,
+                                   incremental_cost=delta,
+                                   regret2=regret if isfinite(regret) else None,
+                                   feasible_options=1, screened_options=count,
+                                   remaining_tw_slack=slack,
+                                   new_activation=activation, fast_parallel=True))
+    except (PlanningDeadlineExceeded, _SearchBudgetReached):
+        pass
+    problem.search_until = None
+    best_routes = dict(routes)
+    best_score = retained.score
+    chosen_candidate = "retained"
+    try:
+        candidate_score, _ = problem._score(tuple(sequences),
+                                            tuple(current_routes[k] for k in problem.ids),
+                                            tuple(costs))
+        if candidate_score < best_score:
+            best_routes, best_score, chosen_candidate = current_routes, candidate_score, "parallel"
+        if pending and remaining_time() > 0.25:
+            from .repair import regret_repair
+            regret_routes, _ = regret_repair(
+                origins, routes, observation, config, position_limit=5,
+                return_partial_on_deadline=True, screened_shortlist=True)
+            regret_sequences = tuple(tuple(a.destination for a in regret_routes.get(k, ())
+                                           if a.kind == "serve") for k in problem.ids)
+            regret_proposals = [route_proposal(origins[k], regret_routes[k], observation, config)
+                                if regret_routes.get(k) else None for k in problem.ids]
+            if any(regret_routes.get(k) and regret_proposals[index] is None
+                   for index, k in enumerate(problem.ids)):
+                raise ValueError("Regret root is not physically feasible")
+            regret_costs = tuple(proposal.cost if proposal else 0.0
+                                 for proposal in regret_proposals)
+            regret_score, _ = problem._score(
+                regret_sequences, tuple(regret_routes.get(k, ()) for k in problem.ids),
+                regret_costs)
+            if regret_score < best_score:
+                best_routes, best_score, chosen_candidate = regret_routes, regret_score, "regret"
+    except (PlanningDeadlineExceeded, _SearchBudgetReached):
+        pass
+    zero_option = 0
+    if remaining_time() > 0.04:
+        try:
+            chosen_sequences = tuple(tuple(a.destination for a in best_routes.get(k, ())
+                                           if a.kind == "serve") for k in problem.ids)
+            zero_option = sum(row[1] == 0 for row in problem._criticality(chosen_sequences))
+        except (PlanningDeadlineExceeded, _SearchBudgetReached):
+            pass
+    return FleetConstructorResult(best_routes,
+                                  insertions if chosen_candidate == "parallel" else [],
+                                  retained.score, best_score, problem.screened_insertions,
+                                  problem.exact_decoded_options, zero_option,
+                                  problem.screen_cache_hits, problem.screen_cache_lookups,
+                                  chosen_candidate)

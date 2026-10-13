@@ -6,7 +6,7 @@ import evrp.repair as repair
 import pytest
 
 from evrp.experiments import audit_result, simulation_config
-from evrp.fleet_mcts import _FleetProblem, solve_fleet_mcts
+from evrp.fleet_mcts import _FleetProblem, construct_fleet_root, solve_fleet_mcts
 from evrp.model import Action, Observation, transition
 from evrp.mpc import MPCConfig
 from evrp.planning_budget import PlanningDeadlineExceeded, remaining_time, reset_deadline, set_deadline
@@ -185,6 +185,39 @@ def test_screened_gaps_use_forward_and_backward_windows_and_capacity():
     assert problem._screen_gap(0, sequence, "X", 2)[0]
     tight = _FleetProblem({0: replace(state, load=2)}, observation, config, 3, 2)
     assert not tight._screen_gap(0, sequence, "X", 2)[0]
+
+
+def test_screen_cache_reuses_unchanged_vehicle_summaries():
+    state, observation, config = setup((customer("A", 1), customer("B", 2)))
+    origins = {0: state, 1: replace(state, id=1)}
+    problem = _FleetProblem(origins, observation, config, 3, 2)
+    problem.screened_options(((), ()), "B")
+    assert problem.screened_vehicle_evaluations == 2
+    problem.screened_options((("A",), ()), "B")
+    assert problem.screened_vehicle_evaluations == 3
+    assert problem.screen_cache_hits > 0
+
+
+def test_parallel_constructor_prioritizes_early_due_work():
+    state, observation, config = setup((customer("Late", 1, due=150),
+                                        customer("Early", 2, due=20)))
+    result = construct_fleet_root({0: state}, {}, observation, config)
+    assert [row["customer"] for row in result.insertions] == ["Early", "Late"]
+    assert result.chosen_score[0] == 0
+    assert result.screened_insertions >= result.exact_decoder_calls
+
+
+def test_ejection_chain_reinserts_blocker_on_another_vehicle():
+    state, observation, config = setup((customer("A", 1, due=100),
+                                        customer("U", 0, due=1)), capacity=1)
+    other = replace(state, id=1, location=replace(state.location, x=10), departed=True)
+    problem = _FleetProblem({0: state, 1: other}, observation, config, 3, 2)
+    plan = problem.initial({0: serves("A")})
+    assert not problem.screened_options(plan.sequences, "U")
+    candidates = problem.candidates(plan, 24)
+    assert any(candidate.action_kind == "EJECTION_CHAIN_2" and
+               candidate.sequences == (("U",), ("A",)) for candidate in candidates)
+    assert problem.ejection_chains_feasible > 0
 
 
 def test_full_coverage_flexibility_precedes_vehicle_count():

@@ -176,7 +176,7 @@ class EventDrivenSimulator:
     def run(self):
         from .repair import compact_unused_routes, regret_repair, route_proposal
         from .fleet_lns import fleet_score, improve_fleet
-        from .fleet_mcts import solve_fleet_mcts
+        from .fleet_mcts import construct_fleet_root, solve_fleet_mcts
         from .diagnostics import ServiceDiagnostics
         state, instance, config = self.state, self.instance, self.config
         events, steps, decisions, searches, timings = [], [], [], [], []
@@ -416,6 +416,7 @@ class EventDrivenSimulator:
                                                  for p in fallback_validated.values())
                     insertions = []
                     compactions = []
+                    constructor_record = None
                     lns_record = None
                     fleet_mcts_record = None
                     if config.regret_repair:
@@ -428,12 +429,15 @@ class EventDrivenSimulator:
                                 repair_token = set_deadline(started +
                                                             0.4 * config.total_planning_time_limit)
                             try:
-                                routes, insertions = regret_repair(
-                                    eligible, routes, observation, config.mpc,
-                                    position_limit=5 if config.algorithm in COMMON_CONSTRUCTOR_ALGORITHMS
-                                    or config.algorithm in FLEET_LNS_ALGORITHMS else None,
-                                    return_partial_on_deadline=config.algorithm in COMMON_CONSTRUCTOR_ALGORITHMS,
-                                    screened_shortlist=config.algorithm in COMMON_CONSTRUCTOR_ALGORITHMS)
+                                if config.algorithm in COMMON_CONSTRUCTOR_ALGORITHMS:
+                                    constructor_record = construct_fleet_root(
+                                        eligible, routes, observation, config.mpc)
+                                    routes, insertions = (constructor_record.routes,
+                                                          constructor_record.insertions)
+                                else:
+                                    routes, insertions = regret_repair(
+                                        eligible, routes, observation, config.mpc,
+                                        position_limit=5 if config.algorithm in FLEET_LNS_ALGORITHMS else None)
                             finally:
                                 if repair_token is not None:
                                     reset_deadline(repair_token)
@@ -563,6 +567,17 @@ class EventDrivenSimulator:
                                     constructor_service=constructor_service,
                                     best_service_after_search=len(final_coverage),
                                     constructor_seconds=constructor_seconds,
+                                    constructor_screened_insertions=(constructor_record.screened_insertions
+                                                                     if constructor_record else 0),
+                                    constructor_exact_decoder_calls=(constructor_record.exact_decoder_calls
+                                                                     if constructor_record else 0),
+                                    constructor_zero_option_customers=(constructor_record.zero_option_customers
+                                                                       if constructor_record else 0),
+                                    constructor_cache_hit_rate=(constructor_record.cache_hits /
+                                                                max(1, constructor_record.cache_lookups)
+                                                                if constructor_record else 0.0),
+                                    constructor_candidate=(constructor_record.candidate
+                                                           if constructor_record else None),
                                     mcts_seconds=fleet_mcts_record.elapsed if fleet_mcts_record else 0.0,
                                     committed_before=dict(observation.committed_customers),
                                     candidate_intents=candidate_intents, background_intents=sorted(background),
@@ -594,9 +609,19 @@ class EventDrivenSimulator:
                                                        maximum_rollout_residual=fleet_mcts_record.maximum_rollout_residual,
                                                        screened_customer_count=fleet_mcts_record.screened_customer_count,
                                                        screened_vehicle_evaluations=fleet_mcts_record.screened_vehicle_evaluations,
+                                                       screened_insertions=fleet_mcts_record.screened_insertions,
                                                        exact_decoded_options=fleet_mcts_record.exact_decoded_options,
                                                        service_improvements=fleet_mcts_record.service_improvements,
-                                                       objective_only_improvements=fleet_mcts_record.objective_only_improvements)
+                                                       objective_only_improvements=fleet_mcts_record.objective_only_improvements,
+                                                       screen_cache_hits=fleet_mcts_record.screen_cache_hits,
+                                                       screen_cache_lookups=fleet_mcts_record.screen_cache_lookups,
+                                                       screen_to_decode_ratio=(fleet_mcts_record.screened_insertions /
+                                                                               max(1, fleet_mcts_record.exact_decoded_options)),
+                                                       cache_hit_rate=(fleet_mcts_record.screen_cache_hits /
+                                                                       max(1, fleet_mcts_record.screen_cache_lookups)),
+                                                       ejection_chains_generated=fleet_mcts_record.ejection_chains_generated,
+                                                       ejection_chains_feasible=fleet_mcts_record.ejection_chains_feasible,
+                                                       ejection_chains_selected=fleet_mcts_record.ejection_chains_selected)
                                                 if fleet_mcts_record else None),
                                     route_owners_after_repair={a.destination: k for k, actions in routes.items()
                                                                for a in actions if a.kind == "serve"},
