@@ -1,0 +1,16 @@
+{
+  "status": "stopped_static_gate_failed",
+  "objective_version": "service-activation-distance-v2",
+  "planner_objective_version": "risk-control-flex-service-v1",
+  "search_policy_version": "fleet-mcts-terminal-completion-v1",
+  "source_sha256": "b16fb07badf111f00dfbc70fe2c4818db8c8a85c86dfac26b62a81e8b2a0149c",
+  "base_git_commit": "e89cd34fde6dc68a725e1fa3ed9d1141c2c17636",
+  "source_frozen": false,
+  "records": [
+    {"stage": "diagnostic", "instance": "r101_21", "scenario_seed": 0, "path": "results/final/terminal_completion/raw/diagnostic/r101_21_FLEET_MPC_MCTS_f82777ff236e34276efd.json", "sha256": "0eb7b06f60a5cc7d32ce9250674ced6368583961f5a6de06b414a713707494f3", "scenario_hash": "89afc6a13ace161299c804b89b155cfbb0ef27b628207f852fa9b81f88148862"},
+    {"stage": "diagnostic", "instance": "c201_21", "scenario_seed": 0, "path": "results/final/terminal_completion/raw/diagnostic/c201_21_FLEET_MPC_MCTS_6c71c2295622d1596865.json", "sha256": "85a37f75ab544b1ce80f8ed0856da3b16a61a84572bfbd38eb5304cdc3406e0f", "scenario_hash": "9ab599bea8692723939603e1b081946a4ebd7f76a1d26675553a2d7862c98003"},
+    {"stage": "diagnostic", "instance": "r201_21", "scenario_seed": 1, "path": "results/final/terminal_completion/raw/diagnostic/r201_21_FLEET_MPC_MCTS_6601ea6427b0c1551943.json", "sha256": "2037a1d3c945274f59ea310bd1e7fffec6839a2584259700268dfa678ad9b4bf", "scenario_hash": "ccd29c5a103e1ac93923390020464a030079b329b720bcf2150a31fbf8d50840"},
+    {"stage": "static", "instance": "c101_21", "scenario_seed": 0, "path": "results/final/terminal_completion/raw/static/c101_21_FLEET_MPC_MCTS_f0384eb7046c29760ece.json", "sha256": "bb655433a6068b28988d49db126f93398205b20ef0c86d9b45e9105557f80251", "scenario_hash": "b66fa749527947e566d083ffa9cf3f9d258216e3222b3031c15471cb40a6dab3"},
+    {"stage": "static", "instance": "c201_21", "scenario_seed": 0, "path": "results/final/terminal_completion/raw/static/c201_21_FLEET_MPC_MCTS_0a1dbc2d36c62b0bf68b.json", "sha256": "318935813129d3c8cebbf51ac49e1fb65769acd5901bb43d823172d6c8156f41", "scenario_hash": "697594ab37b2dbcd68eb74ba015160c86a8c70d1a7cdc803e63081c0760fa44f"}
+  ]
+}

@@ -42,6 +42,13 @@ class FleetMCTSResult:
     full_seconds: float
     elapsed: float
     deadline_reached: bool
+    root_uncovered: int
+    completed_root_uncovered: int
+    final_uncovered: int
+    service_gain_over_root: int
+    rollout_count: int
+    rollout_customers_completed: int
+    maximum_rollout_residual: int
 
 
 @dataclass
@@ -415,6 +422,63 @@ class _FleetProblem:
                    for index, k in enumerate(self.ids) if repaired[k] != plan.actions[index]}
         return self.change(plan, changed) or plan if changed else plan
 
+    def complete_rollout(self, plan: FleetPlan, local_until: float,
+                         *, due_order: bool = False) -> FleetPlan:
+        """Bounded default policy over the whole released residual problem."""
+        current = plan
+        rescue_used = False
+        previous_until = self.search_until
+        self.search_until = min(local_until - 0.02, previous_until or local_until)
+        try:
+            while current.score[0] and perf_counter() < local_until - 0.02:
+                self._check_search_time()
+                check_deadline()
+                owned = {c for sequence in current.sequences for c in sequence}
+                if due_order:
+                    targets = sorted(self.pending - owned, key=lambda c: (
+                        self.observation.customer_by_id[c].due,
+                        self.observation.customer_by_id[c].ready, c))
+                else:
+                    targets = [row[0] for row in self._criticality(current.sequences)]
+                inserted = False
+                for customer in targets:
+                    if perf_counter() >= local_until - 0.02:
+                        break
+                    options = []
+                    for k in self._nearest_vehicles(current, customer, 5):
+                        sequence = current.sequences[self.ids.index(k)]
+                        for position in self._positions(current, k, customer):
+                            options.append((self._gap_delta(current, k, customer, position),
+                                            k, position, sequence))
+                    for _, k, position, sequence in sorted(options)[:8]:
+                        if perf_counter() >= local_until - 0.02:
+                            break
+                        proposed = sequence[:position] + (customer,) + sequence[position:]
+                        if self._decode(k, proposed) is None:
+                            continue
+                        candidate = self.change(current, {k: proposed})
+                        if candidate is not None:
+                            current = candidate
+                            inserted = True
+                            break
+                    if inserted:
+                        break
+                if inserted:
+                    continue
+                if rescue_used or perf_counter() >= local_until - 0.05:
+                    break
+                rescue_used = True
+                rescued = [p for p in self.candidates(current, 6)
+                           if p.score[0] < current.score[0]]
+                if not rescued:
+                    break
+                current = min(rescued, key=lambda p: p.score)
+        except (PlanningDeadlineExceeded, _SearchBudgetReached):
+            pass
+        finally:
+            self.search_until = previous_until
+        return current
+
     def candidates(self, plan: FleetPlan, branch_limit: int) -> list[FleetPlan]:
         found: dict[tuple[tuple[str, ...], ...], FleetPlan] = {}
         unserved = self._urgent(plan, 3)
@@ -732,34 +796,24 @@ def solve_fleet_mcts(origins: dict[int, VehicleState], routes: dict[int, tuple[A
     root = _Node(root_plan, 0)
     rng = Random(seed)
     expanded = completed = tree_improvements = 0
+    rollout_count = rollout_customers_completed = maximum_rollout_residual = 0
     service_seconds = full_seconds = 0.0
     deadline_reached = False
     seed_started = started
     seed_accounted = False
     try:
         root_criticality = problem._criticality(root_plan.sequences)
-        # Three roots at most: the old soft incumbent and two constructive orders.
-        seed_until = perf_counter() + min(remaining_time() * 0.4, 2.0)
-        due = root_plan
-        while due.score[0] and perf_counter() < seed_until:
-            problem._check_search_time()
-            check_deadline()
-            improved = problem._regret_rollout(due, 2, due_order=True)
-            if improved.score >= due.score:
-                break
-            due = improved
-        if due.score < best.score:
-            best = due
-        critical = root_plan
-        critical_until = perf_counter() + min(0.35, max(0.0, remaining_time() - 0.1))
-        while critical.score[0] and perf_counter() < critical_until:
-            problem._check_search_time()
-            improved = problem._regret_rollout(critical, 2)
-            if improved.score >= critical.score:
-                break
-            critical = improved
+        # Both roots complete the entire released residual, subject to one shared
+        # construction budget; the retained soft plan remains a candidate.
+        seed_budget = min(max(0.0, remaining_time() - 0.2) * 0.28, 1.3)
+        critical_until = perf_counter() + seed_budget * 0.6
+        critical = problem.complete_rollout(root_plan, critical_until)
         if critical.score < best.score:
             best = critical
+        due_until = perf_counter() + seed_budget * 0.4
+        due = problem.complete_rollout(root_plan, due_until, due_order=True)
+        if due.score < best.score:
+            best = due
         service_seconds += perf_counter() - seed_started if root_plan.score[0] else 0.0
         full_seconds += perf_counter() - seed_started if not root_plan.score[0] else 0.0
         seed_accounted = True
@@ -784,7 +838,13 @@ def solve_fleet_mcts(origins: dict[int, VehicleState], routes: dict[int, tuple[A
                         rank = len(node.children)
                         total = len(node.candidates) + rank
                         prior = (total - rank) / (total * (total + 1) / 2)
-                        child = _Node(node.candidates.pop(0), node.depth + 1, prior=prior)
+                        structural = node.candidates.pop(0)
+                        completion_until = perf_counter() + min(0.12, max(0.0, remaining_time() - 0.08))
+                        completed_plan = problem.complete_rollout(structural, completion_until)
+                        rollout_count += 1
+                        rollout_customers_completed += max(0, structural.score[0] - completed_plan.score[0])
+                        maximum_rollout_residual = max(maximum_rollout_residual, int(completed_plan.score[0]))
+                        child = _Node(completed_plan, node.depth + 1, prior=prior)
                         for customer in problem.pending:
                             if (all(customer not in seq for seq in parent_plan.sequences)
                                     and any(customer in seq for seq in child.plan.sequences)):
@@ -801,7 +861,14 @@ def solve_fleet_mcts(origins: dict[int, VehicleState], routes: dict[int, tuple[A
                         (child.value / child.visits if child.visits else problem.value(child.plan))
                         + config.uct_c * child.prior * scale / (1 + child.visits), rng.random()))
                     path.append(node)
-                rollout = problem._regret_rollout(node.plan, 2, regret_k=2 if iteration % 2 == 0 else 3)
+                if node.plan.score[0] and node is root:
+                    completion_until = perf_counter() + min(0.12, max(0.0, remaining_time() - 0.08))
+                    rollout = problem.complete_rollout(node.plan, completion_until)
+                    rollout_count += 1
+                    rollout_customers_completed += max(0, node.plan.score[0] - rollout.score[0])
+                    maximum_rollout_residual = max(maximum_rollout_residual, int(rollout.score[0]))
+                else:
+                    rollout = node.plan
                 if rollout.score < best.score:
                     best = rollout
                     tree_improvements += 1
@@ -837,4 +904,7 @@ def solve_fleet_mcts(origins: dict[int, VehicleState], routes: dict[int, tuple[A
                            root_plan.score, seed_score, best.score, best.components, criticality,
                            completed, expanded,
                            tree_improvements, service_seconds, full_seconds,
-                           perf_counter() - started, deadline_reached)
+                           perf_counter() - started, deadline_reached,
+                           int(root_plan.score[0]), int(seed_score[0]), int(best.score[0]),
+                           max(0, int(seed_score[0] - best.score[0])),
+                           rollout_count, rollout_customers_completed, maximum_rollout_residual)

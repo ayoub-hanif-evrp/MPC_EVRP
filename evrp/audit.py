@@ -14,7 +14,8 @@ from .reference import ReferenceConfig, ReferenceSchedule
 from .scenario import DynamicScenario
 from .simulator import ExperimentResult, SimulationEvent
 from .storage import BENCHMARK, ROOT, identifier, writable_path, load_json
-from .versions import OBJECTIVE_VERSION, REFERENCE_SOLVER_VERSION, RESULT_SCHEMA_VERSION
+from .versions import (OBJECTIVE_VERSION, PLANNER_OBJECTIVE_VERSION, SEARCH_POLICY_VERSION,
+                       REFERENCE_SOLVER_VERSION, RESULT_SCHEMA_VERSION)
 
 
 def result_files(directory):
@@ -55,6 +56,21 @@ def audit_record(record):
         from .experiments import audit_result, run_identity, simulation_config
         expected = run_identity(ident["instance"], ident["instance_sha256"], ident["scenario_hash"],
                                 config, provenance["source_sha256"], provenance["git_commit"])
+        if "planner_objective_version" not in ident and "search_policy_version" not in ident:
+            # Earlier frozen evidence predates planner/search versioning.
+            expected.pop("planner_objective_version")
+            expected.pop("search_policy_version")
+            expected.pop("run_id")
+            expected["run_id"] = identifier(expected)
+        else:
+            check(ident.get("planner_objective_version") == PLANNER_OBJECTIVE_VERSION,
+                  "stale planner objective version")
+            check(ident.get("search_policy_version") == SEARCH_POLICY_VERSION,
+                  "stale search policy version")
+            check(provenance.get("planner_objective_version") == PLANNER_OBJECTIVE_VERSION,
+                  "missing planner objective provenance")
+            check(provenance.get("search_policy_version") == SEARCH_POLICY_VERSION,
+                  "missing search policy provenance")
         check(all(ident.get(k) == v for k, v in expected.items()), "run ID or identity/config mismatch")
         check(ident["objective_version"] == OBJECTIVE_VERSION, "stale objective version")
         check(provenance["requested_configuration_hash"] == identifier(config), "requested configuration mismatch")

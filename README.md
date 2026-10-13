@@ -1,9 +1,16 @@
 # Event-Triggered Risk-Aware Fleet MPC-MCTS for Dynamic EVRPTW
 
-**Status: the event-triggered correction passed six-case static sanity at
-600/600 but FAILED the frozen matched dynamic development gate. Six Fleet
-dynamic runs hit the 15-minute watchdog; two more completed below 90/100.
-No holdout was run, and no positive final paper-performance claim is supported.**
+**Current terminal-completion correction: STOPPED at the static gate.** The
+three specified development diagnostics completed and passed their trace
+audits (85/100, 100/100, and 99/100 served), with no watchdog or optimizer
+call over five seconds. The first static regression case served only 96/100,
+so the required six-case 600/600 gate failed. The remaining static cases,
+matched dynamic grid, and holdout were not run. No positive final
+paper-performance claim is supported. See the
+[terminal-completion report](results/final/terminal_completion/FINAL_REPORT.md).
+
+The previous control-horizon campaign described below is historical evidence,
+not a result of this terminal-completion correction.
 
 The prior frozen `6a1ab7e` Fleet MPC-MCTS campaign is **historical development
 evidence**. It served 600/600 statically and 1005/1200 dynamically versus
@@ -21,9 +28,11 @@ are specified in the [experiment protocol](docs/experiment_protocol.md).
 Only a development PASS permits the untouched holdout.
 The [incomplete execution record](results/final/control_horizon/INCOMPLETE_RUN.md)
 documents the earlier every-completion execution attempt, not this corrected run.
-Physical completions now replay validated suffixes and dispatch their next action;
-global MCTS runs only on release, missing/invalid continuation, uncovered work,
-or the initial epoch. Fleet MCTS and Rolling-LNS use the same trigger policy.
+Physical completions replay validated suffixes and dispatch their next action;
+global optimization runs only initially, on release, invalid/missing
+continuation, or after customer-service completion with uncovered released
+work. A charge or wait completion with a valid suffix does not trigger global
+optimization. Fleet MCTS and Rolling-LNS use the same trigger policy.
 Run `python -m scripts.final_control_horizon_campaign static --instance c101_21`
 for one sanity case, then `static` for the six-case grid. The development stage
 is `python -m scripts.final_control_horizon_campaign development`; holdout is

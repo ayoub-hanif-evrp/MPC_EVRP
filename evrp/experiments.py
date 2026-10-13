@@ -19,7 +19,8 @@ from .scenario import DynamicScenario, generate
 from .simulator import (FLEET_LNS_ALGORITHMS, EventDrivenSimulator, ExperimentResult,
                         SimulationConfig, SimulationEvent)
 from .storage import BENCHMARK, ROOT, benchmark_hashes, identifier, save_json, load_json
-from .versions import OBJECTIVE_VERSION, REFERENCE_SOLVER_VERSION, RESULT_SCHEMA_VERSION, SCENARIO_GENERATOR_VERSION
+from .versions import (OBJECTIVE_VERSION, PLANNER_OBJECTIVE_VERSION, SEARCH_POLICY_VERSION,
+                       REFERENCE_SOLVER_VERSION, RESULT_SCHEMA_VERSION, SCENARIO_GENERATOR_VERSION)
 
 
 def load_config(path: str | Path) -> dict:
@@ -265,7 +266,10 @@ def run_identity(instance_name, instance_hash, scenario_hash, config, code_hash,
                   scenario_seed=config.get("scenario_seed", 0),
                   algorithm=config.get("algorithm", "COORDINATED_MPC_MCTS"),
                   algorithm_seed=config.get("experiment_seed", 0), requested_config=config,
-                  objective_version=OBJECTIVE_VERSION, git_commit=commit, source_sha256=code_hash)
+                  objective_version=OBJECTIVE_VERSION,
+                  planner_objective_version=PLANNER_OBJECTIVE_VERSION,
+                  search_policy_version=SEARCH_POLICY_VERSION,
+                  git_commit=commit, source_sha256=code_hash)
     return {**inputs, "run_id": identifier(inputs)}
 
 
@@ -290,6 +294,8 @@ def result_sections(payload, identity, scenario=None, instance=None):
     payload["integrity"]["trace_audit_passed"] = bool(payload.get("audit"))
     payload["scenario"]["scenario_hash"] = identity["scenario_hash"]
     payload["provenance"].update(git_commit=identity["git_commit"],
+        planner_objective_version=identity["planner_objective_version"],
+        search_policy_version=identity["search_policy_version"],
         timestamp=datetime.now(timezone.utc).isoformat(), machine=platform.machine(),
         processor=platform.processor(), platform=platform.platform(),
         effective_configuration_hash=identifier(payload.get("effective_config", {})),

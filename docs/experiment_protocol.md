@@ -1,8 +1,9 @@
 # Final Experiment Protocol
 
-Status: event-triggered control execution of Risk-Aware Fleet-Level
-MPC-MCTS. The `6a1ab7e` campaign and earlier coordinator/dynamic pilots are
-historical development evidence, not results of this corrected method.
+Status: terminal-completion correction stopped at the static gate after
+`c101_21` served 96/100. The 12-pair development grid and holdout were not run.
+The `6a1ab7e` campaign and earlier coordinator/dynamic pilots are historical
+development evidence, not results of this corrected method.
 No source or configuration change is permitted after the development campaign
 starts. A failed development gate blocks the holdout.
 
@@ -11,9 +12,10 @@ starts. A failed development gate blocks the holdout.
 At each physical event, the controller observes only released customers and
 immutable busy-vehicle commitments. It exactly replays retained soft suffixes.
 MPC optimization triggers at the initial epoch, new customer releases, a ready
-vehicle with no valid continuation, an infeasible retained suffix, or released
-uncommitted work absent from the retained fleet plan. Predicted deterministic
-completions dispatch the next validated action without a new global search.
+vehicle with no valid continuation, an infeasible retained suffix, or a
+customer-service completion while released uncommitted work remains.
+Uncovered work alone is not a trigger. Charge and wait completions with a valid
+suffix dispatch the next validated action without a new global search.
 Only executing actions are hard; future assignments remain soft at the next
 trigger. A deterministic fingerprint of released information, post-commitment
 vehicle states, commitments, and retained customer sequences prevents repeated
@@ -21,8 +23,15 @@ MCTS calls on an unchanged root. Fleet-level MCTS searches customer assignment, 
 restructuring; charging stations and amounts are chosen by the deterministic
 partial-charging decoder. Every retained candidate is exactly decoded and replay
 validated. No LNS follows MCTS. The root is the best of the previous feasible
-soft incumbent, due-order regret construction, and criticality-order regret
-construction. Progressive widening remains active.
+soft incumbent, due-order residual completion, and criticality-order residual
+completion. Construction uses at most 28% of the search budget. Each expanded
+service-phase child receives a bounded completion rollout over all residual
+released customers before tree backpropagation. Progressive widening remains active.
+
+`OBJECTIVE_VERSION=service-activation-distance-v2` continues to identify the
+external scenario/evaluation dependency. The planner and search versions are
+`risk-control-flex-service-v1` and `fleet-mcts-terminal-completion-v1` and
+appear separately in new run identities, provenance, and the final report.
 
 With uncovered released customers, final selection lexicographically minimizes
 `J_A=(U, screened_Z0, screened_Z1, R_CTRL, R_TW, R_BAT, R_CAP, D_normalized)`.

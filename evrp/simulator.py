@@ -3,7 +3,7 @@
 from concurrent.futures import ProcessPoolExecutor
 from dataclasses import asdict, dataclass, field, replace
 from time import perf_counter
-from collections import deque
+from collections import Counter, deque
 
 import numpy as np
 
@@ -189,6 +189,7 @@ class EventDrivenSimulator:
         run_started = perf_counter()
         simulation_events = optimization_triggers = mcts_calls = 0
         optimization_latencies = []
+        trigger_counts = Counter()
         recent_triggers = deque(maxlen=20)
         seen_states = set()
         previous_root_hash = None
@@ -220,11 +221,13 @@ class EventDrivenSimulator:
                 simulation_events += 1
                 revealed = state.reveal()
                 events.extend(SimulationEvent(state.time, "release", customer_id=c) for c in revealed)
+                service_completed = False
                 for k in sorted(k for k, s in state.busy.items() if s.after.time <= state.time):
                     step = state.busy.pop(k)
                     state.vehicles[k] = step.after
                     steps.append(step)
                     if step.served:
+                        service_completed = True
                         assert state.committed_customers.pop(step.served) == k
                         assert step.served not in state.served_customers
                         state.served_customers.add(step.served)
@@ -262,8 +265,8 @@ class EventDrivenSimulator:
                             tails.pop(k)
                     uncovered = (set(observation.customer_by_id) -
                                  reserved_customers(tails) - state.served_customers)
-                    if uncovered:
-                        reasons.append("uncovered_work")
+                    if service_completed and uncovered:
+                        reasons.append("service_completion_uncovered")
                     if any(k not in tails and state.vehicles[k].location.kind != "d"
                            for k in ready):
                         reasons.append("no_continuation")
@@ -272,6 +275,7 @@ class EventDrivenSimulator:
                     if reasons:
                         trigger_reason = ",".join(reasons)
                         optimization_triggers += 1
+                        trigger_counts.update(reasons)
                         recent_triggers.append(trigger_reason)
                     else:
                         # Every retained suffix is replayed from the measured state.
@@ -556,6 +560,13 @@ class EventDrivenSimulator:
                                                      full_seconds=fleet_mcts_record.full_seconds,
                                                      elapsed=fleet_mcts_record.elapsed,
                                                      deadline_reached=fleet_mcts_record.deadline_reached)
+                                                | dict(root_uncovered=fleet_mcts_record.root_uncovered,
+                                                       completed_root_uncovered=fleet_mcts_record.completed_root_uncovered,
+                                                       final_uncovered=fleet_mcts_record.final_uncovered,
+                                                       service_gain_over_root=fleet_mcts_record.service_gain_over_root,
+                                                       rollout_count=fleet_mcts_record.rollout_count,
+                                                       rollout_customers_completed=fleet_mcts_record.rollout_customers_completed,
+                                                       maximum_rollout_residual=fleet_mcts_record.maximum_rollout_residual)
                                                 if fleet_mcts_record else None),
                                     route_owners_after_repair={a.destination: k for k, actions in routes.items()
                                                                for a in actions if a.kind == "serve"},
@@ -650,6 +661,7 @@ class EventDrivenSimulator:
                        fleet_mcts_tree_improvements=fleet_mcts_improvements,
                        simulation_events=simulation_events,
                        optimization_triggers=optimization_triggers,
+                       optimization_trigger_counts=dict(trigger_counts),
                        mcts_calls=mcts_calls,
                        mcts_calls_per_simulation_event=mcts_calls / simulation_events if simulation_events else 0.0,
                        complete_instance_wall_clock_seconds=perf_counter()-run_started,

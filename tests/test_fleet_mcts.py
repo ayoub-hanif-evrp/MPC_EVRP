@@ -11,6 +11,7 @@ from evrp.model import Action, Observation, transition
 from evrp.mpc import MPCConfig
 from evrp.planning_budget import PlanningDeadlineExceeded, remaining_time, reset_deadline, set_deadline
 from evrp.simulator import EventDrivenSimulator
+from evrp.repair import route_proposal
 from tests.test_repair import customer, serves, setup
 from tests.test_simulator import synthetic
 from scripts.final_control_horizon_campaign import cases
@@ -34,6 +35,44 @@ def test_fleet_mcts_serves_released_work_and_preserves_lexicographic_value():
     assert 0 <= result.best_components["operational_cost"] <= 1
     assert result.validated[0].actions == result.routes[0]
     assert {"A", "B"} <= set(result.criticality)
+
+
+def test_default_policy_completes_more_than_two_released_customers():
+    state, observation, config = setup(tuple(customer(chr(65 + i), i + 1)
+                                               for i in range(5)))
+    problem = _FleetProblem({0: state}, observation, config, 3, 2)
+    root = problem.initial({})
+    completed = problem.complete_rollout(root, perf_counter() + 2)
+    assert root.score[0] == 5
+    assert completed.score[0] == 0
+    assert len(completed.sequences[0]) == 5
+
+
+def test_uncovered_work_waits_for_service_completion_trigger(monkeypatch):
+    base = synthetic(release=0)
+    config = simulation_config(dict(algorithm="FLEET_MPC_MCTS",
+                                    total_planning_time_limit=1.0,
+                                    fleet_mcts_iterations=8, fleet_mcts_depth=2,
+                                    fleet_mcts_branch_limit=4))
+    original = fleet_mcts.solve_fleet_mcts
+    calls = [0]
+
+    def leave_one_uncovered(origins, routes, observation, mpc, **kwargs):
+        result = original(origins, routes, observation, mpc, **kwargs)
+        calls[0] += 1
+        if calls[0] == 1:
+            actions = serves("A")
+            proposal = route_proposal(origins[0], actions, observation, mpc)
+            return replace(result, routes={0: actions}, validated={0: proposal})
+        return result
+
+    monkeypatch.setattr(fleet_mcts, "solve_fleet_mcts", leave_one_uncovered)
+    result = EventDrivenSimulator(base.instance, base.scenario, config).run()
+    reasons = [d["optimization_trigger_reason"] for d in result.decisions
+               if d["optimization_trigger_reason"]]
+    assert result.metrics["customers_served"] == 2
+    assert reasons == ["initial,release", "service_completion_uncovered"]
+    assert all("uncovered_work" not in reason for reason in reasons)
 
 
 def test_fleet_mcts_does_not_insert_hidden_customer():
