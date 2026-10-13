@@ -26,6 +26,10 @@ logs/
 !/results/**/
 !/results/README.md
 !/results/**/.gitkeep
+/results/paper/external/upstream/
+/results/paper/external/downloads/
+/results/paper/external/python/
+/results/paper/external/venv/
 
 # Retired scenario cache; new scenarios belong under results/.
 /data/generated_scenarios/**

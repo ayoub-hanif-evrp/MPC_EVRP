@@ -1,0 +1,184 @@
+{
+  "static_instances": [
+    {
+      "K_ref": 13,
+      "instance": "c101_21",
+      "instance_sha256": "c5cda6ca63a7d518902cf4b02d98b4aa0f373aaa0658d5c666d1c46d38871cb9",
+      "pyevrp_loader": {
+        "error": "DataError: No data found in file",
+        "instance": "c101_21",
+        "loader_equivalent": false
+      },
+      "pyevrp_mapping": {
+        "K_ref": 13,
+        "errors": [],
+        "exact_data_mapping": true,
+        "instance": "c101_21",
+        "instance_sha256": "c5cda6ca63a7d518902cf4b02d98b4aa0f373aaa0658d5c666d1c46d38871cb9",
+        "limitation": "bundled greedy charges to full and does not enforce num_available",
+        "physics_comparable": false,
+        "solver": "pyevrp 0.2.1"
+      },
+      "routingblocks": {
+        "K_ref": 13,
+        "arcs": 14884,
+        "errors": [],
+        "exact": true,
+        "instance": "c101_21",
+        "instance_sha256": "c5cda6ca63a7d518902cf4b02d98b4aa0f373aaa0658d5c666d1c46d38871cb9",
+        "nodes": 122,
+        "solver": "RoutingBlocks"
+      }
+    },
+    {
+      "K_ref": 5,
+      "instance": "c201_21",
+      "instance_sha256": "cc755a6ec3edab8c320bf901f0c3bd34cea80123cf831b0059ea01c13c96bf1d",
+      "pyevrp_loader": {
+        "error": "DataError: No data found in file",
+        "instance": "c201_21",
+        "loader_equivalent": false
+      },
+      "pyevrp_mapping": {
+        "K_ref": 5,
+        "errors": [],
+        "exact_data_mapping": true,
+        "instance": "c201_21",
+        "instance_sha256": "cc755a6ec3edab8c320bf901f0c3bd34cea80123cf831b0059ea01c13c96bf1d",
+        "limitation": "bundled greedy charges to full and does not enforce num_available",
+        "physics_comparable": false,
+        "solver": "pyevrp 0.2.1"
+      },
+      "routingblocks": {
+        "K_ref": 5,
+        "arcs": 14884,
+        "errors": [],
+        "exact": true,
+        "instance": "c201_21",
+        "instance_sha256": "cc755a6ec3edab8c320bf901f0c3bd34cea80123cf831b0059ea01c13c96bf1d",
+        "nodes": 122,
+        "solver": "RoutingBlocks"
+      }
+    },
+    {
+      "K_ref": 20,
+      "instance": "r101_21",
+      "instance_sha256": "0e5a3dffffbd3c516b528ef32ba1a488b817d2f151fc3e8c81023814de1c103a",
+      "pyevrp_loader": {
+        "error": "DataError: No data found in file",
+        "instance": "r101_21",
+        "loader_equivalent": false
+      },
+      "pyevrp_mapping": {
+        "K_ref": 20,
+        "errors": [],
+        "exact_data_mapping": true,
+        "instance": "r101_21",
+        "instance_sha256": "0e5a3dffffbd3c516b528ef32ba1a488b817d2f151fc3e8c81023814de1c103a",
+        "limitation": "bundled greedy charges to full and does not enforce num_available",
+        "physics_comparable": false,
+        "solver": "pyevrp 0.2.1"
+      },
+      "routingblocks": {
+        "K_ref": 20,
+        "arcs": 14884,
+        "errors": [],
+        "exact": true,
+        "instance": "r101_21",
+        "instance_sha256": "0e5a3dffffbd3c516b528ef32ba1a488b817d2f151fc3e8c81023814de1c103a",
+        "nodes": 122,
+        "solver": "RoutingBlocks"
+      }
+    },
+    {
+      "K_ref": 4,
+      "instance": "r201_21",
+      "instance_sha256": "777cdc28fef020cd4df5ada1700f1a95d97eee53d26f5b26958b67cfd8cc51f2",
+      "pyevrp_loader": {
+        "error": "DataError: No data found in file",
+        "instance": "r201_21",
+        "loader_equivalent": false
+      },
+      "pyevrp_mapping": {
+        "K_ref": 4,
+        "errors": [],
+        "exact_data_mapping": true,
+        "instance": "r201_21",
+        "instance_sha256": "777cdc28fef020cd4df5ada1700f1a95d97eee53d26f5b26958b67cfd8cc51f2",
+        "limitation": "bundled greedy charges to full and does not enforce num_available",
+        "physics_comparable": false,
+        "solver": "pyevrp 0.2.1"
+      },
+      "routingblocks": {
+        "K_ref": 4,
+        "arcs": 14884,
+        "errors": [],
+        "exact": true,
+        "instance": "r201_21",
+        "instance_sha256": "777cdc28fef020cd4df5ada1700f1a95d97eee53d26f5b26958b67cfd8cc51f2",
+        "nodes": 122,
+        "solver": "RoutingBlocks"
+      }
+    },
+    {
+      "K_ref": 21,
+      "instance": "rc101_21",
+      "instance_sha256": "272a3e58d53d4ba9516f01506164cf8a9b98bfeeb8dbd1fd62f6557e4c98e3a1",
+      "pyevrp_loader": {
+        "error": "DataError: No data found in file",
+        "instance": "rc101_21",
+        "loader_equivalent": false
+      },
+      "pyevrp_mapping": {
+        "K_ref": 21,
+        "errors": [],
+        "exact_data_mapping": true,
+        "instance": "rc101_21",
+        "instance_sha256": "272a3e58d53d4ba9516f01506164cf8a9b98bfeeb8dbd1fd62f6557e4c98e3a1",
+        "limitation": "bundled greedy charges to full and does not enforce num_available",
+        "physics_comparable": false,
+        "solver": "pyevrp 0.2.1"
+      },
+      "routingblocks": {
+        "K_ref": 21,
+        "arcs": 14884,
+        "errors": [],
+        "exact": true,
+        "instance": "rc101_21",
+        "instance_sha256": "272a3e58d53d4ba9516f01506164cf8a9b98bfeeb8dbd1fd62f6557e4c98e3a1",
+        "nodes": 122,
+        "solver": "RoutingBlocks"
+      }
+    },
+    {
+      "K_ref": 5,
+      "instance": "rc201_21",
+      "instance_sha256": "05de9a222789707ffcce07b31776e71b0ca87b7f72f5c0d115af11e39f2a2841",
+      "pyevrp_loader": {
+        "error": "DataError: No data found in file",
+        "instance": "rc201_21",
+        "loader_equivalent": false
+      },
+      "pyevrp_mapping": {
+        "K_ref": 5,
+        "errors": [],
+        "exact_data_mapping": true,
+        "instance": "rc201_21",
+        "instance_sha256": "05de9a222789707ffcce07b31776e71b0ca87b7f72f5c0d115af11e39f2a2841",
+        "limitation": "bundled greedy charges to full and does not enforce num_available",
+        "physics_comparable": false,
+        "solver": "pyevrp 0.2.1"
+      },
+      "routingblocks": {
+        "K_ref": 5,
+        "arcs": 14884,
+        "errors": [],
+        "exact": true,
+        "instance": "rc201_21",
+        "instance_sha256": "05de9a222789707ffcce07b31776e71b0ca87b7f72f5c0d115af11e39f2a2841",
+        "nodes": 122,
+        "solver": "RoutingBlocks"
+      }
+    }
+  ]
+}

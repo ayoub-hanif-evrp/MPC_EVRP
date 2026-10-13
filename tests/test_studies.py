@@ -88,8 +88,11 @@ def screen_config():
 def test_exact_configs_and_defaults():
     assert {p.stem for p in (REPO / "configs").glob("*.yaml")} == {
         "debug", "validation", "smoke", "screening", "final", "main", "ablations", "realtime",
-        "fleet_lns", "fleet_mcts", "final_control_horizon", "final_structural_mcts"}
+        "fleet_lns", "fleet_mcts", "final_control_horizon", "final_structural_mcts",
+        "paper_controller", "paper_campaign"}
     for path in (REPO / "configs").glob("*.yaml"):
+        if path.stem == "paper_campaign":
+            continue
         config = load_config(path)
         assert config["fleet_mode"] == "fixed_reference"
         assert config["route_continuity"] is True
