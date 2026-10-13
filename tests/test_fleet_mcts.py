@@ -48,6 +48,71 @@ def test_default_policy_completes_more_than_two_released_customers():
     assert len(completed.sequences[0]) == 5
 
 
+def test_tree_child_remains_structural_after_terminal_rollout(monkeypatch):
+    state, observation, config = setup((customer("A", 1), customer("B", 2)))
+    visited_children = []
+
+    def candidates(self, plan, branch_limit):
+        if plan.score[0] == 2:
+            return [self.change(plan, {0: ("A",)})]
+        visited_children.append(plan.score[0])
+        return []
+
+    monkeypatch.setattr(fleet_mcts._FleetProblem, "candidates", candidates)
+    result = solve_fleet_mcts({0: state}, {}, observation, config, seed=0,
+                              iterations=2, depth=2, branch_limit=2)
+    assert result.best_score[0] == 0
+    assert visited_children == [1]
+    assert result.rollout_customers_completed >= 1
+
+
+def test_service_screen_considers_farther_ev_after_five_infeasible_ones():
+    state, observation, config = setup((customer("A", 1),))
+    origins = {k: replace(state, id=k, load=0) for k in range(5)}
+    origins[5] = replace(state, id=5, location=replace(state.location, x=10),
+                         departed=True)
+    problem = _FleetProblem(origins, observation, config, 3, 2)
+    options = problem.screened_options(((),) * 6, "A")
+    assert {option[2] for option in options} == {5}
+    assert problem.screened_vehicle_evaluations == 6
+
+
+def test_tree_shortlist_exposes_early_due_customer(monkeypatch):
+    state, observation, config = setup((customer("E", 1, due=10),
+                                        customer("L1", 2), customer("L2", 3),
+                                        customer("L3", 4)))
+    problem = _FleetProblem({0: state}, observation, config, 3, 2)
+    root = problem.initial({})
+    monkeypatch.setattr(problem, "_urgent", lambda plan, limit: ["L1", "L2", "L3"][:limit])
+    candidates = problem.candidates(root, 24)
+    assert any("E" in sequence for candidate in candidates
+               for sequence in candidate.sequences)
+
+
+def test_rollout_stops_when_most_critical_customer_has_no_direct_option():
+    state, observation, config = setup((customer("A", 100, due=1),
+                                        customer("B", 1)))
+    problem = _FleetProblem({0: state}, observation, config, 3, 2)
+    root = problem.initial({})
+    assert problem._criticality(root.sequences)[0][0] == "A"
+    assert problem.complete_rollout(root, perf_counter() + 1).sequences == root.sequences
+
+
+def test_three_fleet_methods_share_initial_constructor():
+    base = synthetic(release=5, fleet=2)
+    firsts = []
+    for algorithm in ("FLEET_MPC_MCTS", "ROLLING_LNS", "FLEET_MPC_COMPLETION_ONLY"):
+        config = simulation_config(dict(algorithm=algorithm, total_planning_time_limit=1.0,
+                                        fleet_mcts_iterations=4, fleet_mcts_depth=2,
+                                        fleet_mcts_branch_limit=4, lns_iterations=4))
+        result = EventDrivenSimulator(base.instance, base.scenario, config).run()
+        firsts.append((result.decisions[0]["retained_service"],
+                       result.decisions[0]["constructor_service"]))
+        assert result.metrics["customers_served"] == 2
+        assert all(audit_result(result, base.instance, base.scenario).values())
+    assert firsts == [(0, 1)] * 3
+
+
 def test_uncovered_work_waits_for_service_completion_trigger(monkeypatch):
     base = synthetic(release=0)
     config = simulation_config(dict(algorithm="FLEET_MPC_MCTS",

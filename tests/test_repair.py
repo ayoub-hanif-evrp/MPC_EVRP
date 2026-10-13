@@ -54,6 +54,18 @@ def test_anytime_regret_repair_preserves_valid_partial_insertions(monkeypatch):
         regret_repair({0: state}, {}, observation, config)
 
 
+def test_screened_common_constructor_keeps_exact_feasible_routes():
+    state, observation, config = setup(tuple(customer(f"C{i}", i + 1) for i in range(5)))
+    routes, records = regret_repair({0: state}, {}, observation, config,
+                                    regret_k=2, position_limit=5,
+                                    screened_shortlist=True,
+                                    return_partial_on_deadline=True)
+    assert set(claims(routes)) == {f"C{i}" for i in range(5)}
+    assert len(records) == 5
+    assert all(record["screened_shortlist"] for record in records)
+    assert route_proposal(state, routes[0], observation, config) is not None
+
+
 def test_unique_option_precedes_multiple_options_and_preserves_inputs():
     state, obs, config = setup((customer("A", -1, due=2), customer("B", 1, due=20)), capacity=1)
     far = replace(state, id=1, location=replace(obs.infrastructure.depot, x=10), departed=True)

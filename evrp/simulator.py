@@ -23,8 +23,9 @@ from .storage import identifier, save_json
 ROLLING_LNS_ALGORITHMS = {"ROLLING_LNS", "ROLLING_ALNS"}
 HYBRID_LNS_ALGORITHMS = {"MPC_MCTS_LNS", "MPC_MCTS_ALNS"}
 FLEET_LNS_ALGORITHMS = ROLLING_LNS_ALGORITHMS | HYBRID_LNS_ALGORITHMS
+COMMON_CONSTRUCTOR_ALGORITHMS = {"FLEET_MPC_MCTS", "FLEET_MPC_COMPLETION_ONLY", "ROLLING_LNS"}
 ALGORITHMS = {"GREEDY", "RH_REGRET", "MPC_MCTS_H1", "INDEPENDENT_MPC_MCTS",
-              "COORDINATED_MPC_MCTS", "FLEET_MPC_MCTS"} | FLEET_LNS_ALGORITHMS
+              "COORDINATED_MPC_MCTS"} | COMMON_CONSTRUCTOR_ALGORITHMS | FLEET_LNS_ALGORITHMS
 
 
 @dataclass(frozen=True)
@@ -74,8 +75,8 @@ class SimulationConfig:
         if (min(self.fleet_mcts_iterations, self.fleet_mcts_depth, self.fleet_mcts_branch_limit,
                 self.candidate_position_limit) < 1 or self.rollout_regret_k not in {2, 3}):
             raise ValueError("Invalid fleet MCTS configuration")
-        if self.algorithm == "FLEET_MPC_MCTS" and not (self.route_continuity and self.regret_repair):
-            raise ValueError("Fleet MPC-MCTS requires persistent routes and regret rollout")
+        if self.algorithm in COMMON_CONSTRUCTOR_ALGORITHMS and not (self.route_continuity and self.regret_repair):
+            raise ValueError("Common fleet constructor requires persistent routes and regret repair")
 
 
 @dataclass(frozen=True)
@@ -116,6 +117,8 @@ class ExperimentResult:
                                            "final_validation_seconds_p95"}}
         for decision in result["decisions"]:
             decision.pop("final_validation_seconds", None)
+            decision.pop("constructor_seconds", None)
+            decision.pop("mcts_seconds", None)
             if decision.get("fleet_mcts"):
                 for field in ("elapsed", "service_seconds", "full_seconds"):
                     decision["fleet_mcts"].pop(field, None)
@@ -181,6 +184,8 @@ class EventDrivenSimulator:
         epochs = replans = conflicts = resolved = waits = simulations = expanded = reused = 0
         new_activations = inserted_requests = compacted_vehicles = 0
         repair_seconds = lns_seconds = 0.
+        constructor_seconds_total = 0.0
+        constructor_service_gain_total = 0
         lns_iterations = lns_improvements = 0
         fleet_mcts_iterations = fleet_mcts_expanded = fleet_mcts_improvements = deadline_events = 0
         fleet_service_seconds = fleet_full_seconds = 0.0
@@ -194,7 +199,7 @@ class EventDrivenSimulator:
         seen_states = set()
         previous_root_hash = None
         previous_root_routes = None
-        event_triggered = config.algorithm in {"FLEET_MPC_MCTS", "ROLLING_LNS"}
+        event_triggered = config.algorithm in COMMON_CONSTRUCTOR_ALGORITHMS
         diagnostic = ServiceDiagnostics(instance, self.scenario) if config.diagnostics else None
         pool = ProcessPoolExecutor(max_workers=config.workers) if config.parallel_agents else None
         try:
@@ -364,7 +369,7 @@ class EventDrivenSimulator:
                     results, cache = [], {}
                     for job in jobs:
                         agent, vehicle, obs, seed, algorithm = job
-                        if algorithm in {"RH_REGRET", "FLEET_MPC_MCTS"} | ROLLING_LNS_ALGORITHMS:
+                        if algorithm in {"RH_REGRET"} | COMMON_CONSTRUCTOR_ALGORITHMS:
                             result = PlanningResult((), idle_proposal(vehicle, obs, config.mpc))
                         else:
                             key = unused_symmetry_key(vehicle, obs, config.mpc) if config.symmetry_reuse else None
@@ -386,7 +391,7 @@ class EventDrivenSimulator:
                     duplicates = len(firsts)-len(set(firsts))
                     conflicts += duplicates
                     if config.algorithm in {"GREEDY", "RH_REGRET", "INDEPENDENT_MPC_MCTS",
-                                            "FLEET_MPC_MCTS"} | ROLLING_LNS_ALGORITHMS:
+                                            "FLEET_MPC_MCTS", "FLEET_MPC_COMPLETION_ONLY"} | ROLLING_LNS_ALGORITHMS:
                         selected, count = independent_selection(plans, exclusive_routes=True)
                         resolved += count
                     else:
@@ -403,6 +408,9 @@ class EventDrivenSimulator:
                     if any(p is None for p in fallback_validated.values()):
                         raise RuntimeError("Selected incumbent is not replay-feasible")
                     coordinated_coverage = reserved_customers(routes)
+                    retained_service = len(coordinated_coverage)
+                    constructor_service = retained_service
+                    constructor_seconds = 0.0
                     vehicles_before_repair = sum(origins[k].departed or bool(routes.get(k)) for k in origins)
                     distance_before_repair = sum(p.total_predicted_distance
                                                  for p in fallback_validated.values())
@@ -410,28 +418,40 @@ class EventDrivenSimulator:
                     compactions = []
                     lns_record = None
                     fleet_mcts_record = None
-                    if config.regret_repair and config.algorithm != "FLEET_MPC_MCTS":
+                    if config.regret_repair:
                         repair_start = perf_counter()
                         eligible = origins if config.route_continuity else {k: origins[k] for k in ready}
                         try:
                             repair_token = None
-                            if (config.algorithm == "ROLLING_LNS"
+                            if (config.algorithm in COMMON_CONSTRUCTOR_ALGORITHMS
                                     and config.total_planning_time_limit is not None):
                                 repair_token = set_deadline(started +
                                                             0.4 * config.total_planning_time_limit)
                             try:
                                 routes, insertions = regret_repair(
                                     eligible, routes, observation, config.mpc,
-                                    position_limit=5 if config.algorithm in FLEET_LNS_ALGORITHMS else None,
-                                    return_partial_on_deadline=config.algorithm == "ROLLING_LNS")
+                                    position_limit=5 if config.algorithm in COMMON_CONSTRUCTOR_ALGORITHMS
+                                    or config.algorithm in FLEET_LNS_ALGORITHMS else None,
+                                    return_partial_on_deadline=config.algorithm in COMMON_CONSTRUCTOR_ALGORITHMS,
+                                    screened_shortlist=config.algorithm in COMMON_CONSTRUCTOR_ALGORITHMS)
                             finally:
                                 if repair_token is not None:
                                     reset_deadline(repair_token)
-                            if config.algorithm not in FLEET_LNS_ALGORITHMS:
+                            if config.algorithm not in FLEET_LNS_ALGORITHMS | COMMON_CONSTRUCTOR_ALGORITHMS:
                                 routes, compactions = compact_unused_routes(eligible, routes, observation, config.mpc)
                         except PlanningDeadlineExceeded:
                             deadline_events += 1
                         repair_seconds += perf_counter()-repair_start
+                        if config.algorithm in COMMON_CONSTRUCTOR_ALGORITHMS:
+                            constructor_seconds = perf_counter()-repair_start
+                            constructor_service = len(reserved_customers(routes))
+                            constructor_seconds_total += constructor_seconds
+                            constructor_service_gain_total += max(0, constructor_service-retained_service)
+                            fallback_routes = dict(routes)
+                            fallback_validated = {k: route_proposal(origins[k], a, observation, config.mpc)
+                                                  for k, a in routes.items() if a}
+                            if any(p is None for p in fallback_validated.values()):
+                                raise RuntimeError("Common constructor returned an infeasible route")
                         inserted_requests += len(insertions)
                         compacted_vehicles += len(compactions)
                     if config.algorithm in FLEET_LNS_ALGORITHMS:
@@ -484,7 +504,7 @@ class EventDrivenSimulator:
                     assert_unique_routes(routes)
                     validation_started = perf_counter()
                     deadline_fallback = False
-                    replay_reserved = (config.algorithm in {"FLEET_MPC_MCTS", "ROLLING_LNS"}
+                    replay_reserved = (config.algorithm in COMMON_CONSTRUCTOR_ALGORITHMS
                                        and remaining_time() <= 0.02)
                     try:
                         if replay_reserved:
@@ -539,6 +559,11 @@ class EventDrivenSimulator:
                                     optimization_trigger_reason=trigger_reason,
                                     optimization_root_hash=root_hash,
                                     mcts_called=fleet_mcts_record is not None,
+                                    retained_service=retained_service,
+                                    constructor_service=constructor_service,
+                                    best_service_after_search=len(final_coverage),
+                                    constructor_seconds=constructor_seconds,
+                                    mcts_seconds=fleet_mcts_record.elapsed if fleet_mcts_record else 0.0,
                                     committed_before=dict(observation.committed_customers),
                                     candidate_intents=candidate_intents, background_intents=sorted(background),
                                     unique_intention_coverage=sorted(coverage), route_insertions=insertions,
@@ -566,7 +591,12 @@ class EventDrivenSimulator:
                                                        service_gain_over_root=fleet_mcts_record.service_gain_over_root,
                                                        rollout_count=fleet_mcts_record.rollout_count,
                                                        rollout_customers_completed=fleet_mcts_record.rollout_customers_completed,
-                                                       maximum_rollout_residual=fleet_mcts_record.maximum_rollout_residual)
+                                                       maximum_rollout_residual=fleet_mcts_record.maximum_rollout_residual,
+                                                       screened_customer_count=fleet_mcts_record.screened_customer_count,
+                                                       screened_vehicle_evaluations=fleet_mcts_record.screened_vehicle_evaluations,
+                                                       exact_decoded_options=fleet_mcts_record.exact_decoded_options,
+                                                       service_improvements=fleet_mcts_record.service_improvements,
+                                                       objective_only_improvements=fleet_mcts_record.objective_only_improvements)
                                                 if fleet_mcts_record else None),
                                     route_owners_after_repair={a.destination: k for k, actions in routes.items()
                                                                for a in actions if a.kind == "serve"},
@@ -655,6 +685,8 @@ class EventDrivenSimulator:
                        symmetry_reused_replans=reused, mcts_iterations=simulations, nodes_expanded=expanded,
                        route_insertions=inserted_requests, route_compactions=compacted_vehicles,
                        repair_seconds=repair_seconds, lns_seconds=lns_seconds,
+                       constructor_seconds_total=constructor_seconds_total,
+                       constructor_service_gain_total=constructor_service_gain_total,
                        lns_iterations=lns_iterations, lns_improvements=lns_improvements,
                        fleet_mcts_iterations=fleet_mcts_iterations,
                        fleet_mcts_nodes_expanded=fleet_mcts_expanded,

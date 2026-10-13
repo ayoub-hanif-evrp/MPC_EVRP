@@ -2,7 +2,7 @@
 
 OBJECTIVE_VERSION = "service-activation-distance-v2"
 PLANNER_OBJECTIVE_VERSION = "risk-control-flex-service-v1"
-SEARCH_POLICY_VERSION = "fleet-mcts-terminal-completion-v1"
+SEARCH_POLICY_VERSION = "fleet-mcts-structural-rollout-v2"
 REFERENCE_SOLVER_VERSION = "pareto-repair-route-reduction-v2"
 SCENARIO_GENERATOR_VERSION = "reference-preserving-v2"
 RESULT_SCHEMA_VERSION = 5

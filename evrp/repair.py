@@ -236,7 +236,8 @@ class _Insertion:
 
 def _regret_repair_impl(origins: dict[int, VehicleState], routes: dict[int, tuple[Action, ...]],
                         observation: Observation, config: MPCConfig, *, regret_k: int = 2,
-                        position_limit: int | None = None, on_progress=None
+                        position_limit: int | None = None, on_progress=None,
+                        screened_shortlist: bool = False
                         ) -> tuple[dict[int, tuple[Action, ...]], list[dict]]:
     """Insert released unassigned requests without changing fleet or ownership.
 
@@ -298,6 +299,65 @@ def _regret_repair_impl(origins: dict[int, VehicleState], routes: dict[int, tupl
             cost = problem.terminal_cost(problem.initial)
             if isfinite(cost):
                 baselines[k] = cost
+
+    if screened_shortlist:
+        # The common online constructor keeps regret-2 ordering but performs
+        # exact charging-aware decoding only for screened fleet options.
+        from .fleet_mcts import _FleetProblem
+        per_vehicle_limit = position_limit or 5
+        problem = _FleetProblem(origins, observation, config, per_vehicle_limit, regret_k)
+        blocked = set()
+        for _ in range(len(pending)):
+            check_deadline()
+            sequences = tuple(tuple(a.destination for a in updated[k] if a.kind == "serve")
+                              for k in problem.ids)
+            chosen = None
+            for customer_id, _, _, _, _ in problem._criticality(sequences):
+                check_deadline()
+                if customer_id in blocked:
+                    continue
+                per_vehicle = {}
+                shortlisted = []
+                for delta, slack, k, position, activation in problem.screened_options(sequences, customer_id):
+                    if k not in baselines or per_vehicle.get(k, 0) >= per_vehicle_limit:
+                        continue
+                    per_vehicle[k] = per_vehicle.get(k, 0) + 1
+                    shortlisted.append((delta, slack, k, position, activation))
+                    if len(shortlisted) >= 8:
+                        break
+                feasible = []
+                for _, slack, k, position, activation in shortlisted:
+                    check_deadline()
+                    sequence = sequences[problem.ids.index(k)]
+                    proposed = sequence[:position] + (customer_id,) + sequence[position:]
+                    decoded = problem._decode(k, proposed)
+                    if decoded is None:
+                        continue
+                    actions, proposal = decoded
+                    feasible.append((proposal.cost - baselines[k], activation, k, position,
+                                     actions, proposal, slack))
+                if feasible:
+                    feasible.sort(key=lambda row: (row[0], row[1], row[2], row[3]))
+                    chosen = customer_id, feasible
+                    break
+                blocked.add(customer_id)
+            if chosen is None:
+                break
+            customer_id, feasible = chosen
+            delta, activation, k, position, actions, proposal, slack = feasible[0]
+            updated[k] = actions
+            baselines[k] = proposal.cost
+            pending.remove(customer_id)
+            blocked.clear()
+            regret = (feasible[min(regret_k - 1, len(feasible) - 1)][0] - delta
+                      if len(feasible) > 1 else inf)
+            records.append(dict(vehicle_id=k, customer=customer_id, position=position,
+                                incremental_cost=delta, regret2=regret if isfinite(regret) else None,
+                                feasible_options=len(feasible), remaining_tw_slack=slack,
+                                new_activation=activation, screened_shortlist=True))
+            if on_progress is not None:
+                on_progress(updated, records)
+        return updated, records
 
     cache: dict[int, dict[str, tuple[_Insertion, ...]]] = {k: {} for k in baselines}
     for _ in range(len(pending)):
@@ -368,7 +428,8 @@ def _regret_repair_impl(origins: dict[int, VehicleState], routes: dict[int, tupl
 
 def regret_repair(origins: dict[int, VehicleState], routes: dict[int, tuple[Action, ...]],
                   observation: Observation, config: MPCConfig, *, regret_k: int = 2,
-                  position_limit: int | None = None, return_partial_on_deadline: bool = False
+                  position_limit: int | None = None, return_partial_on_deadline: bool = False,
+                  screened_shortlist: bool = False
                   ) -> tuple[dict[int, tuple[Action, ...]], list[dict]]:
     """Repair released routes, optionally retaining the last valid partial solution."""
     partial = []
@@ -377,7 +438,8 @@ def regret_repair(origins: dict[int, VehicleState], routes: dict[int, tuple[Acti
     try:
         return _regret_repair_impl(origins, routes, observation, config,
                                    regret_k=regret_k, position_limit=position_limit,
-                                   on_progress=remember if return_partial_on_deadline else None)
+                                   on_progress=remember if return_partial_on_deadline else None,
+                                   screened_shortlist=screened_shortlist)
     except PlanningDeadlineExceeded:
         if not return_partial_on_deadline or not partial:
             raise

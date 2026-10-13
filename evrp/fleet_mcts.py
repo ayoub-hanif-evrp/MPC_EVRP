@@ -9,7 +9,7 @@ from .instance import distance, energy, travel_time
 from .model import EPS, Action, Observation, VehicleState, escape, transition
 from .mpc import MPCConfig, MPCPlanningProblem, MPCProposal
 from .planning_budget import PlanningDeadlineExceeded, check_deadline, remaining_time
-from .repair import build_route, regret_repair, route_proposal
+from .repair import build_route, route_proposal
 
 
 class _SearchBudgetReached(Exception):
@@ -49,6 +49,11 @@ class FleetMCTSResult:
     rollout_count: int
     rollout_customers_completed: int
     maximum_rollout_residual: int
+    screened_customer_count: int
+    screened_vehicle_evaluations: int
+    exact_decoded_options: int
+    service_improvements: int
+    objective_only_improvements: int
 
 
 @dataclass
@@ -79,6 +84,10 @@ class _FleetProblem:
         self.route_metrics: dict[tuple[int, tuple[Action, ...]], dict[str, float]] = {}
         self.control_metrics: dict[tuple[int, tuple[Action, ...]], dict[str, float]] = {}
         self.criticality_cache: dict[tuple[tuple[str, ...], ...], list[tuple[str, int, float, float, float]]] = {}
+        self.option_cache: dict[tuple[tuple[tuple[str, ...], ...], str], tuple[tuple[float, float, int, int, bool], ...]] = {}
+        self.screened_customer_count = 0
+        self.screened_vehicle_evaluations = 0
+        self.exact_decoded_options = 0
         self.target_stats: dict[str, dict[str, int]] = {}
         self.search_until: float | None = None
         self.screen_cache: dict[tuple[int, tuple[str, ...]], tuple[tuple[float, ...], tuple[float, ...], float]] = {}
@@ -276,6 +285,32 @@ class _FleetProblem:
             return False, customer.due - start
         return True, customer.due - start
 
+    def screened_options(self, sequences: tuple[tuple[str, ...], ...], customer_id: str):
+        key = (sequences, customer_id)
+        if key in self.option_cache:
+            return self.option_cache[key]
+        self.screened_customer_count += 1
+        options = []
+        customer = self.observation.customer_by_id[customer_id]
+        for index, k in enumerate(self.ids):
+            self._check_search_time()
+            self.screened_vehicle_evaluations += 1
+            sequence = sequences[index]
+            for pos in range(len(sequence) + 1):
+                self._check_search_time()
+                passed, slack = self._screen_gap(k, sequence, customer_id, pos)
+                if not passed:
+                    continue
+                before = (self.origins[k].location if pos == 0
+                          else self.observation.customer_by_id[sequence[pos - 1]])
+                after = (self.observation.infrastructure.depot if pos == len(sequence)
+                         else self.observation.customer_by_id[sequence[pos]])
+                delta = distance(before, customer) + distance(customer, after) - distance(before, after)
+                options.append((delta, slack, k, pos, not self.origins[k].departed and not sequence))
+        result = tuple(sorted(options, key=lambda row: (row[0], row[1], row[2], row[3])))
+        self.option_cache[key] = result
+        return result
+
     def _criticality(self, sequences: tuple[tuple[str, ...], ...]):
         if sequences in self.criticality_cache:
             return self.criticality_cache[sequences]
@@ -283,22 +318,7 @@ class _FleetProblem:
         ranked = []
         for customer_id in self.pending - owned:
             self._check_search_time()
-            customer = self.observation.customer_by_id[customer_id]
-            options = []
-            for index, k in enumerate(self.ids):
-                self._check_search_time()
-                sequence = sequences[index]
-                for pos in range(len(sequence) + 1):
-                    self._check_search_time()
-                    passed, slack = self._screen_gap(k, sequence, customer_id, pos)
-                    if not passed:
-                        continue
-                    before = self.origins[k].location if pos == 0 else self.observation.customer_by_id[sequence[pos - 1]]
-                    after = (self.observation.infrastructure.depot if pos == len(sequence)
-                             else self.observation.customer_by_id[sequence[pos]])
-                    delta = distance(before, customer) + distance(customer, after) - distance(before, after)
-                    options.append((delta, slack, k, pos))
-            options.sort()
+            options = self.screened_options(sequences, customer_id)
             regret = options[1][0] - options[0][0] if len(options) > 1 else float("inf")
             slack = min((option[1] for option in options), default=-1.0)
             ranked.append((customer_id, len(options), regret, slack,
@@ -317,6 +337,7 @@ class _FleetProblem:
         check_deadline()
         key = (k, sequence)
         if key not in self.decoded:
+            self.exact_decoded_options += 1
             if not sequence:
                 self.decoded[key] = ((), None)
             else:
@@ -394,85 +415,36 @@ class _FleetProblem:
             return min(distance(node, target) for node in nodes)
         return sorted(self.ids, key=lambda k: (proximity(k), k))[:limit]
 
-    def _regret_rollout(self, plan: FleetPlan, limit: int,
-                        forced: tuple[str, ...] = (), regret_k: int | None = None,
-                        due_order: bool = False) -> FleetPlan:
-        targets = [c for c in forced if c in self.pending and
-                   all(c not in seq for seq in plan.sequences)]
-        if due_order:
-            owned = {c for seq in plan.sequences for c in seq}
-            ordered = sorted(self.pending - owned,
-                             key=lambda c: (self.observation.customer_by_id[c].due,
-                                            self.observation.customer_by_id[c].ready, c))[:limit]
-        else:
-            ordered = self._urgent(plan, limit)
-        targets += [c for c in ordered if c not in targets]
-        targets = targets[:limit]
-        if not targets:
-            return plan
-        included = {c for seq in plan.sequences for c in seq} | set(targets)
-        restricted = Observation(self.observation.time, self.observation.infrastructure,
-                                 tuple(c for c in self.observation.customers if c.id in included),
-                                 self.observation.committed_customers)
-        routes = {k: plan.actions[index] for index, k in enumerate(self.ids)}
-        repaired, _ = regret_repair(self.origins, routes, restricted, self.config,
-                                    regret_k=regret_k or self.regret_k,
-                                    position_limit=self.position_limit)
-        changed = {k: tuple(a.destination for a in repaired[k] if a.kind == "serve")
-                   for index, k in enumerate(self.ids) if repaired[k] != plan.actions[index]}
-        return self.change(plan, changed) or plan if changed else plan
-
-    def complete_rollout(self, plan: FleetPlan, local_until: float,
-                         *, due_order: bool = False) -> FleetPlan:
-        """Bounded default policy over the whole released residual problem."""
+    def complete_rollout(self, plan: FleetPlan, local_until: float) -> FleetPlan:
+        """Direct criticality/regret insertion, without structural repair moves."""
         current = plan
-        rescue_used = False
         previous_until = self.search_until
         self.search_until = min(local_until - 0.02, previous_until or local_until)
         try:
             while current.score[0] and perf_counter() < local_until - 0.02:
                 self._check_search_time()
                 check_deadline()
-                owned = {c for sequence in current.sequences for c in sequence}
-                if due_order:
-                    targets = sorted(self.pending - owned, key=lambda c: (
-                        self.observation.customer_by_id[c].due,
-                        self.observation.customer_by_id[c].ready, c))
-                else:
-                    targets = [row[0] for row in self._criticality(current.sequences)]
-                inserted = False
-                for customer in targets:
+                target, count, _, _, _ = self._criticality(current.sequences)[0]
+                if count == 0:
+                    break
+                feasible = []
+                for _, _, k, pos, _ in self.screened_options(current.sequences, target)[:8]:
                     if perf_counter() >= local_until - 0.02:
                         break
-                    options = []
-                    for k in self._nearest_vehicles(current, customer, 5):
-                        sequence = current.sequences[self.ids.index(k)]
-                        for position in self._positions(current, k, customer):
-                            options.append((self._gap_delta(current, k, customer, position),
-                                            k, position, sequence))
-                    for _, k, position, sequence in sorted(options)[:8]:
-                        if perf_counter() >= local_until - 0.02:
-                            break
-                        proposed = sequence[:position] + (customer,) + sequence[position:]
-                        if self._decode(k, proposed) is None:
-                            continue
-                        candidate = self.change(current, {k: proposed})
-                        if candidate is not None:
-                            current = candidate
-                            inserted = True
-                            break
-                    if inserted:
-                        break
-                if inserted:
-                    continue
-                if rescue_used or perf_counter() >= local_until - 0.05:
+                    index = self.ids.index(k)
+                    sequence = current.sequences[index]
+                    proposed = sequence[:pos] + (target,) + sequence[pos:]
+                    decoded = self._decode(k, proposed)
+                    if decoded is not None:
+                        _, proposal = decoded
+                        feasible.append((proposal.cost - current.costs[index], k, pos, proposed))
+                if not feasible:
                     break
-                rescue_used = True
-                rescued = [p for p in self.candidates(current, 6)
-                           if p.score[0] < current.score[0]]
-                if not rescued:
+                _, k, _, proposed = min(feasible)
+                updated = self.change(current, {k: proposed})
+                if updated is None:
                     break
-                current = min(rescued, key=lambda p: p.score)
+                current = updated
         except (PlanningDeadlineExceeded, _SearchBudgetReached):
             pass
         finally:
@@ -481,7 +453,11 @@ class _FleetProblem:
 
     def candidates(self, plan: FleetPlan, branch_limit: int) -> list[FleetPlan]:
         found: dict[tuple[tuple[str, ...], ...], FleetPlan] = {}
-        unserved = self._urgent(plan, 3)
+        urgent = self._urgent(plan, 3)
+        owned = {c for sequence in plan.sequences for c in sequence}
+        due = sorted(self.pending - owned,
+                     key=lambda c: (self.observation.customer_by_id[c].due, c))[:3]
+        unserved = list(dict.fromkeys(urgent[:1] + due + urgent[1:]))
         insert_cap = max(1, branch_limit // 3)
         rescue_cap = max(1, branch_limit // 2)
         move_cap = max(1, branch_limit // 4)
@@ -489,59 +465,57 @@ class _FleetProblem:
         for customer in unserved:
             if inserted >= insert_cap:
                 break
-            for k in self._nearest_vehicles(plan, customer, 5):
-                if inserted >= insert_cap:
+            target_inserted = 0
+            for _, _, k, position, _ in self.screened_options(plan.sequences, customer)[:8]:
+                if inserted >= insert_cap or target_inserted >= 2:
                     break
                 index = self.ids.index(k)
                 sequence = plan.sequences[index]
-                for position in self._positions(plan, k, customer):
-                    check_deadline()
-                    self._track(customer, "insert_attempts")
-                    candidate = self.change(plan, {k: sequence[:position] + (customer,) + sequence[position:]})
-                    if candidate is not None and candidate.sequences not in found:
-                        found[candidate.sequences] = candidate
-                        inserted += 1
-                        self._track(customer, "insert_feasible")
-                    if inserted >= insert_cap:
-                        break
-        for target in unserved[:2]:
+                check_deadline()
+                self._track(customer, "insert_attempts")
+                candidate = self.change(plan, {k: sequence[:position] + (customer,) + sequence[position:]})
+                if candidate is not None and candidate.sequences not in found:
+                    found[candidate.sequences] = candidate
+                    inserted += 1
+                    target_inserted += 1
+                    self._track(customer, "insert_feasible")
+        blocked_targets = [c for c in unserved if not self.screened_options(plan.sequences, c)]
+        rescue_targets = list(dict.fromkeys(blocked_targets[:1] + unserved[:2]))
+        for target in rescue_targets:
             if rescued >= rescue_cap:
                 break
-            routes = sorted(self.ids, key=lambda k: (
-                min(self._gap_delta(plan, k, target, pos) for pos in
-                    range(len(plan.sequences[self.ids.index(k)]) + 1)), k))[:3]
-            for k in routes:
+            screened = self.screened_options(plan.sequences, target)
+            if screened:
+                gaps = [(delta, k, pos) for delta, _, k, pos, _ in screened]
+            else:
+                # A zero-option customer needs an explicit tree ejection; all
+                # physical EVs are considered before ranking candidate gaps.
+                gaps = [(self._gap_delta(plan, k, target, pos), k, pos)
+                        for k in self.ids
+                        for pos in range(len(plan.sequences[self.ids.index(k)]) + 1)]
+            for _, k, position in sorted(gaps)[:max(12, branch_limit * 2)]:
                 if rescued >= rescue_cap:
                     break
                 index = self.ids.index(k)
                 sequence = plan.sequences[index]
-                for position in self._positions(plan, k, target)[:2]:
-                    adjacent = tuple(sequence[pos] for pos in (position - 1, position)
-                                     if 0 <= pos < len(sequence))
-                    eject_sets = ((), *((customer,) for customer in adjacent))
-                    if len(adjacent) == 2:
-                        eject_sets += (adjacent,)
-                    for displaced in eject_sets:
-                        check_deadline()
-                        self._track(target, "rescue_attempts")
-                        reduced = tuple(c for c in sequence if c not in displaced)
-                        new_position = position - int(position > 0 and sequence[position - 1] in displaced)
-                        ejected = reduced[:new_position] + (target,) + reduced[new_position:]
-                        candidate = self.change(plan, {k: ejected})
-                        if candidate is None:
-                            continue
-                        self._track(target, "rescue_feasible")
-                        if displaced:
-                            candidate = self._regret_rollout(candidate, len(displaced), displaced,
-                                                             regret_k=3 if len(displaced) == 2 else 2)
-                            if all(c in {item for seq in candidate.sequences for item in seq}
-                                   for c in displaced):
-                                self._track(target, "rollout_reinserted")
-                        if candidate.sequences not in found:
-                            found[candidate.sequences] = candidate
-                            rescued += 1
-                        if rescued >= rescue_cap:
-                            break
+                adjacent = tuple(sequence[pos] for pos in (position - 1, position)
+                                 if 0 <= pos < len(sequence))
+                eject_sets = tuple((customer,) for customer in adjacent)
+                if len(adjacent) == 2:
+                    eject_sets += (adjacent,)
+                for displaced in eject_sets:
+                    check_deadline()
+                    self._track(target, "rescue_attempts")
+                    reduced = tuple(c for c in sequence if c not in displaced)
+                    new_position = position - int(position > 0 and sequence[position - 1] in displaced)
+                    ejected = reduced[:new_position] + (target,) + reduced[new_position:]
+                    candidate = self.change(plan, {k: ejected})
+                    if candidate is None:
+                        continue
+                    self._track(target, "rescue_feasible")
+                    if candidate.sequences not in found:
+                        found[candidate.sequences] = candidate
+                        rescued += 1
                     if rescued >= rescue_cap:
                         break
         # These moves restructure future suffixes without touching busy actions.
@@ -606,7 +580,12 @@ class _FleetProblem:
                     found[candidate.sequences] = candidate
                 if len(found) >= branch_limit:
                     break
-        return sorted(found.values(), key=lambda p: p.score)[:branch_limit]
+        blocked = blocked_targets[0] if blocked_targets else None
+        def rank(candidate):
+            frees_blocked = (blocked is not None and
+                             any(blocked in seq for seq in candidate.sequences))
+            return (not frees_blocked if blocked is not None else False, candidate.score)
+        return sorted(found.values(), key=rank)[:branch_limit]
 
     def _full_service_moves(self, plan: FleetPlan,
                             found: dict[tuple[tuple[str, ...], ...], FleetPlan],
@@ -796,29 +775,12 @@ def solve_fleet_mcts(origins: dict[int, VehicleState], routes: dict[int, tuple[A
     root = _Node(root_plan, 0)
     rng = Random(seed)
     expanded = completed = tree_improvements = 0
+    service_improvements = objective_only_improvements = 0
     rollout_count = rollout_customers_completed = maximum_rollout_residual = 0
     service_seconds = full_seconds = 0.0
     deadline_reached = False
-    seed_started = started
-    seed_accounted = False
     try:
         root_criticality = problem._criticality(root_plan.sequences)
-        # Both roots complete the entire released residual, subject to one shared
-        # construction budget; the retained soft plan remains a candidate.
-        seed_budget = min(max(0.0, remaining_time() - 0.2) * 0.28, 1.3)
-        critical_until = perf_counter() + seed_budget * 0.6
-        critical = problem.complete_rollout(root_plan, critical_until)
-        if critical.score < best.score:
-            best = critical
-        due_until = perf_counter() + seed_budget * 0.4
-        due = problem.complete_rollout(root_plan, due_until, due_order=True)
-        if due.score < best.score:
-            best = due
-        service_seconds += perf_counter() - seed_started if root_plan.score[0] else 0.0
-        full_seconds += perf_counter() - seed_started if not root_plan.score[0] else 0.0
-        seed_accounted = True
-        seed_score = best.score
-        root = _Node(best, 0)
         for iteration in range(iterations):
             iteration_started = perf_counter()
             phase_service = bool(root.plan.score[0])
@@ -839,12 +801,7 @@ def solve_fleet_mcts(origins: dict[int, VehicleState], routes: dict[int, tuple[A
                         total = len(node.candidates) + rank
                         prior = (total - rank) / (total * (total + 1) / 2)
                         structural = node.candidates.pop(0)
-                        completion_until = perf_counter() + min(0.12, max(0.0, remaining_time() - 0.08))
-                        completed_plan = problem.complete_rollout(structural, completion_until)
-                        rollout_count += 1
-                        rollout_customers_completed += max(0, structural.score[0] - completed_plan.score[0])
-                        maximum_rollout_residual = max(maximum_rollout_residual, int(completed_plan.score[0]))
-                        child = _Node(completed_plan, node.depth + 1, prior=prior)
+                        child = _Node(structural, node.depth + 1, prior=prior)
                         for customer in problem.pending:
                             if (all(customer not in seq for seq in parent_plan.sequences)
                                     and any(customer in seq for seq in child.plan.sequences)):
@@ -861,15 +818,16 @@ def solve_fleet_mcts(origins: dict[int, VehicleState], routes: dict[int, tuple[A
                         (child.value / child.visits if child.visits else problem.value(child.plan))
                         + config.uct_c * child.prior * scale / (1 + child.visits), rng.random()))
                     path.append(node)
-                if node.plan.score[0] and node is root:
-                    completion_until = perf_counter() + min(0.12, max(0.0, remaining_time() - 0.08))
-                    rollout = problem.complete_rollout(node.plan, completion_until)
-                    rollout_count += 1
-                    rollout_customers_completed += max(0, node.plan.score[0] - rollout.score[0])
-                    maximum_rollout_residual = max(maximum_rollout_residual, int(rollout.score[0]))
-                else:
-                    rollout = node.plan
+                completion_until = perf_counter() + min(0.12, max(0.0, remaining_time() - 0.08))
+                rollout = problem.complete_rollout(node.plan, completion_until)
+                rollout_count += 1
+                rollout_customers_completed += max(0, node.plan.score[0] - rollout.score[0])
+                maximum_rollout_residual = max(maximum_rollout_residual, int(rollout.score[0]))
                 if rollout.score < best.score:
+                    if rollout.score[0] < best.score[0]:
+                        service_improvements += 1
+                    else:
+                        objective_only_improvements += 1
                     best = rollout
                     tree_improvements += 1
                 value = problem.value(rollout)
@@ -886,12 +844,7 @@ def solve_fleet_mcts(origins: dict[int, VehicleState], routes: dict[int, tuple[A
         deadline_reached = True
     except _SearchBudgetReached:
         deadline_reached = True
-    if not seed_accounted:
-        if root_plan.score[0]:
-            service_seconds += perf_counter() - seed_started
-        else:
-            full_seconds += perf_counter() - seed_started
-    seed_score = root.plan.score
+    seed_score = root_plan.score
     criticality = {customer: dict(estimated_insertion_gaps=count,
                                   estimated_regret=regret if regret != float("inf") else None,
                                   minimum_optimistic_slack=slack,
@@ -907,4 +860,8 @@ def solve_fleet_mcts(origins: dict[int, VehicleState], routes: dict[int, tuple[A
                            perf_counter() - started, deadline_reached,
                            int(root_plan.score[0]), int(seed_score[0]), int(best.score[0]),
                            max(0, int(seed_score[0] - best.score[0])),
-                           rollout_count, rollout_customers_completed, maximum_rollout_residual)
+                           rollout_count, rollout_customers_completed, maximum_rollout_residual,
+                           problem.screened_customer_count,
+                           problem.screened_vehicle_evaluations,
+                           problem.exact_decoded_options,
+                           service_improvements, objective_only_improvements)

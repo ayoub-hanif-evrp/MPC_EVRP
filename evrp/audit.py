@@ -63,14 +63,20 @@ def audit_record(record):
             expected.pop("run_id")
             expected["run_id"] = identifier(expected)
         else:
-            check(ident.get("planner_objective_version") == PLANNER_OBJECTIVE_VERSION,
-                  "stale planner objective version")
-            check(ident.get("search_policy_version") == SEARCH_POLICY_VERSION,
-                  "stale search policy version")
-            check(provenance.get("planner_objective_version") == PLANNER_OBJECTIVE_VERSION,
-                  "missing planner objective provenance")
-            check(provenance.get("search_policy_version") == SEARCH_POLICY_VERSION,
-                  "missing search policy provenance")
+            planner_version = ident.get("planner_objective_version")
+            search_version = ident.get("search_policy_version")
+            check(planner_version == PLANNER_OBJECTIVE_VERSION,
+                  "unknown planner objective version")
+            check(search_version in {"fleet-mcts-terminal-completion-v1", SEARCH_POLICY_VERSION},
+                  "unknown search policy version")
+            check(provenance.get("planner_objective_version") == planner_version,
+                  "planner objective provenance mismatch")
+            check(provenance.get("search_policy_version") == search_version,
+                  "search policy provenance mismatch")
+            expected["planner_objective_version"] = planner_version
+            expected["search_policy_version"] = search_version
+            expected.pop("run_id")
+            expected["run_id"] = identifier(expected)
         check(all(ident.get(k) == v for k, v in expected.items()), "run ID or identity/config mismatch")
         check(ident["objective_version"] == OBJECTIVE_VERSION, "stale objective version")
         check(provenance["requested_configuration_hash"] == identifier(config), "requested configuration mismatch")

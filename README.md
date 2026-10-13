@@ -1,16 +1,17 @@
 # Event-Triggered Risk-Aware Fleet MPC-MCTS for Dynamic EVRPTW
 
-**Current terminal-completion correction: STOPPED at the static gate.** The
-three specified development diagnostics completed and passed their trace
-audits (85/100, 100/100, and 99/100 served), with no watchdog or optimizer
-call over five seconds. The first static regression case served only 96/100,
-so the required six-case 600/600 gate failed. The remaining static cases,
-matched dynamic grid, and holdout were not run. No positive final
-paper-performance claim is supported. See the
-[terminal-completion report](results/final/terminal_completion/FINAL_REPORT.md).
+**Current structural-rollout correction: STOPPED at the static gate.** The four
+specified diagnostics served 100/100 statically on C101 and 99/100, 100/100,
+99/100 on the three dynamic cases; all passed independent audits with
+optimization calls below five seconds. In the subsequent six-instance static
+gate, C101 served 100/100 but C201 served 94/100. The runner stopped before
+the other four static cases. The 12-pair development grid, completion-only
+ablation grid, and holdout were not run. See the
+[current report](results/final/structural_rollout/FINAL_REPORT.md); no positive
+final paper-performance claim is supported.
 
-The previous control-horizon campaign described below is historical evidence,
-not a result of this terminal-completion correction.
+The terminal-completion correction and control-horizon campaign below are
+historical development evidence, not results of the current method.
 
 The prior frozen `6a1ab7e` Fleet MPC-MCTS campaign is **historical development
 evidence**. It served 600/600 statically and 1005/1200 dynamically versus
@@ -19,13 +20,13 @@ strict event-latency gates; its [report and raw archive](results/final/FINAL_REP
 remain preserved. An even earlier stopped four-pair campaign is documented in
 the [risk-aware development record](docs/risk_aware_fleet_development.md).
 
-The corrected method protects the state produced by the next MPC control action
-with `R_CTRL`, then the soft route suffix with `R_FLEX`. Fleet MCTS remains the
-optimizer; charging remains in the decoder. Rolling-LNS is an anytime
-conventional comparator, never a post-MCTS step. The fixed 12-pair development
-grid, 90/100 per-run service requirement, and strict five-second event ceiling
-are specified in the [experiment protocol](docs/experiment_protocol.md).
-Only a development PASS permits the untouched holdout.
+The corrected method protects the next MPC control action with `R_CTRL`, then
+the soft route suffix with `R_FLEX`. Fleet MCTS and Rolling-LNS share a bounded
+screened regret constructor. MCTS tree nodes retain only structural fleet
+actions; a direct completion rollout supplies terminal estimates, never a
+hidden tree transition. Charging remains in the exact decoder. There is no
+post-MCTS LNS. The [experiment protocol](docs/experiment_protocol.md) specifies
+the stopped static gate and the conditional later stages.
 The [incomplete execution record](results/final/control_horizon/INCOMPLETE_RUN.md)
 documents the earlier every-completion execution attempt, not this corrected run.
 Physical completions replay validated suffixes and dispatch their next action;
@@ -33,13 +34,10 @@ global optimization runs only initially, on release, invalid/missing
 continuation, or after customer-service completion with uncovered released
 work. A charge or wait completion with a valid suffix does not trigger global
 optimization. Fleet MCTS and Rolling-LNS use the same trigger policy.
-Run `python -m scripts.final_control_horizon_campaign static --instance c101_21`
-for one sanity case, then `static` for the six-case grid. The development stage
-is `python -m scripts.final_control_horizon_campaign development`; holdout is
-blocked unless the audited development gate passes under the frozen commit.
-The [final development report](results/final/FINAL_REPORT.md) and its audited
-tables/PNG figures are under `results/final/control_horizon/`. The negative
-result is retained without post hoc algorithm tuning.
+The current runner is `python -m scripts.final_structural_mcts_campaign` with
+`diagnostic`, `static`, `development`, and `ablation` stages. Its development
+gate remains blocked by the static result. The prior
+[control-horizon report](results/final/FINAL_REPORT.md) remains an archive.
 
 An additional fleet-wide LNS prototype and its six-instance, single-seed
 development gate are documented in

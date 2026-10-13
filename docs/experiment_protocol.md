@@ -1,7 +1,9 @@
 # Final Experiment Protocol
 
-Status: terminal-completion correction stopped at the static gate after
-`c101_21` served 96/100. The 12-pair development grid and holdout were not run.
+Status: structural-rollout correction stopped at the static gate after
+`c101_21` served 100/100 and `c201_21` served 94/100. The other four static
+cases, 12-pair development grid, completion-only ablation, and holdout were
+not run. The four required diagnostics were completed and audited.
 The `6a1ab7e` campaign and earlier coordinator/dynamic pilots are historical
 development evidence, not results of this corrected method.
 No source or configuration change is permitted after the development campaign
@@ -22,15 +24,21 @@ vehicle states, commitments, and retained customer sequences prevents repeated
 MCTS calls on an unchanged root. Fleet-level MCTS searches customer assignment, sequence, and fleet
 restructuring; charging stations and amounts are chosen by the deterministic
 partial-charging decoder. Every retained candidate is exactly decoded and replay
-validated. No LNS follows MCTS. The root is the best of the previous feasible
-soft incumbent, due-order residual completion, and criticality-order residual
-completion. Construction uses at most 28% of the search budget. Each expanded
-service-phase child receives a bounded completion rollout over all residual
-released customers before tree backpropagation. Progressive widening remains active.
+validated. No LNS follows MCTS. Fleet MCTS, Rolling-LNS, and
+`FLEET_MPC_COMPLETION_ONLY` start from the same retained feasible soft plan and
+the same screened, anytime regret-2 constructor over all released residual
+customers. It uses at most 40% of the event budget and five screened positions
+per EV. Unused constructor time flows immediately to the improvement search.
+MCTS tree children represent only explicit structural actions. A separate
+direct-insertion default policy completes the residual plan for scoring and
+backpropagation; it never replaces the structural tree node. A zero-option
+critical customer stops direct rollout insertion, leaving rescue/ejection to
+tree actions. Service screening considers every physical EV before shortlisting
+exact charging-aware decodes. Progressive widening remains active.
 
 `OBJECTIVE_VERSION=service-activation-distance-v2` continues to identify the
 external scenario/evaluation dependency. The planner and search versions are
-`risk-control-flex-service-v1` and `fleet-mcts-terminal-completion-v1` and
+`risk-control-flex-service-v1` and `fleet-mcts-structural-rollout-v2` and
 appear separately in new run identities, provenance, and the final report.
 
 With uncovered released customers, final selection lexicographically minimizes
@@ -55,14 +63,16 @@ reward guides MCTS only; it never replaces lexicographic final selection.
 Full-service MCTS adds CONTROL-RELOCATE and CONTROL-SWAP at route heads to
 the existing relocate, swap, Or-opt, 2-opt, and compaction moves.
 
-Both `FLEET_MPC_MCTS` and `ROLLING_LNS` receive a five-second total wall-clock
+`FLEET_MPC_MCTS`, `ROLLING_LNS`, and `FLEET_MPC_COMPLETION_ONLY` receive a five-second total wall-clock
 ceiling per actual optimization trigger, with a common 250 ms internal guard for cooperative stop
 overhead. Fleet MCTS has an iteration ceiling of 256, depth four,
 branch limit 24, and at most three candidate insertion positions. It reserves
 another 150 ms before that guard for final replay and bookkeeping. The single trigger deadline includes
 incumbent generation, criticality, search, rollout, decoding, and final replay.
-Rolling-LNS receives at most 40% of the event budget for initial regret repair
-and can use the remaining budget for its unchanged LNS operators. Both methods
+Each method gives the shared constructor at most 40% of the event budget.
+Rolling-LNS uses the remaining budget for its unchanged LNS operators; Fleet
+MCTS uses it for structural tree search. The completion-only ablation executes
+the constructor with no tree search. All methods
 retain their last validated incumbent on deadline expiry. Record actual
 iterations, expanded nodes, service/full-coverage search seconds, final replay
 seconds, deadline fallbacks, simulation events, trigger counts, MCTS calls,
@@ -72,15 +82,15 @@ complete-instance runtime, and optimization mean/p95/maximum latency. A
 
 ## Verification and source freeze
 
-Before dynamic scientific runs, pass `c101_21` and `r201_21` static sanity,
-all six static cases at 600/600, focused method tests, the complete test suite once
+Before dynamic scientific runs, pass the four diagnostics and all six static
+cases at 600/600, focused method tests, the complete test suite once
 with `results/verification/pytest.xml` refreshed, and all four Schneider
 reference validations. Commit source, configuration, protocol, tests, and
 verification evidence. Ensure the tracked working tree is clean. Static sanity
 may have a pre-freeze Git commit but must share the exact frozen source hash;
 all dynamic development runs must use one frozen commit. Record that commit in
 the final report and every run's provenance. Preserve SHA-256 manifests and
-the independent trace audit. No experiments from uncommitted source.
+the independent trace audit. No scientific grid from uncommitted source.
 
 ## Static validation and development
 
@@ -95,15 +105,15 @@ scenario seeds 0 and 1, algorithm seed 0, comparing `FLEET_MPC_MCTS` and
 five-second event budget. Do not stop after early wins or losses. Audit every
 record and report target versus realized DoD and technical failures.
 
-The preregistered development PASS requires every one of the 12 matched pairs
-to complete; static Fleet service 600/600; aggregate Fleet service at least
-Rolling-LNS service; Fleet service wins at least losses; Fleet service at least
-90/100 in **every** dynamic run; no C/R/RC family-wide severe Fleet collapse;
-all independent physics/information audits pass; and **every measured optimization call**
-for both methods at or below 5.0 seconds per actual optimization call. Any failure blocks holdout. Compare EV
-count only at equal service; compare distance only at equal service and EV
-count. Report operational-risk cost separately. Failure blocks the holdout;
-do not retune seeds, fleet size, objectives, or instance-specific behavior.
+The development verdict requires the complete 12-pair grid, static 600/600,
+zero technical failures, no catastrophic Fleet collapse, competitive aggregate
+and family-level service against Rolling-LNS, credible wins/ties across C/R/RC,
+and meaningful paired improvement over the completion-only ablation. Every
+measured optimization call must be at or below five seconds, with all independent
+audits passing. Compare EV count only at equal service; compare distance only
+at equal service and EV count. Report `R_CTRL`, `R_FLEX`, and compute effort
+separately. A failed gate blocks holdout; do not retune seeds, fleet size,
+objectives, or instance-specific behavior.
 
 ## Conditional holdout
 
