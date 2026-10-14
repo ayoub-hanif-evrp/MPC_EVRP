@@ -1,0 +1,485 @@
+{
+  "budget_respected": false,
+  "config": {
+    "adaptive_period_length": 50,
+    "adaptive_smoothing_factor": 0.2,
+    "best_insertion_blink_probability": 0.15,
+    "delta_fpo": 0.25,
+    "delta_local_search": 0.5,
+    "demand_weight": 0.1,
+    "distance_weight": 0.75,
+    "granularity": 30,
+    "initial_penalties": [
+      100.0,
+      100.0,
+      100.0
+    ],
+    "max_removed_customer_percentage": 0.5,
+    "min_removed_customer_percentage": 0.1,
+    "new_best_feasible_score": 9,
+    "new_best_score": 4,
+    "new_improvement_score": 1,
+    "num_starting_solutions": 10,
+    "penalty_decrease_factor": 0.8,
+    "penalty_increase_factor": 1.2,
+    "penalty_period_length": 50,
+    "shaw_exponent": 4,
+    "shuffle_operators": false,
+    "slack_weight": 1,
+    "target_feasibility_ratios": [
+      0.9,
+      0.9,
+      0.9
+    ],
+    "time_weight": 0.1,
+    "tw_shift_weight": 1,
+    "use_best_improvement": true,
+    "vehicle_decrease_period_length": 250,
+    "vehicle_decreased_search_period_length": 150,
+    "worst_removal_blink_probability": 0.01
+  },
+  "equivalence": {
+    "K_ref": 20,
+    "arcs": 14884,
+    "errors": [],
+    "exact": true,
+    "instance": "r101_21",
+    "instance_sha256": "0e5a3dffffbd3c516b528ef32ba1a488b817d2f151fc3e8c81023814de1c103a",
+    "nodes": 122,
+    "solver": "RoutingBlocks"
+  },
+  "external": {
+    "cost": 2406.299072265625,
+    "feasible": false,
+    "number_of_vehicles": 20,
+    "routes": [
+      {
+        "cost": 85.77284240722656,
+        "cost_components": [
+          85.77284240722656,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "feasible": true,
+        "nodes": [
+          "D0",
+          "C96",
+          "C17",
+          "C84",
+          "S10",
+          "C45",
+          "C83",
+          "C5",
+          "D0"
+        ]
+      },
+      {
+        "cost": 112.01411437988281,
+        "cost_components": [
+          112.01411437988281,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "feasible": true,
+        "nodes": [
+          "D0",
+          "S9",
+          "C8",
+          "C46",
+          "C36",
+          "S8",
+          "C63",
+          "C10",
+          "C88",
+          "D0"
+        ]
+      },
+      {
+        "cost": 60.814247131347656,
+        "cost_components": [
+          60.814247131347656,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "feasible": true,
+        "nodes": [
+          "D0",
+          "C68",
+          "C54",
+          "C80",
+          "C12",
+          "D0"
+        ]
+      },
+      {
+        "cost": 82.71591186523438,
+        "cost_components": [
+          82.71591186523438,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "feasible": true,
+        "nodes": [
+          "D0",
+          "C43",
+          "S14",
+          "C2",
+          "C58",
+          "C26",
+          "D0"
+        ]
+      },
+      {
+        "cost": 81.75149536132812,
+        "cost_components": [
+          81.75149536132812,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "feasible": true,
+        "nodes": [
+          "D0",
+          "S3",
+          "C66",
+          "C20",
+          "D0"
+        ]
+      },
+      {
+        "cost": 96.75952911376953,
+        "cost_components": [
+          96.75952911376953,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "feasible": true,
+        "nodes": [
+          "D0",
+          "C74",
+          "C22",
+          "C75",
+          "S17",
+          "C23",
+          "C67",
+          "S18",
+          "D0"
+        ]
+      },
+      {
+        "cost": 115.7502670288086,
+        "cost_components": [
+          115.7502670288086,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "feasible": true,
+        "nodes": [
+          "D0",
+          "C31",
+          "C62",
+          "S7",
+          "C59",
+          "C93",
+          "C99",
+          "S11",
+          "C44",
+          "C37",
+          "D0"
+        ]
+      },
+      {
+        "cost": 76.91017150878906,
+        "cost_components": [
+          76.91017150878906,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "feasible": true,
+        "nodes": [
+          "D0",
+          "C6",
+          "S9",
+          "C48",
+          "C47",
+          "D0"
+        ]
+      },
+      {
+        "cost": 89.62384796142578,
+        "cost_components": [
+          89.62384796142578,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "feasible": true,
+        "nodes": [
+          "D0",
+          "S7",
+          "C19",
+          "C11",
+          "S7",
+          "C7",
+          "C52",
+          "C18",
+          "D0"
+        ]
+      },
+      {
+        "cost": 59.356204986572266,
+        "cost_components": [
+          59.356204986572266,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "feasible": true,
+        "nodes": [
+          "D0",
+          "C3",
+          "C79",
+          "C50",
+          "C53",
+          "D0"
+        ]
+      },
+      {
+        "cost": 97.94013214111328,
+        "cost_components": [
+          97.94013214111328,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "feasible": true,
+        "nodes": [
+          "D0",
+          "C81",
+          "S4",
+          "C34",
+          "C78",
+          "C29",
+          "C77",
+          "C76",
+          "C28",
+          "D0"
+        ]
+      },
+      {
+        "cost": 102.43406677246094,
+        "cost_components": [
+          102.43406677246094,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "feasible": true,
+        "nodes": [
+          "D0",
+          "C89",
+          "S11",
+          "C100",
+          "C15",
+          "S14",
+          "C42",
+          "C14",
+          "C13",
+          "D0"
+        ]
+      },
+      {
+        "cost": 88.41771697998047,
+        "cost_components": [
+          88.41771697998047,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "feasible": true,
+        "nodes": [
+          "D0",
+          "C60",
+          "S11",
+          "C16",
+          "C91",
+          "C85",
+          "C98",
+          "C97",
+          "C87",
+          "C57",
+          "D0"
+        ]
+      },
+      {
+        "cost": 91.6541748046875,
+        "cost_components": [
+          91.6541748046875,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "feasible": true,
+        "nodes": [
+          "D0",
+          "C33",
+          "C9",
+          "C35",
+          "S4",
+          "C30",
+          "D0"
+        ]
+      },
+      {
+        "cost": 44.57391357421875,
+        "cost_components": [
+          44.57391357421875,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "feasible": true,
+        "nodes": [
+          "D0",
+          "C1",
+          "C70",
+          "C69",
+          "C27",
+          "D0"
+        ]
+      },
+      {
+        "cost": 101.05375671386719,
+        "cost_components": [
+          101.05375671386719,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "feasible": true,
+        "nodes": [
+          "D0",
+          "S4",
+          "C65",
+          "C71",
+          "S4",
+          "C51",
+          "D0"
+        ]
+      },
+      {
+        "cost": 99.05665588378906,
+        "cost_components": [
+          99.05665588378906,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "feasible": true,
+        "nodes": [
+          "D0",
+          "C40",
+          "C56",
+          "C4",
+          "S18",
+          "C25",
+          "C24",
+          "S1",
+          "S1",
+          "D0"
+        ]
+      },
+      {
+        "cost": 98.82737731933594,
+        "cost_components": [
+          98.82737731933594,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "feasible": true,
+        "nodes": [
+          "D0",
+          "C61",
+          "S11",
+          "C38",
+          "C86",
+          "C92",
+          "C95",
+          "S13",
+          "S13",
+          "S13",
+          "C94",
+          "D0"
+        ]
+      },
+      {
+        "cost": 714.119873046875,
+        "cost_components": [
+          126.10873413085938,
+          0.0,
+          0.0327911376953125,
+          5.847320556640625
+        ],
+        "feasible": false,
+        "nodes": [
+          "D0",
+          "S5",
+          "C32",
+          "C90",
+          "S6",
+          "C64",
+          "C49",
+          "C82",
+          "S9",
+          "D0"
+        ]
+      },
+      {
+        "cost": 106.75287628173828,
+        "cost_components": [
+          106.75287628173828,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "feasible": true,
+        "nodes": [
+          "D0",
+          "C21",
+          "C39",
+          "S18",
+          "C55",
+          "S19",
+          "C72",
+          "C73",
+          "C41",
+          "D0"
+        ]
+      }
+    ]
+  },
+  "external_wall_seconds": 28.74328329996206,
+  "instance": "r101_21",
+  "our_replay": {
+    "complete": false,
+    "distance": 1585.4264037715786,
+    "feasible": false,
+    "reason": "no charging/time witness: The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)",
+    "served": 89,
+    "vehicles": 19
+  },
+  "package_version": "unknown",
+  "runtime": 28.21640133857727,
+  "runtime_budget": 5.0,
+  "seed": 9,
+  "solver": "RoutingBlocks",
+  "status": "completed"
+}

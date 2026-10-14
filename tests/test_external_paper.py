@@ -11,9 +11,12 @@ from evrp.external.pyevrp_adapter import build_pyevrp_model
 from evrp.external.replay import replay_routes
 from evrp.external.routingblocks_adapter import run_routingblocks
 from evrp.external import routingblocks_worker
+from evrp.external import paper_campaign
+from evrp.external import paper_reporting
 from evrp.instance import distance, energy, load_instance, travel_time
 from evrp.reference import ReferenceSchedule
 from evrp.storage import BENCHMARK, ROOT
+from evrp.storage import save_json
 
 
 @pytest.fixture(scope="module")
@@ -140,3 +143,38 @@ def test_worker_propagates_seed_fleet_and_runtime_budget(reference_case, monkeyp
     routingblocks_worker.main()
     assert observed["args"][3:] == (fleet_size, 7, 30.0)
     assert observed["raw"]["status"] == "completed"
+
+
+def test_parallel_external_manifest_is_complete_and_sorted(tmp_path, monkeypatch):
+    monkeypatch.setattr(paper_campaign, "ROOT", tmp_path)
+    monkeypatch.setattr(paper_campaign, "load_config", lambda path: {
+        "static_instances": ["c101_21"], "static_seeds": [0, 1],
+        "external_runtime_seconds": [5]})
+
+    def fake_case(name, seed, budget, examples, external_python, output):
+        path = output / f"{name}_seed{seed}_budget{budget}.json"
+        save_json(path, {"instance": name, "seed": seed})
+        return path, {"status": "failed", "error": "test failure"}, 100
+
+    monkeypatch.setattr(paper_campaign, "_routingblocks_case", fake_case)
+    path = paper_campaign.run_static_routingblocks(Path("examples"), workers=2)
+    manifest = paper_campaign.load_json(path)
+    assert len(manifest["records"]) == 2
+    assert [item["path"] for item in manifest["records"]] == sorted(
+        item["path"] for item in manifest["records"])
+
+
+def test_replay_quality_is_separate_from_strict_runtime_cutoff(tmp_path, monkeypatch):
+    monkeypatch.setattr(paper_reporting, "OUT", tmp_path)
+    monkeypatch.setattr(paper_reporting, "_raw", lambda path: [])
+    save_json(tmp_path / "raw/routingblocks/c101_21_seed0_budget30.json", {
+        "status": "completed", "instance": "c101_21", "seed": 0,
+        "runtime_budget": 30, "runtime": 30.1, "external_wall_seconds": 30.5,
+        "budget_respected": False, "external": {"feasible": True, "cost": 1050},
+        "our_replay": {"feasible": True, "complete": True, "served": 100,
+                       "vehicles": 12, "distance": 1050, "reason": ""}})
+    rows = paper_reporting._static()
+    assert len(rows) == 1
+    assert rows[0]["success_rate"] == 1
+    assert rows[0]["strict_budget_success_rate"] == 0
+    assert rows[0]["distance_mean_complete"] == 1050

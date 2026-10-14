@@ -1,0 +1,984 @@
+{
+  "phase": "holdout",
+  "protocol": {
+    "campaign_sha256": "9c0c7512c8e4002e554c03572af4766020869f85cee7c5604eaf4cd38ea87156",
+    "controller_sha256": "a28ef410ebed72331815b49f954f907809637266d24e47043810dd96779a9817",
+    "git_sha": "8595dd6c043e35f06b350846aaf8226bdf651669",
+    "protocol_sha256": "7c4caf59c3176447ef70a658296a2250ce95f48a0c135d138dc6fa9c1c16cd12",
+    "source_sha256": "4cdead8ab9956362ba9921c0818b7bcc9690487ab11ba001d087abebe43176b6"
+  },
+  "records": [
+    {
+      "path": "results\\paper\\raw\\holdout\\c109_21_FLEET_MPC_MCTS_47b335b33bad2360844a.json",
+      "scenario_hash": "c9f0638cdea90c6230480f3b1160a404326f68aac0e23a1641258f7434eb3263",
+      "sha256": "26279bbdb1d4e035760719b062c76b8e2bfcc9c3a8f2e9556d4d3cc155feb54a",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\c109_21_FLEET_MPC_COMPLETION_ONLY_f9a516b9678d86953b20.json",
+      "scenario_hash": "c9f0638cdea90c6230480f3b1160a404326f68aac0e23a1641258f7434eb3263",
+      "sha256": "aa4ebc4ae63c3b3679e16d1552d96df7033a16ceb6be55767b57448370762317",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\c109_21_RH_REGRET_0e002b0e3f8c68bf2986.json",
+      "scenario_hash": "c9f0638cdea90c6230480f3b1160a404326f68aac0e23a1641258f7434eb3263",
+      "sha256": "393a951b01ca7a4d5782fc52f123fffb7eefcf679106a9a8c9e017869ed2c4ef",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\c109_21_FLEET_MPC_MCTS_8857073e10ad099d400e.json",
+      "scenario_hash": "d9a45d7b76deab6523566e4a3e0aa66f1c516147e49c1e06b8ce998f0a880202",
+      "sha256": "19f774d3552114dd1a1a46f23d79971884a9193227a91dde9735ef22d3e31a61",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\c109_21_FLEET_MPC_COMPLETION_ONLY_2348a3b8cbf2cb428ded.json",
+      "scenario_hash": "d9a45d7b76deab6523566e4a3e0aa66f1c516147e49c1e06b8ce998f0a880202",
+      "sha256": "9bfd7f30c4ed46939132170df926c991939de684f571d5ad4bc41b3f11b2e58d",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\c109_21_RH_REGRET_c6f7cdbd0bec41bea154.json",
+      "scenario_hash": "d9a45d7b76deab6523566e4a3e0aa66f1c516147e49c1e06b8ce998f0a880202",
+      "sha256": "3a4a0b49d1d20c86a802578d6bda5df7542e7f6dd0e6969d944e0bc1340fc4eb",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\c109_21_FLEET_MPC_MCTS_f3de04907c93606338d1.json",
+      "scenario_hash": "c4a6cd189172dc621321e8ec623fb49cc325fb2eeddc11b5365039958245df26",
+      "sha256": "2ae60baaf28a63c10427de1fb5e02a6da6641e9a3c10c5ff00c5c2e4a765aa97",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\c109_21_FLEET_MPC_COMPLETION_ONLY_8f8cebcafafbd3b8d519.json",
+      "scenario_hash": "c4a6cd189172dc621321e8ec623fb49cc325fb2eeddc11b5365039958245df26",
+      "sha256": "03a2f25039cbefcca94f9e7fc2ea1775a78d42893d937baf4a45159904e6747f",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\c109_21_RH_REGRET_9890201552351e9f4b8a.json",
+      "scenario_hash": "c4a6cd189172dc621321e8ec623fb49cc325fb2eeddc11b5365039958245df26",
+      "sha256": "07433ed41830efc237029cf1d25a5cde3f521444f19df27e3ef6c32d7f66a7fc",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\c109_21_FLEET_MPC_MCTS_655133eeaa46883bc9ea.json",
+      "scenario_hash": "2d7481bfe4584024e0281b0a46ab0ff8e28b7fd483d4cba8197537b8598bf6c3",
+      "sha256": "dcc3614b53ac364a36f7b931498e3b4c6926b7e6b19b5bd4b793cc7e7d1f0f76",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\c109_21_FLEET_MPC_COMPLETION_ONLY_e6cab8943b635c60eea2.json",
+      "scenario_hash": "2d7481bfe4584024e0281b0a46ab0ff8e28b7fd483d4cba8197537b8598bf6c3",
+      "sha256": "c739248edd141f771f6dca0c8877dee9db2a7bd10556b0f79e167061b36f8a98",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\c109_21_RH_REGRET_624ec0232eb1f3fd9f59.json",
+      "scenario_hash": "2d7481bfe4584024e0281b0a46ab0ff8e28b7fd483d4cba8197537b8598bf6c3",
+      "sha256": "d576157d0a88355862039a4d0543c0825c24196f393bc0d71f9d0ad2450ddb6b",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\c109_21_FLEET_MPC_MCTS_a0304a1e442a7a9f9183.json",
+      "scenario_hash": "e17a6cd3c034df267ce886dc17221778388b31875d35653ff5c2051cfa9a1a7a",
+      "sha256": "c7c741402814806876b78e0c1a698dc1d7e7bd60b15756c1da74402dd07c6e94",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\c109_21_FLEET_MPC_COMPLETION_ONLY_580ccf0c5e06954c2585.json",
+      "scenario_hash": "e17a6cd3c034df267ce886dc17221778388b31875d35653ff5c2051cfa9a1a7a",
+      "sha256": "9db8992e15120fb7338b548fb9c1ff50375815ec8f7c351d96e9e973f7159aca",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\c109_21_RH_REGRET_85fa8adb51b28154f63b.json",
+      "scenario_hash": "e17a6cd3c034df267ce886dc17221778388b31875d35653ff5c2051cfa9a1a7a",
+      "sha256": "41f37901ccdbc5b106a15ee9e7ebbfccd093d811693552859a8549f52260c427",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\c109_21_FLEET_MPC_MCTS_b8a6c405ceb4d7324aa8.json",
+      "scenario_hash": "97948e84e7ccf9da0427b5be48999814d56f80b6dcce73ced539f49724c02302",
+      "sha256": "a0b7fef698d7c6026315365356f21789443ffd13f70d949d200bf4b6fc47192b",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\c109_21_FLEET_MPC_COMPLETION_ONLY_6178b62056a0b59b2912.json",
+      "scenario_hash": "97948e84e7ccf9da0427b5be48999814d56f80b6dcce73ced539f49724c02302",
+      "sha256": "ee1ec1c5983a041902fd0166719fe4aa490ea42ee90eb33f9094dfd6cf2c0264",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\c109_21_RH_REGRET_fa7169b8ac6476938a97.json",
+      "scenario_hash": "97948e84e7ccf9da0427b5be48999814d56f80b6dcce73ced539f49724c02302",
+      "sha256": "f3c79bd9a298202bc30689ab9405af6884f3b5e32e9dc2aafc6cddb1eba43c37",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\c109_21_FLEET_MPC_MCTS_4b13f69702cb42dadf85.json",
+      "scenario_hash": "67bfa4e0433fcde6a2ed8464f386af88e0db55ac625244f57bc1daf6784c293d",
+      "sha256": "75ab143755b09101eef092ac9aefd1106dce59103327393522d7083fc0572141",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\c109_21_FLEET_MPC_COMPLETION_ONLY_3265f170d6a12ae68a62.json",
+      "scenario_hash": "67bfa4e0433fcde6a2ed8464f386af88e0db55ac625244f57bc1daf6784c293d",
+      "sha256": "d0539ecc13f85c30d07d07d3642c194e0d63dc05fde2a215dda51cfbc1ebab2d",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\c109_21_RH_REGRET_f05ad151ae74dc9493ff.json",
+      "scenario_hash": "67bfa4e0433fcde6a2ed8464f386af88e0db55ac625244f57bc1daf6784c293d",
+      "sha256": "448500a22d7f9ea128c2a63eacbc35cc18ef4c621f74aae22219167ad255d266",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\c109_21_FLEET_MPC_MCTS_3caa5f0e77a1c706bb93.json",
+      "scenario_hash": "32423b9b729ecfdc9cd98ec42254928efe6a167b6e297bbe196186ffe41c1a43",
+      "sha256": "9ecd38fc166353544dfca7aa344a93addbd53e0b4cc23b5640963e0c3a510aca",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\c109_21_FLEET_MPC_COMPLETION_ONLY_8db52ffcd7f817826527.json",
+      "scenario_hash": "32423b9b729ecfdc9cd98ec42254928efe6a167b6e297bbe196186ffe41c1a43",
+      "sha256": "da0ee67b2970b034c88904d1bb169867c60ce42e9f10c6993bf2a5453dc7320e",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\c109_21_RH_REGRET_5fe6691250067a74e8d5.json",
+      "scenario_hash": "32423b9b729ecfdc9cd98ec42254928efe6a167b6e297bbe196186ffe41c1a43",
+      "sha256": "7d27e43f96cf7f1f98b02df2d3ddb707430878ac6de047416b54a67a5804d999",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\c109_21_FLEET_MPC_MCTS_de7276b635e38c15b4e0.json",
+      "scenario_hash": "49cf5935d093d3a83091490f9556de641e4ffac807ae67714c1c4b6563fa3679",
+      "sha256": "e0e48073003becabe04e9228d96e06b4851e9f3fec6dab9ba432f7bcd83a4303",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\c109_21_FLEET_MPC_COMPLETION_ONLY_711ff56a2b3cd680c295.json",
+      "scenario_hash": "49cf5935d093d3a83091490f9556de641e4ffac807ae67714c1c4b6563fa3679",
+      "sha256": "08a3608bd169192905c1001e87d5626c5a41ea230434cadf807418bb5147206a",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\c109_21_RH_REGRET_6b1c50e8c98775e08bfc.json",
+      "scenario_hash": "49cf5935d093d3a83091490f9556de641e4ffac807ae67714c1c4b6563fa3679",
+      "sha256": "bbdc8049bd42d08fc3cd4d56da2bab68873a1d647177ebb357ede35fe22dcd83",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\c208_21_FLEET_MPC_MCTS_26e5e0ad50b23a084d08.json",
+      "scenario_hash": "fb27dcf59c91312144527d5be3fa853bdbd6eea855c8c832c3bb50e3e7f60981",
+      "sha256": "5c71311c0d142697b7b5009fbe6bdaf3800b4675c9dccc77b11174aa778d0f36",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\c208_21_FLEET_MPC_COMPLETION_ONLY_ac4fba31699c0fa870fc.json",
+      "scenario_hash": "fb27dcf59c91312144527d5be3fa853bdbd6eea855c8c832c3bb50e3e7f60981",
+      "sha256": "d6b408a1b4cdac5aa9a921d4d01aa5566be67702fcacd203d9dd2363471be250",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\c208_21_RH_REGRET_30de479c4c9ebecd3b64.json",
+      "scenario_hash": "fb27dcf59c91312144527d5be3fa853bdbd6eea855c8c832c3bb50e3e7f60981",
+      "sha256": "50145d123427904b468313bcfd4c83ad7c0523fcca98bfff3f96e80775057a7f",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\c208_21_FLEET_MPC_MCTS_391453900a1b110fd47f.json",
+      "scenario_hash": "0064d2b34e20900a5d6c569880db6bf20a40a8a517e7388cc4f3ef315f2b7e50",
+      "sha256": "e5b94658ebeef054c99e6f63d549bff6185e4e43b18a9a0757ec9dca872705b6",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\c208_21_FLEET_MPC_COMPLETION_ONLY_0c9baec7b291bcbf7a45.json",
+      "scenario_hash": "0064d2b34e20900a5d6c569880db6bf20a40a8a517e7388cc4f3ef315f2b7e50",
+      "sha256": "08a76825b6f6a5cd3981dfcfcef43d9fdb86bb2a82786a7c47b6dec32404ef47",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\c208_21_RH_REGRET_817a21cca80bc67b2c90.json",
+      "scenario_hash": "0064d2b34e20900a5d6c569880db6bf20a40a8a517e7388cc4f3ef315f2b7e50",
+      "sha256": "8d0c8b98034bf6bb62172a15d31e6a059a5687de621c784d30234418221c861c",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\c208_21_FLEET_MPC_MCTS_8453e2e8e36d78a59d16.json",
+      "scenario_hash": "857299e3108b113864e90e0eb0d3ecdf56768dbafc9370e4da3c00156203efc6",
+      "sha256": "d8e6664e0eaf7f33d4aa19b5a580a2a0f23c42a024e128dec973d46f00a5520d",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\c208_21_FLEET_MPC_COMPLETION_ONLY_af20506119e340d21d81.json",
+      "scenario_hash": "857299e3108b113864e90e0eb0d3ecdf56768dbafc9370e4da3c00156203efc6",
+      "sha256": "ea1f3edf86488527c0e67481fcc4a4b6a7e2a8122384d9dbfda1239e245ff4d7",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\c208_21_RH_REGRET_390c2bd885ebb1606dd1.json",
+      "scenario_hash": "857299e3108b113864e90e0eb0d3ecdf56768dbafc9370e4da3c00156203efc6",
+      "sha256": "521eaf0570cf98395c4da382e115c9bc835b82952debd76de7fb563951143459",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\c208_21_FLEET_MPC_MCTS_7d7a6f466fe4a4137233.json",
+      "scenario_hash": "dd13850e5a4f0617eae79cd862fe9bb53d2688907365f5f526dec3b80f6ee63e",
+      "sha256": "036c09a067f628333ffd4ccb43d932bd2e368bd007ebf7a1f47dd8b636592552",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\c208_21_FLEET_MPC_COMPLETION_ONLY_aef1fe153023c1766101.json",
+      "scenario_hash": "dd13850e5a4f0617eae79cd862fe9bb53d2688907365f5f526dec3b80f6ee63e",
+      "sha256": "8bbe144c195a34abc62ec116ea6631778fd96f1c94bfd4dcf08485e33446d053",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\c208_21_RH_REGRET_5d3aac7c7cc5a28ac7cb.json",
+      "scenario_hash": "dd13850e5a4f0617eae79cd862fe9bb53d2688907365f5f526dec3b80f6ee63e",
+      "sha256": "ea35e4aebdc358a9ed67644194f06b8678fe391bce53e8c48ef9893e64f59c8b",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\c208_21_FLEET_MPC_MCTS_b6bcdcf219269a13fa02.json",
+      "scenario_hash": "11d316cdbce3ab6cb783e760d42063e1777c9f48f3c5247e3bd68a444579a9b6",
+      "sha256": "3272a596fef35b1437b891dc9d538ba8ca91901e9aeaff84fa2f998964400b3b",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\c208_21_FLEET_MPC_COMPLETION_ONLY_a65f8918f91f70e088f9.json",
+      "scenario_hash": "11d316cdbce3ab6cb783e760d42063e1777c9f48f3c5247e3bd68a444579a9b6",
+      "sha256": "0e1e40868397a1351fc15af6bbd917fe02da1f9c11665b31dcbc7517414a2850",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\c208_21_RH_REGRET_a10e13179145680c4a61.json",
+      "scenario_hash": "11d316cdbce3ab6cb783e760d42063e1777c9f48f3c5247e3bd68a444579a9b6",
+      "sha256": "eb6b79c7e05dd5a6408966a2d5f9f600e9abf562574f31a83163065596fb187f",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\c208_21_FLEET_MPC_MCTS_60e6b82ad7cf00852a63.json",
+      "scenario_hash": "89cf381a8b316951a156c431d19942577f6a9dd0f83bcf0adc458ce979cb2106",
+      "sha256": "1161a2d0d38e60be6c633e121ee73336b2a07a3e61e80ef1fc4ce66027d8093f",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\c208_21_FLEET_MPC_COMPLETION_ONLY_bccffbca94416548e315.json",
+      "scenario_hash": "89cf381a8b316951a156c431d19942577f6a9dd0f83bcf0adc458ce979cb2106",
+      "sha256": "6a5e016065e8db8f4996ededd0bdb3bb9d9fa8da39f3414dd7a616855a60dbcc",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\c208_21_RH_REGRET_0943c7d660ef9dde2a9b.json",
+      "scenario_hash": "89cf381a8b316951a156c431d19942577f6a9dd0f83bcf0adc458ce979cb2106",
+      "sha256": "f920a16bcf7294d0ede62b44c132d6861545293f2ce79cf5c9dee8b22b3adce4",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\c208_21_FLEET_MPC_MCTS_468887b18a8a735fc9e4.json",
+      "scenario_hash": "e4966eb4c8496bff6d22068a3d7694fcde338c56188ecd3da175acfa6602cee4",
+      "sha256": "8b38d9b83b95a106bfdc574648b8663b013636d2f20ab3cc51ce90484516c4a4",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\c208_21_FLEET_MPC_COMPLETION_ONLY_9ec6203b4222b881119e.json",
+      "scenario_hash": "e4966eb4c8496bff6d22068a3d7694fcde338c56188ecd3da175acfa6602cee4",
+      "sha256": "0b39a6d4a0ffae658f0e776f882c51879a6a7c00a2560701c118ba777fc1b183",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\c208_21_RH_REGRET_a1e334f521c7c1f59f48.json",
+      "scenario_hash": "e4966eb4c8496bff6d22068a3d7694fcde338c56188ecd3da175acfa6602cee4",
+      "sha256": "8546e3852acd8c38b5c59a21e9f2ec30931ee35968a64516b8a06e323119584a",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\c208_21_FLEET_MPC_MCTS_6c35f828481aecc3bc6a.json",
+      "scenario_hash": "525955bc337b3c51bffb4b3b48407cdd0f44c9e740873daae0e767b71b383965",
+      "sha256": "35b851822379d8d0c78b2fc26eb791be76f154e4b0035e8ba5a8ba9d02f7a0be",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\c208_21_FLEET_MPC_COMPLETION_ONLY_0526874b6ade0a561d34.json",
+      "scenario_hash": "525955bc337b3c51bffb4b3b48407cdd0f44c9e740873daae0e767b71b383965",
+      "sha256": "ea2b90eed36efd2e5e009682275ebe8cd3af248359b1c09430aaacd746f68813",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\c208_21_RH_REGRET_6b9c8dc777c27d48a3a7.json",
+      "scenario_hash": "525955bc337b3c51bffb4b3b48407cdd0f44c9e740873daae0e767b71b383965",
+      "sha256": "0832f9b721fba1156bd2b04c043cd1d327dbf068bb92d528e30e38fd1cfd97a5",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\c208_21_FLEET_MPC_MCTS_db0ed18b676eb7e3b145.json",
+      "scenario_hash": "d0243534719bf32b28fe8826b44dc4c91e3ccb18a14bf95c0337b6453e6416b6",
+      "sha256": "fe19f7b7a4a3bc17f0baa9809fa5c379df029bd9eafe828695495a8aee2a4c2e",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\c208_21_FLEET_MPC_COMPLETION_ONLY_730efa11b1083aad501d.json",
+      "scenario_hash": "d0243534719bf32b28fe8826b44dc4c91e3ccb18a14bf95c0337b6453e6416b6",
+      "sha256": "10eb4cee20ff0a381169305d211acb7fdad7a7d2ff26515488c9e2c901413387",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\c208_21_RH_REGRET_81516d98c5eddeb305de.json",
+      "scenario_hash": "d0243534719bf32b28fe8826b44dc4c91e3ccb18a14bf95c0337b6453e6416b6",
+      "sha256": "a2448185a08e329118f5e6b268aa5e7f620dd557953097d191ada70ccd8b2791",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\r112_21_FLEET_MPC_MCTS_b89f83804a8ef3440a3c.json",
+      "scenario_hash": "fe5a81f8226b5fa2b97fb340d4f6218e5e8a99894f38350fa48163b4ff1248f3",
+      "sha256": "b7bafda31832b8372c8e1535eda72b456c3dd0c6d3bdd154529771bd9a8191e5",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\r112_21_FLEET_MPC_COMPLETION_ONLY_0f8f7c3f60123b80e13c.json",
+      "scenario_hash": "fe5a81f8226b5fa2b97fb340d4f6218e5e8a99894f38350fa48163b4ff1248f3",
+      "sha256": "c1d58e04557cb7a3f61e0af5896c72a78deb25db406092900c12e6d64fd53f9a",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\r112_21_RH_REGRET_5883f83a56d4f705fd0e.json",
+      "scenario_hash": "fe5a81f8226b5fa2b97fb340d4f6218e5e8a99894f38350fa48163b4ff1248f3",
+      "sha256": "6c8d46d6bf132452a71477021fde95c07925b909cf45c7525ac618306bb66f53",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\r112_21_FLEET_MPC_MCTS_c0999a98db67336ca2eb.json",
+      "scenario_hash": "02c97ad1bd7856d2c9e50755ff77f837c888f8287bff020493bf538de0158c56",
+      "sha256": "8a311b92873dc10961b3c2d6b5b7386cfc46ce03dfccd5baddf110bcf79fc024",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\r112_21_FLEET_MPC_COMPLETION_ONLY_14922a1dc7c26029a04a.json",
+      "scenario_hash": "02c97ad1bd7856d2c9e50755ff77f837c888f8287bff020493bf538de0158c56",
+      "sha256": "6ac0b186496a0add63cb6502c4843e199f9c820e7a5cd467803423c014477444",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\r112_21_RH_REGRET_b377ab4dfcfbe4ec2ad7.json",
+      "scenario_hash": "02c97ad1bd7856d2c9e50755ff77f837c888f8287bff020493bf538de0158c56",
+      "sha256": "44d5ededcbc68b9d218cc8a90af78459e07e09c191d1b5245ead5d62515b808a",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\r112_21_FLEET_MPC_MCTS_e736053ceaeb3ce3ebb6.json",
+      "scenario_hash": "065554a4c1cf96106e4b1af61ed9c6d390aee406bf8df09f525ac7444800c809",
+      "sha256": "4f7a7e20ea18ab6ada13689b6aadb91d2b3df9df3fdbdafaf60bec39c2988bff",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\r112_21_FLEET_MPC_COMPLETION_ONLY_b3c0c2174464e6e8ebe5.json",
+      "scenario_hash": "065554a4c1cf96106e4b1af61ed9c6d390aee406bf8df09f525ac7444800c809",
+      "sha256": "b92fd27f0adbd937cbd1ba2441a44e19fdf534ecddaac6992bec01f026807793",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\r112_21_RH_REGRET_0d55bdbbdb99495e0d7e.json",
+      "scenario_hash": "065554a4c1cf96106e4b1af61ed9c6d390aee406bf8df09f525ac7444800c809",
+      "sha256": "b8ff9b23999a0b9887f883e5bbe79bbfa4d46d908b07c3ea03da4dc06616062d",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\r112_21_FLEET_MPC_MCTS_fe19364ccc0f5038fc00.json",
+      "scenario_hash": "f9720c646dd2848678be055d2f9c15a146d45ca197b2a30855c47a35ff7e9991",
+      "sha256": "0b949785fc68a53aa203db72b057699715386c54774c1e23f2f2975b1f62720b",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\r112_21_FLEET_MPC_COMPLETION_ONLY_e4aa497103721a711d63.json",
+      "scenario_hash": "f9720c646dd2848678be055d2f9c15a146d45ca197b2a30855c47a35ff7e9991",
+      "sha256": "b3b6eef2c30b641a056f9507d53515cd070f6c55f4883db2bb9f366bf1ac3f73",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\r112_21_RH_REGRET_0d7dd39de77d134be7d3.json",
+      "scenario_hash": "f9720c646dd2848678be055d2f9c15a146d45ca197b2a30855c47a35ff7e9991",
+      "sha256": "8c7bb5a6b0b7368edb5f06bebed4042da74b3ada9841a6f5b2198e4bbb2f7a5e",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\r112_21_FLEET_MPC_MCTS_d0b3e0ff706c70085929.json",
+      "scenario_hash": "e9ffc31fa2a6cf8d41d13093537da9b7473fa24e98ca487e94e143545e354007",
+      "sha256": "01fb83798e6b107e5098616186746d3cf4c3150849dd73f2254f672244c6a3ff",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\r112_21_FLEET_MPC_COMPLETION_ONLY_ed150d617870a24d3db4.json",
+      "scenario_hash": "e9ffc31fa2a6cf8d41d13093537da9b7473fa24e98ca487e94e143545e354007",
+      "sha256": "3067ed3625113bf5ee2fa34e08edec8ed05d94a97d43a6b516baa45682833ace",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\r112_21_RH_REGRET_5c0854499c2cb970123b.json",
+      "scenario_hash": "e9ffc31fa2a6cf8d41d13093537da9b7473fa24e98ca487e94e143545e354007",
+      "sha256": "14892e5f5d56bb5902b7ec0d7f4836d260c8f15fc508c87f8e06ce2e6b11b188",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\r112_21_FLEET_MPC_MCTS_911580637ff64c7f133d.json",
+      "scenario_hash": "4f3ffd8033230410ae97b5197bdffc157c42e5aae52e2d2d82246cd40b75576a",
+      "sha256": "c28781af24a2058ec1e64c503657cd2a27496713d409505b63c4373ce8bce4ad",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\r112_21_FLEET_MPC_COMPLETION_ONLY_680cfb40bd39f622f3f1.json",
+      "scenario_hash": "4f3ffd8033230410ae97b5197bdffc157c42e5aae52e2d2d82246cd40b75576a",
+      "sha256": "7d7f630867319bbdd05180329e5c48873812eae49916019e713c57222ba0e534",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\r112_21_RH_REGRET_ca80a2f4a65b4b373b13.json",
+      "scenario_hash": "4f3ffd8033230410ae97b5197bdffc157c42e5aae52e2d2d82246cd40b75576a",
+      "sha256": "6654c523c22416d283768a4643c402e8fc3dec4b292f948ee2108076daece56a",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\r112_21_FLEET_MPC_MCTS_579b646398718cbfb5f3.json",
+      "scenario_hash": "0f7bfe3567e1c09510a8313e06c4bb38d3def13ead0ef913d08392b1f2fc427b",
+      "sha256": "baf7f6250a52433fa3d46a5592002feabad130286a050d2aa3f3b806231b2509",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\r112_21_FLEET_MPC_COMPLETION_ONLY_21b7871ce8411de1ecd2.json",
+      "scenario_hash": "0f7bfe3567e1c09510a8313e06c4bb38d3def13ead0ef913d08392b1f2fc427b",
+      "sha256": "1b5dbdfa0a8ffc18d0927d1c07b55f8d0cbc17ce17d626bbf8b8a4fde06fb838",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\r112_21_RH_REGRET_a4afb6a098dbacd0106e.json",
+      "scenario_hash": "0f7bfe3567e1c09510a8313e06c4bb38d3def13ead0ef913d08392b1f2fc427b",
+      "sha256": "478981a24d31d8d20181e1d278dc933cb3f966a5632eafcd1ff4f7b37956f4ae",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\r112_21_FLEET_MPC_MCTS_0508e771cc0c202ce526.json",
+      "scenario_hash": "08fc47ae114d4735230d770e069f38fb339e562e522a2245ffa363f9edf0fbf4",
+      "sha256": "4e3e8ff6c32f02f3957b7944d3ade3f2e778e43e3613338981d3ab5cde6cc7f8",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\r112_21_FLEET_MPC_COMPLETION_ONLY_f2dddf0483a8cf5ff4e7.json",
+      "scenario_hash": "08fc47ae114d4735230d770e069f38fb339e562e522a2245ffa363f9edf0fbf4",
+      "sha256": "99cb095868b89b00c5fe1a223ca5aec6e232c32c21f90a27f96add281c0e8b13",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\r112_21_RH_REGRET_37fbef1be209992b4fab.json",
+      "scenario_hash": "08fc47ae114d4735230d770e069f38fb339e562e522a2245ffa363f9edf0fbf4",
+      "sha256": "091d11e9a831af49cb92548374c1ea1446205ef0f3ff6c3a80ccb92ca4441721",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\r112_21_FLEET_MPC_MCTS_8b2356f956bba222d2f6.json",
+      "scenario_hash": "d99733d58654604923188580aeab503eae0bab07a65f5a1b86c4298cb88ecbbd",
+      "sha256": "cdd792afb84a588c1770d24296fb2135e463dedabeada769358fe39953623fee",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\r112_21_FLEET_MPC_COMPLETION_ONLY_a3441bf35889a6998d4d.json",
+      "scenario_hash": "d99733d58654604923188580aeab503eae0bab07a65f5a1b86c4298cb88ecbbd",
+      "sha256": "f1ed150b0d351326150cd889246e21edfcdc1d899d2b832fc4a6c77a8998ec9f",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\r112_21_RH_REGRET_0772043f9fc1933b8acf.json",
+      "scenario_hash": "d99733d58654604923188580aeab503eae0bab07a65f5a1b86c4298cb88ecbbd",
+      "sha256": "f320b6474588e1fc0780d6bc74511d0e09b3c104e36055526af2ffeb4454dae5",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\r211_21_FLEET_MPC_MCTS_c338a5eec4b58d1cef60.json",
+      "scenario_hash": "0aa31b7ce20ed412ee459bdc59888e96081e5e6b29d99890639c9619361f1e73",
+      "sha256": "824f55d2c451d8c63248347d0c61d61446484c5c84d95e648338228c8b5543bb",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\r211_21_FLEET_MPC_COMPLETION_ONLY_b6a380d8970e84b4049f.json",
+      "scenario_hash": "0aa31b7ce20ed412ee459bdc59888e96081e5e6b29d99890639c9619361f1e73",
+      "sha256": "c710aa42ed0f8f48046bd391ecbc677896316a43853d0b49c665d56f900fc7dc",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\r211_21_RH_REGRET_d3bee118759404bee57c.json",
+      "scenario_hash": "0aa31b7ce20ed412ee459bdc59888e96081e5e6b29d99890639c9619361f1e73",
+      "sha256": "5611194e8fd07daba56c5bbe727e8462fca34706768c6468bba1cbfd71106b3d",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\r211_21_FLEET_MPC_MCTS_a6440cfeaa52f7599f09.json",
+      "scenario_hash": "f6f4dc4d2aafffb8dddd0f15d73dbabcd328dc6169dacdc36da4fb3e70ae03d5",
+      "sha256": "fe0ff0a24f746d90fa64f04c8049a684d67ad7e9372dafb693d78b4a72bb6c5e",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\r211_21_FLEET_MPC_COMPLETION_ONLY_b43ace88a96ab4888192.json",
+      "scenario_hash": "f6f4dc4d2aafffb8dddd0f15d73dbabcd328dc6169dacdc36da4fb3e70ae03d5",
+      "sha256": "315bf5bb3aac282e936e662a80e332d5b702a9dcd06a8498b3c40e9c1d0b1a72",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\r211_21_RH_REGRET_4ad94b568726b90b2380.json",
+      "scenario_hash": "f6f4dc4d2aafffb8dddd0f15d73dbabcd328dc6169dacdc36da4fb3e70ae03d5",
+      "sha256": "48ed910c059459de786c5506141b36f06faf56d011ac06819aab80a598174429",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\r211_21_FLEET_MPC_MCTS_c043ef7754f886ab938b.json",
+      "scenario_hash": "4512a964b9af67987d8caa70e613c5822ebe37b4f5adc7f729067abe3c0e44fc",
+      "sha256": "10d914ec9aba87ab6085244d7e286e4454b346fdd23812ba23fd78756ce9d64b",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\r211_21_FLEET_MPC_COMPLETION_ONLY_69b76af508470e5eb47a.json",
+      "scenario_hash": "4512a964b9af67987d8caa70e613c5822ebe37b4f5adc7f729067abe3c0e44fc",
+      "sha256": "2cd8d5c92dfe6e4718726680bc1bd43c8aa8fb9c6049644845f4b0c0fab454f9",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\r211_21_RH_REGRET_ea83fe923222d0db8f04.json",
+      "scenario_hash": "4512a964b9af67987d8caa70e613c5822ebe37b4f5adc7f729067abe3c0e44fc",
+      "sha256": "dc66a450ae83c0e774b8803a5b021fcf685ae22e4b898787ec53b71449fec9af",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\r211_21_FLEET_MPC_MCTS_eb58b4903491344cd545.json",
+      "scenario_hash": "2cdb77057c156f3f085166321a255400be0f429d147082ce57781704fa810469",
+      "sha256": "c2702b3ea4912eea037eebfe7f1b5a91f80cf2a56f0143a1ef4e3127ff9882f6",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\r211_21_FLEET_MPC_COMPLETION_ONLY_ac170018fa73f4a383b5.json",
+      "scenario_hash": "2cdb77057c156f3f085166321a255400be0f429d147082ce57781704fa810469",
+      "sha256": "1a7805d6968014258c94ff81bf5b267e31e50ce9cff543a05df9628fe06fde8d",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\r211_21_RH_REGRET_02b11632660fda544439.json",
+      "scenario_hash": "2cdb77057c156f3f085166321a255400be0f429d147082ce57781704fa810469",
+      "sha256": "977505dd746f2f362e2be372945e2ecd1673cace158c19e26f6ab17236fe88f9",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\r211_21_FLEET_MPC_MCTS_79a37a838c9ab5d22eb2.json",
+      "scenario_hash": "08cc6ebb54fc6c6d644681f55d3a42e7e85c66ad22b41e8ca5f764f6a846cb51",
+      "sha256": "7773402a65e9ba273e09faebc65529cdda15509a36d8576f33ee6bb9d5731778",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\r211_21_FLEET_MPC_COMPLETION_ONLY_42a2caae487f0c3702ed.json",
+      "scenario_hash": "08cc6ebb54fc6c6d644681f55d3a42e7e85c66ad22b41e8ca5f764f6a846cb51",
+      "sha256": "2c03e757192391b80dba8ca968a688ddde621fe3007e53a846c721b2985dec4b",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\r211_21_RH_REGRET_264a23bf8587aabc0173.json",
+      "scenario_hash": "08cc6ebb54fc6c6d644681f55d3a42e7e85c66ad22b41e8ca5f764f6a846cb51",
+      "sha256": "f32214133833de1f589dba52f10922b039b0ad8d147023a564f153cd5e967f6c",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\r211_21_FLEET_MPC_MCTS_e50991d9d26e42390bfc.json",
+      "scenario_hash": "c6ab06726f9544148b2ed54442e64eebf2d6c08c0d16fc732ccf69640d920b0c",
+      "sha256": "17e36b690d598ebb20de2cd3762d4afa1442380db95bcdb49f5a055be7d5937a",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\r211_21_FLEET_MPC_COMPLETION_ONLY_2a0703a2257d9a8fae1f.json",
+      "scenario_hash": "c6ab06726f9544148b2ed54442e64eebf2d6c08c0d16fc732ccf69640d920b0c",
+      "sha256": "446091c1bdb5b49ad64ae8b2f344bdbfd61db350c1c6cf999ece9471c81f84fc",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\r211_21_RH_REGRET_dfa32792b1988cfee09a.json",
+      "scenario_hash": "c6ab06726f9544148b2ed54442e64eebf2d6c08c0d16fc732ccf69640d920b0c",
+      "sha256": "d411bb41b17a4a4d06f97d09f2e23bf33a654a54d07efff5cfb43a7ec1cf52f7",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\r211_21_FLEET_MPC_MCTS_9cc2441a9eaeaa19280e.json",
+      "scenario_hash": "74aed83667a10bfc1cf90b71867225e176cd3fa351de838932a9f4c25afb0941",
+      "sha256": "7415349a55fe876adc4fbb38e2315686154d0628d13e3ce0bf679c5e5a8b8af5",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\r211_21_FLEET_MPC_COMPLETION_ONLY_924bba3036b77182db3f.json",
+      "scenario_hash": "74aed83667a10bfc1cf90b71867225e176cd3fa351de838932a9f4c25afb0941",
+      "sha256": "c951722c1f74b24722c839b20cb27144756b973d7d677ef164e786025ace3aab",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\r211_21_RH_REGRET_beb5619a082180ffa2dc.json",
+      "scenario_hash": "74aed83667a10bfc1cf90b71867225e176cd3fa351de838932a9f4c25afb0941",
+      "sha256": "22ef18f8a6a8895049a85c10234c18c488e8ec4b9b1d9cfcb2906f3f8de85f10",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\r211_21_FLEET_MPC_MCTS_2b461c2f1566d296498b.json",
+      "scenario_hash": "7615874873b4d86b98823a0ced6c9a443b862b0722d1beca6da86972950f4d7e",
+      "sha256": "767e6522563eff727c3f6441ee4a80f432c195ce4100335953ba85dff3a23bb3",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\r211_21_FLEET_MPC_COMPLETION_ONLY_d595e8cf8619ed9d9e61.json",
+      "scenario_hash": "7615874873b4d86b98823a0ced6c9a443b862b0722d1beca6da86972950f4d7e",
+      "sha256": "b09db9f36a01034304d714d4325b8a111ca76ab5258bd1da6dbd6500540e74bb",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\r211_21_RH_REGRET_6333e3efcf6a320f25bd.json",
+      "scenario_hash": "7615874873b4d86b98823a0ced6c9a443b862b0722d1beca6da86972950f4d7e",
+      "sha256": "c13f3d770ff1f89b50f0636524ccdbd31c4e5a618091d537cb870826b09db02b",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\r211_21_FLEET_MPC_MCTS_5ba73fd4d6cc13da3f8f.json",
+      "scenario_hash": "64486c816de11c63404fe52614c5f7d7d048941464372481561eba74a8caf75d",
+      "sha256": "d53ea079b6a0d842d2b4263e5ae54caa601f5a73e179ce6168e3a27a326ac016",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\r211_21_FLEET_MPC_COMPLETION_ONLY_70129438e77d21d8d6cc.json",
+      "scenario_hash": "64486c816de11c63404fe52614c5f7d7d048941464372481561eba74a8caf75d",
+      "sha256": "f9422f9f33e83851b643cba4dfd9ad65d10caac767c01d57a3a71c01e5ea5753",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\r211_21_RH_REGRET_028acf72b7c651f5ed2b.json",
+      "scenario_hash": "64486c816de11c63404fe52614c5f7d7d048941464372481561eba74a8caf75d",
+      "sha256": "33ca3174032a88c535216b36a5138c410b350dc6f304edeca03fa8164d7aef10",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\rc108_21_FLEET_MPC_MCTS_111e054c9e5c9060e2e7.json",
+      "scenario_hash": "0b5c817017c6d2b45ce451be8d24f81bcafd21e8394471518856f85f34bcc33d",
+      "sha256": "3f4ea13182cd7a0852adefcc9d7b2dcaaf4fa6ae49e596c2f5bd286f0283ccc9",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\rc108_21_FLEET_MPC_COMPLETION_ONLY_1eb823ab835d9a78cffd.json",
+      "scenario_hash": "0b5c817017c6d2b45ce451be8d24f81bcafd21e8394471518856f85f34bcc33d",
+      "sha256": "65c98112bdb8e5701db2b9df9d6498772054fdd5a0465c7538a34218f84b7ec7",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\rc108_21_RH_REGRET_704bcc66dd7c797cd262.json",
+      "scenario_hash": "0b5c817017c6d2b45ce451be8d24f81bcafd21e8394471518856f85f34bcc33d",
+      "sha256": "38e5a4a3c2262e923f84decf0eb890c3ee7c0714a9f4bd9f9aaba07de3ffc068",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\rc108_21_FLEET_MPC_MCTS_f814f61d4f31c6ab5477.json",
+      "scenario_hash": "2935022cbf9162afdea42efb9825be1f8e828b4500a1c35744296a60aca1a15f",
+      "sha256": "601b78ec5567d8b7d409a3a7e436e5c8d7331f931aabbec4404e3b7c0df8b73b",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\rc108_21_FLEET_MPC_COMPLETION_ONLY_9a5785cc473e0f0c80d4.json",
+      "scenario_hash": "2935022cbf9162afdea42efb9825be1f8e828b4500a1c35744296a60aca1a15f",
+      "sha256": "036f22cf3bf1d7b128f8086238b91d27b420f8dfe258ee76313aa6a7f4730697",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\rc108_21_RH_REGRET_f326a7a7430449b50a5d.json",
+      "scenario_hash": "2935022cbf9162afdea42efb9825be1f8e828b4500a1c35744296a60aca1a15f",
+      "sha256": "dd1a3867cde35007140fe2770f01d3d096ac4ffcf3b544e083590b44fd6b1b68",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\rc108_21_FLEET_MPC_MCTS_5c2985515aa7aaf6726e.json",
+      "scenario_hash": "6a530fcbb3b6ced88faed51a60326f6d984806db5325eb432abd129ae7ee8d77",
+      "sha256": "a8ec6ee1687ec39cf8077bc06d20dec88d59878f18d86b76db0b339ab38fef28",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\rc108_21_FLEET_MPC_COMPLETION_ONLY_cf0ee9d0cf606fdba82f.json",
+      "scenario_hash": "6a530fcbb3b6ced88faed51a60326f6d984806db5325eb432abd129ae7ee8d77",
+      "sha256": "20a7a12ffec30fe94295ea8cbe2459c81f1dde69da8b4350a561a5c49f8f5e97",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\rc108_21_RH_REGRET_ca8f372b10f8e0d6f953.json",
+      "scenario_hash": "6a530fcbb3b6ced88faed51a60326f6d984806db5325eb432abd129ae7ee8d77",
+      "sha256": "7ae0d15321b00c2a4c5accdfe681878b144156bd2716e927359aa63798f8cfe1",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\rc108_21_FLEET_MPC_MCTS_17a3265ab0dd23c23b67.json",
+      "scenario_hash": "f06925037622c36d6ce86689e326fd0209dc6a45ea5aba1420c90684a8e61222",
+      "sha256": "fc1b615906dad6fe3bb4fc1037f78174d6f76bc93f0164abd551374a72596b2e",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\rc108_21_FLEET_MPC_COMPLETION_ONLY_967f4c30f1e168f5546c.json",
+      "scenario_hash": "f06925037622c36d6ce86689e326fd0209dc6a45ea5aba1420c90684a8e61222",
+      "sha256": "7cbb82737a817950ed6e972cc39654d08fa547cabd6dde3c9ced987dbd76c2b8",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\rc108_21_RH_REGRET_d71efeb0c1490e6ece9d.json",
+      "scenario_hash": "f06925037622c36d6ce86689e326fd0209dc6a45ea5aba1420c90684a8e61222",
+      "sha256": "7c4d84666543deb5dd2f5a89e3ac6527dafcc825838af9cb51eeac131be67f26",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\rc108_21_FLEET_MPC_MCTS_9cdb54421a02c8841a2d.json",
+      "scenario_hash": "712f27d0f39696897704f36dac63cde2fe4a60e55acc74db6d5ca37ad084c922",
+      "sha256": "3ca79e4c3e7eeb93853aed30a7555042710b0aba4b986188f0c3739adffb6c04",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\rc108_21_FLEET_MPC_COMPLETION_ONLY_0eab9d1c96445919c8ac.json",
+      "scenario_hash": "712f27d0f39696897704f36dac63cde2fe4a60e55acc74db6d5ca37ad084c922",
+      "sha256": "a4ad614ed299681b9b38e63182685c9ebc7879f14e03f4b8b1e089df0fd0d897",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\rc108_21_RH_REGRET_4f908a4bb1ff986b3bb6.json",
+      "scenario_hash": "712f27d0f39696897704f36dac63cde2fe4a60e55acc74db6d5ca37ad084c922",
+      "sha256": "e7e5e3718a6b52df0bc3e4f72527703dab9083f945bb72032db1747518c34bdd",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\rc108_21_FLEET_MPC_MCTS_4ca71671e53822ff2719.json",
+      "scenario_hash": "def52a586704d075e560d0d6636aaa170e9bfb76a035a4a2a998214dab7dc08b",
+      "sha256": "22cb89070bfd031302661d56129bcc541d5e1417fbc49032fe40fff02fe53e83",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\rc108_21_FLEET_MPC_COMPLETION_ONLY_e665ddbb75e0e4e00eaa.json",
+      "scenario_hash": "def52a586704d075e560d0d6636aaa170e9bfb76a035a4a2a998214dab7dc08b",
+      "sha256": "cccfeff23304fdff17a86bd475937e0f5685c70e8d5781ad4e7dee9b1df15bdc",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\rc108_21_RH_REGRET_7e787907a84a60a13989.json",
+      "scenario_hash": "def52a586704d075e560d0d6636aaa170e9bfb76a035a4a2a998214dab7dc08b",
+      "sha256": "733eff67dfa86580430125af7f54b24a0b7370ec6a2fbec78f24949830eb8f3b",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\rc108_21_FLEET_MPC_MCTS_a396e93b940b9163222d.json",
+      "scenario_hash": "902f8085095247d3e5f32b1372ac8cf5658be2b045d2c8ccb56f304ed28e9126",
+      "sha256": "15970149d57751ce4bae7c14dd4cf130c4eaf5c3a87452e33f394b63f102b203",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\rc108_21_FLEET_MPC_COMPLETION_ONLY_159269fd0db066ba7e4f.json",
+      "scenario_hash": "902f8085095247d3e5f32b1372ac8cf5658be2b045d2c8ccb56f304ed28e9126",
+      "sha256": "438cad096917b497dac99b27e9cf3d9d14e8fc748df08f776cea17190048a437",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\rc108_21_RH_REGRET_4fa03c7e48e95750d141.json",
+      "scenario_hash": "902f8085095247d3e5f32b1372ac8cf5658be2b045d2c8ccb56f304ed28e9126",
+      "sha256": "1b107950c79c77aeb64d9b16f968598cf040d5e8b55d11a595bfb733b4d6172a",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\rc108_21_FLEET_MPC_MCTS_f179c79cd90170fa3372.json",
+      "scenario_hash": "f5bfab69310f526cba665db1aaf82bf73a394ea39454305566501c5c17665ff4",
+      "sha256": "a65fc2552d07129ce1bdbed719aa01160f780e6c73a2292624925593a90a2992",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\rc108_21_FLEET_MPC_COMPLETION_ONLY_a33e9ce21fe0a384afc5.json",
+      "scenario_hash": "f5bfab69310f526cba665db1aaf82bf73a394ea39454305566501c5c17665ff4",
+      "sha256": "90767b53a21dfaa61152e6cf7e6eb1eeff6a5021ef8337394dc8308f3f9d16d4",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\rc108_21_RH_REGRET_bd187ac9a9a3c3e4df42.json",
+      "scenario_hash": "f5bfab69310f526cba665db1aaf82bf73a394ea39454305566501c5c17665ff4",
+      "sha256": "6aa5ebc7e8256a448f154181df27de81563e72ef806fcfc877a40fd276dec79f",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\rc108_21_FLEET_MPC_MCTS_bb2a5f71e965ad30c9cf.json",
+      "scenario_hash": "ae62e7a6aff051c7b4c5a8660c776dbcedcba4ad3979318efebd53d93f9d6ff5",
+      "sha256": "27d4862f365ee4b0d11ebde9ec6b5af2ab104c3de415fa2ae141d898106f71ba",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\rc108_21_FLEET_MPC_COMPLETION_ONLY_3aa067637ef42402438b.json",
+      "scenario_hash": "ae62e7a6aff051c7b4c5a8660c776dbcedcba4ad3979318efebd53d93f9d6ff5",
+      "sha256": "b6d88a1d3a90b9df81ca9e47eef93141dcef89d192d9d9c4759fbfa997637a42",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\rc108_21_RH_REGRET_cc44f85ee01b2459c87f.json",
+      "scenario_hash": "ae62e7a6aff051c7b4c5a8660c776dbcedcba4ad3979318efebd53d93f9d6ff5",
+      "sha256": "8d2f57f524700c9a82a625a27a82aaf68fc0c3962dfd9d73907ef34d4b8226b7",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\rc208_21_FLEET_MPC_MCTS_4def9e623adfefaebbfd.json",
+      "scenario_hash": "157677d86f2840296a0c72d7813dbadc67ed7165b2756aca612650cdaefac1d9",
+      "sha256": "b1827d079f7a1226173ac020e5b2a4f0a4be93186de4dc20ef259f868487dfc7",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\rc208_21_FLEET_MPC_COMPLETION_ONLY_9a6f19216566d10abeb2.json",
+      "scenario_hash": "157677d86f2840296a0c72d7813dbadc67ed7165b2756aca612650cdaefac1d9",
+      "sha256": "52b9fcb77d29116a58da6a64e0df3cc8d70f9e8fe780f0cae958a0c46eb078fb",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\rc208_21_RH_REGRET_a92b0b0c230f8fdef54d.json",
+      "scenario_hash": "157677d86f2840296a0c72d7813dbadc67ed7165b2756aca612650cdaefac1d9",
+      "sha256": "6edd868910c5aacefa741a623f0a70e132d3e16288f611d992d40120859ca97f",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\rc208_21_FLEET_MPC_MCTS_c610cd7b44ca3bf5017d.json",
+      "scenario_hash": "73627a54354afa91d48dfd888c225b6f1b4395ff85944a7a8cd75a1bce4d001b",
+      "sha256": "8654854367bfef7c530e5af4dd142ba9e4e9cf574bac13c78172d6a57c973c11",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\rc208_21_FLEET_MPC_COMPLETION_ONLY_89985e749a53fe713e69.json",
+      "scenario_hash": "73627a54354afa91d48dfd888c225b6f1b4395ff85944a7a8cd75a1bce4d001b",
+      "sha256": "0e1dcf07025cf277a306d2f1fe4080572dd0514ea6f1f93392109c7ae2af8d58",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\rc208_21_RH_REGRET_d5b49435c5fdcbe8c518.json",
+      "scenario_hash": "73627a54354afa91d48dfd888c225b6f1b4395ff85944a7a8cd75a1bce4d001b",
+      "sha256": "158fcd58dfe2aca80d3a05514453569d07bd49cdd3e76806a8b90ad58d59d566",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\rc208_21_FLEET_MPC_MCTS_2bc5b6ed738cfe759525.json",
+      "scenario_hash": "fc8163307d32d1f7714823ae0a8f2cfec1ad14a113e0c6c2bc9d720962f6aeee",
+      "sha256": "87516b3b478edb62968cde1ad5a8b1bd8ee5099663f7e552b62afa7725d908fd",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\rc208_21_FLEET_MPC_COMPLETION_ONLY_879a9993189163bc8f4c.json",
+      "scenario_hash": "fc8163307d32d1f7714823ae0a8f2cfec1ad14a113e0c6c2bc9d720962f6aeee",
+      "sha256": "aeb5daa42478c3f2c66fc3922fe501c61bf79fc28241b282a476d5e11fe3e747",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\rc208_21_RH_REGRET_757b16e2166822a12651.json",
+      "scenario_hash": "fc8163307d32d1f7714823ae0a8f2cfec1ad14a113e0c6c2bc9d720962f6aeee",
+      "sha256": "ae8682a08aa0d12a4f2cc9dbd0e4d263eaae2dbedef5c942dad71ca3c3023e0a",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\rc208_21_FLEET_MPC_MCTS_5223cf629fdfbc501f7e.json",
+      "scenario_hash": "8f25e277b285481ad0b29ab0591d4df1c15cc6d3384df60643a72bd985190993",
+      "sha256": "1036b43b32bc1a18a3f151a7118aeb91f9df5bee181cd3f80d730f217d839862",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\rc208_21_FLEET_MPC_COMPLETION_ONLY_b5ff9620b0caceedb03c.json",
+      "scenario_hash": "8f25e277b285481ad0b29ab0591d4df1c15cc6d3384df60643a72bd985190993",
+      "sha256": "a48f8734c63f5cc4a5efd2c93087c7819df96690a1a294b1bad9257937bcd631",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\rc208_21_RH_REGRET_7f1cec49a94ce8051474.json",
+      "scenario_hash": "8f25e277b285481ad0b29ab0591d4df1c15cc6d3384df60643a72bd985190993",
+      "sha256": "7e7a2a6cd8d8b7da6f87cd0302eddf0550b15a42ee4aaf4a4a0e7378a6a5c2d0",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\rc208_21_FLEET_MPC_MCTS_f6f2e79c2294eccb3826.json",
+      "scenario_hash": "c3840b8eb1ceda6b05ea4797b1f027de1fd0871c6a4db6c39c3347507094beff",
+      "sha256": "d8db085218ec07f9b754b323002f7ac2b5f0788dd91f7b504cc0080f73e3f8f1",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\rc208_21_FLEET_MPC_COMPLETION_ONLY_45d3c6d16e30d39951c8.json",
+      "scenario_hash": "c3840b8eb1ceda6b05ea4797b1f027de1fd0871c6a4db6c39c3347507094beff",
+      "sha256": "f1e337158052062df781709561ba9f358ea5465b316cc8a1ac3e76f478b753a8",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\rc208_21_RH_REGRET_d0b0aab1e24ac987b7cc.json",
+      "scenario_hash": "c3840b8eb1ceda6b05ea4797b1f027de1fd0871c6a4db6c39c3347507094beff",
+      "sha256": "3ff764ccdd99a1b24ad1f6bf383985e4d5adc3ed3f32178ce2065b1df16e59d9",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\rc208_21_FLEET_MPC_MCTS_75514ddc3d7980dc260d.json",
+      "scenario_hash": "d9748157393bb613f7b81f95c524acccb8d96433fcca6413c7f14fe10a9a1dcf",
+      "sha256": "55984bfefcbc14f43fb046e0c3272922d8f81592674a519c28546a86f364bd36",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\rc208_21_FLEET_MPC_COMPLETION_ONLY_a58a6f0bfd19ab47fbd5.json",
+      "scenario_hash": "d9748157393bb613f7b81f95c524acccb8d96433fcca6413c7f14fe10a9a1dcf",
+      "sha256": "cb4b010dcf1c52740111ea053bfb775d23d262d080d81cb4603920ba23626bda",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\rc208_21_RH_REGRET_f3f5ad64f8ddea176406.json",
+      "scenario_hash": "d9748157393bb613f7b81f95c524acccb8d96433fcca6413c7f14fe10a9a1dcf",
+      "sha256": "5af297d826b8284b026ae3306ae28e4dac0bbe10611bbe2e60ca60e736ac9c61",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\rc208_21_FLEET_MPC_MCTS_782f5f9b3014ad9e0116.json",
+      "scenario_hash": "2f7b000240fed028b7debc2a2faf31c9fa1b2819792fcdec206619408c344da1",
+      "sha256": "3a4180780ccddb2730a15a33ab3c8602c8079ee5ec2acc54ae729109eb81afc7",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\rc208_21_FLEET_MPC_COMPLETION_ONLY_f27040e09672a99cc643.json",
+      "scenario_hash": "2f7b000240fed028b7debc2a2faf31c9fa1b2819792fcdec206619408c344da1",
+      "sha256": "55f632748dc635e734001fc96f76b95f40baa66e70c6fd19d5dabaecf7baefa9",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\rc208_21_RH_REGRET_ed0b24e7431420c85c76.json",
+      "scenario_hash": "2f7b000240fed028b7debc2a2faf31c9fa1b2819792fcdec206619408c344da1",
+      "sha256": "e47531f9d9686fb98dc61d6a2bfc1549811caa7023e8e1fc49bad4a38d5d54f3",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\rc208_21_FLEET_MPC_MCTS_9673b0134fa69fbb7828.json",
+      "scenario_hash": "74093c977e1e35339e82d3290c0b8c5426e5ee209805a2a904e5961042626368",
+      "sha256": "16b432b20ac00313433f424983b83d27481708fe65a3d18a39c3ecb80de89453",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\rc208_21_FLEET_MPC_COMPLETION_ONLY_7267f237a91aaaa4c28c.json",
+      "scenario_hash": "74093c977e1e35339e82d3290c0b8c5426e5ee209805a2a904e5961042626368",
+      "sha256": "5164904ff1934eb111191647a80f7130281c24a745f95dcc66d59ed94e79ab33",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\rc208_21_RH_REGRET_5eeade006d6e8ee4b87b.json",
+      "scenario_hash": "74093c977e1e35339e82d3290c0b8c5426e5ee209805a2a904e5961042626368",
+      "sha256": "614a9185626c42537b830b3c1b7ed157056ff39dc53bbc32cd5e2a0409bb786c",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\rc208_21_FLEET_MPC_MCTS_b8842de1fa88d57c40d1.json",
+      "scenario_hash": "c3785d06daacbdcb54853ada912ae5b855f78ffabdfacc6864b7755f5ebeea67",
+      "sha256": "59dd2b4bcab12fe9a669983ce494696f6fadfb9bae6692dcd519a681bdd0fd58",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\rc208_21_FLEET_MPC_COMPLETION_ONLY_6c2ddd6e6e7bb23903d2.json",
+      "scenario_hash": "c3785d06daacbdcb54853ada912ae5b855f78ffabdfacc6864b7755f5ebeea67",
+      "sha256": "cb55a38edf3efe8c67e86e628e9ea6e965df0734a2c5c4520154f60ee69f7eae",
+      "status": "completed"
+    },
+    {
+      "path": "results\\paper\\raw\\holdout\\rc208_21_RH_REGRET_80bbac167bdd60967f91.json",
+      "scenario_hash": "c3785d06daacbdcb54853ada912ae5b855f78ffabdfacc6864b7755f5ebeea67",
+      "sha256": "354ae5114b58ad2c7167890a04f1f9dc71cae4d3e23c0fea2cd51902925a65b9",
+      "status": "completed"
+    }
+  ]
+}

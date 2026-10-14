@@ -171,6 +171,9 @@ def _static():
                            "vehicles": replay.get("vehicles"), "distance": replay.get("distance"),
                            "external_objective": value.get("external", {}).get("cost"),
                            "runtime": value.get("runtime"),
+                           "nominal_budget_s": value["runtime_budget"],
+                           "budget_respected": value.get("budget_respected"),
+                           "external_wall_s": value.get("external_wall_seconds"),
                            "reason_if_rejected": value.get("error", replay.get("reason", ""))})
         rows.append({"instance": value["instance"], "method": "RoutingBlocks",
                      "budget": f"{value['runtime_budget']}s/instance nominal", "seed": value["seed"],
@@ -181,14 +184,15 @@ def _static():
                      "wall_s": value.get("external_wall_seconds")})
     _frame(audit_rows, ["solver", "instance", "seed", "external_feasible", "our_replay_feasible",
                         "served", "vehicles", "distance", "external_objective", "runtime",
+                        "nominal_budget_s", "budget_respected", "external_wall_s",
                         "reason_if_rejected"], "external_solution_audit")
     groups = defaultdict(list)
     for row in rows:
         groups[(row["instance"], row["method"], row["budget"])].append(row)
     summary = []
     for (instance, method, budget), group in sorted(groups.items()):
-        complete = [r for r in group if r["replay_feasible"] and r["complete"]
-                    and (method != "RoutingBlocks" or r["budget_respected"])]
+        complete = [r for r in group if r["replay_feasible"] and r["complete"]]
+        strict_complete = [r for r in complete if method != "RoutingBlocks" or r["budget_respected"]]
         distances = [r["distance"] for r in complete]
         served = [r["served"] for r in group if r["served"] is not None]
         runtime = [r["runtime_s"] for r in group if r["runtime_s"] is not None]
@@ -198,6 +202,8 @@ def _static():
                         "budget_respected_rate": float(np.mean([r.get("budget_respected", True) for r in group]))
                         if method == "RoutingBlocks" else None,
                         "success_rate": len(complete) / len(group),
+                        "strict_budget_success_rate": len(strict_complete) / len(group)
+                        if method == "RoutingBlocks" else None,
                         "served_mean": float(np.mean(served)) if served else None,
                         "evs_mean_complete": float(np.mean([r["evs"] for r in complete])) if complete else None,
                         "distance_best_complete": min(distances) if distances else None,
@@ -230,8 +236,9 @@ def _figures(ablations, methods, runtimes, contributions, static):
     figure_dir.mkdir(parents=True, exist_ok=True)
     made = []
 
-    def save(name):
-        plt.tight_layout()
+    def save(name, tight=True):
+        if tight:
+            plt.tight_layout()
         plt.savefig(writable_path(figure_dir / f"{name}.png"), dpi=220)
         plt.close()
         made.append(name)
@@ -287,18 +294,34 @@ def _figures(ablations, methods, runtimes, contributions, static):
         ax.bar(grouped.index, grouped.values, color="#136f63")
         ax.set_ylabel("Additional released reservations over MCTS roots")
         save("mcts_root_to_final_gain")
-    # Only budget-respecting, independently replayed complete runs enter these comparisons.
+    # These plots are offline quality context; strict budget compliance is a separate table column.
     if len({row["method"] for row in static}) > 1:
         frame = pd.DataFrame(static)
         complete = frame[frame.success_rate == 1]
         if not complete.empty:
-            fig, ax = plt.subplots(figsize=(8, 4.2))
-            for method, group in complete.groupby("method"):
-                ax.scatter(group.evs_mean_complete, group.distance_mean_complete, label=method)
-            ax.set(xlabel="EVs (complete service only)", ylabel="Distance (complete service only)")
-            ax.legend()
-            save("static_evs_distance")
-        eligible = frame[(frame.success_rate > 0) & frame.evs_mean_complete.notna()]
+            fig, axes = plt.subplots(2, 3, figsize=(11, 6.5))
+            styles = {"FLEET_MPC_MCTS": ("#136f63", "o"),
+                      "5.0s/instance nominal": ("#b64b3d", "^"),
+                      "30.0s/instance nominal": ("#bc7b16", "s"),
+                      "300.0s/instance nominal": ("#535caa", "D")}
+            for ax, instance in zip(axes.flat, STATIC_NAMES):
+                group = complete[complete.instance == instance]
+                for row in group.itertuples():
+                    key = row.method if row.method == "FLEET_MPC_MCTS" else row.budget
+                    color, marker = styles[key]
+                    ax.scatter(row.evs_mean_complete, row.distance_mean_complete,
+                               color=color, marker=marker, s=44,
+                               label=key if instance == STATIC_NAMES[0] else None)
+                ax.set_title(instance)
+                ax.grid(alpha=.18)
+                ax.set_xlabel("Mean EVs")
+                ax.set_ylabel("Mean distance")
+            handles = [plt.Line2D([], [], color=color, marker=marker, linestyle="None",
+                                  label=label) for label, (color, marker) in styles.items()]
+            fig.legend(handles=handles, loc="upper center", ncol=4, fontsize=8)
+            fig.subplots_adjust(top=.84, bottom=.09, hspace=.48, wspace=.35)
+            save("static_evs_distance", tight=False)
+        eligible = frame[(frame.success_rate == 1) & frame.evs_mean_complete.notna()]
         if eligible.method.nunique() > 1:
             best_evs = eligible.groupby("instance").evs_mean_complete.min()
             fig, ax = plt.subplots(figsize=(7.5, 4.2))
@@ -307,7 +330,7 @@ def _figures(ablations, methods, runtimes, contributions, static):
                                 for row in group.itertuples())
                 ax.step(ratios, np.arange(1, len(ratios) + 1) / len(STATIC_NAMES),
                         where="post", label=f"{method} ({budget})")
-            ax.set(xlabel="Mean EV count / best observed mean EV count (complete routes)",
+            ax.set(xlabel="Mean EV count / best observed (all seeds complete)",
                    ylabel="Fraction of six instances", ylim=(0, 1.02))
             ax.legend(fontsize=7)
             save("static_performance_profile")
@@ -332,13 +355,48 @@ def generate():
                      f"bootstrap 95% CI={value['ci95']}.")
     if not any(key.startswith("holdout") for key in comparisons):
         lines.append("- Holdout not executed; no holdout inference is made.")
+    holdout_methods = {row["method"]: row for row in methods if row["split"] == "holdout"}
+    if holdout_methods:
+        lines += ["", "## Holdout Service", ""]
+        for method in ("FLEET_MPC_MCTS", "FLEET_MPC_COMPLETION_ONLY", "RH_REGRET"):
+            row = holdout_methods[method]
+            lines.append(f"- {method}: {row['served_total']}/{100 * row['n']} served; "
+                         f"{row['complete_count']}/{row['n']} complete.")
+        mcts_runtime = [row for row in runtimes if row["split"] == "holdout"
+                        and row["method"] == "FLEET_MPC_MCTS"]
+        mcts_calls = [row for row in contributions if row["split"] == "holdout"]
+        lines.append(f"- MPC-MCTS run-level mean decision latency: "
+                     f"{np.mean([row['mean_latency_s'] for row in mcts_runtime]):.3f}s; "
+                     f"largest recorded decision latency: "
+                     f"{max(row['max_latency_s'] for row in mcts_runtime):.3f}s. "
+                     "Concurrent-family timings are not isolated-machine measurements.")
+        lines.append(f"- MCTS: {sum(row['calls'] for row in mcts_calls)} calls, "
+                     f"{sum(row['service_gain_calls'] for row in mcts_calls)} service-improving, "
+                     f"{sum(row['ev_gain_calls'] for row in mcts_calls)} EV-improving, "
+                     f"{sum(row['distance_gain_calls'] for row in mcts_calls)} distance-improving, "
+                     f"{sum(row['objective_gain_calls'] for row in mcts_calls)} objective-improving.")
     external_count = len(list((OUT / "raw/routingblocks").glob("*.json")))
+    external = [row for row in static if row["method"] == "RoutingBlocks"]
     lines += ["", "## External Context", "",
-              f"RoutingBlocks raw attempts: {external_count}. Only budget-respecting, independently "
-              "replayed complete routes enter static quality statistics. "
+              f"RoutingBlocks raw attempts: {external_count}. Static quality columns require "
+              "independent replay; strict budget success is reported separately. "
+              "Nominal external budgets are not actual elapsed times. "
               "pyevrp 0.2.1 is excluded by the exact-physics gate.",
               "The 5-second external whole-run budget is not equal to a five-second "
-              "per-decision controller budget.", "",
+              "per-decision controller budget."]
+    if external:
+        for budget in (5, 30, 300):
+            group = [row for row in external if row["budget"] == f"{budget}.0s/instance nominal"]
+            if group:
+                lines.append(f"- RoutingBlocks nominal {budget}s: "
+                             f"{sum(round(row['success_rate'] * row['n']) for row in group)}/"
+                             f"{sum(row['n'] for row in group)} replay-valid complete routes; "
+                             f"{sum(round(row['strict_budget_success_rate'] * row['n']) for row in group)} "
+                             "also met the strict elapsed-time cutoff.")
+    lines += ["", "The static external solver often uses fewer EVs and less distance. "
+              "These are offline solution-quality results, not evidence that the online "
+              "controller dominates ALNS. The four small reference checks pass, but the "
+              "published charging model is not proven identical, so no optimality gap is claimed.", "",
               "## Artifacts", "",
               "Tables: `results/paper/tables/`; PNG figures: `results/paper/figures/`.",
               f"Figures generated: {', '.join(figures) if figures else 'none'}."]

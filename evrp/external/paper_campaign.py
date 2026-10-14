@@ -1,6 +1,7 @@
 """Resumable, protocol-bound paper runs; no controller code or tuning changes."""
 
 import argparse
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from hashlib import sha256
 from itertools import product
 import json
@@ -103,50 +104,78 @@ def run_static_controller():
     return manifest_path
 
 
-def run_static_routingblocks(examples: Path, external_python: Path | None = None):
+def _routingblocks_case(name: str, seed: int, budget: float, examples: Path,
+                        external_python: Path | None, output: Path):
+    path = BENCHMARK / f"{name}.txt"
+    instance = load_instance(path)
+    k_ref = reference_for(instance).fleet_size
+    destination = output / f"{name}_seed{seed}_budget{budget}.json"
+    if destination.exists():
+        raw = load_json(destination)
+        if (raw.get("instance") != name or raw.get("seed") != seed
+                or raw.get("runtime_budget") != budget):
+            raise RuntimeError(f"Incompatible existing raw result: {destination}")
+    else:
+        if external_python is None:
+            raw = run_routingblocks(instance, path, examples, k_ref, seed, budget)
+        else:
+            command = [str(external_python), "-m", "evrp.external.routingblocks_worker",
+                       "--instance", str(path), "--examples", str(examples),
+                       "--fleet-size", str(k_ref), "--seed", str(seed),
+                       "--budget", str(budget), "--output", str(destination)]
+            started = perf_counter()
+            try:
+                subprocess.run(command, cwd=ROOT, check=True, timeout=budget + 120,
+                               stdout=subprocess.DEVNULL)
+                raw = load_json(destination)
+            except subprocess.TimeoutExpired:
+                raw = {"status": "failed", "solver": "RoutingBlocks", "instance": name,
+                       "seed": seed, "runtime_budget": budget,
+                       "error": "external worker timed out after budget plus 120 seconds"}
+            except (subprocess.CalledProcessError, OSError) as error:
+                raw = {"status": "failed", "solver": "RoutingBlocks", "instance": name,
+                       "seed": seed, "runtime_budget": budget,
+                       "error": f"external worker failed: {error}"}
+            raw["external_wall_seconds"] = perf_counter() - started
+    if raw.get("status", "completed") == "completed" and "our_replay" not in raw:
+        routes = [route["nodes"] for route in raw["external"]["routes"]]
+        audit = replay_routes(instance, routes, k_ref)
+        raw["our_replay"] = vars(audit)
+        raw["budget_respected"] = raw["runtime"] <= budget
+        save_json(destination, raw)
+    elif not destination.exists():
+        save_json(destination, raw)
+    return destination, raw, len(instance.customers)
+
+
+def run_static_routingblocks(examples: Path, external_python: Path | None = None,
+                             workers: int = 1):
+    if workers <= 0:
+        raise ValueError("workers must be positive")
     grid = load_config(CAMPAIGN)
     output = ROOT / "results/paper/raw/routingblocks"
     manifest_path = ROOT / "results/paper/routingblocks_manifest.json"
     manifest = {"phase": "routingblocks", "records": []}
-    for name, seed, budget in product(grid["static_instances"], grid["static_seeds"],
-                                      grid["external_runtime_seconds"]):
-        path = BENCHMARK / f"{name}.txt"
-        instance = load_instance(path)
-        k_ref = reference_for(instance).fleet_size
-        destination = output / f"{name}_seed{seed}_budget{budget}.json"
-        if destination.exists():
-            raw = load_json(destination)
-            if (raw.get("instance") != name or raw.get("seed") != seed
-                    or raw.get("runtime_budget") != budget):
-                raise RuntimeError(f"Incompatible existing raw result: {destination}")
-        else:
-            if external_python is None:
-                raw = run_routingblocks(instance, path, examples, k_ref, seed, budget)
+    cases = product(grid["static_instances"], grid["static_seeds"],
+                    grid["external_runtime_seconds"])
+    with ThreadPoolExecutor(max_workers=workers) as pool:
+        pending = {pool.submit(_routingblocks_case, name, seed, budget, examples,
+                               external_python, output): (name, seed, budget)
+                   for name, seed, budget in cases}
+        for future in as_completed(pending):
+            name, seed, budget = pending[future]
+            destination, raw, n_customers = future.result()
+            manifest["records"].append({"path": str(destination.relative_to(ROOT)),
+                                        "sha256": sha256(destination.read_bytes()).hexdigest()})
+            manifest["records"].sort(key=lambda item: item["path"])
+            save_json(manifest_path, manifest)
+            if raw.get("status") == "failed":
+                print(f"RoutingBlocks {name} seed={seed} budget={budget}: {raw['error']}", flush=True)
             else:
-                command = [str(external_python), "-m", "evrp.external.routingblocks_worker",
-                           "--instance", str(path), "--examples", str(examples),
-                           "--fleet-size", str(k_ref), "--seed", str(seed),
-                           "--budget", str(budget), "--output", str(destination)]
-                started = perf_counter()
-                subprocess.run(command, cwd=ROOT, check=True, timeout=budget + 120)
-                raw = load_json(destination)
-                raw["external_wall_seconds"] = perf_counter() - started
-            if raw.get("status", "completed") == "completed":
-                routes = [route["nodes"] for route in raw["external"]["routes"]]
-                audit = replay_routes(instance, routes, k_ref)
-                raw["our_replay"] = vars(audit)
-                raw["budget_respected"] = raw["runtime"] <= budget
-            save_json(destination, raw)
-        manifest["records"].append({"path": str(destination.relative_to(ROOT)),
-                                    "sha256": sha256(destination.read_bytes()).hexdigest()})
-        save_json(manifest_path, manifest)
-        if raw.get("status") == "failed":
-            print(f"RoutingBlocks {name} seed={seed} budget={budget}: {raw['error']}", flush=True)
-        else:
-            print(f"RoutingBlocks {name} seed={seed} budget={budget}: "
-                  f"{raw['our_replay']['served']}/{len(instance.customers)} "
-                  f"replay={raw['our_replay']['feasible']} "
-                  f"budget_respected={raw['budget_respected']}", flush=True)
+                print(f"RoutingBlocks {name} seed={seed} budget={budget}: "
+                      f"{raw['our_replay']['served']}/{n_customers} "
+                      f"replay={raw['our_replay']['feasible']} "
+                      f"budget_respected={raw['budget_respected']}", flush=True)
     return manifest_path
 
 
@@ -155,11 +184,13 @@ def main():
     parser.add_argument("phase", choices=("development_rh", "holdout", "static_controller", "routingblocks"))
     parser.add_argument("--routingblocks-examples", type=Path)
     parser.add_argument("--external-python", type=Path)
+    parser.add_argument("--workers", type=int, default=1)
     args = parser.parse_args()
     if args.phase == "routingblocks":
         if args.routingblocks_examples is None:
             parser.error("--routingblocks-examples is required")
-        result = run_static_routingblocks(args.routingblocks_examples, args.external_python)
+        result = run_static_routingblocks(args.routingblocks_examples, args.external_python,
+                                          args.workers)
     elif args.phase == "static_controller":
         result = run_static_controller()
     else:
