@@ -8,6 +8,7 @@ from pathlib import Path
 import subprocess
 import sys
 from time import perf_counter
+import traceback
 
 from evrp.experiments import audit_result, load_config, prepare, simulation_config
 from evrp.simulator import EventDrivenSimulator
@@ -22,6 +23,10 @@ OUTPUT = ROOT / "results" / "final_study"
 SCRIPT = Path(__file__)
 VIOLATIONS = ("hidden_information_violations", "time_window_violations",
               "battery_violations", "capacity_violations")
+
+
+def failure_path(raw_path):
+    return OUTPUT / "failures" / f"{Path(raw_path).name}.failure.json"
 
 
 def _committed(path):
@@ -43,12 +48,17 @@ def validated_protocol():
     protocol = load_json(JSON_OUTPUT)
     study = load_config(CONFIG_PATH)
     development = load_json(DEVELOPMENT / "manifest.json")
+    development_analysis = load_json(DEVELOPMENT / "analysis" / "paired_analysis.json")
     shadow = load_json(SHADOW / "sbs_vbs_gate.json")
+    shadow_manifest = load_json(SHADOW / "manifest.json")
     if (development["status"] != "development_complete" or
             len(development["records"]) != 330 or
+            development_analysis["status"] != "complete_development" or
+            development_analysis["scenarios"] != 66 or
             any(row["source_sha256"] != source_hash() for row in development["records"])):
         raise ValueError("Final holdout requires the complete final-source development grid")
-    if shadow["snapshots"] < 264 or shadow["portfolio_gate_passed"]:
+    if (shadow["snapshots"] < 264 or shadow["portfolio_gate_passed"] or
+            shadow_manifest["status"] != "shadow_complete"):
         raise ValueError("Final holdout requires a complete non-portfolio shadow decision")
     if (protocol["status"] != "preregistered_final_holdout" or
             protocol["source_sha256"] != source_hash() or
@@ -59,6 +69,7 @@ def validated_protocol():
             protocol["holdout_runner_sha256"] != sha256(SCRIPT.read_bytes()).hexdigest() or
             protocol["shadow_selection_sha256"] !=
             sha256((SHADOW / "selection.json").read_bytes()).hexdigest() or
+            shadow_manifest["selection_sha256"] != protocol["shadow_selection_sha256"] or
             protocol["shadow_gate_sha256"] !=
             sha256((SHADOW / "sbs_vbs_gate.json").read_bytes()).hexdigest() or
             protocol["methods"] != study["methods"] or
@@ -105,19 +116,27 @@ def run_worker(name, dod, seed, method, output):
             dod not in protocol["dynamicity"] or seed not in protocol["seeds"] or
             method not in protocol["methods"]):
         raise ValueError("Worker case is absent from committed final protocol")
-    options = _options(protocol, method, dod, seed)
-    started = perf_counter()
-    instance, _, scenario, _ = prepare(name, options)
-    result = EventDrivenSimulator(instance, scenario, simulation_config(options)).run()
-    audit = audit_result(result, instance, scenario)
-    if not all(audit.values()):
-        raise AssertionError("Independent final-holdout audit failed")
-    result.metadata["isolated_worker"] = True
-    result.metadata["independent_audit"] = audit
-    result.metrics["worker_wall_seconds"] = perf_counter() - started
-    raw = asdict(result)
-    _validate_raw(raw, method, scenario, instance)
-    save_json(output, raw)
+    try:
+        options = _options(protocol, method, dod, seed)
+        started = perf_counter()
+        instance, _, scenario, _ = prepare(name, options)
+        result = EventDrivenSimulator(instance, scenario, simulation_config(options)).run()
+        audit = audit_result(result, instance, scenario)
+        if not all(audit.values()):
+            raise AssertionError("Independent final-holdout audit failed")
+        result.metadata["isolated_worker"] = True
+        result.metadata["independent_audit"] = audit
+        result.metrics["worker_wall_seconds"] = perf_counter() - started
+        raw = asdict(result)
+        _validate_raw(raw, method, scenario, instance)
+        save_json(output, raw)
+    except Exception as error:
+        save_json(failure_path(output), dict(instance=name, dynamicity=dod, seed=seed,
+                                                  method=method, source_sha256=source_hash(),
+                                                  error_type=type(error).__name__,
+                                                  error_message=str(error),
+                                                  traceback=traceback.format_exc()))
+        raise
 
 
 def run():
@@ -146,6 +165,8 @@ def run():
                                            runner=protocol["holdout_runner_sha256"],
                                            effective=effective))
                 path = OUTPUT / "raw" / f"{name}_{dod:.2f}_{seed}_{method}_{identity[:12]}.json.gz"
+                if failure_path(path).exists():
+                    raise ValueError(f"Preserved final-run failure requires investigation: {path}")
                 key = (scenario.identifier, method)
                 if key in records and (records[key]["raw"] != path.relative_to(ROOT).as_posix()
                                        or not path.exists()):

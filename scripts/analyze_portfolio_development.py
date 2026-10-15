@@ -145,7 +145,8 @@ def summarize_mechanisms(records):
 
 
 def plot_development(out, methods, service, comparisons, latencies, operators):
-    labels = [method.replace("MPC_", "MPC + ").title() for method in methods]
+    labels = ["MPC + Completion" if method == "MPC_COMPLETION" else
+              method.replace("MPC_", "MPC + ") for method in methods]
     palette = ("#59636e", "#2474a6", "#12806a", "#bd7b13", "#a14851")
     overall = {row["method"]: row for row in service if row["scope"] == "overall"}
 
@@ -272,6 +273,7 @@ def analyze(allow_incomplete=False):
     protocol = sha256(CONFIG_PATH.read_bytes()).hexdigest()
     controller = sha256((ROOT / study["base_controller"]).read_bytes()).hexdigest()
     grouped = {}
+    k_refs = {}
     latencies = {method: [] for method in methods}
     controller_wall = {method: 0.0 for method in methods}
     optimizer_diagnostics = {method: defaultdict(list) for method in methods}
@@ -287,8 +289,15 @@ def analyze(allow_incomplete=False):
         if sha256(path.read_bytes()).hexdigest() != row["raw_sha256"]:
             raise ValueError(f"Raw evidence hash mismatch: {path}")
         raw = load_json(path)
-        if not all(raw["metadata"].get("independent_audit", {}).values()):
+        if (not raw["metadata"].get("independent_audit") or
+                not all(raw["metadata"]["independent_audit"].values())):
             raise ValueError("Independent audit missing or failed")
+        if (raw["metadata"]["instance"] != row["instance"] or
+                raw["metadata"]["instance_sha256"] != row["instance_sha256"] or
+                raw["metadata"]["scenario_identifier"] != row["scenario_id"] or
+                raw["metadata"]["algorithm"] != row["method"] or
+                raw["metadata"]["K_ref"] <= 0):
+            raise ValueError("Development raw instance, scenario, method, or K_ref mismatch")
         if row["max_optimization_latency"] > 5.0 + 1e-6:
             raise ValueError("Decision latency exceeded five seconds")
         if any(raw["metrics"][name] for name in (
@@ -326,6 +335,9 @@ def analyze(allow_incomplete=False):
                     elif isinstance(value, (int, float)):
                         optimizer_diagnostics[row["method"]][key].append(value)
         key = (row["instance"], row["dynamicity"], row["scenario_seed"])
+        if key in k_refs and k_refs[key] != raw["metadata"]["K_ref"]:
+            raise ValueError("Methods used different reference fleet sizes")
+        k_refs[key] = raw["metadata"]["K_ref"]
         if row["method"] in grouped.setdefault(key, {}):
             raise ValueError("Duplicate method in a paired scenario")
         grouped[key][row["method"]] = row

@@ -44,6 +44,7 @@ logs/
 !/results/final_study/PRE_REGISTERED_PROTOCOL.json
 !/results/final_study/manifest.json
 !/results/final_study/raw/*.json.gz
+!/results/final_study/failures/*.json
 !/results/final_study/analysis/*.json
 !/results/final_study/analysis/*.csv
 !/results/final_study/analysis/*.png

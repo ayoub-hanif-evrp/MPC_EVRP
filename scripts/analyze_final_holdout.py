@@ -51,6 +51,8 @@ def analyze():
         raw = load_json(path)
         metadata, metrics = raw["metadata"], raw["metrics"]
         if (metadata["algorithm"] != row["method"] or
+                metadata["instance"] != row["instance"] or
+                metadata["instance_sha256"] != row["instance_sha256"] or
                 metadata["scenario_identifier"] != row["scenario_id"] or
                 metadata["K_ref"] != row["k_ref"] or
                 not metadata.get("isolated_worker") or
@@ -168,6 +170,10 @@ def analyze():
     _write_csv(out / "table9_operator_detail.csv", operator_summary)
     _write_csv(out / "table10_shadow.csv", [dict(sbs=shadow["sbs"],
                                              snapshots=shadow["snapshots"],
+                                             sbs_planned_customers_served=shadow[
+                                                 "sbs_planned_customers_served"],
+                                             vbs_planned_customers_served=shadow[
+                                                 "vbs_planned_customers_served"],
                                              vbs_minus_sbs_served=shadow["vbs_minus_sbs_served"],
                                              vbs_service_win_fraction=shadow["vbs_service_win_fraction"],
                                              portfolio_gate_passed=shadow["portfolio_gate_passed"])])

@@ -92,7 +92,7 @@ def _features(payload):
     problem = _FleetProblem(dict(context.origins), context.observation, context.mpc, 3, 2)
     root = problem.initial(dict(context.constructor_routes))
     ranked = problem._criticality(root.sequences)
-    pending = max(1, len(problem.pending))
+    pending = len(problem.pending)
     depot_due = context.observation.infrastructure.depot.due
     battery = context.observation.infrastructure.parameters.battery
     min_tw_slack = min((context.observation.customer_by_id[c].due -
@@ -394,8 +394,12 @@ def summarize_shadow(grouped, snapshots):
                                          equal_service_states=0,
                                          fewer_evs_at_equal_service=0,
                                          equal_evs_at_equal_service=0,
-                                         lower_distance_at_equal_service_and_evs=0)
+                                         lower_distance_at_equal_service_and_evs=0,
+                                         ev_diff_at_equal_service_sum=0.0,
+                                         distance_diff_at_equal_service_and_evs_sum=0.0)
     vbs_service_gain = 0
+    vbs_service = 0
+    sbs_service = 0
     for state_hash, runs in grouped.items():
         best = min(objective(row) for row in runs.values())
         winners = [method for method, row in runs.items() if objective(row) == best]
@@ -409,6 +413,9 @@ def summarize_shadow(grouped, snapshots):
         if len(service_winners) == 1:
             unique_service_wins[service_winners[0]] += 1
         vbs_service_gain += -best[0] + objective(runs[sbs])[0]
+        pending = snapshots[state_hash]["features"]["pending"]
+        vbs_service += pending - best[0]
+        sbs_service += pending - objective(runs[sbs])[0]
         for left, opponents in pairwise.items():
             for right, counts in opponents.items():
                 lhs, rhs = runs[left], runs[right]
@@ -422,12 +429,23 @@ def summarize_shadow(grouped, snapshots):
                     counts["equal_service_states"] += 1
                     lhs_evs = lhs["components"]["activated_vehicles"]
                     rhs_evs = rhs["components"]["activated_vehicles"]
+                    counts["ev_diff_at_equal_service_sum"] += lhs_evs - rhs_evs
                     if lhs_evs < rhs_evs:
                         counts["fewer_evs_at_equal_service"] += 1
                     if lhs_evs == rhs_evs:
                         counts["equal_evs_at_equal_service"] += 1
+                        counts["distance_diff_at_equal_service_and_evs_sum"] += (
+                            lhs["components"]["distance"] - rhs["components"]["distance"])
                         if lhs["components"]["distance"] < rhs["components"]["distance"]:
                             counts["lower_distance_at_equal_service_and_evs"] += 1
+    for opponents in pairwise.values():
+        for counts in opponents.values():
+            counts["mean_ev_diff_at_equal_service"] = (
+                counts["ev_diff_at_equal_service_sum"] / counts["equal_service_states"]
+                if counts["equal_service_states"] else None)
+            counts["mean_distance_diff_at_equal_service_and_evs"] = (
+                counts["distance_diff_at_equal_service_and_evs_sum"] /
+                counts["equal_evs_at_equal_service"] if counts["equal_evs_at_equal_service"] else None)
     rate = sum(min(objective(row)[0] for row in runs.values()) <
                objective(runs[sbs])[0] for runs in grouped.values()) / len(grouped)
     gate = (sum(count >= max(2, round(0.02 * len(grouped)))
@@ -440,6 +458,8 @@ def summarize_shadow(grouped, snapshots):
                                 max_seconds=values[-1])
     result = dict(sbs=sbs, snapshots=len(grouped), unique_wins=unique_wins,
                   unique_service_wins=unique_service_wins,
+                  sbs_planned_customers_served=sbs_service,
+                  vbs_planned_customers_served=vbs_service,
                   vbs_minus_sbs_served=vbs_service_gain,
                   vbs_service_win_fraction=rate, pairwise=pairwise,
                   strongest_states=strongest_states, runtimes=runtimes,

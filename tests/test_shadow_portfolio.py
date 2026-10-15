@@ -7,6 +7,7 @@ import pytest
 
 from evrp.optimizers import OptimizationContext
 from evrp.storage import identifier
+import scripts.shadow_portfolio as shadow_portfolio
 from scripts.shadow_portfolio import (_context, _payload, _select, capture, run_shadow,
                                       summarize_shadow)
 from tests.test_repair import customer, setup
@@ -44,13 +45,15 @@ def test_shadow_capture_and_execution_refuse_unfinished_development():
         run_shadow()
 
 
-def test_shadow_sbs_vbs_gate_and_conditional_pairwise_metrics():
+def test_shadow_sbs_vbs_gate_and_conditional_pairwise_metrics(tmp_path, monkeypatch):
     grouped = {}
     snapshots = {}
     for index in range(8):
         winner = "MPC_MCTS" if index < 4 else "MPC_ALNS"
         state_hash = f"state-{index}"
-        snapshots[state_hash] = {"features": {"pending": index + 1}}
+        snapshots[state_hash] = {"features": dict(pending=index + 1,
+                                                  time_fraction=index / 8,
+                                                  uncovered=1)}
         runs = {}
         for method in ("MPC_MCTS", "MPC_ALNS", "MPC_HGS", "MPC_ACS"):
             unserved = 0 if method == winner else 1
@@ -64,12 +67,18 @@ def test_shadow_sbs_vbs_gate_and_conditional_pairwise_metrics():
         grouped[state_hash] = runs
     summary = summarize_shadow(grouped, snapshots)
     assert summary["sbs"] == "MPC_MCTS"
+    assert summary["sbs_planned_customers_served"] == 32
+    assert summary["vbs_planned_customers_served"] == 36
     assert summary["vbs_minus_sbs_served"] == 4
     assert summary["portfolio_gate_passed"]
     assert summary["unique_service_wins"]["MPC_MCTS"] == 3
     assert summary["unique_service_wins"]["MPC_ALNS"] == 4
     assert summary["pairwise"]["MPC_MCTS"]["MPC_HGS"]["equal_service_states"] == 5
     assert summary["pairwise"]["MPC_MCTS"]["MPC_HGS"]["fewer_evs_at_equal_service"] == 1
+    assert summary["pairwise"]["MPC_MCTS"]["MPC_HGS"]["mean_ev_diff_at_equal_service"] == -0.2
     assert summary["pairwise"]["MPC_MCTS"]["MPC_HGS"]["lower_distance_at_equal_service_and_evs"] == 0
     assert summary["runtimes"]["MPC_MCTS"]["p95_seconds"] == 8.0
     assert len(summary["strongest_states"]["MPC_MCTS"]) == 4
+    monkeypatch.setattr(shadow_portfolio, "OUTPUT", tmp_path)
+    shadow_portfolio.plot_shadow_win_map(grouped, snapshots)
+    assert (tmp_path / "common_state_win_map.png").stat().st_size > 0
