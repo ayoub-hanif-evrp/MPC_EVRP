@@ -46,3 +46,4 @@ def test_alns_runs_in_common_event_pipeline():
     assert result.metrics["customers_served"] == 2
     assert all(audit_result(result, base.instance, base.scenario).values())
     assert result.decisions[0]["optimizer"]["name"] == "MPC_ALNS"
+    assert "destroy_counts" in result.decisions[0]["optimizer"]["diagnostics"]

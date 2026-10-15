@@ -655,7 +655,8 @@ class EventDrivenSimulator:
                                                     components=dict(optimizer_result.components),
                                                     runtime=optimizer_result.runtime,
                                                     status=optimizer_result.status,
-                                                    deadline_reached=optimizer_result.deadline_reached)
+                                                    deadline_reached=optimizer_result.deadline_reached,
+                                                    diagnostics=dict(optimizer_result.diagnostics.values))
                                                if optimizer_result else None),
                                     route_owners_after_repair={a.destination: k for k, actions in routes.items()
                                                                for a in actions if a.kind == "serve"},

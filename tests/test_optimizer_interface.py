@@ -72,6 +72,7 @@ def test_event_level_v1_adapter_matches_historical_path():
     assert historical.metrics["customers_served"] == adapted.metrics["customers_served"]
     assert [d["route_owners_after_repair"] for d in historical.decisions] == [
         d["route_owners_after_repair"] for d in adapted.decisions]
+    assert "tree_improvements" in adapted.decisions[0]["optimizer"]["diagnostics"]
     assert all(audit_result(adapted, base.instance, base.scenario).values())
 
 

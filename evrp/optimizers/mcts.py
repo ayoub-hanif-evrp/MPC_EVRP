@@ -30,7 +30,10 @@ class MCTSV1Optimizer:
                                       position_limit=self.position_limit, regret_k=self.regret_k)
         finally:
             reset_deadline(token)
+        diagnostics = asdict(result)
+        diagnostics.pop("routes")
+        diagnostics.pop("validated")
         return evaluated_result(context, result.routes, started,
-                                OptimizerDiagnostics(asdict(result)), "completed",
+                                OptimizerDiagnostics(diagnostics), "completed",
                                 result.deadline_reached,
                                 (result.best_score, result.best_components))

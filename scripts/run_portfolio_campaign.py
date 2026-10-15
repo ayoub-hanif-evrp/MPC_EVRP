@@ -27,7 +27,7 @@ def source_hash():
                        for p in paths})
 
 
-def run(case_limit=None, methods=None):
+def run(case_limit=None, methods=None, family_pilot=False):
     study = load_config(CONFIG_PATH)
     base = load_config(ROOT / study["base_controller"])
     selected = tuple(methods or study["methods"])
@@ -38,6 +38,8 @@ def run(case_limit=None, methods=None):
     scenarios = list(cases(study))
     if len(scenarios) != 66 or len(set(scenarios)) != 66:
         raise ValueError("Expected exactly 66 inspected development scenarios")
+    if family_pilot:
+        scenarios = [(name, 0.5, 0) for name in study["old_development_instances"]]
     if case_limit is not None:
         scenarios = scenarios[:case_limit]
     code_hash = source_hash()
@@ -100,6 +102,8 @@ def run(case_limit=None, methods=None):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--case-limit", type=int, help="Run the first N paired development scenarios")
+    parser.add_argument("--family-pilot", action="store_true",
+                        help="Run one inspected DoD 0.5, seed-0 case per instance family")
     parser.add_argument("--methods", nargs="+", help="Subset of the four comparison methods")
     args = parser.parse_args()
-    run(args.case_limit, args.methods)
+    run(args.case_limit, args.methods, args.family_pilot)

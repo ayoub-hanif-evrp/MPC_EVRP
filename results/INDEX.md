@@ -29,6 +29,7 @@ must not be confused with the current optimizer comparison.
 | `smoke/` | VALIDATION | Small integration checks |
 | `validate/` | VALIDATION | Historical validation runs |
 
-The root `IMPLEMENTATION_REPORT.md` and `README.md` are historical notes.
+The root `IMPLEMENTATION_REPORT.md` is a historical note; the root
+`README.md` is the current project overview.
 No directory has been deleted or moved. V1 manifests still refer to their
 original paths.

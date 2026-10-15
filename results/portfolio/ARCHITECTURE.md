@@ -12,7 +12,9 @@ the next physical event.
 `MPC_COMPLETION` retains the constructor. `MPC_MCTS_V1` wraps frozen fleet
 MCTS; `MPC_ALNS` uses six destroy/four repair operators with adaptive weights;
 `MPC_HGS` uses a population, route crossover, local education and survivor
-selection. All candidate route changes use the canonical EV charging decoder.
+selection. Its population and offspring also attempt exact insertion of
+currently uncovered released customers. All candidate route changes use the
+canonical EV charging decoder.
 The accepted winner in each method uses the same lexicographic `J_A/J_B`
 objective. RoutingBlocks is external offline context, not MPC-ALNS.
 

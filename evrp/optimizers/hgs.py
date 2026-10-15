@@ -21,6 +21,75 @@ def _diversity(plan, population, ids):
             len(others) if others else 0.0)
 
 
+def _biased_ranks(population, ids, diversity_weight=1.25):
+    """Rank service first, then trade objective rank against diversity rank."""
+    ranks = {}
+    for unserved in sorted({plan.score[0] for plan in population}):
+        group = [plan for plan in population if plan.score[0] == unserved]
+        objective = {id(plan): index for index, plan in enumerate(
+            sorted(group, key=lambda plan: plan.score))}
+        diversity = {id(plan): _diversity(plan, group, ids) for plan in group}
+        diverse_order = sorted(group, key=lambda plan: (-diversity[id(plan)], plan.score))
+        diversity_rank = {id(plan): index for index, plan in enumerate(diverse_order)}
+        for plan in group:
+            rank = objective[id(plan)]
+            ranks[id(plan)] = (unserved, rank + diversity_weight * diversity_rank[id(plan)], rank)
+    return ranks
+
+
+def _select_parent(population, rng, ids):
+    ranks = _biased_ranks(population, ids)
+    contestants = rng.sample(population, min(3, len(population)))
+    return min(contestants, key=lambda plan: ranks[id(plan)])
+
+
+def _survivors(population, size, ids):
+    elite = min(population, key=lambda plan: plan.score)
+    ranks = _biased_ranks(population, ids)
+    survivors = [elite]
+    for plan in sorted(population, key=lambda plan: ranks[id(plan)]):
+        if len(survivors) >= size:
+            break
+        if plan.sequences not in {member.sequences for member in survivors}:
+            survivors.append(plan)
+    return survivors
+
+
+def _insert_missing(problem, plan):
+    """Attempt every released, uncovered customer with exact fleet decoding."""
+    current = plan
+    insertions = 0
+    timed_out = False
+    try:
+        while current.score[0]:
+            check_deadline()
+            problem._check_search_time()
+            inserted = False
+            for customer, _, _, _, _ in problem._criticality(current.sequences):
+                candidates = []
+                for _, _, k, pos, _ in problem.screened_options(current.sequences, customer):
+                    check_deadline()
+                    problem._check_search_time()
+                    index = problem.ids.index(k)
+                    sequence = current.sequences[index]
+                    candidate = problem.change(current, {
+                        k: sequence[:pos] + (customer,) + sequence[pos:]})
+                    if candidate is not None:
+                        candidates.append(candidate)
+                        if len(candidates) >= 5:
+                            break
+                if candidates:
+                    current = min(candidates, key=lambda candidate: candidate.score)
+                    insertions += 1
+                    inserted = True
+                    break
+            if not inserted:
+                break
+    except (PlanningDeadlineExceeded, _SearchBudgetReached):
+        timed_out = True
+    return current, insertions, timed_out
+
+
 def _educate(problem, plan, rng, attempts=8):
     best = plan
     ids = problem.ids
@@ -111,7 +180,7 @@ def _crossover(problem, root, parent_a, parent_b, rng):
     child = problem.change(root, {k: parent_a.sequences[ids.index(k)] if k in inherited else ()
                                   for k in ids})
     if child is None:
-        return root
+        return root, 0, False
     owned = {c for sequence in child.sequences for c in sequence}
     order = [c for sequence in parent_b.sequences for c in sequence if c not in owned]
     order += [c for sequence in parent_a.sequences for c in sequence if c not in owned and c not in order]
@@ -127,7 +196,7 @@ def _crossover(problem, root, parent_a, parent_b, rng):
                 candidates.append(trial)
         if candidates:
             child = min(candidates, key=lambda plan: plan.score)
-    return child
+    return _insert_missing(problem, child)
 
 
 class HGSOptimizer:
@@ -149,13 +218,21 @@ class HGSOptimizer:
         token = set_deadline(context.deadline)
         best = None
         generations = crossovers = educated = 0
+        root_service_insertions = offspring_service_insertions = 0
         population = []
         deadline_reached = False
         try:
             root = best = problem.initial(dict(context.constructor_routes))
             population = [root]
-            for _ in range(self.population_size - 1):
-                individual = _diversify(problem, root, rng)
+            recovered, root_service_insertions, recovery_timed_out = _insert_missing(problem, root)
+            if recovered.sequences != root.sequences:
+                population.append(recovered)
+                best = recovered
+            if recovery_timed_out:
+                raise PlanningDeadlineExceeded
+            seed = recovered
+            for _ in range(self.population_size - len(population)):
+                individual = _diversify(problem, seed, rng)
                 individual = _educate(problem, individual, rng, self.education_attempts)
                 if individual.sequences not in {p.sequences for p in population}:
                     population.append(individual)
@@ -170,12 +247,16 @@ class HGSOptimizer:
                         population.append(alternate)
                     else:
                         break
-                def select():
-                    contestants = rng.sample(population, min(3, len(population)))
-                    return min(contestants, key=lambda p: (p.score, -_diversity(p, population, problem.ids)))
-                parent_a, parent_b = select(), select()
-                child = _crossover(problem, root, parent_a, parent_b, rng)
+                parent_a = _select_parent(population, rng, problem.ids)
+                parent_b = _select_parent(population, rng, problem.ids)
+                child, recovered_count, crossover_timed_out = _crossover(
+                    problem, root, parent_a, parent_b, rng)
                 crossovers += 1
+                offspring_service_insertions += recovered_count
+                if child.score < best.score:
+                    best = child
+                if crossover_timed_out:
+                    raise PlanningDeadlineExceeded
                 child = _educate(problem, child, rng, self.education_attempts)
                 educated += 1
                 generations += 1
@@ -183,18 +264,7 @@ class HGSOptimizer:
                     best = child
                 if child.sequences not in {p.sequences for p in population}:
                     population.append(child)
-                view = tuple(population)
-                population.sort(key=lambda p: (p.score, -_diversity(p, view, problem.ids)))
-                # Keep the elite and a diversity-aware remainder.
-                elite = population[0]
-                survivors = [elite]
-                for individual in sorted(population[1:],
-                                         key=lambda p: (p.score, -_diversity(p, survivors, problem.ids))):
-                    if len(survivors) >= self.population_size:
-                        break
-                    if individual.sequences not in {p.sequences for p in survivors}:
-                        survivors.append(individual)
-                population = survivors
+                population = _survivors(population, self.population_size, problem.ids)
         except (PlanningDeadlineExceeded, _SearchBudgetReached):
             deadline_reached = True
         finally:
@@ -203,6 +273,8 @@ class HGSOptimizer:
             generations=generations, crossovers=crossovers, educated=educated,
             population_size=len(population), feasible_individuals=len(population),
             diversity=_diversity(best, population, problem.ids),
+            root_service_insertions=root_service_insertions,
+            offspring_service_insertions=offspring_service_insertions,
             exact_decoder_calls=problem.exact_decoded_options))
         return evaluated_result(context, {k: best.actions[index] for index, k in enumerate(problem.ids)},
                                 started, diagnostics, "completed", deadline_reached,
