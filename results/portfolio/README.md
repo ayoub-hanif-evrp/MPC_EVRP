@@ -7,9 +7,9 @@ budget. Each campaign simulation runs in a fresh Python interpreter. The
 active MCTS is a single method; the old paper tag and raw records remain
 unchanged as historical evidence.
 
-## Development Pilot
+## Historical Development Pilot
 
-The isolated six-family pilot contains 30 audited simulations (one inspected
+The pre-final-MCTS isolated six-family pilot contains 30 audited simulations (one inspected
 DoD 0.50, seed-0 scenario per family). Aggregate customers served out of 600:
 
 | Method | Served | Complete scenarios | Maximum decision latency (s) |
@@ -20,11 +20,14 @@ DoD 0.50, seed-0 scenario per family). Aggregate customers served out of 600:
 | HGS | 596 | 4/6 | 4.804 |
 | ACS | 591 | 3/6 | 4.803 |
 
-This is development evidence only. These six cases are part of the inspected
+This is historical development evidence only. These six cases are part of the inspected
 66-scenario grid, not a holdout. The earlier non-isolated pilot manifest is
 preserved as `development/historical_nonisolated_manifest.json`; its raw
-records were not modified. `development/analysis/` contains explicitly
-incomplete paired outputs and PNG figures.
+records were not modified. The 38-run stopped extension is preserved in
+`development/historical_pre_mcts_final_manifest.json`; its raw files were
+not modified. `development/analysis/` contains explicitly incomplete
+pre-final-MCTS paired outputs and PNG figures until final-source analysis
+replaces them.
 
 ## Gates
 

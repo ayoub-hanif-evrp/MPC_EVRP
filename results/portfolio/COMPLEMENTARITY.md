@@ -1,8 +1,9 @@
 # Complementarity gate: not yet evaluated
 
-The isolated development pilot contains **six** paired scenarios and 30
-optimizer runs out of the planned 66 scenarios and 330 runs. Its trajectory
-results are preliminary; they do not establish a common-state
+The pre-final-MCTS isolated development pilot contains **six** paired scenarios
+and 30 optimizer runs, with a 38-run stopped extension archived separately.
+These are historical source versions, not part of the authoritative 330-run
+comparison. Their trajectory results do not establish a common-state
 service-complementarity gap. The earlier four-method pilot was non-isolated
 and is preserved only as historical development evidence.
 

@@ -21,8 +21,9 @@ objective. RoutingBlocks is external offline context, not MPC-ALNS.
 
 Each `(scenario, optimizer)` development run starts in its own Python
 interpreter, independently audits its trace and saves compressed raw evidence.
-The six-family isolated pilot is complete; the 66-scenario grid is still in
-progress. Common-state shadow snapshots are selected before any shadow
+The pre-final-MCTS six-family isolated pilot is preserved as historical
+development evidence. The final-source 66-scenario grid is not complete.
+Common-state shadow snapshots are selected before any shadow
 optimizer outcome is opened.
 
 V1 paper evidence is immutable under `results/paper/`; see

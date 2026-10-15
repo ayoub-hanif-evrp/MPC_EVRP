@@ -47,6 +47,18 @@ def test_context_rejects_future_customer_and_copies_route_maps():
         replace(context, released_customers=frozenset(obs.customer_by_id))
 
 
+def test_acs_cannot_plan_unreleased_customer():
+    state, observation, mpc = setup((customer("A", 1), customer("hidden", 2)))
+    visible = Observation(observation.time, observation.infrastructure,
+                          (observation.customer_by_id["A"],))
+    context = _context(state, visible, mpc, {0: ()})
+    config = simulation_config(dict(algorithm="MPC_ACS"))
+    result = create_optimizer("MPC_ACS", config).optimize(context)
+    assert result.customers_covered <= {"A"}
+    assert all(action.destination != "hidden" for route in result.routes.values()
+               for action in route)
+
+
 def test_mcts_interface_preserves_direct_solver_result():
     state, obs, mpc = setup((customer("A", 1), customer("B", 2)))
     root = construct_fleet_root({0: state}, {}, obs, mpc).routes

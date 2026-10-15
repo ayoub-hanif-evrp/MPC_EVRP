@@ -20,7 +20,9 @@ Incomplete pilots are development diagnostics, not final comparative
 evidence. No new final holdout may run before method freeze, shadow analysis,
 the portfolio gate and a committed preregistration.
 
-Current status: the isolated six-family pilot has 30 audited current-source
-records. The 330-run grid is in progress; see `README.md` for the pilot table.
+Current status: the isolated six-family pilot has 30 audited pre-final-MCTS
+records, with a stopped 38-run extension archived separately. The
+authoritative 330-run grid must start from the final MCTS source; see
+`README.md` for the historical pilot table.
 The earlier non-isolated 24-run pilot remains historical only in
 `SIX_FAMILY_PILOT.md` and `development/historical_nonisolated_manifest.json`.

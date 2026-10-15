@@ -46,6 +46,12 @@ def run_worker(name, dod, seed, method, output):
     audit = audit_result(result, instance, scenario)
     if not all(audit.values()):
         raise AssertionError("Independent audit failed")
+    if result.metadata["K_ref"] != scenario.fleet_size:
+        raise AssertionError("Incorrect reference fleet size")
+    for violation in ("hidden_information_violations", "time_window_violations",
+                      "battery_violations", "capacity_violations"):
+        if result.metrics[violation] != 0:
+            raise AssertionError(f"Nonzero {violation}")
     if result.metrics["max_optimization_latency"] > 5.0 + 1e-6:
         raise AssertionError("Five-second decision limit exceeded")
     result.metadata["isolated_worker"] = True

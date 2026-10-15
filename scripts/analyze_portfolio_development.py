@@ -55,7 +55,8 @@ def analyze(allow_incomplete=False):
     protocol = sha256(CONFIG_PATH.read_bytes()).hexdigest()
     controller = sha256((ROOT / study["base_controller"]).read_bytes()).hexdigest()
     grouped = {}
-    decision_counts = {}
+    latencies = {method: [] for method in methods}
+    controller_wall = {method: 0.0 for method in methods}
     for row in records:
         if (row["source_sha256"], row["protocol_sha256"], row["controller_sha256"]) != (
                 code, protocol, controller):
@@ -70,7 +71,21 @@ def analyze(allow_incomplete=False):
             raise ValueError("Independent audit missing or failed")
         if row["max_optimization_latency"] > 5.0 + 1e-6:
             raise ValueError("Decision latency exceeded five seconds")
-        decision_counts[(row["scenario_id"], row["method"])] = raw["metrics"]["decision_epochs"]
+        if any(raw["metrics"][name] for name in (
+                "hidden_information_violations", "time_window_violations",
+                "battery_violations", "capacity_violations")):
+            raise ValueError("Physical or information-boundary violation")
+        run_latencies = [decision["optimization_latency_seconds"]
+                         for decision in raw["decisions"]
+                         if decision.get("optimization_latency_seconds") is not None]
+        if not run_latencies:
+            raise ValueError("Missing per-decision optimization latencies")
+        if not np.isclose(mean(run_latencies), row["mean_optimization_latency"], atol=1e-6):
+            raise ValueError("Decision trace disagrees with reported mean latency")
+        if not np.isclose(max(run_latencies), row["max_optimization_latency"], atol=1e-6):
+            raise ValueError("Decision trace disagrees with reported maximum latency")
+        latencies[row["method"]].extend(run_latencies)
+        controller_wall[row["method"]] += raw["metrics"]["complete_instance_wall_clock_seconds"]
         key = (row["instance"], row["dynamicity"], row["scenario_seed"])
         if row["method"] in grouped.setdefault(key, {}):
             raise ValueError("Duplicate method in a paired scenario")
@@ -124,18 +139,16 @@ def analyze(allow_incomplete=False):
     for method in methods:
         rows = [row for row in records if row["method"] == method]
         if rows:
-            counts = [decision_counts[(row["scenario_id"], method)] for row in rows]
-            total_decisions = sum(counts)
-            runtime.append(dict(method=method, n=len(rows), decision_epochs=total_decisions,
-                                mean_decision_seconds=(sum(row["mean_optimization_latency"] * count
-                                                           for row, count in zip(rows, counts)) /
-                                                       total_decisions if total_decisions else 0.0),
-                                p95_of_run_p95_decision_seconds=float(np.percentile(
-                                    [row["p95_optimization_latency"] for row in rows], 95)),
-                                max_decision_seconds=max(row["max_optimization_latency"] for row in rows),
+            times = latencies[method]
+            runtime.append(dict(method=method, n=len(rows), decision_epochs=len(times),
+                                mean_decision_seconds=mean(times),
+                                median_decision_seconds=float(np.median(times)),
+                                p95_decision_seconds=float(np.percentile(times, 95)),
+                                max_decision_seconds=max(times),
+                                total_controller_wall_seconds=controller_wall[method],
                                 worker_wall_seconds=sum(row["worker_wall_seconds"] for row in rows),
-                                fraction_within_five_seconds=mean(
-                                    row["max_optimization_latency"] <= 5.0 for row in rows)))
+                                fraction_decisions_within_five_seconds=mean(
+                                    elapsed <= 5.0 for elapsed in times)))
     report = dict(status="complete_development" if len(paired) == 66 else "incomplete_development",
                   scenarios=len(paired), records=len(records), expected_records=expected,
                   comparisons=comparisons, runtime=runtime)

@@ -6,7 +6,8 @@ import evrp.repair as repair
 import pytest
 
 from evrp.experiments import audit_result, simulation_config
-from evrp.fleet_mcts import _FleetProblem, construct_fleet_root, solve_fleet_mcts
+from evrp.fleet_mcts import (_FleetProblem, _RootControlEvidence, construct_fleet_root,
+                             first_control_signature, select_root_control, solve_fleet_mcts)
 from evrp.model import Action, Observation, transition
 from evrp.mpc import MPCConfig
 from evrp.planning_budget import PlanningDeadlineExceeded, remaining_time, reset_deadline, set_deadline
@@ -55,6 +56,59 @@ def test_normalized_tree_value_cannot_trade_service_for_secondary_terms():
         replace(one, components=unfavorable)) <= 1
 
 
+def test_tree_value_distinguishes_full_service_and_strictly_orders_service():
+    state, observation, config = setup((customer("A", 1), customer("B", 2)))
+    problem = _FleetProblem({0: state}, observation, config, 3, 2)
+    empty = problem.initial({})
+    optimistic = dict(empty.components, control_risk=0, flexibility_risk=0,
+                      screened_zero_option_customers=0,
+                      screened_one_option_customers=0, activated_vehicles=0,
+                      operational_cost=0, normalized_distance=0,
+                      route_instability=0)
+    pessimistic = dict(optimistic, control_risk=1, flexibility_risk=1,
+                       screened_zero_option_customers=2,
+                       screened_one_option_customers=2, activated_vehicles=1,
+                       operational_cost=1, normalized_distance=1,
+                       route_instability=1)
+    for served in (0, 1):
+        worse = replace(empty, components=dict(optimistic,
+                                              unserved_customers=2-served))
+        better = replace(empty, components=dict(pessimistic,
+                                               unserved_customers=1-served))
+        assert 0 <= problem.value(worse) < problem.value(better) <= 1
+    full_good = replace(empty, components=dict(optimistic, unserved_customers=0))
+    full_bad = replace(empty, components=dict(pessimistic, unserved_customers=0))
+    assert problem.value(full_good) > problem.value(full_bad)
+    assert problem.value(full_good) == 1.0
+
+
+def test_root_control_safety_visit_mean_and_route_consistency():
+    state, observation, config = setup((customer("A", 1), customer("B", 2)))
+    problem = _FleetProblem({0: state}, observation, config, 3, 2)
+    root = problem.initial({})
+    a = problem.change(root, {0: ("A",)})
+    b = problem.change(root, {0: ("B",)})
+    assert a is not None and b is not None
+    signatures = {name: first_control_signature(problem, plan)
+                  for name, plan in (("root", root), ("a", a), ("b", b))}
+    evidence = {signatures["root"]: _RootControlEvidence(root),
+                signatures["a"]: _RootControlEvidence(a, visits=5, total_value=1.0),
+                signatures["b"]: _RootControlEvidence(b, visits=3, total_value=2.4)}
+    chosen, plan = select_root_control(root, signatures["root"], evidence)
+    assert chosen == signatures["a"]
+    assert first_control_signature(problem, plan) == chosen
+    evidence[signatures["a"]].visits = 3
+    chosen, plan = select_root_control(root, signatures["root"], evidence)
+    assert chosen == signatures["b"]
+    assert first_control_signature(problem, plan) == chosen
+    safer = a
+    unsafe = _RootControlEvidence(root, visits=100, total_value=100)
+    chosen, plan = select_root_control(safer, signatures["a"], {
+        signatures["a"]: _RootControlEvidence(safer),
+        signatures["root"]: unsafe})
+    assert chosen == signatures["a"] and plan.score == safer.score
+
+
 def test_seeded_rollouts_record_all_three_policies_and_safe_root():
     state, observation, config = setup((customer("A", 1), customer("B", 2)))
     result = solve_fleet_mcts({0: state}, {}, observation, config, seed=7,
@@ -65,6 +119,10 @@ def test_seeded_rollouts_record_all_three_policies_and_safe_root():
     assert all(count > 0 for count in result.rollout_policy_usage.values())
     assert result.best_score <= result.initial_score
     assert sum(result.root_control_visits.values()) == result.rollout_count
+    assert "KEEP_CONSTRUCTOR" in result.root_control_statistics
+    assert result.selected_root_control in result.root_control_statistics
+    assert all(row["visits"] == result.root_control_visits[key]
+               for key, row in result.root_control_statistics.items())
 
 
 def test_default_policy_completes_more_than_two_released_customers():

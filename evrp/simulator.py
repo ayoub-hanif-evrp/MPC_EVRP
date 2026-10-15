@@ -587,6 +587,7 @@ class EventDrivenSimulator:
                     candidate_intents = sorted(set().union(*(set(p.unique_predicted_customer_set)
                                                for r in plans.values() for p in r.candidates)))
                     decision = dict(epoch=epochs, time=state.time, available=[c.id for c in observation.customers],
+                                    optimization_latency_seconds=(timings[-1] if event_triggered else None),
                                     optimization_trigger_reason=trigger_reason,
                                     optimization_root_hash=root_hash,
                                     mcts_called=fleet_mcts_record is not None,

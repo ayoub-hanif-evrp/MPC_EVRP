@@ -79,6 +79,8 @@ class FleetMCTSResult:
     rollout_policy_usage: dict[str, int] = field(default_factory=dict)
     rollout_policy_improvements: dict[str, int] = field(default_factory=dict)
     root_control_visits: dict[str, int] = field(default_factory=dict)
+    root_control_statistics: dict[str, dict] = field(default_factory=dict)
+    selected_root_control: str = "KEEP_CONSTRUCTOR"
 
 
 @dataclass(frozen=True)
@@ -104,6 +106,23 @@ class _Node:
     candidates: list[FleetPlan] | None = None
     children: list["_Node"] = field(default_factory=list)
     prior: float = 1.0
+
+
+@dataclass
+class _RootControlEvidence:
+    best_plan: FleetPlan
+    visits: int = 0
+    total_value: float = 0.0
+
+    @property
+    def mean_value(self) -> float:
+        return self.total_value / self.visits if self.visits else 0.0
+
+    def record(self, plan: FleetPlan, value: float) -> None:
+        self.visits += 1
+        self.total_value += value
+        if plan.score < self.best_plan.score:
+            self.best_plan = plan
 
 
 class _FleetProblem:
@@ -933,7 +952,7 @@ class _FleetProblem:
                      + 0.03 * (1 - self._unit(metrics["normalized_distance"]))
                      + 0.02 * (1 - self._unit(metrics["route_instability"])))
         n = max(1, len(self.pending))
-        return min(1.0, (served + 0.49 * self._unit(secondary / 0.80)) / n)
+        return (served + 0.49 * self._unit(secondary / 0.80)) / (n + 0.49)
 
 
 ROLLOUT_POLICIES = ("CRITICAL_REGRET", "EARLIEST_DEADLINE", "RESERVE_PRESERVING")
@@ -942,6 +961,19 @@ ROLLOUT_POLICIES = ("CRITICAL_REGRET", "EARLIEST_DEADLINE", "RESERVE_PRESERVING"
 def first_control_signature(problem: _FleetProblem, plan: FleetPlan):
     return tuple((k, plan.actions[index][0] if plan.actions[index] else None)
                  for index, k in enumerate(problem.ids))
+
+
+def select_root_control(constructor: FleetPlan, constructor_signature,
+                        evidence: dict) -> tuple[tuple, FleetPlan]:
+    """Choose an executable control using service, support and canonical safety."""
+    eligible = [(signature, stats) for signature, stats in evidence.items()
+                if stats.best_plan.score <= constructor.score]
+    if not eligible:
+        return constructor_signature, constructor
+    signature, stats = min(eligible, key=lambda item: (
+        item[1].best_plan.score[0], -item[1].visits, -item[1].mean_value,
+        item[1].best_plan.score, repr(item[0])))
+    return signature, stats.best_plan
 
 
 def solve_fleet_mcts(origins: dict[int, VehicleState], routes: dict[int, tuple[Action, ...]],
@@ -963,7 +995,8 @@ def solve_fleet_mcts(origins: dict[int, VehicleState], routes: dict[int, tuple[A
     rng = Random(seed)
     policy_usage = {policy: 0 for policy in ROLLOUT_POLICIES}
     policy_improvements = {policy: 0 for policy in ROLLOUT_POLICIES}
-    root_evidence = {}
+    constructor_signature = first_control_signature(problem, root_plan)
+    root_evidence = {constructor_signature: _RootControlEvidence(root_plan)}
     expanded = completed = tree_improvements = 0
     service_improvements = objective_only_improvements = 0
     rollout_count = rollout_customers_completed = maximum_rollout_residual = 0
@@ -1027,11 +1060,8 @@ def solve_fleet_mcts(origins: dict[int, VehicleState], routes: dict[int, tuple[A
                     tree_improvements += 1
                 value = problem.value(rollout)
                 signature = first_control_signature(problem, rollout)
-                evidence = root_evidence.setdefault(signature, [0, 0.0, rollout])
-                evidence[0] += 1
-                evidence[1] += value
-                if rollout.score < evidence[2].score:
-                    evidence[2] = rollout
+                root_evidence.setdefault(signature, _RootControlEvidence(rollout)).record(
+                    rollout, value)
                 for ancestor in path:
                     ancestor.visits += 1
                     ancestor.value += value
@@ -1046,16 +1076,10 @@ def solve_fleet_mcts(origins: dict[int, VehicleState], routes: dict[int, tuple[A
     except _SearchBudgetReached:
         deadline_reached = True
     seed_score = root_plan.score
-    eligible = [entry for entry in root_evidence.values()
-                if entry[2].score <= root_plan.score]
-    if eligible:
-        best = min((entry[2] for entry in eligible), key=lambda plan: (
-            plan.score,
-            -root_evidence[first_control_signature(problem, plan)][1] /
-            root_evidence[first_control_signature(problem, plan)][0],
-            -root_evidence[first_control_signature(problem, plan)][0]))
-    if best.score > root_plan.score:
-        best = root_plan
+    selected_signature, best = select_root_control(root_plan, constructor_signature,
+                                                   root_evidence)
+    def label(signature):
+        return "KEEP_CONSTRUCTOR" if signature == constructor_signature else str(signature)
     criticality = {customer: dict(estimated_insertion_gaps=count,
                                   estimated_regret=regret if regret != float("inf") else None,
                                   minimum_optimistic_slack=slack,
@@ -1082,7 +1106,16 @@ def solve_fleet_mcts(origins: dict[int, VehicleState], routes: dict[int, tuple[A
                            problem.ejection_chains_feasible,
                            problem.ejection_chains_selected,
                            policy_usage, policy_improvements,
-                           {str(signature): entry[0] for signature, entry in root_evidence.items()})
+                           {label(signature): entry.visits
+                            for signature, entry in root_evidence.items()},
+                           {label(signature): dict(
+                               visits=entry.visits, cumulative_value=entry.total_value,
+                               mean_value=entry.mean_value,
+                               best_service_level=len(problem.pending) - entry.best_plan.score[0],
+                               best_score=entry.best_plan.score,
+                               constructor_alternative=signature == constructor_signature)
+                            for signature, entry in root_evidence.items()},
+                           label(selected_signature))
 
 
 def construct_fleet_root(origins: dict[int, VehicleState],
