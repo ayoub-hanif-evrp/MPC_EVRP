@@ -1,42 +1,194 @@
 {
   "comparisons": [
     {
-      "complete_rate_diff": -0.5,
+      "complete_rate_diff": -0.5714285714285714,
       "distance_diff_equal_service_ev": null,
       "equal_service_ev_n": 0,
       "equal_service_n": 0,
       "ev_diff_equal_service": null,
       "left": "MPC_COMPLETION",
-      "n": 6,
+      "n": 7,
       "right": "MPC_MCTS",
       "scope": "overall",
       "service_ci": [
-        -6.666666666666667,
-        -2.6666666666666665
+        -7,
+        -3
       ],
-      "service_diff": -4.666666666666667,
-      "service_losses": 6,
+      "service_diff": -5.142857142857143,
+      "service_losses": 7,
       "service_ties": 0,
       "service_wins": 0
     },
     {
-      "complete_rate_diff": -0.8333333333333334,
+      "complete_rate_diff": -0.8571428571428571,
       "distance_diff_equal_service_ev": null,
       "equal_service_ev_n": 0,
       "equal_service_n": 0,
       "ev_diff_equal_service": null,
       "left": "MPC_COMPLETION",
-      "n": 6,
+      "n": 7,
       "right": "MPC_ALNS",
       "scope": "overall",
       "service_ci": [
-        -8.666666666666666,
-        -3
+        -8.571428571428571,
+        -3.5714285714285716
       ],
-      "service_diff": -5.833333333333333,
-      "service_losses": 6,
+      "service_diff": -6.142857142857143,
+      "service_losses": 7,
       "service_ties": 0,
       "service_wins": 0
+    },
+    {
+      "complete_rate_diff": -0.5714285714285714,
+      "distance_diff_equal_service_ev": null,
+      "equal_service_ev_n": 0,
+      "equal_service_n": 0,
+      "ev_diff_equal_service": null,
+      "left": "MPC_COMPLETION",
+      "n": 7,
+      "right": "MPC_HGS",
+      "scope": "overall",
+      "service_ci": [
+        -8.142857142857142,
+        -3.142857142857143
+      ],
+      "service_diff": -5.571428571428571,
+      "service_losses": 7,
+      "service_ties": 0,
+      "service_wins": 0
+    },
+    {
+      "complete_rate_diff": -0.5714285714285714,
+      "distance_diff_equal_service_ev": 234.94643761039515,
+      "equal_service_ev_n": 1,
+      "equal_service_n": 1,
+      "ev_diff_equal_service": 0,
+      "left": "MPC_COMPLETION",
+      "n": 7,
+      "right": "MPC_ACS",
+      "scope": "overall",
+      "service_ci": [
+        -7.142857142857143,
+        -2.7142857142857144
+      ],
+      "service_diff": -5,
+      "service_losses": 6,
+      "service_ties": 1,
+      "service_wins": 0
+    },
+    {
+      "complete_rate_diff": -0.2857142857142857,
+      "distance_diff_equal_service_ev": -57.00731088487936,
+      "equal_service_ev_n": 4,
+      "equal_service_n": 4,
+      "ev_diff_equal_service": 0,
+      "left": "MPC_MCTS",
+      "n": 7,
+      "right": "MPC_ALNS",
+      "scope": "overall",
+      "service_ci": [
+        -2.2857142857142856,
+        -0.14285714285714285
+      ],
+      "service_diff": -1,
+      "service_losses": 3,
+      "service_ties": 4,
+      "service_wins": 0
+    },
+    {
+      "complete_rate_diff": 0,
+      "distance_diff_equal_service_ev": -195.08859315127825,
+      "equal_service_ev_n": 2,
+      "equal_service_n": 2,
+      "ev_diff_equal_service": 0,
+      "left": "MPC_MCTS",
+      "n": 7,
+      "right": "MPC_HGS",
+      "scope": "overall",
+      "service_ci": [
+        -1.8571428571428572,
+        0.8571428571428571
+      ],
+      "service_diff": -0.42857142857142855,
+      "service_losses": 3,
+      "service_ties": 2,
+      "service_wins": 2
+    },
+    {
+      "complete_rate_diff": 0,
+      "distance_diff_equal_service_ev": 123.20549355826182,
+      "equal_service_ev_n": 4,
+      "equal_service_n": 4,
+      "ev_diff_equal_service": 0,
+      "left": "MPC_MCTS",
+      "n": 7,
+      "right": "MPC_ACS",
+      "scope": "overall",
+      "service_ci": [
+        -0.2857142857142857,
+        0.5714285714285714
+      ],
+      "service_diff": 0.14285714285714285,
+      "service_losses": 1,
+      "service_ties": 4,
+      "service_wins": 2
+    },
+    {
+      "complete_rate_diff": 0.2857142857142857,
+      "distance_diff_equal_service_ev": -186.28702761594332,
+      "equal_service_ev_n": 3,
+      "equal_service_n": 4,
+      "ev_diff_equal_service": -0.25,
+      "left": "MPC_ALNS",
+      "n": 7,
+      "right": "MPC_HGS",
+      "scope": "overall",
+      "service_ci": [
+        0.14285714285714285,
+        1.1428571428571428
+      ],
+      "service_diff": 0.5714285714285714,
+      "service_losses": 0,
+      "service_ties": 4,
+      "service_wins": 3
+    },
+    {
+      "complete_rate_diff": 0.2857142857142857,
+      "distance_diff_equal_service_ev": 272.68541333979067,
+      "equal_service_ev_n": 4,
+      "equal_service_n": 4,
+      "ev_diff_equal_service": 0,
+      "left": "MPC_ALNS",
+      "n": 7,
+      "right": "MPC_ACS",
+      "scope": "overall",
+      "service_ci": [
+        0.14285714285714285,
+        2.5714285714285716
+      ],
+      "service_diff": 1.1428571428571428,
+      "service_losses": 0,
+      "service_ties": 4,
+      "service_wins": 3
+    },
+    {
+      "complete_rate_diff": 0,
+      "distance_diff_equal_service_ev": 543.4265646645075,
+      "equal_service_ev_n": 2,
+      "equal_service_n": 2,
+      "ev_diff_equal_service": 0,
+      "left": "MPC_HGS",
+      "n": 7,
+      "right": "MPC_ACS",
+      "scope": "overall",
+      "service_ci": [
+        -0.7142857142857143,
+        2.2857142857142856
+      ],
+      "service_diff": 0.5714285714285714,
+      "service_losses": 2,
+      "service_ties": 2,
+      "service_wins": 3
     },
     {
       "complete_rate_diff": -0.6666666666666666,
@@ -45,167 +197,15 @@
       "equal_service_n": 0,
       "ev_diff_equal_service": null,
       "left": "MPC_COMPLETION",
-      "n": 6,
-      "right": "MPC_HGS",
-      "scope": "overall",
-      "service_ci": [
-        -8.333333333333334,
-        -2.5
-      ],
-      "service_diff": -5.333333333333333,
-      "service_losses": 6,
-      "service_ties": 0,
-      "service_wins": 0
-    },
-    {
-      "complete_rate_diff": -0.5,
-      "distance_diff_equal_service_ev": 234.94643761039515,
-      "equal_service_ev_n": 1,
-      "equal_service_n": 1,
-      "ev_diff_equal_service": 0,
-      "left": "MPC_COMPLETION",
-      "n": 6,
-      "right": "MPC_ACS",
-      "scope": "overall",
-      "service_ci": [
-        -6.833333333333333,
-        -2
-      ],
-      "service_diff": -4.5,
-      "service_losses": 5,
-      "service_ties": 1,
-      "service_wins": 0
-    },
-    {
-      "complete_rate_diff": -0.3333333333333333,
-      "distance_diff_equal_service_ev": -56.99190671842067,
-      "equal_service_ev_n": 3,
-      "equal_service_n": 3,
-      "ev_diff_equal_service": 0,
-      "left": "MPC_MCTS",
-      "n": 6,
-      "right": "MPC_ALNS",
-      "scope": "overall",
-      "service_ci": [
-        -2.5,
-        -0.16666666666666666
-      ],
-      "service_diff": -1.1666666666666667,
-      "service_losses": 3,
-      "service_ties": 3,
-      "service_wins": 0
-    },
-    {
-      "complete_rate_diff": -0.16666666666666666,
-      "distance_diff_equal_service_ev": -195.08859315127825,
-      "equal_service_ev_n": 2,
-      "equal_service_n": 2,
-      "ev_diff_equal_service": 0,
-      "left": "MPC_MCTS",
-      "n": 6,
-      "right": "MPC_HGS",
-      "scope": "overall",
-      "service_ci": [
-        -2.1666666666666665,
-        0.6666666666666666
-      ],
-      "service_diff": -0.6666666666666666,
-      "service_losses": 3,
-      "service_ties": 2,
-      "service_wins": 1
-    },
-    {
-      "complete_rate_diff": 0,
-      "distance_diff_equal_service_ev": 160.38322344147082,
-      "equal_service_ev_n": 3,
-      "equal_service_n": 3,
-      "ev_diff_equal_service": 0,
-      "left": "MPC_MCTS",
-      "n": 6,
-      "right": "MPC_ACS",
-      "scope": "overall",
-      "service_ci": [
-        -0.3333333333333333,
-        0.6666666666666666
-      ],
-      "service_diff": 0.16666666666666666,
-      "service_losses": 1,
-      "service_ties": 3,
-      "service_wins": 2
-    },
-    {
-      "complete_rate_diff": 0.16666666666666666,
-      "distance_diff_equal_service_ev": -186.28702761594332,
-      "equal_service_ev_n": 3,
-      "equal_service_n": 4,
-      "ev_diff_equal_service": -0.25,
-      "left": "MPC_ALNS",
-      "n": 6,
-      "right": "MPC_HGS",
-      "scope": "overall",
-      "service_ci": [
-        0,
-        1.1666666666666667
-      ],
-      "service_diff": 0.5,
-      "service_losses": 0,
-      "service_ties": 4,
-      "service_wins": 2
-    },
-    {
-      "complete_rate_diff": 0.3333333333333333,
-      "distance_diff_equal_service_ev": 340.67194202209083,
-      "equal_service_ev_n": 3,
-      "equal_service_n": 3,
-      "ev_diff_equal_service": 0,
-      "left": "MPC_ALNS",
-      "n": 6,
-      "right": "MPC_ACS",
-      "scope": "overall",
-      "service_ci": [
-        0.16666666666666666,
-        2.8333333333333335
-      ],
-      "service_diff": 1.3333333333333333,
-      "service_losses": 0,
-      "service_ties": 3,
-      "service_wins": 3
-    },
-    {
-      "complete_rate_diff": 0.16666666666666666,
-      "distance_diff_equal_service_ev": 543.4265646645075,
-      "equal_service_ev_n": 2,
-      "equal_service_n": 2,
-      "ev_diff_equal_service": 0,
-      "left": "MPC_HGS",
-      "n": 6,
-      "right": "MPC_ACS",
-      "scope": "overall",
-      "service_ci": [
-        -0.6666666666666666,
-        2.6666666666666665
-      ],
-      "service_diff": 0.8333333333333334,
-      "service_losses": 1,
-      "service_ties": 2,
-      "service_wins": 3
-    },
-    {
-      "complete_rate_diff": -0.5,
-      "distance_diff_equal_service_ev": null,
-      "equal_service_ev_n": 0,
-      "equal_service_n": 0,
-      "ev_diff_equal_service": null,
-      "left": "MPC_COMPLETION",
-      "n": 2,
+      "n": 3,
       "right": "MPC_MCTS",
       "scope": "family_C",
       "service_ci": [
-        -7,
+        -8,
         -7
       ],
-      "service_diff": -7,
-      "service_losses": 2,
+      "service_diff": -7.333333333333333,
+      "service_losses": 3,
       "service_ties": 0,
       "service_wins": 0
     },
@@ -216,34 +216,34 @@
       "equal_service_n": 0,
       "ev_diff_equal_service": null,
       "left": "MPC_COMPLETION",
-      "n": 2,
+      "n": 3,
       "right": "MPC_ALNS",
       "scope": "family_C",
       "service_ci": [
         -8,
         -7
       ],
-      "service_diff": -7.5,
-      "service_losses": 2,
+      "service_diff": -7.666666666666667,
+      "service_losses": 3,
       "service_ties": 0,
       "service_wins": 0
     },
     {
-      "complete_rate_diff": -0.5,
+      "complete_rate_diff": -0.3333333333333333,
       "distance_diff_equal_service_ev": null,
       "equal_service_ev_n": 0,
       "equal_service_n": 0,
       "ev_diff_equal_service": null,
       "left": "MPC_COMPLETION",
-      "n": 2,
+      "n": 3,
       "right": "MPC_HGS",
       "scope": "family_C",
       "service_ci": [
         -8,
         -5
       ],
-      "service_diff": -6.5,
-      "service_losses": 2,
+      "service_diff": -6.666666666666667,
+      "service_losses": 3,
       "service_ties": 0,
       "service_wins": 0
     },
@@ -254,83 +254,83 @@
       "equal_service_n": 0,
       "ev_diff_equal_service": null,
       "left": "MPC_COMPLETION",
-      "n": 2,
+      "n": 3,
       "right": "MPC_ACS",
       "scope": "family_C",
       "service_ci": [
         -8,
         -7
       ],
-      "service_diff": -7.5,
-      "service_losses": 2,
+      "service_diff": -7.666666666666667,
+      "service_losses": 3,
       "service_ties": 0,
       "service_wins": 0
     },
     {
-      "complete_rate_diff": -0.5,
-      "distance_diff_equal_service_ev": -182.8114152981234,
-      "equal_service_ev_n": 1,
-      "equal_service_n": 1,
+      "complete_rate_diff": -0.3333333333333333,
+      "distance_diff_equal_service_ev": -119.9324693411894,
+      "equal_service_ev_n": 2,
+      "equal_service_n": 2,
       "ev_diff_equal_service": 0,
       "left": "MPC_MCTS",
-      "n": 2,
+      "n": 3,
       "right": "MPC_ALNS",
       "scope": "family_C",
       "service_ci": [
         -1,
         0
       ],
-      "service_diff": -0.5,
+      "service_diff": -0.3333333333333333,
       "service_losses": 1,
-      "service_ties": 1,
+      "service_ties": 2,
       "service_wins": 0
     },
     {
-      "complete_rate_diff": 0,
+      "complete_rate_diff": 0.3333333333333333,
       "distance_diff_equal_service_ev": null,
       "equal_service_ev_n": 0,
       "equal_service_n": 0,
       "ev_diff_equal_service": null,
       "left": "MPC_MCTS",
-      "n": 2,
+      "n": 3,
       "right": "MPC_HGS",
       "scope": "family_C",
       "service_ci": [
         -1,
         2
       ],
-      "service_diff": 0.5,
+      "service_diff": 0.6666666666666666,
       "service_losses": 1,
       "service_ties": 0,
-      "service_wins": 1
+      "service_wins": 2
     },
     {
-      "complete_rate_diff": -0.5,
-      "distance_diff_equal_service_ev": 294.21100028810747,
-      "equal_service_ev_n": 1,
-      "equal_service_n": 1,
+      "complete_rate_diff": -0.3333333333333333,
+      "distance_diff_equal_service_ev": 152.94165209837115,
+      "equal_service_ev_n": 2,
+      "equal_service_n": 2,
       "ev_diff_equal_service": 0,
       "left": "MPC_MCTS",
-      "n": 2,
+      "n": 3,
       "right": "MPC_ACS",
       "scope": "family_C",
       "service_ci": [
         -1,
         0
       ],
-      "service_diff": -0.5,
+      "service_diff": -0.3333333333333333,
       "service_losses": 1,
-      "service_ties": 1,
+      "service_ties": 2,
       "service_wins": 0
     },
     {
-      "complete_rate_diff": 0.5,
+      "complete_rate_diff": 0.6666666666666666,
       "distance_diff_equal_service_ev": -156.8482014024121,
       "equal_service_ev_n": 1,
       "equal_service_n": 1,
       "ev_diff_equal_service": 0,
       "left": "MPC_ALNS",
-      "n": 2,
+      "n": 3,
       "right": "MPC_HGS",
       "scope": "family_C",
       "service_ci": [
@@ -340,16 +340,16 @@
       "service_diff": 1,
       "service_losses": 0,
       "service_ties": 1,
-      "service_wins": 1
+      "service_wins": 2
     },
     {
       "complete_rate_diff": 0,
-      "distance_diff_equal_service_ev": 357.2680781822671,
-      "equal_service_ev_n": 2,
-      "equal_service_n": 2,
+      "distance_diff_equal_service_ev": 261.0873278858082,
+      "equal_service_ev_n": 3,
+      "equal_service_n": 3,
       "ev_diff_equal_service": 0,
       "left": "MPC_ALNS",
-      "n": 2,
+      "n": 3,
       "right": "MPC_ACS",
       "scope": "family_C",
       "service_ci": [
@@ -358,17 +358,17 @@
       ],
       "service_diff": 0,
       "service_losses": 0,
-      "service_ties": 2,
+      "service_ties": 3,
       "service_wins": 0
     },
     {
-      "complete_rate_diff": -0.5,
+      "complete_rate_diff": -0.6666666666666666,
       "distance_diff_equal_service_ev": 394.36194218071546,
       "equal_service_ev_n": 1,
       "equal_service_n": 1,
       "ev_diff_equal_service": 0,
       "left": "MPC_HGS",
-      "n": 2,
+      "n": 3,
       "right": "MPC_ACS",
       "scope": "family_C",
       "service_ci": [
@@ -376,7 +376,7 @@
         0
       ],
       "service_diff": -1,
-      "service_losses": 1,
+      "service_losses": 2,
       "service_ties": 1,
       "service_wins": 0
     },
@@ -761,21 +761,21 @@
       "service_wins": 1
     },
     {
-      "complete_rate_diff": 0,
+      "complete_rate_diff": -0.5,
       "distance_diff_equal_service_ev": null,
       "equal_service_ev_n": 0,
       "equal_service_n": 0,
       "ev_diff_equal_service": null,
       "left": "MPC_COMPLETION",
-      "n": 1,
+      "n": 2,
       "right": "MPC_MCTS",
       "scope": "family_C1",
       "service_ci": [
-        -7,
+        -8,
         -7
       ],
-      "service_diff": -7,
-      "service_losses": 1,
+      "service_diff": -7.5,
+      "service_losses": 2,
       "service_ties": 0,
       "service_wins": 0
     },
@@ -786,7 +786,7 @@
       "equal_service_n": 0,
       "ev_diff_equal_service": null,
       "left": "MPC_COMPLETION",
-      "n": 1,
+      "n": 2,
       "right": "MPC_ALNS",
       "scope": "family_C1",
       "service_ci": [
@@ -794,26 +794,26 @@
         -8
       ],
       "service_diff": -8,
-      "service_losses": 1,
+      "service_losses": 2,
       "service_ties": 0,
       "service_wins": 0
     },
     {
-      "complete_rate_diff": -1,
+      "complete_rate_diff": -0.5,
       "distance_diff_equal_service_ev": null,
       "equal_service_ev_n": 0,
       "equal_service_n": 0,
       "ev_diff_equal_service": null,
       "left": "MPC_COMPLETION",
-      "n": 1,
+      "n": 2,
       "right": "MPC_HGS",
       "scope": "family_C1",
       "service_ci": [
         -8,
-        -8
+        -7
       ],
-      "service_diff": -8,
-      "service_losses": 1,
+      "service_diff": -7.5,
+      "service_losses": 2,
       "service_ties": 0,
       "service_wins": 0
     },
@@ -824,7 +824,7 @@
       "equal_service_n": 0,
       "ev_diff_equal_service": null,
       "left": "MPC_COMPLETION",
-      "n": 1,
+      "n": 2,
       "right": "MPC_ACS",
       "scope": "family_C1",
       "service_ci": [
@@ -832,94 +832,94 @@
         -8
       ],
       "service_diff": -8,
-      "service_losses": 1,
+      "service_losses": 2,
       "service_ties": 0,
       "service_wins": 0
     },
     {
-      "complete_rate_diff": -1,
-      "distance_diff_equal_service_ev": null,
-      "equal_service_ev_n": 0,
-      "equal_service_n": 0,
-      "ev_diff_equal_service": null,
+      "complete_rate_diff": -0.5,
+      "distance_diff_equal_service_ev": -57.05352338425541,
+      "equal_service_ev_n": 1,
+      "equal_service_n": 1,
+      "ev_diff_equal_service": 0,
       "left": "MPC_MCTS",
-      "n": 1,
+      "n": 2,
       "right": "MPC_ALNS",
       "scope": "family_C1",
       "service_ci": [
         -1,
-        -1
+        0
       ],
-      "service_diff": -1,
+      "service_diff": -0.5,
       "service_losses": 1,
-      "service_ties": 0,
-      "service_wins": 0
-    },
-    {
-      "complete_rate_diff": -1,
-      "distance_diff_equal_service_ev": null,
-      "equal_service_ev_n": 0,
-      "equal_service_n": 0,
-      "ev_diff_equal_service": null,
-      "left": "MPC_MCTS",
-      "n": 1,
-      "right": "MPC_HGS",
-      "scope": "family_C1",
-      "service_ci": [
-        -1,
-        -1
-      ],
-      "service_diff": -1,
-      "service_losses": 1,
-      "service_ties": 0,
-      "service_wins": 0
-    },
-    {
-      "complete_rate_diff": -1,
-      "distance_diff_equal_service_ev": null,
-      "equal_service_ev_n": 0,
-      "equal_service_n": 0,
-      "ev_diff_equal_service": null,
-      "left": "MPC_MCTS",
-      "n": 1,
-      "right": "MPC_ACS",
-      "scope": "family_C1",
-      "service_ci": [
-        -1,
-        -1
-      ],
-      "service_diff": -1,
-      "service_losses": 1,
-      "service_ties": 0,
+      "service_ties": 1,
       "service_wins": 0
     },
     {
       "complete_rate_diff": 0,
+      "distance_diff_equal_service_ev": null,
+      "equal_service_ev_n": 0,
+      "equal_service_n": 0,
+      "ev_diff_equal_service": null,
+      "left": "MPC_MCTS",
+      "n": 2,
+      "right": "MPC_HGS",
+      "scope": "family_C1",
+      "service_ci": [
+        -1,
+        1
+      ],
+      "service_diff": 0,
+      "service_losses": 1,
+      "service_ties": 0,
+      "service_wins": 1
+    },
+    {
+      "complete_rate_diff": -0.5,
+      "distance_diff_equal_service_ev": 11.67230390863483,
+      "equal_service_ev_n": 1,
+      "equal_service_n": 1,
+      "ev_diff_equal_service": 0,
+      "left": "MPC_MCTS",
+      "n": 2,
+      "right": "MPC_ACS",
+      "scope": "family_C1",
+      "service_ci": [
+        -1,
+        0
+      ],
+      "service_diff": -0.5,
+      "service_losses": 1,
+      "service_ties": 1,
+      "service_wins": 0
+    },
+    {
+      "complete_rate_diff": 0.5,
       "distance_diff_equal_service_ev": -156.8482014024121,
       "equal_service_ev_n": 1,
       "equal_service_n": 1,
       "ev_diff_equal_service": 0,
       "left": "MPC_ALNS",
-      "n": 1,
+      "n": 2,
       "right": "MPC_HGS",
       "scope": "family_C1",
       "service_ci": [
         0,
-        0
+        1
       ],
-      "service_diff": 0,
+      "service_diff": 0.5,
       "service_losses": 0,
       "service_ties": 1,
-      "service_wins": 0
+      "service_wins": 1
     },
     {
       "complete_rate_diff": 0,
-      "distance_diff_equal_service_ev": 237.51374077830337,
-      "equal_service_ev_n": 1,
-      "equal_service_n": 1,
+      "distance_diff_equal_service_ev": 153.1197840355968,
+      "equal_service_ev_n": 2,
+      "equal_service_n": 2,
       "ev_diff_equal_service": 0,
       "left": "MPC_ALNS",
-      "n": 1,
+      "n": 2,
       "right": "MPC_ACS",
       "scope": "family_C1",
       "service_ci": [
@@ -928,25 +928,25 @@
       ],
       "service_diff": 0,
       "service_losses": 0,
-      "service_ties": 1,
+      "service_ties": 2,
       "service_wins": 0
     },
     {
-      "complete_rate_diff": 0,
+      "complete_rate_diff": -0.5,
       "distance_diff_equal_service_ev": 394.36194218071546,
       "equal_service_ev_n": 1,
       "equal_service_n": 1,
       "ev_diff_equal_service": 0,
       "left": "MPC_HGS",
-      "n": 1,
+      "n": 2,
       "right": "MPC_ACS",
       "scope": "family_C1",
       "service_ci": [
-        0,
+        -1,
         0
       ],
-      "service_diff": 0,
-      "service_losses": 0,
+      "service_diff": -0.5,
+      "service_losses": 1,
       "service_ties": 1,
       "service_wins": 0
     },
@@ -2061,192 +2061,192 @@
       "service_wins": 0
     },
     {
-      "complete_rate_diff": -0.5,
+      "complete_rate_diff": -0.5714285714285714,
       "distance_diff_equal_service_ev": null,
       "equal_service_ev_n": 0,
       "equal_service_n": 0,
       "ev_diff_equal_service": null,
       "left": "MPC_COMPLETION",
-      "n": 6,
+      "n": 7,
       "right": "MPC_MCTS",
       "scope": "dod_0.50",
       "service_ci": [
-        -6.666666666666667,
-        -2.6666666666666665
+        -7,
+        -3
       ],
-      "service_diff": -4.666666666666667,
-      "service_losses": 6,
+      "service_diff": -5.142857142857143,
+      "service_losses": 7,
       "service_ties": 0,
       "service_wins": 0
     },
     {
-      "complete_rate_diff": -0.8333333333333334,
+      "complete_rate_diff": -0.8571428571428571,
       "distance_diff_equal_service_ev": null,
       "equal_service_ev_n": 0,
       "equal_service_n": 0,
       "ev_diff_equal_service": null,
       "left": "MPC_COMPLETION",
-      "n": 6,
+      "n": 7,
       "right": "MPC_ALNS",
       "scope": "dod_0.50",
       "service_ci": [
-        -8.666666666666666,
-        -3
+        -8.571428571428571,
+        -3.5714285714285716
       ],
-      "service_diff": -5.833333333333333,
-      "service_losses": 6,
+      "service_diff": -6.142857142857143,
+      "service_losses": 7,
       "service_ties": 0,
       "service_wins": 0
     },
     {
-      "complete_rate_diff": -0.6666666666666666,
+      "complete_rate_diff": -0.5714285714285714,
       "distance_diff_equal_service_ev": null,
       "equal_service_ev_n": 0,
       "equal_service_n": 0,
       "ev_diff_equal_service": null,
       "left": "MPC_COMPLETION",
-      "n": 6,
+      "n": 7,
       "right": "MPC_HGS",
       "scope": "dod_0.50",
       "service_ci": [
-        -8.333333333333334,
-        -2.5
+        -8.142857142857142,
+        -3.142857142857143
       ],
-      "service_diff": -5.333333333333333,
-      "service_losses": 6,
+      "service_diff": -5.571428571428571,
+      "service_losses": 7,
       "service_ties": 0,
       "service_wins": 0
     },
     {
-      "complete_rate_diff": -0.5,
+      "complete_rate_diff": -0.5714285714285714,
       "distance_diff_equal_service_ev": 234.94643761039515,
       "equal_service_ev_n": 1,
       "equal_service_n": 1,
       "ev_diff_equal_service": 0,
       "left": "MPC_COMPLETION",
-      "n": 6,
+      "n": 7,
       "right": "MPC_ACS",
       "scope": "dod_0.50",
       "service_ci": [
-        -6.833333333333333,
-        -2
+        -7.142857142857143,
+        -2.7142857142857144
       ],
-      "service_diff": -4.5,
-      "service_losses": 5,
+      "service_diff": -5,
+      "service_losses": 6,
       "service_ties": 1,
       "service_wins": 0
     },
     {
-      "complete_rate_diff": -0.3333333333333333,
-      "distance_diff_equal_service_ev": -56.99190671842067,
-      "equal_service_ev_n": 3,
-      "equal_service_n": 3,
+      "complete_rate_diff": -0.2857142857142857,
+      "distance_diff_equal_service_ev": -57.00731088487936,
+      "equal_service_ev_n": 4,
+      "equal_service_n": 4,
       "ev_diff_equal_service": 0,
       "left": "MPC_MCTS",
-      "n": 6,
+      "n": 7,
       "right": "MPC_ALNS",
       "scope": "dod_0.50",
       "service_ci": [
-        -2.5,
-        -0.16666666666666666
+        -2.2857142857142856,
+        -0.14285714285714285
       ],
-      "service_diff": -1.1666666666666667,
+      "service_diff": -1,
       "service_losses": 3,
-      "service_ties": 3,
+      "service_ties": 4,
       "service_wins": 0
     },
     {
-      "complete_rate_diff": -0.16666666666666666,
+      "complete_rate_diff": 0,
       "distance_diff_equal_service_ev": -195.08859315127825,
       "equal_service_ev_n": 2,
       "equal_service_n": 2,
       "ev_diff_equal_service": 0,
       "left": "MPC_MCTS",
-      "n": 6,
+      "n": 7,
       "right": "MPC_HGS",
       "scope": "dod_0.50",
       "service_ci": [
-        -2.1666666666666665,
-        0.6666666666666666
+        -1.8571428571428572,
+        0.8571428571428571
       ],
-      "service_diff": -0.6666666666666666,
+      "service_diff": -0.42857142857142855,
       "service_losses": 3,
       "service_ties": 2,
-      "service_wins": 1
-    },
-    {
-      "complete_rate_diff": 0,
-      "distance_diff_equal_service_ev": 160.38322344147082,
-      "equal_service_ev_n": 3,
-      "equal_service_n": 3,
-      "ev_diff_equal_service": 0,
-      "left": "MPC_MCTS",
-      "n": 6,
-      "right": "MPC_ACS",
-      "scope": "dod_0.50",
-      "service_ci": [
-        -0.3333333333333333,
-        0.6666666666666666
-      ],
-      "service_diff": 0.16666666666666666,
-      "service_losses": 1,
-      "service_ties": 3,
       "service_wins": 2
     },
     {
-      "complete_rate_diff": 0.16666666666666666,
+      "complete_rate_diff": 0,
+      "distance_diff_equal_service_ev": 123.20549355826182,
+      "equal_service_ev_n": 4,
+      "equal_service_n": 4,
+      "ev_diff_equal_service": 0,
+      "left": "MPC_MCTS",
+      "n": 7,
+      "right": "MPC_ACS",
+      "scope": "dod_0.50",
+      "service_ci": [
+        -0.2857142857142857,
+        0.5714285714285714
+      ],
+      "service_diff": 0.14285714285714285,
+      "service_losses": 1,
+      "service_ties": 4,
+      "service_wins": 2
+    },
+    {
+      "complete_rate_diff": 0.2857142857142857,
       "distance_diff_equal_service_ev": -186.28702761594332,
       "equal_service_ev_n": 3,
       "equal_service_n": 4,
       "ev_diff_equal_service": -0.25,
       "left": "MPC_ALNS",
-      "n": 6,
+      "n": 7,
       "right": "MPC_HGS",
       "scope": "dod_0.50",
       "service_ci": [
-        0,
-        1.1666666666666667
+        0.14285714285714285,
+        1.1428571428571428
       ],
-      "service_diff": 0.5,
+      "service_diff": 0.5714285714285714,
       "service_losses": 0,
       "service_ties": 4,
-      "service_wins": 2
-    },
-    {
-      "complete_rate_diff": 0.3333333333333333,
-      "distance_diff_equal_service_ev": 340.67194202209083,
-      "equal_service_ev_n": 3,
-      "equal_service_n": 3,
-      "ev_diff_equal_service": 0,
-      "left": "MPC_ALNS",
-      "n": 6,
-      "right": "MPC_ACS",
-      "scope": "dod_0.50",
-      "service_ci": [
-        0.16666666666666666,
-        2.8333333333333335
-      ],
-      "service_diff": 1.3333333333333333,
-      "service_losses": 0,
-      "service_ties": 3,
       "service_wins": 3
     },
     {
-      "complete_rate_diff": 0.16666666666666666,
+      "complete_rate_diff": 0.2857142857142857,
+      "distance_diff_equal_service_ev": 272.68541333979067,
+      "equal_service_ev_n": 4,
+      "equal_service_n": 4,
+      "ev_diff_equal_service": 0,
+      "left": "MPC_ALNS",
+      "n": 7,
+      "right": "MPC_ACS",
+      "scope": "dod_0.50",
+      "service_ci": [
+        0.14285714285714285,
+        2.5714285714285716
+      ],
+      "service_diff": 1.1428571428571428,
+      "service_losses": 0,
+      "service_ties": 4,
+      "service_wins": 3
+    },
+    {
+      "complete_rate_diff": 0,
       "distance_diff_equal_service_ev": 543.4265646645075,
       "equal_service_ev_n": 2,
       "equal_service_n": 2,
       "ev_diff_equal_service": 0,
       "left": "MPC_HGS",
-      "n": 6,
+      "n": 7,
       "right": "MPC_ACS",
       "scope": "dod_0.50",
       "service_ci": [
-        -0.6666666666666666,
-        2.6666666666666665
+        -0.7142857142857143,
+        2.2857142857142856
       ],
-      "service_diff": 0.8333333333333334,
-      "service_losses": 1,
+      "service_diff": 0.5714285714285714,
+      "service_losses": 2,
       "service_ties": 2,
       "service_wins": 3
     },
@@ -2412,59 +2412,59 @@
     }
   ],
   "expected_records": 330,
-  "records": 30,
+  "records": 36,
   "runtime": [
     {
-      "decision_epochs": 1096,
+      "decision_epochs": 1450,
       "fraction_within_five_seconds": 1,
       "max_decision_seconds": 1.7859862000041176,
-      "mean_decision_seconds": 0.0518674725167848,
+      "mean_decision_seconds": 0.050231004585639,
       "method": "MPC_COMPLETION",
-      "n": 6,
-      "p95_of_run_p95_decision_seconds": 0.8450746799944678,
-      "worker_wall_seconds": 48.07580480001343
+      "n": 8,
+      "p95_of_run_p95_decision_seconds": 0.7846711659950591,
+      "worker_wall_seconds": 61.449006100025144
     },
     {
-      "decision_epochs": 1069,
+      "decision_epochs": 1249,
       "fraction_within_five_seconds": 1,
       "max_decision_seconds": 4.789400199995725,
-      "mean_decision_seconds": 2.0432681063421563,
+      "mean_decision_seconds": 1.9809031363049163,
       "method": "MPC_MCTS",
-      "n": 6,
-      "p95_of_run_p95_decision_seconds": 4.7493595037518395,
-      "worker_wall_seconds": 870.9779278000206
+      "n": 7,
+      "p95_of_run_p95_decision_seconds": 4.748913724502054,
+      "worker_wall_seconds": 982.634334300019
     },
     {
-      "decision_epochs": 1118,
+      "decision_epochs": 1301,
       "fraction_within_five_seconds": 1,
       "max_decision_seconds": 4.796779300013441,
-      "mean_decision_seconds": 2.416392495057646,
+      "mean_decision_seconds": 2.3641235436770858,
       "method": "MPC_ALNS",
-      "n": 6,
-      "p95_of_run_p95_decision_seconds": 4.752840720002315,
-      "worker_wall_seconds": 966.6468999000062
+      "n": 7,
+      "p95_of_run_p95_decision_seconds": 4.752760737002318,
+      "worker_wall_seconds": 1112.2931768000126
     },
     {
-      "decision_epochs": 1133,
+      "decision_epochs": 1326,
       "fraction_within_five_seconds": 1,
       "max_decision_seconds": 4.804166999994777,
-      "mean_decision_seconds": 3.257358661190686,
+      "mean_decision_seconds": 3.1642818788444402,
       "method": "MPC_HGS",
-      "n": 6,
-      "p95_of_run_p95_decision_seconds": 4.752768554995418,
-      "worker_wall_seconds": 1685.480920499991
+      "n": 7,
+      "p95_of_run_p95_decision_seconds": 4.752645425994997,
+      "worker_wall_seconds": 2023.7182385999913
     },
     {
-      "decision_epochs": 1087,
+      "decision_epochs": 1268,
       "fraction_within_five_seconds": 1,
       "max_decision_seconds": 4.80331550000119,
-      "mean_decision_seconds": 2.7175874810040885,
+      "mean_decision_seconds": 2.6270362455847436,
       "method": "MPC_ACS",
-      "n": 6,
-      "p95_of_run_p95_decision_seconds": 4.759509415001412,
-      "worker_wall_seconds": 1604.5912889000174
+      "n": 7,
+      "p95_of_run_p95_decision_seconds": 4.759141942001225,
+      "worker_wall_seconds": 1750.887766600019
     }
   ],
-  "scenarios": 6,
+  "scenarios": 7,
   "status": "incomplete_development"
 }
