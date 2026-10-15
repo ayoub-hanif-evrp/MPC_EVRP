@@ -336,7 +336,37 @@ def analyze_shadow():
         raise ValueError("Unpaired shadow results")
     result = summarize_shadow(grouped, snapshots)
     save_json(OUTPUT / "sbs_vbs_gate.json", result)
+    plot_shadow_win_map(grouped, snapshots)
     return result
+
+
+def plot_shadow_win_map(grouped, snapshots):
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+
+    colors = dict(MPC_MCTS="#2474a6", MPC_ALNS="#12806a",
+                  MPC_HGS="#bd7b13", MPC_ACS="#a14851", TIE="#59636e")
+    points = {method: ([], []) for method in colors}
+    for state_hash, runs in grouped.items():
+        best = min(tuple(row["objective"]) for row in runs.values())
+        winners = [method for method, row in runs.items()
+                   if tuple(row["objective"]) == best]
+        winner = winners[0] if len(winners) == 1 else "TIE"
+        features = snapshots[state_hash]["features"]
+        points[winner][0].append(features["time_fraction"])
+        points[winner][1].append(features["uncovered"] / max(1, features["pending"]))
+    fig, ax = plt.subplots(figsize=(8.5, 4.8))
+    for method, (times, uncovered) in points.items():
+        if times:
+            ax.scatter(times, uncovered, s=22, alpha=0.65, color=colors[method],
+                       label=method.replace("MPC_", "MPC + "))
+    ax.set(xlabel="Current horizon fraction", ylabel="Constructor uncovered / pending",
+           xlim=(0, 1), ylim=(-0.03, 1.03))
+    ax.legend(ncol=3, fontsize=8)
+    fig.tight_layout()
+    fig.savefig(OUTPUT / "common_state_win_map.png", dpi=220)
+    plt.close(fig)
 
 
 def summarize_shadow(grouped, snapshots):

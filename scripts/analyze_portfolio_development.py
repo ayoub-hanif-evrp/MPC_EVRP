@@ -6,6 +6,7 @@ from hashlib import sha256
 from itertools import combinations
 from pathlib import Path
 from random import Random
+import re
 from statistics import mean
 from collections import defaultdict
 
@@ -22,6 +23,13 @@ from scripts.run_portfolio_campaign import CONFIG_PATH, OUTPUT, source_hash
 
 def family(name):
     return name.split("_")[0].rstrip("0123456789").upper()
+
+
+def family_subtype(name):
+    match = re.fullmatch(r"(rc|c|r)([12])\d{2}_21", name, re.IGNORECASE)
+    if not match:
+        raise ValueError(f"Unexpected benchmark instance name: {name}")
+    return (match.group(1) + match.group(2)).upper()
 
 
 def paired_bootstrap(values, draws=5000, seed=0):
@@ -44,6 +52,214 @@ def _write_csv(path, rows):
         writer.writerows(rows)
 
 
+MECHANISM_FIELDS = {
+    "MPC_MCTS": ("iterations", "nodes_expanded", "service_improvements",
+                 "objective_only_improvements", "service_gain_over_root",
+                 "exact_decoded_options", "ejection_chains_generated",
+                 "ejection_chains_selected", "rollout_count"),
+    "MPC_ALNS": ("iterations", "accepted_moves", "improving_moves",
+                 "exact_decoder_calls"),
+    "MPC_HGS": ("generations", "crossovers", "educated", "population_size",
+                "diversity", "root_service_insertions", "offspring_service_insertions",
+                "exact_decoder_calls"),
+    "MPC_ACS": ("ants_completed", "complete_service_ants", "pheromone_updates",
+                "service_improvements_over_constructor",
+                "objective_improvements_at_equal_service", "exact_decoder_calls"),
+}
+
+
+def mechanism_record(row, decision):
+    diagnostics = (decision.get("optimizer") or {}).get("diagnostics") or {}
+    method = row["method"]
+    if not diagnostics or method not in MECHANISM_FIELDS:
+        return None
+    metrics = {key: value for key in MECHANISM_FIELDS[method]
+               if isinstance((value := diagnostics.get(key)), (int, float))}
+    if (decision.get("constructor_service") is not None and
+            decision.get("best_service_after_search") is not None):
+        metrics["service_gain_over_constructor"] = max(
+            0, decision["best_service_after_search"] - decision["constructor_service"])
+    counts = {}
+    weights = {}
+    if method == "MPC_MCTS":
+        metrics["root_control_alternatives"] = len(diagnostics.get("root_control_statistics", {}))
+        metrics["keep_constructor_selected"] = int(
+            diagnostics.get("selected_root_control") == "KEEP_CONSTRUCTOR")
+        selected = diagnostics.get("selected_root_control")
+        root_stats = diagnostics.get("root_control_statistics", {})
+        if selected in root_stats:
+            metrics["selected_root_visits"] = root_stats[selected]["visits"]
+        for key in ("rollout_policy_usage", "rollout_policy_improvements"):
+            counts[key] = diagnostics.get(key, {})
+        counts["root_control_selection"] = {
+            "KEEP_CONSTRUCTOR" if metrics["keep_constructor_selected"] else "OTHER_CONTROL": 1}
+    elif method == "MPC_ALNS":
+        for key in ("destroy_counts", "repair_counts"):
+            counts[key] = diagnostics.get(key, {})
+        for key in ("destroy_weights", "repair_weights"):
+            weights[key] = diagnostics.get(key, {})
+    elif method == "MPC_ACS":
+        times = diagnostics.get("best_improvement_times", [])
+        metrics["best_improvements"] = len(times)
+        if times:
+            metrics["first_best_improvement_seconds"] = min(times)
+            metrics["last_best_improvement_seconds"] = max(times)
+    return dict(method=method, family=family(row["instance"]),
+                subtype=family_subtype(row["instance"]),
+                dynamicity=row["dynamicity"], metrics=metrics, counts=counts,
+                weights=weights)
+
+
+def summarize_mechanisms(records):
+    scopes = {"overall": lambda record: True}
+    for subtype in ("C1", "C2", "R1", "R2", "RC1", "RC2"):
+        scopes[f"family_{subtype}"] = lambda record, subtype=subtype: record["subtype"] == subtype
+    for dod in (0.25, 0.5, 0.75):
+        scopes[f"dod_{dod:.2f}"] = lambda record, dod=dod: record["dynamicity"] == dod
+    summary = []
+    operators = []
+    for scope, includes in scopes.items():
+        for method in MECHANISM_FIELDS:
+            selected = [record for record in records if record["method"] == method and includes(record)]
+            if not selected:
+                continue
+            fields = sorted({key for record in selected for key in record["metrics"]})
+            for key in fields:
+                values = [record["metrics"][key] for record in selected if key in record["metrics"]]
+                summary.append(dict(scope=scope, method=method, calls=len(selected),
+                                    metric=key, recorded_calls=len(values), total=sum(values),
+                                    mean_per_recorded_call=mean(values)))
+            for kind in ("counts", "weights"):
+                names = sorted({key for record in selected for key in record[kind]})
+                for name in names:
+                    labels = sorted({label for record in selected
+                                     for label in record[kind].get(name, {})})
+                    for label in labels:
+                        values = [record[kind][name][label] for record in selected
+                                  if label in record[kind].get(name, {})]
+                        operators.append(dict(scope=scope, method=method, kind=kind,
+                                              diagnostic=name, label=label,
+                                              recorded_calls=len(values), total=sum(values),
+                                              mean_per_recorded_call=mean(values)))
+    return summary, operators
+
+
+def plot_development(out, methods, service, comparisons, latencies, operators):
+    labels = [method.replace("MPC_", "MPC + ").title() for method in methods]
+    palette = ("#59636e", "#2474a6", "#12806a", "#bd7b13", "#a14851")
+    overall = {row["method"]: row for row in service if row["scope"] == "overall"}
+
+    fig, ax = plt.subplots(figsize=(10, 3.7))
+    ax.text(0.5, 0.88, "Observable fleet state + released requests", ha="center", fontsize=12)
+    ax.annotate("Event-triggered MPC: common constructor", (0.5, 0.69),
+                ha="center", fontsize=12, fontweight="bold")
+    for index, (label, color) in enumerate(zip(labels, palette)):
+        x = 0.1 + 0.2 * index
+        ax.text(x, 0.43, label, ha="center", va="center", color="white",
+                bbox=dict(facecolor=color, edgecolor="none", boxstyle="round,pad=0.4"))
+        ax.plot([0.5, x], [0.64, 0.49], color="#84919a", lw=1)
+        ax.plot([x, 0.5], [0.35, 0.23], color="#84919a", lw=1)
+    ax.text(0.5, 0.13, "Exact EV validation  |  execute first control  |  observe next event",
+            ha="center", fontsize=11)
+    ax.set(xlim=(0, 1), ylim=(0, 1))
+    ax.axis("off")
+    fig.tight_layout()
+    fig.savefig(out / "mpc_architecture.png", dpi=220)
+    plt.close(fig)
+
+    def bars(filename, metric, ylabel, ylim=None):
+        fig, ax = plt.subplots(figsize=(8.5, 4.5))
+        values = [overall[method][metric] for method in methods]
+        ax.bar(labels, values, color=palette)
+        ax.set_ylabel(ylabel)
+        ax.tick_params(axis="x", labelrotation=25)
+        if ylim:
+            ax.set_ylim(*ylim)
+        fig.tight_layout()
+        fig.savefig(out / filename, dpi=220)
+        plt.close(fig)
+
+    bars("service_by_optimizer.png", "mean_customers_served", "Mean customers served")
+    bars("complete_service_by_optimizer.png", "complete_service_rate",
+         "Complete-service fraction", (0, 1))
+
+    baseline = methods[0]
+    rows = [row for row in comparisons if row["scope"] == "overall" and
+            row["left"] == baseline]
+    if rows:
+        fig, ax = plt.subplots(figsize=(8.5, 4.5))
+        positions = np.arange(len(rows))
+        effects = [-row["service_diff"] for row in rows]
+        lower = [effect + row["service_ci"][1] for effect, row in zip(effects, rows)]
+        upper = [-row["service_ci"][0] - effect for effect, row in zip(effects, rows)]
+        ax.errorbar(effects, positions, xerr=[lower, upper], fmt="o", capsize=4,
+                    color="#2474a6")
+        ax.axvline(0, color="#59636e", lw=1)
+        ax.set_yticks(positions, [row["right"].replace("MPC_", "MPC + ") for row in rows])
+        ax.set_xlabel("Mean paired customers served over MPC + Completion (95% bootstrap CI)")
+        fig.tight_layout()
+        fig.savefig(out / "paired_service_over_completion.png", dpi=220)
+        plt.close(fig)
+
+    fig, ax = plt.subplots(figsize=(8.5, 4.5))
+    for method, label, color in zip(methods, labels, palette):
+        values = [next(row["mean_customers_served"] for row in service
+                       if row["scope"] == f"dod_{dod:.2f}" and row["method"] == method)
+                  for dod in (0.25, 0.5, 0.75)]
+        ax.plot((0.25, 0.5, 0.75), values, marker="o", label=label, color=color)
+    ax.set(xlabel="Degree of dynamicity", ylabel="Mean customers served", xticks=(0.25, 0.5, 0.75))
+    ax.legend(ncol=2, fontsize=9)
+    fig.tight_layout()
+    fig.savefig(out / "service_by_dynamicity.png", dpi=220)
+    plt.close(fig)
+
+    families = ("C1", "C2", "R1", "R2", "RC1", "RC2")
+    matrix = np.array([[next(row["mean_customers_served"] for row in service
+                             if row["scope"] == f"family_{group}" and row["method"] == method)
+                        for method in methods] for group in families])
+    fig, ax = plt.subplots(figsize=(8.5, 4.5))
+    image = ax.imshow(matrix, aspect="auto", cmap="YlGnBu", vmin=0, vmax=100)
+    ax.set_xticks(range(len(methods)), labels, rotation=25, ha="right")
+    ax.set_yticks(range(len(families)), families)
+    for i in range(len(families)):
+        for j in range(len(methods)):
+            ax.text(j, i, f"{matrix[i, j]:.1f}", ha="center", va="center",
+                    color="white" if matrix[i, j] > 65 else "black", fontsize=9)
+    fig.colorbar(image, ax=ax, label="Mean customers served")
+    fig.tight_layout()
+    fig.savefig(out / "family_optimizer_heatmap.png", dpi=220)
+    plt.close(fig)
+
+    fig, ax = plt.subplots(figsize=(8.5, 4.5))
+    ax.boxplot([latencies[method] for method in methods], showfliers=False,
+               medianprops=dict(color="#a14851"))
+    ax.set_xticks(range(1, len(methods) + 1), labels)
+    ax.axhline(5, color="#a14851", linestyle="--", label="5-second limit")
+    ax.set_ylabel("Optimization decision latency (seconds)")
+    ax.tick_params(axis="x", labelrotation=25)
+    ax.legend()
+    fig.tight_layout()
+    fig.savefig(out / "decision_latency_distribution.png", dpi=220)
+    plt.close(fig)
+
+    usage = {row["label"]: row["total"] for row in operators if
+             row["scope"] == "overall" and row["method"] == "MPC_MCTS" and
+             row["diagnostic"] == "rollout_policy_usage"}
+    improvements = {row["label"]: row["total"] for row in operators if
+                    row["scope"] == "overall" and row["method"] == "MPC_MCTS" and
+                    row["diagnostic"] == "rollout_policy_improvements"}
+    if usage:
+        policies = ("CRITICAL_REGRET", "EARLIEST_DEADLINE", "RESERVE_PRESERVING")
+        rates = [improvements.get(policy, 0) / max(1, usage.get(policy, 0)) for policy in policies]
+        fig, ax = plt.subplots(figsize=(8.5, 4.5))
+        ax.bar([name.replace("_", " ").title() for name in policies], rates,
+               color=("#2474a6", "#12806a", "#bd7b13"))
+        ax.set_ylabel("Recorded improvements per rollout")
+        fig.tight_layout()
+        fig.savefig(out / "mcts_rollout_policy_contribution.png", dpi=220)
+        plt.close(fig)
+
+
 def analyze(allow_incomplete=False):
     study = load_config(CONFIG_PATH)
     methods = tuple(study["methods"])
@@ -60,6 +276,7 @@ def analyze(allow_incomplete=False):
     controller_wall = {method: 0.0 for method in methods}
     optimizer_diagnostics = {method: defaultdict(list) for method in methods}
     policy_totals = {method: defaultdict(lambda: defaultdict(int)) for method in methods}
+    mechanism_decisions = []
     for row in records:
         if (row["source_sha256"], row["protocol_sha256"], row["controller_sha256"]) != (
                 code, protocol, controller):
@@ -90,6 +307,9 @@ def analyze(allow_incomplete=False):
         latencies[row["method"]].extend(run_latencies)
         controller_wall[row["method"]] += raw["metrics"]["complete_instance_wall_clock_seconds"]
         for decision in raw["decisions"]:
+            mechanism = mechanism_record(row, decision)
+            if mechanism is not None:
+                mechanism_decisions.append(mechanism)
             optimizer = decision.get("optimizer") or {}
             diagnostics = optimizer.get("diagnostics") or {}
             for key, value in diagnostics.items():
@@ -185,29 +405,22 @@ def analyze(allow_incomplete=False):
                                recorded_decisions=len(values))
                      for key, values in optimizer_diagnostics[method].items()},
             policies={key: dict(values) for key, values in policy_totals[method].items()})
+    mechanism_summary, operator_summary = summarize_mechanisms(mechanism_decisions)
     report = dict(status="complete_development" if len(paired) == 66 else "incomplete_development",
                   scenarios=len(paired), records=len(records), expected_records=expected,
                   service=service, comparisons=comparisons, runtime=runtime,
-                  optimizer_diagnostics=diagnostics_report)
+                  optimizer_diagnostics=diagnostics_report,
+                  mechanism_summary=mechanism_summary, operator_summary=operator_summary)
     out = OUTPUT / "analysis"
     save_json(out / "paired_analysis.json", report)
     _write_csv(out / "paired_comparisons.csv", [{**row, "service_ci": str(row["service_ci"])}
                                                 for row in comparisons])
     _write_csv(out / "service_summary.csv", service)
     _write_csv(out / "runtime.csv", runtime)
-    if paired:
-        fig, ax = plt.subplots(figsize=(8, 4.5))
-        means = [mean(paired[key][method]["customers_served"] for key in paired)
-                 for method in methods]
-        ax.bar([method.replace("MPC_", "") for method in methods], means,
-               color=["#6b7280", "#2563eb", "#0f766e", "#ca8a04", "#b45309"])
-        ax.set_ylabel("Mean customers served")
-        ax.set_ylim(0, 100)
-        ax.set_title("Paired development scenarios" if len(paired) == 66
-                     else "Incomplete development pilot")
-        fig.tight_layout()
-        fig.savefig(out / "service_by_optimizer.png", dpi=180)
-        plt.close(fig)
+    _write_csv(out / "mechanism_summary.csv", mechanism_summary)
+    _write_csv(out / "operator_summary.csv", operator_summary)
+    if len(paired) == 66:
+        plot_development(out, methods, service, comparisons, latencies, operator_summary)
     return report
 
 

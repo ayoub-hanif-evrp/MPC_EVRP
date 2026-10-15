@@ -7,13 +7,15 @@ import re
 import subprocess
 
 from evrp.experiments import load_config
-from evrp.storage import ROOT, load_json
+from evrp.storage import ROOT, load_json, save_json
 from scripts.run_portfolio_campaign import CONFIG_PATH, OUTPUT as DEVELOPMENT, source_hash
 from scripts.shadow_portfolio import OUTPUT as SHADOW
 
 
 BENCHMARK = ROOT / "data" / "evrptw_instances"
 OUTPUT = ROOT / "results" / "final_study" / "PRE_REGISTERED_PROTOCOL.md"
+JSON_OUTPUT = OUTPUT.with_suffix(".json")
+RUNNER = Path(__file__).with_name("run_final_holdout.py")
 RULE = "MPC_EVRPTW_SHA256_UNUSED_21_V1"
 NAME = re.compile(r"\b(?:rc|c|r)[12]\d{2}_21\b", re.IGNORECASE)
 FAMILIES = ("C1", "C2", "R1", "R2", "RC1", "RC2")
@@ -74,8 +76,15 @@ def preregister():
     if any(row["source_sha256"] != source_hash() for row in development["records"]):
         raise ValueError("Optimizer source changed since development")
     shadow = load_json(SHADOW / "sbs_vbs_gate.json")
-    if shadow["snapshots"] < 66 * 4:
-        raise ValueError("Common-state shadow selection is too small")
+    selection_path = SHADOW / "selection.json"
+    selection = load_json(selection_path)
+    shadow_manifest = load_json(SHADOW / "manifest.json")
+    if (shadow["snapshots"] < 66 * 4 or
+            shadow_manifest["status"] != "shadow_complete" or
+            shadow_manifest["selection_sha256"] != sha256(selection_path.read_bytes()).hexdigest() or
+            selection["status"] != "frozen_selection" or
+            selection["source_sha256"] != source_hash()):
+        raise ValueError("Common-state shadow experiment is not complete and source-frozen")
     if shadow["portfolio_gate_passed"]:
         raise ValueError("Portfolio gate passed: freeze and validate the selector first")
     methods = tuple(study["methods"])
@@ -84,8 +93,25 @@ def preregister():
     used = used_instances()
     selected, candidates = choose_unused(used)
     controller = ROOT / study["base_controller"]
+    runner_hash = sha256(RUNNER.read_bytes()).hexdigest()
     commit = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT,
                                      text=True).strip()
+    protocol = dict(status="preregistered_final_holdout", selection_rule=RULE,
+                    development_commit=commit, source_sha256=source_hash(),
+                    controller_config=study["base_controller"],
+                    controller_sha256=sha256(controller.read_bytes()).hexdigest(),
+                    development_protocol_sha256=sha256(CONFIG_PATH.read_bytes()).hexdigest(),
+                    holdout_runner_sha256=runner_hash,
+                    shadow_selection_sha256=sha256(selection_path.read_bytes()).hexdigest(),
+                    shadow_gate_sha256=sha256((SHADOW / "sbs_vbs_gate.json").read_bytes()).hexdigest(),
+                    methods=list(methods), dynamicity=[0.25, 0.5, 0.75], seeds=[0, 1, 2],
+                    selected={group: dict(instance=selected[group][1],
+                                          benchmark_sha256=selected[group][2])
+                              for group in FAMILIES},
+                    statistical_protocol=dict(primary="paired customers served and complete-service rate",
+                                              secondary="EVs at equal service; distance at equal service and EVs",
+                                              bootstrap_draws=5000, bootstrap_seed=0,
+                                              confidence_level=0.95))
     lines = ["# Pre-Registered Final Holdout", "",
              "This protocol must be committed before any final-holdout result is opened.",
              "No tuning after the first final result is opened.", "",
@@ -97,6 +123,9 @@ def preregister():
              f"Controller config: `{study['base_controller']}`  ",
              f"Controller SHA-256: `{sha256(controller.read_bytes()).hexdigest()}`  ",
              f"Development protocol SHA-256: `{sha256(CONFIG_PATH.read_bytes()).hexdigest()}`",
+             f"Holdout runner SHA-256: `{runner_hash}`  ",
+             f"Shadow selection SHA-256: `{protocol['shadow_selection_sha256']}`  ",
+             f"Shadow gate SHA-256: `{protocol['shadow_gate_sha256']}`",
              "", "Previously referenced/used _21 instances are excluded:",
              ", ".join(f"`{name}`" for name in sorted(used)), "",
              "| Family | Selected unused instance | Source SHA-256 | Eligible pool |",
@@ -112,9 +141,10 @@ def preregister():
               "compressed raw evidence. Primary ranking is customers served, then",
               "complete-service rate, EV count only at equal service, and distance only",
               "at equal service and EV count. VBS is analysis-only and is not deployed.", ""]
-    if OUTPUT.exists():
+    if OUTPUT.exists() or JSON_OUTPUT.exists():
         raise FileExistsError("Holdout protocol already exists; never overwrite it")
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
+    save_json(JSON_OUTPUT, protocol)
     OUTPUT.write_text("\n".join(lines), encoding="utf-8")
     return selected
 
