@@ -1,5 +1,5 @@
 base_controller: configs/paper_controller.yaml
-methods: [MPC_COMPLETION, MPC_MCTS_V1, MPC_ALNS, MPC_HGS]
+methods: [MPC_COMPLETION, MPC_MCTS, MPC_ALNS, MPC_HGS, MPC_ACS]
 old_development_instances: [c101_21, c201_21, r101_21, r201_21, rc101_21, rc201_21]
 old_development_dynamicity: [0.5]
 old_development_seeds: [0, 1]

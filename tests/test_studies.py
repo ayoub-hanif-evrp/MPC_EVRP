@@ -32,6 +32,8 @@ def stage1_records():
 @pytest.fixture
 def synthetic(tmp_path, monkeypatch):
     monkeypatch.setattr(studies, "ROOT", tmp_path)
+    from evrp import storage
+    monkeypatch.setattr(storage, "ROOT", tmp_path)
     benchmark = tmp_path / "benchmark"
     benchmark.mkdir()
     for name in studies.SCREEN_INSTANCES:
@@ -101,7 +103,7 @@ def test_exact_configs_and_defaults():
         assert config["max_idle_wait"] == 0
     portfolio = load_config(REPO / "configs/portfolio_development.yaml")
     assert portfolio["total_planning_time_limit"] == 5.0
-    assert len(portfolio["methods"]) == 4
+    assert len(portfolio["methods"]) == 5
 
 
 def test_prescribed_plans_have_36_and_108_runs():

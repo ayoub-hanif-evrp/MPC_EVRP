@@ -1,4 +1,4 @@
-"""V1 fleet-MCTS adapter; search remains in the frozen implementation."""
+"""Fleet-MCTS adapter for the common MPC optimizer interface."""
 
 from dataclasses import asdict
 from time import perf_counter
@@ -8,8 +8,8 @@ from ..planning_budget import reset_deadline, set_deadline
 from .base import OptimizationContext, OptimizationResult, OptimizerDiagnostics, evaluated_result
 
 
-class MCTSV1Optimizer:
-    name = "MPC_MCTS_V1"
+class FleetMCTSOptimizer:
+    name = "MPC_MCTS"
 
     def __init__(self, *, iterations: int = 256, depth: int = 4,
                  branch_limit: int = 12, position_limit: int = 3, regret_k: int = 2):

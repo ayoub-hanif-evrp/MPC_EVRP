@@ -37,6 +37,36 @@ def test_fleet_mcts_serves_released_work_and_preserves_lexicographic_value():
     assert {"A", "B"} <= set(result.criticality)
 
 
+def test_normalized_tree_value_cannot_trade_service_for_secondary_terms():
+    state, observation, config = setup((customer("A", 1), customer("B", 2)))
+    problem = _FleetProblem({0: state}, observation, config, 3, 2)
+    empty = problem.initial({})
+    one = problem.change(empty, {0: ("A",)})
+    assert one is not None
+    favorable = dict(empty.components, control_risk=0, flexibility_risk=0,
+                     screened_zero_option_customers=0, screened_one_option_customers=0,
+                     activated_vehicles=0, operational_cost=0,
+                     normalized_distance=0, route_instability=0)
+    unfavorable = dict(one.components, control_risk=1, flexibility_risk=1,
+                       screened_zero_option_customers=2, screened_one_option_customers=2,
+                       activated_vehicles=1, operational_cost=1,
+                       normalized_distance=1, route_instability=1)
+    assert 0 <= problem.value(replace(empty, components=favorable)) < problem.value(
+        replace(one, components=unfavorable)) <= 1
+
+
+def test_seeded_rollouts_record_all_three_policies_and_safe_root():
+    state, observation, config = setup((customer("A", 1), customer("B", 2)))
+    result = solve_fleet_mcts({0: state}, {}, observation, config, seed=7,
+                              iterations=24, depth=2, branch_limit=4)
+    assert set(result.rollout_policy_usage) == {
+        "CRITICAL_REGRET", "EARLIEST_DEADLINE", "RESERVE_PRESERVING"}
+    assert sum(result.rollout_policy_usage.values()) == result.rollout_count
+    assert all(count > 0 for count in result.rollout_policy_usage.values())
+    assert result.best_score <= result.initial_score
+    assert sum(result.root_control_visits.values()) == result.rollout_count
+
+
 def test_default_policy_completes_more_than_two_released_customers():
     state, observation, config = setup(tuple(customer(chr(65 + i), i + 1)
                                                for i in range(5)))

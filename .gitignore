@@ -30,6 +30,14 @@ logs/
 !/results/portfolio/*.md
 !/results/portfolio/development/manifest.json
 !/results/portfolio/development/raw/*.json.gz
+!/results/portfolio/development/historical_nonisolated_manifest.json
+!/results/portfolio/development/analysis/*.json
+!/results/portfolio/development/analysis/*.csv
+!/results/portfolio/development/analysis/*.png
+!/results/portfolio/shadow/*.json
+!/results/portfolio/shadow/captures/*.json.gz
+!/results/portfolio/shadow/selected/*.json.gz
+!/results/portfolio/shadow/raw/*.json.gz
 !/results/verification/pytest.xml
 /results/.pytest_work/
 /results/verification/pytest_*/

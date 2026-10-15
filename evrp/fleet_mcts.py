@@ -76,6 +76,9 @@ class FleetMCTSResult:
     ejection_chains_generated: int = 0
     ejection_chains_feasible: int = 0
     ejection_chains_selected: int = 0
+    rollout_policy_usage: dict[str, int] = field(default_factory=dict)
+    rollout_policy_improvements: dict[str, int] = field(default_factory=dict)
+    root_control_visits: dict[str, int] = field(default_factory=dict)
 
 
 @dataclass(frozen=True)
@@ -451,8 +454,11 @@ class _FleetProblem:
             return min(distance(node, target) for node in nodes)
         return sorted(self.ids, key=lambda k: (proximity(k), k))[:limit]
 
-    def complete_rollout(self, plan: FleetPlan, local_until: float) -> FleetPlan:
-        """Direct criticality/regret insertion, without structural repair moves."""
+    def complete_rollout(self, plan: FleetPlan, local_until: float,
+                         policy: str = "CRITICAL_REGRET") -> FleetPlan:
+        """Seeded insertion completion; every accepted route uses exact decoding."""
+        if policy not in {"CRITICAL_REGRET", "EARLIEST_DEADLINE", "RESERVE_PRESERVING"}:
+            raise ValueError("Unknown rollout policy")
         current = plan
         previous_until = self.search_until
         self.search_until = min(local_until - 0.02, previous_until or local_until)
@@ -460,11 +466,23 @@ class _FleetProblem:
             while current.score[0] and perf_counter() < local_until - 0.02:
                 self._check_search_time()
                 check_deadline()
-                target, count, _, _, _ = self._criticality(current.sequences)[0]
+                ranked = self._criticality(current.sequences)
+                if policy == "EARLIEST_DEADLINE":
+                    ranked = sorted(ranked, key=lambda row: (
+                        self.observation.customer_by_id[row[0]].due, row[0]))
+                elif policy == "RESERVE_PRESERVING":
+                    ranked = sorted(ranked, key=lambda row: (
+                        row[1] == 0, row[1] > 1,
+                        self.observation.customer_by_id[row[0]].due, row[0]))
+                target, count, _, _, _ = ranked[0]
                 if count == 0:
                     break
                 chosen = None
-                for _, _, k, pos, _ in self.screened_options(current.sequences, target)[:3]:
+                options = list(self.screened_options(current.sequences, target))
+                if policy == "RESERVE_PRESERVING":
+                    options.sort(key=lambda option: (option[4], option[0], -option[1],
+                                                     option[2], option[3]))
+                for _, _, k, pos, _ in options[:3]:
                     if perf_counter() >= local_until - 0.02:
                         break
                     index = self.ids.index(k)
@@ -907,13 +925,23 @@ class _FleetProblem:
                                      0.5 * metrics["screened_one_option_customers"]) /
                                     max(1, metrics["unserved_customers"]))
         operational = metrics.get("operational_cost", metrics["normalized_distance"])
-        return (served + 0.30 * (1 - metrics["control_risk"])
-                + 0.20 * (1 - metrics["flexibility_risk"])
-                + 0.12 * critical
-                + 0.08 * (1 - metrics["activated_vehicles"] / max(1, len(self.ids)))
-                + 0.05 * (1 - operational)
-                + 0.03 * (1 - metrics["normalized_distance"])
-                + 0.02 * (1 - metrics["route_instability"]))
+        secondary = (0.30 * (1 - self._unit(metrics["control_risk"]))
+                     + 0.20 * (1 - self._unit(metrics["flexibility_risk"]))
+                     + 0.12 * critical
+                     + 0.08 * (1 - self._unit(metrics["activated_vehicles"] / max(1, len(self.ids))))
+                     + 0.05 * (1 - self._unit(operational))
+                     + 0.03 * (1 - self._unit(metrics["normalized_distance"]))
+                     + 0.02 * (1 - self._unit(metrics["route_instability"])))
+        n = max(1, len(self.pending))
+        return min(1.0, (served + 0.49 * self._unit(secondary / 0.80)) / n)
+
+
+ROLLOUT_POLICIES = ("CRITICAL_REGRET", "EARLIEST_DEADLINE", "RESERVE_PRESERVING")
+
+
+def first_control_signature(problem: _FleetProblem, plan: FleetPlan):
+    return tuple((k, plan.actions[index][0] if plan.actions[index] else None)
+                 for index, k in enumerate(problem.ids))
 
 
 def solve_fleet_mcts(origins: dict[int, VehicleState], routes: dict[int, tuple[Action, ...]],
@@ -933,6 +961,9 @@ def solve_fleet_mcts(origins: dict[int, VehicleState], routes: dict[int, tuple[A
     best = root_plan
     root = _Node(root_plan, 0)
     rng = Random(seed)
+    policy_usage = {policy: 0 for policy in ROLLOUT_POLICIES}
+    policy_improvements = {policy: 0 for policy in ROLLOUT_POLICIES}
+    root_evidence = {}
     expanded = completed = tree_improvements = 0
     service_improvements = objective_only_improvements = 0
     rollout_count = rollout_customers_completed = maximum_rollout_residual = 0
@@ -980,11 +1011,14 @@ def solve_fleet_mcts(origins: dict[int, VehicleState], routes: dict[int, tuple[A
                         + config.uct_c * child.prior * scale / (1 + child.visits), rng.random()))
                     path.append(node)
                 completion_until = perf_counter() + min(0.12, max(0.0, remaining_time() - 0.08))
-                rollout = problem.complete_rollout(node.plan, completion_until)
+                policy = rng.choice(ROLLOUT_POLICIES)
+                policy_usage[policy] += 1
+                rollout = problem.complete_rollout(node.plan, completion_until, policy)
                 rollout_count += 1
                 rollout_customers_completed += max(0, node.plan.score[0] - rollout.score[0])
                 maximum_rollout_residual = max(maximum_rollout_residual, int(rollout.score[0]))
                 if rollout.score < best.score:
+                    policy_improvements[policy] += 1
                     if rollout.score[0] < best.score[0]:
                         service_improvements += 1
                     else:
@@ -992,6 +1026,12 @@ def solve_fleet_mcts(origins: dict[int, VehicleState], routes: dict[int, tuple[A
                     best = rollout
                     tree_improvements += 1
                 value = problem.value(rollout)
+                signature = first_control_signature(problem, rollout)
+                evidence = root_evidence.setdefault(signature, [0, 0.0, rollout])
+                evidence[0] += 1
+                evidence[1] += value
+                if rollout.score < evidence[2].score:
+                    evidence[2] = rollout
                 for ancestor in path:
                     ancestor.visits += 1
                     ancestor.value += value
@@ -1006,6 +1046,16 @@ def solve_fleet_mcts(origins: dict[int, VehicleState], routes: dict[int, tuple[A
     except _SearchBudgetReached:
         deadline_reached = True
     seed_score = root_plan.score
+    eligible = [entry for entry in root_evidence.values()
+                if entry[2].score <= root_plan.score]
+    if eligible:
+        best = min((entry[2] for entry in eligible), key=lambda plan: (
+            plan.score,
+            -root_evidence[first_control_signature(problem, plan)][1] /
+            root_evidence[first_control_signature(problem, plan)][0],
+            -root_evidence[first_control_signature(problem, plan)][0]))
+    if best.score > root_plan.score:
+        best = root_plan
     criticality = {customer: dict(estimated_insertion_gaps=count,
                                   estimated_regret=regret if regret != float("inf") else None,
                                   minimum_optimistic_slack=slack,
@@ -1030,7 +1080,9 @@ def solve_fleet_mcts(origins: dict[int, VehicleState], routes: dict[int, tuple[A
                            problem.screen_cache_hits, problem.screen_cache_lookups,
                            problem.ejection_chains_generated,
                            problem.ejection_chains_feasible,
-                           problem.ejection_chains_selected)
+                           problem.ejection_chains_selected,
+                           policy_usage, policy_improvements,
+                           {str(signature): entry[0] for signature, entry in root_evidence.items()})
 
 
 def construct_fleet_root(origins: dict[int, VehicleState],

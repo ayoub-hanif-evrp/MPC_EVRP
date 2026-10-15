@@ -25,7 +25,7 @@ def test_adapters_receive_identical_visible_root_and_exactly_replay():
     state, obs, mpc = setup((customer("A", 1), customer("B", 2)))
     root = construct_fleet_root({0: state}, {}, obs, mpc).routes
     context = _context(state, obs, mpc, root)
-    for name in ("MPC_COMPLETION", "MPC_MCTS_V1"):
+    for name in ("MPC_COMPLETION", "MPC_MCTS", "MPC_ACS"):
         config = simulation_config(dict(algorithm=name, fleet_mcts_iterations=8,
                                         fleet_mcts_depth=2, fleet_mcts_branch_limit=4))
         result = create_optimizer(name, config).optimize(context)
@@ -47,28 +47,28 @@ def test_context_rejects_future_customer_and_copies_route_maps():
         replace(context, released_customers=frozenset(obs.customer_by_id))
 
 
-def test_v1_interface_preserves_direct_solver_result():
+def test_mcts_interface_preserves_direct_solver_result():
     state, obs, mpc = setup((customer("A", 1), customer("B", 2)))
     root = construct_fleet_root({0: state}, {}, obs, mpc).routes
     context = _context(state, obs, mpc, root)
-    config = simulation_config(dict(algorithm="MPC_MCTS_V1", fleet_mcts_iterations=8,
+    config = simulation_config(dict(algorithm="MPC_MCTS", fleet_mcts_iterations=8,
                                     fleet_mcts_depth=2, fleet_mcts_branch_limit=4))
     direct = solve_fleet_mcts({0: state}, root, obs, mpc, seed=17, iterations=8,
                               depth=2, branch_limit=4, position_limit=3, regret_k=2)
-    adapted = create_optimizer("MPC_MCTS_V1", config).optimize(context)
+    adapted = create_optimizer("MPC_MCTS", config).optimize(context)
     assert adapted.routes == direct.routes
     assert adapted.objective == direct.best_score
     assert adapted.components == direct.best_components
 
 
-def test_event_level_v1_adapter_matches_historical_path():
+def test_event_level_mcts_adapter_matches_historical_path():
     base = synthetic(release=5, fleet=2)
     config = simulation_config(dict(algorithm="FLEET_MPC_MCTS", total_planning_time_limit=1.0,
                                     fleet_mcts_iterations=4, fleet_mcts_depth=2,
                                     fleet_mcts_branch_limit=4))
     historical = EventDrivenSimulator(base.instance, base.scenario, config).run()
     adapted = EventDrivenSimulator(base.instance, base.scenario,
-                                   replace(config, algorithm="MPC_MCTS_V1")).run()
+                                   replace(config, algorithm="MPC_MCTS")).run()
     assert historical.metrics["customers_served"] == adapted.metrics["customers_served"]
     assert [d["route_owners_after_repair"] for d in historical.decisions] == [
         d["route_owners_after_repair"] for d in adapted.decisions]
