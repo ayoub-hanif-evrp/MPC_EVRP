@@ -1,10 +1,16 @@
-# Six-family optimizer pilot
+# Historical Non-Isolated Six-Family Pilot
+
+This file preserves the earlier four-method pilot, including its original
+labels and measurements, for reproducibility. It is **not** the active
+five-method isolated pilot. The current pilot is summarized in `README.md`;
+its audited raw records and manifest are under `development/`.
 
 This is a **development pilot**, not the 66-scenario development study or a
 new final holdout. It uses one already-inspected DoD 0.5, seed-0 scenario from
 each C1/C2/R1/R2/RC1/RC2 family. The four methods share the five-second MPC
 decision limit and a common scenario within each family. The current
-`development/manifest.json` holds all 24 records and their raw SHA-256 hashes.
+`development/historical_nonisolated_manifest.json` preserves all 24 original
+records and their raw SHA-256 hashes.
 The recursive optimizer-source fingerprint is
 `f133ce3431c8df75fb0318242cc133955080fbb19538cfc09338a5ec15fce110`.
 
