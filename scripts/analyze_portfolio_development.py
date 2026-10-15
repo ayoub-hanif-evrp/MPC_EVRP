@@ -7,6 +7,7 @@ from itertools import combinations
 from pathlib import Path
 from random import Random
 from statistics import mean
+from collections import defaultdict
 
 import matplotlib
 
@@ -57,6 +58,8 @@ def analyze(allow_incomplete=False):
     grouped = {}
     latencies = {method: [] for method in methods}
     controller_wall = {method: 0.0 for method in methods}
+    optimizer_diagnostics = {method: defaultdict(list) for method in methods}
+    policy_totals = {method: defaultdict(lambda: defaultdict(int)) for method in methods}
     for row in records:
         if (row["source_sha256"], row["protocol_sha256"], row["controller_sha256"]) != (
                 code, protocol, controller):
@@ -86,6 +89,22 @@ def analyze(allow_incomplete=False):
             raise ValueError("Decision trace disagrees with reported maximum latency")
         latencies[row["method"]].extend(run_latencies)
         controller_wall[row["method"]] += raw["metrics"]["complete_instance_wall_clock_seconds"]
+        for decision in raw["decisions"]:
+            optimizer = decision.get("optimizer") or {}
+            diagnostics = optimizer.get("diagnostics") or {}
+            for key, value in diagnostics.items():
+                if key in ("rollout_policy_usage", "rollout_policy_improvements"):
+                    for policy, count in value.items():
+                        policy_totals[row["method"]][key][policy] += count
+                elif key in ("rollout_count", "service_improvements",
+                             "objective_only_improvements", "nodes_expanded", "iterations",
+                             "exact_decoded_options", "exact_decoder_calls", "elapsed",
+                             "service_gain_over_root", "selected_root_control"):
+                    if key == "selected_root_control":
+                        optimizer_diagnostics[row["method"]]["constructor_control_selected"].append(
+                            int(value == "KEEP_CONSTRUCTOR"))
+                    elif isinstance(value, (int, float)):
+                        optimizer_diagnostics[row["method"]][key].append(value)
         key = (row["instance"], row["dynamicity"], row["scenario_seed"])
         if row["method"] in grouped.setdefault(key, {}):
             raise ValueError("Duplicate method in a paired scenario")
@@ -107,8 +126,16 @@ def analyze(allow_incomplete=False):
     scopes += [(f"dod_{dod:.2f}", lambda key, dod=dod: key[1] == dod)
                for dod in (0.25, 0.5, 0.75)]
     comparisons = []
+    service = []
     for scope, selector in scopes:
         keys = [key for key in paired if selector(key)]
+        for method in methods:
+            if keys:
+                service.append(dict(scope=scope, method=method, scenarios=len(keys),
+                                    mean_customers_served=mean(
+                                        paired[key][method]["customers_served"] for key in keys),
+                                    complete_service_rate=mean(
+                                        int(paired[key][method]["complete_service"]) for key in keys)))
         for left, right in combinations(methods, 2):
             deltas = [paired[key][left]["customers_served"] - paired[key][right]["customers_served"]
                       for key in keys]
@@ -149,13 +176,24 @@ def analyze(allow_incomplete=False):
                                 worker_wall_seconds=sum(row["worker_wall_seconds"] for row in rows),
                                 fraction_decisions_within_five_seconds=mean(
                                     elapsed <= 5.0 for elapsed in times)))
+    diagnostics_report = {}
+    for method in methods:
+        diagnostics_report[method] = dict(
+            measured_decisions=max((len(values) for values in optimizer_diagnostics[method].values()),
+                                   default=0),
+            numeric={key: dict(total=sum(values), mean_per_recorded_decision=mean(values),
+                               recorded_decisions=len(values))
+                     for key, values in optimizer_diagnostics[method].items()},
+            policies={key: dict(values) for key, values in policy_totals[method].items()})
     report = dict(status="complete_development" if len(paired) == 66 else "incomplete_development",
                   scenarios=len(paired), records=len(records), expected_records=expected,
-                  comparisons=comparisons, runtime=runtime)
+                  service=service, comparisons=comparisons, runtime=runtime,
+                  optimizer_diagnostics=diagnostics_report)
     out = OUTPUT / "analysis"
     save_json(out / "paired_analysis.json", report)
     _write_csv(out / "paired_comparisons.csv", [{**row, "service_ci": str(row["service_ci"])}
                                                 for row in comparisons])
+    _write_csv(out / "service_summary.csv", service)
     _write_csv(out / "runtime.csv", runtime)
     if paired:
         fig, ax = plt.subplots(figsize=(8, 4.5))
