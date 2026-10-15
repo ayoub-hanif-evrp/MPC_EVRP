@@ -8,7 +8,7 @@ from statistics import mean
 
 from evrp.experiments import source_fingerprint
 from evrp.storage import ROOT
-from scripts.final_performance_patch_campaign import RAW, completed
+from archive.v1.scripts.final_performance_patch_campaign import RAW, completed
 
 
 OUT = ROOT / "results" / "final" / "performance_patch"

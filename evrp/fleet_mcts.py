@@ -10,6 +10,7 @@ from .model import EPS, Action, Observation, VehicleState, escape, transition
 from .mpc import MPCConfig, MPCPlanningProblem, MPCProposal
 from .planning_budget import PlanningDeadlineExceeded, check_deadline, remaining_time
 from .repair import build_route, route_proposal
+from .optimizers.objective import FleetObjectiveEvaluator
 
 
 class _SearchBudgetReached(Exception):
@@ -219,61 +220,10 @@ class _FleetProblem:
         return result
 
     def _score(self, sequences, actions, costs):
-        owned = {c for sequence in sequences for c in sequence}
-        uncovered = self.pending - owned
-        vehicles = sum(self.origins[k].departed or bool(actions[index])
-                       for index, k in enumerate(self.ids))
-        risks = [self._metrics(k, actions[index]) for index, k in enumerate(self.ids) if actions[index]]
-        mean = lambda field: sum(r[field] for r in risks) / len(risks) if risks else 0.0
-        tw = mean("tw")
-        battery = mean("battery")
-        capacity = mean("capacity")
-        active_time_risks = [self._metrics(k, actions[index])["time_risk"]
-                             for index, k in enumerate(self.ids)
-                             if self.origins[k].departed or actions[index]]
-        time_risk = (sum(active_time_risks) / len(active_time_risks)
-                     if active_time_risks else 0.0)
-        flexibility_risk = (tw + battery + capacity + time_risk) / 4
-        control_risk = sum(self._control_metrics(k, actions[index])["total"]
-                           for index, k in enumerate(self.ids)) / max(1, len(self.ids))
-        route_distance = sum(costs)
-        normalized_distance = self._unit(route_distance / max(1.0, self.dscale * 2))
-        durations = [r["duration"] for r in risks]
-        balance = max(durations) - min(durations) if len(durations) > 1 else 0.0
-        moved = sum(self.initial_owners.get(c, k) != k for index, k in enumerate(self.ids)
-                    for c in sequences[index])
-        instability = moved / max(1, len(owned))
-        if uncovered:
-            critical = self._criticality(tuple(sequences))
-            zero = sum(count == 0 for _, count, _, _, _ in critical)
-            one = sum(count == 1 for _, count, _, _, _ in critical)
-            components = dict(unserved_customers=len(uncovered), screened_zero_option_customers=zero,
-                              screened_one_option_customers=one, time_window_risk=tw,
-                              battery_risk=battery, capacity_risk=capacity, time_reserve_risk=time_risk,
-                              flexibility_risk=flexibility_risk, control_risk=control_risk,
-                              normalized_distance=normalized_distance,
-                              activated_vehicles=vehicles, distance=route_distance,
-                              route_instability=instability)
-            score = (len(uncovered), zero, one, control_risk, tw, battery,
-                     capacity, normalized_distance)
-        else:
-            operational = sum((normalized_distance, mean("duration"), mean("charge"),
-                               mean("wait"), tw, battery, balance)) / 7
-            components = dict(unserved_customers=0, screened_zero_option_customers=0,
-                              screened_one_option_customers=0, time_window_risk=tw,
-                              battery_risk=battery, capacity_risk=capacity,
-                              time_reserve_risk=time_risk, flexibility_risk=flexibility_risk,
-                              control_risk=control_risk,
-                              normalized_distance=normalized_distance,
-                              normalized_route_duration=mean("duration"),
-                              normalized_charging_time=mean("charge"),
-                              normalized_waiting_time=mean("wait"),
-                              route_balance_risk=balance, operational_cost=operational,
-                              activated_vehicles=vehicles, distance=route_distance,
-                              route_instability=instability)
-            score = (0, control_risk, flexibility_risk, vehicles, operational,
-                     route_distance, instability)
-        return score, components
+        evaluator = FleetObjectiveEvaluator(
+            self.ids, self.origins, self.pending, self.dscale, self.initial_owners,
+            self._metrics, self._control_metrics, self._criticality)
+        return evaluator.evaluate(sequences, actions, costs)
 
     def _screen_profile(self, k: int, sequence: tuple[str, ...]):
         key = (k, sequence)

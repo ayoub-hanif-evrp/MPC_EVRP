@@ -86,19 +86,22 @@ def screen_config():
 
 
 def test_exact_configs_and_defaults():
-    assert {p.stem for p in (REPO / "configs").glob("*.yaml")} == {
+    historical = {
         "debug", "validation", "smoke", "screening", "final", "main", "ablations", "realtime",
         "fleet_lns", "fleet_mcts", "final_control_horizon", "final_structural_mcts",
         "paper_controller", "paper_campaign"}
-    for path in (REPO / "configs").glob("*.yaml"):
-        if path.stem == "paper_campaign":
-            continue
-        config = load_config(path)
+    assert historical | {"portfolio_development"} <= {
+        p.stem for p in (REPO / "configs").glob("*.yaml")}
+    for name in historical - {"paper_campaign"}:
+        config = load_config(REPO / "configs" / f"{name}.yaml")
         assert config["fleet_mode"] == "fixed_reference"
         assert config["route_continuity"] is True
         assert config["regret_repair"] is True
-        assert config["proposal_selection"] == ("coverage_diverse" if path.stem in ("final", "fleet_lns") else "quality")
+        assert config["proposal_selection"] == ("coverage_diverse" if name in ("final", "fleet_lns") else "quality")
         assert config["max_idle_wait"] == 0
+    portfolio = load_config(REPO / "configs/portfolio_development.yaml")
+    assert portfolio["total_planning_time_limit"] == 5.0
+    assert len(portfolio["methods"]) == 4
 
 
 def test_prescribed_plans_have_36_and_108_runs():

@@ -20,5 +20,5 @@ addopts = "--basetemp=results/.pytest_work"
 [project.scripts]
 evrp = "evrp.cli:main"
 
-[tool.setuptools]
-packages = ["evrp"]
+[tool.setuptools.packages.find]
+include = ["evrp*"]

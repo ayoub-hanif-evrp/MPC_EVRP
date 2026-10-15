@@ -23,7 +23,8 @@ from .storage import identifier, save_json
 ROLLING_LNS_ALGORITHMS = {"ROLLING_LNS", "ROLLING_ALNS"}
 HYBRID_LNS_ALGORITHMS = {"MPC_MCTS_LNS", "MPC_MCTS_ALNS"}
 FLEET_LNS_ALGORITHMS = ROLLING_LNS_ALGORITHMS | HYBRID_LNS_ALGORITHMS
-COMMON_CONSTRUCTOR_ALGORITHMS = {"FLEET_MPC_MCTS", "FLEET_MPC_COMPLETION_ONLY", "ROLLING_LNS"}
+OPTIMIZER_ALGORITHMS = {"MPC_COMPLETION", "MPC_MCTS_V1", "MPC_ALNS", "MPC_HGS"}
+COMMON_CONSTRUCTOR_ALGORITHMS = {"FLEET_MPC_MCTS", "FLEET_MPC_COMPLETION_ONLY", "ROLLING_LNS"} | OPTIMIZER_ALGORITHMS
 ALGORITHMS = {"GREEDY", "RH_REGRET", "MPC_MCTS_H1", "INDEPENDENT_MPC_MCTS",
               "COORDINATED_MPC_MCTS"} | COMMON_CONSTRUCTOR_ALGORITHMS | FLEET_LNS_ALGORITHMS
 
@@ -177,6 +178,7 @@ class EventDrivenSimulator:
         from .repair import compact_unused_routes, regret_repair, route_proposal
         from .fleet_lns import fleet_score, improve_fleet
         from .fleet_mcts import construct_fleet_root, solve_fleet_mcts
+        from .optimizers import OptimizationContext, create_optimizer
         from .diagnostics import ServiceDiagnostics
         state, instance, config = self.state, self.instance, self.config
         events, steps, decisions, searches, timings = [], [], [], [], []
@@ -419,6 +421,7 @@ class EventDrivenSimulator:
                     constructor_record = None
                     lns_record = None
                     fleet_mcts_record = None
+                    optimizer_result = None
                     if config.regret_repair:
                         repair_start = perf_counter()
                         eligible = origins if config.route_continuity else {k: origins[k] for k in ready}
@@ -504,6 +507,27 @@ class EventDrivenSimulator:
                                 deadline_events += int(fleet_mcts_record.deadline_reached)
                         except PlanningDeadlineExceeded:
                             deadline_events += 1
+                    if config.algorithm in OPTIMIZER_ALGORITHMS:
+                        try:
+                            context = OptimizationContext(
+                                observation=observation, origins=origins,
+                                busy_actions={k: step.action for k, step in state.busy.items()},
+                                soft_suffixes=tails,
+                                released_customers=frozenset(observation.customer_by_id),
+                                committed_customers=frozenset(state.committed_customers),
+                                served_customers=frozenset(state.served_customers),
+                                constructor_routes=routes, k_ref=self.scenario.fleet_size,
+                                deadline=(started + config.total_planning_time_limit -
+                                          min(0.25 if event_triggered else 0.15,
+                                              config.total_planning_time_limit * 0.1)
+                                          if config.total_planning_time_limit is not None else None),
+                                seed=agent_seed(config.experiment_seed, self.scenario.scenario_seed, epochs, -1),
+                                mpc=config.mpc)
+                            optimizer_result = create_optimizer(config.algorithm, config).optimize(context)
+                            routes = dict(optimizer_result.routes)
+                            deadline_events += int(optimizer_result.deadline_reached)
+                        except PlanningDeadlineExceeded:
+                            deadline_events += 1
                     # Reconcile all future suffixes before dispatching any physical action.
                     assert_unique_routes(routes)
                     validation_started = perf_counter()
@@ -519,6 +543,9 @@ class EventDrivenSimulator:
                         if fleet_mcts_record is not None:
                             routes = fleet_mcts_record.routes
                             validated = fleet_mcts_record.validated
+                        elif optimizer_result is not None:
+                            routes = dict(optimizer_result.routes)
+                            validated = dict(optimizer_result.validated)
                         elif lns_record is not None:
                             routes = lns_record.routes
                             validated = lns_record.validated
@@ -623,6 +650,13 @@ class EventDrivenSimulator:
                                                        ejection_chains_feasible=fleet_mcts_record.ejection_chains_feasible,
                                                        ejection_chains_selected=fleet_mcts_record.ejection_chains_selected)
                                                 if fleet_mcts_record else None),
+                                    optimizer=(dict(name=config.algorithm,
+                                                    objective=optimizer_result.objective,
+                                                    components=dict(optimizer_result.components),
+                                                    runtime=optimizer_result.runtime,
+                                                    status=optimizer_result.status,
+                                                    deadline_reached=optimizer_result.deadline_reached)
+                                               if optimizer_result else None),
                                     route_owners_after_repair={a.destination: k for k, actions in routes.items()
                                                                for a in actions if a.kind == "serve"},
                                     customers_available=len(observation.customers),

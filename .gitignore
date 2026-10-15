@@ -25,7 +25,14 @@ logs/
 /results/**
 !/results/**/
 !/results/README.md
+!/results/INDEX.md
 !/results/**/.gitkeep
+!/results/portfolio/*.md
+!/results/portfolio/development/manifest.json
+!/results/portfolio/development/raw/*.json.gz
+!/results/verification/pytest.xml
+/results/.pytest_work/
+/results/verification/pytest_*/
 /results/paper/external/upstream/
 /results/paper/external/downloads/
 /results/paper/external/python/
