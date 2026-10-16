@@ -31,8 +31,10 @@ logs/
 !/results/portfolio/development/manifest.json
 !/results/portfolio/development/raw/*.json.gz
 !/results/portfolio/development/failures/*.md
+!/results/portfolio/development/failures/*.json.gz
 !/results/portfolio/development/historical_nonisolated_manifest.json
 !/results/portfolio/development/historical_pre_mcts_final_manifest.json
+!/results/portfolio/development/historical_pre_audit_fix_manifest.json
 !/results/portfolio/development/analysis/*.json
 !/results/portfolio/development/analysis/*.csv
 !/results/portfolio/development/analysis/*.png

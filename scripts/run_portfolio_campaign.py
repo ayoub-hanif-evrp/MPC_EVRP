@@ -4,10 +4,12 @@ import argparse
 from dataclasses import asdict
 from hashlib import sha256
 from itertools import product
+from pathlib import Path
 import shutil
 import subprocess
 import sys
 from time import perf_counter
+import traceback
 
 from evrp.experiments import audit_result, load_config, prepare, simulation_config
 from evrp.simulator import EventDrivenSimulator
@@ -31,6 +33,10 @@ def source_hash():
                        for p in paths})
 
 
+def failure_path(output):
+    return OUTPUT / "failures" / f"{Path(output).name}.failure.json.gz"
+
+
 def run_worker(name, dod, seed, method, output):
     """One invocation is one clean interpreter, one optimizer, one scenario."""
     study = load_config(CONFIG_PATH)
@@ -43,17 +49,25 @@ def run_worker(name, dod, seed, method, output):
     started = perf_counter()
     instance, _, scenario, _ = prepare(name, options)
     result = EventDrivenSimulator(instance, scenario, simulation_config(options)).run()
-    audit = audit_result(result, instance, scenario)
-    if not all(audit.values()):
-        raise AssertionError("Independent audit failed")
-    if result.metadata["K_ref"] != scenario.fleet_size:
-        raise AssertionError("Incorrect reference fleet size")
-    for violation in ("hidden_information_violations", "time_window_violations",
-                      "battery_violations", "capacity_violations"):
-        if result.metrics[violation] != 0:
-            raise AssertionError(f"Nonzero {violation}")
-    if result.metrics["max_optimization_latency"] > 5.0 + 1e-6:
-        raise AssertionError("Five-second decision limit exceeded")
+    try:
+        audit = audit_result(result, instance, scenario)
+        if not all(audit.values()):
+            raise AssertionError("Independent audit failed")
+        if result.metadata["K_ref"] != scenario.fleet_size:
+            raise AssertionError("Incorrect reference fleet size")
+        for violation in ("hidden_information_violations", "time_window_violations",
+                          "battery_violations", "capacity_violations"):
+            if result.metrics[violation] != 0:
+                raise AssertionError(f"Nonzero {violation}")
+        if result.metrics["max_optimization_latency"] > 5.0 + 1e-6:
+            raise AssertionError("Five-second decision limit exceeded")
+    except Exception as error:
+        result.metadata["failed_audit"] = dict(error_type=type(error).__name__,
+                                               message=str(error),
+                                               traceback=traceback.format_exc(),
+                                               source_sha256=source_hash())
+        save_json(failure_path(output), asdict(result))
+        raise
     result.metadata["isolated_worker"] = True
     result.metadata["independent_audit"] = audit
     result.metrics["worker_wall_seconds"] = perf_counter() - started
@@ -99,6 +113,8 @@ def run(case_limit=None, methods=None, family_pilot=False):
                                        code=code_hash, config=config_hash,
                                        controller=controller_hash, effective=effective))
             path = OUTPUT / "raw" / f"{name}_{dod:.2f}_{seed}_{method}_{identity[:12]}.json.gz"
+            if failure_path(path).exists():
+                raise ValueError(f"Preserved failed worker requires investigation: {path}")
             if path.exists():
                 saved = load_json(path)
                 if saved["metadata"]["scenario_identifier"] != scenario.identifier or saved[

@@ -16,7 +16,8 @@ from .instance import load_instance
 from .mpc import MPCConfig
 from .reference import ReferenceConfig, ReferenceSchedule, solve_reference
 from .scenario import DynamicScenario, generate
-from .simulator import (FLEET_LNS_ALGORITHMS, EventDrivenSimulator, ExperimentResult,
+from .simulator import (FLEET_LNS_ALGORITHMS, OPTIMIZER_ALGORITHMS,
+                        EventDrivenSimulator, ExperimentResult,
                         SimulationConfig, SimulationEvent)
 from .storage import BENCHMARK, ROOT, benchmark_hashes, identifier, save_json, load_json
 from .versions import (OBJECTIVE_VERSION, PLANNER_OBJECTIVE_VERSION, SEARCH_POLICY_VERSION,
@@ -28,6 +29,11 @@ def load_config(path: str | Path) -> dict:
     if not isinstance(data, dict):
         raise ValueError("Configuration must be a YAML mapping")
     return data
+
+
+def requires_constructor_insertion_retention(algorithm: str) -> bool:
+    # Search may replace a constructor customer while preserving or improving service.
+    return algorithm not in FLEET_LNS_ALGORITHMS | (OPTIMIZER_ALGORITHMS - {"MPC_COMPLETION"})
 
 
 def simulation_config(config: dict) -> SimulationConfig:
@@ -220,10 +226,14 @@ def audit_result(result: ExperimentResult, instance, scenario) -> dict:
             assert decision.get("repair_insertions") == len(decision.get("route_insertions", ()))
             assert decision.get("coverage_after_coordination", 0) <= decision["coverage_after_repair"]
             assert decision.get("vehicles_after_compaction", 0) <= scenario.fleet_size
+            if (result.effective_config["algorithm"] in OPTIMIZER_ALGORITHMS and
+                    "constructor_service" in decision):
+                assert decision["best_service_after_search"] >= decision["constructor_service"], \
+                    "Optimizer lost constructor service"
             for insertion in decision.get("route_insertions", ()):
                 assert insertion["customer"] in decision["available"], "Unreleased route insertion"
                 assert insertion["vehicle_id"] in states, "Insertion owner outside fixed fleet"
-                if result.effective_config["algorithm"] not in FLEET_LNS_ALGORITHMS:
+                if requires_constructor_insertion_retention(result.effective_config["algorithm"]):
                     assert insertion["customer"] in owners, "Inserted customer lost during compaction"
             claimed = set(decision.get("background_intents", ()))
             for vehicle_id, plan in decision["plans"].items():

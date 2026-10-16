@@ -41,12 +41,13 @@ for the earlier MCTS configuration, not evidence for ALNS, HGS or a portfolio. T
 now development data; it is not unseen for future work.
 
 The optimizer comparison is under development in
-[`results/portfolio/`](results/portfolio/). A pre-final-MCTS isolated
-six-family pilot contains 30 audited runs and a stopped extension contains
-38, preserved as historical development evidence. The final-MCTS 330-run
-development grid, common-state shadow experiment and new final holdout are
-not complete. Historical pilot results must not be described as final
-evidence. No new final holdout has been run or preregistered.
+[`results/portfolio/`](results/portfolio/). Earlier pilots and a stopped
+72-run grid are preserved as historical development evidence. A correctness
+fix to the independent audit changed the source fingerprint, so the
+authoritative 330-run development grid restarted from zero. The common-state
+shadow experiment and new final holdout are not complete. Historical results
+must not be described as final evidence. No new final holdout has been run or
+preregistered.
 
 ## Repository Map
 

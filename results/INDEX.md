@@ -5,7 +5,11 @@
 `paper/` is the frozen earlier paper track, not a new unseen holdout.
 `portfolio/development/historical_pre_mcts_final_manifest.json` and
 `portfolio/development/historical_nonisolated_manifest.json` preserve earlier
-optimizer development. Other legacy directories below remain for provenance.
+optimizer development. `portfolio/development/historical_pre_audit_fix_manifest.json`
+preserves 72 audited records from the source retired after the
+`c109_21`/0.25/2 ALNS audit failure. The failure record and diagnostic
+reproduction are under `portfolio/development/failures/`. Other legacy
+directories below remain for provenance.
 
 ## Development Study
 

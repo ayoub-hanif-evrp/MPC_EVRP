@@ -5,7 +5,8 @@ from time import perf_counter
 
 import pytest
 
-from evrp.experiments import audit_result, simulation_config
+from evrp.experiments import (audit_result, requires_constructor_insertion_retention,
+                              simulation_config)
 from evrp.fleet_mcts import construct_fleet_root, solve_fleet_mcts
 from evrp.model import Observation
 from evrp.optimizers import OptimizationContext, create_optimizer
@@ -13,6 +14,21 @@ from evrp.repair import route_proposal
 from evrp.simulator import EventDrivenSimulator
 from tests.test_repair import customer, setup
 from tests.test_simulator import synthetic
+
+
+def test_search_may_replace_constructor_insertions_but_not_lose_service():
+    assert not any(requires_constructor_insertion_retention(method) for method in
+                   ("MPC_MCTS", "MPC_ALNS", "MPC_HGS", "MPC_ACS"))
+    assert requires_constructor_insertion_retention("MPC_COMPLETION")
+    assert requires_constructor_insertion_retention("RH_REGRET")
+    base = synthetic(release=5, fleet=2)
+    config = simulation_config(dict(algorithm="MPC_COMPLETION", total_planning_time_limit=1.0))
+    result = EventDrivenSimulator(base.instance, base.scenario, config).run()
+    decision = next(row for row in result.decisions if "constructor_service" in row)
+    assert all(audit_result(result, base.instance, base.scenario).values())
+    decision["best_service_after_search"] = decision["constructor_service"] - 1
+    with pytest.raises(AssertionError, match="Optimizer lost constructor service"):
+        audit_result(result, base.instance, base.scenario)
 
 
 def _context(state, observation, config, root):

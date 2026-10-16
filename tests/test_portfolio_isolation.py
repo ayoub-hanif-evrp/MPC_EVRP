@@ -3,7 +3,13 @@
 import json
 import subprocess
 import sys
+from dataclasses import dataclass
 from pathlib import Path
+from types import SimpleNamespace
+
+import pytest
+
+import scripts.run_portfolio_campaign as campaign
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -38,3 +44,31 @@ def test_fresh_process_results_are_order_invariant():
     for method in forward:
         assert {k: v for k, v in forward[method].items() if k != "pid"} == {
             k: v for k, v in reverse[method].items() if k != "pid"}
+
+
+def test_failed_worker_preserves_raw_diagnostic_outside_authoritative_manifest(monkeypatch):
+    @dataclass
+    class FakeResult:
+        metadata: dict
+        metrics: dict
+
+    result = FakeResult({}, {})
+    saved = []
+    study = dict(methods=["MPC_ALNS"], base_controller="configs/paper_controller.yaml",
+                 total_planning_time_limit=5.0)
+    monkeypatch.setattr(campaign, "load_config", lambda path: study if path == campaign.CONFIG_PATH else {})
+    monkeypatch.setattr(campaign, "prepare", lambda *args: (
+        object(), None, SimpleNamespace(fleet_size=1), None))
+    monkeypatch.setattr(campaign, "simulation_config", lambda options: options)
+    monkeypatch.setattr(campaign, "EventDrivenSimulator", lambda *args: SimpleNamespace(run=lambda: result))
+    monkeypatch.setattr(campaign, "audit_result", lambda *args: (_ for _ in ()).throw(
+        AssertionError("diagnostic failure")))
+    monkeypatch.setattr(campaign, "source_hash", lambda: "frozen-test-source")
+    monkeypatch.setattr(campaign, "save_json", lambda path, data: saved.append((path, data)))
+    output = ROOT / "results/portfolio/development/raw/fake_MPC_ALNS.json.gz"
+    with pytest.raises(AssertionError, match="diagnostic failure"):
+        campaign.run_worker("fake", 0.25, 2, "MPC_ALNS", output)
+    assert len(saved) == 1
+    assert saved[0][0] == campaign.failure_path(output)
+    assert saved[0][1]["metadata"]["failed_audit"]["source_sha256"] == "frozen-test-source"
+    assert saved[0][1]["metadata"]["failed_audit"]["message"] == "diagnostic failure"
