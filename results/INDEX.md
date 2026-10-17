@@ -31,6 +31,10 @@ full shadow grid is audited.
 `final_study/` is reserved for a new deterministic unused-instance
 preregistration and its later audited holdout. No final results currently
 exist; historical consumed instances are development evidence.
+After final holdout analysis, `scripts/render_final_paper.py` writes the
+paper-ready Results narrative to `final_study/paper/RESULTS.md`, PNG-only
+figures to `final_study/paper/figures/`, and Markdown-only tables to
+`final_study/paper/tables/`. It refuses incomplete final evidence.
 
 ## Verification
 

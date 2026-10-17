@@ -109,7 +109,13 @@ python -m scripts.preregister_final_holdout
 # Commit both PRE_REGISTERED_PROTOCOL files before the first final run.
 python -m scripts.run_final_holdout
 python -m scripts.analyze_final_holdout
+python -m scripts.render_final_paper
 ```
+
+The renderer rechecks the complete audited final holdout and frozen shadow
+study before writing `results/final_study/paper/RESULTS.md`, nine 300-dpi PNG
+figures, and ten Markdown tables. Development plots remain diagnostic and are
+not used as final paper evidence.
 
 If the gate passes, a portfolio must first be implemented, validated, and
 frozen from development data; the current non-portfolio holdout guard refuses

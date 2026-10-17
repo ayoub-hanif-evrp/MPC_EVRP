@@ -51,9 +51,13 @@ logs/
 !/results/final_study/analysis/*.json
 !/results/final_study/analysis/*.csv
 !/results/final_study/analysis/*.png
+!/results/final_study/paper/RESULTS.md
+!/results/final_study/paper/figures/*.png
+!/results/final_study/paper/tables/*.md
 !/results/verification/pytest.xml
 /results/.pytest_work/
 /results/t[0-9]*/
+/results/t_paper_reporting*/
 /results/verification/pytest_*/
 /results/paper/external/upstream/
 /results/paper/external/downloads/
