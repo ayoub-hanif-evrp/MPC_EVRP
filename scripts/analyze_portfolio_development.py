@@ -147,7 +147,7 @@ def summarize_mechanisms(records):
 def plot_development(out, methods, service, comparisons, latencies, operators):
     labels = ["MPC + Completion" if method == "MPC_COMPLETION" else
               method.replace("MPC_", "MPC + ") for method in methods]
-    palette = ("#59636e", "#2474a6", "#12806a", "#bd7b13", "#a14851")
+    palette = ("#59636e", "#2474a6", "#12806a", "#bd7b13", "#a14851", "#755199")
     overall = {row["method"]: row for row in service if row["scope"] == "overall"}
 
     fig, ax = plt.subplots(figsize=(10, 3.7))
@@ -155,7 +155,7 @@ def plot_development(out, methods, service, comparisons, latencies, operators):
     ax.annotate("Event-triggered MPC: common constructor", (0.5, 0.69),
                 ha="center", fontsize=12, fontweight="bold")
     for index, (label, color) in enumerate(zip(labels, palette)):
-        x = 0.1 + 0.2 * index
+        x = (index + 0.5) / len(methods)
         ax.text(x, 0.43, label, ha="center", va="center", color="white",
                 bbox=dict(facecolor=color, edgecolor="none", boxstyle="round,pad=0.4"))
         ax.plot([0.5, x], [0.64, 0.49], color="#84919a", lw=1)

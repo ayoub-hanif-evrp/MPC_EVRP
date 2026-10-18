@@ -38,7 +38,8 @@ def test_snapshot_selection_deduplicates_state_hashes():
     assert len(_select([row, dict(row)])) == 1
 
 
-def test_shadow_capture_and_execution_refuse_unfinished_development():
+def test_shadow_capture_and_execution_refuse_mismatched_source(monkeypatch):
+    monkeypatch.setattr(shadow_portfolio, "source_hash", lambda: "synthetic-source")
     with pytest.raises(ValueError, match="development study must complete"):
         capture()
     with pytest.raises(ValueError, match="complete and source-frozen"):

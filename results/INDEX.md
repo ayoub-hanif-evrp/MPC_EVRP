@@ -16,8 +16,8 @@ directories below remain for provenance.
 `portfolio/development/manifest.json` is the authoritative final-source
 66-scenario by five-method grid. Its raw records live under
 `portfolio/development/raw/`; analysis belongs under
-`portfolio/development/analysis/`. The grid is incomplete until 330 audited
-records with one common source, controller and protocol fingerprint exist.
+`portfolio/development/analysis/`. The complete grid has 330 audited records
+with one common source, controller and protocol fingerprint.
 
 ## Shadow Study
 
@@ -25,12 +25,16 @@ records with one common source, controller and protocol fingerprint exist.
 observable-state selection before optimizer outcomes in `portfolio/shadow/raw/`
 are generated. `portfolio/shadow/sbs_vbs_gate.json` is analysis-only until the
 full shadow grid is audited.
+The completed 396-state shadow grid passed the portfolio gate. The simple
+selector, its grouped-scenario and grouped-instance validation, and the
+deployment decision are frozen under `portfolio/selector/`.
 
 ## Final Study
 
 `final_study/` is reserved for a new deterministic unused-instance
 preregistration and its later audited holdout. No final results currently
-exist; historical consumed instances are development evidence.
+exist; historical consumed instances are development evidence. The planned
+portfolio-inclusive grid has 54 scenarios by six MPC variants (324 runs).
 After final holdout analysis, `scripts/render_final_paper.py` writes the
 paper-ready Results narrative to `final_study/paper/RESULTS.md`, PNG-only
 figures to `final_study/paper/figures/`, and Markdown-only tables to

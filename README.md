@@ -101,8 +101,19 @@ python -m scripts.shadow_portfolio run
 python -m scripts.shadow_portfolio analyze
 ```
 
-Only if the common-state gate fails should the five-method non-portfolio
-holdout be preregistered and run:
+If the common-state gate passes, fit the predeclared observable-state selector
+and commit its model, grouped-CV record, and decision before preregistration:
+
+```powershell
+python -m scripts.portfolio_selector
+# Commit results/portfolio/selector/ before final preregistration.
+```
+
+The selector is deployed only if held-out-scenario and held-out-instance
+planned service both exceed the frozen SBS. The current 396-state study passed
+that rule; the portfolio is therefore a sixth **MPC variant**, not a separate
+controller. If the gate fails or the selector fails grouped validation, the
+holdout keeps the five frozen variants. In either case, run:
 
 ```powershell
 python -m scripts.preregister_final_holdout
@@ -117,9 +128,8 @@ study before writing `results/final_study/paper/RESULTS.md`, nine 300-dpi PNG
 figures, and ten Markdown tables. Development plots remain diagnostic and are
 not used as final paper evidence.
 
-If the gate passes, a portfolio must first be implemented, validated, and
-frozen from development data; the current non-portfolio holdout guard refuses
-to proceed. No new final holdout has been opened.
+No new final holdout has been opened. The final grid has 324 isolated runs when
+the frozen portfolio is included, or 270 otherwise.
 
 To reproduce the historical paper track, check out the V1 tag in a separate
 worktree and follow [`results/paper/PAPER_PROTOCOL.md`](results/paper/PAPER_PROTOCOL.md).

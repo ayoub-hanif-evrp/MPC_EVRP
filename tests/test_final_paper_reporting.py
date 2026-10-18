@@ -49,14 +49,15 @@ def test_renderer_refuses_unregistered_holdout(monkeypatch, tmp_path):
     assert not (tmp_path / "paper").exists()
 
 
-def test_paper_outputs_are_png_and_markdown(tmp_path, monkeypatch):
+@pytest.mark.parametrize("portfolio", [False, True])
+def test_paper_outputs_are_png_and_markdown(tmp_path, monkeypatch, portfolio):
     monkeypatch.setattr(paper, "PAPER", tmp_path)
     protocol_path = tmp_path / "PRE_REGISTERED_PROTOCOL.json"
     protocol_path.write_text("{}", encoding="utf-8")
     monkeypatch.setattr(paper, "JSON_OUTPUT", protocol_path)
     (tmp_path / "figures").mkdir()
     (tmp_path / "tables").mkdir()
-    methods = paper.ORDER
+    methods = paper.ORDER + (("MPC_PORTFOLIO",) if portfolio else ())
     grouped = {}
     for family in paper.FAMILIES:
         for dod in (.25, .5, .75):
@@ -87,15 +88,18 @@ def test_paper_outputs_are_png_and_markdown(tmp_path, monkeypatch):
                     source_sha256="synthetic-source")
     shadow = dict(snapshots=264, sbs="MPC_MCTS", sbs_planned_customers_served=23000,
                   vbs_planned_customers_served=23100, vbs_minus_sbs_served=100,
-                  vbs_service_win_fraction=.1, portfolio_gate_passed=False)
+                  vbs_service_win_fraction=.1, portfolio_gate_passed=portfolio)
+    selector_cv = (dict(instance_grouped=dict(aggregate=dict(planned_service=23050,
+                                                              regret_to_vbs=50)))
+                   if portfolio else None)
     wins = {method: dict(unique=1, tied=2, canonical_at_tied_service=1)
             for method in paper.SEARCH_METHODS}
     overall, runtimes, pairs, summary, operators = paper.write_tables(
-        report, protocol, grouped, shadow, wins)
+        report, protocol, grouped, shadow, wins, selector_cv)
     paper.write_figures(report, protocol, overall, runtimes, pairs, summary,
                         operators, shadow, wins,
-                        {method: [1., 2., 3.] for method in methods}, [0, 1, 2])
-    paper.write_results(report, protocol, overall, runtimes, pairs, shadow, wins)
+                        {method: [1., 2., 3.] for method in methods}, [0, 1, 2], selector_cv)
+    paper.write_results(report, protocol, overall, runtimes, pairs, shadow, wins, selector_cv)
     figures = list((tmp_path / "figures").iterdir())
     tables = list((tmp_path / "tables").iterdir())
     assert len(figures) == 9 and all(path.suffix == ".png" for path in figures)
@@ -106,6 +110,9 @@ def test_paper_outputs_are_png_and_markdown(tmp_path, monkeypatch):
             assert image.info["dpi"][0] >= 299
     completion = (tmp_path / "tables" / "table3_vs_completion.md").read_text()
     assert "MPC + ACS - MPC + Completion | 4.00 | [3.50, 4.50]" in completion
+    pairwise = (tmp_path / "tables" / "table4_optimizer_pairwise.md").read_text()
+    assert "MPC + MCTS - MPC + ALNS" in pairwise
+    assert "MPC + Portfolio" not in pairwise
     results = (tmp_path / "RESULTS.md").read_text()
     assert "## 11. Final conclusions from the holdout" in results
     assert "figures/fig9_mcts_mechanisms.png" in results

@@ -7,6 +7,7 @@ from statistics import mean
 import numpy as np
 
 from evrp.storage import ROOT, load_json, save_json
+from scripts.portfolio_selector import METHOD as PORTFOLIO_METHOD, MODEL as SELECTOR_MODEL, predict
 from scripts.analyze_portfolio_development import (_write_csv, family_subtype,
                                                    mechanism_record, paired_bootstrap,
                                                    plot_development, summarize_mechanisms)
@@ -65,6 +66,17 @@ def analyze():
                 metrics["vehicles_activated"] != row["vehicles_activated"] or
                 not np.isclose(metrics["total_distance"], row["total_distance"])):
             raise ValueError("Final raw run failed an independent audit check")
+        if row["method"] == PORTFOLIO_METHOD:
+            model = load_json(SELECTOR_MODEL)
+            selected = [decision["optimizer"] for decision in raw["decisions"]
+                        if decision.get("optimizer")]
+            if not selected or any(
+                    optimizer["name"] != PORTFOLIO_METHOD or
+                    optimizer["diagnostics"].get("portfolio_selected_engine") !=
+                    predict(model, optimizer["diagnostics"].get(
+                        "portfolio_observable_features", {}))
+                    for optimizer in selected):
+                raise ValueError("Final portfolio trace differs from committed selector")
         times = [decision["optimization_latency_seconds"] for decision in raw["decisions"]
                  if decision.get("optimization_latency_seconds") is not None]
         if (not times or not np.isclose(mean(times), row["mean_optimization_latency"], atol=1e-6)

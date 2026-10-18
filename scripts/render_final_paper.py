@@ -14,6 +14,7 @@ import numpy as np
 
 from evrp.storage import ROOT, load_json
 from scripts.analyze_final_holdout import analyze as analyze_final
+from scripts.portfolio_selector import CV as SELECTOR_CV
 from scripts.preregister_final_holdout import JSON_OUTPUT
 from scripts.run_final_holdout import OUTPUT, validated_protocol
 from scripts.shadow_portfolio import OUTPUT as SHADOW, SEARCH_METHODS, analyze_shadow
@@ -150,7 +151,7 @@ def shadow_win_counts(shadow_rows):
     return counts
 
 
-def write_tables(report, protocol, grouped, shadow, wins):
+def write_tables(report, protocol, grouped, shadow, wins, selector_cv=None):
     out = PAPER / "tables"
     methods = tuple(protocol["methods"])
     overall = {row["method"]: row for row in report["service"] if row["scope"] == "overall"}
@@ -159,7 +160,8 @@ def write_tables(report, protocol, grouped, shadow, wins):
     table(out / "table1_common_mpc.md", "Common event-triggered MPC architecture",
           ("Method", "MPC controller", "Search engine", "Common constructor",
            "Released-only information", "Exact EV decoder", "Decision budget"),
-          [(label(method), "Event-triggered", method.removeprefix("MPC_") if method !=
+          [(label(method), "Event-triggered", "State-aware selector" if method ==
+            "MPC_PORTFOLIO" else method.removeprefix("MPC_") if method !=
             "MPC_COMPLETION" else "None", "Yes", "Yes; audited", "Yes; audited",
             "5 s") for method in methods],
           "All rows use the frozen common controller and the same 100-customer final scenarios.")
@@ -190,7 +192,7 @@ def write_tables(report, protocol, grouped, shadow, wins):
            for method in methods if method != "MPC_COMPLETION"],
           "Positive Delta served favors the optimizer. Percent-point differences are shown for complete service.")
 
-    search_pairs = list(combinations([method for method in methods if method != "MPC_COMPLETION"], 2))
+    search_pairs = list(combinations(SEARCH_METHODS, 2))
     table(out / "table4_optimizer_pairwise.md", "Final search-engine comparisons within MPC",
           ("Comparison (left - right)", "Mean Delta served", "95% bootstrap CI", "W/T/L",
            "Complete-rate difference"),
@@ -202,6 +204,8 @@ def write_tables(report, protocol, grouped, shadow, wins):
 
     all_pairs = [(method, "MPC_COMPLETION") for method in methods if method !=
                  "MPC_COMPLETION"] + search_pairs
+    if "MPC_PORTFOLIO" in methods:
+        all_pairs += [("MPC_PORTFOLIO", method) for method in SEARCH_METHODS]
     table(out / "table5_conditional_efficiency.md", "Conditional fleet and distance efficiency",
           ("Comparison (left - right)", "Equal-service scenarios n",
            "Delta EVs at equal service", "Equal-service + equal-EV scenarios n",
@@ -252,17 +256,23 @@ def write_tables(report, protocol, grouped, shadow, wins):
           ("Metric", "Total"), mechanism_rows,
           "Counts are summed over instrumented MCTS optimizer calls. Policy-specific rollout improvements include service and objective-only gains; the frozen trace does not split these by policy. Service gain is over the common constructor.")
 
+    shadow_headers = ("Snapshots", "SBS", "SBS planned service", "VBS planned service",
+                      "VBS-SBS gain", "VBS win fraction", "Unique service wins: MCTS",
+                      "Unique service wins: ALNS", "Unique service wins: HGS",
+                      "Unique service wins: ACS", "Portfolio gate")
+    shadow_row = (shadow["snapshots"], label(shadow["sbs"]),
+                  shadow["sbs_planned_customers_served"], shadow["vbs_planned_customers_served"],
+                  shadow["vbs_minus_sbs_served"], pct(shadow["vbs_service_win_fraction"]),
+                  *[wins[method]["unique"] for method in SEARCH_METHODS],
+                  "PASS" if shadow["portfolio_gate_passed"] else "FAIL")
+    shadow_note = "VBS is an analysis-only oracle on identical frozen MPC states, not a deployable controller."
+    if "MPC_PORTFOLIO" in methods:
+        validation = selector_cv["instance_grouped"]["aggregate"]
+        shadow_headers += ("Portfolio planned service (instance CV)", "Portfolio regret to VBS")
+        shadow_row += (validation["planned_service"], validation["regret_to_vbs"])
+        shadow_note += " Portfolio values are out-of-instance development CV, not final-holdout outcomes."
     table(out / "table9_shadow_sbs_vbs.md", "Frozen common-state SBS/VBS study",
-          ("Snapshots", "SBS", "SBS planned service", "VBS planned service",
-           "VBS-SBS gain", "VBS win fraction", "Unique service wins: MCTS",
-           "Unique service wins: ALNS", "Unique service wins: HGS",
-           "Unique service wins: ACS", "Portfolio gate"),
-          [(shadow["snapshots"], label(shadow["sbs"]),
-            shadow["sbs_planned_customers_served"], shadow["vbs_planned_customers_served"],
-            shadow["vbs_minus_sbs_served"], pct(shadow["vbs_service_win_fraction"]),
-            *[wins[method]["unique"] for method in SEARCH_METHODS],
-            "PASS" if shadow["portfolio_gate_passed"] else "FAIL")],
-          "VBS is an analysis-only oracle on identical frozen MPC states, not a deployable controller.")
+          shadow_headers, [shadow_row], shadow_note)
 
     table(out / "supp_table_per_scenario.md", "Supplement: all final paired scenarios",
           ("Instance", "DoD", "Seed", *[method.removeprefix("MPC_") + " served"
@@ -310,7 +320,7 @@ def architecture(path, methods):
 
 
 def write_figures(report, protocol, overall, runtime, pairs, summary, operators,
-                  shadow, wins, latencies, mcts_gains):
+                  shadow, wins, latencies, mcts_gains, selector_cv=None):
     out = PAPER / "figures"
     methods = tuple(protocol["methods"])
     labels = [label(method) for method in methods]
@@ -411,10 +421,15 @@ def write_figures(report, protocol, overall, runtime, pairs, summary, operators,
     save(fig, out / "fig7_shadow_optimizer_wins.png")
 
     fig, ax = plt.subplots(figsize=(7.2, 4.6))
-    levels = (shadow["sbs_planned_customers_served"],
-              shadow["vbs_planned_customers_served"])
-    bars = ax.bar(["SBS", "VBS (analysis-only oracle)"], levels,
-                  color=[COLORS[shadow["sbs"]], "#77838c"], width=.55)
+    levels = [shadow["sbs_planned_customers_served"],
+              shadow["vbs_planned_customers_served"]]
+    level_labels = ["SBS", "VBS\n(analysis-only oracle)"]
+    level_colors = [COLORS[shadow["sbs"]], "#77838c"]
+    if "MPC_PORTFOLIO" in methods:
+        levels.append(selector_cv["instance_grouped"]["aggregate"]["planned_service"])
+        level_labels.append("Portfolio\n(instance-group CV)")
+        level_colors.append(COLORS["MPC_PORTFOLIO"])
+    bars = ax.bar(level_labels, levels, color=level_colors, width=.55)
     ax.set_ylabel("Planned customers served across frozen snapshots")
     ax.set_ylim(0, max(levels) * 1.14 if max(levels) else 1)
     for bar, value in zip(bars, levels):
@@ -453,7 +468,7 @@ def write_figures(report, protocol, overall, runtime, pairs, summary, operators,
     save(fig, out / "fig9_mcts_mechanisms.png")
 
 
-def write_results(report, protocol, overall, runtime, pairs, shadow, wins):
+def write_results(report, protocol, overall, runtime, pairs, shadow, wins, selector_cv=None):
     methods = tuple(protocol["methods"])
     best = max(methods, key=lambda method: overall[method]["mean_customers_served"])
     best_gain = oriented(pairs, best, "MPC_COMPLETION") if best != "MPC_COMPLETION" else None
@@ -521,9 +536,11 @@ def write_results(report, protocol, overall, runtime, pairs, shadow, wins):
              f"The frozen common-state study had {shadow['snapshots']} snapshots. Its gate "
              f"{'passed' if shadow['portfolio_gate_passed'] else 'failed'}; "
              "VBS is an analysis-only oracle. " +
-             ("A portfolio was evaluated only after the gate and selector freeze. "
-              if shadow["portfolio_gate_passed"] else
-              "No portfolio was developed or included in the final holdout. ") +
+             ("The frozen selector passed both grouped-CV deployment checks; its out-of-instance "
+              "planned-service result in Table 9 is development evidence, while its deployed "
+              "performance is in the final-holdout Tables 2-5. "
+              if "MPC_PORTFOLIO" in methods else
+              "No portfolio was included in the final holdout. ") +
              "See [Table 9](tables/table9_shadow_sbs_vbs.md) and "
              "[Figure 8](figures/fig8_sbs_vbs_portfolio.png).", "",
              "## 11. Final conclusions from the holdout", "",
@@ -547,7 +564,8 @@ def write_results(report, protocol, overall, runtime, pairs, shadow, wins):
              "- [Figure 7](figures/fig7_shadow_optimizer_wins.png): Identical-state service and "
              "canonical win counts; tied and canonical categories overlap by definition.",
              "- [Figure 8](figures/fig8_sbs_vbs_portfolio.png): Planned service for SBS and "
-             "analysis-only VBS on frozen snapshots.",
+             "analysis-only VBS on frozen snapshots; any portfolio bar is held-out-instance "
+             "development CV, not a final-holdout result.",
              "- [Figure 9](figures/fig9_mcts_mechanisms.png): Final-holdout MCTS mechanism counts.", "",
              "## Provenance", "",
              f"Source SHA-256: `{protocol['source_sha256']}`. Final preregistration SHA-256: "
@@ -560,8 +578,7 @@ def render():
     protocol = validated_protocol()
     report = analyze_final()
     shadow = analyze_shadow()
-    if shadow["portfolio_gate_passed"]:
-        raise ValueError("Portfolio-gate PASS requires a frozen selector and portfolio-aware final analysis")
+    selector_cv = load_json(SELECTOR_CV) if shadow["portfolio_gate_passed"] else None
     manifest = load_json(OUTPUT / "manifest.json")
     shadow_manifest = load_json(SHADOW / "manifest.json")
     if report["status"] != "complete_final_holdout" or report["records"] != len(manifest["records"]):
@@ -580,10 +597,10 @@ def render():
                          "axes.labelsize": 10, "figure.facecolor": "white",
                          "axes.facecolor": "white", "savefig.facecolor": "white"})
     overall, runtime, pairs, summary, operators = write_tables(
-        report, protocol, grouped, shadow, wins)
+        report, protocol, grouped, shadow, wins, selector_cv)
     write_figures(report, protocol, overall, runtime, pairs, summary, operators,
-                  shadow, wins, latencies, mcts_gains)
-    write_results(report, protocol, overall, runtime, pairs, shadow, wins)
+                  shadow, wins, latencies, mcts_gains, selector_cv)
+    write_results(report, protocol, overall, runtime, pairs, shadow, wins, selector_cv)
     return PAPER
 
 

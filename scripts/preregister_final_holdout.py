@@ -8,6 +8,9 @@ import subprocess
 
 from evrp.experiments import load_config
 from evrp.storage import ROOT, load_json, save_json
+from scripts.portfolio_selector import (CV as SELECTOR_CV, DECISION as SELECTOR_DECISION,
+                                        METHOD as PORTFOLIO_METHOD, MODEL as SELECTOR_MODEL,
+                                        _committed_bytes, selector_sha256)
 from scripts.run_portfolio_campaign import CONFIG_PATH, OUTPUT as DEVELOPMENT, source_hash
 from scripts.shadow_portfolio import OUTPUT as SHADOW
 
@@ -64,6 +67,38 @@ def choose_unused(used):
     return {group: min(candidates[group]) for group in FAMILIES}, candidates
 
 
+def selector_decision(shadow):
+    if not shadow["portfolio_gate_passed"]:
+        return None, None
+    for path in (SELECTOR_MODEL, SELECTOR_CV, SELECTOR_DECISION):
+        if not path.is_file():
+            raise ValueError("PASS gate requires a committed selector decision")
+        _committed_bytes(path)
+    model, cv = load_json(SELECTOR_MODEL), load_json(SELECTOR_CV)
+    expected_deploy = (cv["scenario_grouped"]["aggregate"]["gain_over_sbs"] > 0 and
+                       cv["instance_grouped"]["aggregate"]["gain_over_sbs"] > 0)
+    if (model["status"] != "frozen_selector" or cv["status"] != "complete_grouped_cv" or
+            model["method"] != PORTFOLIO_METHOD or
+            model["base_source_sha256"] != source_hash() or
+            cv["base_source_sha256"] != source_hash() or
+            model["selector_source_sha256"] != selector_sha256() or
+            cv["selector_source_sha256"] != selector_sha256() or
+            model["shadow_selection_sha256"] !=
+            sha256((SHADOW / "selection.json").read_bytes()).hexdigest() or
+            model["shadow_manifest_sha256"] !=
+            sha256((SHADOW / "manifest.json").read_bytes()).hexdigest() or
+            model["shadow_gate_sha256"] !=
+            sha256((SHADOW / "sbs_vbs_gate.json").read_bytes()).hexdigest() or
+            model["sbs"] != shadow["sbs"] or
+            model["training_states"] != shadow["snapshots"] or
+            cv["training_states"] != shadow["snapshots"] or
+            model["deploy"] != cv["deploy"] or model["deploy"] != expected_deploy or
+            len(cv["scenario_grouped"]["folds"]) != 66 or
+            len(cv["instance_grouped"]["folds"]) != 12):
+        raise ValueError("Selector artifact differs from frozen PASS-gate evidence")
+    return model, cv
+
+
 def preregister():
     study = load_config(CONFIG_PATH)
     development = load_json(DEVELOPMENT / "manifest.json")
@@ -85,11 +120,12 @@ def preregister():
             selection["status"] != "frozen_selection" or
             selection["source_sha256"] != source_hash()):
         raise ValueError("Common-state shadow experiment is not complete and source-frozen")
-    if shadow["portfolio_gate_passed"]:
-        raise ValueError("Portfolio gate passed: freeze and validate the selector first")
+    model, cv = selector_decision(shadow)
     methods = tuple(study["methods"])
     if len(methods) != 5:
         raise ValueError("Expected the frozen five-method study")
+    if model is not None and model["deploy"]:
+        methods += (PORTFOLIO_METHOD,)
     used = used_instances()
     selected, candidates = choose_unused(used)
     controller = ROOT / study["base_controller"]
@@ -104,6 +140,11 @@ def preregister():
                     holdout_runner_sha256=runner_hash,
                     shadow_selection_sha256=sha256(selection_path.read_bytes()).hexdigest(),
                     shadow_gate_sha256=sha256((SHADOW / "sbs_vbs_gate.json").read_bytes()).hexdigest(),
+                    portfolio_gate_passed=shadow["portfolio_gate_passed"],
+                    portfolio_deployed=bool(model and model["deploy"]),
+                    selector_source_sha256=selector_sha256() if model else None,
+                    selector_model_sha256=sha256(SELECTOR_MODEL.read_bytes()).hexdigest() if model else None,
+                    selector_cv_sha256=sha256(SELECTOR_CV.read_bytes()).hexdigest() if model else None,
                     methods=list(methods), dynamicity=[0.25, 0.5, 0.75], seeds=[0, 1, 2],
                     selected={group: dict(instance=selected[group][1],
                                           benchmark_sha256=selected[group][2])
@@ -126,6 +167,8 @@ def preregister():
              f"Holdout runner SHA-256: `{runner_hash}`  ",
              f"Shadow selection SHA-256: `{protocol['shadow_selection_sha256']}`  ",
              f"Shadow gate SHA-256: `{protocol['shadow_gate_sha256']}`",
+             f"Portfolio gate: `{'PASS' if shadow['portfolio_gate_passed'] else 'FAIL'}`. "
+             f"Selector deployment: `{'YES' if protocol['portfolio_deployed'] else 'NO'}`.",
              "", "Previously referenced/used _21 instances are excluded:",
              ", ".join(f"`{name}`" for name in sorted(used)), "",
              "| Family | Selected unused instance | Source SHA-256 | Eligible pool |",
@@ -134,13 +177,21 @@ def preregister():
         _, name, digest = selected[group]
         lines.append(f"| {group} | `{name}` | `{digest}` | {len(candidates[group])} |")
     lines += ["", "Dynamicity targets: `{0.25, 0.50, 0.75}`. Scenario seeds: `{0, 1, 2}`.",
-              "The grid has 54 scenarios per method and 270 isolated simulations.",
+              f"The grid has 54 scenarios per method and {54 * len(methods)} isolated simulations.",
               "Methods: " + ", ".join(f"`{name}`" for name in methods) + ".", "",
               "Every simulation starts in a fresh interpreter, runs one method/scenario,",
               "passes independent physical and information-boundary audit, and records",
               "compressed raw evidence. Primary ranking is customers served, then",
               "complete-service rate, EV count only at equal service, and distance only",
               "at equal service and EV count. VBS is analysis-only and is not deployed.", ""]
+    if model:
+        lines += ["Selector source SHA-256: `" + protocol["selector_source_sha256"] + "`  ",
+                  "Selector model SHA-256: `" + protocol["selector_model_sha256"] + "`  ",
+                  "Selector grouped-CV SHA-256: `" + protocol["selector_cv_sha256"] + "`.",
+                  "Held-out-scenario planned-service gain over SBS: " +
+                  str(cv["scenario_grouped"]["aggregate"]["gain_over_sbs"]) + ".  ",
+                  "Held-out-instance planned-service gain over SBS: " +
+                  str(cv["instance_grouped"]["aggregate"]["gain_over_sbs"]) + ".", ""]
     if OUTPUT.exists() or JSON_OUTPUT.exists():
         raise FileExistsError("Holdout protocol already exists; never overwrite it")
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)

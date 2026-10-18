@@ -1,6 +1,7 @@
 """Run only the committed, gate-checked final MPC holdout protocol."""
 
 import argparse
+from contextlib import nullcontext
 from dataclasses import asdict
 from hashlib import sha256
 from itertools import product
@@ -14,7 +15,10 @@ from evrp.experiments import audit_result, load_config, prepare, simulation_conf
 from evrp.simulator import EventDrivenSimulator
 from evrp.storage import ROOT, identifier, load_json, save_json
 from scripts.preregister_final_holdout import (BENCHMARK, FAMILIES, JSON_OUTPUT,
-                                               OUTPUT as MARKDOWN)
+                                               OUTPUT as MARKDOWN, selector_decision)
+from scripts.portfolio_selector import (CV as SELECTOR_CV, METHOD as PORTFOLIO_METHOD,
+                                        MODEL as SELECTOR_MODEL, portfolio_runtime,
+                                        predict, selector_sha256)
 from scripts.run_portfolio_campaign import CONFIG_PATH, OUTPUT as DEVELOPMENT, source_hash
 from scripts.shadow_portfolio import OUTPUT as SHADOW
 
@@ -57,9 +61,12 @@ def validated_protocol():
             development_analysis["scenarios"] != 66 or
             any(row["source_sha256"] != source_hash() for row in development["records"])):
         raise ValueError("Final holdout requires the complete final-source development grid")
-    if (shadow["snapshots"] < 264 or shadow["portfolio_gate_passed"] or
+    if (shadow["snapshots"] < 264 or
             shadow_manifest["status"] != "shadow_complete"):
-        raise ValueError("Final holdout requires a complete non-portfolio shadow decision")
+        raise ValueError("Final holdout requires a complete shadow decision")
+    model, _ = selector_decision(shadow)
+    portfolio_deployed = bool(model and model["deploy"])
+    expected_methods = list(study["methods"]) + ([PORTFOLIO_METHOD] if portfolio_deployed else [])
     if (protocol["status"] != "preregistered_final_holdout" or
             protocol["source_sha256"] != source_hash() or
             protocol["controller_config"] != study["base_controller"] or
@@ -72,7 +79,14 @@ def validated_protocol():
             shadow_manifest["selection_sha256"] != protocol["shadow_selection_sha256"] or
             protocol["shadow_gate_sha256"] !=
             sha256((SHADOW / "sbs_vbs_gate.json").read_bytes()).hexdigest() or
-            protocol["methods"] != study["methods"] or
+            protocol["portfolio_gate_passed"] != shadow["portfolio_gate_passed"] or
+            protocol["portfolio_deployed"] != portfolio_deployed or
+            protocol["selector_source_sha256"] != (selector_sha256() if model else None) or
+            protocol["selector_model_sha256"] !=
+            (sha256(SELECTOR_MODEL.read_bytes()).hexdigest() if model else None) or
+            protocol["selector_cv_sha256"] !=
+            (sha256(SELECTOR_CV.read_bytes()).hexdigest() if model else None) or
+            protocol["methods"] != expected_methods or
             protocol["dynamicity"] != [0.25, 0.5, 0.75] or
             protocol["seeds"] != [0, 1, 2] or
             set(protocol["selected"]) != set(FAMILIES) or
@@ -105,6 +119,16 @@ def _validate_raw(raw, method, scenario, instance):
             any(metrics[name] != 0 for name in VIOLATIONS) or
             metrics["max_optimization_latency"] > 5.0 + 1e-6):
         raise ValueError(f"Invalid final-holdout raw run: {instance.name} {method}")
+    if method == PORTFOLIO_METHOD:
+        model = load_json(SELECTOR_MODEL)
+        decisions = [row for row in raw["decisions"] if row.get("optimizer")]
+        if not decisions or any(
+                row["optimizer"]["name"] != PORTFOLIO_METHOD or
+                row["optimizer"]["diagnostics"].get("portfolio_selected_engine") !=
+                predict(model, row["optimizer"]["diagnostics"].get(
+                    "portfolio_observable_features", {}))
+                for row in decisions):
+            raise ValueError("Portfolio trace differs from frozen selector")
 
 
 def run_worker(name, dod, seed, method, output):
@@ -120,8 +144,11 @@ def run_worker(name, dod, seed, method, output):
         options = _options(protocol, method, dod, seed)
         started = perf_counter()
         instance, _, scenario, _ = prepare(name, options)
-        result = EventDrivenSimulator(instance, scenario, simulation_config(options)).run()
-        audit = audit_result(result, instance, scenario)
+        scope = (portfolio_runtime(load_json(SELECTOR_MODEL)) if method == PORTFOLIO_METHOD
+                 else nullcontext())
+        with scope:
+            result = EventDrivenSimulator(instance, scenario, simulation_config(options)).run()
+            audit = audit_result(result, instance, scenario)
         if not all(audit.values()):
             raise AssertionError("Independent final-holdout audit failed")
         result.metadata["isolated_worker"] = True
