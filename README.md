@@ -26,8 +26,8 @@ MCTS is the principal tree-search method. ALNS, HGS and ACS are controlled
 alternatives inside the **same** controller, with the same event trigger,
 constructor, released information, fixed `K_ref`, EV charging decoder,
 lexicographic objective and total decision deadline. A state-aware portfolio
-is a research hypothesis, not an established result: it will be developed
-only if the development data show useful complementarity between optimizers.
+was frozen after the common-state complementarity study; its closed-loop
+performance is being tested, not assumed superior.
 RoutingBlocks remains an external **offline/static** benchmark, not MPC-ALNS.
 
 ## Evidence Status
@@ -40,14 +40,16 @@ for the earlier MCTS configuration, not evidence for ALNS, HGS or a portfolio. T
 [`docs/V1_FROZEN_EVIDENCE.md`](docs/V1_FROZEN_EVIDENCE.md). The old holdout is
 now development data; it is not unseen for future work.
 
-The optimizer comparison is under development in
-[`results/portfolio/`](results/portfolio/). Earlier pilots and a stopped
-72-run grid are preserved as historical development evidence. A correctness
-fix to the independent audit changed the source fingerprint, so the
-authoritative 330-run development grid restarted from zero. The common-state
-shadow experiment and new final holdout are not complete. Historical results
-must not be described as final evidence. No new final holdout has been run or
-preregistered.
+The frozen-source optimizer development study is complete at 330/330 runs over
+66 paired scenarios. The common-state shadow study is complete at 396
+snapshots and 1,584 independent optimizer evaluations. Its portfolio gate
+passed, and the state-aware selector and grouped validation were frozen before
+the final holdout. These are development results, not final performance
+evidence. The six-variant final holdout was preregistered on six unused
+Schneider instances; its latest committed checkpoint contains 134/324 audited
+runs. The final study remains incomplete, so no holdout-wide winner or final
+paper claim has been established. Earlier pilots and stopped grids remain
+historical development evidence under [`results/portfolio/`](results/portfolio/).
 
 ## Repository Map
 
@@ -68,6 +70,8 @@ preregistered.
   selection after the development and shadow gates.
 - `scripts/run_final_holdout.py` and `scripts/analyze_final_holdout.py`:
   committed-protocol final runs and paired audited analysis.
+- `scripts/resume_final_holdout.ps1`: local terminal launcher that resumes the
+  final campaign, prevents sleep, then analyzes and renders only on success.
 - `tests/`: physics, simulator, research protocol and optimizer regressions.
 - [`results/INDEX.md`](results/INDEX.md): historical, development, shadow,
   final-study and verification outputs.
@@ -85,7 +89,7 @@ python -m scripts.run_portfolio_campaign
 python -m scripts.analyze_portfolio_development
 ```
 
-The development command runs the full 66-scenario grid sequentially. Each
+The completed development command ran the full 66-scenario grid sequentially. Each
 scenario-method simulation starts in a fresh Python interpreter and writes a
 compressed raw record with audit and SHA-256 provenance under
 `results/portfolio/development/`. The analyzer requires all 330 records
@@ -128,8 +132,22 @@ study before writing `results/final_study/paper/RESULTS.md`, nine 300-dpi PNG
 figures, and ten Markdown tables. Development plots remain diagnostic and are
 not used as final paper evidence.
 
-No new final holdout has been opened. The final grid has 324 isolated runs when
-the frozen portfolio is included, or 270 otherwise.
+The final holdout is open and resumable; do not rerun preregistration or alter
+frozen source, selector, configs, or runner. From a dedicated local PowerShell
+terminal, resume the existing 324-run campaign with:
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts/resume_final_holdout.ps1
+```
+
+The launcher writes `results/final_study/resume.log` and runs the final audit
+and PNG/Markdown paper renderer only after all 324 records are present. To
+check progress without starting another worker:
+
+```powershell
+(Get-Content results/final_study/manifest.json -Raw | ConvertFrom-Json).records.Count
+Get-Content results/final_study/resume.log -Tail 5
+```
 
 To reproduce the historical paper track, check out the V1 tag in a separate
 worktree and follow [`results/paper/PAPER_PROTOCOL.md`](results/paper/PAPER_PROTOCOL.md).
