@@ -1,0 +1,68 @@
+{
+  "controller_config": "configs/paper_controller.yaml",
+  "controller_sha256": "a28ef410ebed72331815b49f954f907809637266d24e47043810dd96779a9817",
+  "development_commit": "70469d4737bdfc4bee40388a7388b8f7a5414050",
+  "development_protocol_sha256": "e586fd8ce95453209fa8ad9ca2fb81eebdadbd32dfd5b78f14f64c48acfbd475",
+  "dynamicity": [
+    0.25,
+    0.5,
+    0.75
+  ],
+  "holdout_runner_sha256": "00b085318a23953e7045554175afdad152f577534e851a07166dbd1c57068538",
+  "methods": [
+    "MPC_COMPLETION",
+    "MPC_MCTS",
+    "MPC_ALNS",
+    "MPC_HGS",
+    "MPC_ACS",
+    "MPC_PORTFOLIO"
+  ],
+  "portfolio_deployed": true,
+  "portfolio_gate_passed": true,
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "selected": {
+    "C1": {
+      "benchmark_sha256": "c63f00c8fe479e2c94dc1bb0675dd3bde20a992668b4b9302dc8f0023eb57c7a",
+      "instance": "c102_21"
+    },
+    "C2": {
+      "benchmark_sha256": "ac0871bbee80d3df5e9c8fa8634b0cd26ed0af7f4fb52e090f548d313a0f7744",
+      "instance": "c206_21"
+    },
+    "R1": {
+      "benchmark_sha256": "3b5daa4b35e310f961f84ecb074db0205997245a4879920308aee3e8446f3478",
+      "instance": "r109_21"
+    },
+    "R2": {
+      "benchmark_sha256": "c8a1d5e6977912971c72ea7371a98c9db52a60456275bedbc315a6cf8660fec7",
+      "instance": "r207_21"
+    },
+    "RC1": {
+      "benchmark_sha256": "09b795b522387813ece99cd898ac3b43749173a1ff8c78c3cb6915fc17be19e3",
+      "instance": "rc104_21"
+    },
+    "RC2": {
+      "benchmark_sha256": "947224b4eaa54dab358f0ad7e598ad6b570889aff3c560ec829cff57800b7625",
+      "instance": "rc204_21"
+    }
+  },
+  "selection_rule": "MPC_EVRPTW_SHA256_UNUSED_21_V1",
+  "selector_cv_sha256": "edcc8ef5d6790c943362ba569361bf0db9151fffa6e4131c2045ebd6e1a4dfae",
+  "selector_model_sha256": "6e6d26857ab006ab2f3eba25c74886217da5ca38a6a6d584e783ecc9fea32017",
+  "selector_source_sha256": "50e9afbf5ac2d60a3a83fa15fdc0c07a88e20a5b18cb14d12aabd6275e3a2ceb",
+  "shadow_gate_sha256": "d7a4fc07f9232e0ca38252fc731352bf4da78c02348815a9c99366e5815271c2",
+  "shadow_selection_sha256": "cd7ed8f5e28169270e337e390a1e209f160bdeb38411f09123f76674469bf063",
+  "source_sha256": "3c6ffdfb5ab86190ff6c45e7eaf063dcdb6c80508bf46c6849269342e718628b",
+  "statistical_protocol": {
+    "bootstrap_draws": 5000,
+    "bootstrap_seed": 0,
+    "confidence_level": 0.95,
+    "primary": "paired customers served and complete-service rate",
+    "secondary": "EVs at equal service; distance at equal service and EVs"
+  },
+  "status": "preregistered_final_holdout"
+}
