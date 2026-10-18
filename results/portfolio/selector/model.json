@@ -1,0 +1,70 @@
+{
+  "base_source_sha256": "3c6ffdfb5ab86190ff6c45e7eaf063dcdb6c80508bf46c6849269342e718628b",
+  "deploy": true,
+  "features": [
+    "time_fraction",
+    "pending",
+    "uncovered",
+    "zero_option",
+    "one_option",
+    "tw_pressure",
+    "min_battery_fraction",
+    "control_risk",
+    "flexibility_risk"
+  ],
+  "max_depth": 3,
+  "method": "MPC_PORTFOLIO",
+  "min_samples_leaf": 15,
+  "sbs": "MPC_HGS",
+  "selector_source_sha256": "50e9afbf5ac2d60a3a83fa15fdc0c07a88e20a5b18cb14d12aabd6275e3a2ceb",
+  "shadow_gate_sha256": "d7a4fc07f9232e0ca38252fc731352bf4da78c02348815a9c99366e5815271c2",
+  "shadow_manifest_sha256": "51ed536662e4024c21e9c39d876b862b0995a2eda880e0d8e8c048d1a798ce96",
+  "shadow_selection_sha256": "cd7ed8f5e28169270e337e390a1e209f160bdeb38411f09123f76674469bf063",
+  "status": "frozen_selector",
+  "training_states": 396,
+  "tree": {
+    "feature": "one_option",
+    "left": {
+      "feature": "flexibility_risk",
+      "left": {
+        "feature": "control_risk",
+        "left": {
+          "method": "MPC_HGS"
+        },
+        "right": {
+          "method": "MPC_HGS"
+        },
+        "threshold": 0.035343172028660774
+      },
+      "right": {
+        "feature": "pending",
+        "left": {
+          "method": "MPC_HGS"
+        },
+        "right": {
+          "method": "MPC_HGS"
+        },
+        "threshold": 20.5
+      },
+      "threshold": 0.7464294135570526
+    },
+    "right": {
+      "feature": "time_fraction",
+      "left": {
+        "method": "MPC_ALNS"
+      },
+      "right": {
+        "feature": "flexibility_risk",
+        "left": {
+          "method": "MPC_HGS"
+        },
+        "right": {
+          "method": "MPC_HGS"
+        },
+        "threshold": 0.7763629853725433
+      },
+      "threshold": 0.46350836753845215
+    },
+    "threshold": 0.5
+  }
+}
