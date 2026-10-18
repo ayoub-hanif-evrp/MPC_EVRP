@@ -10,7 +10,7 @@ public static class CampaignPower {
 }
 '@
 
-$powerState = [CampaignPower]::SetThreadExecutionState(0x80000001)
+$powerState = [CampaignPower]::SetThreadExecutionState([uint32]2147483649)
 if ($powerState -eq 0) {
     throw 'Could not prevent system sleep during the final holdout.'
 }
@@ -36,5 +36,5 @@ try {
         Tee-Object -FilePath $log -Append
 }
 finally {
-    [void][CampaignPower]::SetThreadExecutionState(0x80000000)
+    [void][CampaignPower]::SetThreadExecutionState([uint32]2147483648)
 }
