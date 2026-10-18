@@ -43,6 +43,8 @@ logs/
 !/results/portfolio/shadow/captures/*.json.gz
 !/results/portfolio/shadow/selected/*.json.gz
 !/results/portfolio/shadow/raw/*.json.gz
+!/results/portfolio/selector/*.json
+!/results/portfolio/selector/*.md
 !/results/final_study/PRE_REGISTERED_PROTOCOL.md
 !/results/final_study/PRE_REGISTERED_PROTOCOL.json
 !/results/final_study/manifest.json
