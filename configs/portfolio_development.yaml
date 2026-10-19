@@ -1,9 +1,0 @@
-base_controller: configs/paper_controller.yaml
-methods: [MPC_COMPLETION, MPC_MCTS, MPC_ALNS, MPC_HGS, MPC_ACS]
-old_development_instances: [c101_21, c201_21, r101_21, r201_21, rc101_21, rc201_21]
-old_development_dynamicity: [0.5]
-old_development_seeds: [0, 1]
-consumed_holdout_instances: [c109_21, c208_21, r112_21, r211_21, rc108_21, rc208_21]
-consumed_holdout_dynamicity: [0.25, 0.5, 0.75]
-consumed_holdout_seeds: [0, 1, 2]
-total_planning_time_limit: 5.0

@@ -1,6 +1,7 @@
 """Resumable, provenance-bound research runs and YAML configuration loading."""
 
 from dataclasses import asdict, replace
+from hashlib import sha256
 from importlib.metadata import version
 from itertools import product
 from pathlib import Path
@@ -12,14 +13,15 @@ from datetime import datetime, timezone
 
 import yaml
 
-from .instance import load_instance
+from .instance import discover_instances, load_instance
 from .mpc import MPCConfig
-from .reference import ReferenceConfig, ReferenceSchedule, solve_reference
+from .reference import ReferenceConfig, ReferenceSchedule, published_full_reference, solve_reference
 from .scenario import DynamicScenario, generate
 from .simulator import (FLEET_LNS_ALGORITHMS, OPTIMIZER_ALGORITHMS,
                         EventDrivenSimulator, ExperimentResult,
                         SimulationConfig, SimulationEvent)
-from .storage import BENCHMARK, ROOT, benchmark_hashes, identifier, save_json, load_json
+from .storage import (BENCHMARK, BENCHMARK_ARCS, PUBLISHED_SOLUTIONS, ROOT,
+                      benchmark_hashes, identifier, save_json, load_json)
 from .versions import (OBJECTIVE_VERSION, PLANNER_OBJECTIVE_VERSION, SEARCH_POLICY_VERSION,
                        REFERENCE_SOLVER_VERSION, RESULT_SCHEMA_VERSION, SCENARIO_GENERATOR_VERSION)
 
@@ -80,29 +82,31 @@ def results_path(path):
 
 
 def source_fingerprint() -> str:
-    return identifier({p.name: p.read_text(encoding="utf-8") for p in sorted((ROOT / "evrp").glob("*.py"))})
+    return identifier({p.relative_to(ROOT).as_posix(): sha256(p.read_bytes()).hexdigest()
+                       for p in sorted((ROOT / "evrp").rglob("*.py"))})
 
 
 def prepare(instance_name: str, config: dict):
     path = BENCHMARK / (instance_name if instance_name.endswith(".txt") else instance_name + ".txt")
     if path.resolve().parent != BENCHMARK.resolve():
-        raise ValueError("Only the repository Schneider benchmark is supported")
+        raise ValueError("Only the repository Desaulniers benchmark is supported")
     instance = load_instance(path)
     ref_config = ReferenceConfig(config.get("reference_solver_multistarts", 3),
                                  config.get("reference_improvement_passes", 1),
                                  config.get("reference_seed", 0), config.get("reference_label_limit", 24))
+    published_sources = {variant: sha256(path.read_bytes()).hexdigest()
+                         for variant in ("MF", "SF")
+                         for path in [PUBLISHED_SOLUTIONS / variant / f"solution{instance.name}"]
+                         if path.is_file()}
     key = identifier({"instance": instance.sha256, "config": asdict(ref_config),
+                      "published_sources": published_sources,
                       "reference_solver_version": REFERENCE_SOLVER_VERSION})[:16]
-    ref_path = ROOT / "data" / "reference_schedules" / f"{instance.name}_{key}.json"
+    ref_path = ROOT / "results" / "reference_schedules" / f"{instance.name}_{key}.json"
     if ref_path.exists():
         reference = ReferenceSchedule.load(ref_path, instance)
     else:
-        ref_path = ROOT / "results" / "reference_schedules" / ref_path.name
-        if ref_path.exists():
-            reference = ReferenceSchedule.load(ref_path, instance)
-        else:
-            reference = solve_reference(instance, ref_config)
-            reference.save(ref_path)
+        reference = published_full_reference(instance, ref_config) or solve_reference(instance, ref_config)
+        reference.save(ref_path)
     if reference.config != ref_config:
         raise ValueError("Cached reference configuration differs from requested solver settings")
     scenario_key = identifier(dict(instance=instance.sha256, reference=reference.identifier,
@@ -317,9 +321,11 @@ def run_single(instance_name: str, config: dict, output_dir: str | Path | None =
     benchmark_name = instance_name if instance_name.endswith(".txt") else instance_name + ".txt"
     benchmark = BENCHMARK / benchmark_name
     if benchmark.resolve().parent != BENCHMARK.resolve():
-        raise ValueError("Only local Schneider instances are supported")
-    from hashlib import sha256
-    instance_hash = sha256(benchmark.read_bytes()).hexdigest() if benchmark.exists() else None
+        raise ValueError("Only local Desaulniers instances are supported")
+    arc_path = BENCHMARK_ARCS / f"{benchmark.stem.removesuffix('_100')}.inst"
+    instance_hash = (sha256(benchmark.read_bytes() + b"\0" + arc_path.read_bytes() +
+                            b"\0Desaulniers-2016-MP").hexdigest()
+                     if benchmark.exists() and arc_path.exists() else None)
     commit = git_commit()
     identity = run_identity(instance_name, instance_hash, None, config, code_hash, commit)
     output_dir = results_path(output_dir or f"results/raw/{identity['study']}")
@@ -373,7 +379,7 @@ def run_single(instance_name: str, config: dict, output_dir: str | Path | None =
 
 
 def grid_cases(config: dict, ablations: bool = False):
-    instances = config.get("instances", sorted(p.stem for p in BENCHMARK.glob("*_21.txt")))
+    instances = config.get("instances", [p.stem for p in discover_instances()])
     base = {k: v for k, v in config.items() if k not in {"instances", "grid", "ablations"}}
     grid = dict(config.get("grid", {}))
     names = list(grid)

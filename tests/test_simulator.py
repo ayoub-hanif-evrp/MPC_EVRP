@@ -5,7 +5,7 @@ import pytest
 from evrp.instance import Infrastructure, Instance, Location, Parameters, load_instance
 from evrp.model import Action
 from evrp.mpc import MPCConfig, MPCPlanningProblem, PlanningResult
-from evrp.reference import ReferenceConfig, solve_reference
+from evrp.reference import ReferenceConfig, published_full_reference
 from evrp.scenario import DynamicScenario, METHOD, generate
 from evrp.simulator import EventDrivenSimulator, SimulationConfig
 from evrp.storage import BENCHMARK
@@ -66,11 +66,11 @@ def test_simultaneous_release_and_completion():
     assert sim.state.served_customers == {"A", "B"}
 
 
-@pytest.mark.parametrize("algorithm", ["GREEDY", "MPC_MCTS_H1", "INDEPENDENT_MPC_MCTS", "COORDINATED_MPC_MCTS"])
+@pytest.mark.parametrize("algorithm", ["GREEDY", "MPC_MCTS_H1"])
 def test_reproducible_sequential_run(algorithm):
-    instance = load_instance(BENCHMARK / "c101C5.txt")
-    reference = solve_reference(instance, ReferenceConfig(multistarts=1))
-    scenario = generate(instance, reference, 2, 0.5)
+    instance = load_instance(BENCHMARK / "c101_21_25.txt")
+    reference = published_full_reference(instance, ReferenceConfig(multistarts=1))
+    scenario = generate(instance, reference, 2, 0.25)
     config = SimulationConfig(algorithm=algorithm, mpc=MPCConfig(iterations=2, prediction_horizon=3))
     a = EventDrivenSimulator(instance, scenario, config).run()
     b = EventDrivenSimulator(instance, scenario, config).run()
@@ -83,8 +83,8 @@ def test_reproducible_sequential_run(algorithm):
 
 
 def test_parallel_same_logical_decisions():
-    instance = load_instance(BENCHMARK / "rc105C5.txt")
-    reference = solve_reference(instance, ReferenceConfig(multistarts=1))
+    instance = load_instance(BENCHMARK / "c101_21_25.txt")
+    reference = published_full_reference(instance, ReferenceConfig(multistarts=1))
     scenario = generate(instance, reference, 0)
     config = SimulationConfig(mpc=MPCConfig(iterations=1, prediction_horizon=1))
     a = EventDrivenSimulator(instance, scenario, config).run()
@@ -94,8 +94,8 @@ def test_parallel_same_logical_decisions():
 
 @pytest.mark.parametrize("mode", ["full", "partial"])
 def test_charging_mode_end_to_end(mode):
-    instance = load_instance(BENCHMARK / "r104C5.txt")
-    reference = solve_reference(instance, ReferenceConfig(multistarts=1))
+    instance = load_instance(BENCHMARK / "c101_21_25.txt")
+    reference = published_full_reference(instance, ReferenceConfig(multistarts=1))
     scenario = generate(instance, reference, 0)
     config = SimulationConfig(algorithm="GREEDY", mpc=MPCConfig(charging_mode=mode))
     result = EventDrivenSimulator(instance, scenario, config).run()

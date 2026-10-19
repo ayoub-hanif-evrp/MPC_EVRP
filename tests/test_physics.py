@@ -1,8 +1,9 @@
 from dataclasses import replace
+from pathlib import Path
 
 import pytest
 
-from evrp.instance import Infrastructure, Location, Parameters, distance, load_instance
+from evrp.instance import Infrastructure, Location, Parameters, discover_instances, distance, load_instance
 from evrp.model import (Action, InfeasibilityReason as Reason, Observation, VehicleState,
                         escape, escape_action, transition, try_transition)
 from evrp.storage import BENCHMARK, benchmark_hashes, save_json
@@ -18,9 +19,9 @@ def toy():
     return state, Observation(0, infra, (customer,))
 
 
-@pytest.mark.parametrize("name,n,s", [("c101C5", 5, 3), ("c101C10", 10, 5),
-                                     ("c103C15", 15, 5), ("c101_21", 100, 21),
-                                     ("r104C5", 5, 3), ("rc105C5", 5, 4)])
+@pytest.mark.parametrize("name,n,s", [("c101_21_25", 25, 21), ("c101_21_50", 50, 21),
+                                     ("c101_21_100", 100, 21), ("r101_21_25", 25, 21),
+                                     ("rc101_21_50", 50, 21), ("r201_21_100", 100, 21)])
 def test_parser_counts(name, n, s):
     instance = load_instance(BENCHMARK / f"{name}.txt")
     assert len(instance.customers) == n
@@ -29,21 +30,27 @@ def test_parser_counts(name, n, s):
     assert all(c.kind == "c" for c in instance.customers)
 
 
-def test_all_original_instances_parse_unchanged():
+def test_all_desaulniers_instances_parse_unchanged():
     before = benchmark_hashes()
-    instances = [load_instance(p) for p in BENCHMARK.glob("*.txt") if p.name != "readme.txt"]
-    assert len(instances) == 92
+    instances = [load_instance(p) for p in discover_instances()]
+    assert len(instances) == 168
     assert benchmark_hashes() == before
 
 
 def test_parameters():
-    assert load_instance(BENCHMARK / "c101C5.txt").infrastructure.parameters == Parameters(77.75, 200, 1, 3.47, 1)
+    assert load_instance(BENCHMARK / "c101_21_25.txt").infrastructure.parameters == Parameters(
+        270.15, 200, 3.39, 1, 1, 100, False)
 
 
-def test_no_fabricated_parameter(tmp_path):
-    original = (BENCHMARK / "c101C5.txt").read_text()
-    file = tmp_path / "missing.txt"
-    file.write_text(original.replace("v average Velocity /1.0/", ""))
+def test_no_fabricated_parameter(monkeypatch):
+    file = BENCHMARK / "c101_21_25.txt"
+    original = Path.read_bytes
+    def missing_velocity(path):
+        raw = original(path)
+        if path == file:
+            return raw.replace(b"Average Velocity /1.0/", b"")
+        return raw
+    monkeypatch.setattr(Path, "read_bytes", missing_velocity)
     with pytest.raises(ValueError, match="parameters"):
         load_instance(file)
 

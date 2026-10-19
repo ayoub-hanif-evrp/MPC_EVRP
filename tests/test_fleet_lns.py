@@ -77,8 +77,8 @@ def test_shortlisted_insertions_fall_back_when_cheapest_position_is_infeasible()
     assert {a.destination for a in routes[0] if a.kind == "serve"} == {"A", "B", "X"}
 
 
-@pytest.mark.parametrize("instance_name", ("c101_21", "c201_21", "r101_21",
-                                           "r201_21", "rc101_21", "rc201_21"))
+@pytest.mark.parametrize("instance_name", ("c101_21_25", "c201_21_25", "r101_21_25",
+                                           "r201_21_25", "rc101_21_25", "rc201_21_25"))
 def test_one_station_decoder_replays_feasible_reference_sequences_offline(instance_name):
     from evrp.experiments import prepare
     from evrp.observation import initial_global_state

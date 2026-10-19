@@ -1,153 +1,69 @@
-# Event-Triggered MPC with Combinatorial Optimizers for Dynamic Electric Vehicle Routing with Time Windows
+# Event-Triggered MPC for Dynamic EVRPTW
 
-This repository studies dynamic EV routing with time windows under a fixed
-reference fleet. MPC is the receding-horizon control framework: at an
-observable event it constructs feasible fleet suffixes, optionally improves
-them, validates the chosen routes against the physical EV model, executes only
-the first control action, then observes again. Unreleased requests are never
-visible to an optimizer.
+This project evaluates a common event-triggered MPC controller with five
+interchangeable optimization modes: Completion, MCTS, ALNS, HGS, and ACS.
+All modes use the same feasible constructor, plant physics, service-first
+risk-aware lexicographic objective, fixed offline reference fleet `K_ref`,
+released requests, and five-second optimization-decision limit. The old
+Schneider campaigns are historical Git evidence, not results for the active
+dataset.
 
-```text
-Event trigger: measured fleet state and released requests
-                 |
-         Event-Triggered MPC
-                 |
-          Common constructor
-                 |
-     +-----------+-----------+-----------+-----------+
-     |           |           |           |           |
- Completion    MCTS        ALNS         HGS         ACS
-     +-----------+-----------+-----------+-----------+
-                 |
-       Exact EV validation and first control
-```
+## Active benchmark
 
-MCTS is the principal tree-search method. ALNS, HGS and ACS are controlled
-alternatives inside the **same** controller, with the same event trigger,
-constructor, released information, fixed `K_ref`, EV charging decoder,
-lexicographic objective and total decision deadline. A state-aware portfolio
-was frozen after the common-state complementarity study; its closed-loop
-performance is being tested, not assumed superior.
-RoutingBlocks remains an external **offline/static** benchmark, not MPC-ALNS.
+The active static source is the [Desaulniers et al. (2016) EVRPTW bundle](https://doi.org/10.1287/opre.2016.1535)
+under `data/opre.2016.1535-sm-data/`. There are 56 instances at each of 25,
+50, and 100 customers, with C1, C2, R1, R2, RC1, and RC2 families. The
+project uses the **multiple partial recharging (MP)** policy. Format-1 text
+provides coordinates, demands, time windows, and vehicle parameters; format-2
+`.inst` files provide rounded arc cost, travel time, and time-equivalent
+energy. The loader validates every published arc before a run.
 
-## Evidence Status
+Static instance customers are made dynamic using the existing
+reference-preserving release generator. Unreleased customers are hidden from
+all online methods. A physically replayed full-service offline schedule
+defines the same `K_ref` for every method on a scenario. Published `MF` or
+`SF` full-charge solutions may supply that **offline feasible reference**
+because full recharge is allowed under MP; where unavailable, the existing
+reference solver is used. Published solution costs are never used as the MPC
+objective or as an online comparison baseline.
 
-The historical paper track is at Git tag `paper-v1-d5e3c28`. In its inspected
-dynamic campaign, `FLEET_MPC_MCTS` served **5295/5400** customers versus
-**5142/5400** for the completion-only controller. This is historical evidence
-for the earlier MCTS configuration, not evidence for ALNS, HGS or a portfolio. The complete record is in
-[`results/paper/`](results/paper/); its provenance and interpretation are in
-[`docs/V1_FROZEN_EVIDENCE.md`](docs/V1_FROZEN_EVIDENCE.md). The old holdout is
-now development data; it is not unseen for future work.
+The historical state-aware Portfolio is not deployed on this dataset:
+its Schneider-trained selector is invalid here. It can be evaluated only
+after a new Desaulniers development/shadow study and frozen retraining.
+The dataset-neutral runtime adapter is retained, but no new selector has
+been trained.
 
-The frozen-source optimizer development study is complete at 330/330 runs over
-66 paired scenarios. The common-state shadow study is complete at 396
-snapshots and 1,584 independent optimizer evaluations. Its portfolio gate
-passed, and the state-aware selector and grouped validation were frozen before
-the final holdout. These are development results, not final performance
-evidence. The six-variant final holdout was preregistered on six unused
-Schneider instances and is complete at 324/324 independently audited runs
-over 54 paired scenarios. The final paper figures, tables, and interpretation
-are in [`results/final_study/paper/RESULTS.md`](results/final_study/paper/RESULTS.md).
-MPC + ALNS has the highest observed mean service (99.33/100), while the paired
-ALNS-Portfolio interval crosses zero; the portfolio is not established as
-superior. Earlier pilots and stopped grids remain historical development
-evidence under [`results/portfolio/`](results/portfolio/).
-
-## Repository Map
-
-- `evrp/`: event-driven simulator, physics, route decoder, reference and
-  scenario generation.
-- `evrp/optimizers/`: common optimizer contract, `J_A/J_B` evaluator,
-  Completion, MCTS, ALNS, HGS and ACS adapters.
-- `evrp/external/`: independent external benchmarking integrations.
-- `configs/portfolio_development.yaml`: the 66 already-inspected development
-  scenarios and common five-second controller budget.
-- `scripts/run_portfolio_campaign.py`: independently audited, fresh-process
-  development runs; it has no final-holdout mode.
-- `scripts/analyze_portfolio_development.py`: paired development analysis,
-  confidence intervals and PNG figures.
-- `scripts/shadow_portfolio.py`: observable-state snapshot capture and
-  independent common-state optimizer comparison. VBS is analysis only.
-- `scripts/preregister_final_holdout.py`: deterministic unused-instance
-  selection after the development and shadow gates.
-- `scripts/run_final_holdout.py` and `scripts/analyze_final_holdout.py`:
-  committed-protocol final runs and paired audited analysis.
-- `scripts/resume_final_holdout.ps1`: local terminal launcher that resumes the
-  final campaign, prevents sleep, then analyzes and renders only on success.
-- `tests/`: physics, simulator, research protocol and optimizer regressions.
-- [`results/INDEX.md`](results/INDEX.md): historical, development, shadow,
-  final-study and verification outputs.
-- [`docs/FINAL_SOURCE_FREEZE.md`](docs/FINAL_SOURCE_FREEZE.md): tested source
-  and protocol fingerprints for the authoritative campaign.
-
-## Run
+## Reproduce
 
 Python 3.11+ is required. From the repository root:
 
 ```powershell
 python -m pip install -r requirements.txt
-python -m pytest -q --basetemp=results/t
-python -m scripts.run_portfolio_campaign
-python -m scripts.analyze_portfolio_development
+python -m pytest -q tests/test_desaulniers_dataset.py
+python -m scripts.run_desaulniers_pilot
+python -m scripts.analyze_desaulniers_pilot
 ```
 
-The completed development command ran the full 66-scenario grid sequentially. Each
-scenario-method simulation starts in a fresh Python interpreter and writes a
-compressed raw record with audit and SHA-256 provenance under
-`results/portfolio/development/`. The analyzer requires all 330 records
-unless `--allow-incomplete` is explicit. It does not use a new final holdout.
+The pilot selects one previously unused C1 development instance at each
+size, with DoD 0.25 and seed 0, and runs all five methods in separate
+processes. It writes raw evidence, a hash manifest, a Markdown summary,
+and a 300-dpi PNG under `results/desaulniers/development_pilot_final_source/`. It is
+an **engineering pilot**, not a final study. The lexicographically last
+instance of each family and size is reserved for a separately preregistered
+future evaluation; no new final holdout has been opened.
 
-After the complete development grid, the guarded sequence is:
+An independent [development campaign configuration](configs/desaulniers_mp_development.yaml)
+selects the first instance of each of the six families at each size, all
+three target DoD levels, seed 0, and the same five methods. It is resumable
+and records target-DoD ineligibility rather than silently changing the
+denominator. Freeze its protocol without starting optimization using
+`python -m scripts.run_desaulniers_campaign --scenario-limit 0`; the full
+grid is launched with `python -m scripts.run_desaulniers_campaign` and,
+once complete, audited with `python -m scripts.analyze_desaulniers_campaign`.
+The analyzer refuses a partial manifest. This larger grid has **not** been
+completed as part of the migration pilot. Some 50- and 100-customer cases
+have no compatible published full-charge route; their fallback reference
+construction remains an explicit runtime/feasibility limitation.
 
-```powershell
-python -m scripts.analyze_portfolio_development
-python -m scripts.shadow_portfolio capture
-# Commit results/portfolio/shadow/selection.json before optimizer outcomes.
-python -m scripts.shadow_portfolio run
-python -m scripts.shadow_portfolio analyze
-```
-
-If the common-state gate passes, fit the predeclared observable-state selector
-and commit its model, grouped-CV record, and decision before preregistration:
-
-```powershell
-python -m scripts.portfolio_selector
-# Commit results/portfolio/selector/ before final preregistration.
-```
-
-The selector is deployed only if held-out-scenario and held-out-instance
-planned service both exceed the frozen SBS. The current 396-state study passed
-that rule; the portfolio is therefore a sixth **MPC variant**, not a separate
-controller. If the gate fails or the selector fails grouped validation, the
-holdout keeps the five frozen variants. In either case, run:
-
-```powershell
-python -m scripts.preregister_final_holdout
-# Commit both PRE_REGISTERED_PROTOCOL files before the first final run.
-python -m scripts.run_final_holdout
-python -m scripts.analyze_final_holdout
-python -m scripts.render_final_paper
-```
-
-The renderer rechecks the complete audited final holdout and frozen shadow
-study before writing `results/final_study/paper/RESULTS.md`, nine 300-dpi PNG
-figures, and ten Markdown tables. Development plots remain diagnostic and are
-not used as final paper evidence.
-
-The final holdout is complete. Do not rerun preregistration or alter frozen
-source, selector, configs, or runner. To re-audit the saved raw results and
-regenerate paper outputs without rerunning any experiment:
-
-```powershell
-python -m scripts.analyze_final_holdout
-python -m scripts.render_final_paper
-```
-
-The local `scripts/resume_final_holdout.ps1` launcher remains available for
-recovery in a fresh worktree, but is not needed for the completed study.
-
-To reproduce the historical paper track, check out the V1 tag in a separate
-worktree and follow [`results/paper/PAPER_PROTOCOL.md`](results/paper/PAPER_PROTOCOL.md).
-Older development reports and one-off scripts remain preserved for provenance
-but are not current performance claims.
+For the field mapping, rounding validation, charging and fleet assumptions,
+see [Desaulniers migration notes](docs/DESAULNIERS_MIGRATION.md).

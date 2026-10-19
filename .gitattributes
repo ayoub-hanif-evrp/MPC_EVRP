@@ -1,10 +1,6 @@
-results/portfolio/shadow/selection.json -text
-results/portfolio/shadow/manifest.json -text
-results/portfolio/shadow/sbs_vbs_gate.json -text
-results/portfolio/selector/model.json -text
-results/portfolio/selector/grouped_cv.json -text
-results/portfolio/selector/DECISION.md -text
-scripts/portfolio_selector.py -text
-scripts/run_final_holdout.py -text
-results/final_study/PRE_REGISTERED_PROTOCOL.json -text
-results/final_study/PRE_REGISTERED_PROTOCOL.md -text
+data/opre.2016.1535-sm-data/** -text
+evrp/*.py text eol=lf
+evrp/**/*.py text eol=lf
+scripts/*.py text eol=lf
+configs/paper_controller.yaml text eol=lf
+configs/desaulniers_*.yaml text eol=lf

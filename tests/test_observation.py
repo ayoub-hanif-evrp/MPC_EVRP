@@ -2,15 +2,15 @@ from dataclasses import asdict, replace
 
 from evrp.instance import load_instance
 from evrp.observation import get_agent_observation, initial_global_state
-from evrp.reference import ReferenceConfig, solve_reference
+from evrp.reference import ReferenceConfig, published_full_reference
 from evrp.scenario import generate
 from evrp.storage import BENCHMARK
 
 
 def test_observation_boundary():
-    instance = load_instance(BENCHMARK / "c101C5.txt")
-    reference = solve_reference(instance, ReferenceConfig(multistarts=1))
-    scenario = generate(instance, reference, 9, 1)
+    instance = load_instance(BENCHMARK / "c101_21_25.txt")
+    reference = published_full_reference(instance, ReferenceConfig(multistarts=1))
+    scenario = generate(instance, reference, 9, .5)
     state = initial_global_state(instance, scenario)
     initial = state.reveal()
     state.check_partition(instance)
@@ -28,9 +28,9 @@ def test_observation_boundary():
 
 
 def test_hidden_attributes_cannot_change_current_observation():
-    instance = load_instance(BENCHMARK / "c101C5.txt")
-    reference = solve_reference(instance, ReferenceConfig(multistarts=1))
-    state = initial_global_state(instance, generate(instance, reference, 1, 1))
+    instance = load_instance(BENCHMARK / "c101_21_25.txt")
+    reference = published_full_reference(instance, ReferenceConfig(multistarts=1))
+    state = initial_global_state(instance, generate(instance, reference, 1, .5))
     state.reveal()
     first = get_agent_observation(state, instance)
     for key, (customer, release) in list(state.hidden_customers.items()):

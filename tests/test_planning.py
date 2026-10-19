@@ -12,7 +12,7 @@ from evrp.storage import BENCHMARK
 
 
 def problem(horizon=3, **kwargs):
-    instance = load_instance(BENCHMARK / "c101C5.txt")
+    instance = load_instance(BENCHMARK / "c101_21_25.txt")
     return MPCPlanningProblem(Observation(0, instance.infrastructure, instance.customers),
                               initial_vehicle(instance), MPCConfig(prediction_horizon=horizon, **kwargs))
 

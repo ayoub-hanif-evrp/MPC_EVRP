@@ -6,22 +6,22 @@ import pytest
 from evrp.analysis import aggregate, describe
 from evrp.experiments import audit_result, load_config, run_single, static_reference_result
 from evrp.instance import load_instance
-from evrp.reference import ReferenceConfig, ReferenceSchedule, solve_reference
+from evrp.reference import ReferenceConfig, ReferenceSchedule, published_full_reference
 from evrp.scenario import generate
-from evrp.storage import BENCHMARK, save_json
+from evrp.storage import BENCHMARK, ROOT, save_json
 
 
 def test_reference_save_load(tmp_path):
-    instance = load_instance(BENCHMARK / "r104C5.txt")
-    reference = solve_reference(instance, ReferenceConfig(multistarts=1))
+    instance = load_instance(BENCHMARK / "c101_21_25.txt")
+    reference = published_full_reference(instance, ReferenceConfig(multistarts=1))
     path = tmp_path / "reference.json"
     reference.save(path)
     assert ReferenceSchedule.load(path, instance) == reference
 
 
 def test_static_reference_replays_in_dynamic_scenario():
-    instance = load_instance(BENCHMARK / "rc105C5.txt")
-    reference = solve_reference(instance, ReferenceConfig(multistarts=1))
+    instance = load_instance(BENCHMARK / "c101_21_25.txt")
+    reference = published_full_reference(instance, ReferenceConfig(multistarts=1))
     scenario = generate(instance, reference, 12, 0.5)
     result = static_reference_result(instance, reference, scenario, {})
     assert all(audit_result(result, instance, scenario).values())
@@ -48,8 +48,8 @@ def test_failure_kept_in_aggregation(tmp_path):
 
 
 def test_run_failure_is_written_and_original_data_untouched(tmp_path):
-    config = {**load_config("configs/debug.yaml"), "algorithm": "unknown"}
-    path = run_single("c101C5", config, tmp_path)
+    config = {**load_config(ROOT / "configs/paper_controller.yaml"), "algorithm": "unknown"}
+    path = run_single("c101_21_25", config, tmp_path)
     result = json.loads(path.read_text())
     assert result["status"] == "failed"
     assert not result["metrics"]["feasible"]

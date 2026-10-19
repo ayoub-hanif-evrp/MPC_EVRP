@@ -8,6 +8,7 @@ import itertools
 import json
 from pathlib import Path
 import random
+import re
 
 from .instance import Instance, Location
 from .model import (Action, EPS, InfeasibleAction, InfeasibilityReason, Observation,
@@ -45,6 +46,7 @@ class ReferenceSchedule:
     config: ReferenceConfig
     routes: tuple[RouteTrace, ...]
     reference_solver_version: str = REFERENCE_SOLVER_VERSION
+    provenance: str = "constructed"
 
     @property
     def identifier(self) -> str:
@@ -88,7 +90,8 @@ class ReferenceSchedule:
                 raw["action"] = Action(**raw["action"])
                 steps.append(Transition(**raw))
             routes.append(RouteTrace(tuple(route["customers"]), tuple(steps)))
-        result = cls(data["base_instance"], data["instance_sha256"], ReferenceConfig(**data["config"]), tuple(routes))
+        result = cls(data["base_instance"], data["instance_sha256"], ReferenceConfig(**data["config"]),
+                     tuple(routes), provenance=data.get("provenance", "constructed"))
         if result.identifier != data["identifier"]:
             raise ReferenceFailure("Reference content hash mismatch")
         validate_reference(instance, result)
@@ -212,7 +215,7 @@ def evaluate_route(instance: Instance, sequence: tuple[str, ...], vehicle_id: in
                 while len(prefix_cache) > 512:
                     prefix_cache.popitem(last=False)
             return None
-        # Exhaustive Pareto labels for C5 validation; bounded search for larger cases.
+        # Exhaustive Pareto labels for small routes; bounded search for larger cases.
         labels = sorted(goal_labels, key=lambda pair: (pair[0].distance_travelled, pair[0].time, -pair[0].battery))
         if len(instance.customers) > 5:
             labels = labels[:label_limit]
@@ -247,6 +250,50 @@ def validate_reference(instance: Instance, schedule: ReferenceSchedule) -> None:
         seen.extend(served)
     if len(seen) != len(set(seen)) or set(seen) != {c.id for c in instance.customers}:
         raise ReferenceFailure("Reference must serve every customer exactly once")
+
+
+def published_full_reference(instance: Instance, config: ReferenceConfig) -> ReferenceSchedule | None:
+    """Independently replay a published full-recharge route set as an MP-feasible reference."""
+    from .storage import PUBLISHED_SOLUTIONS
+
+    observation = Observation(instance.infrastructure.depot.ready, instance.infrastructure,
+                              instance.customers)
+    for variant in ("MF", "SF"):
+        path = PUBLISHED_SOLUTIONS / variant / f"solution{instance.name}"
+        if not path.is_file():
+            continue
+        content = path.read_text(encoding="utf-8")
+        vehicle_match = re.search(r"^NoVehicles\s*=\s*(\d+);$", content, re.M)
+        recharge_match = re.search(r"^NoRecharges\s*=\s*(\d+);$", content, re.M)
+        blocks = re.findall(r"Route\s+(\d+)\s+Cost\s+(\d+)\s*\{([^}]*)\}", content, re.S)
+        if not vehicle_match or not recharge_match or len(blocks) != int(vehicle_match.group(1)):
+            raise ReferenceFailure(f"Invalid published {variant} route count: {instance.name}")
+        routes, recharges = [], 0
+        for k, (number, _, body) in enumerate(blocks):
+            if int(number) != k:
+                raise ReferenceFailure(f"Unexpected published route numbering: {path}")
+            visits = re.findall(r"_([A-Za-z0-9]+)([ond]);", body)
+            if not visits or visits[0] != ("D0", "o") or visits[-1] != ("D0", "d"):
+                raise ReferenceFailure(f"Invalid published depot endpoints: {path}")
+            state, steps, served = initial_vehicle(instance, k), [], []
+            for destination, suffix in visits[1:]:
+                kind = "return" if suffix == "d" else "charge" if destination.startswith("S") else "serve"
+                action = Action(kind, destination,
+                                instance.infrastructure.parameters.battery if kind == "charge" else 0.0)
+                step = transition(state, action, observation)
+                steps.append(step)
+                if step.served:
+                    served.append(step.served)
+                recharges += kind == "charge"
+                state = step.after
+            routes.append(RouteTrace(tuple(served), tuple(steps)))
+        if recharges != int(recharge_match.group(1)):
+            raise ReferenceFailure(f"Published recharge count mismatch: {path}")
+        result = ReferenceSchedule(instance.name, instance.sha256, config, tuple(routes),
+                                   provenance=f"published_{variant}_full_replay_under_MP")
+        validate_reference(instance, result)
+        return result
+    return None
 
 
 @lru_cache(maxsize=64)

@@ -168,9 +168,9 @@ def _decode_one_station(state: VehicleState, sequence: tuple[str, ...],
                 if energy(current.location, station, p) > current.battery + EPS:
                     continue
                 arrival_battery = current.battery - energy(current.location, station, p)
-                nearest_safe = min(distance(customer, node) for node in
+                nearest_safe = min(energy(customer, node, p) for node in
                                    (observation.infrastructure.depot,) + observation.infrastructure.stations)
-                needed = energy(station, customer, p) + nearest_safe * p.consumption
+                needed = energy(station, customer, p) + nearest_safe
                 targets = ({p.battery} if config.charging_mode == "full" else
                            {p.battery, *(p.battery * fraction for fraction in config.charge_fractions),
                             min(p.battery, max(arrival_battery + 1e-6, needed))})

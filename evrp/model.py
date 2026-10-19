@@ -141,8 +141,10 @@ def station_paths(infra: Infrastructure) -> tuple[tuple[float, tuple[Location, .
         if cost != distances[i]:
             continue
         for j in range(1, len(nodes)):
+            if i and not p.allow_station_to_station:
+                continue
             leg = distance(nodes[i], nodes[j])
-            if leg * p.consumption > p.battery + EPS:
+            if energy(nodes[i], nodes[j], p) > p.battery + EPS:
                 continue
             alternative = cost + leg
             if alternative < distances[j]:
@@ -157,32 +159,41 @@ def _escape_geometry(location: Location, battery: float, infra: Infrastructure):
     """Return geometry depends on exact location/SOC, not vehicle history or time."""
     p = infra.parameters
     direct = distance(location, infra.depot)
-    best_distance = inf
-    best_path: tuple[Location, ...] = ()
-    if direct * p.consumption <= battery + EPS:
-        best_distance, best_path = direct, (infra.depot,)
+    best = None
+    direct_energy = energy(location, infra.depot, p)
+    if direct_energy <= (p.battery if location.kind == "f" else battery) + EPS:
+        best = (direct / p.speed + p.inverse_charge_rate * max(0.0, direct_energy - battery),
+                direct, direct_energy, (infra.depot,))
     for station, (tail, path) in zip(infra.stations, station_paths(infra)):
+        if location.kind == "f" and not p.allow_station_to_station:
+            continue
+        if not path:
+            continue
         leg = distance(location, station)
-        if leg * p.consumption <= battery + EPS and leg + tail < best_distance:
-            best_distance, best_path = leg + tail, (station,) + path
-    if not isfinite(best_distance):
-        return None
-    return best_distance, best_path
+        first_energy = energy(location, station, p)
+        if first_energy > battery + EPS:
+            continue
+        tail_energy = sum(energy(a, b, p) for a, b in
+                          zip((station,) + path[:-1], path))
+        total_energy = first_energy + tail_energy
+        total_distance = leg + tail
+        candidate = (total_distance / p.speed + p.inverse_charge_rate *
+                     max(0.0, total_energy - battery), total_distance, total_energy,
+                     (station,) + path)
+        if best is None or candidate[:2] < best[:2]:
+            best = candidate
+    return None if best is None else best[1:]
 
 
 def escape(state: VehicleState, infra: Infrastructure) -> Escape | None:
-    """Exact earliest return for common hours and uniform linear charging.
-
-    No SOC rounding: completion time is evaluated for the actual state time.
-    The shortest reachable station path minimizes both distance and return time.
-    """
+    """Earliest safe return over direct and permitted station paths."""
     route = _escape_geometry(state.location, state.battery, infra)
     if route is None:
         return None
-    best_distance, best_path = route
+    best_distance, total_energy, best_path = route
     p = infra.parameters
     completion = state.time + best_distance / p.speed + p.inverse_charge_rate * max(
-        0.0, best_distance * p.consumption - state.battery)
+        0.0, total_energy - state.battery)
     return Escape(best_distance, completion, best_path)
 
 
@@ -219,6 +230,9 @@ def transition(state: VehicleState, action: Action, observation: Observation,
             raise InfeasibleAction("Unknown action kind")
         if destination is None:
             raise InfeasibleAction("Destination is unavailable in this observation")
+        if (action.kind == "charge" and state.location.kind == "f"
+                and destination.id != state.location.id and not p.allow_station_to_station):
+            raise InfeasibleAction("Published benchmark omits station-to-station arcs")
         if action.kind == "serve" and (destination.id in state.served_customers or
                 destination.id in observation.committed_ids):
             raise InfeasibleAction("Customer is already served or committed")
@@ -277,7 +291,8 @@ def try_transition(state: VehicleState, action: Action, observation: Observation
 
 def nearest_reachable_safe_node(state: VehicleState, infra: Infrastructure) -> Location | None:
     nodes = [node for node in (infra.depot,) + infra.stations
-             if distance(state.location, node) * infra.parameters.consumption <= state.battery + EPS]
+             if (infra.parameters.allow_station_to_station or state.location.kind != "f" or node.kind == "d")
+             and energy(state.location, node, infra.parameters) <= state.battery + EPS]
     return min(nodes, key=lambda node: (distance(state.location, node), node.id), default=None)
 
 
@@ -295,9 +310,14 @@ def escape_action(state: VehicleState, infra: Infrastructure) -> Action:
         raise InfeasibleAction("No feasible return")
     first = route.path[0]
     if first.kind == "d":
+        required = energy(state.location, first, infra.parameters)
+        if state.location.kind == "f" and required > state.battery + EPS:
+            return Action("charge", state.location.id, required)
         return Action("return", first.id)
     p = infra.parameters
-    arrival_battery = max(0.0, state.battery - p.consumption * distance(state.location, first))
-    required = max(0.0, route.distance * p.consumption - state.battery)
+    arrival_battery = max(0.0, state.battery - energy(state.location, first, p))
+    nodes = (state.location,) + route.path
+    required = max(0.0, sum(energy(a, b, p) for a, b in zip(nodes, nodes[1:]))
+                   - state.battery)
     target = min(p.battery, arrival_battery + required)
     return Action("charge", first.id, target_battery=target)

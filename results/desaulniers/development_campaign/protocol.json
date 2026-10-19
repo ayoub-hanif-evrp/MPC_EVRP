@@ -1,0 +1,153 @@
+{
+  "charging_policy": "MP",
+  "config_sha256": "ff5c4844db9d09378f6cb37bfebbcfc482deab2e99b71fcdbba8715af5e0c36d",
+  "controller_sha256": "a28ef410ebed72331815b49f954f907809637266d24e47043810dd96779a9817",
+  "dataset": "Desaulniers et al. 2016",
+  "dataset_sha256": "02011e3273fef190bd61cc223b4504d8265ca5be30ccf02a34f674f27d58741e",
+  "dynamicities": [
+    0.25,
+    0.5,
+    0.75
+  ],
+  "ineligible_rule": "Record and exclude target DoD above reference eligibility",
+  "methods": [
+    "MPC_COMPLETION",
+    "MPC_MCTS",
+    "MPC_ALNS",
+    "MPC_HGS",
+    "MPC_ACS"
+  ],
+  "purpose": "development_only",
+  "scenario_seeds": [
+    0
+  ],
+  "selected": [
+    {
+      "family": "C1",
+      "format1_sha256": "98608ed39b0fd7116ad86296ccd931e935dc4615ea2b400c3d238abd5e1037d4",
+      "instance": "c101_21_25",
+      "reserved_untouched": "c109_21_25",
+      "size": 25
+    },
+    {
+      "family": "C2",
+      "format1_sha256": "c6c3366e90ebc49acb0d41374b81789e6e708de870d7e4e58d6aaa419e1de5dc",
+      "instance": "c201_21_25",
+      "reserved_untouched": "c208_21_25",
+      "size": 25
+    },
+    {
+      "family": "R1",
+      "format1_sha256": "e3dfa65a459d0ae7900dd4cf69238bed2b00fdb493f0bca8c1d48175bf1e3396",
+      "instance": "r101_21_25",
+      "reserved_untouched": "r112_21_25",
+      "size": 25
+    },
+    {
+      "family": "R2",
+      "format1_sha256": "ef8251f48322236dbb29b36f61a333c497d74ee19f9d83bbeb3891c5ce89c163",
+      "instance": "r201_21_25",
+      "reserved_untouched": "r211_21_25",
+      "size": 25
+    },
+    {
+      "family": "RC1",
+      "format1_sha256": "f4e7348d689e2e496814410c50fa8ac40430f6c6f82dab35afa5e4deb85ff04d",
+      "instance": "rc101_21_25",
+      "reserved_untouched": "rc108_21_25",
+      "size": 25
+    },
+    {
+      "family": "RC2",
+      "format1_sha256": "d7b1af293d8ffa30f7d1f8afd692c275b2c1d02b46a03ca47d0fd8261809ae70",
+      "instance": "rc201_21_25",
+      "reserved_untouched": "rc208_21_25",
+      "size": 25
+    },
+    {
+      "family": "C1",
+      "format1_sha256": "9882a7b78d24c7c1d2bc6d830f999021c889d89ffc0564469a1dced92104d32e",
+      "instance": "c101_21_50",
+      "reserved_untouched": "c109_21_50",
+      "size": 50
+    },
+    {
+      "family": "C2",
+      "format1_sha256": "aed5ac953c6eeaed8df8804e1af6bf3527cdc063f5e46f3b754a819dc50d15ab",
+      "instance": "c201_21_50",
+      "reserved_untouched": "c208_21_50",
+      "size": 50
+    },
+    {
+      "family": "R1",
+      "format1_sha256": "76509fa38d3d911de3bf7417a8727c2a10584b60551b396a321372840dbe0833",
+      "instance": "r101_21_50",
+      "reserved_untouched": "r112_21_50",
+      "size": 50
+    },
+    {
+      "family": "R2",
+      "format1_sha256": "cc29f0e5b6180c8b7a9f3de47ac5189d596ca8918d362b3c47a5187757aa94f0",
+      "instance": "r201_21_50",
+      "reserved_untouched": "r211_21_50",
+      "size": 50
+    },
+    {
+      "family": "RC1",
+      "format1_sha256": "2d461354bee4025db30a05d3a9a418dd18ed56daebbdbc51375546e5eacf8198",
+      "instance": "rc101_21_50",
+      "reserved_untouched": "rc108_21_50",
+      "size": 50
+    },
+    {
+      "family": "RC2",
+      "format1_sha256": "f654ff9f505335bbb7df007ca3efab5a1a41011c41d457934de85eab63c654f3",
+      "instance": "rc201_21_50",
+      "reserved_untouched": "rc208_21_50",
+      "size": 50
+    },
+    {
+      "family": "C1",
+      "format1_sha256": "ba63d8b3b688328c9dd8db24b6577e308dc4aae45aaa290c473059bec3f1f656",
+      "instance": "c101_21_100",
+      "reserved_untouched": "c109_21_100",
+      "size": 100
+    },
+    {
+      "family": "C2",
+      "format1_sha256": "04d89855148b7612805f58eea7d23fe055fe99ff979b241078e910dfe18d29be",
+      "instance": "c201_21_100",
+      "reserved_untouched": "c208_21_100",
+      "size": 100
+    },
+    {
+      "family": "R1",
+      "format1_sha256": "6b268a422d41039f4c072e58a32018ceb5bbeca6c8de211e52b9f5574112fd22",
+      "instance": "r101_21_100",
+      "reserved_untouched": "r112_21_100",
+      "size": 100
+    },
+    {
+      "family": "R2",
+      "format1_sha256": "fe5a52b8781a38889227992104bf2473f9af1a026561a4cf48cae74cd5808b90",
+      "instance": "r201_21_100",
+      "reserved_untouched": "r211_21_100",
+      "size": 100
+    },
+    {
+      "family": "RC1",
+      "format1_sha256": "5ff99625ded6bf0bc48ba8c98b4b8127ef1627a03528b26d62a3f3694c558eaf",
+      "instance": "rc101_21_100",
+      "reserved_untouched": "rc108_21_100",
+      "size": 100
+    },
+    {
+      "family": "RC2",
+      "format1_sha256": "5c987e6033ed2e70647f250c783cce2dec637073b46bb82c464f18c77b4d3330",
+      "instance": "rc201_21_100",
+      "reserved_untouched": "rc208_21_100",
+      "size": 100
+    }
+  ],
+  "source_sha256": "05f7e02c9a724bea90f3ff183ee432b81ed4f5e5714c1e2fce01e5a3ec225dde"
+}

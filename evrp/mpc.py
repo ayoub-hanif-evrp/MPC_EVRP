@@ -303,10 +303,10 @@ class MPCPlanningProblem:
             if customer.id not in state.remaining or customer.demand > vehicle.load + EPS:
                 continue
             leg = distance(vehicle.location, customer)
-            start = max(vehicle.time + leg / p.speed, customer.ready)
+            start = max(vehicle.time + travel_time(vehicle.location, customer, p), customer.ready)
             if start > customer.due + EPS:
                 continue
-            if require_energy and leg * p.consumption > vehicle.battery + EPS:
+            if require_energy and energy(vehicle.location, customer, p) > vehicle.battery + EPS:
                 continue
             candidates.append((customer.due-start, leg, customer.id, customer))
         limit = self.config.candidate_limit
@@ -326,6 +326,7 @@ class MPCPlanningProblem:
         reserves = {c.id: min(energy(c, n, p) for n in safe) for c in customers}
         stations = [s for s in infra.stations if s.id != vehicle.location.id
                     and s.id not in state.station_visits_since_service
+                    and (p.allow_station_to_station or vehicle.location.kind != "f")
                     and energy(vehicle.location, s, p) <= vehicle.battery + EPS]
         selected = {}
         mandatory = returning if returning and returning.kind == "charge" else None
@@ -352,7 +353,9 @@ class MPCPlanningProblem:
                 # Minimum safe-return energy, not a rounded SOC bin.
                 tail = escape(VehicleState(vehicle.id, station, 0, p.battery, vehicle.load), infra)
                 if tail is not None:
-                    priorities.append(min(p.battery, tail.distance * p.consumption))
+                    nodes = (station,) + tail.path
+                    priorities.append(min(p.battery, sum(energy(a, b, p) for a, b
+                                                         in zip(nodes, nodes[1:]))))
                 needs = [energy(station, c, p) + reserves[c.id] for c in customers]
                 viable = [n for n in needs if arrival + EPS < n <= p.battery + EPS]
                 if viable:
@@ -415,17 +418,17 @@ class MPCPlanningProblem:
         for station in infra.stations:
             if station.id in state.station_visits_since_service or station.id == vehicle.location.id:
                 continue
-            arrival = vehicle.battery - distance(vehicle.location, station) * p.consumption
+            arrival = vehicle.battery - energy(vehicle.location, station, p)
             if arrival < -EPS:
                 continue
             targets = {p.battery}
             if self.config.charging_mode == "partial":
                 targets.update(p.battery * f for f in self.config.charge_fractions)
-                targets.update(distance(station, node) * p.consumption for node in safe_nodes)
+                targets.update(energy(station, node, p) for node in safe_nodes)
                 for customer in customers:
                     if customer.demand <= vehicle.load + EPS:
-                        reserve = min(distance(customer, node) for node in safe_nodes)
-                        targets.add((distance(station, customer) + reserve) * p.consumption)
+                        reserve = min(energy(customer, node, p) for node in safe_nodes)
+                        targets.add(energy(station, customer, p) + reserve)
             unique = []
             for target in sorted(targets):
                 if arrival + EPS < target <= p.battery + EPS and (not unique or target - unique[-1] > EPS):

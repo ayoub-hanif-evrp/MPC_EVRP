@@ -1,0 +1,79 @@
+Cost         = 79520;
+NoRecharges  = 0;
+NoVehicles   = 5;
+
+Route 0 Cost 22382 {
+  _D0o;
+  _C99n;
+  _C13n;
+  _C16n;
+  _C79n;
+  _C6n;
+  _C1n;
+  _C43n;
+  _C72n;
+  _C37n;
+  _C35n;
+  _C36n;
+  _C42n;
+  _C68n;
+  _D0d;
+}
+
+Route 1 Cost 12936 {
+  _D0o;
+  _C57n;
+  _C77n;
+  _C24n;
+  _C49n;
+  _C19n;
+  _C48n;
+  _C18n;
+  _C64n;
+  _C66n;
+  _D0d;
+}
+
+Route 2 Cost 14954 {
+  _D0o;
+  _C63n;
+  _C34n;
+  _C32n;
+  _C28n;
+  _C27n;
+  _C29n;
+  _C31n;
+  _C33n;
+  _C50n;
+  _C92n;
+  _D0d;
+}
+
+Route 3 Cost 22143 {
+  _D0o;
+  _C70n;
+  _C100n;
+  _C53n;
+  _C82n;
+  _C52n;
+  _C75n;
+  _C59n;
+  _C9n;
+  _C15n;
+  _C12n;
+  _C46n;
+  _C55n;
+  _D0d;
+}
+
+Route 4 Cost 7105 {
+  _D0o;
+  _C91n;
+  _C95n;
+  _C93n;
+  _C71n;
+  _C54n;
+  _C81n;
+  _D0d;
+}
+

@@ -107,7 +107,9 @@ def generate(instance: Instance, reference: ReferenceSchedule, seed: int, dynami
     # Half-up rounding is explicit, avoiding language-dependent ties-to-even behavior.
     requested = int(dynamicity * len(bounds) + 0.5)
     if selection_mode == "exact_count":
-        chosen = set(rng.sample(eligible, min(requested, len(eligible))))
+        if requested > len(eligible):
+            raise ValueError(f"Target DoD is ineligible: {requested} requested, {len(eligible)} eligible")
+        chosen = set(rng.sample(eligible, requested))
     else:
         draws = {key for key in bounds if rng.random() < dynamicity}
         chosen = draws.intersection(eligible)

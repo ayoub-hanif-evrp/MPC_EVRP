@@ -8,7 +8,10 @@ import gzip
 from time import sleep
 
 ROOT = Path(__file__).resolve().parents[1]
-BENCHMARK = ROOT / "data" / "evrptw_instances"
+DATASET = ROOT / "data" / "opre.2016.1535-sm-data"
+BENCHMARK = DATASET / "instances" / "instances_format_1"
+BENCHMARK_ARCS = DATASET / "instances" / "instances_format_2"
+PUBLISHED_SOLUTIONS = DATASET / "solutions"
 
 
 def writable_path(path: str | Path) -> Path:
@@ -63,4 +66,5 @@ def load_json(path: str | Path):
 
 
 def benchmark_hashes() -> dict[str, str]:
-    return {p.name: sha256(p.read_bytes()).hexdigest() for p in sorted(BENCHMARK.glob("*.txt"))}
+    return {p.relative_to(DATASET).as_posix(): sha256(p.read_bytes()).hexdigest()
+            for p in sorted(DATASET.rglob("*")) if p.is_file() and p.name != ".DS_Store"}

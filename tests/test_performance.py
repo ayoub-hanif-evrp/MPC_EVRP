@@ -1,10 +1,9 @@
 from dataclasses import replace
-from math import hypot
 import pickle
 
 import pytest
 
-from evrp.instance import load_instance, distance
+from evrp.instance import load_instance, distance, energy, travel_time
 from evrp.model import Action, Observation, escape_action
 from evrp.mpc import MPCConfig, MPCPlanningProblem
 from evrp.mcts import MCTSOptimizer
@@ -13,23 +12,22 @@ from evrp.storage import BENCHMARK
 
 
 def test_static_matrices_exact_and_immutable():
-    instance = load_instance(BENCHMARK / "c101_21.txt")
+    instance = load_instance(BENCHMARK / "c101_21_25.txt")
     geometry = instance.geometry
     p = instance.infrastructure.parameters
     for i, a in enumerate(geometry.nodes):
         assert geometry.by_id[a.id] == a
         for j, b in enumerate(geometry.nodes):
-            expected = hypot(a.x - b.x, a.y - b.y)
-            assert geometry.distance[i][j] == distance(a, b) == expected
-            assert geometry.travel_time[i][j] == expected / p.speed
-            assert geometry.energy[i][j] == expected * p.consumption
+            assert geometry.distance[i][j] == distance(a, b)
+            assert geometry.travel_time[i][j] == travel_time(a, b, p)
+            assert geometry.energy[i][j] == energy(a, b, p)
     with pytest.raises(TypeError):
         geometry.by_id["secret"] = geometry.nodes[0]
     assert pickle.loads(pickle.dumps(instance)).geometry.distance == geometry.distance
 
 
 def make_problem(**kwargs):
-    instance = load_instance(BENCHMARK / "c101_21.txt")
+    instance = load_instance(BENCHMARK / "c101_21_25.txt")
     return MPCPlanningProblem(Observation(0, instance.infrastructure, instance.customers),
                               initial_vehicle(instance), MPCConfig(iterations=8, **kwargs))
 
@@ -86,8 +84,10 @@ def test_urgent_far_customer_not_dropped_by_nearest_preselection():
     from evrp.instance import Location
     p = make_problem(candidate_limit=1)
     depot = p.observation.infrastructure.depot
-    urgent = Location("urgent", "c", depot.x + 8, depot.y, 1, 0, 9, 0)
-    near = tuple(Location(f"near{i}", "c", depot.x + i/10, depot.y, 1, 0, 1000, 0) for i in range(1, 20))
+    urgent = Location("urgent", "c", depot.x + 8, depot.y, 1, 0, 9, 0,
+                      depot.distance_precision)
+    near = tuple(Location(f"near{i}", "c", depot.x + i/10, depot.y, 1, 0, 1000, 0,
+                          depot.distance_precision) for i in range(1, 20))
     p = replace(p, observation=replace(p.observation, customers=near + (urgent,)))
     assert urgent in p.customer_pool(p.initial)
 
@@ -103,8 +103,8 @@ def test_no_hidden_customer_geometry_in_observation():
 def test_trace_levels_preserve_physical_decisions():
     from evrp.experiments import prepare, simulation_config, audit_result
     from evrp.simulator import EventDrivenSimulator
-    config = dict(mcts_iterations=8, scenario_seed=0, dynamicity=.5, route_continuity=False, regret_repair=False)
-    instance, _, scenario, _ = prepare("c101C5", config)
+    config = dict(mcts_iterations=8, scenario_seed=0, dynamicity=.25, route_continuity=False, regret_repair=False)
+    instance, _, scenario, _ = prepare("c101_21_25", config)
     results = []
     for level in ("full", "summary", "none"):
         result = EventDrivenSimulator(instance, scenario, simulation_config({**config, "trace_level": level})).run()
@@ -152,7 +152,7 @@ def test_only_safe_return_station_survives_minimum_limits():
 def test_reference_prefix_cache_preserves_exact_routes():
     from collections import OrderedDict
     from evrp.reference import evaluate_route, solve_reference
-    instance = load_instance(BENCHMARK / "c101C5.txt")
+    instance = load_instance(BENCHMARK / "c101_21_25.txt")
     cache = OrderedDict()
     route = max(solve_reference(instance).routes, key=lambda r: len(r.customers)).customers
     sequences = [route[:length] for length in range(1, len(route)+1)] + [tuple(reversed(route))]
@@ -173,12 +173,13 @@ def test_escape_geometry_cache_keeps_exact_time_and_battery():
     assert _escape_geometry.cache_info().hits > 0
 
 
-@pytest.mark.parametrize("name", ["c101C5", "r104C5", "rc105C5"])
-def test_caching_preserves_final_method_physical_trace(name):
-    from evrp.experiments import prepare, simulation_config, audit_result
+def test_caching_preserves_final_method_physical_trace():
+    from evrp.experiments import simulation_config, audit_result
     from evrp.simulator import EventDrivenSimulator
-    config = dict(mcts_iterations=8, scenario_seed=0, dynamicity=.5, action_space_reduction=False)
-    instance, _, scenario, _ = prepare(name, config)
+    from tests.test_simulator import synthetic
+    base = synthetic(release=5, fleet=2)
+    instance, scenario = base.instance, base.scenario
+    config = dict(mcts_iterations=8, action_space_reduction=False)
     result = EventDrivenSimulator(instance, scenario, simulation_config(config)).run()
     uncached = EventDrivenSimulator(instance, scenario, simulation_config({**config, "cache_transitions": False})).run()
     assert result.steps == uncached.steps

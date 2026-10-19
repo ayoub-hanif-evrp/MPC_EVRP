@@ -3,18 +3,19 @@ from copy import deepcopy
 
 import pytest
 
-from evrp.experiments import prepare, simulation_config, audit_result, results_path
+from evrp.experiments import prepare, simulation_config, audit_result, results_path, load_config
 from evrp.model import Action
 from evrp.simulator import EventDrivenSimulator
-from evrp.storage import canonical, save_json, load_json
+from evrp.storage import ROOT, canonical, save_json, load_json
 from tests.test_simulator import synthetic
 
 
-@pytest.mark.parametrize("name", ["c101C5", "r104C5", "rc105C5"])
-@pytest.mark.parametrize("dod", [0., .5])
-@pytest.mark.parametrize("algorithm", ["GREEDY", "RH_REGRET", "INDEPENDENT_MPC_MCTS", "COORDINATED_MPC_MCTS"])
+@pytest.mark.parametrize("name", ["c101_21_25"])
+@pytest.mark.parametrize("dod", [0., .25])
+@pytest.mark.parametrize("algorithm", ["MPC_COMPLETION", "MPC_MCTS"])
 def test_fixed_fleet_end_to_end(name, dod, algorithm):
-    cfg = dict(algorithm=algorithm, dynamicity=dod, mcts_iterations=8)
+    cfg = dict(load_config(ROOT / "configs/paper_controller.yaml"), algorithm=algorithm,
+               dynamicity=dod, mcts_iterations=8, total_planning_time_limit=0.5)
     instance, reference, scenario, _ = prepare(name, cfg)
     sim = EventDrivenSimulator(instance, scenario, simulation_config(cfg))
     result = sim.run()

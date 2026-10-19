@@ -1,0 +1,44 @@
+{
+  "charging_policy": "MP",
+  "config_sha256": "814e8aee3395c401f85f9c74ddcb65dadabcd5ffb6f8a86e0a1dcd2ef5833380",
+  "controller_sha256": "a28ef410ebed72331815b49f954f907809637266d24e47043810dd96779a9817",
+  "dataset": "Desaulniers et al. 2016",
+  "dataset_sha256": "02011e3273fef190bd61cc223b4504d8265ca5be30ccf02a34f674f27d58741e",
+  "dynamicity": 0.25,
+  "methods": [
+    "MPC_COMPLETION",
+    "MPC_MCTS",
+    "MPC_ALNS",
+    "MPC_HGS",
+    "MPC_ACS"
+  ],
+  "scenario_seed": 0,
+  "selected": [
+    {
+      "family": "C1",
+      "format1_sha256": "98608ed39b0fd7116ad86296ccd931e935dc4615ea2b400c3d238abd5e1037d4",
+      "format2_sha256": "5254b6bbd6cf7e87c653e8de7959db5056d70ed362dd6ac0afce90df34992788",
+      "instance": "c101_21_25",
+      "reserved_untouched": "c109_21_25",
+      "size": 25
+    },
+    {
+      "family": "C1",
+      "format1_sha256": "9882a7b78d24c7c1d2bc6d830f999021c889d89ffc0564469a1dced92104d32e",
+      "format2_sha256": "314f99c9fb992b14f5a921cb875723211a813b514852de11822455575248594b",
+      "instance": "c101_21_50",
+      "reserved_untouched": "c109_21_50",
+      "size": 50
+    },
+    {
+      "family": "C1",
+      "format1_sha256": "ba63d8b3b688328c9dd8db24b6577e308dc4aae45aaa290c473059bec3f1f656",
+      "format2_sha256": "a9462c0dd05574a8d814ea4a2fb85a0cc66647065fa4c68b3fce09e867d3d648",
+      "instance": "c101_21_100",
+      "reserved_untouched": "c109_21_100",
+      "size": 100
+    }
+  ],
+  "source_sha256": "940725dfef5f0803fddfcfba582b44ca57c6b45ce36bd8e4abee264cd111dfbf",
+  "status": "development_pilot"
+}

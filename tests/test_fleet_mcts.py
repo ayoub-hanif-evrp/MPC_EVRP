@@ -15,7 +15,9 @@ from evrp.simulator import EventDrivenSimulator
 from evrp.repair import route_proposal
 from tests.test_repair import customer, serves, setup
 from tests.test_simulator import synthetic
-from scripts.final_control_horizon_campaign import cases
+from evrp.experiments import load_config
+from evrp.storage import ROOT
+from scripts.run_desaulniers_pilot import selected_cases, settings
 
 
 def test_fleet_mcts_serves_released_work_and_preserves_lexicographic_value():
@@ -484,23 +486,15 @@ def test_rolling_lns_accepts_the_same_total_event_budget():
     assert all(audit_result(result, base.instance, base.scenario).values())
 
 
-def test_final_control_horizon_grid_is_fixed_and_matched():
-    static = list(cases("static"))
-    development = list(cases("development"))
-    assert len(static) == 6
-    assert len(development) == 24
-    assert all(config["dynamicity"] == 0 and config["algorithm"] == "FLEET_MPC_MCTS"
-               for _, config in static)
-    for instance in {name for name, _ in development}:
-        for seed in (0, 1):
-            pair = [config for name, config in development
-                    if name == instance and config["scenario_seed"] == seed]
-            assert {config["algorithm"] for config in pair} == {
-                "FLEET_MPC_MCTS", "ROLLING_LNS"}
-            assert all(config["dynamicity"] == 0.5 and config["experiment_seed"] == 0
-                       and config["total_planning_time_limit"] == 5.0 for config in pair)
-            assert all(config["fleet_mcts_iterations"] == 256 and
-                       config["fleet_mcts_depth"] == 4 and
-                       config["fleet_mcts_branch_limit"] == 24 and
-                       config["candidate_position_limit"] == 3 and
-                       config["uct_c"] == 1.4 for config in pair)
+def test_desaulniers_pilot_grid_is_fixed_and_matched():
+    config = load_config(ROOT / "configs/desaulniers_mp_pilot.yaml")
+    cases = selected_cases(config)
+    assert {case["size"] for case in cases} == {25, 50, 100}
+    assert len(cases) == 3
+    assert all(case["family"] == "C1" and case["instance"] != case["reserved_untouched"]
+               for case in cases)
+    for case in cases:
+        matched = [settings(config, case["instance"], method) for method in config["methods"]]
+        assert {row["algorithm"] for row in matched} == set(config["methods"])
+        assert all(row["dynamicity"] == 0.25 and row["scenario_seed"] == 0
+                   and row["total_planning_time_limit"] == 5.0 for row in matched)
