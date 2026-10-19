@@ -17,7 +17,7 @@ from scripts.analyze_final_holdout import analyze as analyze_final
 from scripts.portfolio_selector import CV as SELECTOR_CV
 from scripts.preregister_final_holdout import JSON_OUTPUT
 from scripts.run_final_holdout import OUTPUT, validated_protocol
-from scripts.shadow_portfolio import OUTPUT as SHADOW, SEARCH_METHODS, analyze_shadow
+from scripts.shadow_portfolio import OUTPUT as SHADOW, SEARCH_METHODS, summarize_shadow
 
 
 PAPER = OUTPUT / "paper"
@@ -157,6 +157,16 @@ def write_tables(report, protocol, grouped, shadow, wins, selector_cv=None):
     overall = {row["method"]: row for row in report["service"] if row["scope"] == "overall"}
     runtime = {row["method"]: row for row in report["runtime"]}
     pairs = comparisons(report)
+    portfolio_note = ""
+    if "MPC_PORTFOLIO" in methods:
+        best_fixed = max(SEARCH_METHODS,
+                         key=lambda method: overall[method]["mean_customers_served"])
+        row = oriented(pairs, best_fixed, "MPC_PORTFOLIO")
+        portfolio_note = (f" Observed best fixed method {label(best_fixed)} minus Portfolio: "
+                          f"{fmt(row['service_diff'])} customers per scenario "
+                          f"(95% paired bootstrap CI {ci(row['service_ci'])}; "
+                          f"W/T/L {row['service_wins']}/{row['service_ties']}/"
+                          f"{row['service_losses']}).")
     table(out / "table1_common_mpc.md", "Common event-triggered MPC architecture",
           ("Method", "MPC controller", "Search engine", "Common constructor",
            "Released-only information", "Exact EV decoder", "Decision budget"),
@@ -181,7 +191,8 @@ def write_tables(report, protocol, grouped, shadow, wins, selector_cv=None):
             fmt(runtime[method]["mean_decision_seconds"], 3),
             fmt(runtime[method]["p95_decision_seconds"], 3),
             fmt(runtime[method]["max_decision_seconds"], 3)) for method in methods],
-          "54 paired 100-customer scenarios. Bold marks the highest mean customers served; ties share bold.")
+          "54 paired 100-customer scenarios. Bold marks the highest mean customers served; ties share bold."
+          + portfolio_note)
 
     table(out / "table3_vs_completion.md", "Final paired gains over MPC + Completion",
           ("Comparison", "Mean Delta served", "95% bootstrap CI", "Wins", "Ties", "Losses",
@@ -474,7 +485,8 @@ def write_results(report, protocol, overall, runtime, pairs, shadow, wins, selec
     best_gain = oriented(pairs, best, "MPC_COMPLETION") if best != "MPC_COMPLETION" else None
     ci_text = (f"{fmt(best_gain['service_diff'])} customers (95% paired bootstrap CI "
                f"{ci(best_gain['service_ci'])})" if best_gain else "not applicable")
-    evidence = ("the interval excludes zero" if best_gain and best_gain["service_ci"][0] > 0
+    evidence = ("the nominal scenario-bootstrap interval excludes zero" if best_gain and
+                best_gain["service_ci"][0] > 0
                 else "the interval includes zero, so the direction remains uncertain"
                 if best_gain else "no optimizer exceeded the baseline mean")
     family_scope = {row["scope"]: row for row in report["service"]
@@ -489,16 +501,21 @@ def write_results(report, protocol, overall, runtime, pairs, shadow, wins, selec
              "frozen method definitions are in [Table 1](tables/table1_common_mpc.md) and "
              "[Figure 1](figures/fig1_mpc_architecture.png).", "",
              "## 2. Does combinatorial optimization improve MPC?", "",
-             f"The highest final mean service was {label(best)}. Its paired gain over MPC + "
+             f"The highest observed final mean service was {label(best)}. Its paired gain over MPC + "
              f"Completion was {ci_text}; {evidence}. The full comparisons, including losses and "
              "ties, are in [Table 3](tables/table3_vs_completion.md) and "
-             "[Figure 2](figures/fig2_service_gain_vs_completion.png).", "",
+             "[Figure 2](figures/fig2_service_gain_vs_completion.png). These intervals do not "
+             "adjust for selecting the best observed method or for clustering by benchmark instance.", "",
              "## 3. Optimization engines inside MPC", "",
              "[Table 2](tables/table2_final_overall_results.md) and "
              "[Figure 3](figures/fig3_service_performance.png) show service and complete-service "
              "rates on the final holdout. Search-engine pairwise differences and their confidence "
              "intervals appear in [Table 4](tables/table4_optimizer_pairwise.md). A confidence "
-             "interval crossing zero is not evidence of a reliable ordering.", "",
+             "interval crossing zero is not evidence of a reliable ordering. " +
+             ("The frozen Portfolio is also compared directly with the best fixed optimizer "
+              f"({label(best)}) in Table 2; its difference should be interpreted by the paired "
+              "interval, not only by the observed mean. " if "MPC_PORTFOLIO" in methods else "") +
+             "The six selected instances limit generalization.", "",
              "## 4. Impact of dynamicity", "",
              "The descriptive service-rate response at DoD 0.25, 0.50, and 0.75 is shown in "
              "[Table 6](tables/table6_by_dynamicity.md) and "
@@ -577,7 +594,7 @@ def write_results(report, protocol, overall, runtime, pairs, shadow, wins, selec
 def render():
     protocol = validated_protocol()
     report = analyze_final()
-    shadow = analyze_shadow()
+    shadow = load_json(SHADOW / "sbs_vbs_gate.json")
     selector_cv = load_json(SELECTOR_CV) if shadow["portfolio_gate_passed"] else None
     manifest = load_json(OUTPUT / "manifest.json")
     shadow_manifest = load_json(SHADOW / "manifest.json")
@@ -585,6 +602,10 @@ def render():
         raise ValueError("Audited final holdout incomplete")
     grouped, shadow_rows, latencies, mcts_gains = audit_paper_inputs(
         protocol, manifest, shadow_manifest)
+    selection = load_json(SHADOW / "selection.json")
+    snapshots = {row["state_hash"]: row for row in selection["snapshots"]}
+    if set(snapshots) != set(shadow_rows) or summarize_shadow(shadow_rows, snapshots) != shadow:
+        raise ValueError("Frozen shadow gate differs from audited common-state outcomes")
     if len(shadow_rows) != shadow["snapshots"]:
         raise ValueError("Shadow snapshot count differs from audited summary")
     wins = shadow_win_counts(shadow_rows)

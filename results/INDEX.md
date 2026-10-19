@@ -21,24 +21,27 @@ with one common source, controller and protocol fingerprint.
 
 ## Shadow Study
 
-`portfolio/shadow/selection.json` must contain the complete, committed
-observable-state selection before optimizer outcomes in `portfolio/shadow/raw/`
-are generated. `portfolio/shadow/sbs_vbs_gate.json` is analysis-only until the
-full shadow grid is audited.
+`portfolio/shadow/selection.json` contains the committed observable-state
+selection made before optimizer outcomes in `portfolio/shadow/raw/` were
+generated. `portfolio/shadow/sbs_vbs_gate.json` is frozen common-state
+analysis, not a closed-loop holdout result.
 The completed 396-state shadow grid passed the portfolio gate. The simple
 selector, its grouped-scenario and grouped-instance validation, and the
 deployment decision are frozen under `portfolio/selector/`.
 
 ## Final Study
 
-`final_study/` is reserved for a new deterministic unused-instance
-preregistration and its later audited holdout. No final results currently
-exist; historical consumed instances are development evidence. The planned
-portfolio-inclusive grid has 54 scenarios by six MPC variants (324 runs).
-After final holdout analysis, `scripts/render_final_paper.py` writes the
-paper-ready Results narrative to `final_study/paper/RESULTS.md`, PNG-only
-figures to `final_study/paper/figures/`, and Markdown-only tables to
-`final_study/paper/tables/`. It refuses incomplete final evidence.
+`final_study/PRE_REGISTERED_PROTOCOL.json` and its Markdown companion were
+committed before opening the deterministic unused-instance holdout. The
+completed portfolio-inclusive grid contains 54 paired scenarios by six MPC
+variants (324 isolated, independently audited runs). Raw evidence and its
+hash manifest are under `final_study/raw/` and `final_study/manifest.json`;
+the audited analysis is under `final_study/analysis/`.
+[`final_study/paper/RESULTS.md`](final_study/paper/RESULTS.md) is the paper-ready
+Results narrative. `final_study/paper/figures/` contains nine 320-dpi PNGs,
+and `final_study/paper/tables/` contains ten Markdown tables. The renderer
+refuses incomplete final evidence and checks the frozen shadow gate without
+rewriting its preregistered bytes.
 
 ## Verification
 
@@ -51,7 +54,7 @@ and protocol fingerprints are documented in
 | Directory | Classification | Meaning |
 | --- | --- | --- |
 | `paper/` | HISTORICAL_EVIDENCE | Immutable earlier paper raw evidence, manifests and tables |
-| `portfolio/` | DEVELOPMENT_AND_SHADOW | Current optimizer study; no new final holdout yet |
+| `portfolio/` | DEVELOPMENT_AND_SHADOW | Completed development and common-state evidence; separate from the completed final holdout |
 | `verification/` | VALIDATION | Fresh test reports and protocol checks |
 | `development/` | LEGACY_DEVELOPMENT | Earlier controller development |
 | `final/` | LEGACY_DEVELOPMENT | Historical stopped/partial campaigns |

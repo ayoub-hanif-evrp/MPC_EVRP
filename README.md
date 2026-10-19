@@ -46,10 +46,13 @@ snapshots and 1,584 independent optimizer evaluations. Its portfolio gate
 passed, and the state-aware selector and grouped validation were frozen before
 the final holdout. These are development results, not final performance
 evidence. The six-variant final holdout was preregistered on six unused
-Schneider instances; its latest committed checkpoint contains 134/324 audited
-runs. The final study remains incomplete, so no holdout-wide winner or final
-paper claim has been established. Earlier pilots and stopped grids remain
-historical development evidence under [`results/portfolio/`](results/portfolio/).
+Schneider instances and is complete at 324/324 independently audited runs
+over 54 paired scenarios. The final paper figures, tables, and interpretation
+are in [`results/final_study/paper/RESULTS.md`](results/final_study/paper/RESULTS.md).
+MPC + ALNS has the highest observed mean service (99.33/100), while the paired
+ALNS-Portfolio interval crosses zero; the portfolio is not established as
+superior. Earlier pilots and stopped grids remain historical development
+evidence under [`results/portfolio/`](results/portfolio/).
 
 ## Repository Map
 
@@ -132,22 +135,17 @@ study before writing `results/final_study/paper/RESULTS.md`, nine 300-dpi PNG
 figures, and ten Markdown tables. Development plots remain diagnostic and are
 not used as final paper evidence.
 
-The final holdout is open and resumable; do not rerun preregistration or alter
-frozen source, selector, configs, or runner. From a dedicated local PowerShell
-terminal, resume the existing 324-run campaign with:
+The final holdout is complete. Do not rerun preregistration or alter frozen
+source, selector, configs, or runner. To re-audit the saved raw results and
+regenerate paper outputs without rerunning any experiment:
 
 ```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File scripts/resume_final_holdout.ps1
+python -m scripts.analyze_final_holdout
+python -m scripts.render_final_paper
 ```
 
-The launcher writes `results/final_study/resume.log` and runs the final audit
-and PNG/Markdown paper renderer only after all 324 records are present. To
-check progress without starting another worker:
-
-```powershell
-(Get-Content results/final_study/manifest.json -Raw | ConvertFrom-Json).records.Count
-Get-Content results/final_study/resume.log -Tail 5
-```
+The local `scripts/resume_final_holdout.ps1` launcher remains available for
+recovery in a fresh worktree, but is not needed for the completed study.
 
 To reproduce the historical paper track, check out the V1 tag in a separate
 worktree and follow [`results/paper/PAPER_PROTOCOL.md`](results/paper/PAPER_PROTOCOL.md).

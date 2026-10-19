@@ -1,0 +1,7 @@
+method,embedded_search,common_constructor,objective,budget_seconds
+MPC_COMPLETION,COMPLETION,True,J_A/J_B,5.0
+MPC_MCTS,MCTS,True,J_A/J_B,5.0
+MPC_ALNS,ALNS,True,J_A/J_B,5.0
+MPC_HGS,HGS,True,J_A/J_B,5.0
+MPC_ACS,ACS,True,J_A/J_B,5.0
+MPC_PORTFOLIO,PORTFOLIO,True,J_A/J_B,5.0
