@@ -56,6 +56,9 @@ logs/
 !/results/final_study/paper/RESULTS.md
 !/results/final_study/paper/figures/*.png
 !/results/final_study/paper/tables/*.md
+!/results/final_study/postmortem/*.md
+!/results/final_study/postmortem/tables/*.md
+!/results/final_study/postmortem/figures/*.png
 !/results/verification/pytest.xml
 /results/.pytest_work/
 /results/t[0-9]*/

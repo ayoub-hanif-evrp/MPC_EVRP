@@ -42,6 +42,9 @@ Results narrative. `final_study/paper/figures/` contains nine 320-dpi PNGs,
 and `final_study/paper/tables/` contains ten Markdown tables. The renderer
 refuses incomplete final evidence and checks the frozen shadow gate without
 rewriting its preregistered bytes.
+The separate [online service-gap supplement](final_study/postmortem/ONLINE_SERVICE_GAP.md)
+verifies the feasible clairvoyant reference, reports all missed customers and
+instance-clustered sensitivity, and leaves the primary paper artifacts unchanged.
 
 ## Verification
 
