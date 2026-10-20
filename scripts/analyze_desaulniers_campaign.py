@@ -10,7 +10,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
 from evrp.experiments import load_config
-from evrp.storage import ROOT, load_json, writable_path
+from evrp.storage import ROOT, identifier, load_json, writable_path
 from scripts.run_desaulniers_campaign import CONFIG, OUTPUT, METHODS, protocol
 from scripts.run_desaulniers_pilot import VIOLATIONS
 
@@ -21,17 +21,27 @@ def _table(headers, rows):
                      ["| " + " | ".join(map(str, row)) + " |" for row in rows])
 
 
-def analyze():
-    frozen = protocol(load_config(CONFIG))
-    manifest = load_json(OUTPUT / "manifest.json")
-    if manifest["status"] != "development_complete":
-        raise ValueError("Development campaign is incomplete; no paper summary will be rendered")
+def analyze(frozen=None, output=OUTPUT, complete_status="development_complete"):
+    frozen = frozen if frozen is not None else protocol(load_config(CONFIG))
+    manifest = load_json(output / "manifest.json")
+    if manifest["status"] != complete_status:
+        raise ValueError("Campaign is incomplete; no paper summary will be rendered")
     records = manifest["records"]
     excluded = manifest["ineligible"]
-    if (len(records) + len(excluded) * len(METHODS) != manifest["planned_runs"] or
+    scenarios = {(r["instance"], dod, seed) for r in frozen["selected"]
+                 for dod in frozen["dynamicities"] for seed in frozen["scenario_seeds"]}
+    excluded_keys = {(r["instance"], r["dynamicity"], r["seed"]) for r in excluded}
+    if (manifest["protocol_identifier"] != identifier(frozen) or
+            manifest["planned_runs"] != len(scenarios) * len(METHODS) or
+            not excluded_keys <= scenarios or len(excluded_keys) != len(excluded) or
+            any((r["instance"], r["dynamicity"], r["seed"]) not in scenarios - excluded_keys
+                for r in records) or
+            len(records) + len(excluded) * len(METHODS) != manifest["planned_runs"] or
             len(records) != len({(r["instance"], r["dynamicity"], r["seed"], r["method"])
                                  for r in records})):
         raise ValueError("Development manifest has missing or duplicated method keys")
+    if not records:
+        raise ValueError("No eligible audited scenarios")
     grouped = defaultdict(dict)
     complete_rows = []
     for row in records:
@@ -106,7 +116,9 @@ def analyze():
                           sum(x > 0 for x in diffs), sum(x == 0 for x in diffs),
                           sum(x < 0 for x in diffs)))
 
-    lines = ["# Desaulniers MP development campaign", "",
+    final = complete_status == "final_complete"
+    lines = [f"# Desaulniers MP {'final holdout' if final else 'development campaign'}", "",
+             "Final holdout evidence. All included scenarios have five matched," if final else
              "Development evidence only. All included scenarios have five matched,",
              "isolated, independently audited methods and the same five-second",
              "decision budget. Ineligible target-DoD scenarios are excluded",
@@ -122,9 +134,10 @@ def analyze():
              "## By target DoD", "", grouped_table(str, lambda row: row["dynamicity"]), "",
              "## Paired service change vs Completion", "",
              _table(["Method", "N", "Mean customers", "Wins", "Ties", "Losses"], pair_rows), "",
+             "Reserved benchmark instances were fixed before final outcomes were observed." if final else
              "No final holdout has been opened; these development outcomes are not",
-             "an unbiased final comparison.", ""]
-    writable_path(OUTPUT / "SUMMARY.md").write_text("\n".join(lines), encoding="utf-8")
+             "" if final else "an unbiased final comparison.", ""]
+    writable_path(output / "SUMMARY.md").write_text("\n".join(lines), encoding="utf-8")
 
     fig, ax = plt.subplots(figsize=(9, 5))
     for method in frozen["methods"]:
@@ -136,12 +149,13 @@ def analyze():
         ax.plot([x for x, _ in points], [y for _, y in points], marker="o",
                 label=method.removeprefix("MPC_"))
     ax.set(xlabel="Customers in instance", ylabel="Customers served (%)",
-           title="Desaulniers MP development (matched scenarios)")
+           title=f"Desaulniers MP {'final holdout' if final else 'development'} (matched scenarios)")
     ax.set_xticks(sorted(set(row["size"] for row in complete_rows)))
     ax.legend(ncol=3)
     fig.tight_layout()
-    fig.savefig(writable_path(OUTPUT / "figures/service_by_size.png"), dpi=300)
+    fig.savefig(writable_path(output / "figures/service_by_size.png"), dpi=300)
     plt.close(fig)
+    return grouped
 
 
 if __name__ == "__main__":

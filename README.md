@@ -65,5 +65,18 @@ completed as part of the migration pilot. Some 50- and 100-customer cases
 have no compatible published full-charge route; their fallback reference
 construction remains an explicit runtime/feasibility limitation.
 
+The separate [final holdout configuration](configs/desaulniers_mp_final.yaml)
+uses the lexicographically last, previously reserved instance of each family
+and size, the same three target DoD levels, seed 0, and all five fixed methods.
+The resulting maximum is 270 method runs before explicitly recorded DoD
+ineligibility. Its source- and dataset-bound protocol is frozen before any
+holdout optimization. The runner refuses to open the holdout until the
+development manifest is complete. Then run
+`python -m scripts.run_desaulniers_final` and, after completion,
+`python -m scripts.analyze_desaulniers_final`. An infeasible offline reference
+is a campaign blocker, not a silently discarded final scenario. This is a
+new Desaulniers evaluation, not a continuation of the historical Schneider
+holdout.
+
 For the field mapping, rounding validation, charging and fleet assumptions,
 see [Desaulniers migration notes](docs/DESAULNIERS_MIGRATION.md).

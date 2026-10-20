@@ -18,3 +18,7 @@ frozen without execution; a partial manifest is not a completed study.
 No Desaulniers final evaluation has been executed yet. The old Schneider
 development, shadow, and final-study artifacts were removed from the active
 tree and remain available in Git history.
+
+`desaulniers/final_holdout/protocol.json` freezes the reserved 18-instance
+final design before its first run. Its runner remains gated on completion of
+the development campaign; a frozen protocol alone is not a final result.

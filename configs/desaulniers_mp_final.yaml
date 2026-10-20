@@ -1,0 +1,10 @@
+base_controller: configs/paper_controller.yaml
+charging_policy: MP
+methods: [MPC_COMPLETION, MPC_MCTS, MPC_ALNS, MPC_HGS, MPC_ACS]
+sizes: [25, 50, 100]
+families: [C1, C2, R1, R2, RC1, RC2]
+dynamicities: [0.25, 0.50, 0.75]
+scenario_seeds: [0]
+total_planning_time_limit: 5.0
+engineering_watchdog_seconds: 3600.0
+whole_worker_timeout_seconds: 3900
