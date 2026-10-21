@@ -45,6 +45,12 @@ logs/
 !/results/desaulniers/final_holdout/raw/*.json.gz
 !/results/desaulniers/final_holdout/failures/*.json
 !/results/desaulniers/final_holdout/figures/*.png
+!/results/desaulniers/final_holdout_audit_erratum/protocol.json
+!/results/desaulniers/final_holdout_audit_erratum/manifest.json
+!/results/desaulniers/final_holdout_audit_erratum/SUMMARY.md
+!/results/desaulniers/final_holdout_audit_erratum/raw/*.json.gz
+!/results/desaulniers/final_holdout_audit_erratum/failures/*.json
+!/results/desaulniers/final_holdout_audit_erratum/figures/*.png
 /results/.pytest_work/
 /results/t[0-9]*/
 /results/.pytest_*/

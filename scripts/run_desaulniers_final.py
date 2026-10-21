@@ -21,7 +21,7 @@ from scripts.run_desaulniers_pilot import VIOLATIONS, dataset_hash, family_of, s
 
 
 CONFIG = ROOT / "configs/desaulniers_mp_final.yaml"
-OUTPUT = ROOT / "results/desaulniers/final_holdout"
+OUTPUT = ROOT / "results/desaulniers/final_holdout_audit_erratum"
 
 
 def source_hash():
@@ -63,11 +63,15 @@ def protocol(config):
             config["scenario_seeds"] != [0]):
         raise ValueError("Final protocol differs from the fixed five-method MP design")
     development = load_json(DEVELOPMENT_OUTPUT / "protocol.json")
+    parent = load_json(ROOT / "results/desaulniers/final_holdout/protocol.json")
     frozen = dict(dataset="Desaulniers et al. 2016", charging_policy="MP",
-                  purpose="final_holdout", selected=selected_instances(config),
+                  purpose="final_holdout_audit_erratum", selected=selected_instances(config),
                   methods=config["methods"], dynamicities=config["dynamicities"],
                   scenario_seeds=config["scenario_seeds"],
                   ineligible_rule="Record and exclude target DoD above reference eligibility",
+                  parent_protocol_identifier=identifier(parent),
+                  audit_erratum="Replay released customers at the recorded dispatch event time; "
+                                "vehicle before.time may differ by floating-point roundoff",
                   development_protocol_identifier=identifier(development),
                   dataset_sha256=dataset_hash(), source_sha256=source_hash(),
                   config_sha256=sha256(CONFIG.read_bytes()).hexdigest(),

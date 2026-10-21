@@ -78,5 +78,15 @@ is a campaign blocker, not a silently discarded final scenario. This is a
 new Desaulniers evaluation, not a continuation of the historical Schneider
 holdout.
 
+An audit-only erratum was required after the first final protocol stopped at
+10 runs: a floating-point wait could leave a vehicle's `before.time` a few
+femtoseconds earlier than its actual dispatch event. Independent replay now
+checks release legality at the recorded dispatch time and requires the vehicle
+time to agree within the existing numerical tolerance. The original partial
+holdout and failure evidence are preserved under `final_holdout/`; the
+separately fingerprinted complete evaluation writes to
+`final_holdout_audit_erratum/`. No optimizer, objective, controller, charging
+policy, scenario, budget, or reserved instance was changed.
+
 For the field mapping, rounding validation, charging and fleet assumptions,
 see [Desaulniers migration notes](docs/DESAULNIERS_MIGRATION.md).

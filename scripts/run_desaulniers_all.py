@@ -1,6 +1,7 @@
 """Run the frozen Desaulniers campaigns and analyses unattended, in order."""
 
 import ctypes
+import argparse
 from datetime import datetime, timezone
 import os
 import subprocess
@@ -25,12 +26,12 @@ def now():
     return datetime.now(timezone.utc).isoformat()
 
 
-def run():
+def run(final_only=False):
     if os.name == "nt":
         ctypes.windll.kernel32.SetThreadExecutionState(0x80000003)
     try:
         with writable_path(LOG).open("a", encoding="utf-8", buffering=1) as log:
-            for stage, module in STAGES:
+            for stage, module in STAGES[2:] if final_only else STAGES:
                 save_json(STATUS, dict(stage=stage, state="running", started_utc=now(),
                                        pipeline_pid=os.getpid()))
                 log.write(f"\n[{now()}] START {stage}: {module}\n")
@@ -56,4 +57,7 @@ def run():
 
 
 if __name__ == "__main__":
-    sys.exit(run())
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--final-only", action="store_true")
+    args = parser.parse_args()
+    sys.exit(run(args.final_only))

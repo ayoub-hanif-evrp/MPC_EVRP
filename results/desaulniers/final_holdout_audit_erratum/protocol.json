@@ -1,0 +1,156 @@
+{
+  "audit_erratum": "Replay released customers at the recorded dispatch event time; vehicle before.time may differ by floating-point roundoff",
+  "charging_policy": "MP",
+  "config_sha256": "ff5c4844db9d09378f6cb37bfebbcfc482deab2e99b71fcdbba8715af5e0c36d",
+  "controller_sha256": "a28ef410ebed72331815b49f954f907809637266d24e47043810dd96779a9817",
+  "dataset": "Desaulniers et al. 2016",
+  "dataset_sha256": "02011e3273fef190bd61cc223b4504d8265ca5be30ccf02a34f674f27d58741e",
+  "development_protocol_identifier": "30bf9318bf952adf148873c54b06a933c167b3c287fac9c40419d680b8897d08",
+  "dynamicities": [
+    0.25,
+    0.5,
+    0.75
+  ],
+  "ineligible_rule": "Record and exclude target DoD above reference eligibility",
+  "methods": [
+    "MPC_COMPLETION",
+    "MPC_MCTS",
+    "MPC_ALNS",
+    "MPC_HGS",
+    "MPC_ACS"
+  ],
+  "parent_protocol_identifier": "8e44469ee2af974f8e2b1af2623a9027539f0f7cbf3c4533f2d45cf99360a248",
+  "purpose": "final_holdout_audit_erratum",
+  "scenario_seeds": [
+    0
+  ],
+  "selected": [
+    {
+      "development_instance": "c101_21_25",
+      "family": "C1",
+      "format1_sha256": "d1abc08396c2f7056d8842cbf26f44e7b2e52abffb33a0c4d1db7d42eb2203be",
+      "instance": "c109_21_25",
+      "size": 25
+    },
+    {
+      "development_instance": "c201_21_25",
+      "family": "C2",
+      "format1_sha256": "507fa35434c50e8dea9701bbf1631f9bfb73f06ba61dd6f8c6c1e0f8422f3486",
+      "instance": "c208_21_25",
+      "size": 25
+    },
+    {
+      "development_instance": "r101_21_25",
+      "family": "R1",
+      "format1_sha256": "8dbfd4af65a1984518013d528b8f383e027b9df75069b28db1b66ced3ee9ebd3",
+      "instance": "r112_21_25",
+      "size": 25
+    },
+    {
+      "development_instance": "r201_21_25",
+      "family": "R2",
+      "format1_sha256": "b0395461076f0acc2a75baed204a5c39bbdea5228038d4143ce3f96b41b92dfa",
+      "instance": "r211_21_25",
+      "size": 25
+    },
+    {
+      "development_instance": "rc101_21_25",
+      "family": "RC1",
+      "format1_sha256": "7fa1e20d73177d785a69b72f92a039985ddc330f5e91dee31d85260c2f4b96ce",
+      "instance": "rc108_21_25",
+      "size": 25
+    },
+    {
+      "development_instance": "rc201_21_25",
+      "family": "RC2",
+      "format1_sha256": "4dcbf65f64f1128ca2a3d1896ea87e62305a7f0847db5d7a1c3f115bd5ae54ca",
+      "instance": "rc208_21_25",
+      "size": 25
+    },
+    {
+      "development_instance": "c101_21_50",
+      "family": "C1",
+      "format1_sha256": "238157389e94c24b1ae86557dbda4819e5c1989a51ef3840e4663875a3842481",
+      "instance": "c109_21_50",
+      "size": 50
+    },
+    {
+      "development_instance": "c201_21_50",
+      "family": "C2",
+      "format1_sha256": "1513eb7a00b3a24ef66cd643df27bfb171af82271f5cf67b60c6c75fb25e4a31",
+      "instance": "c208_21_50",
+      "size": 50
+    },
+    {
+      "development_instance": "r101_21_50",
+      "family": "R1",
+      "format1_sha256": "3bc5cb8895142f313d8b7c95aeb8865fa8e8cb7d621cdcc142a2fc6f337583c1",
+      "instance": "r112_21_50",
+      "size": 50
+    },
+    {
+      "development_instance": "r201_21_50",
+      "family": "R2",
+      "format1_sha256": "8397078c4319cf96b86042e09810f198dfc55298207126326c58c3367a7b4b96",
+      "instance": "r211_21_50",
+      "size": 50
+    },
+    {
+      "development_instance": "rc101_21_50",
+      "family": "RC1",
+      "format1_sha256": "d08eae115b872615270c81c962cfff38617e351bf63e7e58c0d1e45a043c4a99",
+      "instance": "rc108_21_50",
+      "size": 50
+    },
+    {
+      "development_instance": "rc201_21_50",
+      "family": "RC2",
+      "format1_sha256": "9682b01acdbd3b1dadc24208d8149697f95b7c35be4a61125512888f1236278c",
+      "instance": "rc208_21_50",
+      "size": 50
+    },
+    {
+      "development_instance": "c101_21_100",
+      "family": "C1",
+      "format1_sha256": "eeb51214bc42c668e9e51168b19a5b80e1d84f8e7e91e3821fdfb3852c05a857",
+      "instance": "c109_21_100",
+      "size": 100
+    },
+    {
+      "development_instance": "c201_21_100",
+      "family": "C2",
+      "format1_sha256": "a73ac96761be71e9c3394b7f4de51b8066e28d76513b0a0ae59f6689e3ae1abe",
+      "instance": "c208_21_100",
+      "size": 100
+    },
+    {
+      "development_instance": "r101_21_100",
+      "family": "R1",
+      "format1_sha256": "2c47fdb34030e8b061708a58ed0224a64ce2dddd6424005065696fdfe5274e11",
+      "instance": "r112_21_100",
+      "size": 100
+    },
+    {
+      "development_instance": "r201_21_100",
+      "family": "R2",
+      "format1_sha256": "c7a4e2f6b7a76610f3aff6a3a39a7c21ee9862d9933859563f33c23d73a5f207",
+      "instance": "r211_21_100",
+      "size": 100
+    },
+    {
+      "development_instance": "rc101_21_100",
+      "family": "RC1",
+      "format1_sha256": "b4e7f518933752d09643567219414e93965d440e502c3342646338b1bd660181",
+      "instance": "rc108_21_100",
+      "size": 100
+    },
+    {
+      "development_instance": "rc201_21_100",
+      "family": "RC2",
+      "format1_sha256": "4ec1ba6f4ad013b4a7b23379b914b14920745a51f083db74b342f4ad20bcffc8",
+      "instance": "rc208_21_100",
+      "size": 100
+    }
+  ],
+  "source_sha256": "463e4043906ca513d9e11469f7ce4e2a781392558374f92a2ae606558f93c97a"
+}

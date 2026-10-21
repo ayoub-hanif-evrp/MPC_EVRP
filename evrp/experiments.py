@@ -1,6 +1,7 @@
 """Resumable, provenance-bound research runs and YAML configuration loading."""
 
 from dataclasses import asdict, replace
+from collections import defaultdict, deque
 from hashlib import sha256
 from importlib.metadata import version
 from itertools import product
@@ -177,17 +178,28 @@ def audit_result(result: ExperimentResult, instance, scenario) -> dict:
     releases = dict(scenario.customer_release_times)
     states = {k: initial_vehicle(instance, k) for k in range(scenario.fleet_size)}
     seen = set()
+    dispatch_times = defaultdict(deque)
+    for event in result.events:
+        if event.kind == "dispatch" and event.action.kind != "wait":
+            dispatch_times[(event.vehicle_id, event.action)].append(event.time)
     for step in sorted(result.steps, key=lambda s: (s.before.time, s.before.id)):
         assert step.before.id in states, "Vehicle beyond fixed K_ref fleet"
         assert step.before == states[step.before.id], "Discontinuous vehicle trace"
-        legal = tuple(c for c in instance.customers if releases[c.id] <= step.before.time and c.id not in seen)
-        actual = transition(step.before, step.action, Observation(step.before.time, instance.infrastructure, legal))
+        action_time = step.before.time
+        if step.action.kind != "wait":
+            dispatches = dispatch_times[(step.before.id, step.action)]
+            assert dispatches, "Missing dispatch event for physical transition"
+            action_time = dispatches.popleft()
+            assert abs(action_time - step.before.time) <= EPS, "Dispatch and vehicle time differ"
+        legal = tuple(c for c in instance.customers if releases[c.id] <= action_time and c.id not in seen)
+        actual = transition(step.before, step.action, Observation(action_time, instance.infrastructure, legal))
         assert actual == step, "Transition replay mismatch"
         states[step.before.id] = step.after
         if step.served:
             assert step.served not in seen, "Duplicate service"
-            assert releases[step.served] <= step.before.time, "Action committed before release"
+            assert releases[step.served] <= action_time, "Action committed before release"
             seen.add(step.served)
+    assert not any(dispatch_times.values()), "Dispatch event without a physical transition"
     active, moving = {}, {}
     for event in result.events:
         if event.kind == "dispatch" and event.action.kind != "wait":
