@@ -1,0 +1,9 @@
+{
+  "dynamicity": 0.75,
+  "error_type": "InfeasibleAction",
+  "instance": "c109_21_25",
+  "message": "Destination is unavailable in this observation",
+  "method": "MPC_COMPLETION",
+  "seed": 0,
+  "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\scripts\\run_desaulniers_final.py\", line 111, in worker\n    audit = audit_result(result, instance, scenario)\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\experiments.py\", line 184, in audit_result\n    actual = transition(step.before, step.action, Observation(step.before.time, instance.infrastructure, legal))\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\model.py\", line 232, in transition\n    raise InfeasibleAction(\"Destination is unavailable in this observation\")\nevrp.model.InfeasibleAction: Destination is unavailable in this observation\n"
+}
