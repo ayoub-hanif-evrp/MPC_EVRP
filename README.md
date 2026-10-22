@@ -44,13 +44,13 @@ python -m scripts.run_desaulniers_pilot
 python -m scripts.analyze_desaulniers_pilot
 ```
 
-The pilot selects one previously unused C1 development instance at each
+The pilot selected one previously unused C1 development instance at each
 size, with DoD 0.25 and seed 0, and runs all five methods in separate
 processes. It writes raw evidence, a hash manifest, a Markdown summary,
 and a 300-dpi PNG under `results/desaulniers/development_pilot_final_source/`. It is
 an **engineering pilot**, not a final study. The lexicographically last
-instance of each family and size is reserved for a separately preregistered
-future evaluation; no new final holdout has been opened.
+instance of each family and size was reserved for a separately preregistered
+final evaluation.
 
 An independent [development campaign configuration](configs/desaulniers_mp_development.yaml)
 selects the first instance of each of the six families at each size, all
@@ -60,8 +60,8 @@ denominator. Freeze its protocol without starting optimization using
 `python -m scripts.run_desaulniers_campaign --scenario-limit 0`; the full
 grid is launched with `python -m scripts.run_desaulniers_campaign` and,
 once complete, audited with `python -m scripts.analyze_desaulniers_campaign`.
-The analyzer refuses a partial manifest. This larger grid has **not** been
-completed as part of the migration pilot. Some 50- and 100-customer cases
+The analyzer refuses a partial manifest. The full development grid is now
+**complete: 270/270 audited runs**. Some 50- and 100-customer cases
 have no compatible published full-charge route; their fallback reference
 construction remains an explicit runtime/feasibility limitation.
 
@@ -85,8 +85,14 @@ checks release legality at the recorded dispatch time and requires the vehicle
 time to agree within the existing numerical tolerance. The original partial
 holdout and failure evidence are preserved under `final_holdout/`; the
 separately fingerprinted complete evaluation writes to
-`final_holdout_audit_erratum/`. No optimizer, objective, controller, charging
+`final_holdout_audit_erratum/`. It is **complete: 270/270 audited final runs**
+over 54 paired scenarios, with zero DoD exclusions. No optimizer, objective, controller, charging
 policy, scenario, budget, or reserved instance was changed.
+
+See the [final results](results/desaulniers/final_holdout_audit_erratum/SUMMARY.md)
+and its 300-dpi PNG figures. On the final holdout, ALNS served 99.14% of
+customers, HGS 98.89%, ACS 98.19%, MCTS 96.00%, and Completion 92.19%.
+These are online service rates, not claims of static optimality.
 
 For the field mapping, rounding validation, charging and fleet assumptions,
 see [Desaulniers migration notes](docs/DESAULNIERS_MIGRATION.md).

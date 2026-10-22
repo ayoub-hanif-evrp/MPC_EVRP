@@ -123,6 +123,11 @@ def analyze(frozen=None, output=OUTPUT, complete_status="development_complete"):
              "isolated, independently audited methods and the same five-second",
              "decision budget. Ineligible target-DoD scenarios are excluded",
              "before optimizer comparison and counted separately.", "",
+             *( ["The original final protocol stopped after 10 records on a replay-audit",
+                  "floating-point timing defect. Its evidence is preserved separately;",
+                  "all records here were rerun under an auditor-only erratum with",
+                  "unchanged optimizers, objective, controller, scenarios, and budget.", ""]
+                if final and frozen.get("audit_erratum") else [] ),
              f"Planned method runs: {manifest['planned_runs']}; audited runs: {len(records)}; "
              f"ineligible scenarios: {len(excluded)}.", "",
              "Conditional EV and distance use only scenarios where every method",
@@ -134,7 +139,7 @@ def analyze(frozen=None, output=OUTPUT, complete_status="development_complete"):
              "## By target DoD", "", grouped_table(str, lambda row: row["dynamicity"]), "",
              "## Paired service change vs Completion", "",
              _table(["Method", "N", "Mean customers", "Wins", "Ties", "Losses"], pair_rows), "",
-             "Reserved benchmark instances were fixed before final outcomes were observed." if final else
+             "Reserved benchmark instances were fixed in the original protocol before final outcomes." if final else
              "No final holdout has been opened; these development outcomes are not",
              "" if final else "an unbiased final comparison.", ""]
     writable_path(output / "SUMMARY.md").write_text("\n".join(lines), encoding="utf-8")
