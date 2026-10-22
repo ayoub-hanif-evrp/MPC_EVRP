@@ -1,0 +1,168 @@
+{
+  "charging_policy": "MP",
+  "config_sha256": "fc911006af7a47ab169c1f8cebe0d51bea71f84ffd726f59e910804f16a2d15e",
+  "controller_sha256": "a28ef410ebed72331815b49f954f907809637266d24e47043810dd96779a9817",
+  "dataset": "Desaulniers et al. 2016",
+  "dataset_sha256": "02011e3273fef190bd61cc223b4504d8265ca5be30ccf02a34f674f27d58741e",
+  "dynamicities": [
+    0.25,
+    0.5,
+    0.75
+  ],
+  "eligibility": [
+    {
+      "dynamicity": 0.25,
+      "eligible": true,
+      "instance": "c105_21_100"
+    },
+    {
+      "dynamicity": 0.5,
+      "eligible": true,
+      "instance": "c105_21_100"
+    },
+    {
+      "dynamicity": 0.75,
+      "eligible": true,
+      "instance": "c105_21_100"
+    },
+    {
+      "dynamicity": 0.25,
+      "eligible": true,
+      "instance": "c205_21_50"
+    },
+    {
+      "dynamicity": 0.5,
+      "eligible": true,
+      "instance": "c205_21_50"
+    },
+    {
+      "dynamicity": 0.75,
+      "eligible": true,
+      "instance": "c205_21_50"
+    },
+    {
+      "dynamicity": 0.25,
+      "eligible": true,
+      "instance": "r105_21_100"
+    },
+    {
+      "dynamicity": 0.5,
+      "eligible": true,
+      "instance": "r105_21_100"
+    },
+    {
+      "dynamicity": 0.75,
+      "eligible": true,
+      "instance": "r105_21_100"
+    },
+    {
+      "dynamicity": 0.25,
+      "eligible": true,
+      "instance": "r205_21_50"
+    },
+    {
+      "dynamicity": 0.5,
+      "eligible": true,
+      "instance": "r205_21_50"
+    },
+    {
+      "dynamicity": 0.75,
+      "eligible": true,
+      "instance": "r205_21_50"
+    },
+    {
+      "dynamicity": 0.25,
+      "eligible": true,
+      "instance": "rc105_21_25"
+    },
+    {
+      "dynamicity": 0.5,
+      "eligible": true,
+      "instance": "rc105_21_25"
+    },
+    {
+      "dynamicity": 0.75,
+      "eligible": true,
+      "instance": "rc105_21_25"
+    },
+    {
+      "dynamicity": 0.25,
+      "eligible": true,
+      "instance": "rc205_21_25"
+    },
+    {
+      "dynamicity": 0.5,
+      "eligible": true,
+      "instance": "rc205_21_25"
+    },
+    {
+      "dynamicity": 0.75,
+      "eligible": true,
+      "instance": "rc205_21_25"
+    }
+  ],
+  "execution": "sequential isolated worker processes",
+  "methods": [
+    "MPC_COMPLETION",
+    "MPC_MCTS",
+    "MPC_ALNS",
+    "MPC_HGS",
+    "MPC_ACS"
+  ],
+  "preflight_v2_identifier": "5907c2d2fdc8e4c316750e9c56075ea7167a705508d7fcb809a2542fb2201ffb",
+  "purpose": "multi_seed_robustness_v3",
+  "scenario_seeds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "selected": [
+    {
+      "family": "C1",
+      "format1_sha256": "633a27b48d22a7e6bfd24917a25313b7cc0c52ef7b210107fe0ea7c5d8e594a7",
+      "format2_sha256": "a4f448e885fdfe5fbd2ebe992c8fff2d0cf8cfbcd6525a121557090593a5b19d",
+      "instance": "c105_21_100",
+      "size": 100
+    },
+    {
+      "family": "C2",
+      "format1_sha256": "a429e7f6c4425f92890d134d0885e80bdbaf138fce549909eeeec64483d04051",
+      "format2_sha256": "b63ffb163b07ef397161743aaec1186e311ae0e103fd01ad883889fd4a6b8f21",
+      "instance": "c205_21_50",
+      "size": 50
+    },
+    {
+      "family": "R1",
+      "format1_sha256": "570c014c05d1b7a8719013fe8aa021b64afc96b9047e6aa9ada22f04aaa154ca",
+      "format2_sha256": "80832cb630967a379e427e484f01815656fe2eac0a03b8b118dedb66680f52ed",
+      "instance": "r105_21_100",
+      "size": 100
+    },
+    {
+      "family": "R2",
+      "format1_sha256": "c12ead9690d0cd1db2d08ce7261e1b046e4770c8aaf625c9cc79629f50f0fe16",
+      "format2_sha256": "e83e6da1d95d0bc70d472cc737ef599861051f3cc596fe78c24766e30f123251",
+      "instance": "r205_21_50",
+      "size": 50
+    },
+    {
+      "family": "RC1",
+      "format1_sha256": "e6daa5cdaf7efa679c3e442fe33a9d26d58a82b47698d940a58dd10fad991446",
+      "format2_sha256": "2321daee3463aef5d89282c03edf77f037e3f3f3f3343ac7fbd6b8fb28673ddb",
+      "instance": "rc105_21_25",
+      "size": 25
+    },
+    {
+      "family": "RC2",
+      "format1_sha256": "cb5733d0378db39e31adf4e108a25542c5a7b2c6f1da4b5f04a3b67604e9ef98",
+      "format2_sha256": "a107fc7729887d323961c88fa3da368d39390e13b3cd0e994038172a04e03dd9",
+      "instance": "rc205_21_25",
+      "size": 25
+    }
+  ],
+  "selection_rule": "lexicographically first unused SF/MF-replayed instance eligible for DoD 0.75 in each predefined family-size slot",
+  "source_sha256": "bb593ad57e9b0196ad3712d8c9d873addb5ed156c32ea7857e21471a1fe3f140",
+  "total_planning_time_limit": 5.0
+}

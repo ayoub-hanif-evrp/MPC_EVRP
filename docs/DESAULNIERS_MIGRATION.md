@@ -47,8 +47,11 @@ No published route or unpublished future customer enters the online
 observation. When no valid full-charge route file is available, the
 existing constructive reference solver is the fallback. The MF/SF union
 covers 120/168 instances: 56/56 at size 25, 48/56 at size 50, and
-16/56 at size 100. The remaining 48 require a constructed reference;
-the fallback's ability and runtime on all of them are not established.
+16/56 at size 100. The remaining 48 require a constructed reference. The
+independent `scripts.validate_desaulniers_coverage` audit records each
+instance's published replay or bounded fallback result in
+`results/desaulniers/reference_validation/coverage.csv`; unresolved search
+must not be misreported as physical infeasibility.
 The broader development runner stops on a reference failure instead of
 silently removing that instance from the comparison.
 
@@ -62,9 +65,12 @@ methods.
 
 ## Evidence boundaries
 
-The pilot is development data. It does not reuse Schneider raw results,
-preregistration, or a Schneider-trained Portfolio selector. It does not
-compare the dynamic MPC objective directly with the published static route
-costs. A later final study requires a newly committed protocol and genuinely
-untouched instances, with all fixed baselines rerun under the same MP physics
-and five-second budget.
+The pilot and 270-run campaign are development data. The corrected final
+holdout is complete at 270 audited runs after a separately preserved ten-run
+partial protocol and auditor-only erratum. The initial robustness-v2
+preflight was rejected for DoD 0.75 ineligibility before method execution;
+the eligible multi-seed robustness-v3 study is separately fingerprinted and
+must not be pooled with either final
+campaign. None reuse Schneider raw results, preregistration, or a
+Schneider-trained Portfolio selector. Published static costs are not compared
+directly to this project's dynamic MPC objective.

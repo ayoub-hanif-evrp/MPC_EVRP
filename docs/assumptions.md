@@ -21,7 +21,15 @@
 - Real-time latency depends on hardware and load. The five-second budget
   is measured for every decision and audited; a single noninterruptible
   operation may still create engineering overhead.
-- The initial C1 pilot has one scenario per size. It cannot support
-  generalization across families, DoD, seeds, or unused benchmark instances.
-  Portfolio is disabled until a new selector is trained and frozen on
-  Desaulniers development data.
+- The initial C1 pilot cannot support broad generalization. Development and
+  the corrected 54-scenario final holdout cover all families, sizes, and
+  three DoD levels, but only release seed 0. Multi-seed robustness-v3 is a
+  separate experiment, not a retroactive extension of the final holdout.
+- Some benchmark instances lack published full-charge routes; fallback
+  construction may time out without proving infeasibility. Reference
+  preprocessing time is outside online optimization time. Portfolio is
+  disabled until a new selector is trained and frozen on Desaulniers
+  development data.
+- No station queues, uncertain travel times, or learned future-demand model
+  are represented. Final machine specifications were not embedded in the
+  frozen protocol; avoid unsupported hardware-specific runtime claims.

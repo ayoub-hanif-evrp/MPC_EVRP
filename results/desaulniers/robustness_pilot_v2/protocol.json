@@ -1,0 +1,40 @@
+{
+  "charging_policy": "MP",
+  "config_sha256": "373d6d76bb3bb4975eca77280ac1581b35e4e5ec95167ffddc72903bcb5440ab",
+  "controller_sha256": "a28ef410ebed72331815b49f954f907809637266d24e47043810dd96779a9817",
+  "dataset": "Desaulniers et al. 2016",
+  "dataset_sha256": "02011e3273fef190bd61cc223b4504d8265ca5be30ccf02a34f674f27d58741e",
+  "dynamicities": [
+    0.25
+  ],
+  "eligibility": [
+    {
+      "dynamicity": 0.25,
+      "eligible": true,
+      "instance": "c103_21_25"
+    }
+  ],
+  "execution": "sequential isolated worker processes",
+  "methods": [
+    "MPC_COMPLETION",
+    "MPC_MCTS",
+    "MPC_ALNS",
+    "MPC_HGS",
+    "MPC_ACS"
+  ],
+  "purpose": "engineering_pilot",
+  "scenario_seeds": [
+    1
+  ],
+  "selected": [
+    {
+      "family": "C1",
+      "format1_sha256": "e7c7258c066318a19d2ec8edeb4acc8bc90a9920a30be0fe23e886b094380ebe",
+      "format2_sha256": "8f15537cb39cf640619518025b287bb770fbc6f07d3d80cf4af566f9496f5ea0",
+      "instance": "c103_21_25",
+      "size": 25
+    }
+  ],
+  "source_sha256": "c4c86c6d31a55b062a3b84b49a0061df94036ea63135b98b7d339eec1385cb1e",
+  "total_planning_time_limit": 5.0
+}

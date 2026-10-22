@@ -1,0 +1,18 @@
+base_controller: configs/paper_controller.yaml
+charging_policy: MP
+methods: [MPC_COMPLETION, MPC_MCTS, MPC_ALNS, MPC_HGS, MPC_ACS]
+instances:
+  - c102_21_100
+  - c202_21_50
+  - r102_21_100
+  - r202_21_50
+  - rc102_21_25
+  - rc202_21_25
+dynamicities: [0.25, 0.50, 0.75]
+scenario_seeds: [1, 2, 3, 4, 5]
+total_planning_time_limit: 5.0
+engineering_watchdog_seconds: 3600.0
+whole_worker_timeout_seconds: 3900
+pilot_instance: c103_21_25
+pilot_dynamicity: 0.25
+pilot_seed: 1

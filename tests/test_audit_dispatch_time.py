@@ -10,7 +10,8 @@ from evrp.simulator import EventDrivenSimulator
 from scripts.run_desaulniers_final import CONFIG, options
 
 
-def test_dispatch_time_roundoff_does_not_false_flag_hidden_information():
+@pytest.mark.parametrize("release_delay", [1e-10, 0.01])
+def test_dispatch_time_roundoff_does_not_false_flag_hidden_information(release_delay):
     config = load_config(CONFIG)
     run_options = options(config, "c109_21_25", 0.75, 0, "MPC_COMPLETION")
     instance, _reference, scenario, _path = prepare("c109_21_25", run_options)
@@ -23,7 +24,7 @@ def test_dispatch_time_roundoff_does_not_false_flag_hidden_information():
     assert all(audit_result(result, instance, scenario).values())
 
     delayed = replace(scenario, customer_release_times=tuple(
-        (key, release + 0.01 if key == "C59" else time)
+        (key, release + release_delay if key == "C59" else time)
         for key, time in scenario.customer_release_times))
     with pytest.raises(InfeasibleAction, match="unavailable"):
         audit_result(result, instance, delayed)

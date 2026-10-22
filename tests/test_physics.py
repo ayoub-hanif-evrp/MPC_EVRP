@@ -122,3 +122,32 @@ def test_escape_across_multiple_stations():
 def test_write_protection():
     with pytest.raises(ValueError, match="read-only"):
         save_json(BENCHMARK / "do-not-write.json", {})
+
+
+def test_exact_customer_window_and_zero_return_battery():
+    depot = Location("D", "d", 0, 0, 0, 0, 10, 0, 100)
+    customer = Location("C", "c", 2, 0, 1, 0, 2, 0, 100)
+    infra = Infrastructure(depot, (), Parameters(4, 2, 1, 1, 1, 100, False))
+    observation = Observation(0, infra, (customer,))
+    served = transition(VehicleState(0, depot, 0, 4, 2), Action("serve", "C"), observation)
+    assert served.service_start == customer.due
+    returned = transition(served.after, Action("return", "D"), observation)
+    assert returned.after.battery == 0
+    assert returned.after.finished
+    slightly_short = VehicleState(0, depot, 0, 4 - 2e-8, 2)
+    assert try_transition(slightly_short, Action("serve", "C"), observation).infeasibility_reason == Reason.UNREACHABLE_SAFE_CONTINUATION
+    late = replace(slightly_short, battery=4, time=2e-6)
+    assert try_transition(late, Action("serve", "C"), observation).infeasibility_reason == Reason.TIME_WINDOW
+
+
+def test_partial_charge_near_depot_closing():
+    depot = Location("D", "d", 0, 0, 0, 0, 10, 0, 100)
+    station = Location("S", "f", 1, 0, 0, 0, 10, 0, 100)
+    infra = Infrastructure(depot, (station,), Parameters(4, 2, 1, 1, 1, 100, False))
+    observation = Observation(0, infra, ())
+    on_time = VehicleState(0, depot, 7, 4, 2)
+    step = transition(on_time, Action("charge", "S", 4), observation)
+    assert step.arrival == 8 and step.after.time == 9
+    assert transition(step.after, Action("return", "D"), observation).after.time == 10
+    overdue = replace(on_time, time=7.01)
+    assert try_transition(overdue, Action("charge", "S", 4), observation).infeasibility_reason == Reason.UNREACHABLE_SAFE_CONTINUATION

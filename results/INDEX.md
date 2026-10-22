@@ -29,3 +29,19 @@ none of the original final records are silently reused or overwritten.
 The corrected final manifest is complete at 270/270 audited method runs over
 54 matched scenarios, with zero DoD exclusions. `SUMMARY.md` contains the
 final tables and the two figures under `figures/` are PNG only.
+
+`desaulniers/validation/final_integrity.md` verifies and independently
+replays all 270 corrected final raw records without changing the final
+manifest. `desaulniers/reference_validation/` holds the all-instance
+reference-coverage CSV and summary; fallback timeouts are unresolved search,
+not infeasibility proofs. `desaulniers/service_diagnosis_v2/` contains
+customer-level observational postmortems from the corrected final traces.
+`desaulniers/paper_v2/` contains seven Markdown tables and 300-dpi PNG figures
+based only on the corrected final campaign.
+
+`desaulniers/robustness_pilot_v2/` is a complete five-method engineering
+pilot. `desaulniers/robustness_v2/` preserves a prospective protocol rejected
+for DoD 0.75 ineligibility before optimization outcomes. Its candidate
+preflight uses no method performance. `desaulniers/robustness_v3/` is the
+separately frozen, eligible 450-run multi-seed design. A partial v3 manifest
+must not be merged with historical development or either final holdout.

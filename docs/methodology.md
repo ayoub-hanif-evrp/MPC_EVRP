@@ -56,8 +56,22 @@ settings, and optimization limits are paired across methods.
 
 ## Evidence
 
-The three-size C1 pilot is development evidence only. It tests migration
-correctness and runtime, not optimizer superiority. The old Schneider
-results remain available in Git history but are not relabeled as results
-for this dataset. A future final evaluation must be preregistered on
-untouched instances after development, with the fixed baselines rerun.
+The three-size C1 pilot and the 270-run development campaign are development
+evidence only. The original Desaulniers final protocol stopped after ten
+records due to an independent replay-audit timing defect. Those records and
+failure evidence remain separate. An auditor-only erratum produced a new,
+separately fingerprinted 270-run corrected final holdout over 54 matched
+scenarios. Its raw traces have been independently replayed again in the
+`validation/final_integrity.md` report. The old Schneider results remain in
+Git history and are never relabeled as Desaulniers outcomes.
+
+The corrected final study used one release seed. The prospective robustness-v2
+preflight identified that its initial six instances were all ineligible at
+DoD 0.75, before any method ran. The separately versioned robustness-v3
+protocol uses the first unused, physically replayed, DoD-eligible instance
+in each family-size slot and five new seeds. It must be analyzed separately
+and labeled partial until all planned cases finish. Paired uncertainty
+resamples base instances, retaining their DoD and
+seed scenarios together. Distance comparisons use only the same scenarios
+where all methods serve every customer. A reference schedule proves offline
+feasibility with advance knowledge, not online attainability or MP optimality.

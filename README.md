@@ -39,10 +39,18 @@ Python 3.11+ is required. From the repository root:
 
 ```powershell
 python -m pip install -r requirements.txt
-python -m pytest -q tests/test_desaulniers_dataset.py
-python -m scripts.run_desaulniers_pilot
-python -m scripts.analyze_desaulniers_pilot
+python -m pytest -q
+python -m scripts.verify_desaulniers_final
+python -m scripts.render_desaulniers_paper
+python -m scripts.diagnose_desaulniers_service
 ```
+
+The last three commands audit and render the existing corrected final study;
+they do not rerun its optimization. The historical pilot, development, and
+final campaigns are already complete and should not be launched merely to
+reproduce the paper tables. The all-instance reference audit is
+`python -m scripts.validate_desaulniers_coverage`; it can take substantially
+longer because absent published references require isolated fallback search.
 
 The pilot selected one previously unused C1 development instance at each
 size, with DoD 0.25 and seed 0, and runs all five methods in separate
@@ -94,5 +102,32 @@ and its 300-dpi PNG figures. On the final holdout, ALNS served 99.14% of
 customers, HGS 98.89%, ACS 98.19%, MCTS 96.00%, and Completion 92.19%.
 These are online service rates, not claims of static optimality.
 
+The [new paper tables and 300-dpi PNG figures](results/desaulniers/paper_v2/RESULTS.md)
+include instance-clustered paired intervals and conditional distance on
+common complete-service scenarios. The [service-loss report](results/desaulniers/service_diagnosis_v2/REPORT.md)
+documents observations from final traces without claiming causal proof.
+The [270-record integrity report](results/desaulniers/validation/final_integrity.md)
+replays every corrected final raw trace and checks file hashes and paired
+identities. The [reference coverage audit](results/desaulniers/reference_validation/SUMMARY.md)
+separately records published-route and fallback-reference status for all 168
+instances; a search timeout is not proof of infeasibility.
+
+The [v2 engineering pilot](results/desaulniers/robustness_pilot_v2/SUMMARY.md)
+passed five independent audits. Its first six-instance draft was rejected
+*before any robustness method run*: every selected instance was ineligible
+at target DoD 0.75. The [eligibility-only preflight](results/desaulniers/robustness_v2/preflight_candidates.md)
+preserves the reasons and selects the lexicographically first unused,
+SF/MF-replayed eligible instance in each family-size slot, without looking
+at optimizer outcomes. The actual [v3 multi-seed protocol](configs/desaulniers_mp_robustness_v3.yaml)
+has six balanced instances, three eligible DoD levels, seeds 1-5, and 450
+planned method runs. Run or resume it with
+`python -m scripts.run_desaulniers_robustness_v3`; analyze with
+`python -m scripts.analyze_desaulniers_robustness --v3`. Do not combine
+partial robustness results with the corrected final holdout. Hardware and
+runtime conditions for new runs must be reported separately from the
+historical final study.
+
 For the field mapping, rounding validation, charging and fleet assumptions,
 see [Desaulniers migration notes](docs/DESAULNIERS_MIGRATION.md).
+For protocol boundaries, audits, and exact reproduction commands, see
+[validation and reproduction](docs/VALIDATION_AND_REPRODUCTION.md).

@@ -1,0 +1,43 @@
+{
+  "config_sha256": "373d6d76bb3bb4975eca77280ac1581b35e4e5ec95167ffddc72903bcb5440ab",
+  "controller_sha256": "a28ef410ebed72331815b49f954f907809637266d24e47043810dd96779a9817",
+  "cpu_model": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+  "dataset_sha256": "02011e3273fef190bd61cc223b4504d8265ca5be30ccf02a34f674f27d58741e",
+  "decision_budget_seconds": 5.0,
+  "dynamicities": [
+    0.25,
+    0.5,
+    0.75
+  ],
+  "execution": "sequential isolated worker processes",
+  "git_head": "380099c280da6d4c7d751137aca68d40cb9b3e96",
+  "git_worktree_dirty": true,
+  "logical_cpu_count": 24,
+  "methods": [
+    "MPC_COMPLETION",
+    "MPC_MCTS",
+    "MPC_ALNS",
+    "MPC_HGS",
+    "MPC_ACS"
+  ],
+  "operating_system": "Windows-11-10.0.26200-SP0",
+  "packages": {
+    "PyYAML": "6.0.3",
+    "matplotlib": "3.11.2",
+    "numpy": "2.5.3",
+    "pandas": "3.0.6",
+    "pytest": "9.1.1",
+    "scikit-learn": "1.9.1",
+    "scipy": "1.18.1"
+  },
+  "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+  "recorded_utc": "2026-10-22T23:24:58.643686+00:00",
+  "scenario_seeds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "source_sha256": "c4c86c6d31a55b062a3b84b49a0061df94036ea63135b98b7d339eec1385cb1e"
+}

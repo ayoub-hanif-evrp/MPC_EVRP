@@ -1,0 +1,172 @@
+{
+  "charging_policy": "MP",
+  "config_sha256": "373d6d76bb3bb4975eca77280ac1581b35e4e5ec95167ffddc72903bcb5440ab",
+  "controller_sha256": "a28ef410ebed72331815b49f954f907809637266d24e47043810dd96779a9817",
+  "dataset": "Desaulniers et al. 2016",
+  "dataset_sha256": "02011e3273fef190bd61cc223b4504d8265ca5be30ccf02a34f674f27d58741e",
+  "dynamicities": [
+    0.25,
+    0.5,
+    0.75
+  ],
+  "eligibility": [
+    {
+      "dynamicity": 0.25,
+      "eligible": true,
+      "instance": "c102_21_100"
+    },
+    {
+      "dynamicity": 0.5,
+      "eligible": true,
+      "instance": "c102_21_100"
+    },
+    {
+      "dynamicity": 0.75,
+      "eligible": false,
+      "instance": "c102_21_100",
+      "reason": "Target DoD is ineligible: 75 requested, 69 eligible"
+    },
+    {
+      "dynamicity": 0.25,
+      "eligible": true,
+      "instance": "c202_21_50"
+    },
+    {
+      "dynamicity": 0.5,
+      "eligible": true,
+      "instance": "c202_21_50"
+    },
+    {
+      "dynamicity": 0.75,
+      "eligible": false,
+      "instance": "c202_21_50",
+      "reason": "Target DoD is ineligible: 38 requested, 36 eligible"
+    },
+    {
+      "dynamicity": 0.25,
+      "eligible": true,
+      "instance": "r102_21_100"
+    },
+    {
+      "dynamicity": 0.5,
+      "eligible": true,
+      "instance": "r102_21_100"
+    },
+    {
+      "dynamicity": 0.75,
+      "eligible": false,
+      "instance": "r102_21_100",
+      "reason": "Target DoD is ineligible: 75 requested, 67 eligible"
+    },
+    {
+      "dynamicity": 0.25,
+      "eligible": true,
+      "instance": "r202_21_50"
+    },
+    {
+      "dynamicity": 0.5,
+      "eligible": true,
+      "instance": "r202_21_50"
+    },
+    {
+      "dynamicity": 0.75,
+      "eligible": false,
+      "instance": "r202_21_50",
+      "reason": "Target DoD is ineligible: 38 requested, 31 eligible"
+    },
+    {
+      "dynamicity": 0.25,
+      "eligible": true,
+      "instance": "rc102_21_25"
+    },
+    {
+      "dynamicity": 0.5,
+      "eligible": true,
+      "instance": "rc102_21_25"
+    },
+    {
+      "dynamicity": 0.75,
+      "eligible": false,
+      "instance": "rc102_21_25",
+      "reason": "Target DoD is ineligible: 19 requested, 17 eligible"
+    },
+    {
+      "dynamicity": 0.25,
+      "eligible": true,
+      "instance": "rc202_21_25"
+    },
+    {
+      "dynamicity": 0.5,
+      "eligible": true,
+      "instance": "rc202_21_25"
+    },
+    {
+      "dynamicity": 0.75,
+      "eligible": false,
+      "instance": "rc202_21_25",
+      "reason": "Target DoD is ineligible: 19 requested, 17 eligible"
+    }
+  ],
+  "execution": "sequential isolated worker processes",
+  "methods": [
+    "MPC_COMPLETION",
+    "MPC_MCTS",
+    "MPC_ALNS",
+    "MPC_HGS",
+    "MPC_ACS"
+  ],
+  "purpose": "multi_seed_robustness_v2",
+  "scenario_seeds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "selected": [
+    {
+      "family": "C1",
+      "format1_sha256": "e9d97c6bcbad91b05d61562a7fd8bc947ffd2ee5e12f751dcf715c4e0ecf2896",
+      "format2_sha256": "0e2f8c5b7d83ccfd7484e8b4e501905c182d5568a8fe40be87da8b164408de01",
+      "instance": "c102_21_100",
+      "size": 100
+    },
+    {
+      "family": "C2",
+      "format1_sha256": "b15411b601ab392ea25612cd6501f60674524f7e75ca80c201c56e7678c41c83",
+      "format2_sha256": "85ede2b91971e238ef085be6d0dfa844ea3a812430dbe294e6b3f21062bb219a",
+      "instance": "c202_21_50",
+      "size": 50
+    },
+    {
+      "family": "R1",
+      "format1_sha256": "90886ac461de5f13282c51f3931995ea31411365a18f298c4200e0222c5703f6",
+      "format2_sha256": "00c576efd659ab74d7428131614ffe23625e6918d23ae615b92f05c0bafc0d4e",
+      "instance": "r102_21_100",
+      "size": 100
+    },
+    {
+      "family": "R2",
+      "format1_sha256": "e2073c94b5a1acafc5e14be214947e0023ea2d1545a46a055430c403385a0e5d",
+      "format2_sha256": "0e87d19ee6b7a5d616d8da343f63a2f4aa31445a7c75c76f2228e5803a44529f",
+      "instance": "r202_21_50",
+      "size": 50
+    },
+    {
+      "family": "RC1",
+      "format1_sha256": "25a2aba6b444c52fa9224408e1d7dcbd70658706c880a1cbc5ba75b2e37f8d98",
+      "format2_sha256": "bb935a780f6b17f6a8d7a91fad9848c9e049c33779820cd12b816e7d12ffddef",
+      "instance": "rc102_21_25",
+      "size": 25
+    },
+    {
+      "family": "RC2",
+      "format1_sha256": "8a85ed0efaffb223f56e7eb4b021f182da74151ca160c0cafc1e7c6beef5a5c8",
+      "format2_sha256": "bec12b75f2314aad70123c787f8ef581bdbd7afe5e814163a527a152bde505b9",
+      "instance": "rc202_21_25",
+      "size": 25
+    }
+  ],
+  "source_sha256": "c4c86c6d31a55b062a3b84b49a0061df94036ea63135b98b7d339eec1385cb1e",
+  "total_planning_time_limit": 5.0
+}
