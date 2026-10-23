@@ -53,6 +53,7 @@ def analyze(path):
                                         if d.get("optimization_latency_seconds") is not None)
     old_name, new_name = config["methods"]
     pairs, clusters = [], defaultdict(lambda: [0, 0, 0, 0])
+    parent_clusters = defaultdict(lambda: [0, 0, 0, 0])
     for index, case in enumerate(config["cases"]):
         old_raw, new_raw = indexed[index, old_name], indexed[index, new_name]
         old, new = old_raw["metrics"], new_raw["metrics"]
@@ -71,9 +72,13 @@ def analyze(path):
         cluster = clusters[case[0]]
         for k, value in enumerate((row["delta"], size, row["new_full"] - row["old_full"], 1)):
             cluster[k] += value
+            parent_clusters[case[0].rsplit("_", 1)[0]][k] += value
     grouped = list(clusters.values())
     service_ci = _interval(grouped, [c[0] for c in grouped], [c[1] for c in grouped])
     full_ci = _interval(grouped, [c[2] for c in grouped], [c[3] for c in grouped], seed=20261024)
+    parents = list(parent_clusters.values())
+    parent_service_ci = _interval(parents, [c[0] for c in parents], [c[1] for c in parents])
+    parent_full_ci = _interval(parents, [c[2] for c in parents], [c[3] for c in parents], seed=20261024)
     total = sum(p["size"] for p in pairs)
     summary = dict(study=config["study"], role=config["role"], scenarios=len(pairs),
                    base_instances=len(clusters), customer_opportunities=total,
@@ -82,6 +87,8 @@ def analyze(path):
                    enhanced_service=sum(p["new"] for p in pairs) / total,
                    service_delta=sum(p["delta"] for p in pairs) / total,
                    service_ci=service_ci, complete_ci=full_ci,
+                   parent_instances=len(parents), parent_service_ci=parent_service_ci,
+                   parent_complete_ci=parent_full_ci,
                    original_complete=mean(p["old_full"] for p in pairs),
                    enhanced_complete=mean(p["new_full"] for p in pairs),
                    wins=sum(p["delta"] > 0 for p in pairs), ties=sum(p["delta"] == 0 for p in pairs),
@@ -183,6 +190,11 @@ def analyze(path):
              "Intervals resample complete base-instance clusters, retaining all associated seeds",
              "and dynamicity levels. Development intervals are exploratory and do not justify",
              "claims on unseen instances. Raw traces, negative cases and manifests are retained.", "",
+             f"Underlying-parent sensitivity: {len(parents)} parent cases, service 95% CI "
+             f"[{100*parent_service_ci[0]:+.2f}, {100*parent_service_ci[1]:+.2f}] and complete-service CI "
+             f"[{100*parent_full_ci[0]:+.2f}, {100*parent_full_ci[1]:+.2f}] percentage points. "
+             "This groups size variants of the same parent case together. The original "
+             "file-clustered selection rule remains the predeclared rule.", "",
              "Paper tables are Markdown; figures are PNG at 300 dpi under `paper/`.", ""]
     if "selection_rule" in config:
         lines += [f"Predeclared promotion rule satisfied: **{summary['promotion_eligible']}**.", "",
