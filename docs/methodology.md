@@ -69,8 +69,9 @@ The corrected final study used one release seed. The prospective robustness-v2
 preflight identified that its initial six instances were all ineligible at
 DoD 0.75, before any method ran. The separately versioned robustness-v3
 protocol uses the first unused, physically replayed, DoD-eligible instance
-in each family-size slot and five new seeds. It must be analyzed separately
-and labeled partial until all planned cases finish. Paired uncertainty
+in each family-size slot and five new seeds. Its 450/450 method runs are
+complete and independently audited, but remain a separate study from the
+corrected final holdout. Paired uncertainty
 resamples base instances, retaining their DoD and
 seed scenarios together. Distance comparisons use only the same scenarios
 where all methods serve every customer. A reference schedule proves offline

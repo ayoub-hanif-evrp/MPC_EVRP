@@ -8,6 +8,7 @@ import matplotlib
 
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+import numpy as np
 
 from evrp.audit import decode_result
 from evrp.experiments import audit_result, load_config, prepare
@@ -50,6 +51,7 @@ def analyze(pilot=False, v3=False):
         raise ValueError("Robustness manifest has duplicate, missing, or invalid case keys")
     grouped = defaultdict(dict)
     cache = {}
+    decision_latencies = defaultdict(list)
     for row in rows:
         key = row["instance"], row["dynamicity"], row["seed"]
         if key not in cache:
@@ -75,6 +77,15 @@ def analyze(pilot=False, v3=False):
         audit = audit_result(decode_result(raw), instance, scenario)
         if not all(audit.values()) or audit != meta["independent_audit"]:
             raise ValueError(f"Robustness independent replay failed: {path}")
+        latencies = [d["optimization_latency_seconds"] for d in raw["decisions"]
+                     if "optimization_latency_seconds" in d]
+        if (not latencies or len(latencies) != metrics["optimization_triggers"] or
+                abs(mean(latencies) - metrics["mean_optimization_latency"]) > 1e-6 or
+                abs(float(np.percentile(latencies, 95)) -
+                    metrics["p95_optimization_latency"]) > 1e-6 or
+                abs(max(latencies) - metrics["max_optimization_latency"]) > 1e-6):
+            raise ValueError(f"Robustness decision-latency trace mismatch: {path}")
+        decision_latencies[row["method"]].extend(latencies)
         grouped[key][row["method"]] = dict(row, metrics=metrics)
     complete = len(rows) + len(excluded) * len(METHODS) == len(expected)
     if manifest["status"] != ("complete" if complete else "partial"):
@@ -103,6 +114,7 @@ def analyze(pilot=False, v3=False):
         common = {key for key, runs in grouped.items()
                   if all(runs[m]["complete_service"] for m in METHODS)}
         overall = []
+        operations = []
         for method in METHODS:
             data = [runs[method] for runs in grouped.values()]
             matched = [grouped[key][method] for key in common]
@@ -111,13 +123,30 @@ def analyze(pilot=False, v3=False):
                             f"{100 * mean(r['complete_service'] for r in data):.1f}",
                             f"{mean(r['vehicles_activated'] for r in data):.2f}",
                             f"{mean(r['total_distance'] for r in matched):.2f}" if matched else "NA",
-                            len(common),
-                            f"{mean(r['metrics']['mean_optimization_latency'] for r in data):.3f}",
-                            f"{max(r['max_optimization_latency'] for r in data):.3f}"))
+                            len(common)))
+            times = decision_latencies[method]
+            operations.append((method, len(times), f"{mean(times):.3f}",
+                               f"{float(np.percentile(times, 95)):.3f}",
+                               f"{max(times):.3f}",
+                               f"{mean(r['metrics']['worker_wall_seconds'] for r in data):.1f}",
+                               f"{sum(r['metrics']['worker_wall_seconds'] for r in data) / 3600:.2f}",
+                               f"{mean(r['metrics']['total_charging_visits'] for r in data):.1f}",
+                               f"{mean(r['metrics']['total_charging_time'] for r in data):.1f}",
+                               f"{mean(r['metrics']['total_waiting_time'] for r in data):.1f}",
+                               sum(sum(r['metrics'][name] for name in VIOLATIONS) +
+                                   r['metrics']['duplicate_service_violations'] for r in data)))
         lines.extend(["## Overall", "",
                       "Distance is conditional on the common set of complete-service scenarios.", "",
                       table(["Method", "N", "Served %", "Complete %", "EV mean",
-                             "Distance matched", "Matched N", "Mean decision s", "Max decision s"], overall)])
+                             "Distance matched", "Matched N"], overall),
+                      "## Runtime and operations", "",
+                      "Decision statistics pool all recorded optimization decisions. "
+                      "Worker time is sequential wall time per isolated run; charging and "
+                      "waiting use benchmark model-time units. Violation totals include "
+                      "hidden-information, time-window, battery, capacity, and duplicate-service checks.", "",
+                      table(["Method", "Decisions", "Mean s", "p95 s", "Max s",
+                             "Worker mean s", "Worker total h", "Charge visits mean",
+                             "Charge time mean", "Wait time mean", "Violations"], operations)])
         for label, extract in (("Seed", lambda r: r["seed"]),
                                ("Size", lambda r: r["size"]),
                                ("Family", lambda r: r["family"]),
@@ -160,6 +189,19 @@ def analyze(pilot=False, v3=False):
         ax.legend(ncol=3, frameon=False)
         fig.tight_layout()
         fig.savefig(writable_path(directory / "service_by_seed.png"), dpi=300)
+        plt.close(fig)
+        fig, ax = plt.subplots(figsize=(8, 4.5))
+        for method in METHODS:
+            times = np.sort(decision_latencies[method])
+            ax.step(times, np.arange(1, len(times) + 1) / len(times),
+                    where="post", label=method.removeprefix("MPC_"))
+        ax.axvline(5.0, color="black", linestyle="--", linewidth=1,
+                   label="5 s budget")
+        ax.set(xlabel="Decision latency (s)", ylabel="Cumulative fraction",
+               xlim=(0, 5.05), ylim=(0, 1.01))
+        ax.legend(ncol=3, frameon=False)
+        fig.tight_layout()
+        fig.savefig(writable_path(directory / "runtime_ecdf.png"), dpi=300)
         plt.close(fig)
     writable_path(directory / "SUMMARY.md").write_text("\n".join(lines).rstrip() + "\n",
                                                            encoding="utf-8")

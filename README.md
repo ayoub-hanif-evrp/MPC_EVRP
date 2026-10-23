@@ -119,13 +119,14 @@ at target DoD 0.75. The [eligibility-only preflight](results/desaulniers/robustn
 preserves the reasons and selects the lexicographically first unused,
 SF/MF-replayed eligible instance in each family-size slot, without looking
 at optimizer outcomes. The actual [v3 multi-seed protocol](configs/desaulniers_mp_robustness_v3.yaml)
-has six balanced instances, three eligible DoD levels, seeds 1-5, and 450
-planned method runs. Run or resume it with
-`python -m scripts.run_desaulniers_robustness_v3`; analyze with
-`python -m scripts.analyze_desaulniers_robustness --v3`. Do not combine
-partial robustness results with the corrected final holdout. Hardware and
-runtime conditions for new runs must be reported separately from the
-historical final study.
+has six balanced instances, three eligible DoD levels, seeds 1-5, and is
+**complete: 450/450 independently audited runs**. The separate
+[robustness results](results/desaulniers/robustness_v3/RESULTS.md) report
+90 matched scenarios, paired instance-clustered intervals, and 300-dpi PNG
+figures. Reproduce the analysis with
+`python -m scripts.analyze_desaulniers_robustness --v3`. Do not pool these
+new seeds or instances with the corrected final holdout; hardware and
+runtime conditions are reported separately.
 
 For the field mapping, rounding validation, charging and fleet assumptions,
 see [Desaulniers migration notes](docs/DESAULNIERS_MIGRATION.md).

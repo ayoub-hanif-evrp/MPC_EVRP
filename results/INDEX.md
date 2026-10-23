@@ -45,5 +45,8 @@ based only on the corrected final campaign.
 pilot. `desaulniers/robustness_v2/` preserves a prospective protocol rejected
 for DoD 0.75 ineligibility before optimization outcomes. Its candidate
 preflight uses no method performance. `desaulniers/robustness_v3/` is the
-separately frozen, eligible 450-run multi-seed design. A partial v3 manifest
-must not be merged with historical development or either final holdout.
+separately frozen, eligible multi-seed study, complete at 450/450 independently
+audited method runs. `RESULTS.md` interprets the paired findings; `SUMMARY.md`
+contains all Markdown tables, while `service_by_seed.png` and
+`runtime_ecdf.png` are 300-dpi figures. Do not merge v3 with historical
+development or either final holdout.

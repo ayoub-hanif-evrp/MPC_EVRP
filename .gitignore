@@ -77,6 +77,7 @@ logs/
 !/results/desaulniers/robustness_v3/manifest.json
 !/results/desaulniers/robustness_v3/environment.json
 !/results/desaulniers/robustness_v3/SUMMARY.md
+!/results/desaulniers/robustness_v3/RESULTS.md
 !/results/desaulniers/robustness_v3/*.png
 !/results/desaulniers/robustness_v3/raw/*.json.gz
 !/results/desaulniers/robustness_v2/raw/*.json.gz

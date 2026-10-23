@@ -13,6 +13,9 @@ preserved as audit-failure evidence. The separately fingerprinted corrected
 `desaulniers/final_holdout_audit_erratum/` is complete at 270/270 audited
 runs. New integrity, coverage, service-loss, paper, pilot, and robustness
 outputs are indexed in [INDEX.md](INDEX.md). Never pool these campaigns.
+The separate robustness-v3 study is complete at 450/450 audited runs over
+90 matched scenarios and is reported in
+[RESULTS.md](desaulniers/robustness_v3/RESULTS.md).
 
 Each raw record is tied to its manifest by SHA-256. Do not mix records from
 different source, controller, scenario, dataset, or charging-policy fingerprints.

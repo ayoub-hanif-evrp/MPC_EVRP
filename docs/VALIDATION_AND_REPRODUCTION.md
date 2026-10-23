@@ -24,7 +24,7 @@ The actual v3 selection is the lexicographically first unused, physically
 replayed SF/MF instance with enough eligible requests for DoD 0.75 in
 each predefined family-size slot. This is an eligibility screen, not an
 optimizer-performance screen. V3 uses seeds 1-5, all three DoD levels,
-and all five methods on 90 matched scenarios (450 planned runs).
+and all five methods on 90 matched scenarios (450/450 audited runs, complete).
 
 ## Commands
 
@@ -74,6 +74,8 @@ cross-method science from an incomplete grid. When complete, it reports
 paired contrasts and base-instance-clustered uncertainty, retaining seeds
 and DoD repeats within each sampled instance. Descriptive intervals across
 several contrasts are not multiplicity-adjusted significance claims.
+The complete study has a separate [results interpretation](../results/desaulniers/robustness_v3/RESULTS.md),
+Markdown tables in `SUMMARY.md`, and two 300-dpi PNG figures.
 
 ## Provenance and limits
 
@@ -82,6 +84,11 @@ installed package versions, OS, CPU identifier, logical cores, Git head and
 dirty-worktree status, seeds, settings, and source/dataset/config/controller
 fingerprints. The historical final protocol did not record a precise CPU
 model, so a machine-specific historical timing claim is not supported.
+The v3 environment file was captured before the new source was committed:
+its Git HEAD and dirty flag describe that snapshot, not the eventual
+execution commit. The frozen source SHA-256 in the protocol and every raw
+record is the checked code identity. The analyzer confirms it still matches
+the committed controller and runner sources.
 The local GitHub Actions workflow runs the fast full test suite on Python
 3.11 and 3.12 and prints installed package versions. It does not run the
 heavy coverage or optimization campaigns.
