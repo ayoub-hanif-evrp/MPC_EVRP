@@ -12,6 +12,9 @@ The separate [enhancement development branch status](results/desaulniers/enhance
 reports audited loss diagnostics and controlled experiments. No enhanced
 method has yet earned a new independent final evaluation; the original
 paper results remain the primary findings.
+The [publication enhancement checkpoint](results/desaulniers/publication_development/STATUS.md)
+adds first-visible insertion and commitment timelines plus an audited
+one-vehicle reserve-dispatch pilot; that variant also remains experimental.
 
 ## Active benchmark
 
