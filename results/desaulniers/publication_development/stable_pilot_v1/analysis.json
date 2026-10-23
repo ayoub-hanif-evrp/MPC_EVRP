@@ -1,0 +1,108 @@
+{
+  "pairs": [
+    {
+      "delta": 0,
+      "dod": 0.75,
+      "family": "R1",
+      "guard_rejections": 278,
+      "instance": "r101_21_25",
+      "new": 23,
+      "new_charge_time": 146.70000000000002,
+      "new_distance": 816.33,
+      "new_evs": 9,
+      "new_full": 0,
+      "new_seconds": 1.1649317999836057,
+      "old": 23,
+      "old_charge_time": 116.06,
+      "old_distance": 768.7,
+      "old_evs": 9,
+      "old_full": 0,
+      "old_seconds": 1.1715388000011444,
+      "seed": 0,
+      "size": 25
+    },
+    {
+      "delta": -1,
+      "dod": 0.75,
+      "family": "R1",
+      "guard_rejections": 1007,
+      "instance": "r101_21_100",
+      "new": 93,
+      "new_charge_time": 467.20750000000004,
+      "new_distance": 2009.49,
+      "new_evs": 20,
+      "new_full": 0,
+      "new_seconds": 39.0262377000181,
+      "old": 94,
+      "old_charge_time": 465.29,
+      "old_distance": 1985.53,
+      "old_evs": 20,
+      "old_full": 0,
+      "old_seconds": 40.98542169993743,
+      "seed": 0,
+      "size": 100
+    },
+    {
+      "delta": 1,
+      "dod": 0.25,
+      "family": "C1",
+      "guard_rejections": 252,
+      "instance": "c101_21_100",
+      "new": 99,
+      "new_charge_time": 2918.1775,
+      "new_distance": 1766.59,
+      "new_evs": 12,
+      "new_full": 0,
+      "new_seconds": 70.0821574999718,
+      "old": 98,
+      "old_charge_time": 2685.7025000000003,
+      "old_distance": 1679.08,
+      "old_evs": 12,
+      "old_full": 0,
+      "old_seconds": 72.9240129000973,
+      "seed": 0,
+      "size": 100
+    }
+  ],
+  "summary": {
+    "base_instances": 3,
+    "complete_ci": [
+      0.0,
+      0.0
+    ],
+    "customer_opportunities": 225,
+    "enhanced": "MPC_ALNS_STABLE_V3",
+    "enhanced_complete": 0,
+    "enhanced_service": 0.9555555555555556,
+    "guard_rejections": 1537,
+    "latency": {
+      "MPC_ALNS": {
+        "decisions": 323,
+        "maximum": 4.660410900018178,
+        "mean": 0.353722874616884,
+        "p95": 1.2022508900612574
+      },
+      "MPC_ALNS_STABLE_V3": {
+        "decisions": 327,
+        "maximum": 4.6631999999517575,
+        "mean": 0.33474679694394227,
+        "p95": 1.0336886400589718
+      }
+    },
+    "losses": 1,
+    "original": "MPC_ALNS",
+    "original_complete": 0,
+    "original_service": 0.9555555555555556,
+    "role": "development_pilot",
+    "scenarios": 3,
+    "service_ci": [
+      -0.01,
+      0.01
+    ],
+    "service_delta": 0.0,
+    "study": "publication_stable_alns_development_pilot_v1",
+    "ties": 1,
+    "wins": 1,
+    "worker_time_median_ratio": 0.9610299092561086
+  }
+}

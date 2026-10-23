@@ -1,0 +1,33 @@
+study: publication_stable_alns_balanced_development_v1
+role: balanced_development_screen
+output: results/desaulniers/publication_development/stable_screen_v1
+cases:
+  - [c101_21_25, 0.75, 0]
+  - [c101_21_50, 0.75, 0]
+  - [c101_21_100, 0.75, 0]
+  - [c201_21_25, 0.75, 0]
+  - [c201_21_50, 0.75, 0]
+  - [c201_21_100, 0.75, 0]
+  - [r101_21_25, 0.75, 0]
+  - [r101_21_50, 0.75, 0]
+  - [r101_21_100, 0.75, 0]
+  - [r201_21_25, 0.75, 0]
+  - [r201_21_50, 0.75, 0]
+  - [r201_21_100, 0.75, 0]
+  - [rc101_21_25, 0.75, 0]
+  - [rc101_21_50, 0.75, 0]
+  - [rc101_21_100, 0.75, 0]
+  - [rc201_21_25, 0.75, 0]
+  - [rc201_21_50, 0.75, 0]
+  - [rc201_21_100, 0.75, 0]
+methods: [MPC_ALNS, MPC_ALNS_STABLE_V3]
+variants:
+  original_shared: {}
+whole_worker_timeout_seconds: 3900
+selection_rule:
+  service_clustered_95_ci_lower_above: 0
+  complete_service_change_at_least: 0
+  total_100_customer_service_change_at_least: 0
+  physical_and_future_information_violations: 0
+  maximum_decision_seconds: 5
+  otherwise: retain_original_without_opening_enhanced_holdout

@@ -1,0 +1,47 @@
+[
+  {
+    "customer": "C67",
+    "dod": 0.75,
+    "instance": "r101_21_25",
+    "seed": 0,
+    "status": "no_bounded_skeleton_witness",
+    "tested": 0,
+    "time": 94.6298488107895
+  },
+  {
+    "customer": "C65",
+    "dod": 0.75,
+    "instance": "r101_21_100",
+    "seed": 0,
+    "status": "no_bounded_skeleton_witness",
+    "tested": 0,
+    "time": 38.735903302738514
+  },
+  {
+    "customer": "C72",
+    "dod": 0.75,
+    "instance": "r101_21_100",
+    "seed": 0,
+    "status": "no_bounded_skeleton_witness",
+    "tested": 0,
+    "time": 104.77797639001571
+  },
+  {
+    "customer": "C18",
+    "dod": 0.25,
+    "instance": "c101_21_100",
+    "seed": 0,
+    "status": "no_bounded_skeleton_witness",
+    "tested": 4,
+    "time": 388.35250099999996
+  },
+  {
+    "customer": "C45",
+    "dod": 0.25,
+    "instance": "c101_21_100",
+    "seed": 0,
+    "status": "no_bounded_skeleton_witness",
+    "tested": 0,
+    "time": 421.24
+  }
+]

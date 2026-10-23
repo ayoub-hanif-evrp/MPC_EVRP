@@ -1,0 +1,73 @@
+{
+  "environment": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]"
+  },
+  "scientific": {
+    "base_config_sha256": "ff5c4844db9d09378f6cb37bfebbcfc482deab2e99b71fcdbba8715af5e0c36d",
+    "cases": [
+      {
+        "customers": 25,
+        "dynamicity": 0.75,
+        "instance": "r101_21_25",
+        "instance_sha256": "4521328d90195ef54c3418f241b13f32fee752eb0bebf56231affbdc0372e5a9",
+        "k_ref": 9,
+        "scenario_id": "9349d403a288128472876610693029054ee6cd0ab805e7cdf8b80f3dd021b746",
+        "seed": 0
+      },
+      {
+        "customers": 100,
+        "dynamicity": 0.75,
+        "instance": "r101_21_100",
+        "instance_sha256": "2c3ab4fbeb56a09dd2f1bb3babcdf8ed5fd5111376547af26cbca674f008e979",
+        "k_ref": 20,
+        "scenario_id": "afe1b303924fe654add5f46fe9f3b6f966a31c66af881fc787ceabad3bf5efdf",
+        "seed": 0
+      },
+      {
+        "customers": 100,
+        "dynamicity": 0.25,
+        "instance": "c101_21_100",
+        "instance_sha256": "56a0b01c0e0ef32d9d31d03359d6bbfa785af7f4574ef97acee96d8fda6fe197",
+        "k_ref": 12,
+        "scenario_id": "24bf5739e7b9b39c0bfbe01e1f46ff38fa560109e34dc04e64cce12d097e1d70",
+        "seed": 0
+      }
+    ],
+    "dataset_sha256": "02011e3273fef190bd61cc223b4504d8265ca5be30ccf02a34f674f27d58741e",
+    "decision_limit_seconds": 5.0,
+    "design": {
+      "cases": [
+        [
+          "r101_21_25",
+          0.75,
+          0
+        ],
+        [
+          "r101_21_100",
+          0.75,
+          0
+        ],
+        [
+          "c101_21_100",
+          0.25,
+          0
+        ]
+      ],
+      "methods": [
+        "MPC_ALNS",
+        "MPC_ALNS_STABLE_V3"
+      ],
+      "output": "results/desaulniers/publication_development/stable_pilot_v1",
+      "role": "development_pilot",
+      "study": "publication_stable_alns_development_pilot_v1",
+      "variants": {
+        "original_shared": {}
+      },
+      "whole_worker_timeout_seconds": 3900
+    },
+    "execution": "sequential isolated workers",
+    "source_sha256": "50fb46a16065edb540eac5622856435177481638d174bb6845e40d931a07b5f6"
+  },
+  "source_commit": "2acf3b118771abbfbdba2d60892e5bc835d3ee78"
+}

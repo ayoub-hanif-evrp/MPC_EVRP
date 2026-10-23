@@ -1,0 +1,57 @@
+[
+  {
+    "customer": "C67",
+    "decoded": 0,
+    "dod": 0.75,
+    "eligible_routes": 9,
+    "expanded": 20,
+    "instance": "r101_21_25",
+    "seed": 0,
+    "status": "no_bounded_reordering_witness",
+    "time": 94.6298488107895
+  },
+  {
+    "customer": "C65",
+    "decoded": 0,
+    "dod": 0.75,
+    "eligible_routes": 20,
+    "expanded": 118,
+    "instance": "r101_21_100",
+    "seed": 0,
+    "status": "no_bounded_reordering_witness",
+    "time": 38.735903302738514
+  },
+  {
+    "customer": "C72",
+    "decoded": 0,
+    "dod": 0.75,
+    "eligible_routes": 20,
+    "expanded": 72,
+    "instance": "r101_21_100",
+    "seed": 0,
+    "status": "no_bounded_reordering_witness",
+    "time": 104.77797639001571
+  },
+  {
+    "customer": "C18",
+    "decoded": 2,
+    "dod": 0.25,
+    "eligible_routes": 12,
+    "expanded": 508,
+    "instance": "c101_21_100",
+    "seed": 0,
+    "status": "no_bounded_reordering_witness",
+    "time": 388.35250099999996
+  },
+  {
+    "customer": "C45",
+    "decoded": 0,
+    "dod": 0.25,
+    "eligible_routes": 12,
+    "expanded": 320,
+    "instance": "c101_21_100",
+    "seed": 0,
+    "status": "no_bounded_reordering_witness",
+    "time": 421.24
+  }
+]
