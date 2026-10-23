@@ -1,6 +1,6 @@
 param([double]$MaxHours = 12)
 
-$ErrorActionPreference = 'Stop'
+$ErrorActionPreference = 'Continue'
 $root = Split-Path -Parent $PSScriptRoot
 Set-Location -LiteralPath $root
 $log = Join-Path $root 'results/desaulniers/robustness_v3/resume.log'

@@ -53,6 +53,9 @@ logs/
 !/results/desaulniers/final_holdout_audit_erratum/figures/*.png
 !/results/desaulniers/reference_validation/coverage.csv
 !/results/desaulniers/reference_validation/SUMMARY.md
+!/results/desaulniers/reference_validation/references/*.json
+!/results/desaulniers/reference_validation/partial_published_audit.csv
+!/results/desaulniers/reference_validation/PARTIAL_SOLUTIONS.md
 !/results/desaulniers/validation/*.md
 !/results/desaulniers/service_diagnosis_v2/*.csv
 !/results/desaulniers/service_diagnosis_v2/*.md

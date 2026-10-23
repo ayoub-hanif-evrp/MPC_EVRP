@@ -52,6 +52,13 @@ independent `scripts.validate_desaulniers_coverage` audit records each
 instance's published replay or bounded fallback result in
 `results/desaulniers/reference_validation/coverage.csv`; unresolved search
 must not be misreported as physical infeasibility.
+Separately, published SP/MP node orders exist for some instances without
+SF/MF routes. The diagnostic `scripts.audit_desaulniers_partial_solutions`
+finds continuous-charge witnesses and independently replays them under MP.
+These witnessable orders are not silently substituted for the frozen
+SF/MF-or-constructed `K_ref` policy, because the published files do not
+encode the same charge trace and changing references would change the
+historical scenarios.
 The broader development runner stops on a reference failure instead of
 silently removing that instance from the comparison.
 

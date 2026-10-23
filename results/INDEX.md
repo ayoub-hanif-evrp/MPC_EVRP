@@ -34,7 +34,9 @@ final tables and the two figures under `figures/` are PNG only.
 replays all 270 corrected final raw records without changing the final
 manifest. `desaulniers/reference_validation/` holds the all-instance
 reference-coverage CSV and summary; fallback timeouts are unresolved search,
-not infeasibility proofs. `desaulniers/service_diagnosis_v2/` contains
+not infeasibility proofs. `partial_published_audit.csv` separately tests
+SP/MP route orders without changing the frozen reference policy.
+`desaulniers/service_diagnosis_v2/` contains
 customer-level observational postmortems from the corrected final traces.
 `desaulniers/paper_v2/` contains seven Markdown tables and 300-dpi PNG figures
 based only on the corrected final campaign.

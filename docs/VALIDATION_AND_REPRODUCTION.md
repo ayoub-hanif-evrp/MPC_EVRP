@@ -34,7 +34,9 @@ From the repository root with Python 3.11+:
 python -m pip install -r requirements.txt
 python -m pytest -q
 python -m scripts.verify_desaulniers_final
-python -m scripts.validate_desaulniers_coverage --fallback-timeout 120
+python -m scripts.audit_desaulniers_partial_solutions
+python -m scripts.validate_desaulniers_coverage --fallback-timeout 120 --workers 4
+python -m scripts.validate_desaulniers_coverage --materialize-references --fallback-timeout 120 --workers 4
 python -m scripts.render_desaulniers_paper
 python -m scripts.diagnose_desaulniers_service
 python -m scripts.analyze_desaulniers_robustness --pilot
@@ -51,7 +53,16 @@ reached. `-MaxHours 0` removes the cap. A worker may run beyond the cap;
 it is never interrupted merely to meet the wall-time target.
 
 The coverage checker is checkpointed and reports search failures or timeouts
-without declaring infeasibility. The v3 runner reuses only hash-matching raw
+without declaring infeasibility. The materialization pass preserves
+constructed offline route traces under `reference_validation/references/`
+for independent physical replay; it does not change the controller cache.
+In the completed 168-instance scan, all instances parsed and passed the arc
+checks; 120 had replayed SF/MF references, 24 had validated fallback
+references, and 24 remained unresolved after the 120-second offline search
+limit. A separate SP/MP route-order audit found feasible MP charge witnesses
+for 13 instances without SF/MF files, including six of the unresolved 24.
+Those witnesses are diagnostic only and do not alter the frozen `K_ref` policy.
+The v3 runner reuses only hash-matching raw
 records, executes one optimizer per child process, stops on an audit or
 identity failure, and records a partial manifest until its planned grid is
 complete. Re-run the same command to resume. It never regenerates a raw file
