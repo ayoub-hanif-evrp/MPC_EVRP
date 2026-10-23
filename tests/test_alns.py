@@ -1,10 +1,11 @@
 from dataclasses import replace
 from time import perf_counter
+from types import SimpleNamespace
 
 from evrp.experiments import audit_result, simulation_config
 from evrp.fleet_mcts import construct_fleet_root
 from evrp.model import Observation
-from evrp.optimizers.alns import ALNSOptimizer, ALNSRecoveryV2, DESTROY, REPAIR
+from evrp.optimizers.alns import ALNSOptimizer, ALNSRecoveryV2, ALNSStableV3, DESTROY, REPAIR
 from evrp.optimizers.base import OptimizationContext
 from evrp.simulator import EventDrivenSimulator
 from tests.test_repair import customer, setup
@@ -62,3 +63,25 @@ def test_recovery_v2_is_separate_and_scales_only_when_service_missing():
     result = EventDrivenSimulator(base.instance, base.scenario, config).run()
     assert all(audit_result(result, base.instance, base.scenario).values())
     assert result.decisions[0]["optimizer"]["name"] == "MPC_ALNS_RECOVERY_V2"
+
+
+def test_stable_v3_guards_equal_service_customer_replacement_only():
+    incumbent = SimpleNamespace(score=(1, .4), sequences=(("A", "B"), ()))
+    swapped = SimpleNamespace(score=(1, .2), sequences=(("A", "C"), ()))
+    rearranged = SimpleNamespace(score=(1, .2), sequences=(("B",), ("A",)))
+    increased = SimpleNamespace(score=(0, .8), sequences=(("A", "B", "C"), ()))
+    enhanced = ALNSStableV3()
+    assert not enhanced._eligible_best(swapped, incumbent)
+    assert enhanced._eligible_best(rearranged, incumbent)
+    assert enhanced._eligible_best(increased, incumbent)
+    assert ALNSOptimizer()._eligible_best(swapped, incumbent)
+
+
+def test_stable_v3_runs_with_original_physics_and_information_boundary():
+    base = synthetic(release=5, fleet=2)
+    config = simulation_config(dict(algorithm="MPC_ALNS_STABLE_V3",
+                                    total_planning_time_limit=1.0, lns_iterations=8))
+    result = EventDrivenSimulator(base.instance, base.scenario, config).run()
+    assert result.metrics["customers_served"] == 2
+    assert all(audit_result(result, base.instance, base.scenario).values())
+    assert result.decisions[0]["optimizer"]["name"] == "MPC_ALNS_STABLE_V3"

@@ -110,6 +110,10 @@ logs/
 !/results/desaulniers/publication_development/instrumented_v1/*.csv
 !/results/desaulniers/publication_development/instrumented_v1/raw/*.json.gz
 !/results/desaulniers/publication_development/instrumented_v1/failures/*.json
+!/results/desaulniers/publication_development/stable_pilot_v1/*.json
+!/results/desaulniers/publication_development/stable_pilot_v1/*.md
+!/results/desaulniers/publication_development/stable_pilot_v1/raw/*.json.gz
+!/results/desaulniers/publication_development/stable_pilot_v1/failures/*.json
 !/results/desaulniers/robustness_v2/raw/*.json.gz
 /results/.pytest_work/
 /results/t[0-9]*/

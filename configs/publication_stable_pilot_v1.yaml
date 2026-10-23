@@ -1,0 +1,11 @@
+study: publication_stable_alns_development_pilot_v1
+role: development_pilot
+output: results/desaulniers/publication_development/stable_pilot_v1
+cases:
+  - [r101_21_25, 0.75, 0]
+  - [r101_21_100, 0.75, 0]
+  - [c101_21_100, 0.25, 0]
+methods: [MPC_ALNS, MPC_ALNS_STABLE_V3]
+variants:
+  original_shared: {}
+whole_worker_timeout_seconds: 3900

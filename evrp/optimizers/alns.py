@@ -121,6 +121,9 @@ class ALNSOptimizer:
     def _repair(self, problem, plan, name, rng):
         return _repair(problem, plan, name, rng)
 
+    def _eligible_best(self, candidate, incumbent):
+        return True
+
     def optimize(self, context: OptimizationContext) -> OptimizationResult:
         started = perf_counter()
         rng = Random(context.seed)
@@ -135,6 +138,7 @@ class ALNSOptimizer:
         accepted = improving = completed = 0
         best_times = []
         deadline_reached = False
+        coverage_guard_rejections = 0
         try:
             current = best = problem.initial(dict(context.constructor_routes))
             for iteration in range(self.iterations):
@@ -165,9 +169,12 @@ class ALNSOptimizer:
                     continue
                 reward = 0
                 if candidate.score < best.score:
-                    best = candidate
-                    best_times.append(perf_counter() - started)
-                    reward = 6
+                    if self._eligible_best(candidate, best):
+                        best = candidate
+                        best_times.append(perf_counter() - started)
+                        reward = 6
+                    else:
+                        coverage_guard_rejections += 1
                 if candidate.score < current.score:
                     improving += 1
                     reward = max(reward, 3)
@@ -205,6 +212,7 @@ class ALNSOptimizer:
             best_improvement_times=best_times,
             destroy_counts=dict(d_counts), repair_counts=dict(r_counts),
             destroy_weights=d_weights, repair_weights=r_weights,
+            coverage_guard_rejections=coverage_guard_rejections,
             exact_decoder_calls=problem.exact_decoded_options))
         return evaluated_result(context, {k: best.actions[index] for index, k in enumerate(problem.ids)},
                                 started, diagnostics, "completed", deadline_reached,
@@ -222,3 +230,16 @@ class ALNSRecoveryV2(ALNSOptimizer):
 
     def _repair(self, problem, plan, name, rng):
         return _repair(problem, plan, name, rng, fallback_limit=12)
+
+
+class ALNSStableV3(ALNSOptimizer):
+    """Retain the incumbent customer set during equal-service improvements."""
+
+    name = "MPC_ALNS_STABLE_V3"
+
+    def _eligible_best(self, candidate, incumbent):
+        if candidate.score[0] < incumbent.score[0]:
+            return True
+        old = {customer for sequence in incumbent.sequences for customer in sequence}
+        new = {customer for sequence in candidate.sequences for customer in sequence}
+        return old == new
