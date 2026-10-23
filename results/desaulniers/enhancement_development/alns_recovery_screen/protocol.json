@@ -1,0 +1,108 @@
+{
+  "cases": [
+    [
+      "c101_21_100",
+      0.75,
+      0
+    ],
+    [
+      "c101_21_25",
+      0.75,
+      0
+    ],
+    [
+      "c101_21_50",
+      0.75,
+      0
+    ],
+    [
+      "c201_21_100",
+      0.75,
+      0
+    ],
+    [
+      "c201_21_25",
+      0.75,
+      0
+    ],
+    [
+      "c201_21_50",
+      0.75,
+      0
+    ],
+    [
+      "r101_21_100",
+      0.75,
+      0
+    ],
+    [
+      "r101_21_25",
+      0.75,
+      0
+    ],
+    [
+      "r101_21_50",
+      0.75,
+      0
+    ],
+    [
+      "r201_21_100",
+      0.75,
+      0
+    ],
+    [
+      "r201_21_25",
+      0.75,
+      0
+    ],
+    [
+      "r201_21_50",
+      0.75,
+      0
+    ],
+    [
+      "rc101_21_100",
+      0.75,
+      0
+    ],
+    [
+      "rc101_21_25",
+      0.75,
+      0
+    ],
+    [
+      "rc101_21_50",
+      0.75,
+      0
+    ],
+    [
+      "rc201_21_100",
+      0.75,
+      0
+    ],
+    [
+      "rc201_21_25",
+      0.75,
+      0
+    ],
+    [
+      "rc201_21_50",
+      0.75,
+      0
+    ]
+  ],
+  "config_sha256": "ff5c4844db9d09378f6cb37bfebbcfc482deab2e99b71fcdbba8715af5e0c36d",
+  "dispatch_policy": "original",
+  "execution": "isolated sequential subprocesses",
+  "five_second_limit": 5.0,
+  "max_wall_seconds": 43200,
+  "original_development_protocol": "30bf9318bf952adf148873c54b06a933c167b3c287fac9c40419d680b8897d08",
+  "purpose": "balanced_alns_recovery_development_screen_not_final",
+  "route_decoder_version": "original",
+  "selection": "All 18 original development base instances at DoD 0.75, seed 0",
+  "source_sha256": "615dc2b98e1aa0dcdd6fd5cfb8b10029db74cc37103c5c25feafe8057d5986d7",
+  "variants": [
+    "MPC_ALNS",
+    "MPC_ALNS_RECOVERY_V2"
+  ]
+}

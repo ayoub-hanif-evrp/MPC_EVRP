@@ -80,6 +80,7 @@ logs/
 !/results/desaulniers/robustness_v3/RESULTS.md
 !/results/desaulniers/robustness_v3/*.png
 !/results/desaulniers/robustness_v3/raw/*.json.gz
+!/results/desaulniers/enhancement_development/*.md
 !/results/desaulniers/enhancement_development/diagnostics/*.csv
 !/results/desaulniers/enhancement_development/diagnostics/*.md
 !/results/desaulniers/enhancement_development/dispatch_pilot/*.json
@@ -88,6 +89,16 @@ logs/
 !/results/desaulniers/enhancement_development/decoder_pilot/*.json
 !/results/desaulniers/enhancement_development/decoder_pilot/*.md
 !/results/desaulniers/enhancement_development/decoder_pilot/raw/*.json.gz
+!/results/desaulniers/enhancement_development/alns_recovery_pilot/*.json
+!/results/desaulniers/enhancement_development/alns_recovery_pilot/*.md
+!/results/desaulniers/enhancement_development/alns_recovery_pilot/raw/*.json.gz
+!/results/desaulniers/enhancement_development/alns_recovery_screen/*.json
+!/results/desaulniers/enhancement_development/alns_recovery_screen/*.md
+!/results/desaulniers/enhancement_development/alns_recovery_screen/*.png
+!/results/desaulniers/enhancement_development/alns_recovery_screen/raw/*.json.gz
+!/results/desaulniers/enhancement_development/partial_reference_witnesses/*.csv
+!/results/desaulniers/enhancement_development/partial_reference_witnesses/*.md
+!/results/desaulniers/enhancement_development/partial_reference_witnesses/references/*.json
 !/results/desaulniers/robustness_v2/raw/*.json.gz
 /results/.pytest_work/
 /results/t[0-9]*/

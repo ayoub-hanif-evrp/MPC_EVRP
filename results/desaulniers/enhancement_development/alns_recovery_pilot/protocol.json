@@ -1,0 +1,47 @@
+{
+  "cases": [
+    [
+      "rc101_21_25",
+      0.75,
+      0
+    ],
+    [
+      "r101_21_50",
+      0.5,
+      0
+    ],
+    [
+      "r101_21_50",
+      0.75,
+      0
+    ],
+    [
+      "c101_21_100",
+      0.25,
+      0
+    ],
+    [
+      "r101_21_100",
+      0.5,
+      0
+    ],
+    [
+      "r101_21_100",
+      0.75,
+      0
+    ]
+  ],
+  "config_sha256": "ff5c4844db9d09378f6cb37bfebbcfc482deab2e99b71fcdbba8715af5e0c36d",
+  "dispatch_policy": "original",
+  "execution": "isolated sequential subprocesses",
+  "five_second_limit": 5.0,
+  "original_development_protocol": "30bf9318bf952adf148873c54b06a933c167b3c287fac9c40419d680b8897d08",
+  "purpose": "alns_recovery_development_pilot_not_final",
+  "route_decoder_version": "original",
+  "selection": "Six seen ALNS-loss scenarios across sizes 25/50/100",
+  "source_sha256": "728fd03ff22fb2cc0981b3c78c1502a799f5e9610177b173a7ee6aaee8d1e191",
+  "variants": [
+    "MPC_ALNS",
+    "MPC_ALNS_RECOVERY_V2"
+  ]
+}

@@ -4,7 +4,7 @@ from time import perf_counter
 from evrp.experiments import audit_result, simulation_config
 from evrp.fleet_mcts import construct_fleet_root
 from evrp.model import Observation
-from evrp.optimizers.alns import ALNSOptimizer, DESTROY, REPAIR
+from evrp.optimizers.alns import ALNSOptimizer, ALNSRecoveryV2, DESTROY, REPAIR
 from evrp.optimizers.base import OptimizationContext
 from evrp.simulator import EventDrivenSimulator
 from tests.test_repair import customer, setup
@@ -47,3 +47,18 @@ def test_alns_runs_in_common_event_pipeline():
     assert all(audit_result(result, base.instance, base.scenario).values())
     assert result.decisions[0]["optimizer"]["name"] == "MPC_ALNS"
     assert "destroy_counts" in result.decisions[0]["optimizer"]["diagnostics"]
+
+
+def test_recovery_v2_is_separate_and_scales_only_when_service_missing():
+    original = ALNSOptimizer()
+    enhanced = ALNSRecoveryV2()
+    assert original._destroy_count(100, 1) == 4
+    assert enhanced._destroy_count(100, 1) == 8
+    assert enhanced._destroy_count(100, 0) == 4
+    assert enhanced._destroy_count(3, 1) == 2
+    base = synthetic(release=5, fleet=2)
+    config = simulation_config(dict(algorithm="MPC_ALNS_RECOVERY_V2",
+                                    total_planning_time_limit=1.0, lns_iterations=8))
+    result = EventDrivenSimulator(base.instance, base.scenario, config).run()
+    assert all(audit_result(result, base.instance, base.scenario).values())
+    assert result.decisions[0]["optimizer"]["name"] == "MPC_ALNS_RECOVERY_V2"

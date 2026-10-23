@@ -8,6 +8,11 @@ released requests, and five-second optimization-decision limit. The old
 Schneider campaigns are historical Git evidence, not results for the active
 dataset.
 
+The separate [enhancement development branch status](results/desaulniers/enhancement_development/STATUS.md)
+reports audited loss diagnostics and controlled experiments. No enhanced
+method has yet earned a new independent final evaluation; the original
+paper results remain the primary findings.
+
 ## Active benchmark
 
 The active static source is the [Desaulniers et al. (2016) EVRPTW bundle](https://doi.org/10.1287/opre.2016.1535)

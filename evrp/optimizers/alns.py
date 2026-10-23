@@ -1,7 +1,7 @@
 """Adaptive large-neighborhood search over exact EV route decodes."""
 
 from collections import Counter
-from math import exp
+from math import ceil, exp, sqrt
 from random import Random
 from time import perf_counter
 
@@ -58,7 +58,7 @@ def _removal_order(problem, plan, name, rng):
     return sorted(owned, key=lambda row: (-saving(row), row))
 
 
-def _repair(problem, plan, name, rng):
+def _repair(problem, plan, name, rng, fallback_limit=5):
     current = plan
     while current.score[0] and (problem.search_until is None or perf_counter() < problem.search_until):
         check_deadline()
@@ -84,12 +84,16 @@ def _repair(problem, plan, name, rng):
                 options.sort(key=lambda row: (not problem.origins[row[2]].departed and
                                                not current.sequences[problem.ids.index(row[2])], row))
             candidates = []
-            for _, _, k, pos, _ in options[:5]:
-                index = problem.ids.index(k)
-                sequence = current.sequences[index]
-                trial = problem.change(current, {k: sequence[:pos] + (customer,) + sequence[pos:]})
-                if trial is not None:
-                    candidates.append(trial)
+            batches = (options[:5], options[5:fallback_limit]) if fallback_limit > 5 else (options[:5],)
+            for batch in batches:
+                for _, _, k, pos, _ in batch:
+                    index = problem.ids.index(k)
+                    sequence = current.sequences[index]
+                    trial = problem.change(current, {k: sequence[:pos] + (customer,) + sequence[pos:]})
+                    if trial is not None:
+                        candidates.append(trial)
+                if candidates:
+                    break
             if candidates:
                 current = min(candidates, key=lambda trial: trial.score)
                 inserted = True
@@ -110,6 +114,12 @@ class ALNSOptimizer:
         self.destroy_fraction = destroy_fraction
         self.reaction_factor = reaction_factor
         self.segment_length = segment_length
+
+    def _destroy_count(self, owned, uncovered):
+        return min(owned, 4, max(1, round(owned * self.destroy_fraction)))
+
+    def _repair(self, problem, plan, name, rng):
+        return _repair(problem, plan, name, rng)
 
     def optimize(self, context: OptimizationContext) -> OptimizationResult:
         started = perf_counter()
@@ -141,7 +151,7 @@ class ALNSOptimizer:
                 r_segment[repair] += 1
                 working = current
                 if owned:
-                    count = min(owned, 4, max(1, round(owned * self.destroy_fraction)))
+                    count = self._destroy_count(owned, current.score[0])
                     for k, _, customer in _removal_order(problem, current, destroy, rng)[:count]:
                         index = problem.ids.index(k)
                         sequence = tuple(c for c in working.sequences[index] if c != customer)
@@ -149,7 +159,7 @@ class ALNSOptimizer:
                         if candidate is None:
                             break
                         working = candidate
-                candidate = _repair(problem, working, repair, rng)
+                candidate = self._repair(problem, working, repair, rng)
                 completed += 1
                 if candidate.score[0] > current.score[0]:
                     continue
@@ -199,3 +209,16 @@ class ALNSOptimizer:
         return evaluated_result(context, {k: best.actions[index] for index, k in enumerate(problem.ids)},
                                 started, diagnostics, "completed", deadline_reached,
                                 (best.score, best.components))
+
+
+class ALNSRecoveryV2(ALNSOptimizer):
+    name = "MPC_ALNS_RECOVERY_V2"
+
+    def _destroy_count(self, owned, uncovered):
+        original = super()._destroy_count(owned, uncovered)
+        if not uncovered:
+            return original
+        return min(owned, max(original, min(8, ceil(sqrt(owned)))))
+
+    def _repair(self, problem, plan, name, rng):
+        return _repair(problem, plan, name, rng, fallback_limit=12)
