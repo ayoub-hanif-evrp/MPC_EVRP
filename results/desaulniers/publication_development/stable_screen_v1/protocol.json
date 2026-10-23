@@ -1,0 +1,291 @@
+{
+  "environment": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]"
+  },
+  "scientific": {
+    "base_config_sha256": "ff5c4844db9d09378f6cb37bfebbcfc482deab2e99b71fcdbba8715af5e0c36d",
+    "cases": [
+      {
+        "customers": 25,
+        "dynamicity": 0.75,
+        "instance": "c101_21_25",
+        "instance_sha256": "9f40aeeee1afb96fb479b6164f9ce8185a0328dd032a25bbf75ddc8e60dc72b0",
+        "k_ref": 7,
+        "scenario_id": "a45b03e2f3509c4124c7abe1498d6c76b54130c6efafbab0ceabe4090a4bebcd",
+        "seed": 0
+      },
+      {
+        "customers": 50,
+        "dynamicity": 0.75,
+        "instance": "c101_21_50",
+        "instance_sha256": "00ee57eb1ea2088cab7c548b33010ee32076dbb2d48c2d6641dad4f4c3db2a5f",
+        "k_ref": 9,
+        "scenario_id": "46c2597d99256ba3dad4b53d130d48991fab2a0e485dbfe37f0df2ea94c62aad",
+        "seed": 0
+      },
+      {
+        "customers": 100,
+        "dynamicity": 0.75,
+        "instance": "c101_21_100",
+        "instance_sha256": "56a0b01c0e0ef32d9d31d03359d6bbfa785af7f4574ef97acee96d8fda6fe197",
+        "k_ref": 12,
+        "scenario_id": "e11d60f4d1a2fd1f3a367100f2098915d79cb4d62547cc5ea722ec9eb9704286",
+        "seed": 0
+      },
+      {
+        "customers": 25,
+        "dynamicity": 0.75,
+        "instance": "c201_21_25",
+        "instance_sha256": "2f573eaa52c0fa08378c0e2cd3a460f02024cef5909e89be63ca9f0bcc05f0d9",
+        "k_ref": 3,
+        "scenario_id": "c9b7c0fc3e077cc431f89c070c123bd327b943a85f7976031ac9a55b998b8c4b",
+        "seed": 0
+      },
+      {
+        "customers": 50,
+        "dynamicity": 0.75,
+        "instance": "c201_21_50",
+        "instance_sha256": "59bf5fd28a5b74580af25b92cf2d99eb60f6e8f391f0b1df470cb3dc4c96223f",
+        "k_ref": 4,
+        "scenario_id": "1a6f81b17b89467f29dbba39efea9b264b3fa6be96d932e941007ecbecd6c77a",
+        "seed": 0
+      },
+      {
+        "customers": 100,
+        "dynamicity": 0.75,
+        "instance": "c201_21_100",
+        "instance_sha256": "fc511075cdd19580df68914887a7852601ac96dd6b7e1990fb8e1c076f0301c4",
+        "k_ref": 5,
+        "scenario_id": "a801f083d59734f61ac28759a1dcc144746d50d875fccd1d5343c385ae4b1fc6",
+        "seed": 0
+      },
+      {
+        "customers": 25,
+        "dynamicity": 0.75,
+        "instance": "r101_21_25",
+        "instance_sha256": "4521328d90195ef54c3418f241b13f32fee752eb0bebf56231affbdc0372e5a9",
+        "k_ref": 9,
+        "scenario_id": "9349d403a288128472876610693029054ee6cd0ab805e7cdf8b80f3dd021b746",
+        "seed": 0
+      },
+      {
+        "customers": 50,
+        "dynamicity": 0.75,
+        "instance": "r101_21_50",
+        "instance_sha256": "ca48e58d72eb0fbe2e6d023f80961f93d1cd0303cb70bb94cf35e1966e5dfb7d",
+        "k_ref": 12,
+        "scenario_id": "125e40d14e1e5119a63781dc252aa18b947c1e6b63caff386baacfd09b6d93c8",
+        "seed": 0
+      },
+      {
+        "customers": 100,
+        "dynamicity": 0.75,
+        "instance": "r101_21_100",
+        "instance_sha256": "2c3ab4fbeb56a09dd2f1bb3babcdf8ed5fd5111376547af26cbca674f008e979",
+        "k_ref": 20,
+        "scenario_id": "afe1b303924fe654add5f46fe9f3b6f966a31c66af881fc787ceabad3bf5efdf",
+        "seed": 0
+      },
+      {
+        "customers": 25,
+        "dynamicity": 0.75,
+        "instance": "r201_21_25",
+        "instance_sha256": "1eaf04b1da5f99c7d3a77bfa56baeebb50dbcf02ac4f4107696541ca944a9b2f",
+        "k_ref": 4,
+        "scenario_id": "a0a86bfde4035699544a5b1ceaf8936100b5516eab437cc09fdcdcede483bed9",
+        "seed": 0
+      },
+      {
+        "customers": 50,
+        "dynamicity": 0.75,
+        "instance": "r201_21_50",
+        "instance_sha256": "7fae0489512bb607191d4cb6ec7ac2d6d786ee217e0c600871dbff6fdbcf13a3",
+        "k_ref": 5,
+        "scenario_id": "b6c3df3f633df95fa58179001cc787f0cc0d3d8cc91605dcca0ca41872df0c12",
+        "seed": 0
+      },
+      {
+        "customers": 100,
+        "dynamicity": 0.75,
+        "instance": "r201_21_100",
+        "instance_sha256": "9c2d36fc28ba72726cb989424ce37358a62efd7ed73f0c2419d37f7c4b5d2d1b",
+        "k_ref": 8,
+        "scenario_id": "0f2f5b5c5b89ac308f069782f23a0b85d025c1ed0a4231a2991adf8ed6a291dc",
+        "seed": 0
+      },
+      {
+        "customers": 25,
+        "dynamicity": 0.75,
+        "instance": "rc101_21_25",
+        "instance_sha256": "43195e2c73b52d0ad2714edd0745f994f48708690bf23880a4f341b75fdd4f80",
+        "k_ref": 7,
+        "scenario_id": "68cad7382125e0e5daedacff65a16a2241286f9aaaa5e355f723c32f1e7dbe8d",
+        "seed": 0
+      },
+      {
+        "customers": 50,
+        "dynamicity": 0.75,
+        "instance": "rc101_21_50",
+        "instance_sha256": "85978e85aba8c131610b698f8f6d7becd92a0473e1c2a559159e4c08330114c2",
+        "k_ref": 11,
+        "scenario_id": "48916816ff3d089aed409498254d72ed7414c5efb0e88bf5ff39c9d0398f80f7",
+        "seed": 0
+      },
+      {
+        "customers": 100,
+        "dynamicity": 0.75,
+        "instance": "rc101_21_100",
+        "instance_sha256": "da53ce958f755d4072cb8e66d5628f54c2eb5b5b5d47cba8fedee37100b4ace1",
+        "k_ref": 20,
+        "scenario_id": "4628f7aca6323cbf96ef68afaeb7ef53f61c544f5a963b08b902c8600e152e68",
+        "seed": 0
+      },
+      {
+        "customers": 25,
+        "dynamicity": 0.75,
+        "instance": "rc201_21_25",
+        "instance_sha256": "8123a16e60d323aae9514b81e08ffb4d1f27fd7c0ec954f057008ed07a9e227e",
+        "k_ref": 5,
+        "scenario_id": "6c58a3e0bcc97c70debcc5212e2f985494d89b563fdab5d1031fb84e3922325f",
+        "seed": 0
+      },
+      {
+        "customers": 50,
+        "dynamicity": 0.75,
+        "instance": "rc201_21_50",
+        "instance_sha256": "d56de0979e1acc3958c16b43cc12bbe6866dd9972865837a0e2dbb1b4505b519",
+        "k_ref": 7,
+        "scenario_id": "80f745a992013aabf2b3bc02ac624a296b6d1fa17c808447137f8a21e8f3b035",
+        "seed": 0
+      },
+      {
+        "customers": 100,
+        "dynamicity": 0.75,
+        "instance": "rc201_21_100",
+        "instance_sha256": "af0047d9aa510495319bfba9f692a9995820da4bb124d01e28ad8ff129ee79e4",
+        "k_ref": 9,
+        "scenario_id": "8bdc9bfc2eff8c28df45a007a0fedc8d32d119542a491a702d7d073f01767642",
+        "seed": 0
+      }
+    ],
+    "dataset_sha256": "02011e3273fef190bd61cc223b4504d8265ca5be30ccf02a34f674f27d58741e",
+    "decision_limit_seconds": 5.0,
+    "design": {
+      "cases": [
+        [
+          "c101_21_25",
+          0.75,
+          0
+        ],
+        [
+          "c101_21_50",
+          0.75,
+          0
+        ],
+        [
+          "c101_21_100",
+          0.75,
+          0
+        ],
+        [
+          "c201_21_25",
+          0.75,
+          0
+        ],
+        [
+          "c201_21_50",
+          0.75,
+          0
+        ],
+        [
+          "c201_21_100",
+          0.75,
+          0
+        ],
+        [
+          "r101_21_25",
+          0.75,
+          0
+        ],
+        [
+          "r101_21_50",
+          0.75,
+          0
+        ],
+        [
+          "r101_21_100",
+          0.75,
+          0
+        ],
+        [
+          "r201_21_25",
+          0.75,
+          0
+        ],
+        [
+          "r201_21_50",
+          0.75,
+          0
+        ],
+        [
+          "r201_21_100",
+          0.75,
+          0
+        ],
+        [
+          "rc101_21_25",
+          0.75,
+          0
+        ],
+        [
+          "rc101_21_50",
+          0.75,
+          0
+        ],
+        [
+          "rc101_21_100",
+          0.75,
+          0
+        ],
+        [
+          "rc201_21_25",
+          0.75,
+          0
+        ],
+        [
+          "rc201_21_50",
+          0.75,
+          0
+        ],
+        [
+          "rc201_21_100",
+          0.75,
+          0
+        ]
+      ],
+      "methods": [
+        "MPC_ALNS",
+        "MPC_ALNS_STABLE_V3"
+      ],
+      "output": "results/desaulniers/publication_development/stable_screen_v1",
+      "role": "balanced_development_screen",
+      "selection_rule": {
+        "complete_service_change_at_least": 0,
+        "maximum_decision_seconds": 5,
+        "otherwise": "retain_original_without_opening_enhanced_holdout",
+        "physical_and_future_information_violations": 0,
+        "service_clustered_95_ci_lower_above": 0,
+        "total_100_customer_service_change_at_least": 0
+      },
+      "study": "publication_stable_alns_balanced_development_v1",
+      "variants": {
+        "original_shared": {}
+      },
+      "whole_worker_timeout_seconds": 3900
+    },
+    "execution": "sequential isolated workers",
+    "source_sha256": "2e3db6b4f5dee96cc0ea34768a952687dcbd368b42a8e88bc29efc55d74991b0"
+  },
+  "source_commit": "83a12b9528e2d6600a4445b2a05d712b95c1ba33"
+}
