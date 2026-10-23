@@ -1,0 +1,34 @@
+{
+  "cases": [
+    [
+      "rc101_21_25",
+      0.75,
+      0
+    ],
+    [
+      "r101_21_50",
+      0.5,
+      0
+    ],
+    [
+      "r101_21_100",
+      0.75,
+      0
+    ]
+  ],
+  "config_sha256": "ff5c4844db9d09378f6cb37bfebbcfc482deab2e99b71fcdbba8715af5e0c36d",
+  "execution": "isolated sequential subprocesses",
+  "five_second_limit": 5.0,
+  "methods": [
+    "MPC_COMPLETION",
+    "MPC_ALNS"
+  ],
+  "original_development_protocol": "30bf9318bf952adf148873c54b06a933c167b3c287fac9c40419d680b8897d08",
+  "purpose": "decoder_mechanism_development_pilot_not_final",
+  "selection": "Same seen cases as dispatch pilot; no LP-only lost-customer witness found",
+  "source_sha256": "4b824c25e4f3abbecd6b4edb98beeb94888a4909ce6ea86dd12c232e3d1badb2",
+  "variants": [
+    "original",
+    "linear_charge_v1"
+  ]
+}

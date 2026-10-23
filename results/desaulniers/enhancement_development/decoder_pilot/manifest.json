@@ -1,0 +1,272 @@
+{
+  "completed_runs": 12,
+  "planned_runs": 12,
+  "protocol_identifier": "857bf7dddf715710c3c5697b659b0d473b0d35ae367d8e5031081643ff1e7c97",
+  "records": [
+    {
+      "complete_service": false,
+      "customers_served": 23,
+      "dynamicity": 0.75,
+      "independent_audit": {
+        "no_future_information": true,
+        "safe_returns": true,
+        "trace_replay": true,
+        "unique_service": true
+      },
+      "instance": "rc101_21_25",
+      "k_ref": 7,
+      "max_optimization_latency": 0.010956599959172308,
+      "method": "MPC_COMPLETION",
+      "raw": "results/desaulniers/enhancement_development/decoder_pilot/raw/rc101_21_25_0.75_0_MPC_COMPLETION_original_e5f1502bf4c8.json.gz",
+      "raw_sha256": "fc687c3e318529a32d0629c379f54347f3023705e9be6f46c627b56e3fbed9f0",
+      "scenario_id": "68cad7382125e0e5daedacff65a16a2241286f9aaaa5e355f723c32f1e7dbe8d",
+      "seed": 0,
+      "size": 25,
+      "variant": "original",
+      "worker_wall_seconds": 0.2534720000112429
+    },
+    {
+      "complete_service": false,
+      "customers_served": 23,
+      "dynamicity": 0.75,
+      "independent_audit": {
+        "no_future_information": true,
+        "safe_returns": true,
+        "trace_replay": true,
+        "unique_service": true
+      },
+      "instance": "rc101_21_25",
+      "k_ref": 7,
+      "max_optimization_latency": 0.0437890999019146,
+      "method": "MPC_COMPLETION",
+      "raw": "results/desaulniers/enhancement_development/decoder_pilot/raw/rc101_21_25_0.75_0_MPC_COMPLETION_linear_charge_v1_5254f797c27d.json.gz",
+      "raw_sha256": "0952285960ccec5316624c6b3f1287cf5f5601bf9eda94e2d3004ffac43d8867",
+      "scenario_id": "68cad7382125e0e5daedacff65a16a2241286f9aaaa5e355f723c32f1e7dbe8d",
+      "seed": 0,
+      "size": 25,
+      "variant": "linear_charge_v1",
+      "worker_wall_seconds": 0.5060939999530092
+    },
+    {
+      "complete_service": false,
+      "customers_served": 22,
+      "dynamicity": 0.75,
+      "independent_audit": {
+        "no_future_information": true,
+        "safe_returns": true,
+        "trace_replay": true,
+        "unique_service": true
+      },
+      "instance": "rc101_21_25",
+      "k_ref": 7,
+      "max_optimization_latency": 0.10182490001898259,
+      "method": "MPC_ALNS",
+      "raw": "results/desaulniers/enhancement_development/decoder_pilot/raw/rc101_21_25_0.75_0_MPC_ALNS_original_8d6922e027a5.json.gz",
+      "raw_sha256": "52a1a874b9d436fd514b8e216f22bfcc9ff21b7daacb3d935f8e692efd813650",
+      "scenario_id": "68cad7382125e0e5daedacff65a16a2241286f9aaaa5e355f723c32f1e7dbe8d",
+      "seed": 0,
+      "size": 25,
+      "variant": "original",
+      "worker_wall_seconds": 1.8950187000446022
+    },
+    {
+      "complete_service": false,
+      "customers_served": 22,
+      "dynamicity": 0.75,
+      "independent_audit": {
+        "no_future_information": true,
+        "safe_returns": true,
+        "trace_replay": true,
+        "unique_service": true
+      },
+      "instance": "rc101_21_25",
+      "k_ref": 7,
+      "max_optimization_latency": 0.4763299999758601,
+      "method": "MPC_ALNS",
+      "raw": "results/desaulniers/enhancement_development/decoder_pilot/raw/rc101_21_25_0.75_0_MPC_ALNS_linear_charge_v1_588f74d9e4c6.json.gz",
+      "raw_sha256": "9ada377134ec64be260d75ec5e5dccec2fcee3012950003c09973589f95dd757",
+      "scenario_id": "68cad7382125e0e5daedacff65a16a2241286f9aaaa5e355f723c32f1e7dbe8d",
+      "seed": 0,
+      "size": 25,
+      "variant": "linear_charge_v1",
+      "worker_wall_seconds": 7.808545499923639
+    },
+    {
+      "complete_service": false,
+      "customers_served": 48,
+      "dynamicity": 0.5,
+      "independent_audit": {
+        "no_future_information": true,
+        "safe_returns": true,
+        "trace_replay": true,
+        "unique_service": true
+      },
+      "instance": "r101_21_50",
+      "k_ref": 12,
+      "max_optimization_latency": 0.03725900000426918,
+      "method": "MPC_COMPLETION",
+      "raw": "results/desaulniers/enhancement_development/decoder_pilot/raw/r101_21_50_0.5_0_MPC_COMPLETION_original_5b293f42a0e9.json.gz",
+      "raw_sha256": "99962cfc96380a2a77a7e8cff9ff6f5a05bcb8278c62d82a34670374118a1f8c",
+      "scenario_id": "dbe8c5119c06ad2d2e90ee95e2f2380ca026169fe47f0ff60933b42ffc83879f",
+      "seed": 0,
+      "size": 50,
+      "variant": "original",
+      "worker_wall_seconds": 0.7780722000170499
+    },
+    {
+      "complete_service": false,
+      "customers_served": 48,
+      "dynamicity": 0.5,
+      "independent_audit": {
+        "no_future_information": true,
+        "safe_returns": true,
+        "trace_replay": true,
+        "unique_service": true
+      },
+      "instance": "r101_21_50",
+      "k_ref": 12,
+      "max_optimization_latency": 0.06582440005149692,
+      "method": "MPC_COMPLETION",
+      "raw": "results/desaulniers/enhancement_development/decoder_pilot/raw/r101_21_50_0.5_0_MPC_COMPLETION_linear_charge_v1_f73800d7c4aa.json.gz",
+      "raw_sha256": "8aa8873500828d4c87e3744e47d87a68989b48e24be48e5cc3687af9d8537a17",
+      "scenario_id": "dbe8c5119c06ad2d2e90ee95e2f2380ca026169fe47f0ff60933b42ffc83879f",
+      "seed": 0,
+      "size": 50,
+      "variant": "linear_charge_v1",
+      "worker_wall_seconds": 0.9684902000008151
+    },
+    {
+      "complete_service": false,
+      "customers_served": 47,
+      "dynamicity": 0.5,
+      "independent_audit": {
+        "no_future_information": true,
+        "safe_returns": true,
+        "trace_replay": true,
+        "unique_service": true
+      },
+      "instance": "r101_21_50",
+      "k_ref": 12,
+      "max_optimization_latency": 0.3898763000033796,
+      "method": "MPC_ALNS",
+      "raw": "results/desaulniers/enhancement_development/decoder_pilot/raw/r101_21_50_0.5_0_MPC_ALNS_original_c62b1ac041f7.json.gz",
+      "raw_sha256": "834541323b35e9c9b5c4cc753795e1aa2fe0a338805ee686ab15a18d28c9e7a1",
+      "scenario_id": "dbe8c5119c06ad2d2e90ee95e2f2380ca026169fe47f0ff60933b42ffc83879f",
+      "seed": 0,
+      "size": 50,
+      "variant": "original",
+      "worker_wall_seconds": 7.7084605999989435
+    },
+    {
+      "complete_service": false,
+      "customers_served": 47,
+      "dynamicity": 0.5,
+      "independent_audit": {
+        "no_future_information": true,
+        "safe_returns": true,
+        "trace_replay": true,
+        "unique_service": true
+      },
+      "instance": "r101_21_50",
+      "k_ref": 12,
+      "max_optimization_latency": 0.703578699962236,
+      "method": "MPC_ALNS",
+      "raw": "results/desaulniers/enhancement_development/decoder_pilot/raw/r101_21_50_0.5_0_MPC_ALNS_linear_charge_v1_101e760d645a.json.gz",
+      "raw_sha256": "353f339b38393382050dec8e5af952704c42dd9bdd911219a964cc54e5077eac",
+      "scenario_id": "dbe8c5119c06ad2d2e90ee95e2f2380ca026169fe47f0ff60933b42ffc83879f",
+      "seed": 0,
+      "size": 50,
+      "variant": "linear_charge_v1",
+      "worker_wall_seconds": 16.774379500071518
+    },
+    {
+      "complete_service": false,
+      "customers_served": 82,
+      "dynamicity": 0.75,
+      "independent_audit": {
+        "no_future_information": true,
+        "safe_returns": true,
+        "trace_replay": true,
+        "unique_service": true
+      },
+      "instance": "r101_21_100",
+      "k_ref": 20,
+      "max_optimization_latency": 0.04187199997249991,
+      "method": "MPC_COMPLETION",
+      "raw": "results/desaulniers/enhancement_development/decoder_pilot/raw/r101_21_100_0.75_0_MPC_COMPLETION_original_642770cc48fa.json.gz",
+      "raw_sha256": "b2e5091bab86b3924372448b99543267bf38b373cf07cf4bbf9c63885b9ae153",
+      "scenario_id": "afe1b303924fe654add5f46fe9f3b6f966a31c66af881fc787ceabad3bf5efdf",
+      "seed": 0,
+      "size": 100,
+      "variant": "original",
+      "worker_wall_seconds": 2.4475887999869883
+    },
+    {
+      "complete_service": false,
+      "customers_served": 82,
+      "dynamicity": 0.75,
+      "independent_audit": {
+        "no_future_information": true,
+        "safe_returns": true,
+        "trace_replay": true,
+        "unique_service": true
+      },
+      "instance": "r101_21_100",
+      "k_ref": 20,
+      "max_optimization_latency": 0.15376760007347912,
+      "method": "MPC_COMPLETION",
+      "raw": "results/desaulniers/enhancement_development/decoder_pilot/raw/r101_21_100_0.75_0_MPC_COMPLETION_linear_charge_v1_964200d88527.json.gz",
+      "raw_sha256": "bfe38d6a282ae4cc23e63faad9e94a0dfa514b18b184987d2aeaa7dafd59e943",
+      "scenario_id": "afe1b303924fe654add5f46fe9f3b6f966a31c66af881fc787ceabad3bf5efdf",
+      "seed": 0,
+      "size": 100,
+      "variant": "linear_charge_v1",
+      "worker_wall_seconds": 7.286972000030801
+    },
+    {
+      "complete_service": false,
+      "customers_served": 94,
+      "dynamicity": 0.75,
+      "independent_audit": {
+        "no_future_information": true,
+        "safe_returns": true,
+        "trace_replay": true,
+        "unique_service": true
+      },
+      "instance": "r101_21_100",
+      "k_ref": 20,
+      "max_optimization_latency": 0.6708177999826148,
+      "method": "MPC_ALNS",
+      "raw": "results/desaulniers/enhancement_development/decoder_pilot/raw/r101_21_100_0.75_0_MPC_ALNS_original_b127b9ad419f.json.gz",
+      "raw_sha256": "9122fbecf2d97e3cd18629cad054b7c16f225e2b17ca3e2d84bff53e7afb41a6",
+      "scenario_id": "afe1b303924fe654add5f46fe9f3b6f966a31c66af881fc787ceabad3bf5efdf",
+      "seed": 0,
+      "size": 100,
+      "variant": "original",
+      "worker_wall_seconds": 40.37050610000733
+    },
+    {
+      "complete_service": false,
+      "customers_served": 91,
+      "dynamicity": 0.75,
+      "independent_audit": {
+        "no_future_information": true,
+        "safe_returns": true,
+        "trace_replay": true,
+        "unique_service": true
+      },
+      "instance": "r101_21_100",
+      "k_ref": 20,
+      "max_optimization_latency": 1.8003458000021055,
+      "method": "MPC_ALNS",
+      "raw": "results/desaulniers/enhancement_development/decoder_pilot/raw/r101_21_100_0.75_0_MPC_ALNS_linear_charge_v1_269cf4a0f6da.json.gz",
+      "raw_sha256": "35d415373a0a0693c9b7390d7caf6b6a43e352fda5ca4651fcd186572ca60893",
+      "scenario_id": "afe1b303924fe654add5f46fe9f3b6f966a31c66af881fc787ceabad3bf5efdf",
+      "seed": 0,
+      "size": 100,
+      "variant": "linear_charge_v1",
+      "worker_wall_seconds": 112.27710570010822
+    }
+  ],
+  "status": "complete"
+}

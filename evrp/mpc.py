@@ -29,6 +29,7 @@ class MPCConfig:
     charging_mode: str = "partial"
     charge_fractions: tuple[float, ...] = (0.5, 0.75, 1.0)
     proposal_selection: str = "quality"
+    route_decoder_version: str = "original"
 
     def __post_init__(self):
         if self.control_horizon != 1:
@@ -41,6 +42,8 @@ class MPCConfig:
             raise ValueError("Unknown computation budget or charging mode")
         if self.proposal_selection not in {"quality", "coverage_diverse"}:
             raise ValueError("Unknown proposal selection mode")
+        if self.route_decoder_version not in {"original", "linear_charge_v1"}:
+            raise ValueError("Unknown route decoder version")
         if not isfinite(self.uct_c) or self.uct_c < 0 or not isfinite(self.time_limit) or self.time_limit <= 0:
             raise ValueError("Invalid UCT coefficient or wall-clock budget")
         if not self.charge_fractions or any(not isfinite(v) or not 0 < v <= 1 for v in self.charge_fractions):

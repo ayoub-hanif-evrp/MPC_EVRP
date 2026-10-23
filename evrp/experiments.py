@@ -47,7 +47,8 @@ def simulation_config(config: dict) -> SimulationConfig:
                "station_candidate_limit": "station_candidate_limit", "charge_target_limit": "charge_target_limit",
                "action_space_reduction": "action_space_reduction", "cache_transitions": "cache_transitions",
                "require_root_coverage": "require_root_coverage", "max_idle_wait": "max_idle_wait",
-               "proposal_selection": "proposal_selection"}
+               "proposal_selection": "proposal_selection",
+               "route_decoder_version": "route_decoder_version"}
     kwargs = {target: config[source] for source, target in mapping.items() if source in config}
     kwargs.setdefault("require_root_coverage", True)
     if "charge_fractions" in kwargs:

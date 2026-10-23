@@ -85,6 +85,9 @@ logs/
 !/results/desaulniers/enhancement_development/dispatch_pilot/*.json
 !/results/desaulniers/enhancement_development/dispatch_pilot/*.md
 !/results/desaulniers/enhancement_development/dispatch_pilot/raw/*.json.gz
+!/results/desaulniers/enhancement_development/decoder_pilot/*.json
+!/results/desaulniers/enhancement_development/decoder_pilot/*.md
+!/results/desaulniers/enhancement_development/decoder_pilot/raw/*.json.gz
 !/results/desaulniers/robustness_v2/raw/*.json.gz
 /results/.pytest_work/
 /results/t[0-9]*/

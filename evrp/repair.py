@@ -65,8 +65,8 @@ def route_proposal(state: VehicleState, actions: tuple[Action, ...],
 
 
 @lru_cache(maxsize=16384)
-def build_route(state: VehicleState, customer_sequence: tuple[str, ...],
-                observation: Observation, config: MPCConfig) -> tuple[Action, ...] | None:
+def _build_route_original(state: VehicleState, customer_sequence: tuple[str, ...],
+                          observation: Observation, config: MPCConfig) -> tuple[Action, ...] | None:
     """Build actions through the last service, or None if construction fails.
 
     An empty sequence returns () only when the origin has a feasible safe return.
@@ -136,6 +136,16 @@ def build_route(state: VehicleState, customer_sequence: tuple[str, ...],
     if not isfinite(problem.terminal_cost(predicted)):
         return _decode_one_station(state, sequence, observation, config)
     return actions
+
+
+def build_route(state: VehicleState, customer_sequence: tuple[str, ...],
+                observation: Observation, config: MPCConfig) -> tuple[Action, ...] | None:
+    """Preserve the original decoder, optionally adding a validated LP fallback."""
+    original = _build_route_original(state, customer_sequence, observation, config)
+    if original is not None or config.route_decoder_version == "original":
+        return original
+    from .enhanced_decoder import decode_linear_charging
+    return decode_linear_charging(state, tuple(customer_sequence), observation, config)
 
 
 def _decode_one_station(state: VehicleState, sequence: tuple[str, ...],

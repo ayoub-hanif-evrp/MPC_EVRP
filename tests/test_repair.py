@@ -32,6 +32,23 @@ def claims(routes):
     return [a.destination for actions in routes.values() for a in actions if a.kind == "serve"]
 
 
+def test_linear_charge_decoder_finds_intermediate_target_missed_by_original():
+    station = Location("S", "f", 5, 5, 0, 0, 100, 0)
+    state, observation, original = setup((customer("A", 10, due=34),
+                                          customer("B", 20, due=45)),
+                                         stations=(station,), battery=40)
+    state = replace(state, location=customer("P", 0), battery=25,
+                    departed=True, served_customers=("P",))
+    assert build_route(state, ("A", "B"), observation, original) is None
+    enhanced = replace(original, route_decoder_version="linear_charge_v1")
+    actions = build_route(state, ("A", "B"), observation, enhanced)
+    assert actions is not None
+    assert [action.destination for action in actions if action.kind == "serve"] == ["A", "B"]
+    assert any(action.kind == "charge" and 30 < action.target_battery < 40
+               for action in actions)
+    assert route_proposal(state, actions, observation, enhanced) is not None
+
+
 def test_anytime_regret_repair_preserves_valid_partial_insertions(monkeypatch):
     state, observation, config = setup((customer("A", 1), customer("B", 2)))
     original = repair._regret_repair_impl
