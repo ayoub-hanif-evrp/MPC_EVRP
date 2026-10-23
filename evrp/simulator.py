@@ -61,7 +61,8 @@ class SimulationConfig:
             raise ValueError("Invalid simulation configuration")
         if self.trace_level not in {"none", "summary", "full"}:
             raise ValueError("Unknown trace level")
-        if self.dispatch_policy not in {"original", "depot_window_wait_v1"}:
+        if self.dispatch_policy not in {"original", "depot_window_wait_v1",
+                                        "depot_slack_reserve_v2"}:
             raise ValueError("Unknown dispatch policy")
         if self.fleet_mode != "fixed_reference":
             raise ValueError("Only the fixed K_ref fleet is supported")
@@ -178,6 +179,31 @@ def depot_window_wait_proposal(vehicle, proposal, observation, mpc_config):
                               observation, mpc_config)
     except PlanningDeadlineExceeded:
         return None
+
+
+def depot_slack_reserve_proposal(vehicle, proposal, observation, mpc_config):
+    """Keep one unused depot EV interruptible for a bounded, route-safe interval."""
+    if (vehicle.departed or vehicle.location.kind != "d" or
+            proposal.first.kind != "serve" or remaining_time() < 0.04):
+        return None
+    try:
+        first = transition(vehicle, proposal.first, observation)
+    except InfeasibleAction:
+        return None
+    customer = observation.customer_by_id[proposal.first.destination]
+    delay = min(5.0, max(0.0, (customer.due - first.service_start) / 2))
+    if delay <= EPS:
+        return None
+    from .repair import route_proposal
+    try:
+        candidate = route_proposal(vehicle, (Action("wait", wait_duration=delay),) + proposal.actions,
+                                   observation, mpc_config)
+    except PlanningDeadlineExceeded:
+        return None
+    if (candidate is None or candidate.unique_predicted_customer_set !=
+            proposal.unique_predicted_customer_set):
+        return None
+    return candidate
 
 
 def optimization_root_hash(observation, origins, committed, tails):
@@ -592,6 +618,23 @@ class EventDrivenSimulator:
                                                                  observation, config.mpc)
                             if delayed is not None:
                                 deferred[k] = delayed
+                    if config.dispatch_policy == "depot_slack_reserve_v2" and event_triggered:
+                        depot_candidates = []
+                        for k in ready:
+                            if k not in validated or validated[k].first.kind != "serve":
+                                continue
+                            vehicle = state.vehicles[k]
+                            if vehicle.departed or vehicle.location.kind != "d":
+                                continue
+                            first = transition(vehicle, validated[k].first, observation)
+                            due = observation.customer_by_id[validated[k].first.destination].due
+                            depot_candidates.append((-(due - first.service_start), k))
+                        for _, k in sorted(depot_candidates):
+                            delayed = depot_slack_reserve_proposal(state.vehicles[k], validated[k],
+                                                                   observation, config.mpc)
+                            if delayed is not None:
+                                deferred[k] = delayed
+                                break
                     timings.append(perf_counter()-started)
                     if event_triggered:
                         optimization_latencies.append(timings[-1])
