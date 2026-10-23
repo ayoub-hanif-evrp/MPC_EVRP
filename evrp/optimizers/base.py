@@ -8,6 +8,11 @@ from time import perf_counter
 from ..model import Action, Observation, VehicleState
 from ..mpc import MPCConfig, MPCProposal
 from ..repair import route_proposal
+from ..planning_budget import PlanningDeadlineExceeded
+
+
+class OptimizerInitializationDeadline(PlanningDeadlineExceeded):
+    """The validated constructor must be used because search never initialized."""
 
 
 @dataclass(frozen=True)

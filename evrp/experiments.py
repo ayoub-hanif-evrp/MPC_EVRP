@@ -74,7 +74,9 @@ def simulation_config(config: dict) -> SimulationConfig:
                             candidate_position_limit=config.get("candidate_position_limit", 3),
                             rollout_regret_k=config.get("rollout_regret_k", 2),
                             engineering_watchdog_seconds=config.get("engineering_watchdog_seconds"),
-                            dispatch_policy=config.get("dispatch_policy", "original"))
+                            dispatch_policy=config.get("dispatch_policy", "original"),
+                            optimizer_initialization_policy=config.get("optimizer_initialization_policy", "original"),
+                            coordination_policy=config.get("coordination_policy", "original"))
 
 
 def results_path(path):
@@ -106,12 +108,20 @@ def prepare(instance_name: str, config: dict):
                       "published_sources": published_sources,
                       "reference_solver_version": REFERENCE_SOLVER_VERSION})[:16]
     ref_path = ROOT / "results" / "reference_schedules" / f"{instance.name}_{key}.json"
-    if ref_path.exists():
+    reference_policy = config.get("reference_policy", "legacy_v1")
+    if reference_policy == "mp_witness_v1":
+        if config.get("charging_mode", "partial") != "partial":
+            raise ValueError("MP witness policy requires the partial-charging physical model")
+        from .reference_extensions import load_mp_witness
+        reference = load_mp_witness(instance)
+    elif reference_policy != "legacy_v1":
+        raise ValueError("Unknown offline reference policy")
+    elif ref_path.exists():
         reference = ReferenceSchedule.load(ref_path, instance)
     else:
         reference = published_full_reference(instance, ref_config) or solve_reference(instance, ref_config)
         reference.save(ref_path)
-    if reference.config != ref_config:
+    if reference_policy == "legacy_v1" and reference.config != ref_config:
         raise ValueError("Cached reference configuration differs from requested solver settings")
     scenario_key = identifier(dict(instance=instance.sha256, reference=reference.identifier,
                                   seed=config.get("scenario_seed", 0), dynamicity=config.get("dynamicity", 0.5),

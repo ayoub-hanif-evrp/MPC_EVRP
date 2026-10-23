@@ -4,3 +4,6 @@ evrp/**/*.py text eol=lf
 scripts/*.py text eol=lf
 configs/paper_controller.yaml text eol=lf
 configs/desaulniers_*.yaml text eol=lf
+configs/publication_*.yaml text eol=lf
+results/desaulniers/publication_development/reference_extension_v1/** -text
+results/desaulniers/publication_package_v1/** -text

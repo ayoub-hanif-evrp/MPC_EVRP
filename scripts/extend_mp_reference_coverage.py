@@ -16,7 +16,7 @@ from evrp.planning_budget import PlanningDeadlineExceeded, check_deadline, reset
 from evrp.reference import (ReferenceConfig, ReferenceSchedule, RouteTrace,
                             initial_vehicle, validate_reference)
 from evrp.repair import build_route, route_proposal
-from evrp.storage import BENCHMARK, ROOT, identifier, load_json, save_json, writable_path
+from evrp.storage import BENCHMARK, ROOT, benchmark_hashes, identifier, load_json, save_json, writable_path
 
 
 OUTPUT = ROOT / "results/desaulniers/publication_development/reference_extension_v1"
@@ -35,10 +35,16 @@ def unresolved_names():
 
 
 def protocol():
-    files = sorted((ROOT / "evrp").rglob("*.py")) + [Path(__file__), COVERAGE, PARTIAL]
+    files = sorted((ROOT / "evrp").rglob("*.py")) + [Path(__file__)]
+    input_rows = {}
+    for path in (COVERAGE, PARTIAL):
+        with path.open(newline="", encoding="utf-8") as stream:
+            input_rows[path.relative_to(ROOT).as_posix()] = list(csv.DictReader(stream))
     science = dict(instances=unresolved_names(), seconds_per_instance=LIMIT,
                    mpc=asdict(MPC) | {"charge_fractions": list(MPC.charge_fractions)},
                    strategy="deadline-ordered bounded MP insertion; first full-service witness",
+                   dataset_sha256=identifier(benchmark_hashes()),
+                   input_evidence_identifier=identifier(input_rows),
                    source_sha256=identifier({p.relative_to(ROOT).as_posix(): sha256(p.read_bytes()).hexdigest()
                                               for p in files}),
                    separate_from_historical_fleet_policy=True)
@@ -174,8 +180,16 @@ def run():
     for name in frozen["scientific"]["instances"]:
         path = OUTPUT / "workers" / f"{name}.json"
         if not path.exists():
-            subprocess.run([sys.executable, "-u", "-m", "scripts.extend_mp_reference_coverage",
-                            "--worker", name], cwd=ROOT, check=True, timeout=LIMIT + 30)
+            started = perf_counter()
+            try:
+                subprocess.run([sys.executable, "-u", "-m", "scripts.extend_mp_reference_coverage",
+                                "--worker", name], cwd=ROOT, check=True, timeout=LIMIT + 30,
+                               capture_output=True, text=True)
+            except (subprocess.TimeoutExpired, subprocess.CalledProcessError) as error:
+                save_json(path, dict(instance=name, protocol_identifier=identifier(frozen),
+                          status="external_worker_timeout" if isinstance(error, subprocess.TimeoutExpired)
+                          else "worker_failed", reason=repr(error), seconds=perf_counter() - started,
+                          stdout=str(error.stdout or ""), stderr=str(error.stderr or "")))
         record = load_json(path)
         if record["protocol_identifier"] != identifier(frozen):
             raise ValueError("Offline reference worker protocol mismatch")

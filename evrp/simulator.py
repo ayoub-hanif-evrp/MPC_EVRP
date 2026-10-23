@@ -11,7 +11,7 @@ from .agent import EVAgent, agent_seed
 from .baselines import greedy_plan, independent_selection
 from .continuity import (assert_unique_routes, with_soft_incumbent, reserved_customers,
                          route_observation, service_prefix, service_tail)
-from .coordinator import coordinate
+from .coordinator import coordinate, forced_retained_choice
 from .instance import Instance
 from .model import Action, EPS, InfeasibleAction, Observation, Transition, transition
 from .mpc import MPCConfig, MPCPlanningProblem, PlanningResult
@@ -56,6 +56,8 @@ class SimulationConfig:
     rollout_regret_k: int = 2
     engineering_watchdog_seconds: float | None = None
     dispatch_policy: str = "original"
+    optimizer_initialization_policy: str = "original"
+    coordination_policy: str = "original"
 
     def __post_init__(self):
         if self.algorithm not in ALGORITHMS or self.workers < 1 or self.max_events < 1:
@@ -65,6 +67,10 @@ class SimulationConfig:
         if self.dispatch_policy not in {"original", "depot_window_wait_v1",
                                         "depot_slack_reserve_v2"}:
             raise ValueError("Unknown dispatch policy")
+        if self.optimizer_initialization_policy not in {"original", "validated_incumbent_v1"}:
+            raise ValueError("Unknown optimizer initialization policy")
+        if self.coordination_policy not in {"original", "forced_retained_v1"}:
+            raise ValueError("Unknown coordination policy")
         if self.fleet_mode != "fixed_reference":
             raise ValueError("Only the fixed K_ref fleet is supported")
         if self.route_continuity and self.trace_level == "none":
@@ -230,6 +236,7 @@ class EventDrivenSimulator:
         from .fleet_lns import fleet_score, improve_fleet
         from .fleet_mcts import construct_fleet_root, solve_fleet_mcts
         from .optimizers import OptimizationContext, create_optimizer
+        from .optimizers.base import OptimizerInitializationDeadline
         from .diagnostics import ServiceDiagnostics
         from .planning_trace import PlanningTrace, start_trace, reset_trace
         state, instance, config = self.state, self.instance, self.config
@@ -254,6 +261,8 @@ class EventDrivenSimulator:
         previous_root_hash = None
         previous_root_routes = None
         trace_token = None
+        coordination_forced_choices = coordination_solver_invocations = 0
+        optimizer_initialization_fallbacks = 0
         event_triggered = config.algorithm in COMMON_CONSTRUCTOR_ALGORITHMS
         diagnostic = ServiceDiagnostics(instance, self.scenario) if config.diagnostics else None
         pool = ProcessPoolExecutor(max_workers=config.workers) if config.parallel_agents else None
@@ -454,15 +463,27 @@ class EventDrivenSimulator:
                               if p.proposals and p.proposals[0].first.kind == "serve"]
                     duplicates = len(firsts)-len(set(firsts))
                     conflicts += duplicates
+                    coordination_shortcut_used = False
                     if config.algorithm in {"GREEDY", "RH_REGRET", "INDEPENDENT_MPC_MCTS",
                                             "FLEET_MPC_MCTS", "FLEET_MPC_COMPLETION_ONLY"} | ROLLING_LNS_ALGORITHMS:
                         selected, count = independent_selection(plans, exclusive_routes=True)
                         resolved += count
                     else:
-                        selected = coordinate({k: r.candidates for k, r in plans.items()},
-                                              frozenset(state.committed_customers),
-                                              available=frozenset(c.id for c in observation.customers),
-                                              background_intents=background, exclusive_routes=True)
+                        candidates = {k: r.candidates for k, r in plans.items()}
+                        available = frozenset(c.id for c in observation.customers)
+                        selected = None
+                        if config.coordination_policy == "forced_retained_v1":
+                            selected = forced_retained_choice(candidates,
+                                frozenset(state.committed_customers), available=available,
+                                background_intents=background)
+                            if selected is not None and candidates:
+                                coordination_shortcut_used = True
+                                coordination_forced_choices += 1
+                        if selected is None:
+                            selected = coordinate(candidates, frozenset(state.committed_customers),
+                                                  available=available, background_intents=background,
+                                                  exclusive_routes=True)
+                            coordination_solver_invocations += 3 * bool(candidates)
                         resolved += duplicates
                     routes = dict(frozen)
                     routes.update({k: service_prefix(p.actions) for k, p in selected.items()})
@@ -486,6 +507,7 @@ class EventDrivenSimulator:
                     lns_record = None
                     fleet_mcts_record = None
                     optimizer_result = None
+                    optimizer_initialization_fallback = False
                     if config.regret_repair:
                         repair_start = perf_counter()
                         eligible = origins if config.route_continuity else {k: origins[k] for k in ready}
@@ -592,7 +614,10 @@ class EventDrivenSimulator:
                             optimizer_result = create_optimizer(config.algorithm, config).optimize(context)
                             routes = dict(optimizer_result.routes)
                             deadline_events += int(optimizer_result.deadline_reached)
-                        except PlanningDeadlineExceeded:
+                        except PlanningDeadlineExceeded as error:
+                            if isinstance(error, OptimizerInitializationDeadline):
+                                optimizer_initialization_fallback = True
+                                optimizer_initialization_fallbacks += 1
                             deadline_events += 1
                     # Reconcile all future suffixes before dispatching any physical action.
                     if planning_evidence is not None:
@@ -682,6 +707,8 @@ class EventDrivenSimulator:
                     candidate_intents = sorted(set().union(*(set(p.unique_predicted_customer_set)
                                                for r in plans.values() for p in r.candidates)))
                     decision = dict(epoch=epochs, time=state.time, available=[c.id for c in observation.customers],
+                                    coordination_shortcut_used=coordination_shortcut_used,
+                                    optimizer_initialization_fallback=optimizer_initialization_fallback,
                                     optimization_latency_seconds=(timings[-1] if event_triggered else None),
                                     optimization_trigger_reason=trigger_reason,
                                     optimization_root_hash=root_hash,
@@ -849,6 +876,9 @@ class EventDrivenSimulator:
                        repair_seconds=repair_seconds, lns_seconds=lns_seconds,
                        constructor_seconds_total=constructor_seconds_total,
                        constructor_service_gain_total=constructor_service_gain_total,
+                       coordination_forced_choices=coordination_forced_choices,
+                       coordination_solver_invocations=coordination_solver_invocations,
+                       optimizer_initialization_fallbacks=optimizer_initialization_fallbacks,
                        lns_iterations=lns_iterations, lns_improvements=lns_improvements,
                        fleet_mcts_iterations=fleet_mcts_iterations,
                        fleet_mcts_nodes_expanded=fleet_mcts_expanded,

@@ -5,18 +5,21 @@ from time import perf_counter
 
 from ..fleet_mcts import _FleetProblem, _SearchBudgetReached
 from ..planning_budget import PlanningDeadlineExceeded, check_deadline, reset_deadline, set_deadline
-from .base import OptimizationContext, OptimizationResult, OptimizerDiagnostics, evaluated_result
+from .base import (OptimizationContext, OptimizationResult, OptimizerDiagnostics,
+                   OptimizerInitializationDeadline, evaluated_result)
 
 
 class ACSOptimizer:
     name = "MPC_ACS"
 
     def __init__(self, ants: int = 8, alpha: float = 1.0, beta: float = 2.0,
-                 rho: float = 0.1, q0: float = 0.85, local_rate: float = 0.1):
+                 rho: float = 0.1, q0: float = 0.85, local_rate: float = 0.1,
+                 initialization_fallback: bool = False):
         if ants < 1 or alpha <= 0 or beta <= 0 or not 0 < rho < 1 or not 0 <= q0 <= 1:
             raise ValueError("Invalid ACS parameters")
         self.ants, self.alpha, self.beta = ants, alpha, beta
         self.rho, self.q0, self.local_rate = rho, q0, local_rate
+        self.initialization_fallback = initialization_fallback
 
     @staticmethod
     def _edges(problem, plan):
@@ -53,8 +56,10 @@ class ACSOptimizer:
         service_improvements = objective_improvements = 0
         improvement_times = []
         deadline_reached = False
+        initializing = True
         try:
             best = constructor = problem.initial(dict(context.constructor_routes))
+            initializing = False
             # Every ant builds afresh; the common constructor is retained separately.
             empty = problem.change(constructor, {k: () for k in problem.ids})
             if empty is None:
@@ -113,6 +118,8 @@ class ACSOptimizer:
                     pheromone[key] = pheromone.get(key, initial_tau) + deposit
                     updates += 1
         except (PlanningDeadlineExceeded, _SearchBudgetReached):
+            if initializing and self.initialization_fallback:
+                raise OptimizerInitializationDeadline from None
             deadline_reached = True
         finally:
             reset_deadline(token)

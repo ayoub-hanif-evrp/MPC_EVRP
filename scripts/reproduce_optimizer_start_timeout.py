@@ -1,5 +1,6 @@
 """Small deterministic reproducer for expired optimizer initialization."""
 
+import argparse
 from time import perf_counter
 
 from evrp.instance import Infrastructure, Instance, Location, Parameters
@@ -10,6 +11,7 @@ from evrp.optimizers.acs import ACSOptimizer
 from evrp.optimizers.hgs import HGSOptimizer
 from evrp.optimizers.base import OptimizationContext
 from evrp.reference import initial_vehicle
+from evrp.storage import save_json
 
 
 def reproduce():
@@ -22,14 +24,23 @@ def reproduce():
                                   frozenset({"A"}), frozenset(), frozenset(), {}, 1,
                                   perf_counter() - 1, 0, MPCConfig())
     results = {}
-    for optimizer in (ALNSOptimizer(), HGSOptimizer(), ACSOptimizer()):
-        try:
-            optimizer.optimize(context)
-            results[optimizer.name] = "returned_result"
-        except Exception as error:
-            results[optimizer.name] = type(error).__name__ + ": " + str(error)
+    for guarded in (False, True):
+        for cls in (ALNSOptimizer, HGSOptimizer, ACSOptimizer):
+            optimizer = cls(initialization_fallback=guarded)
+            key = optimizer.name + ("_guarded" if guarded else "_original")
+            try:
+                optimizer.optimize(context)
+                results[key] = "returned_result"
+            except Exception as error:
+                results[key] = type(error).__name__ + ": " + str(error)
     return results
 
 
 if __name__ == "__main__":
-    print(reproduce())
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--output")
+    args = parser.parse_args()
+    results = reproduce()
+    if args.output:
+        save_json(args.output, results)
+    print(results)

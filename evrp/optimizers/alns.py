@@ -8,7 +8,8 @@ from time import perf_counter
 from ..fleet_mcts import _FleetProblem, _SearchBudgetReached
 from ..instance import distance
 from ..planning_budget import PlanningDeadlineExceeded, check_deadline, reset_deadline, set_deadline
-from .base import OptimizationContext, OptimizationResult, OptimizerDiagnostics, evaluated_result
+from .base import (OptimizationContext, OptimizationResult, OptimizerDiagnostics,
+                   OptimizerInitializationDeadline, evaluated_result)
 
 
 DESTROY = ("random", "worst_distance", "related", "critical_tw", "battery_risk", "route_risk")
@@ -107,13 +108,15 @@ class ALNSOptimizer:
     name = "MPC_ALNS"
 
     def __init__(self, iterations: int = 100, destroy_fraction: float = 0.1,
-                 reaction_factor: float = 0.2, segment_length: int = 12):
+                 reaction_factor: float = 0.2, segment_length: int = 12,
+                 initialization_fallback: bool = False):
         if iterations < 1 or not 0 < destroy_fraction <= 1:
             raise ValueError("Invalid ALNS budget")
         self.iterations = iterations
         self.destroy_fraction = destroy_fraction
         self.reaction_factor = reaction_factor
         self.segment_length = segment_length
+        self.initialization_fallback = initialization_fallback
 
     def _destroy_count(self, owned, uncovered):
         return min(owned, 4, max(1, round(owned * self.destroy_fraction)))
@@ -139,8 +142,10 @@ class ALNSOptimizer:
         best_times = []
         deadline_reached = False
         coverage_guard_rejections = 0
+        initializing = True
         try:
             current = best = problem.initial(dict(context.constructor_routes))
+            initializing = False
             for iteration in range(self.iterations):
                 check_deadline()
                 problem._check_search_time()
@@ -204,6 +209,8 @@ class ALNSOptimizer:
                         counts.clear()
                         rewards.clear()
         except (PlanningDeadlineExceeded, _SearchBudgetReached):
+            if initializing and self.initialization_fallback:
+                raise OptimizerInitializationDeadline from None
             deadline_reached = True
         finally:
             reset_deadline(token)

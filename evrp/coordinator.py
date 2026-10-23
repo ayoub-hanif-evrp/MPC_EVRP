@@ -9,6 +9,30 @@ from scipy.sparse import lil_matrix
 from .mpc import MPCProposal, action_key
 
 
+def forced_retained_choice(candidates, committed=frozenset(), *, available,
+                           background_intents=frozenset()):
+    """Solve forced disjoint retained-route choices exactly; decline other inputs."""
+    visible = available - committed
+    if not background_intents <= visible:
+        raise ValueError("Unavailable background coverage")
+    occupied, selected = set(background_intents), {}
+    for k in sorted(candidates):
+        if any(not proposal.actions or not isfinite(proposal.cost) or proposal.cost < 0
+               or not set(proposal.unique_predicted_customer_set) <= visible
+               for proposal in candidates[k]):
+            return None
+        positive = [proposal for proposal in candidates[k] if proposal.unique_predicted_customer_set]
+        if len(positive) > 1 or not positive and len(candidates[k]) != 1:
+            return None
+        proposal = positive[0] if positive else candidates[k][0]
+        covered = set(proposal.unique_predicted_customer_set)
+        if covered & occupied:
+            return None
+        selected[k] = proposal
+        occupied.update(covered)
+    return selected
+
+
 def coordinate(candidates: dict[int, tuple[MPCProposal, ...]],
                committed: frozenset[str] = frozenset(), *,
                available: frozenset[str], background_intents=frozenset(),

@@ -5,7 +5,8 @@ from time import perf_counter
 
 from ..fleet_mcts import _FleetProblem, _SearchBudgetReached
 from ..planning_budget import PlanningDeadlineExceeded, check_deadline, reset_deadline, set_deadline
-from .base import OptimizationContext, OptimizationResult, OptimizerDiagnostics, evaluated_result
+from .base import (OptimizationContext, OptimizationResult, OptimizerDiagnostics,
+                   OptimizerInitializationDeadline, evaluated_result)
 
 
 def _edges(plan, ids):
@@ -203,12 +204,13 @@ class HGSOptimizer:
     name = "MPC_HGS"
 
     def __init__(self, generations: int = 32, population_size: int = 8,
-                 education_attempts: int = 8):
+                 education_attempts: int = 8, initialization_fallback: bool = False):
         if min(generations, population_size, education_attempts) < 1:
             raise ValueError("Invalid HGS budget")
         self.generations = generations
         self.population_size = population_size
         self.education_attempts = education_attempts
+        self.initialization_fallback = initialization_fallback
 
     def optimize(self, context: OptimizationContext) -> OptimizationResult:
         started = perf_counter()
@@ -221,8 +223,10 @@ class HGSOptimizer:
         root_service_insertions = offspring_service_insertions = 0
         population = []
         deadline_reached = False
+        initializing = True
         try:
             root = best = problem.initial(dict(context.constructor_routes))
+            initializing = False
             population = [root]
             recovered, root_service_insertions, recovery_timed_out = _insert_missing(problem, root)
             if recovered.sequences != root.sequences:
@@ -266,6 +270,8 @@ class HGSOptimizer:
                     population.append(child)
                 population = _survivors(population, self.population_size, problem.ids)
         except (PlanningDeadlineExceeded, _SearchBudgetReached):
+            if initializing and self.initialization_fallback:
+                raise OptimizerInitializationDeadline from None
             deadline_reached = True
         finally:
             reset_deadline(token)

@@ -3,6 +3,7 @@
 import argparse
 from dataclasses import asdict
 from hashlib import sha256
+from importlib.metadata import version
 from pathlib import Path
 import platform
 import subprocess
@@ -16,7 +17,7 @@ from scripts import run_desaulniers_campaign as development
 
 
 ALLOWED_OVERRIDES = {"planning_trace", "dispatch_policy", "route_decoder_version",
-                     "shared_constructor_version"}
+                     "optimizer_initialization_policy", "coordination_policy"}
 
 
 def configuration(path):
@@ -41,27 +42,33 @@ def options(config, case, method, variant):
     name, dod, seed = case
     base = development.options(load_config(development.CONFIG), name, dod, seed, method)
     result = dict(base, study=config["study"], **config["variants"][variant])
+    result["reference_policy"] = config.get("reference_policy", "legacy_v1")
     effective = simulation_config(result)
     if effective.total_planning_time_limit != 5.0:
         raise ValueError("Every method must retain the five-second decision budget")
     return result
 
 
-def protocol(path, config, output):
+def fingerprints(path):
     paths = sorted((ROOT / "evrp").rglob("*.py")) + [Path(__file__),
              ROOT / "scripts/run_desaulniers_campaign.py", development.CONFIG, path]
     source = identifier({p.relative_to(ROOT).as_posix(): sha256(p.read_bytes()).hexdigest()
                          for p in paths})
+    return dict(source_sha256=source, dataset_sha256=identifier(benchmark_hashes()),
+                base_config_sha256=sha256(development.CONFIG.read_bytes()).hexdigest())
+
+
+def protocol(path, config, output):
+    hashes = fingerprints(path)
     cases = []
     for case in config["cases"]:
         instance, reference, scenario, _ = prepare(case[0], options(
             config, case, config["methods"][0], next(iter(config["variants"]))))
         cases.append(dict(instance=case[0], dynamicity=case[1], seed=case[2],
                           scenario_id=scenario.identifier, k_ref=reference.fleet_size,
+                          reference_id=reference.identifier,
                           customers=len(instance.customers), instance_sha256=instance.sha256))
-    scientific = dict(design=config, cases=cases, source_sha256=source,
-                      dataset_sha256=identifier(benchmark_hashes()),
-                      base_config_sha256=sha256(development.CONFIG.read_bytes()).hexdigest(),
+    scientific = dict(design=config, cases=cases, **hashes,
                       execution="sequential isolated workers", decision_limit_seconds=5.0)
     target = output / "protocol.json"
     if target.exists():
@@ -72,7 +79,9 @@ def protocol(path, config, output):
     commit = subprocess.run(["git", "rev-parse", "HEAD"], cwd=ROOT, check=True,
                              capture_output=True, text=True).stdout.strip()
     frozen = dict(scientific=scientific, source_commit=commit,
-                  environment=dict(python=sys.version, platform=platform.platform()))
+                  environment=dict(python=sys.version, platform=platform.platform(),
+                                   packages={name: version(name) for name in
+                                             ("numpy", "scipy", "matplotlib", "PyYAML")}))
     save_json(target, frozen)
     return frozen
 
@@ -95,7 +104,10 @@ def verify(raw, frozen, case_info, method, variant):
 
 
 def worker(path, config, output, index, method, variant, target):
-    frozen = protocol(path, config, output)
+    frozen = load_json(output / "protocol.json")
+    if frozen["scientific"]["design"] != config or any(
+            frozen["scientific"][key] != value for key, value in fingerprints(path).items()):
+        raise ValueError("Worker source, dataset or design drift")
     if method not in config["methods"] or variant not in config["variants"]:
         raise ValueError("Unknown campaign method or variant")
     case = config["cases"][index]
@@ -104,7 +116,8 @@ def worker(path, config, output, index, method, variant, target):
         raise ValueError("Worker output must be a new protocol-bound raw file")
     instance, reference, scenario, _ = prepare(case[0], options(config, case, method, variant))
     if (scenario.identifier != frozen["scientific"]["cases"][index]["scenario_id"] or
-            reference.fleet_size != frozen["scientific"]["cases"][index]["k_ref"]):
+            reference.fleet_size != frozen["scientific"]["cases"][index]["k_ref"] or
+            reference.identifier != frozen["scientific"]["cases"][index]["reference_id"]):
         raise ValueError("Worker scenario changed")
     started = perf_counter()
     result = EventDrivenSimulator(instance, scenario,
@@ -156,8 +169,10 @@ def run(path, config, output, maximum):
                 command = [sys.executable, "-u", "-m", "scripts.run_publication_campaign",
                            "--config", str(path), "--worker", str(index), method, variant, str(target)]
                 try:
+                    process_started = perf_counter()
                     subprocess.run(command, cwd=ROOT, check=True,
                                    timeout=config.get("whole_worker_timeout_seconds", 3900))
+                    process_seconds = perf_counter() - process_started
                 except (subprocess.SubprocessError, OSError) as error:
                     save_json(output / "failures" / f"{index}_{method}_{variant}.json",
                               dict(case=case, method=method, variant=variant, error=repr(error),
@@ -169,6 +184,7 @@ def run(path, config, output, maximum):
                               method=method, variant=variant, scenario_id=raw["metadata"]["scenario_identifier"],
                               k_ref=raw["metadata"]["K_ref"], metrics=raw["metrics"],
                               independent_audit=raw["metadata"]["independent_audit"],
+                              process_wall_seconds=process_seconds,
                               raw=target.relative_to(ROOT).as_posix(),
                               raw_sha256=sha256(target.read_bytes()).hexdigest())
                 records[key] = record

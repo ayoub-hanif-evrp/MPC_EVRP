@@ -1,11 +1,10 @@
 """Check an exact forced-choice shortcut against three-stage MILP coordination."""
 
 from statistics import median
-from math import isfinite
 from time import perf_counter
 
 from evrp.continuity import reserved_customers, route_observation, with_soft_incumbent
-from evrp.coordinator import coordinate
+from evrp.coordinator import coordinate, forced_retained_choice
 from evrp.instance import load_instance
 from evrp.mpc import MPCConfig, PlanningResult
 from evrp.simulator import idle_proposal
@@ -15,31 +14,6 @@ from scripts.analyze_planning_losses import root_problem, routes
 
 OUTPUT = ROOT / "results/desaulniers/publication_development/coordination_probe_v1"
 CAPTURE = ROOT / "results/desaulniers/publication_development/instrumented_v1"
-
-
-def forced_retained_choice(candidates, committed=frozenset(), *, available,
-                           background_intents=frozenset()):
-    """Return the forced optimal selection, or None for a combinatorial input."""
-    visible = available - committed
-    if not background_intents <= visible:
-        raise ValueError("Unavailable background coverage")
-    occupied = set(background_intents)
-    selected = {}
-    for k in sorted(candidates):
-        if any(not proposal.actions or not isfinite(proposal.cost) or proposal.cost < 0
-               or not set(proposal.unique_predicted_customer_set) <= visible
-               for proposal in candidates[k]):
-            return None
-        positive = [proposal for proposal in candidates[k] if proposal.unique_predicted_customer_set]
-        if len(positive) > 1 or not positive and len(candidates[k]) != 1:
-            return None
-        proposal = positive[0] if positive else candidates[k][0]
-        covered = set(proposal.unique_predicted_customer_set)
-        if not covered <= visible or covered & occupied:
-            return None
-        selected[k] = proposal
-        occupied.update(covered)
-    return selected
 
 
 def run():

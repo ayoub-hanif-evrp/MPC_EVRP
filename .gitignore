@@ -131,6 +131,12 @@ logs/
 !/results/desaulniers/publication_development/reference_extension_v1/*.md
 !/results/desaulniers/publication_development/reference_extension_v1/workers/*.json
 !/results/desaulniers/publication_development/reference_extension_v1/references/*.json
+!/results/desaulniers/publication_development/runtime_validation_v1/*.json
+!/results/desaulniers/publication_development/runtime_validation_v1/*.md
+!/results/desaulniers/publication_development/runtime_validation_v1/raw/*.json.gz
+!/results/desaulniers/publication_development/runtime_validation_v1/failures/*.json
+!/results/desaulniers/publication_development/runtime_validation_v1/paper/*.md
+!/results/desaulniers/publication_development/runtime_validation_v1/paper/*.png
 !/results/desaulniers/publication_package_v1/*.md
 !/results/desaulniers/publication_package_v1/*.png
 !/results/desaulniers/publication_package_v1/*.json

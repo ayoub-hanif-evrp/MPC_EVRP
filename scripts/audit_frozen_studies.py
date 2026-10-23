@@ -4,6 +4,7 @@ import argparse
 from collections import defaultdict
 from hashlib import sha256
 from io import BytesIO
+from itertools import product
 import subprocess
 
 from evrp.audit import decode_result
@@ -28,6 +29,27 @@ STUDIES = {
 }
 PHYSICS = ("evrp/instance.py", "evrp/model.py", "evrp/reference.py",
            "evrp/scenario.py", "evrp/observation.py")
+
+
+def cluster_sign_flip(values):
+    """Exact two-sided sign-flip sensitivity for at most 20 parent clusters."""
+    values = tuple(values)
+    if not values or len(values) > 20:
+        raise ValueError("Exact parent sign-flip test requires 1-20 clusters")
+    observed = abs(sum(values))
+    extreme = sum(abs(sum(sign * value for sign, value in zip(signs, values))) >= observed - 1e-12
+                  for signs in product((-1, 1), repeat=len(values)))
+    return extreme / (2 ** len(values))
+
+
+def holm_adjust(values):
+    """Familywise adjustment retaining the input contrast names."""
+    result, previous = {}, 0.0
+    ordered = sorted(values, key=values.get)
+    for index, name in enumerate(ordered):
+        previous = max(previous, min(1.0, (len(ordered) - index) * values[name]))
+        result[name] = previous
+    return result
 
 
 def git(*arguments, data=None):
@@ -148,7 +170,11 @@ def audit(label, dataset):
         interval = _interval(values, [v[0] for v in values], [v[1] for v in values])
         sensitivity[f"{method}_vs_{baseline}"] = dict(
             mean_scenario_service_effect=sum(v[0] for v in values) / sum(v[1] for v in values),
-            parent_clustered_ci=interval, parent_cases=len(values))
+            parent_clustered_ci=interval, parent_cases=len(values),
+            parent_sign_flip_p=cluster_sign_flip(v[0] for v in values))
+    adjusted = holm_adjust({name: value["parent_sign_flip_p"] for name, value in sensitivity.items()})
+    for name, value in adjusted.items():
+        sensitivity[name]["holm_adjusted_p"] = value
     return dict(**evidence, protocol_identifier=identifier(frozen), audited_runs=len(keys),
                 paired_scenarios=len(grouped), base_instances=len({key[0] for key in grouped}),
                 parent_instances=len({key[0].rsplit("_", 1)[0] for key in grouped}),
@@ -176,15 +202,17 @@ def run(source_only=False):
                  for label, row in result.items())
     lines += ["", "Size variants can share customer records from an underlying parent",
               "instance. The separate sensitivity below clusters those files together.",
-              "It retains the original equally weighted scenario-service contrast and",
-              "is exploratory, without multiplicity-adjusted confirmatory claims.", "",
-              "| Study | Contrast | Mean effect pp | Parent-clustered 95% CI pp |",
-              "| --- | --- | ---: | --- |"]
+              "It retains the original equally weighted scenario-service contrast.",
+              "Exact parent sign-flip p-values assume clusterwise sign exchangeability;",
+              "Holm adjusts the five contrasts within each study. This is an exploratory",
+              "sensitivity analysis, not a retroactive change to the original protocol.", "",
+              "| Study | Contrast | Mean effect pp | Parent-clustered 95% CI pp | Holm p |",
+              "| --- | --- | ---: | --- | ---: |"]
     for label, row in result.items():
         for contrast, values in row["parent_clustered_sensitivity"].items():
             lo, hi = values["parent_clustered_ci"]
             lines.append(f"| {label} | {contrast} | {100*values['mean_scenario_service_effect']:+.2f} | "
-                         f"[{100*lo:+.2f}, {100*hi:+.2f}] |")
+                         f"[{100*lo:+.2f}, {100*hi:+.2f}] | {values['holm_adjusted_p']:.4f} |")
     writable_path(OUTPUT / "HISTORICAL_INTEGRITY.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
     return result
 

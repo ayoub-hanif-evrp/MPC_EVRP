@@ -1,0 +1,20 @@
+study: publication_guarded_runtime_validation_v1
+role: implementation_validation_development
+output: results/desaulniers/publication_development/runtime_validation_v1
+cases:
+  - [r101_21_25, 0.75, 0]
+  - [r101_21_50, 0.75, 0]
+  - [r101_21_100, 0.75, 0]
+methods: [MPC_COMPLETION, MPC_MCTS, MPC_ALNS, MPC_HGS, MPC_ACS]
+variants:
+  original: {}
+  guarded:
+    optimizer_initialization_policy: validated_incumbent_v1
+    coordination_policy: forced_retained_v1
+whole_worker_timeout_seconds: 3900
+interpretation:
+  purpose: Validate runtime corrections across all five unchanged search engines
+  independent_parent_cases: 1
+  uncertainty: Descriptive implementation checks; no generalization confidence interval
+  primary_acceptance: Zero physical or information violations and five-second compliance
+  service_claim: No general service improvement claim from this development sample

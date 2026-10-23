@@ -65,6 +65,18 @@ def load_json(path: str | Path):
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+def verify_text_digest(path: str | Path, expected: str) -> bool:
+    """Verify a Git text artifact, returning True only for proven newline transport."""
+    path = Path(path)
+    if sha256(path.read_bytes()).hexdigest() == expected:
+        return False
+    normalized = path.read_text(encoding="utf-8").encode("utf-8")
+    if expected in {sha256(normalized).hexdigest(),
+                    sha256(normalized.replace(b"\n", b"\r\n")).hexdigest()}:
+        return True
+    raise ValueError(f"Text artifact differs beyond line-ending transport: {path}")
+
+
 def benchmark_hashes() -> dict[str, str]:
     return {p.relative_to(DATASET).as_posix(): sha256(p.read_bytes()).hexdigest()
             for p in sorted(DATASET.rglob("*")) if p.is_file() and p.name != ".DS_Store"}

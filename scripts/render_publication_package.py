@@ -62,11 +62,15 @@ def architecture():
 def render():
     audits = load_json(DEVELOPMENT / "audits/historical_integrity.json")
     enhancement_audits = load_json(DEVELOPMENT / "audits/enhancement_integrity.json")
+    reference_inventory = load_json(DEVELOPMENT / "audits/reference_inventory.json")
+    runtime = load_json(DEVELOPMENT / "runtime_validation_v1/analysis.json")
+    runtime_manifest = load_json(DEVELOPMENT / "runtime_validation_v1/manifest.json")
     screen_manifest = load_json(DEVELOPMENT / "stable_screen_v1/manifest.json")
     screen = load_json(DEVELOPMENT / "stable_screen_v1/analysis.json")["summary"]
     reference = load_json(DEVELOPMENT / "reference_extension_v1/manifest.json")
     if (not all(r["all_independent_audits_passed"] for r in audits["studies"].values()) or
             screen_manifest["status"] != "complete" or
+            runtime_manifest["status"] != "complete" or
             reference["completed_instances"] != reference["planned_instances"]):
         raise ValueError("Publication package requires complete independent audits and development studies")
     if screen["promotion_eligible"]:
@@ -80,14 +84,21 @@ def render():
     copy_artifacts(ROOT / "results/desaulniers/robustness_v3", "robustness_v3")
     copy_artifacts(DEVELOPMENT / "stable_screen_v1/paper", "development/paper")
     copy_artifacts(DEVELOPMENT / "instrumented_v1", "diagnosis")
+    copy_artifacts(DEVELOPMENT / "runtime_validation_v1/paper", "runtime_validation/paper")
     shutil.copyfile(DEVELOPMENT / "stable_screen_v1/RESULTS.md",
                     writable_path(OUTPUT / "development/RESULTS.md"))
+    shutil.copyfile(DEVELOPMENT / "runtime_validation_v1/RESULTS.md",
+                    writable_path(OUTPUT / "runtime_validation/RESULTS.md"))
+    shutil.copyfile(DEVELOPMENT / "coordination_probe_v1/RESULTS.md",
+                    writable_path(OUTPUT / "coordination_efficiency.md"))
     shutil.copyfile(DEVELOPMENT / "reference_extension_v1/RESULTS.md",
                     writable_path(OUTPUT / "reference_coverage.md"))
     shutil.copyfile(DEVELOPMENT / "audits/HISTORICAL_INTEGRITY.md",
                     writable_path(OUTPUT / "validation.md"))
     shutil.copyfile(DEVELOPMENT / "audits/ENHANCEMENT_INTEGRITY.md",
                     writable_path(OUTPUT / "enhancement_validation.md"))
+    shutil.copyfile(DEVELOPMENT / "audits/REFERENCE_INVENTORY.md",
+                    writable_path(OUTPUT / "reference_inventory.md"))
     architecture()
     source_commit = subprocess.run(["git", "rev-parse", "HEAD"], cwd=ROOT, capture_output=True,
                                    text=True, check=True).stdout.strip()
@@ -316,8 +327,11 @@ The evidence inventory binds copied artifacts to file SHA-256 digests.
 ```powershell
 python -m pytest tests -q --basetemp results/.pytest_publication
 python -m scripts.audit_frozen_studies
+python -m scripts.audit_enhancement_studies
+python -m scripts.audit_reference_inventory
 python -m scripts.analyze_planning_losses
 python -m scripts.analyze_publication_pair --config configs/publication_stable_screen_v1.yaml
+python -m scripts.analyze_runtime_validation
 python -m scripts.render_publication_package
 ```
 
@@ -347,11 +361,14 @@ Stable V3 enhancement did not satisfy its frozen promotion rule.
 - [Original final tables and figures](original_final/RESULTS.md)
 - [Separate multi-seed robustness study](robustness_v3/RESULTS.md)
 - [Matched enhancement development results](development/RESULTS.md)
+- [All-engine matched runtime validation](runtime_validation/RESULTS.md)
+- [Exact coordination efficiency](coordination_efficiency.md)
 - [Methods and unchanged objective](METHODS.md)
 - [Experimental design and statistical limits](EXPERIMENTS.md)
 - [Failure analysis](FAILURE_ANALYSIS.md)
 - [Component ablations and unsuccessful experiments](ABLATIONS.md)
 - [Offline reference coverage](reference_coverage.md)
+- [Complete benchmark and DoD eligibility inventory](reference_inventory.md)
 - [Independent historical evidence audit](validation.md)
 - [Enhancement evidence audit](enhancement_validation.md)
 - [Methodological references](LITERATURE.md)
@@ -367,6 +384,74 @@ Generalization remains limited by the original sample sizes, the single-seed
 development screen, and the absence of a promoted enhancement evaluated on
 new independent instances. No optimality or universal superiority is claimed.
 """)
+    final_report = ["# Consolidated research completion report", "",
+                    "## A. Confirmed defects and remaining hypotheses", "",
+                    "Expired initialization could crash ALNS/ACS with an undefined incumbent",
+                    "and HGS with a null incumbent. The safe-initialization option converts",
+                    "that condition into the normal validated-constructor fallback. The",
+                    "original control option remains available. Historical physical traces",
+                    "show no hard-constraint or future-information violation.", "",
+                    "Equal-service customer replacement was observed at four of five",
+                    "instrumented missed-customer drops. It is allowed by the unchanged",
+                    "canonical objective and is an optimization limitation, not a plant",
+                    "defect. The tested retention policy did not earn promotion. Bounded",
+                    "recovery failures do not establish global physical infeasibility.", "",
+                    "## B. Changes", "",
+                    "Added observable-root/candidate diagnostics, explicit Stable V3",
+                    "search, safe initialization, forced-choice exact coordination, a",
+                    "separate MP first-feasible offline constructor, historical Git-source",
+                    "audits, parent-instance statistical sensitivity and reproducible",
+                    "Markdown/PNG reporting. Physics, objective, fleets, releases and",
+                    "historical evidence are preserved.", "",
+                    "## C. Verification", "",
+                    f"Regression suite: {test_count} tests, zero failures/errors. Historical",
+                    f"independent audits: {sum(s['audited_runs'] for s in audits['studies'].values())} raw runs.",
+                    f"Enhancement independent audits: {enhancement_audits['audited_runs']} raw runs.",
+                    "All completed online runs satisfy the recorded five-second decision",
+                    "limit, physical replay, unique-service and hidden-information checks.", "",
+                    "## D. Matched runtime implementation results", "",
+                    "The following table uses only the matched 30-run development",
+                    "validation (three sizes from one parent case). It is not a new",
+                    "independent enhanced-method final holdout.", "",
+                    "| Method | Original service % | Guarded service % | Original complete % | Guarded complete % | Customer change |",
+                    "| --- | ---: | ---: | ---: | ---: | ---: |"]
+    final_report.extend(f"| {method} | {100*r['original_service']:.2f} | {100*r['guarded_service']:.2f} | "
+                        f"{100*r['original_complete']:.2f} | {100*r['guarded_complete']:.2f} | {r['service_gain']:+d} |"
+                        for method, r in runtime["summary"].items())
+    final_report += ["", "[Detailed 25-, 50- and 100-customer results](runtime_validation/paper/size_results.md).",
+                     "The original final and multi-seed cohorts are separately reported",
+                     "in `primary_results.md` and `robustness_v3/RESULTS.md`.", "",
+                     "## E. Statistical reliability", "",
+                     f"Stable V3 screen: {screen['scenarios']} scenarios, {screen['base_instances']} benchmark files,",
+                     f"{screen['parent_instances']} underlying parent cases. Customer-weighted paired effect:",
+                     f"{100*screen['service_delta']:+.2f} pp, original file-clustered 95% interval",
+                     f"[{100*screen['service_ci'][0]:+.2f}, {100*screen['service_ci'][1]:+.2f}] pp; parent-clustered sensitivity",
+                     f"[{100*screen['parent_service_ci'][0]:+.2f}, {100*screen['parent_service_ci'][1]:+.2f}] pp.",
+                     "Historical sensitivity uses parent sign-flip tests with Holm adjustment",
+                     "for five contrasts. All supplemental development analyses remain",
+                     "exploratory. A single parent in runtime validation cannot establish",
+                     "general service improvement or noninferiority.", "",
+                     "## F. Deliverables and reproduction", "",
+                     f"Benchmark parsing/arcs: {reference_inventory['instances']}/168. Full-service physical",
+                     f"reference witnesses: {reference_inventory['physically_witnessed']}/168; unresolved:",
+                     f"{reference_inventory['unresolved']}. Historical reference policy still has 144 instances.",
+                     "Exact source revisions, raw SHA-256 manifests, independently replayed",
+                     "witnesses, failure records, tests, figures and tables are retained.",
+                     "`artifact_inventory.json` lists the paper artifacts and their hashes.",
+                     "See `REPRODUCTION.md` for commands and historical source checks.", "",
+                     "## G. Recommendation and limits", "",
+                     "Retain the original five search engines for service-performance claims.",
+                     "Use validated-incumbent initialization fallback for robust execution.",
+                     "Forced retained-route coordination is exact on supported inputs;"]
+    final_report += ["its runtime measurements and any service changes are reported in the",
+                     "matched validation. Stable V3, Recovery V2, generic LP fallback and",
+                     "depot waiting/reserve policies remain experimental. The package supports",
+                     "manuscript preparation of the original comparison and the measured",
+                     "engineering/negative findings. It does not support a claim that a new",
+                     "optimizer universally improves service or is optimal. No enhanced",
+                     "independent final holdout was opened because the frozen selection",
+                     "criterion failed.", ""]
+    write("FINAL_REPORT.md", "\n".join(final_report))
     inventory = []
     for path in sorted(OUTPUT.rglob("*")):
         if not path.is_file() or path.name == "artifact_inventory.json":
