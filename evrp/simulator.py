@@ -13,7 +13,7 @@ from .continuity import (assert_unique_routes, with_soft_incumbent, reserved_cus
                          route_observation, service_prefix, service_tail)
 from .coordinator import coordinate
 from .instance import Instance
-from .model import Action, EPS, Observation, Transition, transition
+from .model import Action, EPS, InfeasibleAction, Observation, Transition, transition
 from .mpc import MPCConfig, MPCPlanningProblem, PlanningResult
 from .observation import get_agent_observation, initial_global_state
 from .planning_budget import PlanningDeadlineExceeded, remaining_time, reset_deadline, set_deadline
@@ -53,12 +53,15 @@ class SimulationConfig:
     candidate_position_limit: int = 3
     rollout_regret_k: int = 2
     engineering_watchdog_seconds: float | None = None
+    dispatch_policy: str = "original"
 
     def __post_init__(self):
         if self.algorithm not in ALGORITHMS or self.workers < 1 or self.max_events < 1:
             raise ValueError("Invalid simulation configuration")
         if self.trace_level not in {"none", "summary", "full"}:
             raise ValueError("Unknown trace level")
+        if self.dispatch_policy not in {"original", "depot_window_wait_v1"}:
+            raise ValueError("Unknown dispatch policy")
         if self.fleet_mode != "fixed_reference":
             raise ValueError("Only the fixed K_ref fleet is supported")
         if self.route_continuity and self.trace_level == "none":
@@ -154,6 +157,26 @@ def idle_proposal(vehicle, observation, config):
     # Sleep until the latest safe escape, interruptibly on observable events.
     problem = MPCPlanningProblem(observation, vehicle, replace(config, max_idle_wait=0))
     return problem.proposal((problem.fallback(problem.initial),))
+
+
+def depot_window_wait_proposal(vehicle, proposal, observation, mpc_config):
+    """Move unavoidable pre-service waiting to the depot, retaining the soft route."""
+    if (vehicle.departed or vehicle.location.kind != "d" or
+            proposal.first.kind != "serve" or remaining_time() < 0.02):
+        return None
+    try:
+        first = transition(vehicle, proposal.first, observation)
+    except InfeasibleAction:
+        return None
+    delay = first.waiting_time
+    if delay <= EPS:
+        return None
+    from .repair import route_proposal
+    try:
+        return route_proposal(vehicle, (Action("wait", wait_duration=delay),) + proposal.actions,
+                              observation, mpc_config)
+    except PlanningDeadlineExceeded:
+        return None
 
 
 def optimization_root_hash(observation, origins, committed, tails):
@@ -559,6 +582,15 @@ class EventDrivenSimulator:
                         deadline_fallback = True
                     final_validation_seconds = perf_counter() - validation_started
                     final_validation_times.append(final_validation_seconds)
+                    deferred = {}
+                    if config.dispatch_policy == "depot_window_wait_v1" and event_triggered:
+                        for k in ready:
+                            if k not in validated:
+                                continue
+                            delayed = depot_window_wait_proposal(state.vehicles[k], validated[k],
+                                                                 observation, config.mpc)
+                            if delayed is not None:
+                                deferred[k] = delayed
                     timings.append(perf_counter()-started)
                     if event_triggered:
                         optimization_latencies.append(timings[-1])
@@ -573,7 +605,8 @@ class EventDrivenSimulator:
                     final_coverage = reserved_customers(routes)
                     distance_after_repair = sum(p.total_predicted_distance for p in validated.values())
                     vehicles_after_compaction = sum(origins[k].departed or bool(routes.get(k)) for k in origins)
-                    selected = {k: validated.get(k) or idle_proposal(state.vehicles[k], observation, config.mpc)
+                    selected = {k: deferred.get(k) or validated.get(k) or
+                                idle_proposal(state.vehicles[k], observation, config.mpc)
                                 for k in ready}
                     tails = {k: a for k, a in routes.items() if k not in ready and a} if config.route_continuity else {}
                     measured = list(zip(ready, results))

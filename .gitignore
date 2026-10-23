@@ -80,6 +80,11 @@ logs/
 !/results/desaulniers/robustness_v3/RESULTS.md
 !/results/desaulniers/robustness_v3/*.png
 !/results/desaulniers/robustness_v3/raw/*.json.gz
+!/results/desaulniers/enhancement_development/diagnostics/*.csv
+!/results/desaulniers/enhancement_development/diagnostics/*.md
+!/results/desaulniers/enhancement_development/dispatch_pilot/*.json
+!/results/desaulniers/enhancement_development/dispatch_pilot/*.md
+!/results/desaulniers/enhancement_development/dispatch_pilot/raw/*.json.gz
 !/results/desaulniers/robustness_v2/raw/*.json.gz
 /results/.pytest_work/
 /results/t[0-9]*/

@@ -1,0 +1,272 @@
+{
+  "completed_runs": 12,
+  "planned_runs": 12,
+  "protocol_identifier": "a35fae0b1bcd6d399670eafd1abfd035458676943582eed9ed77538d382d6ad4",
+  "records": [
+    {
+      "complete_service": false,
+      "customers_served": 23,
+      "dynamicity": 0.75,
+      "independent_audit": {
+        "no_future_information": true,
+        "safe_returns": true,
+        "trace_replay": true,
+        "unique_service": true
+      },
+      "instance": "rc101_21_25",
+      "k_ref": 7,
+      "max_optimization_latency": 0.011522199958562851,
+      "method": "MPC_COMPLETION",
+      "raw": "results/desaulniers/enhancement_development/dispatch_pilot/raw/rc101_21_25_0.75_0_MPC_COMPLETION_original_8e44b9488c93.json.gz",
+      "raw_sha256": "ceee4f9e284e159db14483e37d15bf5f561d82ccd2c4ad038c6afa1cab23dc3d",
+      "scenario_id": "68cad7382125e0e5daedacff65a16a2241286f9aaaa5e355f723c32f1e7dbe8d",
+      "seed": 0,
+      "size": 25,
+      "variant": "original",
+      "worker_wall_seconds": 0.2554287000093609
+    },
+    {
+      "complete_service": false,
+      "customers_served": 23,
+      "dynamicity": 0.75,
+      "independent_audit": {
+        "no_future_information": true,
+        "safe_returns": true,
+        "trace_replay": true,
+        "unique_service": true
+      },
+      "instance": "rc101_21_25",
+      "k_ref": 7,
+      "max_optimization_latency": 0.013650999986566603,
+      "method": "MPC_COMPLETION",
+      "raw": "results/desaulniers/enhancement_development/dispatch_pilot/raw/rc101_21_25_0.75_0_MPC_COMPLETION_depot_window_wait_v1_012ff70edd5e.json.gz",
+      "raw_sha256": "3fa6adb0bc2b2f600f0f4868cb9338ea1a0ebf623516cd4a6852c5c50e0899f1",
+      "scenario_id": "68cad7382125e0e5daedacff65a16a2241286f9aaaa5e355f723c32f1e7dbe8d",
+      "seed": 0,
+      "size": 25,
+      "variant": "depot_window_wait_v1",
+      "worker_wall_seconds": 0.2616297999629751
+    },
+    {
+      "complete_service": false,
+      "customers_served": 22,
+      "dynamicity": 0.75,
+      "independent_audit": {
+        "no_future_information": true,
+        "safe_returns": true,
+        "trace_replay": true,
+        "unique_service": true
+      },
+      "instance": "rc101_21_25",
+      "k_ref": 7,
+      "max_optimization_latency": 0.0964789999416098,
+      "method": "MPC_ALNS",
+      "raw": "results/desaulniers/enhancement_development/dispatch_pilot/raw/rc101_21_25_0.75_0_MPC_ALNS_original_f34edfdcf86b.json.gz",
+      "raw_sha256": "8b20f0d7cf046ab03cbb01580aa26b629ff07f791b098e04d2f69dd64033c997",
+      "scenario_id": "68cad7382125e0e5daedacff65a16a2241286f9aaaa5e355f723c32f1e7dbe8d",
+      "seed": 0,
+      "size": 25,
+      "variant": "original",
+      "worker_wall_seconds": 1.8849719000281766
+    },
+    {
+      "complete_service": false,
+      "customers_served": 21,
+      "dynamicity": 0.75,
+      "independent_audit": {
+        "no_future_information": true,
+        "safe_returns": true,
+        "trace_replay": true,
+        "unique_service": true
+      },
+      "instance": "rc101_21_25",
+      "k_ref": 7,
+      "max_optimization_latency": 0.09781599999405444,
+      "method": "MPC_ALNS",
+      "raw": "results/desaulniers/enhancement_development/dispatch_pilot/raw/rc101_21_25_0.75_0_MPC_ALNS_depot_window_wait_v1_1d5375f324ca.json.gz",
+      "raw_sha256": "bb32a093d434c486f7c5a5be3985decf6ce075bf0e53d5965425b839d69eed02",
+      "scenario_id": "68cad7382125e0e5daedacff65a16a2241286f9aaaa5e355f723c32f1e7dbe8d",
+      "seed": 0,
+      "size": 25,
+      "variant": "depot_window_wait_v1",
+      "worker_wall_seconds": 1.9459714000113308
+    },
+    {
+      "complete_service": false,
+      "customers_served": 48,
+      "dynamicity": 0.5,
+      "independent_audit": {
+        "no_future_information": true,
+        "safe_returns": true,
+        "trace_replay": true,
+        "unique_service": true
+      },
+      "instance": "r101_21_50",
+      "k_ref": 12,
+      "max_optimization_latency": 0.038038099999539554,
+      "method": "MPC_COMPLETION",
+      "raw": "results/desaulniers/enhancement_development/dispatch_pilot/raw/r101_21_50_0.5_0_MPC_COMPLETION_original_7f7ae8488297.json.gz",
+      "raw_sha256": "40a2ae04f642f3a769146087f7c972f82307f06cafb39ce3d0983e575e4b874d",
+      "scenario_id": "dbe8c5119c06ad2d2e90ee95e2f2380ca026169fe47f0ff60933b42ffc83879f",
+      "seed": 0,
+      "size": 50,
+      "variant": "original",
+      "worker_wall_seconds": 0.7721292999340221
+    },
+    {
+      "complete_service": false,
+      "customers_served": 48,
+      "dynamicity": 0.5,
+      "independent_audit": {
+        "no_future_information": true,
+        "safe_returns": true,
+        "trace_replay": true,
+        "unique_service": true
+      },
+      "instance": "r101_21_50",
+      "k_ref": 12,
+      "max_optimization_latency": 0.03851580002810806,
+      "method": "MPC_COMPLETION",
+      "raw": "results/desaulniers/enhancement_development/dispatch_pilot/raw/r101_21_50_0.5_0_MPC_COMPLETION_depot_window_wait_v1_7499676a1928.json.gz",
+      "raw_sha256": "db68cb8c03a30fc1ea4288bc010e440914f24bedea8099797aa68fcf416f9d10",
+      "scenario_id": "dbe8c5119c06ad2d2e90ee95e2f2380ca026169fe47f0ff60933b42ffc83879f",
+      "seed": 0,
+      "size": 50,
+      "variant": "depot_window_wait_v1",
+      "worker_wall_seconds": 0.7931399999652058
+    },
+    {
+      "complete_service": false,
+      "customers_served": 47,
+      "dynamicity": 0.5,
+      "independent_audit": {
+        "no_future_information": true,
+        "safe_returns": true,
+        "trace_replay": true,
+        "unique_service": true
+      },
+      "instance": "r101_21_50",
+      "k_ref": 12,
+      "max_optimization_latency": 0.3879543000366539,
+      "method": "MPC_ALNS",
+      "raw": "results/desaulniers/enhancement_development/dispatch_pilot/raw/r101_21_50_0.5_0_MPC_ALNS_original_63d05786e972.json.gz",
+      "raw_sha256": "df985648b8469ce88f8149c617ced3dfc0f30ebe807374dc074a118e899c2c76",
+      "scenario_id": "dbe8c5119c06ad2d2e90ee95e2f2380ca026169fe47f0ff60933b42ffc83879f",
+      "seed": 0,
+      "size": 50,
+      "variant": "original",
+      "worker_wall_seconds": 7.690597799955867
+    },
+    {
+      "complete_service": false,
+      "customers_served": 49,
+      "dynamicity": 0.5,
+      "independent_audit": {
+        "no_future_information": true,
+        "safe_returns": true,
+        "trace_replay": true,
+        "unique_service": true
+      },
+      "instance": "r101_21_50",
+      "k_ref": 12,
+      "max_optimization_latency": 0.38325209997128695,
+      "method": "MPC_ALNS",
+      "raw": "results/desaulniers/enhancement_development/dispatch_pilot/raw/r101_21_50_0.5_0_MPC_ALNS_depot_window_wait_v1_8e1b9c6645fc.json.gz",
+      "raw_sha256": "f34cb5767ccd6f0109c86ff07db9f2eeadf20c8c7d48f4e035403d3830a7b8a8",
+      "scenario_id": "dbe8c5119c06ad2d2e90ee95e2f2380ca026169fe47f0ff60933b42ffc83879f",
+      "seed": 0,
+      "size": 50,
+      "variant": "depot_window_wait_v1",
+      "worker_wall_seconds": 7.621387299965136
+    },
+    {
+      "complete_service": false,
+      "customers_served": 82,
+      "dynamicity": 0.75,
+      "independent_audit": {
+        "no_future_information": true,
+        "safe_returns": true,
+        "trace_replay": true,
+        "unique_service": true
+      },
+      "instance": "r101_21_100",
+      "k_ref": 20,
+      "max_optimization_latency": 0.041848599910736084,
+      "method": "MPC_COMPLETION",
+      "raw": "results/desaulniers/enhancement_development/dispatch_pilot/raw/r101_21_100_0.75_0_MPC_COMPLETION_original_0603a50e9397.json.gz",
+      "raw_sha256": "ca2e71929af13eb9c5f756d5358fbe17a58055125b5b085a5aceb82749dbaa7a",
+      "scenario_id": "afe1b303924fe654add5f46fe9f3b6f966a31c66af881fc787ceabad3bf5efdf",
+      "seed": 0,
+      "size": 100,
+      "variant": "original",
+      "worker_wall_seconds": 2.47036030003801
+    },
+    {
+      "complete_service": false,
+      "customers_served": 82,
+      "dynamicity": 0.75,
+      "independent_audit": {
+        "no_future_information": true,
+        "safe_returns": true,
+        "trace_replay": true,
+        "unique_service": true
+      },
+      "instance": "r101_21_100",
+      "k_ref": 20,
+      "max_optimization_latency": 0.04163440002594143,
+      "method": "MPC_COMPLETION",
+      "raw": "results/desaulniers/enhancement_development/dispatch_pilot/raw/r101_21_100_0.75_0_MPC_COMPLETION_depot_window_wait_v1_2b2ae8479841.json.gz",
+      "raw_sha256": "e5153e35118db92c69b35bf74641a459ef8df77b6639022331f5db472d925562",
+      "scenario_id": "afe1b303924fe654add5f46fe9f3b6f966a31c66af881fc787ceabad3bf5efdf",
+      "seed": 0,
+      "size": 100,
+      "variant": "depot_window_wait_v1",
+      "worker_wall_seconds": 2.538951300084591
+    },
+    {
+      "complete_service": false,
+      "customers_served": 94,
+      "dynamicity": 0.75,
+      "independent_audit": {
+        "no_future_information": true,
+        "safe_returns": true,
+        "trace_replay": true,
+        "unique_service": true
+      },
+      "instance": "r101_21_100",
+      "k_ref": 20,
+      "max_optimization_latency": 0.6899643000215292,
+      "method": "MPC_ALNS",
+      "raw": "results/desaulniers/enhancement_development/dispatch_pilot/raw/r101_21_100_0.75_0_MPC_ALNS_original_fb0c60be7da3.json.gz",
+      "raw_sha256": "8d86f5937ca6a1851f7fa9b5d4b22e22fb215df2ba234175027e0211b8589334",
+      "scenario_id": "afe1b303924fe654add5f46fe9f3b6f966a31c66af881fc787ceabad3bf5efdf",
+      "seed": 0,
+      "size": 100,
+      "variant": "original",
+      "worker_wall_seconds": 40.21862629998941
+    },
+    {
+      "complete_service": false,
+      "customers_served": 94,
+      "dynamicity": 0.75,
+      "independent_audit": {
+        "no_future_information": true,
+        "safe_returns": true,
+        "trace_replay": true,
+        "unique_service": true
+      },
+      "instance": "r101_21_100",
+      "k_ref": 20,
+      "max_optimization_latency": 0.6615252000046894,
+      "method": "MPC_ALNS",
+      "raw": "results/desaulniers/enhancement_development/dispatch_pilot/raw/r101_21_100_0.75_0_MPC_ALNS_depot_window_wait_v1_7168bf96fe0e.json.gz",
+      "raw_sha256": "0f7b9574c25c25ab29b14c8c3f96b53474bce135316852e56f2977f915256e19",
+      "scenario_id": "afe1b303924fe654add5f46fe9f3b6f966a31c66af881fc787ceabad3bf5efdf",
+      "seed": 0,
+      "size": 100,
+      "variant": "depot_window_wait_v1",
+      "worker_wall_seconds": 43.67915290000383
+    }
+  ],
+  "status": "complete"
+}

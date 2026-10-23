@@ -3,11 +3,11 @@ from dataclasses import replace
 import pytest
 
 from evrp.instance import Infrastructure, Instance, Location, Parameters, load_instance
-from evrp.model import Action
+from evrp.model import Action, Observation
 from evrp.mpc import MPCConfig, MPCPlanningProblem, PlanningResult
-from evrp.reference import ReferenceConfig, published_full_reference
+from evrp.reference import ReferenceConfig, initial_vehicle, published_full_reference
 from evrp.scenario import DynamicScenario, METHOD, generate
-from evrp.simulator import EventDrivenSimulator, SimulationConfig
+from evrp.simulator import EventDrivenSimulator, SimulationConfig, depot_window_wait_proposal
 from evrp.storage import BENCHMARK
 
 
@@ -37,6 +37,23 @@ def synthetic(release=5, fleet=1):
     sim = EventDrivenSimulator(instance, scenario, SimulationConfig(algorithm="INDEPENDENT_MPC_MCTS"))
     sim.agents = {k: ScriptAgent() for k in sim.agents}
     return sim
+
+
+def test_depot_window_wait_retains_feasible_route():
+    sim = synthetic(release=0)
+    instance = sim.instance
+    state = initial_vehicle(instance)
+    observation = Observation(0, instance.infrastructure, instance.customers)
+    config = MPCConfig()
+    original = MPCPlanningProblem(observation, state, config).proposal((Action("serve", "A"),))
+    delayed = depot_window_wait_proposal(state, original, observation, config)
+    assert delayed is not None
+    assert delayed.actions[0] == Action("wait", wait_duration=19)
+    assert delayed.actions[1:] == original.actions
+    assert delayed.predicted_service_count == original.predicted_service_count
+    assert delayed.total_predicted_distance == original.total_predicted_distance
+    later = replace(state, time=20)
+    assert depot_window_wait_proposal(later, original, observation, config) is None
 
 
 def test_busy_vehicle_waiting_for_window_not_interrupted():

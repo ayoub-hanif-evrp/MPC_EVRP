@@ -71,7 +71,8 @@ def simulation_config(config: dict) -> SimulationConfig:
                             fleet_mcts_branch_limit=config.get("fleet_mcts_branch_limit", 12),
                             candidate_position_limit=config.get("candidate_position_limit", 3),
                             rollout_regret_k=config.get("rollout_regret_k", 2),
-                            engineering_watchdog_seconds=config.get("engineering_watchdog_seconds"))
+                            engineering_watchdog_seconds=config.get("engineering_watchdog_seconds"),
+                            dispatch_policy=config.get("dispatch_policy", "original"))
 
 
 def results_path(path):
