@@ -99,6 +99,12 @@ logs/
 !/results/desaulniers/enhancement_development/partial_reference_witnesses/*.csv
 !/results/desaulniers/enhancement_development/partial_reference_witnesses/*.md
 !/results/desaulniers/enhancement_development/partial_reference_witnesses/references/*.json
+!/results/desaulniers/publication_development/*.md
+!/results/desaulniers/publication_development/diagnostics/*.csv
+!/results/desaulniers/publication_development/diagnostics/*.md
+!/results/desaulniers/publication_development/reserve_pilot/*.json
+!/results/desaulniers/publication_development/reserve_pilot/*.md
+!/results/desaulniers/publication_development/reserve_pilot/raw/*.json.gz
 !/results/desaulniers/robustness_v2/raw/*.json.gz
 /results/.pytest_work/
 /results/t[0-9]*/
