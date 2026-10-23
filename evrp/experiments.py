@@ -61,6 +61,7 @@ def simulation_config(config: dict) -> SimulationConfig:
                             symmetry_reuse=config.get("symmetry_reuse", False),
                             fleet_mode=config.get("fleet_mode", "fixed_reference"),
                             diagnostics=config.get("diagnostics", False),
+                            planning_trace=config.get("planning_trace", False),
                             route_continuity=config.get("route_continuity", True),
                             regret_repair=config.get("regret_repair", True),
                             lns_iterations=config.get("lns_iterations", 100),

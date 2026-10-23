@@ -9,6 +9,7 @@ from .instance import distance, energy, travel_time
 from .model import EPS, Action, Observation, VehicleState, escape, transition
 from .mpc import MPCConfig, MPCPlanningProblem, MPCProposal
 from .planning_budget import PlanningDeadlineExceeded, check_deadline, remaining_time
+from .planning_trace import current_trace
 from .repair import build_route, route_proposal
 from .optimizers.objective import FleetObjectiveEvaluator
 
@@ -288,6 +289,16 @@ class _FleetProblem:
 
     def _screen_gap_detail(self, k: int, sequence: tuple[str, ...], customer_id: str,
                            position: int) -> tuple[bool, float, str]:
+        result = self._screen_gap_detail_untraced(k, sequence, customer_id, position)
+        trace = current_trace()
+        if trace is not None:
+            trace.record("insertion_screen", vehicle=k, sequence=sequence,
+                         customer=customer_id, position=position, passed=result[0],
+                         slack=result[1], reason=result[2])
+        return result
+
+    def _screen_gap_detail_untraced(self, k: int, sequence: tuple[str, ...], customer_id: str,
+                                    position: int) -> tuple[bool, float, str]:
         p = self.observation.infrastructure.parameters
         customer = self.observation.customer_by_id[customer_id]
         profile = self._screen_profile(k, sequence)
@@ -392,15 +403,30 @@ class _FleetProblem:
         self._check_search_time()
         check_deadline()
         key = (k, sequence)
+        trace = current_trace()
+        cached = key in self.decoded
+        began = perf_counter() if trace is not None else None
         if key not in self.decoded:
             self.exact_decoded_options += 1
             if not sequence:
                 self.decoded[key] = ((), None)
             else:
-                actions = build_route(self.origins[k], sequence, self.observation, self.config)
+                try:
+                    actions = build_route(self.origins[k], sequence, self.observation, self.config)
+                except PlanningDeadlineExceeded:
+                    if trace is not None:
+                        trace.record("route_decode", vehicle=k, sequence=sequence,
+                                     outcome="timeout", cached=False)
+                    raise
                 proposal = (route_proposal(self.origins[k], actions, self.observation, self.config)
                             if actions is not None else None)
                 self.decoded[key] = (actions, proposal) if proposal is not None else None
+        if trace is not None:
+            result = self.decoded[key]
+            trace.record("route_decode", vehicle=k, sequence=sequence, cached=cached,
+                         outcome="feasible" if result is not None else "bounded_decoder_failure",
+                         seconds=perf_counter() - began,
+                         actions=result[0] if result is not None else ())
         return self.decoded[key]
 
     def initial(self, routes: dict[int, tuple[Action, ...]]) -> FleetPlan:
@@ -423,6 +449,9 @@ class _FleetProblem:
             raise ValueError("Duplicate customer in fleet incumbent")
         self.initial_owners = {c: k for index, k in enumerate(self.ids) for c in sequences[index]}
         score, components = self._score(sequences, actions, costs)
+        trace = current_trace()
+        if trace is not None:
+            trace.record("incumbent", sequences=sequences, score=score)
         return FleetPlan(tuple(sequences), tuple(actions), tuple(costs), tuple(proposals), score, components)
 
     def change(self, plan: FleetPlan, changes: dict[int, tuple[str, ...]],
@@ -445,6 +474,10 @@ class _FleetProblem:
         if len(set(owned)) != len(owned) or any(c not in self.pending for c in owned):
             return None
         score, components = self._score(sequences, actions, costs)
+        trace = current_trace()
+        if trace is not None:
+            trace.record("fleet_candidate", sequences=sequences, score=score,
+                         action_kind=action_kind)
         return FleetPlan(tuple(sequences), tuple(actions), tuple(costs), tuple(proposals),
                          score, components, action_kind)
 

@@ -42,6 +42,7 @@ class SimulationConfig:
     symmetry_reuse: bool = False
     fleet_mode: str = "fixed_reference"
     diagnostics: bool = False
+    planning_trace: bool = False
     route_continuity: bool = True
     regret_repair: bool = True
     lns_iterations: int = 100
@@ -230,6 +231,7 @@ class EventDrivenSimulator:
         from .fleet_mcts import construct_fleet_root, solve_fleet_mcts
         from .optimizers import OptimizationContext, create_optimizer
         from .diagnostics import ServiceDiagnostics
+        from .planning_trace import PlanningTrace, start_trace, reset_trace
         state, instance, config = self.state, self.instance, self.config
         events, steps, decisions, searches, timings = [], [], [], [], []
         tails, coverages, local_times = {}, [], []
@@ -251,6 +253,7 @@ class EventDrivenSimulator:
         seen_states = set()
         previous_root_hash = None
         previous_root_routes = None
+        trace_token = None
         event_triggered = config.algorithm in COMMON_CONSTRUCTOR_ALGORITHMS
         diagnostic = ServiceDiagnostics(instance, self.scenario) if config.diagnostics else None
         pool = ProcessPoolExecutor(max_workers=config.workers) if config.parallel_agents else None
@@ -301,6 +304,7 @@ class EventDrivenSimulator:
                 if not ready and not state.busy:
                     break
                 skip_optimization = False
+                invalid_tails = {}
                 trigger_reason = None
                 root_hash = None
                 if event_triggered and (ready or revealed):
@@ -319,6 +323,7 @@ class EventDrivenSimulator:
                     if invalid:
                         reasons.append("suffix_infeasible")
                         for k in invalid:
+                            invalid_tails[k] = tails[k]
                             tails.pop(k)
                     uncovered = (set(observation.customer_by_id) -
                                  reserved_customers(tails) - state.served_customers)
@@ -408,6 +413,13 @@ class EventDrivenSimulator:
                     origins = {k: state.busy[k].after if k in state.busy else v
                                for k, v in state.vehicles.items()
                                if not (state.busy[k].after if k in state.busy else v).finished}
+                    planning_evidence = None
+                    if config.planning_trace:
+                        planning_evidence = PlanningTrace(
+                            observation, dict(origins),
+                            {k: step.action for k, step in state.busy.items()},
+                            dict(tails), invalid_tails)
+                        trace_token = start_trace(planning_evidence)
                     if config.route_continuity:
                         assert_unique_routes(tails)
                     frozen = {k: a for k, a in tails.items() if k not in ready and a}
@@ -460,6 +472,8 @@ class EventDrivenSimulator:
                     if any(p is None for p in fallback_validated.values()):
                         raise RuntimeError("Selected incumbent is not replay-feasible")
                     coordinated_coverage = reserved_customers(routes)
+                    if planning_evidence is not None:
+                        planning_evidence.stage("constructor", routes)
                     retained_service = len(coordinated_coverage)
                     constructor_service = retained_service
                     constructor_seconds = 0.0
@@ -558,6 +572,8 @@ class EventDrivenSimulator:
                         except PlanningDeadlineExceeded:
                             deadline_events += 1
                     if config.algorithm in OPTIMIZER_ALGORITHMS:
+                        if planning_evidence is not None:
+                            planning_evidence.stage("optimizer", routes)
                         try:
                             context = OptimizationContext(
                                 observation=observation, origins=origins,
@@ -579,6 +595,8 @@ class EventDrivenSimulator:
                         except PlanningDeadlineExceeded:
                             deadline_events += 1
                     # Reconcile all future suffixes before dispatching any physical action.
+                    if planning_evidence is not None:
+                        planning_evidence.stage("validation", routes)
                     assert_unique_routes(routes)
                     validation_started = perf_counter()
                     deadline_fallback = False
@@ -754,6 +772,10 @@ class EventDrivenSimulator:
                         decision["deadline_fallback"] = deadline_fallback
                     if config.trace_level == "full":
                         decision["candidates"] = {str(k): [asdict(p) for p in r.candidates] for k, r in plans.items()}
+                    if planning_evidence is not None:
+                        decision["planning_trace"] = asdict(planning_evidence)
+                        reset_trace(trace_token)
+                        trace_token = None
                     decisions.append(decision)
                     for k, r in measured:
                         simulations += r.statistics.iterations
@@ -796,6 +818,8 @@ class EventDrivenSimulator:
             else:
                 raise RuntimeError("Simulation event guard exceeded")
         finally:
+            if trace_token is not None:
+                reset_trace(trace_token)
             set_deadline(None)
             if pool:
                 pool.shutdown(wait=True, cancel_futures=True)

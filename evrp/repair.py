@@ -17,6 +17,7 @@ from .model import (EPS, Action, InfeasibleAction, InfeasibilityReason,
                     Observation, VehicleState, escape, transition)
 from .mpc import MPCConfig, MPCPlanningProblem, MPCProposal, action_key
 from .planning_budget import PlanningDeadlineExceeded, check_deadline
+from .planning_trace import current_trace
 from .reference import full_charge_connection
 
 
@@ -104,6 +105,11 @@ def _build_route_original(state: VehicleState, customer_sequence: tuple[str, ...
             actions += (goal,)
             continue
         except InfeasibleAction as error:
+            trace = current_trace()
+            if trace is not None:
+                trace.record("direct_service_rejection", vehicle=state.id,
+                             sequence=sequence, customer=customer, reason=error.reason.value,
+                             time=predicted.vehicle.time, battery=predicted.vehicle.battery)
             if error.reason not in energy_failures:
                 return _decode_one_station(state, sequence, observation, config) if actions else None
 
@@ -125,6 +131,11 @@ def _build_route_original(state: VehicleState, customer_sequence: tuple[str, ...
         else:
             connection = full_charge_connection(predicted.vehicle, goal, observation)
             if connection is None:
+                trace = current_trace()
+                if trace is not None:
+                    trace.record("charging_connection_failure", vehicle=state.id,
+                                 sequence=sequence, customer=customer,
+                                 interpretation="bounded_constructor_failure")
                 return _decode_one_station(state, sequence, observation, config)
             bridge = tuple(step.action for step in connection)
             try:
