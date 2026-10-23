@@ -1,0 +1,443 @@
+{
+  "dataset_sha256": "02011e3273fef190bd61cc223b4504d8265ca5be30ccf02a34f674f27d58741e",
+  "studies": {
+    "corrected_final": {
+      "all_independent_audits_passed": true,
+      "audited_runs": 270,
+      "base_instances": 18,
+      "current_physics_matches_historical": true,
+      "matching_source_files": 42,
+      "methods": {
+        "MPC_ACS": {
+          "complete_scenarios": 36,
+          "conditional_efficiency": {
+            "common_complete_scenarios": 19,
+            "total_charging_time": 333.8238157894737,
+            "total_charging_visits": 8.736842105263158,
+            "total_distance": 852.1547368421053,
+            "total_energy_charged": 333.8238157894737,
+            "vehicles_activated": 3.3684210526315788
+          },
+          "customer_opportunities": 3150,
+          "customers_served": 3093,
+          "max_decision_seconds": 4.87077469995711,
+          "scenarios": 54,
+          "service": 0.981904761904762
+        },
+        "MPC_ALNS": {
+          "complete_scenarios": 44,
+          "conditional_efficiency": {
+            "common_complete_scenarios": 19,
+            "total_charging_time": 473.5471052631579,
+            "total_charging_visits": 9.526315789473685,
+            "total_distance": 978.5915789473685,
+            "total_energy_charged": 473.5471052631579,
+            "vehicles_activated": 2.8947368421052633
+          },
+          "customer_opportunities": 3150,
+          "customers_served": 3123,
+          "max_decision_seconds": 4.8445298000006005,
+          "scenarios": 54,
+          "service": 0.9914285714285714
+        },
+        "MPC_COMPLETION": {
+          "complete_scenarios": 19,
+          "conditional_efficiency": {
+            "common_complete_scenarios": 19,
+            "total_charging_time": 478.6197368421052,
+            "total_charging_visits": 11.31578947368421,
+            "total_distance": 1011.3510526315789,
+            "total_energy_charged": 478.6197368421052,
+            "vehicles_activated": 3.3684210526315788
+          },
+          "customer_opportunities": 3150,
+          "customers_served": 2904,
+          "max_decision_seconds": 2.044883199967444,
+          "scenarios": 54,
+          "service": 0.9219047619047619
+        },
+        "MPC_HGS": {
+          "complete_scenarios": 38,
+          "conditional_efficiency": {
+            "common_complete_scenarios": 19,
+            "total_charging_time": 541.2797368421053,
+            "total_charging_visits": 11.578947368421053,
+            "total_distance": 1088.2347368421051,
+            "total_energy_charged": 541.2797368421053,
+            "vehicles_activated": 3.210526315789474
+          },
+          "customer_opportunities": 3150,
+          "customers_served": 3115,
+          "max_decision_seconds": 4.788091100053862,
+          "scenarios": 54,
+          "service": 0.9888888888888889
+        },
+        "MPC_MCTS": {
+          "complete_scenarios": 27,
+          "conditional_efficiency": {
+            "common_complete_scenarios": 19,
+            "total_charging_time": 575.1902631578947,
+            "total_charging_visits": 12.105263157894736,
+            "total_distance": 1081.4557894736843,
+            "total_energy_charged": 575.1902631578947,
+            "vehicles_activated": 3.263157894736842
+          },
+          "customer_opportunities": 3150,
+          "customers_served": 3024,
+          "max_decision_seconds": 4.778918499941938,
+          "scenarios": 54,
+          "service": 0.96
+        }
+      },
+      "paired_scenarios": 54,
+      "parent_clustered_sensitivity": {
+        "MPC_ACS_vs_MPC_COMPLETION": {
+          "holm_adjusted_p": 0.15625,
+          "mean_scenario_service_effect": 0.06574074074074075,
+          "parent_cases": 6,
+          "parent_clustered_ci": [
+            0.024444444444444446,
+            0.11129629629629632
+          ],
+          "parent_sign_flip_p": 0.03125
+        },
+        "MPC_ALNS_vs_MPC_COMPLETION": {
+          "holm_adjusted_p": 0.1875,
+          "mean_scenario_service_effect": 0.07833333333333334,
+          "parent_cases": 6,
+          "parent_clustered_ci": [
+            0.025740740740740745,
+            0.13685185185185186
+          ],
+          "parent_sign_flip_p": 0.0625
+        },
+        "MPC_ALNS_vs_MPC_HGS": {
+          "holm_adjusted_p": 0.8125,
+          "mean_scenario_service_effect": 0.0007407407407407411,
+          "parent_cases": 6,
+          "parent_clustered_ci": [
+            -0.007222222222222221,
+            0.009074074074074075
+          ],
+          "parent_sign_flip_p": 0.8125
+        },
+        "MPC_HGS_vs_MPC_COMPLETION": {
+          "holm_adjusted_p": 0.15625,
+          "mean_scenario_service_effect": 0.0775925925925926,
+          "parent_cases": 6,
+          "parent_clustered_ci": [
+            0.02962962962962963,
+            0.13314814814814815
+          ],
+          "parent_sign_flip_p": 0.03125
+        },
+        "MPC_MCTS_vs_MPC_COMPLETION": {
+          "holm_adjusted_p": 0.4375,
+          "mean_scenario_service_effect": 0.047037037037037044,
+          "parent_cases": 6,
+          "parent_clustered_ci": [
+            0.006851851851851852,
+            0.09555555555555557
+          ],
+          "parent_sign_flip_p": 0.21875
+        }
+      },
+      "parent_instances": 6,
+      "protocol_identifier": "7df67351bba717cc1f9af9b9ca99b83ff0eb38925ca8ac7df154f906d8f7e228",
+      "source_commit": "380099c280da6d4c7d751137aca68d40cb9b3e96",
+      "source_sha256": "463e4043906ca513d9e11469f7ce4e2a781392558374f92a2ae606558f93c97a"
+    },
+    "development": {
+      "all_independent_audits_passed": true,
+      "audited_runs": 270,
+      "base_instances": 18,
+      "current_physics_matches_historical": true,
+      "matching_source_files": 41,
+      "methods": {
+        "MPC_ACS": {
+          "complete_scenarios": 33,
+          "conditional_efficiency": {
+            "common_complete_scenarios": 24,
+            "total_charging_time": 342.7862500416666,
+            "total_charging_visits": 9.458333333333334,
+            "total_distance": 1184.7266666666667,
+            "total_energy_charged": 342.7862500416666,
+            "vehicles_activated": 4.041666666666667
+          },
+          "customer_opportunities": 3150,
+          "customers_served": 3090,
+          "max_decision_seconds": 4.7916617000009865,
+          "scenarios": 54,
+          "service": 0.9809523809523809
+        },
+        "MPC_ALNS": {
+          "complete_scenarios": 39,
+          "conditional_efficiency": {
+            "common_complete_scenarios": 24,
+            "total_charging_time": 501.11770837500006,
+            "total_charging_visits": 10.166666666666666,
+            "total_distance": 1309.62875,
+            "total_energy_charged": 501.11770837500006,
+            "vehicles_activated": 4.041666666666667
+          },
+          "customer_opportunities": 3150,
+          "customers_served": 3117,
+          "max_decision_seconds": 4.83354360004887,
+          "scenarios": 54,
+          "service": 0.9895238095238095
+        },
+        "MPC_COMPLETION": {
+          "complete_scenarios": 28,
+          "conditional_efficiency": {
+            "common_complete_scenarios": 24,
+            "total_charging_time": 378.6601041666667,
+            "total_charging_visits": 11.791666666666666,
+            "total_distance": 1283.2229166666668,
+            "total_energy_charged": 378.6601041666667,
+            "vehicles_activated": 4.416666666666667
+          },
+          "customer_opportunities": 3150,
+          "customers_served": 2986,
+          "max_decision_seconds": 2.0176881999941543,
+          "scenarios": 54,
+          "service": 0.947936507936508
+        },
+        "MPC_HGS": {
+          "complete_scenarios": 39,
+          "conditional_efficiency": {
+            "common_complete_scenarios": 24,
+            "total_charging_time": 603.8179166666666,
+            "total_charging_visits": 12.583333333333334,
+            "total_distance": 1411.82625,
+            "total_energy_charged": 603.8179166666667,
+            "vehicles_activated": 3.9583333333333335
+          },
+          "customer_opportunities": 3150,
+          "customers_served": 3112,
+          "max_decision_seconds": 4.826025299960747,
+          "scenarios": 54,
+          "service": 0.9879365079365079
+        },
+        "MPC_MCTS": {
+          "complete_scenarios": 32,
+          "conditional_efficiency": {
+            "common_complete_scenarios": 24,
+            "total_charging_time": 432.97239583333334,
+            "total_charging_visits": 10.166666666666666,
+            "total_distance": 1317.1316666666667,
+            "total_energy_charged": 432.97239583333334,
+            "vehicles_activated": 4.25
+          },
+          "customer_opportunities": 3150,
+          "customers_served": 3056,
+          "max_decision_seconds": 4.802729099988937,
+          "scenarios": 54,
+          "service": 0.9701587301587301
+        }
+      },
+      "paired_scenarios": 54,
+      "parent_clustered_sensitivity": {
+        "MPC_ACS_vs_MPC_COMPLETION": {
+          "holm_adjusted_p": 0.625,
+          "mean_scenario_service_effect": 0.02925925925925926,
+          "parent_cases": 6,
+          "parent_clustered_ci": [
+            0.007777777777777778,
+            0.0525925925925926
+          ],
+          "parent_sign_flip_p": 0.125
+        },
+        "MPC_ALNS_vs_MPC_COMPLETION": {
+          "holm_adjusted_p": 0.625,
+          "mean_scenario_service_effect": 0.035555555555555556,
+          "parent_cases": 6,
+          "parent_clustered_ci": [
+            0.008518518518518517,
+            0.06796296296296296
+          ],
+          "parent_sign_flip_p": 0.125
+        },
+        "MPC_ALNS_vs_MPC_HGS": {
+          "holm_adjusted_p": 0.875,
+          "mean_scenario_service_effect": -0.0007407407407407409,
+          "parent_cases": 6,
+          "parent_clustered_ci": [
+            -0.007037037037037037,
+            0.005555555555555556
+          ],
+          "parent_sign_flip_p": 0.875
+        },
+        "MPC_HGS_vs_MPC_COMPLETION": {
+          "holm_adjusted_p": 0.625,
+          "mean_scenario_service_effect": 0.0362962962962963,
+          "parent_cases": 6,
+          "parent_clustered_ci": [
+            0.008888888888888889,
+            0.07314814814814816
+          ],
+          "parent_sign_flip_p": 0.125
+        },
+        "MPC_MCTS_vs_MPC_COMPLETION": {
+          "holm_adjusted_p": 0.625,
+          "mean_scenario_service_effect": 0.021481481481481483,
+          "parent_cases": 6,
+          "parent_clustered_ci": [
+            0.0029629629629629637,
+            0.046481481481481485
+          ],
+          "parent_sign_flip_p": 0.25
+        }
+      },
+      "parent_instances": 6,
+      "protocol_identifier": "30bf9318bf952adf148873c54b06a933c167b3c287fac9c40419d680b8897d08",
+      "source_commit": "59424520b7cba1d83e3627dde317addfa659cfd5",
+      "source_sha256": "05f7e02c9a724bea90f3ff183ee432b81ed4f5e5714c1e2fce01e5a3ec225dde"
+    },
+    "robustness_v3": {
+      "all_independent_audits_passed": true,
+      "audited_runs": 450,
+      "base_instances": 6,
+      "current_physics_matches_historical": true,
+      "matching_source_files": 42,
+      "methods": {
+        "MPC_ACS": {
+          "complete_scenarios": 49,
+          "conditional_efficiency": {
+            "common_complete_scenarios": 39,
+            "total_charging_time": 230.0276282051282,
+            "total_charging_visits": 6.333333333333333,
+            "total_distance": 772.3423076923077,
+            "total_energy_charged": 230.0276282051282,
+            "vehicles_activated": 3.051282051282051
+          },
+          "customer_opportunities": 5250,
+          "customers_served": 5039,
+          "max_decision_seconds": 4.782436899957247,
+          "scenarios": 90,
+          "service": 0.9598095238095238
+        },
+        "MPC_ALNS": {
+          "complete_scenarios": 63,
+          "conditional_efficiency": {
+            "common_complete_scenarios": 39,
+            "total_charging_time": 528.381282051282,
+            "total_charging_visits": 8.948717948717949,
+            "total_distance": 1017.6671794871794,
+            "total_energy_charged": 528.381282051282,
+            "vehicles_activated": 2.8974358974358974
+          },
+          "customer_opportunities": 5250,
+          "customers_served": 5195,
+          "max_decision_seconds": 4.780194699997082,
+          "scenarios": 90,
+          "service": 0.9895238095238095
+        },
+        "MPC_COMPLETION": {
+          "complete_scenarios": 40,
+          "conditional_efficiency": {
+            "common_complete_scenarios": 39,
+            "total_charging_time": 426.7247435897436,
+            "total_charging_visits": 9.564102564102564,
+            "total_distance": 995.3582051282052,
+            "total_energy_charged": 426.7247435897436,
+            "vehicles_activated": 3.358974358974359
+          },
+          "customer_opportunities": 5250,
+          "customers_served": 4586,
+          "max_decision_seconds": 2.0119974999688566,
+          "scenarios": 90,
+          "service": 0.8735238095238095
+        },
+        "MPC_HGS": {
+          "complete_scenarios": 58,
+          "conditional_efficiency": {
+            "common_complete_scenarios": 39,
+            "total_charging_time": 591.1313462051281,
+            "total_charging_visits": 9.153846153846153,
+            "total_distance": 1044.9902564102565,
+            "total_energy_charged": 591.1313462051281,
+            "vehicles_activated": 2.8974358974358974
+          },
+          "customer_opportunities": 5250,
+          "customers_served": 5117,
+          "max_decision_seconds": 4.796266699908301,
+          "scenarios": 90,
+          "service": 0.9746666666666667
+        },
+        "MPC_MCTS": {
+          "complete_scenarios": 45,
+          "conditional_efficiency": {
+            "common_complete_scenarios": 39,
+            "total_charging_time": 507.4788461538461,
+            "total_charging_visits": 9.205128205128204,
+            "total_distance": 1001.4133333333334,
+            "total_energy_charged": 507.4788461538461,
+            "vehicles_activated": 3.051282051282051
+          },
+          "customer_opportunities": 5250,
+          "customers_served": 4874,
+          "max_decision_seconds": 4.790881099994294,
+          "scenarios": 90,
+          "service": 0.9283809523809524
+        }
+      },
+      "paired_scenarios": 90,
+      "parent_clustered_sensitivity": {
+        "MPC_ACS_vs_MPC_COMPLETION": {
+          "holm_adjusted_p": 0.625,
+          "mean_scenario_service_effect": 0.06166666666666666,
+          "parent_cases": 6,
+          "parent_clustered_ci": [
+            0.01577777777777778,
+            0.111
+          ],
+          "parent_sign_flip_p": 0.125
+        },
+        "MPC_ALNS_vs_MPC_COMPLETION": {
+          "holm_adjusted_p": 0.625,
+          "mean_scenario_service_effect": 0.08333333333333333,
+          "parent_cases": 6,
+          "parent_clustered_ci": [
+            0.021555555555555553,
+            0.15066666666666667
+          ],
+          "parent_sign_flip_p": 0.125
+        },
+        "MPC_ALNS_vs_MPC_HGS": {
+          "holm_adjusted_p": 0.625,
+          "mean_scenario_service_effect": 0.006333333333333334,
+          "parent_cases": 6,
+          "parent_clustered_ci": [
+            -0.006222222222222223,
+            0.019444444444444448
+          ],
+          "parent_sign_flip_p": 0.5
+        },
+        "MPC_HGS_vs_MPC_COMPLETION": {
+          "holm_adjusted_p": 0.625,
+          "mean_scenario_service_effect": 0.077,
+          "parent_cases": 6,
+          "parent_clustered_ci": [
+            0.02411111111111111,
+            0.136
+          ],
+          "parent_sign_flip_p": 0.125
+        },
+        "MPC_MCTS_vs_MPC_COMPLETION": {
+          "holm_adjusted_p": 0.625,
+          "mean_scenario_service_effect": 0.04066666666666667,
+          "parent_cases": 6,
+          "parent_clustered_ci": [
+            0.011777777777777778,
+            0.07177777777777779
+          ],
+          "parent_sign_flip_p": 0.125
+        }
+      },
+      "parent_instances": 6,
+      "protocol_identifier": "2b1455ef958f14f9d4dcabc4bfd5098fa2e79d2a644426862ab90a8b942eb266",
+      "source_commit": "73e28a85d88390a0c142d965e483681db9ae7f1e",
+      "source_sha256": "bb593ad57e9b0196ad3712d8c9d873addb5ed156c32ea7857e21471a1fe3f140"
+    }
+  }
+}

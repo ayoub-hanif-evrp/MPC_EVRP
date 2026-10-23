@@ -1,0 +1,104 @@
+{
+  "environment": {
+    "logical_cores": 24,
+    "machine": "AMD64",
+    "packages": {
+      "Pillow": "12.3.0",
+      "PyYAML": "6.0.3",
+      "matplotlib": "3.11.2",
+      "numpy": "2.5.3",
+      "pandas": "3.0.6",
+      "scikit-learn": "1.9.1",
+      "scipy": "1.18.1"
+    },
+    "platform": "Windows-11-10.0.26200-SP0",
+    "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+    "processor_identifier": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+    "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]"
+  },
+  "scientific": {
+    "base_config_sha256": "ff5c4844db9d09378f6cb37bfebbcfc482deab2e99b71fcdbba8715af5e0c36d",
+    "cases": [
+      {
+        "customers": 25,
+        "dynamicity": 0.75,
+        "instance": "r101_21_25",
+        "instance_sha256": "4521328d90195ef54c3418f241b13f32fee752eb0bebf56231affbdc0372e5a9",
+        "k_ref": 9,
+        "reference_id": "167591b58386ec15b2138eff2ae67d54d0c258fc834224dfc55b06853d51dfeb",
+        "scenario_id": "9349d403a288128472876610693029054ee6cd0ab805e7cdf8b80f3dd021b746",
+        "seed": 0
+      },
+      {
+        "customers": 50,
+        "dynamicity": 0.75,
+        "instance": "r101_21_50",
+        "instance_sha256": "ca48e58d72eb0fbe2e6d023f80961f93d1cd0303cb70bb94cf35e1966e5dfb7d",
+        "k_ref": 12,
+        "reference_id": "23e6a266a62dedf52f8bcf200315c838104ffe2c6c8de39f186a024b7626392c",
+        "scenario_id": "125e40d14e1e5119a63781dc252aa18b947c1e6b63caff386baacfd09b6d93c8",
+        "seed": 0
+      },
+      {
+        "customers": 100,
+        "dynamicity": 0.75,
+        "instance": "r101_21_100",
+        "instance_sha256": "2c3ab4fbeb56a09dd2f1bb3babcdf8ed5fd5111376547af26cbca674f008e979",
+        "k_ref": 20,
+        "reference_id": "138781a29cba6152cd5eab316d3afb433ce912352ca173c0ced12738a53b0d57",
+        "scenario_id": "afe1b303924fe654add5f46fe9f3b6f966a31c66af881fc787ceabad3bf5efdf",
+        "seed": 0
+      }
+    ],
+    "dataset_sha256": "02011e3273fef190bd61cc223b4504d8265ca5be30ccf02a34f674f27d58741e",
+    "decision_limit_seconds": 5.0,
+    "design": {
+      "cases": [
+        [
+          "r101_21_25",
+          0.75,
+          0
+        ],
+        [
+          "r101_21_50",
+          0.75,
+          0
+        ],
+        [
+          "r101_21_100",
+          0.75,
+          0
+        ]
+      ],
+      "interpretation": {
+        "independent_parent_cases": 1,
+        "primary_acceptance": "Zero physical or information violations and five-second compliance",
+        "purpose": "Validate runtime corrections across all five unchanged search engines",
+        "service_claim": "No general service improvement claim from this development sample",
+        "uncertainty": "Descriptive implementation checks; no generalization confidence interval"
+      },
+      "machine_load_methodology": "One campaign worker at a time; unrelated system workloads may run; no machine-exclusive timing claim",
+      "methods": [
+        "MPC_COMPLETION",
+        "MPC_MCTS",
+        "MPC_ALNS",
+        "MPC_HGS",
+        "MPC_ACS"
+      ],
+      "output": "results/desaulniers/publication_development/runtime_validation_v1",
+      "role": "implementation_validation_development",
+      "study": "publication_guarded_runtime_validation_v1",
+      "variants": {
+        "guarded": {
+          "coordination_policy": "forced_retained_v1",
+          "optimizer_initialization_policy": "validated_incumbent_v1"
+        },
+        "original": {}
+      },
+      "whole_worker_timeout_seconds": 3900
+    },
+    "execution": "sequential isolated workers",
+    "source_sha256": "cf6f48b2ed59227c0a1d636f45e6ef8ed612b19150cc953c69274512367e51d5"
+  },
+  "source_commit": "d4275b8570455e943f0a177f72ca40e66d8ba308"
+}

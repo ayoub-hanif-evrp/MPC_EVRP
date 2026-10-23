@@ -1,0 +1,12 @@
+{
+  "distance": 845.8900000000001,
+  "fleet_size": 2,
+  "instance": "r204_21_50",
+  "instance_sha256": "33899ceffc1674d43ca9bbbcff64f74009509055e3a0499304558812c8d0b6df",
+  "protocol_identifier": "13a9eedfffdd8d5f4c39b78f9fa06b1642442b919b3cb3c53437447e394c461d",
+  "reference": "results/desaulniers/publication_development/reference_extension_v1/references/r204_21_50.json",
+  "reference_id": "70f032518258555c5a96d13d5b23ab447a138a0cbea1c4af5f575ce282d16bbe",
+  "reference_sha256": "6c2054b157ae8b930aa09729475a71e480efa1d5956bba89be192538d02977e7",
+  "seconds": 26.513475300045684,
+  "status": "feasible_reference_found"
+}

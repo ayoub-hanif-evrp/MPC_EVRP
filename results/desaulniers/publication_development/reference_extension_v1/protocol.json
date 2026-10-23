@@ -1,0 +1,55 @@
+{
+  "scientific": {
+    "dataset_sha256": "02011e3273fef190bd61cc223b4504d8265ca5be30ccf02a34f674f27d58741e",
+    "input_evidence_identifier": "9b4a9983359565fd3eed321e3631b4eee078b9d6a70bfb09313d4a268a4b1575",
+    "instances": [
+      "c204_21_100",
+      "r202_21_100",
+      "r203_21_100",
+      "r204_21_100",
+      "r204_21_50",
+      "r205_21_100",
+      "r206_21_100",
+      "r207_21_100",
+      "r208_21_100",
+      "r208_21_50",
+      "r209_21_100",
+      "r209_21_50",
+      "r210_21_100",
+      "rc202_21_100",
+      "rc203_21_100",
+      "rc204_21_100",
+      "rc206_21_100",
+      "rc207_21_100"
+    ],
+    "mpc": {
+      "action_space_reduction": true,
+      "budget_mode": "iterations",
+      "cache_transitions": true,
+      "candidate_limit": 12,
+      "charge_fractions": [
+        0.5,
+        0.75,
+        1.0
+      ],
+      "charge_target_limit": 5,
+      "charging_mode": "partial",
+      "control_horizon": 1,
+      "iterations": 32,
+      "max_idle_wait": 0.0,
+      "prediction_horizon": 5,
+      "proposal_selection": "quality",
+      "require_root_coverage": false,
+      "route_decoder_version": "original",
+      "station_candidate_limit": 4,
+      "time_limit": 0.5,
+      "top_l": 3,
+      "uct_c": 1.4
+    },
+    "seconds_per_instance": 120.0,
+    "separate_from_historical_fleet_policy": true,
+    "source_sha256": "dc106d73f8c3a149873c22b6050cc33fcd4d02864a9352d5fef89f24f4aa02ff",
+    "strategy": "deadline-ordered bounded MP insertion; first full-service witness"
+  },
+  "source_commit": "57134733b9bb9d2689ca6fb61e3cec8b57787f4e"
+}

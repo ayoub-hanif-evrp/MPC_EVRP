@@ -1,0 +1,8 @@
+{
+  "instance": "r204_21_100",
+  "instance_sha256": "8c11ac4fc4653bfcf55a86124042bd5cf4d50f88bff750a85f8c3e109f50fc49",
+  "protocol_identifier": "13a9eedfffdd8d5f4c39b78f9fa06b1642442b919b3cb3c53437447e394c461d",
+  "reason": "MP witness search reached 120.0s",
+  "seconds": 120.07055180007592,
+  "status": "search_timeout"
+}

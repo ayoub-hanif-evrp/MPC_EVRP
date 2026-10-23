@@ -1,7 +1,9 @@
 # MPC Methodology
 
 The active benchmark is Desaulniers et al. (2016) under the multiple-partial
-(MP) charging policy. This is a dataset migration, not a new algorithm.
+(MP) charging policy. The original migration preserves the baseline methods;
+this research branch also contains explicitly named development variants and
+opt-in runtime corrections. These are not silently substituted into controls.
 
 ## Shared Controller
 
@@ -21,7 +23,7 @@ independent audit, and each optimization decision has a five-second budget.
 
 `evrp/optimizers/objective.py` remains the canonical service-first,
 risk-aware lexicographic fleet evaluator. For uncovered released work it
-orders the number unserved, zero/one feasible insertion options, control
+orders the number unserved, zero/one screened insertion options, control
 risk, time-window risk, battery risk, capacity risk, then normalized
 distance. When all released work is covered, it retains the existing
 control-risk, flexibility, activation, operational, distance, and route-

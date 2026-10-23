@@ -73,7 +73,8 @@ def diagnosis_figure():
         raise ValueError("Unexpected population in development service-loss diagnostics")
     counts = Counter(row["status"] for row in probes)
     labels = {"no_ready_vehicle": "No ready vehicle", "selected_soft_plan": "Selected in soft plan",
-              "no_bounded_witness": "No bounded witness", "feasible_insertion": "Insertion witness"}
+              "no_bounded_insertion_witness": "No bounded witness",
+              "feasible_in_top3": "Insertion witness"}
     fig, axes = plt.subplots(1, 3, figsize=(13, 4.2))
     statuses = sorted(counts, key=counts.get)
     axes[0].barh([labels.get(key, key.replace("_", " ")) for key in statuses],
@@ -102,6 +103,7 @@ def render():
     reference_inventory = load_json(DEVELOPMENT / "audits/reference_inventory.json")
     runtime = load_json(DEVELOPMENT / "runtime_validation_v1/analysis.json")
     runtime_manifest = load_json(DEVELOPMENT / "runtime_validation_v1/manifest.json")
+    runtime_source = load_json(DEVELOPMENT / "runtime_validation_v1/protocol.json")["source_commit"]
     screen_manifest = load_json(DEVELOPMENT / "stable_screen_v1/manifest.json")
     screen = load_json(DEVELOPMENT / "stable_screen_v1/analysis.json")["summary"]
     reference = load_json(DEVELOPMENT / "reference_extension_v1/manifest.json")
@@ -126,6 +128,8 @@ def render():
                     writable_path(OUTPUT / "development/RESULTS.md"))
     shutil.copyfile(DEVELOPMENT / "runtime_validation_v1/RESULTS.md",
                     writable_path(OUTPUT / "runtime_validation/RESULTS.md"))
+    shutil.copyfile(DEVELOPMENT / "runtime_validation_v1/EXECUTION_NOTES.md",
+                    writable_path(OUTPUT / "runtime_validation/EXECUTION_NOTES.md"))
     shutil.copyfile(DEVELOPMENT / "coordination_probe_v1/RESULTS.md",
                     writable_path(OUTPUT / "coordination_efficiency.md"))
     shutil.copyfile(DEVELOPMENT / "reference_extension_v1/RESULTS.md",
@@ -141,6 +145,8 @@ def render():
     source_commit = subprocess.run(["git", "rev-parse", "HEAD"], cwd=ROOT, capture_output=True,
                                    text=True, check=True).stdout.strip()
     improved_references = sum(r["status"] == "feasible_reference_found" for r in reference["records"])
+    unresolved_references = ", ".join(row["instance"] for row in reference_inventory["rows"]
+                                      if not row["physical_witness"]) or "none"
     methods = audits["studies"]["corrected_final"]["methods"]
     primary = ["# Original corrected final holdout", "",
                "270 independently audited runs on 54 matched scenarios from 18 benchmark files.",
@@ -156,6 +162,7 @@ def render():
                   "Only scenarios fully served by every method in the same study are",
                   "included. Each row uses the identical complete-service scenario set.",
                   "Studies are not pooled and no unconditional distance ranking is used.", "",
+                  "Distance, energy and time use the unchanged plant's benchmark units.", "",
                   "| Study | Method | Common complete N | Mean activated EVs | Mean distance | Mean charge visits | Mean energy charged | Mean charging time |",
                   "| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |"]
     for study in ("corrected_final", "robustness_v3"):
@@ -183,6 +190,9 @@ The original immutable source artifacts remain under `results/desaulniers/paper_
 
 The corresponding PNG figures are in this directory. The separate robustness
 study is reported in [its own section](../robustness_v3/RESULTS.md).
+The inherited overall table's EV mean is unconditional and descriptive;
+use [matched conditional fleet and charging efficiency](../conditional_efficiency.md)
+for fair efficiency comparisons between methods.
 """)
     robustness = audits["studies"]["robustness_v3"]["methods"]
     robust_lines = ["# Separate multi-seed robustness study", "",
@@ -235,6 +245,43 @@ The definitions in `evrp/optimizers/objective.py` are unchanged across methods.
 Completion retains the common feasible constructor; MCTS, ALNS, HGS and ACS
 search the same observable fleet problem with the common objective and plant.
 Original implementations and historical source commits remain available.
+
+These are repository implementations of optimization paradigms, not claimed
+bit-for-bit reproductions of external published solver packages. Exact
+per-run parameter values are retained in every raw `effective_config`.
+
+Completion returns the independently checked common fleet constructor without
+additional search. The constructor compares retained, parallel-insertion and
+regret-insertion candidates using the same canonical objective.
+
+MCTS searches structural fleet-route edits with progressive widening, a
+prior-weighted exploration rule and bounded completion rollouts. Rollout
+evidence is grouped by executable first-control signature. Root selection
+first rejects alternatives worse than the constructor, then orders eligible
+controls by planned unserved count, visit support, mean search value and
+canonical best-plan score. It therefore need not return the globally best
+lexicographic plan ever sampled when equal-service controls have different
+visit support. This is the preserved original control policy, not a new fix.
+
+ALNS adaptively samples random, distance-related, related-customer,
+time-window, battery-risk and route-risk removal with regret-2/regret-3,
+criticality-first and reserve-preserving repair. Original removal is capped
+at four customers. Operator rewards update segment weights. Diversification
+may accept worse lower-priority components at equal service, while the best
+incumbent uses the canonical lexicographic score. More-unserved moves are
+not accepted as the current solution.
+
+HGS uses a small population, service-first objective/diversity ranking,
+route inheritance, missing-customer insertion, and bounded relocation,
+swap, 2-opt and Or-opt education. Its best feasible elite is retained.
+ACS constructs fresh ant plans with pheromone and urgency/slack/distance
+heuristics, local pheromone updates, evaporation and reinforcement of the
+best plan. The original constructor remains a separate incumbent.
+
+Every accepted route uses the common decoder and physical replay. Iteration,
+population and ant limits can terminate before the common five-second
+deadline; they do not enlarge it. No new search parameters were tuned on the
+completed final holdout.
 
 ALNS Stable V3 restricts best-incumbent replacement during equal-service moves
 to plans covering the same customer set. It allows route reassignment and
@@ -398,6 +445,8 @@ New runner: `python -m scripts.run_publication_campaign --config <config>`.
 Offline extension: `python -m scripts.extend_mp_reference_coverage`.
 Both reuse validated saved artifacts, reject provenance drift, and preserve
 failures. Do not rerun optimization to regenerate paper tables.
+The optional planning-loss analyzer performs bounded diagnostic probes at
+saved observable roots; it does not rerun the historical online campaigns.
 
 All paper tables are Markdown and figures are PNG at 300 dpi or higher.
 Internal JSON, CSV and XML are retained outside this paper directory.
@@ -416,6 +465,7 @@ Stable V3 enhancement did not satisfy its frozen promotion rule.
 - [Separate multi-seed robustness study](robustness_v3/RESULTS.md)
 - [Matched enhancement development results](development/RESULTS.md)
 - [All-engine matched runtime validation](runtime_validation/RESULTS.md)
+- [Shared-machine execution conditions](runtime_validation/EXECUTION_NOTES.md)
 - [Exact coordination efficiency](coordination_efficiency.md)
 - [Conditional fleet and charging efficiency](conditional_efficiency.md)
 - [Methods and unchanged objective](METHODS.md)
@@ -428,6 +478,7 @@ Stable V3 enhancement did not satisfy its frozen promotion rule.
 - [Enhancement evidence audit](enhancement_validation.md)
 - [Methodological references](LITERATURE.md)
 - [Reproduction commands](REPRODUCTION.md)
+- [Figure and table inventory](FIGURES_AND_TABLES.md)
 
 The primary paper contribution is a common event-triggered MPC comparison of
 five optimization engines with a fixed physical model and dynamic information
@@ -462,7 +513,8 @@ new independent instances. No optimality or universal superiority is claimed.
                     f"Regression suite: {test_count} tests, zero failures/errors. Historical",
                     f"independent audits: {sum(s['audited_runs'] for s in audits['studies'].values())} raw runs.",
                     f"Enhancement independent audits: {enhancement_audits['audited_runs']} raw runs.",
-                    "All completed online runs satisfy the recorded five-second decision",
+                    f"Runtime validation executed source: `{runtime_source}`.",
+                    "All records in these audited completed studies satisfy the five-second decision",
                     "limit, physical replay, unique-service and hidden-information checks.", "",
                     "## D. Matched runtime implementation results", "",
                     "The following table uses only the matched 30-run development",
@@ -473,6 +525,17 @@ new independent instances. No optimality or universal superiority is claimed.
     final_report.extend(f"| {method} | {100*r['original_service']:.2f} | {100*r['guarded_service']:.2f} | "
                         f"{100*r['original_complete']:.2f} | {100*r['guarded_complete']:.2f} | {r['service_gain']:+d} |"
                         for method, r in runtime["summary"].items())
+    solver_calls = sum(row["original_coordination_solver_invocations"] for row in runtime["summary"].values())
+    guarded_calls = sum(row["guarded_coordination_solver_invocations"] for row in runtime["summary"].values())
+    maximum_latency = max(max(row["original_max_latency"], row["guarded_max_latency"])
+                          for row in runtime["summary"].values())
+    fallback_count = sum(row["initialization_fallbacks"] for row in runtime["summary"].values())
+    final_report += ["", f"Recorded maximum decision latency: {maximum_latency:.6f} seconds.",
+                     f"Coordination solver invocations: {solver_calls} original versus {guarded_calls} guarded.",
+                     f"Initialization fallbacks in these runs: {fallback_count}; the synthetic regression",
+                     "tests exercise the confirmed initialization defect separately. Runtime",
+                     "ratios are mixed shared-machine observations, not universal speedups.",
+                     "[Exact execution conditions](runtime_validation/EXECUTION_NOTES.md)."]
     final_report += ["", "[Detailed 25-, 50- and 100-customer results](runtime_validation/paper/size_results.md).",
                      "The original final and multi-seed cohorts are separately reported",
                      "in `primary_results.md` and `robustness_v3/RESULTS.md`.", "",
@@ -490,6 +553,8 @@ new independent instances. No optimality or universal superiority is claimed.
                      f"Benchmark parsing/arcs: {reference_inventory['instances']}/168. Full-service physical",
                      f"reference witnesses: {reference_inventory['physically_witnessed']}/168; unresolved:",
                      f"{reference_inventory['unresolved']}. Historical reference policy still has 144 instances.",
+                     f"Unresolved reference searches: {unresolved_references}. These are",
+                     "preserved bounded-search timeouts, not proofs of infeasibility.",
                      "Exact source revisions, raw SHA-256 manifests, independently replayed",
                      "witnesses, failure records, tests, figures and tables are retained.",
                      "`artifact_inventory.json` lists the paper artifacts and their hashes.",
@@ -507,6 +572,15 @@ new independent instances. No optimality or universal superiority is claimed.
                      "independent final holdout was opened because the frozen selection",
                      "criterion failed.", ""]
     write("FINAL_REPORT.md", "\n".join(final_report))
+    figures = sorted(path.relative_to(OUTPUT).as_posix() for path in OUTPUT.rglob("*.png"))
+    tables = sorted(path.relative_to(OUTPUT).as_posix() for path in OUTPUT.rglob("*.md")
+                    if any(line.startswith("|") for line in path.read_text(encoding="utf-8").splitlines()))
+    write("FIGURES_AND_TABLES.md", "\n".join([
+        "# Figure and table inventory", "", f"## PNG figures ({len(figures)})", "",
+        "All figures are verified at 300 dpi or higher. No PDF figures are produced.", "",
+        *[f"- [{name}]({name})" for name in figures], "",
+        f"## Markdown table documents ({len(tables)})", "",
+        *[f"- [{name}]({name})" for name in tables], ""]))
     inventory = []
     for path in sorted(OUTPUT.rglob("*")):
         if not path.is_file() or path.name == "artifact_inventory.json":

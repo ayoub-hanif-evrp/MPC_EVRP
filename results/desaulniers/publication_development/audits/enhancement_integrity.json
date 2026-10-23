@@ -1,0 +1,77 @@
+{
+  "audited_runs": 159,
+  "studies": [
+    {
+      "all_independent_audits_passed": true,
+      "manifest_sha256": "386d2d0353c285073d252ca9e6741d4ba49e576d539f4e0838c522bb2b005ac1",
+      "protocol_identifier": "5f3c4b53ecfe6ad49866831e0d4fd8fb7db9fa4772dfadf79df4b642ad515399",
+      "runs": 12,
+      "source_sha256": "728fd03ff22fb2cc0981b3c78c1502a799f5e9610177b173a7ee6aaee8d1e191",
+      "study": "results/desaulniers/enhancement_development/alns_recovery_pilot"
+    },
+    {
+      "all_independent_audits_passed": true,
+      "manifest_sha256": "ed9ec4435b8ab07a83a1e20feac9d3cfd2224b704132c2b5ebfc6e21aae20202",
+      "protocol_identifier": "dfc6b2ebcc9f17e457ce2cadc69e412255f345a14027cc8e260b014115d8d785",
+      "runs": 36,
+      "source_sha256": "615dc2b98e1aa0dcdd6fd5cfb8b10029db74cc37103c5c25feafe8057d5986d7",
+      "study": "results/desaulniers/enhancement_development/alns_recovery_screen"
+    },
+    {
+      "all_independent_audits_passed": true,
+      "manifest_sha256": "c18e8c56e0db403b760e1e4931e372465b3839312d9bd76856383ba16462c4c3",
+      "protocol_identifier": "857bf7dddf715710c3c5697b659b0d473b0d35ae367d8e5031081643ff1e7c97",
+      "runs": 12,
+      "source_sha256": "4b824c25e4f3abbecd6b4edb98beeb94888a4909ce6ea86dd12c232e3d1badb2",
+      "study": "results/desaulniers/enhancement_development/decoder_pilot"
+    },
+    {
+      "all_independent_audits_passed": true,
+      "manifest_sha256": "61c8bebd2af9d7dd6c89a27d8e8cfe89211b56c520add73e2d1e554267fdc023",
+      "protocol_identifier": "a35fae0b1bcd6d399670eafd1abfd035458676943582eed9ed77538d382d6ad4",
+      "runs": 12,
+      "source_sha256": "df65df75155fa1afbe8320ca3c2342d6eec3bdd5e0f14eadcf263ef3f74876d8",
+      "study": "results/desaulniers/enhancement_development/dispatch_pilot"
+    },
+    {
+      "all_independent_audits_passed": true,
+      "manifest_sha256": "edf949da53e2471bc307910d602a8fa326730f3bbfa5ffda5aaec4ba912d579f",
+      "protocol_identifier": "acee640832efc3b6b403dec02d581611dcd3f83c6b782d01d62aa70f15f0a557",
+      "runs": 3,
+      "source_sha256": "f35fa242c5774abbacd2c08b63718a1efc30b33bbffa85ab339790bf86fdda99",
+      "study": "results/desaulniers/publication_development/instrumented_v1"
+    },
+    {
+      "all_independent_audits_passed": true,
+      "manifest_sha256": "3609e79556ba9e25eae56ce0f1980c5fdf42af83df0519885cbdeb317aa74556",
+      "protocol_identifier": "62fef11a4f1871bcdb87a1e25dbc62dc6bb7588ba8fb4b5b33fabf85d7134bfb",
+      "runs": 12,
+      "source_sha256": "60c2443d66011b9102cc9027e55ea989dc14fa20535d48de8962cf328af1c461",
+      "study": "results/desaulniers/publication_development/reserve_pilot"
+    },
+    {
+      "all_independent_audits_passed": true,
+      "manifest_sha256": "d23bbd5a085206ede61410124cff827f8458f85cd602d2a563a8fea39a50dd2e",
+      "protocol_identifier": "06cbf49424cedafb774c30e0deff2488050b25804a4c98dd1fa43904bc31b825",
+      "runs": 30,
+      "source_sha256": "cf6f48b2ed59227c0a1d636f45e6ef8ed612b19150cc953c69274512367e51d5",
+      "study": "results/desaulniers/publication_development/runtime_validation_v1"
+    },
+    {
+      "all_independent_audits_passed": true,
+      "manifest_sha256": "5795a68b74eafe4e17c657ea55083f62c5401fcac20d7c14815c0a2d38da79d3",
+      "protocol_identifier": "6f5983189f3b684a9549f2c4ace1c377a12649b25014804a593c0947349be068",
+      "runs": 6,
+      "source_sha256": "50fb46a16065edb540eac5622856435177481638d174bb6845e40d931a07b5f6",
+      "study": "results/desaulniers/publication_development/stable_pilot_v1"
+    },
+    {
+      "all_independent_audits_passed": true,
+      "manifest_sha256": "5c9da74206e82d5a73f30431390e4a0c06520c122f427d1b8df99a379297372f",
+      "protocol_identifier": "6f698f8791456c2f913c3c99a0eb66cd425a2a1e60840e4c9963978471114aa4",
+      "runs": 36,
+      "source_sha256": "2e3db6b4f5dee96cc0ea34768a952687dcbd368b42a8e88bc29efc55d74991b0",
+      "study": "results/desaulniers/publication_development/stable_screen_v1"
+    }
+  ]
+}
