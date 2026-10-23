@@ -1,0 +1,8 @@
+{
+  "MPC_ACS_guarded": "OptimizerInitializationDeadline: ",
+  "MPC_ACS_original": "UnboundLocalError: cannot access local variable 'best' where it is not associated with a value",
+  "MPC_ALNS_guarded": "OptimizerInitializationDeadline: ",
+  "MPC_ALNS_original": "UnboundLocalError: cannot access local variable 'best' where it is not associated with a value",
+  "MPC_HGS_guarded": "OptimizerInitializationDeadline: ",
+  "MPC_HGS_original": "AttributeError: 'NoneType' object has no attribute 'sequences'"
+}

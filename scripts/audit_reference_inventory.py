@@ -23,7 +23,22 @@ def audit():
     coverage = read_csv(BASE / "reference_validation/coverage.csv")
     partial = read_csv(BASE / "enhancement_development/partial_reference_witnesses/manifest.csv")
     extension = load_json(BASE / "publication_development/reference_extension_v1/manifest.json")
+    extension_root = BASE / "publication_development/reference_extension_v1"
+    frozen = load_json(extension_root / "protocol.json")
+    if (extension["protocol_identifier"] != identifier(frozen) or
+            extension["completed_instances"] != extension["planned_instances"] or
+            len(extension["records"]) != extension["planned_instances"] or
+            extension["planned_instances"] != len(frozen["scientific"]["instances"])):
+        raise ValueError("Separate MP reference manifest is incomplete or changed")
     extra = {row["instance"]: row for row in extension["records"]}
+    if len(extra) != len(extension["records"]) or set(extra) != set(frozen["scientific"]["instances"]):
+        raise ValueError("Separate MP reference manifest has duplicate or missing cases")
+    for name, record in extra.items():
+        worker = extension_root / "workers" / f"{name}.json"
+        if (sha256(worker.read_bytes()).hexdigest() != record["worker_sha256"] or
+                load_json(worker) != {k: v for k, v in record.items() if k != "worker_sha256"} or
+                record["protocol_identifier"] != identifier(frozen)):
+            raise ValueError("Separate MP reference worker evidence differs from manifest")
     rows = []
     for path in discover_instances():
         instance = load_instance(path)
@@ -37,6 +52,8 @@ def audit():
             row.update(source="historical_reference", historical_reference_policy=True)
             if coverage[instance.name]["published_full_route_mp_feasible"] == "True":
                 reference = published_full_reference(instance, ReferenceConfig())
+                if reference is None:
+                    raise ValueError("Historical published reference is unexpectedly unavailable")
             else:
                 artifact = ROOT / coverage[instance.name]["reference_artifact"]
                 reference = ReferenceSchedule.load(artifact, instance)
@@ -54,6 +71,8 @@ def audit():
             if sha256(artifact.read_bytes()).hexdigest() != extra[instance.name]["reference_sha256"]:
                 raise ValueError("MP extension reference SHA-256 mismatch")
             reference = ReferenceSchedule.load(artifact, instance)
+            if reference.identifier != extra[instance.name]["reference_id"]:
+                raise ValueError("MP extension reference canonical identifier mismatch")
         else:
             reference = None
             row.update(source="unresolved_search", reason=extra.get(instance.name, {}).get("reason", "No witness"))

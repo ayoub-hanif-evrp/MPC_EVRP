@@ -48,6 +48,14 @@ def audit():
                 raise ValueError(f"Development raw SHA-256/path mismatch: {path}")
             raw = load_json(path)
             meta, metrics = raw["metadata"], raw["metrics"]
+            protocol_keys = ("campaign_protocol_identifier", "pilot_protocol_identifier", "protocol_identifier")
+            if (not any(meta.get(key) == identifier(protocol) for key in protocol_keys) or
+                    "method" in row and meta["algorithm"] != row["method"] or
+                    raw["effective_config"]["total_planning_time_limit"] != 5.0):
+                raise ValueError("Development raw protocol, method or configured budget mismatch")
+            for variant_key in ("campaign_variant", "dispatch_variant", "decoder_variant", "variant"):
+                if variant_key in meta and meta[variant_key] != row["variant"]:
+                    raise ValueError("Development raw/manifest variant mismatch")
             run = (*key, meta["algorithm"], row.get("variant", ""))
             if run in seen:
                 raise ValueError(f"Duplicate development run: {directory} {run}")
@@ -62,11 +70,12 @@ def audit():
                                               "duplicate_service_violations", "hidden_information_violations"))):
                 raise ValueError(f"Development identity, physical or deadline mismatch: {path}")
             independent = audit_result(decode_result(raw), instance, scenario)
-            if not all(independent.values()) or independent != meta["independent_audit"]:
+            if (not all(independent.values()) or independent != meta["independent_audit"] or
+                    independent != row["independent_audit"]):
                 raise ValueError(f"Development independent physical replay failed: {path}")
             expected = row.get("metrics", row)
-            if metrics["customers_served"] != expected["customers_served"]:
-                raise ValueError("Development manifest service differs from raw evidence")
+            if any(metrics[key] != value for key, value in expected.items() if key in metrics):
+                raise ValueError("Development manifest metrics differ from raw evidence")
         record = dict(study=directory.relative_to(ROOT).as_posix(), runs=len(seen),
                       all_independent_audits_passed=True, source_sha256=source,
                       protocol_identifier=identifier(protocol),

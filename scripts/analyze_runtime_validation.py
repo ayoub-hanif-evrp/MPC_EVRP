@@ -87,7 +87,7 @@ def analyze():
               independent_parent_cases=len({case[0].rsplit("_", 1)[0] for case in config["cases"]})))
     paper = output / "paper"
     lines = ["# Matched runtime implementation validation", "",
-             f"All {total}/{total} isolated runs passed raw SHA-256 verification, exact scenario/fleet",
+             f"All {total}/{total} separate-worker runs passed raw SHA-256 verification, exact scenario/fleet",
              "matching, independent physical replay, duplicate/future-information checks",
              "and the five-second decision limit. These are three development size",
              "variants of one parent case; results are descriptive implementation",
@@ -95,6 +95,9 @@ def analyze():
              "The guarded variant enables validated-incumbent initialization fallback",
              "and exact forced retained-route coordination. Core search strategies,",
              "canonical objective, physics, fleets, releases and configured budgets match.", "",
+             "Machine-load policy: " + config["machine_load_methodology"] + ".",
+             "Process isolation does not imply an otherwise idle computer. Runtime",
+             "ratios are descriptive shared-machine observations, not hardware benchmarks.", "",
              "| Method | Original service % | Guarded service % | Original complete % | Guarded complete % | Customer change |",
              "| --- | ---: | ---: | ---: | ---: | ---: |"]
     for method, row in summaries.items():

@@ -4,6 +4,7 @@ import argparse
 from dataclasses import asdict
 from hashlib import sha256
 from importlib.metadata import version
+import os
 from pathlib import Path
 import platform
 import subprocess
@@ -80,8 +81,12 @@ def protocol(path, config, output):
                              capture_output=True, text=True).stdout.strip()
     frozen = dict(scientific=scientific, source_commit=commit,
                   environment=dict(python=sys.version, platform=platform.platform(),
+                                   machine=platform.machine(), processor=platform.processor(),
+                                   processor_identifier=os.environ.get("PROCESSOR_IDENTIFIER", ""),
+                                   logical_cores=os.cpu_count(),
                                    packages={name: version(name) for name in
-                                             ("numpy", "scipy", "matplotlib", "PyYAML")}))
+                                             ("numpy", "scipy", "matplotlib", "PyYAML", "pandas",
+                                              "scikit-learn", "Pillow")}))
     save_json(target, frozen)
     return frozen
 

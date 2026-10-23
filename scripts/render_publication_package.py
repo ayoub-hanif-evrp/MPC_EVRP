@@ -1,6 +1,8 @@
 """Assemble audited original findings and completed enhancement development."""
 
 from hashlib import sha256
+from collections import Counter
+import csv
 from pathlib import Path
 import shutil
 import subprocess
@@ -59,6 +61,41 @@ def architecture():
     plt.close(fig)
 
 
+def diagnosis_figure():
+    with (DEVELOPMENT / "diagnostics/first_visible_alns_insertions.csv").open(
+            newline="", encoding="utf-8") as stream:
+        probes = list(csv.DictReader(stream))
+    with (DEVELOPMENT / "diagnostics/alns_loss_timelines.csv").open(
+            newline="", encoding="utf-8") as stream:
+        timelines = {(row["instance"], row["dod"], row["seed"], row["customer"]): row
+                     for row in csv.DictReader(stream)}
+    if len(probes) != 33 or len(timelines) != 33:
+        raise ValueError("Unexpected population in development service-loss diagnostics")
+    counts = Counter(row["status"] for row in probes)
+    labels = {"no_ready_vehicle": "No ready vehicle", "selected_soft_plan": "Selected in soft plan",
+              "no_bounded_witness": "No bounded witness", "feasible_insertion": "Insertion witness"}
+    fig, axes = plt.subplots(1, 3, figsize=(13, 4.2))
+    statuses = sorted(counts, key=counts.get)
+    axes[0].barh([labels.get(key, key.replace("_", " ")) for key in statuses],
+                 [counts[key] for key in statuses], color="#287a6b")
+    axes[0].set(xlabel="Missed customers", title="First-visible decision evidence")
+    release = [float(row["release"]) for row in timelines.values()]
+    due = [float(row["due"]) for row in timelines.values()]
+    axes[1].scatter(release, due, color="#33658a", s=22, alpha=.7)
+    bound = max(due + release)
+    axes[1].plot([0, bound], [0, bound], color="#777777", linestyle="--", linewidth=.7)
+    axes[1].set(xlabel="Request release", ylabel="Service-start deadline",
+                title="Release and deadline (plant units)")
+    axes[2].scatter([float(row["decision_time"]) for row in probes],
+                    [int(row["ready_vehicles"]) for row in probes], color="#aa4b52", s=22, alpha=.7)
+    axes[2].set(xlabel="First-visible decision time", ylabel="Ready EVs",
+                title="Observed fleet availability")
+    fig.suptitle("33 missed development ALNS customers; observations are not infeasibility proofs", fontsize=11)
+    fig.tight_layout()
+    fig.savefig(writable_path(OUTPUT / "diagnosis/first_visible_evidence.png"), dpi=350)
+    plt.close(fig)
+
+
 def render():
     audits = load_json(DEVELOPMENT / "audits/historical_integrity.json")
     enhancement_audits = load_json(DEVELOPMENT / "audits/enhancement_integrity.json")
@@ -100,6 +137,7 @@ def render():
     shutil.copyfile(DEVELOPMENT / "audits/REFERENCE_INVENTORY.md",
                     writable_path(OUTPUT / "reference_inventory.md"))
     architecture()
+    diagnosis_figure()
     source_commit = subprocess.run(["git", "rev-parse", "HEAD"], cwd=ROOT, capture_output=True,
                                    text=True, check=True).stdout.strip()
     improved_references = sum(r["status"] == "feasible_reference_found" for r in reference["records"])
@@ -114,6 +152,21 @@ def render():
                    f"{100*r['complete_scenarios']/r['scenarios']:.2f} | {r['max_decision_seconds']:.4f} |"
                    for name, r in methods.items())
     write("primary_results.md", "\n".join(primary))
+    efficiency = ["# Conditional fleet and charging efficiency", "",
+                  "Only scenarios fully served by every method in the same study are",
+                  "included. Each row uses the identical complete-service scenario set.",
+                  "Studies are not pooled and no unconditional distance ranking is used.", "",
+                  "| Study | Method | Common complete N | Mean activated EVs | Mean distance | Mean charge visits | Mean energy charged | Mean charging time |",
+                  "| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |"]
+    for study in ("corrected_final", "robustness_v3"):
+        for method, row in audits["studies"][study]["methods"].items():
+            values = row["conditional_efficiency"]
+            cells = ["NA" if values[field] is None else f"{values[field]:.3f}"
+                     for field in ("vehicles_activated", "total_distance", "total_charging_visits",
+                                   "total_energy_charged", "total_charging_time")]
+            efficiency.append(f"| {study} | {method} | {values['common_complete_scenarios']} | " +
+                              " | ".join(cells) + " |")
+    write("conditional_efficiency.md", "\n".join(efficiency))
     write("original_final/RESULTS.md", """
 # Original corrected final study
 
@@ -358,11 +411,13 @@ supported customer-service result remains the original framework. The tested
 Stable V3 enhancement did not satisfy its frozen promotion rule.
 
 - [Primary original final results](primary_results.md)
+- [Consolidated completion report](FINAL_REPORT.md)
 - [Original final tables and figures](original_final/RESULTS.md)
 - [Separate multi-seed robustness study](robustness_v3/RESULTS.md)
 - [Matched enhancement development results](development/RESULTS.md)
 - [All-engine matched runtime validation](runtime_validation/RESULTS.md)
 - [Exact coordination efficiency](coordination_efficiency.md)
+- [Conditional fleet and charging efficiency](conditional_efficiency.md)
 - [Methods and unchanged objective](METHODS.md)
 - [Experimental design and statistical limits](EXPERIMENTS.md)
 - [Failure analysis](FAILURE_ANALYSIS.md)

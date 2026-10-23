@@ -1,0 +1,101 @@
+[
+  {
+    "all_routes_equal": true,
+    "instance": "r101_21_25",
+    "median_forced_choice_seconds": 1.3200042303651571e-05,
+    "median_milp_seconds": 0.0028275499353185296,
+    "ready_vehicles": 7,
+    "repeats": 20,
+    "source_raw": "results/desaulniers/publication_development/instrumented_v1/raw/r101_21_25_MPC_ALNS_instrumented_ed8862cde90141e1.json.gz",
+    "source_raw_sha256": "e8787bb516a47271ca88f3775f7cd39a600b237a4883bfcdda84de508793d229",
+    "time": 0.5725715055764002
+  },
+  {
+    "all_routes_equal": true,
+    "instance": "r101_21_25",
+    "median_forced_choice_seconds": 1.1699972674250603e-05,
+    "median_milp_seconds": 0.0026991500635631382,
+    "ready_vehicles": 6,
+    "repeats": 20,
+    "source_raw": "results/desaulniers/publication_development/instrumented_v1/raw/r101_21_25_MPC_ALNS_instrumented_ed8862cde90141e1.json.gz",
+    "source_raw_sha256": "e8787bb516a47271ca88f3775f7cd39a600b237a4883bfcdda84de508793d229",
+    "time": 5.475648482386089
+  },
+  {
+    "all_routes_equal": true,
+    "instance": "r101_21_25",
+    "median_forced_choice_seconds": 1.2499978765845299e-05,
+    "median_milp_seconds": 0.002780300041195005,
+    "ready_vehicles": 6,
+    "repeats": 20,
+    "source_raw": "results/desaulniers/publication_development/instrumented_v1/raw/r101_21_25_MPC_ALNS_instrumented_ed8862cde90141e1.json.gz",
+    "source_raw_sha256": "e8787bb516a47271ca88f3775f7cd39a600b237a4883bfcdda84de508793d229",
+    "time": 9.865747620220377
+  },
+  {
+    "all_routes_equal": true,
+    "instance": "r101_21_100",
+    "median_forced_choice_seconds": 3.250001464039087e-05,
+    "median_milp_seconds": 0.005513700016308576,
+    "ready_vehicles": 12,
+    "repeats": 20,
+    "source_raw": "results/desaulniers/publication_development/instrumented_v1/raw/r101_21_100_MPC_ALNS_instrumented_b62a0f12d530ee14.json.gz",
+    "source_raw_sha256": "69a936e1a6fabccc6d74d0b2e21ee0a53ffcf8a5dd31bd13f1583cd3a18768aa",
+    "time": 1.8591991358067197
+  },
+  {
+    "all_routes_equal": true,
+    "instance": "r101_21_100",
+    "median_forced_choice_seconds": 3.115000436082482e-05,
+    "median_milp_seconds": 0.005565499945078045,
+    "ready_vehicles": 12,
+    "repeats": 20,
+    "source_raw": "results/desaulniers/publication_development/instrumented_v1/raw/r101_21_100_MPC_ALNS_instrumented_b62a0f12d530ee14.json.gz",
+    "source_raw_sha256": "69a936e1a6fabccc6d74d0b2e21ee0a53ffcf8a5dd31bd13f1583cd3a18768aa",
+    "time": 2.0009277666914937
+  },
+  {
+    "all_routes_equal": true,
+    "instance": "r101_21_100",
+    "median_forced_choice_seconds": 3.1450006645172834e-05,
+    "median_milp_seconds": 0.005448699987027794,
+    "ready_vehicles": 12,
+    "repeats": 20,
+    "source_raw": "results/desaulniers/publication_development/instrumented_v1/raw/r101_21_100_MPC_ALNS_instrumented_b62a0f12d530ee14.json.gz",
+    "source_raw_sha256": "69a936e1a6fabccc6d74d0b2e21ee0a53ffcf8a5dd31bd13f1583cd3a18768aa",
+    "time": 3.782282719159777
+  },
+  {
+    "all_routes_equal": true,
+    "instance": "c101_21_100",
+    "median_forced_choice_seconds": 2.435001078993082e-05,
+    "median_milp_seconds": 0.008305700030177832,
+    "ready_vehicles": 2,
+    "repeats": 20,
+    "source_raw": "results/desaulniers/publication_development/instrumented_v1/raw/c101_21_100_MPC_ALNS_instrumented_76745b278f4248ce.json.gz",
+    "source_raw_sha256": "0b91dece5694b904e4cd48d70ccd2b43b8de8b2af425ac457b7416e85106e7d0",
+    "time": 23.115881399089428
+  },
+  {
+    "all_routes_equal": true,
+    "instance": "c101_21_100",
+    "median_forced_choice_seconds": 1.8949969671666622e-05,
+    "median_milp_seconds": 0.008224549994338304,
+    "ready_vehicles": 1,
+    "repeats": 20,
+    "source_raw": "results/desaulniers/publication_development/instrumented_v1/raw/c101_21_100_MPC_ALNS_instrumented_76745b278f4248ce.json.gz",
+    "source_raw_sha256": "0b91dece5694b904e4cd48d70ccd2b43b8de8b2af425ac457b7416e85106e7d0",
+    "time": 24.645366172859895
+  },
+  {
+    "all_routes_equal": true,
+    "instance": "c101_21_100",
+    "median_forced_choice_seconds": 1.7700018361210823e-05,
+    "median_milp_seconds": 0.007394300017040223,
+    "ready_vehicles": 1,
+    "repeats": 20,
+    "source_raw": "results/desaulniers/publication_development/instrumented_v1/raw/c101_21_100_MPC_ALNS_instrumented_76745b278f4248ce.json.gz",
+    "source_raw_sha256": "0b91dece5694b904e4cd48d70ccd2b43b8de8b2af425ac457b7416e85106e7d0",
+    "time": 42.926820537631926
+  }
+]

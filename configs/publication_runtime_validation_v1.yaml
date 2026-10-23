@@ -1,5 +1,6 @@
 study: publication_guarded_runtime_validation_v1
 role: implementation_validation_development
+machine_load_methodology: One campaign worker at a time; unrelated system workloads may run; no machine-exclusive timing claim
 output: results/desaulniers/publication_development/runtime_validation_v1
 cases:
   - [r101_21_25, 0.75, 0]

@@ -146,6 +146,8 @@ def audit(label, dataset):
     if any(set(methods) != set(frozen["methods"]) for methods in grouped.values()):
         raise ValueError("Frozen study has unpaired method sets")
     methods = {}
+    common_complete = [group for group in grouped.values()
+                       if all(row["complete_service"] for row in group.values())]
     for method in frozen["methods"]:
         subset = [group[method] for group in grouped.values()]
         opportunities = sum(len(cache[key][0].customers) for key in grouped)
@@ -154,7 +156,14 @@ def audit(label, dataset):
                                service=sum(row["customers_served"] for row in subset) / opportunities,
                                complete_scenarios=sum(row["complete_service"] for row in subset),
                                scenarios=len(subset), max_decision_seconds=max(
-                                   row["max_optimization_latency"] for row in subset))
+                                   row["max_optimization_latency"] for row in subset),
+                               conditional_efficiency=dict(
+                                   common_complete_scenarios=len(common_complete),
+                                   **{field: sum(group[method][field] for group in common_complete) /
+                                      len(common_complete) if common_complete else None
+                                      for field in ("vehicles_activated", "total_distance",
+                                                    "total_energy_charged", "total_charging_visits",
+                                                    "total_charging_time")}))
     from scripts.analyze_alns_recovery_screen import _interval
     contrasts = [(method, "MPC_COMPLETION") for method in frozen["methods"] if method != "MPC_COMPLETION"]
     contrasts.append(("MPC_ALNS", "MPC_HGS"))

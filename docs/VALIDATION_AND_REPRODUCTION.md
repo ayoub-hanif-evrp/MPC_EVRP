@@ -1,5 +1,47 @@
 # Desaulniers MP validation and reproduction
 
+## Current development branch
+
+Use `python -m scripts.audit_frozen_studies` on this branch to independently
+replay the 990 original development/final/robustness records. It reconstructs
+each frozen source fingerprint from historical Git blobs and checks that the
+physical/scenario engine still matches. The old study-specific commands
+below are archival instructions for their exact original source revisions;
+they intentionally refuse source drift on the current development branch.
+
+Current saved-evidence reproduction:
+
+```powershell
+python -m pytest tests -q --basetemp results/.pytest_reproduce
+python -m scripts.audit_frozen_studies
+python -m scripts.audit_enhancement_studies
+python -m scripts.audit_reference_inventory
+python -m scripts.analyze_publication_pair --config configs/publication_stable_screen_v1.yaml
+python -m scripts.analyze_runtime_validation
+python -m scripts.render_publication_package
+```
+
+See the [consolidated completion report](../results/desaulniers/publication_package_v1/FINAL_REPORT.md).
+The paired Stable V3 development screen did not satisfy its frozen promotion
+criterion. No new independent enhanced-method final holdout was opened.
+
+Runtime corrections are explicit switches:
+`optimizer_initialization_policy: validated_incumbent_v1` retains the already
+validated constructor if search initialization expires; and
+`coordination_policy: forced_retained_v1` bypasses MILP only when the retained
+route choices are mathematically forced. Both default to `original`.
+The matched runtime study is implementation validation, not evidence of
+general service superiority.
+
+Separately audited offline witnesses can be selected explicitly using
+`reference_policy: mp_witness_v1`. This requires the generated reference
+inventory and MP charging. The default `legacy_v1` preserves historical
+fleets and scenarios. New witness fleet counts are feasible heuristic upper
+bounds; different reference policies must not be mixed within a paired study.
+Reference content identifiers and plant replay accompany byte hashes.
+Old Git text artifacts accept only proven LF/CRLF transport differences;
+compressed raw experiment files always require exact byte hashes.
+
 ## Evidence boundaries
 
 The static Desaulniers files under `data/opre.2016.1535-sm-data/` are

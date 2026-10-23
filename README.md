@@ -12,9 +12,11 @@ The separate [enhancement development branch status](results/desaulniers/enhance
 reports audited loss diagnostics and controlled experiments. No enhanced
 method has yet earned a new independent final evaluation; the original
 paper results remain the primary findings.
-The [publication enhancement checkpoint](results/desaulniers/publication_development/STATUS.md)
-adds first-visible insertion and commitment timelines plus an audited
-one-vehicle reserve-dispatch pilot; that variant also remains experimental.
+The [publication development record](results/desaulniers/publication_development/STATUS.md)
+adds observable candidate traces, controlled ablations, explicit runtime
+corrections and separately audited MP reference coverage. See the consolidated
+[publication package](results/desaulniers/publication_package_v1/RESULTS.md)
+and [completion report](results/desaulniers/publication_package_v1/FINAL_REPORT.md).
 
 ## Active benchmark
 
@@ -47,14 +49,19 @@ Python 3.11+ is required. From the repository root:
 
 ```powershell
 python -m pip install -r requirements.txt
-python -m pytest -q
-python -m scripts.verify_desaulniers_final
-python -m scripts.render_desaulniers_paper
-python -m scripts.diagnose_desaulniers_service
+python -m pytest tests -q --basetemp results/.pytest_reproduce
+python -m scripts.audit_frozen_studies
+python -m scripts.audit_enhancement_studies
+python -m scripts.audit_reference_inventory
+python -m scripts.render_publication_package
 ```
 
-The last three commands audit and render the existing corrected final study;
-they do not rerun its optimization. The historical pilot, development, and
+These commands audit and render saved evidence; they do not rerun optimization.
+The historical-source auditor verifies the exact archived Git blobs, so the
+current development tree need not equal the frozen historical implementation.
+Old study-specific verifiers and optimization runners must instead be used
+with their original source commits; their drift guards remain intact.
+The historical pilot, development, and
 final campaigns are already complete and should not be launched merely to
 reproduce the paper tables. The all-instance reference audit is
 `python -m scripts.validate_desaulniers_coverage`; it can take substantially
@@ -131,8 +138,8 @@ has six balanced instances, three eligible DoD levels, seeds 1-5, and is
 **complete: 450/450 independently audited runs**. The separate
 [robustness results](results/desaulniers/robustness_v3/RESULTS.md) report
 90 matched scenarios, paired instance-clustered intervals, and 300-dpi PNG
-figures. Reproduce the analysis with
-`python -m scripts.analyze_desaulniers_robustness --v3`. Do not pool these
+figures. Its original analyzer is available at the archived source commit;
+`python -m scripts.audit_frozen_studies` audits it from this branch. Do not pool these
 new seeds or instances with the corrected final holdout; hardware and
 runtime conditions are reported separately.
 
