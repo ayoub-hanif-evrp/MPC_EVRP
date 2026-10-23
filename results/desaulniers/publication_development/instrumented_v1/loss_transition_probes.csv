@@ -1,0 +1,6 @@
+instance,dod,seed,customer,time,drop_stage,trigger,constructor_service,selected_service,recovery,insertion_rank,remaining_uncovered,diagnostic_decodes
+r101_21_25,0.75,0,C67,94.6298488107895,optimizer,release,8,8,no_bounded_recovery_witness,,,0
+r101_21_100,0.75,0,C65,38.735903302738514,optimizer,release,38,38,no_bounded_recovery_witness,,,0
+r101_21_100,0.75,0,C72,104.77797639001571,optimizer,release,30,31,no_bounded_recovery_witness,,,0
+c101_21_100,0.25,0,C18,388.35250099999996,optimizer,service_completion_uncovered,54,54,no_bounded_recovery_witness,,,2
+c101_21_100,0.25,0,C45,421.24,optimizer,service_completion_uncovered,52,52,no_bounded_recovery_witness,,,0
