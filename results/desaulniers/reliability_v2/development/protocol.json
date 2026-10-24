@@ -1,0 +1,2142 @@
+{
+  "cases": [
+    {
+      "case": [
+        "c106_21_25",
+        0.25,
+        0
+      ],
+      "customers": 25,
+      "instance_sha256": "318605a0e3a56106a55eb64bb7d471f686491741e87606f478b4ef0c44130cf9",
+      "k_ref": 5,
+      "parent": "c106_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/c106_21_25.json",
+        "sha256": "be16ca451a441ac25d78aa4b5ba6ad4e8bcb96e48a45873a72068cf736e4e5df"
+      },
+      "reference_id": "da4662b0acac4d3e27e7d3e9d9363095e4609759a4222357ccb2a8b90c750454",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/8fbb2131700e705c.json",
+        "sha256": "cf57ecf65dc35739af61bd86034fef9510cb22c40c602be696b1755e0f0e7cc6"
+      },
+      "scenario_id": "dee72b8d7654b167279372a51ed1f2463159291423081658ea85c297375a5c40"
+    },
+    {
+      "case": [
+        "c106_21_25",
+        0.25,
+        1
+      ],
+      "customers": 25,
+      "instance_sha256": "318605a0e3a56106a55eb64bb7d471f686491741e87606f478b4ef0c44130cf9",
+      "k_ref": 5,
+      "parent": "c106_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/c106_21_25.json",
+        "sha256": "be16ca451a441ac25d78aa4b5ba6ad4e8bcb96e48a45873a72068cf736e4e5df"
+      },
+      "reference_id": "da4662b0acac4d3e27e7d3e9d9363095e4609759a4222357ccb2a8b90c750454",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/d3c6833816f4ca32.json",
+        "sha256": "437c7a4c89efd321ef0395e7fb742c619be220f8acac1d51d5b3b10d479027a9"
+      },
+      "scenario_id": "0d0b679b5501e0101f5e2c14736101f2262c0931c0aa0ed937677f45e5c6705d"
+    },
+    {
+      "case": [
+        "c106_21_25",
+        0.75,
+        0
+      ],
+      "customers": 25,
+      "instance_sha256": "318605a0e3a56106a55eb64bb7d471f686491741e87606f478b4ef0c44130cf9",
+      "k_ref": 5,
+      "parent": "c106_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/c106_21_25.json",
+        "sha256": "be16ca451a441ac25d78aa4b5ba6ad4e8bcb96e48a45873a72068cf736e4e5df"
+      },
+      "reference_id": "da4662b0acac4d3e27e7d3e9d9363095e4609759a4222357ccb2a8b90c750454",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/9b4f340d2979d02b.json",
+        "sha256": "17134c6c6b26c4828f086c62560c45782aad4678eeb15d2c77d11368fb90342f"
+      },
+      "scenario_id": "449ee8946af53ea88bebb092092aa7856001c8c7e68555255f7e5d879327329e"
+    },
+    {
+      "case": [
+        "c106_21_25",
+        0.75,
+        1
+      ],
+      "customers": 25,
+      "instance_sha256": "318605a0e3a56106a55eb64bb7d471f686491741e87606f478b4ef0c44130cf9",
+      "k_ref": 5,
+      "parent": "c106_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/c106_21_25.json",
+        "sha256": "be16ca451a441ac25d78aa4b5ba6ad4e8bcb96e48a45873a72068cf736e4e5df"
+      },
+      "reference_id": "da4662b0acac4d3e27e7d3e9d9363095e4609759a4222357ccb2a8b90c750454",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/b2bcfa134da661a4.json",
+        "sha256": "5580147c3c4d986839d463fd397767b58a75a2edb5c7748bd33c687993ee10f5"
+      },
+      "scenario_id": "83542b16b5d7a0dc2aec02a67cffc3e7735d4e86618fe64e151497a73c8ad741"
+    },
+    {
+      "case": [
+        "c106_21_100",
+        0.25,
+        0
+      ],
+      "customers": 100,
+      "instance_sha256": "2f552757d0ca14ff41ddaba63c0dcbc0a610cbb158000c9f65cefb7ca615f89d",
+      "k_ref": 12,
+      "parent": "c106_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/c106_21_100.json",
+        "sha256": "082e37254aeef52c766e816e719b6d7bb8c8f2d874dedcf4f750cf33a0e81108"
+      },
+      "reference_id": "6c52486a7f904b0a537d125daf5cdfb4deb798280d8661388485df3bdf10885d",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/0261211c4fc19e36.json",
+        "sha256": "65ef239f09d4d7778d623a5cf7dbc9382678802d6c3658136e996571c411869a"
+      },
+      "scenario_id": "0a0824ac941a1bcca4e47009fc7de464ef73c555dc98c84bc8477d5c2cd21b5e"
+    },
+    {
+      "case": [
+        "c106_21_100",
+        0.25,
+        1
+      ],
+      "customers": 100,
+      "instance_sha256": "2f552757d0ca14ff41ddaba63c0dcbc0a610cbb158000c9f65cefb7ca615f89d",
+      "k_ref": 12,
+      "parent": "c106_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/c106_21_100.json",
+        "sha256": "082e37254aeef52c766e816e719b6d7bb8c8f2d874dedcf4f750cf33a0e81108"
+      },
+      "reference_id": "6c52486a7f904b0a537d125daf5cdfb4deb798280d8661388485df3bdf10885d",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/4dd4ba65051f9602.json",
+        "sha256": "cee93531b7a763cad9b38c543573d3c82aee1c600ac6e24eb1c27a22c25416d5"
+      },
+      "scenario_id": "a5edc7e0f6a3a1dd50498482fd8030293b00be67832a1c469cdd2d6f7164697d"
+    },
+    {
+      "case": [
+        "c106_21_100",
+        0.75,
+        0
+      ],
+      "customers": 100,
+      "instance_sha256": "2f552757d0ca14ff41ddaba63c0dcbc0a610cbb158000c9f65cefb7ca615f89d",
+      "k_ref": 12,
+      "parent": "c106_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/c106_21_100.json",
+        "sha256": "082e37254aeef52c766e816e719b6d7bb8c8f2d874dedcf4f750cf33a0e81108"
+      },
+      "reference_id": "6c52486a7f904b0a537d125daf5cdfb4deb798280d8661388485df3bdf10885d",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/3ec73b54e849ad55.json",
+        "sha256": "156e2047893123935c2e8ea9e53aa08d12006d04cd4d4192753074cf8087e822"
+      },
+      "scenario_id": "5506d0d7b6d77dc82248a58671600ed6acd23c32f87d992aea94b1970985a2df"
+    },
+    {
+      "case": [
+        "c106_21_100",
+        0.75,
+        1
+      ],
+      "customers": 100,
+      "instance_sha256": "2f552757d0ca14ff41ddaba63c0dcbc0a610cbb158000c9f65cefb7ca615f89d",
+      "k_ref": 12,
+      "parent": "c106_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/c106_21_100.json",
+        "sha256": "082e37254aeef52c766e816e719b6d7bb8c8f2d874dedcf4f750cf33a0e81108"
+      },
+      "reference_id": "6c52486a7f904b0a537d125daf5cdfb4deb798280d8661388485df3bdf10885d",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/672d5884d98c027c.json",
+        "sha256": "c5aae401acef0958292ef2e76f4af02d5078b99ca5a813d91f79bb842f533cfe"
+      },
+      "scenario_id": "f47989201277f3dd268837bd7702cf413e8686c932bbbae37aa4a577ee734bbf"
+    },
+    {
+      "case": [
+        "c107_21_50",
+        0.25,
+        0
+      ],
+      "customers": 50,
+      "instance_sha256": "6ba799ca8088508d354ebaf614be3e1ad6525ec436f1c02f0983c2a513aa8753",
+      "k_ref": 7,
+      "parent": "c107_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/c107_21_50.json",
+        "sha256": "b165678ca6c4403ac79390f63a33c05cee059431fed20cf31ad410bbd1b825b7"
+      },
+      "reference_id": "e4b8e70673e558f40a88d8a31a822697034c258f0d89340d66506cf6a568799f",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/072e6315b39cec9a.json",
+        "sha256": "3988e6b2a16fd680248059e18db3478a1ec63c7dc36ba35f2eeb1ed33fad7339"
+      },
+      "scenario_id": "2fa09f03814f5b005179af9d530e0d21e2de6b0300ff0f10004618355c8e0425"
+    },
+    {
+      "case": [
+        "c107_21_50",
+        0.25,
+        1
+      ],
+      "customers": 50,
+      "instance_sha256": "6ba799ca8088508d354ebaf614be3e1ad6525ec436f1c02f0983c2a513aa8753",
+      "k_ref": 7,
+      "parent": "c107_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/c107_21_50.json",
+        "sha256": "b165678ca6c4403ac79390f63a33c05cee059431fed20cf31ad410bbd1b825b7"
+      },
+      "reference_id": "e4b8e70673e558f40a88d8a31a822697034c258f0d89340d66506cf6a568799f",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/0883924563071e96.json",
+        "sha256": "b65a50591b633cbc6ea575ef639c51ccbbe45b8626c8ce804a75c2a6425317bd"
+      },
+      "scenario_id": "335fb5e95e139e34fa2e5861c12350440fe7d499c41d7b9d90497cfa213cab88"
+    },
+    {
+      "case": [
+        "c107_21_50",
+        0.75,
+        0
+      ],
+      "customers": 50,
+      "instance_sha256": "6ba799ca8088508d354ebaf614be3e1ad6525ec436f1c02f0983c2a513aa8753",
+      "k_ref": 7,
+      "parent": "c107_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/c107_21_50.json",
+        "sha256": "b165678ca6c4403ac79390f63a33c05cee059431fed20cf31ad410bbd1b825b7"
+      },
+      "reference_id": "e4b8e70673e558f40a88d8a31a822697034c258f0d89340d66506cf6a568799f",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/d7c1f125d3898fee.json",
+        "sha256": "8ca1d018e1a00f36825ba2cd06c45831b59b60ae1204cefa816cb96506c42c18"
+      },
+      "scenario_id": "523df6247a57d9e43ca6ad5fbebefcbad961600661ba83823fcc7a3d66cc7ef6"
+    },
+    {
+      "case": [
+        "c107_21_50",
+        0.75,
+        1
+      ],
+      "customers": 50,
+      "instance_sha256": "6ba799ca8088508d354ebaf614be3e1ad6525ec436f1c02f0983c2a513aa8753",
+      "k_ref": 7,
+      "parent": "c107_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/c107_21_50.json",
+        "sha256": "b165678ca6c4403ac79390f63a33c05cee059431fed20cf31ad410bbd1b825b7"
+      },
+      "reference_id": "e4b8e70673e558f40a88d8a31a822697034c258f0d89340d66506cf6a568799f",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/a0e45dc04d3e46fc.json",
+        "sha256": "26424b8790e102cf089f1dadf257f6cd1082d3f6b04d5f6d4700885a7a93e243"
+      },
+      "scenario_id": "c154e303c3edaaf89336d93d4ad2a91e62ae541e43e3d3409abcd924b8c97496"
+    },
+    {
+      "case": [
+        "c107_21_100",
+        0.25,
+        0
+      ],
+      "customers": 100,
+      "instance_sha256": "e7f07655b7f815acb174331475d34905eb6c4c87edcc6624aaaa40781c08730a",
+      "k_ref": 12,
+      "parent": "c107_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/c107_21_100.json",
+        "sha256": "718a3343c03cf487a74c2847b538ba900890bc287c766766504e5807c45cac7a"
+      },
+      "reference_id": "38d2d4b553f2b5b47b621c8736561ceb7594e7951fae06562a8628f355d299c6",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/60c7d4038b6d7e64.json",
+        "sha256": "5f2b0a1387271df6871450c7df70a350b47955d97488fc2415b4bedec0fd6890"
+      },
+      "scenario_id": "caa1f9c61ee0fd211b1f3b51810563af64103337df2da01a6276c21313f35bd1"
+    },
+    {
+      "case": [
+        "c107_21_100",
+        0.25,
+        1
+      ],
+      "customers": 100,
+      "instance_sha256": "e7f07655b7f815acb174331475d34905eb6c4c87edcc6624aaaa40781c08730a",
+      "k_ref": 12,
+      "parent": "c107_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/c107_21_100.json",
+        "sha256": "718a3343c03cf487a74c2847b538ba900890bc287c766766504e5807c45cac7a"
+      },
+      "reference_id": "38d2d4b553f2b5b47b621c8736561ceb7594e7951fae06562a8628f355d299c6",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/59636dec0eb20a22.json",
+        "sha256": "e82ca71f3895d0306d44f2a2aec59a4ec1b09e8554ea61b14ef62672dfe2b57e"
+      },
+      "scenario_id": "6cccf057df0bbac75feca96c108151967fde11a7631a441135ae7a0e002588e4"
+    },
+    {
+      "case": [
+        "c107_21_100",
+        0.75,
+        0
+      ],
+      "customers": 100,
+      "instance_sha256": "e7f07655b7f815acb174331475d34905eb6c4c87edcc6624aaaa40781c08730a",
+      "k_ref": 12,
+      "parent": "c107_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/c107_21_100.json",
+        "sha256": "718a3343c03cf487a74c2847b538ba900890bc287c766766504e5807c45cac7a"
+      },
+      "reference_id": "38d2d4b553f2b5b47b621c8736561ceb7594e7951fae06562a8628f355d299c6",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/534d6b1ae088a56a.json",
+        "sha256": "e5b0c526cec0ba09e69f19ca01c234527fa2b79573898140e8a0e96dd48e445c"
+      },
+      "scenario_id": "f9606f03711f679cc6a3ba597049aba3a65513e7c109bfc2ac65e283c1303a54"
+    },
+    {
+      "case": [
+        "c107_21_100",
+        0.75,
+        1
+      ],
+      "customers": 100,
+      "instance_sha256": "e7f07655b7f815acb174331475d34905eb6c4c87edcc6624aaaa40781c08730a",
+      "k_ref": 12,
+      "parent": "c107_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/c107_21_100.json",
+        "sha256": "718a3343c03cf487a74c2847b538ba900890bc287c766766504e5807c45cac7a"
+      },
+      "reference_id": "38d2d4b553f2b5b47b621c8736561ceb7594e7951fae06562a8628f355d299c6",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/208c473612080ed2.json",
+        "sha256": "d6f5e74b8afe55eb02aa0e1cf7f63bd00decfdc06e1764e854adac71963b7594"
+      },
+      "scenario_id": "f20a4ff73b702cfd2455826ee1d25f02f4ca764b7df5ecaf96e1f0afa5065db5"
+    },
+    {
+      "case": [
+        "c206_21_25",
+        0.25,
+        0
+      ],
+      "customers": 25,
+      "instance_sha256": "77ddb502bed9406e60db4896657b7a50254bc218eb3e80f55bcc0c4fff7ac7d4",
+      "k_ref": 3,
+      "parent": "c206_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/c206_21_25.json",
+        "sha256": "3f6f3e05a2b470972fc7b2f906ca1afb9f0d3f3cc6a23adcec1f4bcc56aabcf5"
+      },
+      "reference_id": "158ee25cfe8b752a767f6ae675f194f081516eb4b2a936ac702776360b58e209",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/64cdca23579b6e83.json",
+        "sha256": "4ad81b0b4239fdcb596851a04371d4057764065ac1f0a40045adbb962a06e281"
+      },
+      "scenario_id": "bf7569607bd3ff64209d698fa2e8f0f4dbb78e5c1258836d28c1d669128dd955"
+    },
+    {
+      "case": [
+        "c206_21_25",
+        0.25,
+        1
+      ],
+      "customers": 25,
+      "instance_sha256": "77ddb502bed9406e60db4896657b7a50254bc218eb3e80f55bcc0c4fff7ac7d4",
+      "k_ref": 3,
+      "parent": "c206_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/c206_21_25.json",
+        "sha256": "3f6f3e05a2b470972fc7b2f906ca1afb9f0d3f3cc6a23adcec1f4bcc56aabcf5"
+      },
+      "reference_id": "158ee25cfe8b752a767f6ae675f194f081516eb4b2a936ac702776360b58e209",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/94243f54d2f94b54.json",
+        "sha256": "b18ffc65d91a62d74425c30061e80271ff9cdab21aa33dcc7c570a8867455040"
+      },
+      "scenario_id": "7db42df9a9777503ce389ddfc565b72dfa4ee297b007b17d4365399355e4db81"
+    },
+    {
+      "case": [
+        "c206_21_25",
+        0.75,
+        0
+      ],
+      "customers": 25,
+      "instance_sha256": "77ddb502bed9406e60db4896657b7a50254bc218eb3e80f55bcc0c4fff7ac7d4",
+      "k_ref": 3,
+      "parent": "c206_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/c206_21_25.json",
+        "sha256": "3f6f3e05a2b470972fc7b2f906ca1afb9f0d3f3cc6a23adcec1f4bcc56aabcf5"
+      },
+      "reference_id": "158ee25cfe8b752a767f6ae675f194f081516eb4b2a936ac702776360b58e209",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/9543ebadd5a75b6b.json",
+        "sha256": "2ac0bb212b072b6467644b39085859238069f666c04bca29e3ed465fcb546172"
+      },
+      "scenario_id": "26736472df72bef944318127552862666ed4038aebb5b2c1941574618dac3e0e"
+    },
+    {
+      "case": [
+        "c206_21_25",
+        0.75,
+        1
+      ],
+      "customers": 25,
+      "instance_sha256": "77ddb502bed9406e60db4896657b7a50254bc218eb3e80f55bcc0c4fff7ac7d4",
+      "k_ref": 3,
+      "parent": "c206_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/c206_21_25.json",
+        "sha256": "3f6f3e05a2b470972fc7b2f906ca1afb9f0d3f3cc6a23adcec1f4bcc56aabcf5"
+      },
+      "reference_id": "158ee25cfe8b752a767f6ae675f194f081516eb4b2a936ac702776360b58e209",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/00a32ab2c198ab90.json",
+        "sha256": "b8684cf004daff69403b8d572e1d64bcdcf7c683311d080d87fef9ef88a354bf"
+      },
+      "scenario_id": "c403375abc5073e7b97cc75f4a71e1a77223a4f99d377f769fc8cd4229620766"
+    },
+    {
+      "case": [
+        "c206_21_100",
+        0.25,
+        0
+      ],
+      "customers": 100,
+      "instance_sha256": "36896b744168b9b9764a9d682aaeab6c9589071f209ac9819e074205d0400390",
+      "k_ref": 5,
+      "parent": "c206_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/c206_21_100.json",
+        "sha256": "ce0738bf66f29049fdf09e230e02afbdb14b64da30e1b7ec9e4705c0c047e292"
+      },
+      "reference_id": "6c539dcdc157280643926d7a88c87dcf9d8ba5d59da2b834e666f91aaaabd6ba",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/3ef4a3905996bb56.json",
+        "sha256": "2f043c269b47adda83ce169459eda71c99490e3fea58a85a6cef085599fe0f58"
+      },
+      "scenario_id": "3a494d04b7a3381c6d0d22bd280857052f83f7df2bf459e811e5a621bd799963"
+    },
+    {
+      "case": [
+        "c206_21_100",
+        0.25,
+        1
+      ],
+      "customers": 100,
+      "instance_sha256": "36896b744168b9b9764a9d682aaeab6c9589071f209ac9819e074205d0400390",
+      "k_ref": 5,
+      "parent": "c206_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/c206_21_100.json",
+        "sha256": "ce0738bf66f29049fdf09e230e02afbdb14b64da30e1b7ec9e4705c0c047e292"
+      },
+      "reference_id": "6c539dcdc157280643926d7a88c87dcf9d8ba5d59da2b834e666f91aaaabd6ba",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/66b0fec7650db227.json",
+        "sha256": "09a0c2849640921edbb1639194f303f08071197d473f82b489b62f6c036d8c0a"
+      },
+      "scenario_id": "876e91c94229980a3d752a0eaf86acb0681ce1902a3034a34bebce5c2f762182"
+    },
+    {
+      "case": [
+        "c206_21_100",
+        0.75,
+        0
+      ],
+      "customers": 100,
+      "instance_sha256": "36896b744168b9b9764a9d682aaeab6c9589071f209ac9819e074205d0400390",
+      "k_ref": 5,
+      "parent": "c206_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/c206_21_100.json",
+        "sha256": "ce0738bf66f29049fdf09e230e02afbdb14b64da30e1b7ec9e4705c0c047e292"
+      },
+      "reference_id": "6c539dcdc157280643926d7a88c87dcf9d8ba5d59da2b834e666f91aaaabd6ba",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/c70cdcb563534119.json",
+        "sha256": "488faa6219680b91109c8d75744d0ca3e09346748abf262aa5b1e2239b913c9d"
+      },
+      "scenario_id": "55e5f14e1c90fd59394b95c64fc597ffff979d4f21374a1f7d867c3885da16e0"
+    },
+    {
+      "case": [
+        "c206_21_100",
+        0.75,
+        1
+      ],
+      "customers": 100,
+      "instance_sha256": "36896b744168b9b9764a9d682aaeab6c9589071f209ac9819e074205d0400390",
+      "k_ref": 5,
+      "parent": "c206_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/c206_21_100.json",
+        "sha256": "ce0738bf66f29049fdf09e230e02afbdb14b64da30e1b7ec9e4705c0c047e292"
+      },
+      "reference_id": "6c539dcdc157280643926d7a88c87dcf9d8ba5d59da2b834e666f91aaaabd6ba",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/ac8dd209b49ba570.json",
+        "sha256": "b4c399a5a65b5918b802ac3ffebf4382ab860a7e42ef73df87f6c7b1a75665bc"
+      },
+      "scenario_id": "280e4b6e96d62c98470b533e26c24d08639d5e01871b5763d02fec42d827d779"
+    },
+    {
+      "case": [
+        "c207_21_50",
+        0.25,
+        0
+      ],
+      "customers": 50,
+      "instance_sha256": "e357540f6642271a6bf7e4988d0ba0b650f402c0f0a11c6ef246a20420410d60",
+      "k_ref": 4,
+      "parent": "c207_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/c207_21_50.json",
+        "sha256": "81bbebf1819a3541ef0b3f2e091e4fa2b8d2947176876f871f6c4d5e3ac004eb"
+      },
+      "reference_id": "91c7d139a045f922c64a866e6b03d7e49a6aa130cdd34fecd971d2ecca5cc5b5",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/c9f8284a6bc0b257.json",
+        "sha256": "14201321795518ce9602d3c2a8c6e9a46b20d841148663799c16396748fd08d5"
+      },
+      "scenario_id": "cbcfc7c3f464c6003e69905c629409c2cee55b3f41a2540e5a1005ee129002ad"
+    },
+    {
+      "case": [
+        "c207_21_50",
+        0.25,
+        1
+      ],
+      "customers": 50,
+      "instance_sha256": "e357540f6642271a6bf7e4988d0ba0b650f402c0f0a11c6ef246a20420410d60",
+      "k_ref": 4,
+      "parent": "c207_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/c207_21_50.json",
+        "sha256": "81bbebf1819a3541ef0b3f2e091e4fa2b8d2947176876f871f6c4d5e3ac004eb"
+      },
+      "reference_id": "91c7d139a045f922c64a866e6b03d7e49a6aa130cdd34fecd971d2ecca5cc5b5",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/07b078e53716801a.json",
+        "sha256": "d07951dbdea3483b3ac9186b7ba8140d5b5780478476f15ef50cc064c06fb22f"
+      },
+      "scenario_id": "bd4056b9080830462bac0221abbb19bc144953192a447d99c4ad849b2b6e5579"
+    },
+    {
+      "case": [
+        "c207_21_50",
+        0.75,
+        0
+      ],
+      "customers": 50,
+      "instance_sha256": "e357540f6642271a6bf7e4988d0ba0b650f402c0f0a11c6ef246a20420410d60",
+      "k_ref": 4,
+      "parent": "c207_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/c207_21_50.json",
+        "sha256": "81bbebf1819a3541ef0b3f2e091e4fa2b8d2947176876f871f6c4d5e3ac004eb"
+      },
+      "reference_id": "91c7d139a045f922c64a866e6b03d7e49a6aa130cdd34fecd971d2ecca5cc5b5",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/185b19c8931b79b8.json",
+        "sha256": "97c5da33df3f103fb6f1bdec06ca1ea9d55af91da9c7e3a486db0735882398aa"
+      },
+      "scenario_id": "96663327ae17735f39772fbaff8989b2df8ece9be7b1155400dded97ac94314e"
+    },
+    {
+      "case": [
+        "c207_21_50",
+        0.75,
+        1
+      ],
+      "customers": 50,
+      "instance_sha256": "e357540f6642271a6bf7e4988d0ba0b650f402c0f0a11c6ef246a20420410d60",
+      "k_ref": 4,
+      "parent": "c207_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/c207_21_50.json",
+        "sha256": "81bbebf1819a3541ef0b3f2e091e4fa2b8d2947176876f871f6c4d5e3ac004eb"
+      },
+      "reference_id": "91c7d139a045f922c64a866e6b03d7e49a6aa130cdd34fecd971d2ecca5cc5b5",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/b5ed02752e8422c0.json",
+        "sha256": "80d1ac7dec00d0e374fb835156b2b98abe6cb828a2d2bb791790cfc9522d904f"
+      },
+      "scenario_id": "01fd4e548291ebc0c9056f704be0c4a59473f7dc4773a048bef3a4ac43380388"
+    },
+    {
+      "case": [
+        "c207_21_100",
+        0.25,
+        0
+      ],
+      "customers": 100,
+      "instance_sha256": "075133e0e34bc10c7cc07355ae4e5028731ccf686af3c46e1e3e8d5891927a12",
+      "k_ref": 4,
+      "parent": "c207_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/c207_21_100.json",
+        "sha256": "170dfb3a39ad3874b57cbc290bbfa623a9d89703ac2dad5603f6e8cc61708619"
+      },
+      "reference_id": "89da68174341b106b7c4711c82037d477f1ae68d9ea30612e27f9ff3662218d1",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/30c3962c12b59c1f.json",
+        "sha256": "8d3817361357794b817801c03686cffaa218f8da9ce190cfc5341a0ed1fbfc9a"
+      },
+      "scenario_id": "839fc0fc04114a4e508e6bf1a8ecfff7f46e533976f56ba2199f06b58836dfb9"
+    },
+    {
+      "case": [
+        "c207_21_100",
+        0.25,
+        1
+      ],
+      "customers": 100,
+      "instance_sha256": "075133e0e34bc10c7cc07355ae4e5028731ccf686af3c46e1e3e8d5891927a12",
+      "k_ref": 4,
+      "parent": "c207_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/c207_21_100.json",
+        "sha256": "170dfb3a39ad3874b57cbc290bbfa623a9d89703ac2dad5603f6e8cc61708619"
+      },
+      "reference_id": "89da68174341b106b7c4711c82037d477f1ae68d9ea30612e27f9ff3662218d1",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/81a1a5702a2dc903.json",
+        "sha256": "53dce427edaf4ebfc6ca8fa83b81fe82db54b82a5366013925b72090d56cb216"
+      },
+      "scenario_id": "315cd4eeedeb64fc60442fbb99cd04acc36408492387b74e1668c15f0791da77"
+    },
+    {
+      "case": [
+        "c207_21_100",
+        0.75,
+        0
+      ],
+      "customers": 100,
+      "instance_sha256": "075133e0e34bc10c7cc07355ae4e5028731ccf686af3c46e1e3e8d5891927a12",
+      "k_ref": 4,
+      "parent": "c207_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/c207_21_100.json",
+        "sha256": "170dfb3a39ad3874b57cbc290bbfa623a9d89703ac2dad5603f6e8cc61708619"
+      },
+      "reference_id": "89da68174341b106b7c4711c82037d477f1ae68d9ea30612e27f9ff3662218d1",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/14b23ef383dfcc2b.json",
+        "sha256": "2f5a98199548618baea7c3c074df9f9dcf6120af420b7ec0c2e3337de0b560cd"
+      },
+      "scenario_id": "666644a0d8f86e7cb3dad1f9ccfdc5f55d37bf1a86f3c10301959ad1f0cb16ec"
+    },
+    {
+      "case": [
+        "c207_21_100",
+        0.75,
+        1
+      ],
+      "customers": 100,
+      "instance_sha256": "075133e0e34bc10c7cc07355ae4e5028731ccf686af3c46e1e3e8d5891927a12",
+      "k_ref": 4,
+      "parent": "c207_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/c207_21_100.json",
+        "sha256": "170dfb3a39ad3874b57cbc290bbfa623a9d89703ac2dad5603f6e8cc61708619"
+      },
+      "reference_id": "89da68174341b106b7c4711c82037d477f1ae68d9ea30612e27f9ff3662218d1",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/e9e02b4330f53fa6.json",
+        "sha256": "fa2b3cbb3c8c562dce23e726fca6dcbd77771b097c59166ac029f510b7066460"
+      },
+      "scenario_id": "4c75f7e19f47f2861e1b97fde1e40bbb78217c6144cc6fe7c7a2d27fab3783b8"
+    },
+    {
+      "case": [
+        "r109_21_25",
+        0.25,
+        0
+      ],
+      "customers": 25,
+      "instance_sha256": "7bcc32e1aaf80034b29ed59d1fc7c1b0a56be032c578b1cf3b4ef25ea1a409fb",
+      "k_ref": 5,
+      "parent": "r109_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/r109_21_25.json",
+        "sha256": "bc4abd35b85d0e0712b4396f4f152ef1a31145c47289372b00d073267852df8e"
+      },
+      "reference_id": "c04093eb860c8e267a10397f646759e7beda373136fc328d9aec92c6d8c166b0",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/d15c6817790b2e27.json",
+        "sha256": "722cdd855b47c00c5352df192f0ba496bab77f8766896e8c2f53102ea83e0378"
+      },
+      "scenario_id": "63e15e2ba16ba8f8b2a335e053a1013ffabd9d257708533c3c0e5cff06ee4f1d"
+    },
+    {
+      "case": [
+        "r109_21_25",
+        0.25,
+        1
+      ],
+      "customers": 25,
+      "instance_sha256": "7bcc32e1aaf80034b29ed59d1fc7c1b0a56be032c578b1cf3b4ef25ea1a409fb",
+      "k_ref": 5,
+      "parent": "r109_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/r109_21_25.json",
+        "sha256": "bc4abd35b85d0e0712b4396f4f152ef1a31145c47289372b00d073267852df8e"
+      },
+      "reference_id": "c04093eb860c8e267a10397f646759e7beda373136fc328d9aec92c6d8c166b0",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/3f1eb6fa2b9fc6b8.json",
+        "sha256": "f6ce846965b18acbfa218c283dd3ace9ba0a5f7d7c5b7c4eb066388fd68cea7f"
+      },
+      "scenario_id": "3a6af1861dd2c7a7dc7dda832fd4cf136111d076b8ee65072cd0feb64f6f2e96"
+    },
+    {
+      "case": [
+        "r109_21_25",
+        0.75,
+        0
+      ],
+      "customers": 25,
+      "instance_sha256": "7bcc32e1aaf80034b29ed59d1fc7c1b0a56be032c578b1cf3b4ef25ea1a409fb",
+      "k_ref": 5,
+      "parent": "r109_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/r109_21_25.json",
+        "sha256": "bc4abd35b85d0e0712b4396f4f152ef1a31145c47289372b00d073267852df8e"
+      },
+      "reference_id": "c04093eb860c8e267a10397f646759e7beda373136fc328d9aec92c6d8c166b0",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/767a3effa0396217.json",
+        "sha256": "110cc37ac09dfdb873c73bc5070e4ace40bb54de82d88e81ae636d55fa5b57db"
+      },
+      "scenario_id": "3535e87423574a08b7d7898cbe4ff4d208f6334745dc5bf77bea9064a298604f"
+    },
+    {
+      "case": [
+        "r109_21_25",
+        0.75,
+        1
+      ],
+      "customers": 25,
+      "instance_sha256": "7bcc32e1aaf80034b29ed59d1fc7c1b0a56be032c578b1cf3b4ef25ea1a409fb",
+      "k_ref": 5,
+      "parent": "r109_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/r109_21_25.json",
+        "sha256": "bc4abd35b85d0e0712b4396f4f152ef1a31145c47289372b00d073267852df8e"
+      },
+      "reference_id": "c04093eb860c8e267a10397f646759e7beda373136fc328d9aec92c6d8c166b0",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/0fb2113601724839.json",
+        "sha256": "f60ff151620adbed6627e36f1759b3600648f3293a554320e77d8e789155d6ed"
+      },
+      "scenario_id": "920bf9bfa811b0d2a8e0fd153dacedda7d4b2c78755e1c5cac6f7c792055fe53"
+    },
+    {
+      "case": [
+        "r109_21_100",
+        0.25,
+        0
+      ],
+      "customers": 100,
+      "instance_sha256": "a641db8f3f25591090967d47543a15ce1f6241b75a3cee919ef15f482cd17eec",
+      "k_ref": 19,
+      "parent": "r109_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/r109_21_100.json",
+        "sha256": "d5d56e76f67517e53d860d1440320faf8b91eff20ed2c98934f6bdd0ed3de103"
+      },
+      "reference_id": "075fe5d35a663f3be1f684cabe7a21c9ac73b8dca5dbb2b3884b381eb7c7cea6",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/b148324c51dc1096.json",
+        "sha256": "037081a6e2a1c3c7ac2d3a53e6da904a82c5a0be7b468c9dc690bddf285d458b"
+      },
+      "scenario_id": "7723f4fa1af70918f1235960174dbe6599a074e3c7f1e4c43090cd42ac2ec2da"
+    },
+    {
+      "case": [
+        "r109_21_100",
+        0.25,
+        1
+      ],
+      "customers": 100,
+      "instance_sha256": "a641db8f3f25591090967d47543a15ce1f6241b75a3cee919ef15f482cd17eec",
+      "k_ref": 19,
+      "parent": "r109_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/r109_21_100.json",
+        "sha256": "d5d56e76f67517e53d860d1440320faf8b91eff20ed2c98934f6bdd0ed3de103"
+      },
+      "reference_id": "075fe5d35a663f3be1f684cabe7a21c9ac73b8dca5dbb2b3884b381eb7c7cea6",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/f41928e0d124cc74.json",
+        "sha256": "d89b8d2e51642095c80bdf6c3f78c0646224b07baabc6e0b0671f57a8de40e08"
+      },
+      "scenario_id": "5fa6afcc02b26306b382e2a945de0080f16c58fcbbb4daa3c58e89f7312ea682"
+    },
+    {
+      "case": [
+        "r109_21_100",
+        0.75,
+        0
+      ],
+      "customers": 100,
+      "instance_sha256": "a641db8f3f25591090967d47543a15ce1f6241b75a3cee919ef15f482cd17eec",
+      "k_ref": 19,
+      "parent": "r109_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/r109_21_100.json",
+        "sha256": "d5d56e76f67517e53d860d1440320faf8b91eff20ed2c98934f6bdd0ed3de103"
+      },
+      "reference_id": "075fe5d35a663f3be1f684cabe7a21c9ac73b8dca5dbb2b3884b381eb7c7cea6",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/0e84370e3637a166.json",
+        "sha256": "1ab24657470b5a1e3bb1b17927f4a15bbff808162fd4dae4094e66ae4c49c771"
+      },
+      "scenario_id": "e64a84ea2dc32c89b6c11597d829ec2edffe7f44ddd2fe1f6a9806690db4c49f"
+    },
+    {
+      "case": [
+        "r109_21_100",
+        0.75,
+        1
+      ],
+      "customers": 100,
+      "instance_sha256": "a641db8f3f25591090967d47543a15ce1f6241b75a3cee919ef15f482cd17eec",
+      "k_ref": 19,
+      "parent": "r109_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/r109_21_100.json",
+        "sha256": "d5d56e76f67517e53d860d1440320faf8b91eff20ed2c98934f6bdd0ed3de103"
+      },
+      "reference_id": "075fe5d35a663f3be1f684cabe7a21c9ac73b8dca5dbb2b3884b381eb7c7cea6",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/10ad40c1001bafaa.json",
+        "sha256": "b9d3078abd4d43562165da6af026b535ad9fcc60df0ba18d36a273255b898ca0"
+      },
+      "scenario_id": "41875626a82d180acbec3246bc131410d1c16070860e05cd01e5ecd54a26532a"
+    },
+    {
+      "case": [
+        "r110_21_50",
+        0.25,
+        0
+      ],
+      "customers": 50,
+      "instance_sha256": "b4a966b661c6f4848a9ce9f61b380c21eb26ddc2bb863d5df2160e72b034027c",
+      "k_ref": 7,
+      "parent": "r110_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/r110_21_50.json",
+        "sha256": "718fd0bd3d4a3031ff2175a3c360baf9d4759202197abdbd1cfec2edb8b2b8e9"
+      },
+      "reference_id": "2f3f33365d57cc72d904181ef878850c2bc0de1d3753790997c00072307f14fa",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/53459b4e9e8cbc1d.json",
+        "sha256": "2e2fa9f45dce65677eaf7a5ddf9f1f872d1123b168ef2b043d5c459fb152fc60"
+      },
+      "scenario_id": "c293fe92dcd6386ce664d0e2a2685eab60bb8f0a95a3523029e30d945edfc7a9"
+    },
+    {
+      "case": [
+        "r110_21_50",
+        0.25,
+        1
+      ],
+      "customers": 50,
+      "instance_sha256": "b4a966b661c6f4848a9ce9f61b380c21eb26ddc2bb863d5df2160e72b034027c",
+      "k_ref": 7,
+      "parent": "r110_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/r110_21_50.json",
+        "sha256": "718fd0bd3d4a3031ff2175a3c360baf9d4759202197abdbd1cfec2edb8b2b8e9"
+      },
+      "reference_id": "2f3f33365d57cc72d904181ef878850c2bc0de1d3753790997c00072307f14fa",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/ec99bb029f142f0e.json",
+        "sha256": "f71b6ef19bca1fb154dee306b80b80531fa48ee34714f7cdc06b0a048a4d9663"
+      },
+      "scenario_id": "283c2fc34e8abb07e2f1da11b951e671ec93c56714c8db415316a50b3a603fe7"
+    },
+    {
+      "case": [
+        "r110_21_50",
+        0.75,
+        0
+      ],
+      "customers": 50,
+      "instance_sha256": "b4a966b661c6f4848a9ce9f61b380c21eb26ddc2bb863d5df2160e72b034027c",
+      "k_ref": 7,
+      "parent": "r110_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/r110_21_50.json",
+        "sha256": "718fd0bd3d4a3031ff2175a3c360baf9d4759202197abdbd1cfec2edb8b2b8e9"
+      },
+      "reference_id": "2f3f33365d57cc72d904181ef878850c2bc0de1d3753790997c00072307f14fa",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/aba502eb62e4e0b6.json",
+        "sha256": "cb9fd80505f441c437bba1cc407e071178ec24f2838a7478ee213f05faeb0339"
+      },
+      "scenario_id": "ffad9da6e0e5da8109745025e5d7cd3457861a74f1e350bc1944d7c947a92dae"
+    },
+    {
+      "case": [
+        "r110_21_50",
+        0.75,
+        1
+      ],
+      "customers": 50,
+      "instance_sha256": "b4a966b661c6f4848a9ce9f61b380c21eb26ddc2bb863d5df2160e72b034027c",
+      "k_ref": 7,
+      "parent": "r110_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/r110_21_50.json",
+        "sha256": "718fd0bd3d4a3031ff2175a3c360baf9d4759202197abdbd1cfec2edb8b2b8e9"
+      },
+      "reference_id": "2f3f33365d57cc72d904181ef878850c2bc0de1d3753790997c00072307f14fa",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/70b160ae74c89ead.json",
+        "sha256": "9e4dc275a089b23133fbae10ecb2f1a8c8abf28af3cc1fafc06f3efb3980a591"
+      },
+      "scenario_id": "e62dc17cd679d9dcc2fc6ffbdb57caf6ee22179ed981f3a232ff77bc0bc98805"
+    },
+    {
+      "case": [
+        "r110_21_100",
+        0.25,
+        0
+      ],
+      "customers": 100,
+      "instance_sha256": "30c5655c6dcb9222feb1a671e78cab7783352f7db845d8223340723a77ec7629",
+      "k_ref": 18,
+      "parent": "r110_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/r110_21_100.json",
+        "sha256": "980b47f84cbe83c55ca7bc6cd46a6f362cee70c722e54d5d54e16155fdbfc6a6"
+      },
+      "reference_id": "79f580059a617969cfa2bf5f84f9d7d6aa3686307ab96d568ef73c904c761b93",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/fc24cce4f1579c17.json",
+        "sha256": "873e71f20518cfa49cdfb89131cde4145a015225cca50daa6f0ced9bfb70cc96"
+      },
+      "scenario_id": "605123793549f126e1eaf8e0ae44b2c0f749bbca3978db71b5cd68ed5f4533ac"
+    },
+    {
+      "case": [
+        "r110_21_100",
+        0.25,
+        1
+      ],
+      "customers": 100,
+      "instance_sha256": "30c5655c6dcb9222feb1a671e78cab7783352f7db845d8223340723a77ec7629",
+      "k_ref": 18,
+      "parent": "r110_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/r110_21_100.json",
+        "sha256": "980b47f84cbe83c55ca7bc6cd46a6f362cee70c722e54d5d54e16155fdbfc6a6"
+      },
+      "reference_id": "79f580059a617969cfa2bf5f84f9d7d6aa3686307ab96d568ef73c904c761b93",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/e477c504ea45f3e3.json",
+        "sha256": "977919f2422e8d90b8f400a8f3b00cd6b1384d0666b42124caaf91cf6834b915"
+      },
+      "scenario_id": "b166a99c1ef23e6a7c2d80ae5e93b4f80ce50bc430486c4d2aa0a5bc5eb3cfac"
+    },
+    {
+      "case": [
+        "r110_21_100",
+        0.75,
+        0
+      ],
+      "customers": 100,
+      "instance_sha256": "30c5655c6dcb9222feb1a671e78cab7783352f7db845d8223340723a77ec7629",
+      "k_ref": 18,
+      "parent": "r110_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/r110_21_100.json",
+        "sha256": "980b47f84cbe83c55ca7bc6cd46a6f362cee70c722e54d5d54e16155fdbfc6a6"
+      },
+      "reference_id": "79f580059a617969cfa2bf5f84f9d7d6aa3686307ab96d568ef73c904c761b93",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/8bc38233c11c590b.json",
+        "sha256": "3042a3d8041ed7d876049cd9b0edf64d2f007331bb8e2cd4a4cd1cd2759e7823"
+      },
+      "scenario_id": "f63dbcf4788ea42dc8488c379a0cbd941e244d47712fadefa02e916247e495cd"
+    },
+    {
+      "case": [
+        "r110_21_100",
+        0.75,
+        1
+      ],
+      "customers": 100,
+      "instance_sha256": "30c5655c6dcb9222feb1a671e78cab7783352f7db845d8223340723a77ec7629",
+      "k_ref": 18,
+      "parent": "r110_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/r110_21_100.json",
+        "sha256": "980b47f84cbe83c55ca7bc6cd46a6f362cee70c722e54d5d54e16155fdbfc6a6"
+      },
+      "reference_id": "79f580059a617969cfa2bf5f84f9d7d6aa3686307ab96d568ef73c904c761b93",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/22f75aada1e8e2c5.json",
+        "sha256": "6b2afe5ca2723038b41e85a1e4b44ed8bd2d230cd9ad05c70b5be3de6c854973"
+      },
+      "scenario_id": "68a692934c809504d80da0c255f9b6da6e890bab975083702290cb389d6b3d12"
+    },
+    {
+      "case": [
+        "r209_21_25",
+        0.25,
+        0
+      ],
+      "customers": 25,
+      "instance_sha256": "257a527b84e82b44f6cacd37ddfb1ace6c029fa608cb3fa65d82b961847f80e7",
+      "k_ref": 3,
+      "parent": "r209_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/r209_21_25.json",
+        "sha256": "2bd1b3add855c54890a389874cb63576a93e9b1b4bb27f4ee67df1e2f378a2a1"
+      },
+      "reference_id": "490b2ba0137d82d6aa820f40de50dce35c949e0e1ae0fb88d586952da2b908b2",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/d223b43e7d650a17.json",
+        "sha256": "c4e5cce2f26b4149486b557d3bbffe94bb764f5267fe8558559752cf7cf23436"
+      },
+      "scenario_id": "456b365592ecafb752f5074d8fdec19cdbe2114c91e04a0b51b3580c41732014"
+    },
+    {
+      "case": [
+        "r209_21_25",
+        0.25,
+        1
+      ],
+      "customers": 25,
+      "instance_sha256": "257a527b84e82b44f6cacd37ddfb1ace6c029fa608cb3fa65d82b961847f80e7",
+      "k_ref": 3,
+      "parent": "r209_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/r209_21_25.json",
+        "sha256": "2bd1b3add855c54890a389874cb63576a93e9b1b4bb27f4ee67df1e2f378a2a1"
+      },
+      "reference_id": "490b2ba0137d82d6aa820f40de50dce35c949e0e1ae0fb88d586952da2b908b2",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/7aaa547316bd173a.json",
+        "sha256": "0aadfbb979e3626cfa92ae8c6273597bc5615f1d87fad85c78793a22e7e6b335"
+      },
+      "scenario_id": "d6c6fd35d09bb964841c378b663ea4b3230095ca3b34fc6cbe464801729aed26"
+    },
+    {
+      "case": [
+        "r209_21_25",
+        0.75,
+        0
+      ],
+      "customers": 25,
+      "instance_sha256": "257a527b84e82b44f6cacd37ddfb1ace6c029fa608cb3fa65d82b961847f80e7",
+      "k_ref": 3,
+      "parent": "r209_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/r209_21_25.json",
+        "sha256": "2bd1b3add855c54890a389874cb63576a93e9b1b4bb27f4ee67df1e2f378a2a1"
+      },
+      "reference_id": "490b2ba0137d82d6aa820f40de50dce35c949e0e1ae0fb88d586952da2b908b2",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/4a514621c72a78b7.json",
+        "sha256": "6e04932f1752e11676e5209a97ebb697fb10388b9d96a07de8e4fc494686afb9"
+      },
+      "scenario_id": "2909c73ae53159a8b8b48ee496147a46bbdf39865e71d7ba810916279f0bc672"
+    },
+    {
+      "case": [
+        "r209_21_25",
+        0.75,
+        1
+      ],
+      "customers": 25,
+      "instance_sha256": "257a527b84e82b44f6cacd37ddfb1ace6c029fa608cb3fa65d82b961847f80e7",
+      "k_ref": 3,
+      "parent": "r209_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/r209_21_25.json",
+        "sha256": "2bd1b3add855c54890a389874cb63576a93e9b1b4bb27f4ee67df1e2f378a2a1"
+      },
+      "reference_id": "490b2ba0137d82d6aa820f40de50dce35c949e0e1ae0fb88d586952da2b908b2",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/97606ad0dc04a1e9.json",
+        "sha256": "cf7ef8ba07f354ccc4a8dba7e4f58cad05242759d1fe20ead4b55556c483ffdf"
+      },
+      "scenario_id": "0b18b280ad27f34f4711e6a2af44887fe3a6366df14dd33d85f1045053f84e53"
+    },
+    {
+      "case": [
+        "r209_21_100",
+        0.25,
+        0
+      ],
+      "customers": 100,
+      "instance_sha256": "278cd32ba42a8e19b8f049b73ba7b55a72c1b84d113abda91fe71f23c33dd4ec",
+      "k_ref": 4,
+      "parent": "r209_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/r209_21_100.json",
+        "sha256": "b3841fc736bcb5ab46397ea4a88eef20317607017af5348eaf96178201561018"
+      },
+      "reference_id": "af5258957d684ee2599355b327ab01aa08cf0b32e0141002211ed5ecdd5472a6",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/ea29c2abee987aea.json",
+        "sha256": "21461dd55f8bb5c8a2a616ae001f99d144b8a4ad7b74989c20b1e7f9aee98fd0"
+      },
+      "scenario_id": "acc72e09470caafcc78cbaa319d2801ff37b5b2e61906deccc2ed4933f206a54"
+    },
+    {
+      "case": [
+        "r209_21_100",
+        0.25,
+        1
+      ],
+      "customers": 100,
+      "instance_sha256": "278cd32ba42a8e19b8f049b73ba7b55a72c1b84d113abda91fe71f23c33dd4ec",
+      "k_ref": 4,
+      "parent": "r209_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/r209_21_100.json",
+        "sha256": "b3841fc736bcb5ab46397ea4a88eef20317607017af5348eaf96178201561018"
+      },
+      "reference_id": "af5258957d684ee2599355b327ab01aa08cf0b32e0141002211ed5ecdd5472a6",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/e8fdd3d1982b1859.json",
+        "sha256": "7ad65f3798e187ce7b517b0b41c16a0d3f512cb672a71012bb742391a28232d5"
+      },
+      "scenario_id": "9765387bb096b7f2d8a52377e324a08b6022705bf8ff18ff718142a93b32a571"
+    },
+    {
+      "case": [
+        "r209_21_100",
+        0.75,
+        0
+      ],
+      "customers": 100,
+      "instance_sha256": "278cd32ba42a8e19b8f049b73ba7b55a72c1b84d113abda91fe71f23c33dd4ec",
+      "k_ref": 4,
+      "parent": "r209_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/r209_21_100.json",
+        "sha256": "b3841fc736bcb5ab46397ea4a88eef20317607017af5348eaf96178201561018"
+      },
+      "reference_id": "af5258957d684ee2599355b327ab01aa08cf0b32e0141002211ed5ecdd5472a6",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/a2506e2c973e4f77.json",
+        "sha256": "b89d449958d5acfb2efcdd4c8370bf15db2580a71d5e47669b2acf9276a1765d"
+      },
+      "scenario_id": "a0dc0340026f6c6cebd713cc5d8ff19311e8049c4783717ae72f0fc8b542234d"
+    },
+    {
+      "case": [
+        "r209_21_100",
+        0.75,
+        1
+      ],
+      "customers": 100,
+      "instance_sha256": "278cd32ba42a8e19b8f049b73ba7b55a72c1b84d113abda91fe71f23c33dd4ec",
+      "k_ref": 4,
+      "parent": "r209_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/r209_21_100.json",
+        "sha256": "b3841fc736bcb5ab46397ea4a88eef20317607017af5348eaf96178201561018"
+      },
+      "reference_id": "af5258957d684ee2599355b327ab01aa08cf0b32e0141002211ed5ecdd5472a6",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/d26783db9496f177.json",
+        "sha256": "977075603a837263d0b8ff2e16a55f1ab6659fbdcff14127f5f496067a4a5025"
+      },
+      "scenario_id": "7e1e8993f0a8d7b062a06a5193c055cc0c7f1108a077d59854a5da9c2ec992a3"
+    },
+    {
+      "case": [
+        "r210_21_50",
+        0.25,
+        0
+      ],
+      "customers": 50,
+      "instance_sha256": "cee7e3b46eec570b787865d4b393b535896584a0936a202113084f21ac5a8caa",
+      "k_ref": 3,
+      "parent": "r210_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/r210_21_50.json",
+        "sha256": "2932b1f9af328c1aab81378524afd9862a1c0b13490b51caf0c4be2a7efdc457"
+      },
+      "reference_id": "ec31825346ace39405a1b5c9acb3e0d8d5c769d74ed935025d9678c8f3a6575c",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/705fea3bdde66589.json",
+        "sha256": "80663cbaf66e5e5579e5ee031d6cf854128c4234a379c96f0a871337c2cab182"
+      },
+      "scenario_id": "57847e4e444f50fd3ce46ee28824fb77c758a4b5972ce3823311d611aba6d52c"
+    },
+    {
+      "case": [
+        "r210_21_50",
+        0.25,
+        1
+      ],
+      "customers": 50,
+      "instance_sha256": "cee7e3b46eec570b787865d4b393b535896584a0936a202113084f21ac5a8caa",
+      "k_ref": 3,
+      "parent": "r210_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/r210_21_50.json",
+        "sha256": "2932b1f9af328c1aab81378524afd9862a1c0b13490b51caf0c4be2a7efdc457"
+      },
+      "reference_id": "ec31825346ace39405a1b5c9acb3e0d8d5c769d74ed935025d9678c8f3a6575c",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/df6ff50ec1c2ba1f.json",
+        "sha256": "e2d77175b0af273f5d5ed4ee970b874480930ad6df4037180837ede60dd6885d"
+      },
+      "scenario_id": "eeb5e2a99f59623080a3fc295a9ebcd98ad09b3dceb04dbde843fc377137c695"
+    },
+    {
+      "case": [
+        "r210_21_50",
+        0.75,
+        0
+      ],
+      "customers": 50,
+      "instance_sha256": "cee7e3b46eec570b787865d4b393b535896584a0936a202113084f21ac5a8caa",
+      "k_ref": 3,
+      "parent": "r210_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/r210_21_50.json",
+        "sha256": "2932b1f9af328c1aab81378524afd9862a1c0b13490b51caf0c4be2a7efdc457"
+      },
+      "reference_id": "ec31825346ace39405a1b5c9acb3e0d8d5c769d74ed935025d9678c8f3a6575c",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/37ec66d3dd2a85b9.json",
+        "sha256": "194179ce65b7a5fcc7cd79e531e6c66f9bc12348323a8a901557242b9d22f800"
+      },
+      "scenario_id": "2684dc2e6bd4a4f0aac7b51b8dfe56b02e91eb5b72f391d600e4c271f0dba2d9"
+    },
+    {
+      "case": [
+        "r210_21_50",
+        0.75,
+        1
+      ],
+      "customers": 50,
+      "instance_sha256": "cee7e3b46eec570b787865d4b393b535896584a0936a202113084f21ac5a8caa",
+      "k_ref": 3,
+      "parent": "r210_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/r210_21_50.json",
+        "sha256": "2932b1f9af328c1aab81378524afd9862a1c0b13490b51caf0c4be2a7efdc457"
+      },
+      "reference_id": "ec31825346ace39405a1b5c9acb3e0d8d5c769d74ed935025d9678c8f3a6575c",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/491a78b594d87ef4.json",
+        "sha256": "337dc7847c06dbffd09d37369a9ccb58effc4f153ce9b4aed009158c75da4c69"
+      },
+      "scenario_id": "2b4087a47ecdc0c9e38b417b485b8f480fb095c1f8e57af2dfc675140df05a3b"
+    },
+    {
+      "case": [
+        "r210_21_100",
+        0.25,
+        0
+      ],
+      "customers": 100,
+      "instance_sha256": "ffbeff4bad9a0c86bbd1e3cb5453697cffec0fc460d16b413d8f7e26383ac775",
+      "k_ref": 5,
+      "parent": "r210_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/r210_21_100.json",
+        "sha256": "ab5ab3aa4c099b207162b4211bad1e6317a9dd62a354e330e5c8186b55cba43a"
+      },
+      "reference_id": "d96c3dd5e5d10ce1bbb03ce98a31bb4d2b2f70a3f94baa653b5d005e956193b9",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/050d65b1ccd1c43c.json",
+        "sha256": "2b33fd43344a747c8472e50cc6863c57b3bf196ae6ef9171a00a083ad7904396"
+      },
+      "scenario_id": "fadd8b293a9dccff67facd7976522bedcdf87afca930c63671cd4a5bad762448"
+    },
+    {
+      "case": [
+        "r210_21_100",
+        0.25,
+        1
+      ],
+      "customers": 100,
+      "instance_sha256": "ffbeff4bad9a0c86bbd1e3cb5453697cffec0fc460d16b413d8f7e26383ac775",
+      "k_ref": 5,
+      "parent": "r210_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/r210_21_100.json",
+        "sha256": "ab5ab3aa4c099b207162b4211bad1e6317a9dd62a354e330e5c8186b55cba43a"
+      },
+      "reference_id": "d96c3dd5e5d10ce1bbb03ce98a31bb4d2b2f70a3f94baa653b5d005e956193b9",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/61b502dd6ecfd340.json",
+        "sha256": "62d7c7282da7e1243ce96c761c580896be81976d8125d81fa2713b04aa4b0f41"
+      },
+      "scenario_id": "48bb31c4636a0b7b13731b2f557ede28ef87e00190bc61dee1425bed37654bb3"
+    },
+    {
+      "case": [
+        "r210_21_100",
+        0.75,
+        0
+      ],
+      "customers": 100,
+      "instance_sha256": "ffbeff4bad9a0c86bbd1e3cb5453697cffec0fc460d16b413d8f7e26383ac775",
+      "k_ref": 5,
+      "parent": "r210_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/r210_21_100.json",
+        "sha256": "ab5ab3aa4c099b207162b4211bad1e6317a9dd62a354e330e5c8186b55cba43a"
+      },
+      "reference_id": "d96c3dd5e5d10ce1bbb03ce98a31bb4d2b2f70a3f94baa653b5d005e956193b9",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/fcea7707113c8674.json",
+        "sha256": "3ab090e5897778175bc37a4e11f5e737d478037345f5102eaeebfce7cb2dd441"
+      },
+      "scenario_id": "2ea94005c977f6269de63d9683d0965ad67d28bfea62d7269b43e44a1e3b0840"
+    },
+    {
+      "case": [
+        "r210_21_100",
+        0.75,
+        1
+      ],
+      "customers": 100,
+      "instance_sha256": "ffbeff4bad9a0c86bbd1e3cb5453697cffec0fc460d16b413d8f7e26383ac775",
+      "k_ref": 5,
+      "parent": "r210_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/r210_21_100.json",
+        "sha256": "ab5ab3aa4c099b207162b4211bad1e6317a9dd62a354e330e5c8186b55cba43a"
+      },
+      "reference_id": "d96c3dd5e5d10ce1bbb03ce98a31bb4d2b2f70a3f94baa653b5d005e956193b9",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/8afc6094ba998f71.json",
+        "sha256": "23fa029d9381b457bda6c3f554f7267341a477ad487af1b22e8404e5deb552a0"
+      },
+      "scenario_id": "f6449e6b0a932c43e5e219adad885be7d89c094308c5f89d8481b3c000f1c7e6"
+    },
+    {
+      "case": [
+        "rc106_21_25",
+        0.25,
+        0
+      ],
+      "customers": 25,
+      "instance_sha256": "703e4b82ff48a83ec8d0ee5398eedbacc18c2a4cec141747326dc25f509f65cc",
+      "k_ref": 5,
+      "parent": "rc106_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/rc106_21_25.json",
+        "sha256": "42bcad3849839031c76afdf1d55429bb58e49ad59dc09d4d88085662a30605df"
+      },
+      "reference_id": "8cea18c82feae344fd5072c4a8c076e493a097fe6f40f3d752ef20947e85257e",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/4b8db8e0e0e49440.json",
+        "sha256": "c9d947d7e71176e6bb66fe88ffbdaaf956f9317d944937c58fa83f4075330f1e"
+      },
+      "scenario_id": "8c7f978f33dc7ecc286a4cf287f4a59bc59ab5df3d845782c2da46515ca609aa"
+    },
+    {
+      "case": [
+        "rc106_21_25",
+        0.25,
+        1
+      ],
+      "customers": 25,
+      "instance_sha256": "703e4b82ff48a83ec8d0ee5398eedbacc18c2a4cec141747326dc25f509f65cc",
+      "k_ref": 5,
+      "parent": "rc106_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/rc106_21_25.json",
+        "sha256": "42bcad3849839031c76afdf1d55429bb58e49ad59dc09d4d88085662a30605df"
+      },
+      "reference_id": "8cea18c82feae344fd5072c4a8c076e493a097fe6f40f3d752ef20947e85257e",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/7cc3f99ca7d8e118.json",
+        "sha256": "728cba6b9bc885750a38979853dd45233e29e64ed1b4c691eb88eecbb75f4781"
+      },
+      "scenario_id": "1eced8eb7595efff8a1c57863706405a95a72c42c0c4cf4a2e651a001a236e5e"
+    },
+    {
+      "case": [
+        "rc106_21_25",
+        0.75,
+        0
+      ],
+      "customers": 25,
+      "instance_sha256": "703e4b82ff48a83ec8d0ee5398eedbacc18c2a4cec141747326dc25f509f65cc",
+      "k_ref": 5,
+      "parent": "rc106_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/rc106_21_25.json",
+        "sha256": "42bcad3849839031c76afdf1d55429bb58e49ad59dc09d4d88085662a30605df"
+      },
+      "reference_id": "8cea18c82feae344fd5072c4a8c076e493a097fe6f40f3d752ef20947e85257e",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/840c3a5f9c3a03dd.json",
+        "sha256": "ab21771b90be02314a1e62926d88990e667935b95f2f20b0f1dbe72956270c72"
+      },
+      "scenario_id": "ac10bb8ea34cb64a15455213db3efd20ddf2a5ad65180fc6b7398a2310b5a888"
+    },
+    {
+      "case": [
+        "rc106_21_25",
+        0.75,
+        1
+      ],
+      "customers": 25,
+      "instance_sha256": "703e4b82ff48a83ec8d0ee5398eedbacc18c2a4cec141747326dc25f509f65cc",
+      "k_ref": 5,
+      "parent": "rc106_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/rc106_21_25.json",
+        "sha256": "42bcad3849839031c76afdf1d55429bb58e49ad59dc09d4d88085662a30605df"
+      },
+      "reference_id": "8cea18c82feae344fd5072c4a8c076e493a097fe6f40f3d752ef20947e85257e",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/3b8dddcb139ee640.json",
+        "sha256": "fa2e0b3836ef48abe926d30db80785397a07376eb78b0b86fab516afa4ce9484"
+      },
+      "scenario_id": "fce1179ad68c0f36bcef2927648bc6886b1656253a09f5e765a76316b54834ca"
+    },
+    {
+      "case": [
+        "rc106_21_100",
+        0.25,
+        0
+      ],
+      "customers": 100,
+      "instance_sha256": "f70027752256a3210ae2cb1e940b1e2add8822dd3518d5a294d043ec0f236f7e",
+      "k_ref": 19,
+      "parent": "rc106_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/rc106_21_100.json",
+        "sha256": "69df02ef52af1eee795217f0c77804e9475f7fdd177f9949d1851d8f617d6640"
+      },
+      "reference_id": "33a467e8cff25904270a23c128361048de0c37b2ce32b697dc1f7d9699b0d53e",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/5465e831beeaf56e.json",
+        "sha256": "3aaec0c914f404fcb39fb1d5d63cc27504142fe92c6f16d0b9d5ff344afe3d27"
+      },
+      "scenario_id": "6ae3d383f0a406e5a531422555e3a82fdb3754f50403fa7e7cb9bc189d56cb87"
+    },
+    {
+      "case": [
+        "rc106_21_100",
+        0.25,
+        1
+      ],
+      "customers": 100,
+      "instance_sha256": "f70027752256a3210ae2cb1e940b1e2add8822dd3518d5a294d043ec0f236f7e",
+      "k_ref": 19,
+      "parent": "rc106_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/rc106_21_100.json",
+        "sha256": "69df02ef52af1eee795217f0c77804e9475f7fdd177f9949d1851d8f617d6640"
+      },
+      "reference_id": "33a467e8cff25904270a23c128361048de0c37b2ce32b697dc1f7d9699b0d53e",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/70cd7c43a0331904.json",
+        "sha256": "68621d7309f392cf1d9a20f3584c720124106e6c5b9b9b8d47e81d9d1f23b1f8"
+      },
+      "scenario_id": "b031542b419cdd827f1e72f42449f9bdd0a6e4860fc40d3d932e6aa6fdf929ad"
+    },
+    {
+      "case": [
+        "rc106_21_100",
+        0.75,
+        0
+      ],
+      "customers": 100,
+      "instance_sha256": "f70027752256a3210ae2cb1e940b1e2add8822dd3518d5a294d043ec0f236f7e",
+      "k_ref": 19,
+      "parent": "rc106_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/rc106_21_100.json",
+        "sha256": "69df02ef52af1eee795217f0c77804e9475f7fdd177f9949d1851d8f617d6640"
+      },
+      "reference_id": "33a467e8cff25904270a23c128361048de0c37b2ce32b697dc1f7d9699b0d53e",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/647269ecb2687165.json",
+        "sha256": "a20f71019119b7c7bad4b5648e83c59821916d82ee1c561e88a17ca779c43921"
+      },
+      "scenario_id": "1e1004ee4df62edd483f11e4d86987074ace0bf78183c07d980afd5dbf7a13be"
+    },
+    {
+      "case": [
+        "rc106_21_100",
+        0.75,
+        1
+      ],
+      "customers": 100,
+      "instance_sha256": "f70027752256a3210ae2cb1e940b1e2add8822dd3518d5a294d043ec0f236f7e",
+      "k_ref": 19,
+      "parent": "rc106_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/rc106_21_100.json",
+        "sha256": "69df02ef52af1eee795217f0c77804e9475f7fdd177f9949d1851d8f617d6640"
+      },
+      "reference_id": "33a467e8cff25904270a23c128361048de0c37b2ce32b697dc1f7d9699b0d53e",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/64c7f566a519aacc.json",
+        "sha256": "3a8521552b56233bc9f181cb32e49c1f00795be9adc29b2cbcadb49d98ff7f7c"
+      },
+      "scenario_id": "2307f6fe08f0e179097478e951bd5b4ddb6e23cb296ada03103075b914108ab0"
+    },
+    {
+      "case": [
+        "rc107_21_50",
+        0.25,
+        0
+      ],
+      "customers": 50,
+      "instance_sha256": "2392c3eabd93fca0d7b01eb31e0db566ac5aaabfc5fb1006e3ba6a332233560b",
+      "k_ref": 7,
+      "parent": "rc107_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/rc107_21_50.json",
+        "sha256": "db77a5aa58e9dc655cd8231c0ecf97a90b317df94bbfb09bc522d347bed5d0f6"
+      },
+      "reference_id": "adce3e25b40189bca977447a99f00525824a1061a51e58cc6b2bedb00a4bd244",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/e4cdc2ff8d88719e.json",
+        "sha256": "8bf78cc79ee10b7c5a49fb9ab7a990ec93044cedca70e010a1fb2ef1335d2af7"
+      },
+      "scenario_id": "1bb7a7f56eeb1b7a69911b4d95072bdfe4e248c8a357fb60976579a6233040ab"
+    },
+    {
+      "case": [
+        "rc107_21_50",
+        0.25,
+        1
+      ],
+      "customers": 50,
+      "instance_sha256": "2392c3eabd93fca0d7b01eb31e0db566ac5aaabfc5fb1006e3ba6a332233560b",
+      "k_ref": 7,
+      "parent": "rc107_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/rc107_21_50.json",
+        "sha256": "db77a5aa58e9dc655cd8231c0ecf97a90b317df94bbfb09bc522d347bed5d0f6"
+      },
+      "reference_id": "adce3e25b40189bca977447a99f00525824a1061a51e58cc6b2bedb00a4bd244",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/122d32b2e660db8b.json",
+        "sha256": "d38940210ae2c08bdc83135a69966f59b172e6bffe70372ca4dad67b5bbc0a01"
+      },
+      "scenario_id": "2265c5d85697cc5f92e2b7d034827c165e0d402669b7a55f996467ef1a99197a"
+    },
+    {
+      "case": [
+        "rc107_21_50",
+        0.75,
+        0
+      ],
+      "customers": 50,
+      "instance_sha256": "2392c3eabd93fca0d7b01eb31e0db566ac5aaabfc5fb1006e3ba6a332233560b",
+      "k_ref": 7,
+      "parent": "rc107_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/rc107_21_50.json",
+        "sha256": "db77a5aa58e9dc655cd8231c0ecf97a90b317df94bbfb09bc522d347bed5d0f6"
+      },
+      "reference_id": "adce3e25b40189bca977447a99f00525824a1061a51e58cc6b2bedb00a4bd244",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/e04aa80286753985.json",
+        "sha256": "bf63803367f0093bd416e03157ce6dcbf8998f6e59aa068d3bbae35d8d3310b5"
+      },
+      "scenario_id": "0a92540fd6e775e3fb1ab52da730452cf642f216b2ecc7d545a8bb66f4423ecc"
+    },
+    {
+      "case": [
+        "rc107_21_50",
+        0.75,
+        1
+      ],
+      "customers": 50,
+      "instance_sha256": "2392c3eabd93fca0d7b01eb31e0db566ac5aaabfc5fb1006e3ba6a332233560b",
+      "k_ref": 7,
+      "parent": "rc107_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/rc107_21_50.json",
+        "sha256": "db77a5aa58e9dc655cd8231c0ecf97a90b317df94bbfb09bc522d347bed5d0f6"
+      },
+      "reference_id": "adce3e25b40189bca977447a99f00525824a1061a51e58cc6b2bedb00a4bd244",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/651070e112fa041c.json",
+        "sha256": "5406f7c21303bc6017c029361f6ac85003027a7eedda48b73abae10c78bcc2e6"
+      },
+      "scenario_id": "d3cafc6ae612d8dca149c60ced0fd055c3231ee9c5e7b8439a6f677ba1647148"
+    },
+    {
+      "case": [
+        "rc107_21_100",
+        0.25,
+        0
+      ],
+      "customers": 100,
+      "instance_sha256": "468e45efc62992ff13095ad06366e9a8ec21a67cbbdd84af0dc152cb3e45853b",
+      "k_ref": 19,
+      "parent": "rc107_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/rc107_21_100.json",
+        "sha256": "c06bc870973a0764925e0bc8dbe787a92ef129dd3863e2fe5c22792ba120fd11"
+      },
+      "reference_id": "498cadd8ae08defeb176e71acd978fdfe23bad8b797c184da28a989b7b9336d3",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/9c65be6e2f988395.json",
+        "sha256": "6919681497ac3b871323a7c02249d746d0440ac1f4255b703d1028d7863599ca"
+      },
+      "scenario_id": "b91d0f8c7383ece23fee27c74d2769024887bbef9180d2f398013da2af86a2da"
+    },
+    {
+      "case": [
+        "rc107_21_100",
+        0.25,
+        1
+      ],
+      "customers": 100,
+      "instance_sha256": "468e45efc62992ff13095ad06366e9a8ec21a67cbbdd84af0dc152cb3e45853b",
+      "k_ref": 19,
+      "parent": "rc107_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/rc107_21_100.json",
+        "sha256": "c06bc870973a0764925e0bc8dbe787a92ef129dd3863e2fe5c22792ba120fd11"
+      },
+      "reference_id": "498cadd8ae08defeb176e71acd978fdfe23bad8b797c184da28a989b7b9336d3",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/91dd3094ca29504b.json",
+        "sha256": "02a4b25130b8968e254f68c1de04ce4e2de8656e6e59a3691d402041425aa059"
+      },
+      "scenario_id": "e30a00d5b7bf0197a57998b25e5a12aed5d382e06c249745a16708a8f081761f"
+    },
+    {
+      "case": [
+        "rc107_21_100",
+        0.75,
+        0
+      ],
+      "customers": 100,
+      "instance_sha256": "468e45efc62992ff13095ad06366e9a8ec21a67cbbdd84af0dc152cb3e45853b",
+      "k_ref": 19,
+      "parent": "rc107_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/rc107_21_100.json",
+        "sha256": "c06bc870973a0764925e0bc8dbe787a92ef129dd3863e2fe5c22792ba120fd11"
+      },
+      "reference_id": "498cadd8ae08defeb176e71acd978fdfe23bad8b797c184da28a989b7b9336d3",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/7784959e8f69ff47.json",
+        "sha256": "94fc23eb2326b370a57ec99d59db8ffc4dfbb4d3c3cc9444636e5c36ec8009e7"
+      },
+      "scenario_id": "f51ad410c29778e87c1be488e148c0d83be1ac82c069089315071331dc21699e"
+    },
+    {
+      "case": [
+        "rc107_21_100",
+        0.75,
+        1
+      ],
+      "customers": 100,
+      "instance_sha256": "468e45efc62992ff13095ad06366e9a8ec21a67cbbdd84af0dc152cb3e45853b",
+      "k_ref": 19,
+      "parent": "rc107_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/rc107_21_100.json",
+        "sha256": "c06bc870973a0764925e0bc8dbe787a92ef129dd3863e2fe5c22792ba120fd11"
+      },
+      "reference_id": "498cadd8ae08defeb176e71acd978fdfe23bad8b797c184da28a989b7b9336d3",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/3a9afb65d1d6357a.json",
+        "sha256": "a47bb5378ff460a38b206b565993e50ba622df1641536c8c87c3a51dd6e3cac6"
+      },
+      "scenario_id": "f00bdcad08b5f0df1fd3de277872eb03f03d8bf14b405ab18bad3baf74bfcd76"
+    },
+    {
+      "case": [
+        "rc206_21_25",
+        0.25,
+        0
+      ],
+      "customers": 25,
+      "instance_sha256": "d4f947dcaf38605c952d9dd67bf1b74797129d310742b7256181b56019f99a38",
+      "k_ref": 4,
+      "parent": "rc206_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/rc206_21_25.json",
+        "sha256": "68660b2e739edebfbba7921cc6e3798ddbc088ce5cc8068e338087f46a18ad87"
+      },
+      "reference_id": "714efdb4323f83bcf9757ee9528e6767b77a66cc78f4f0b8e9ea5149e6d295ac",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/ff0493bb369a9444.json",
+        "sha256": "5a3553214c9d521be9d3b57ba5826a339a75bebce29884aa78b969ce9cb68893"
+      },
+      "scenario_id": "6f1b1fbd21bb1ab5c1e5ab6f219e0e914994a876e5589b2c2688c2c5843b13f5"
+    },
+    {
+      "case": [
+        "rc206_21_25",
+        0.25,
+        1
+      ],
+      "customers": 25,
+      "instance_sha256": "d4f947dcaf38605c952d9dd67bf1b74797129d310742b7256181b56019f99a38",
+      "k_ref": 4,
+      "parent": "rc206_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/rc206_21_25.json",
+        "sha256": "68660b2e739edebfbba7921cc6e3798ddbc088ce5cc8068e338087f46a18ad87"
+      },
+      "reference_id": "714efdb4323f83bcf9757ee9528e6767b77a66cc78f4f0b8e9ea5149e6d295ac",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/b0af53afa576b933.json",
+        "sha256": "4be4af1d0150b4a3711ebd1647e8c8abeb6b34acc75c6e010b2d2cddb9e3bcbb"
+      },
+      "scenario_id": "a960473d13cf9e7417c0e9790b5fbe7f56fa12746980ba7a4194a2af7cee3c1a"
+    },
+    {
+      "case": [
+        "rc206_21_25",
+        0.75,
+        0
+      ],
+      "customers": 25,
+      "instance_sha256": "d4f947dcaf38605c952d9dd67bf1b74797129d310742b7256181b56019f99a38",
+      "k_ref": 4,
+      "parent": "rc206_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/rc206_21_25.json",
+        "sha256": "68660b2e739edebfbba7921cc6e3798ddbc088ce5cc8068e338087f46a18ad87"
+      },
+      "reference_id": "714efdb4323f83bcf9757ee9528e6767b77a66cc78f4f0b8e9ea5149e6d295ac",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/23ce8bcb4b7d0df9.json",
+        "sha256": "5bad7f725f86fc9d016062f80e8318d3ed9e20e2a05867c1eba6c45e2afae602"
+      },
+      "scenario_id": "ba8396d8f1ad1b7aafd2a318aef6d173add6673185f2d27dd7ef0ba3c6ac7638"
+    },
+    {
+      "case": [
+        "rc206_21_25",
+        0.75,
+        1
+      ],
+      "customers": 25,
+      "instance_sha256": "d4f947dcaf38605c952d9dd67bf1b74797129d310742b7256181b56019f99a38",
+      "k_ref": 4,
+      "parent": "rc206_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/rc206_21_25.json",
+        "sha256": "68660b2e739edebfbba7921cc6e3798ddbc088ce5cc8068e338087f46a18ad87"
+      },
+      "reference_id": "714efdb4323f83bcf9757ee9528e6767b77a66cc78f4f0b8e9ea5149e6d295ac",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/070a9345e509c5bf.json",
+        "sha256": "0dd00e038b9a92f080bca9bb00e4ef3104cfb2862e08aadc9c109dd4412e7c4e"
+      },
+      "scenario_id": "e9e7a06aeefa1598de6985ab7d5080206c5a6d0cb5dcfa6cdf5788826a6722c2"
+    },
+    {
+      "case": [
+        "rc206_21_100",
+        0.25,
+        0
+      ],
+      "customers": 100,
+      "instance_sha256": "ab159680fabae6b51379d2effb6335c3675a9821e4013c2ea421b637ddb50989",
+      "k_ref": 4,
+      "parent": "rc206_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/rc206_21_100.json",
+        "sha256": "1fd63bb4fc11800d433f528e149abaeee2492f9c4f787fcd1d01e1893e8753c5"
+      },
+      "reference_id": "d1780cf5c1195b62e61c9b5f46f26fc11d5ae167df0ba318992ece85eb9dc740",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/853ce55c69ae7c1e.json",
+        "sha256": "64be89608701ed9378b15f01b3ff6691758823e09c8c6e976b6de0e6edf0662e"
+      },
+      "scenario_id": "8e9017785cf046eb98924edd2496f834a60f3cc9a34e66fd2a0c30a5630e32da"
+    },
+    {
+      "case": [
+        "rc206_21_100",
+        0.25,
+        1
+      ],
+      "customers": 100,
+      "instance_sha256": "ab159680fabae6b51379d2effb6335c3675a9821e4013c2ea421b637ddb50989",
+      "k_ref": 4,
+      "parent": "rc206_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/rc206_21_100.json",
+        "sha256": "1fd63bb4fc11800d433f528e149abaeee2492f9c4f787fcd1d01e1893e8753c5"
+      },
+      "reference_id": "d1780cf5c1195b62e61c9b5f46f26fc11d5ae167df0ba318992ece85eb9dc740",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/910b6e7297dca9a4.json",
+        "sha256": "1e32892bc92c3dd47bc1badb13ebad5cc0a43b2124edad74db5c1b6f9bb59407"
+      },
+      "scenario_id": "5e390db68553f7c28bd3a2164fa5e0b5ec8c873828ab36f2a2f2a535e17d26a1"
+    },
+    {
+      "case": [
+        "rc206_21_100",
+        0.75,
+        0
+      ],
+      "customers": 100,
+      "instance_sha256": "ab159680fabae6b51379d2effb6335c3675a9821e4013c2ea421b637ddb50989",
+      "k_ref": 4,
+      "parent": "rc206_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/rc206_21_100.json",
+        "sha256": "1fd63bb4fc11800d433f528e149abaeee2492f9c4f787fcd1d01e1893e8753c5"
+      },
+      "reference_id": "d1780cf5c1195b62e61c9b5f46f26fc11d5ae167df0ba318992ece85eb9dc740",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/bb0355340d72f468.json",
+        "sha256": "0289d46ee640c4714c1ef09f19b39061cb88a8e4101e797fa2403e77faed5841"
+      },
+      "scenario_id": "00880f9024667b4a3b321f1fd85d002669efdf8f2dd49827b1c3ed4a25994a42"
+    },
+    {
+      "case": [
+        "rc206_21_100",
+        0.75,
+        1
+      ],
+      "customers": 100,
+      "instance_sha256": "ab159680fabae6b51379d2effb6335c3675a9821e4013c2ea421b637ddb50989",
+      "k_ref": 4,
+      "parent": "rc206_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/rc206_21_100.json",
+        "sha256": "1fd63bb4fc11800d433f528e149abaeee2492f9c4f787fcd1d01e1893e8753c5"
+      },
+      "reference_id": "d1780cf5c1195b62e61c9b5f46f26fc11d5ae167df0ba318992ece85eb9dc740",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/b853e1b28cd42941.json",
+        "sha256": "4d7d557b74b563b1cf3fb87b5d5bbaa315573dd0f5b23567e96931fd2d8c0bfe"
+      },
+      "scenario_id": "ba57a04f7fcc221eacf7354777c08ad941bf8baf1e2ef4b964431d1097aaa08a"
+    },
+    {
+      "case": [
+        "rc207_21_50",
+        0.25,
+        0
+      ],
+      "customers": 50,
+      "instance_sha256": "1449b3aaf3731b515ddde959cbb137fd9dded04df76a7b44c8a52ba7b39900f7",
+      "k_ref": 4,
+      "parent": "rc207_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/rc207_21_50.json",
+        "sha256": "a6b724c22050262c2b1825a277a060c6bb1df35d2ca8efd4f2e64154fc461d16"
+      },
+      "reference_id": "088eb08b349e46935ea0f7e08e9e6ce38148f458bbb457475109a9571ed4137a",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/1564b34bd220f067.json",
+        "sha256": "1cbaee9856068d2528b6c50e21c220d6e5fefa37184350cb43819528a4c467bf"
+      },
+      "scenario_id": "113a7370b44069e4aaaa2643f074d0b3bf4a5f72724bf34fc9dc63038faa345d"
+    },
+    {
+      "case": [
+        "rc207_21_50",
+        0.25,
+        1
+      ],
+      "customers": 50,
+      "instance_sha256": "1449b3aaf3731b515ddde959cbb137fd9dded04df76a7b44c8a52ba7b39900f7",
+      "k_ref": 4,
+      "parent": "rc207_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/rc207_21_50.json",
+        "sha256": "a6b724c22050262c2b1825a277a060c6bb1df35d2ca8efd4f2e64154fc461d16"
+      },
+      "reference_id": "088eb08b349e46935ea0f7e08e9e6ce38148f458bbb457475109a9571ed4137a",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/f30f969adccc8ff9.json",
+        "sha256": "3034542e1c57683bf761eb5862c625f96a9d580c43535a4879c6282a74cfcdec"
+      },
+      "scenario_id": "92e9f4d0639661b0a6d175319da5e7f41630749439ccecbca98db3da28e9ca0b"
+    },
+    {
+      "case": [
+        "rc207_21_50",
+        0.75,
+        0
+      ],
+      "customers": 50,
+      "instance_sha256": "1449b3aaf3731b515ddde959cbb137fd9dded04df76a7b44c8a52ba7b39900f7",
+      "k_ref": 4,
+      "parent": "rc207_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/rc207_21_50.json",
+        "sha256": "a6b724c22050262c2b1825a277a060c6bb1df35d2ca8efd4f2e64154fc461d16"
+      },
+      "reference_id": "088eb08b349e46935ea0f7e08e9e6ce38148f458bbb457475109a9571ed4137a",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/e041962ed3d0f37f.json",
+        "sha256": "312d9344c3adeba1537903d5ff1ea3e56520ed6ae61c0725dbec769321a719e5"
+      },
+      "scenario_id": "f8c37e2fe2eaa16e83bf659bc18591d5d70399997300d43cf73b2d3f48aed2c1"
+    },
+    {
+      "case": [
+        "rc207_21_50",
+        0.75,
+        1
+      ],
+      "customers": 50,
+      "instance_sha256": "1449b3aaf3731b515ddde959cbb137fd9dded04df76a7b44c8a52ba7b39900f7",
+      "k_ref": 4,
+      "parent": "rc207_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/rc207_21_50.json",
+        "sha256": "a6b724c22050262c2b1825a277a060c6bb1df35d2ca8efd4f2e64154fc461d16"
+      },
+      "reference_id": "088eb08b349e46935ea0f7e08e9e6ce38148f458bbb457475109a9571ed4137a",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/40d55b34641b23d7.json",
+        "sha256": "e7fd8068d2caee381c3f39495f021f5e7f443b6c4baefaeca3dfe15c70c91199"
+      },
+      "scenario_id": "4d09b082f636b90dffd71b8186f86a4bd797966170d6fb5ba58ea5067b6d1744"
+    },
+    {
+      "case": [
+        "rc207_21_100",
+        0.25,
+        0
+      ],
+      "customers": 100,
+      "instance_sha256": "0a4a39b64bb0759c8213025797bea1ca4f3316a4167bd2eff82de730d438b820",
+      "k_ref": 4,
+      "parent": "rc207_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/rc207_21_100.json",
+        "sha256": "3a0260942e52a49ebe5829791821ba81c996df9342787451113341e3530ef43b"
+      },
+      "reference_id": "45c8c92477f3f48ae26117962fcdc23973f96579f391b4bac64f809b96e5f9c8",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/a8b9aae5928dce0d.json",
+        "sha256": "c5d9b08ff7737eb2e63a180d15d5e05701bf4574161f6f1c5500ee1251d713e1"
+      },
+      "scenario_id": "875d9554c234b5f7072e86063e500dad3a64eabb47bc053f4cf457e7bfd991f7"
+    },
+    {
+      "case": [
+        "rc207_21_100",
+        0.25,
+        1
+      ],
+      "customers": 100,
+      "instance_sha256": "0a4a39b64bb0759c8213025797bea1ca4f3316a4167bd2eff82de730d438b820",
+      "k_ref": 4,
+      "parent": "rc207_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/rc207_21_100.json",
+        "sha256": "3a0260942e52a49ebe5829791821ba81c996df9342787451113341e3530ef43b"
+      },
+      "reference_id": "45c8c92477f3f48ae26117962fcdc23973f96579f391b4bac64f809b96e5f9c8",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/be40a24979c8f0ad.json",
+        "sha256": "f97e5a76d85eee94bc24f1530080dac956490f378231891b5d32f7c48dd14d9d"
+      },
+      "scenario_id": "5b8b0331018e11167cf7f870f1c08299b333c5c6d025da6a46ca81b23b8e8d68"
+    },
+    {
+      "case": [
+        "rc207_21_100",
+        0.75,
+        0
+      ],
+      "customers": 100,
+      "instance_sha256": "0a4a39b64bb0759c8213025797bea1ca4f3316a4167bd2eff82de730d438b820",
+      "k_ref": 4,
+      "parent": "rc207_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/rc207_21_100.json",
+        "sha256": "3a0260942e52a49ebe5829791821ba81c996df9342787451113341e3530ef43b"
+      },
+      "reference_id": "45c8c92477f3f48ae26117962fcdc23973f96579f391b4bac64f809b96e5f9c8",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/7e156bbf664a1330.json",
+        "sha256": "b205e55aaa6da04fa5ab3880ed4b18b423813674c91edf3c794ed056d414659a"
+      },
+      "scenario_id": "c7bbb9b2782fa76f98306ed877d86f11b4240a864dde3fdc02f0bd8418a568b7"
+    },
+    {
+      "case": [
+        "rc207_21_100",
+        0.75,
+        1
+      ],
+      "customers": 100,
+      "instance_sha256": "0a4a39b64bb0759c8213025797bea1ca4f3316a4167bd2eff82de730d438b820",
+      "k_ref": 4,
+      "parent": "rc207_21",
+      "reference": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/references/rc207_21_100.json",
+        "sha256": "3a0260942e52a49ebe5829791821ba81c996df9342787451113341e3530ef43b"
+      },
+      "reference_id": "45c8c92477f3f48ae26117962fcdc23973f96579f391b4bac64f809b96e5f9c8",
+      "scenario": {
+        "path": "results/desaulniers/reliability_v2/development/inputs/scenarios/1d837bd153b1e9fe.json",
+        "sha256": "4605dfb8aee9e3a4410d351c63cf1340727a0b4035c0b23ce1d9621261815fbc"
+      },
+      "scenario_id": "9fc3014fb2c4d8c9412268f5f07036511ea77ba3e3020f47dc76b988467ec27e"
+    }
+  ],
+  "config": {
+    "bootstrap_draws": 20000,
+    "bootstrap_seed": 20261024,
+    "common": {
+      "coordination_policy": "forced_retained_v1",
+      "optimizer_initialization_policy": "validated_incumbent_v1"
+    },
+    "completion_primary": {
+      "hundred_complete_ci_lower_above": 0,
+      "method": "MPC_COMPLETION",
+      "service_ci_lower_above": 0,
+      "variant": "completion_first_action"
+    },
+    "confidence_level": 0.975,
+    "development_parents": [
+      "c106_21",
+      "c107_21",
+      "c206_21",
+      "c207_21",
+      "r109_21",
+      "r110_21",
+      "r209_21",
+      "r210_21",
+      "rc106_21",
+      "rc107_21",
+      "rc206_21",
+      "rc207_21"
+    ],
+    "dynamicities": [
+      0.25,
+      0.75
+    ],
+    "maximum_campaign_hours": 12,
+    "methods": [
+      "MPC_COMPLETION",
+      "MPC_MCTS",
+      "MPC_ALNS",
+      "MPC_HGS",
+      "MPC_ACS"
+    ],
+    "primary": {
+      "each_seed_service_gain_at_least": 0,
+      "hundred_complete_ci_lower_above": 0,
+      "method": "MPC_ALNS",
+      "minimum_service_gain": 0,
+      "service_ci_lower_at_least": 0,
+      "variant": "flex_exchange"
+    },
+    "reserved_parents": [
+      "c102_21",
+      "c202_21",
+      "r102_21",
+      "r202_21",
+      "rc102_21",
+      "rc202_21"
+    ],
+    "seeds": [
+      0,
+      1
+    ],
+    "study": "reliability_v2",
+    "timing_conditions": "sequential study workers; shared machine; unrelated workloads unchanged",
+    "variants": {
+      "cache_only": {
+        "proposal_cache_policy": "root_v1"
+      },
+      "completion_first_action": {
+        "first_action_policy": "counterfactual_v1"
+      },
+      "flex_exchange": {
+        "first_action_policy": "flex_exchange_v2",
+        "proposal_cache_policy": "root_v1"
+      },
+      "original": {}
+    },
+    "whole_worker_timeout_seconds": 3900
+  },
+  "dataset_sha256": "02011e3273fef190bd61cc223b4504d8265ca5be30ccf02a34f674f27d58741e",
+  "development_selection": null,
+  "exclusions": [],
+  "historical_exposed_parents": [
+    "c101_21",
+    "c103_21",
+    "c105_21",
+    "c109_21",
+    "c201_21",
+    "c205_21",
+    "c208_21",
+    "r101_21",
+    "r105_21",
+    "r112_21",
+    "r201_21",
+    "r205_21",
+    "r211_21",
+    "rc101_21",
+    "rc105_21",
+    "rc108_21",
+    "rc201_21",
+    "rc205_21",
+    "rc208_21"
+  ],
+  "parents": [
+    "c106_21",
+    "c107_21",
+    "c206_21",
+    "c207_21",
+    "r109_21",
+    "r110_21",
+    "r209_21",
+    "r210_21",
+    "rc106_21",
+    "rc107_21",
+    "rc206_21",
+    "rc207_21"
+  ],
+  "platform": "Windows-11-10.0.26200-SP0",
+  "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+  "selected": null,
+  "source_commit": "ed9f7cd54cfa596c02eace54437820b34138e64c",
+  "source_sha256": "fd39b52c497f6eed363add07f9fd12aa923c15731f77ead1a630c7cf6574269c",
+  "stage": "development",
+  "timing_conditions": "sequential study workers; shared machine; unrelated workloads unchanged"
+}
