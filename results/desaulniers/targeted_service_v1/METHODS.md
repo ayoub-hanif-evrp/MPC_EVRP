@@ -18,12 +18,18 @@ the original final holdout. No historical raw results or protocols change.
   time-window bounds, incremental forward resources, same-stage Pareto
   dominance, geometric station ordering and exact useful linear charge targets.
   Cheap direct routes are tried first; bounded backtracking keeps 12 labels.
-  Targets include slack-limited charge and energy for short customer blocks.
+  Targets include slack-limited charge and energy for short, currently observed
+  customer blocks, not unreleased future requests.
   There is no generic per-candidate LP. Bounded truncation is heuristic, not
   an infeasibility certificate. The original decoder remains the default.
 - C_first_action: reserve 0.3 seconds from the optimizer for a 0.25-second
   ready-EV first-control comparison. Busy physical actions stay fixed; only
-  their future after-state suffixes can change. At most 12 alternative complete
+  their future after-state suffixes can change. Alternatives move one of the
+  next two planned customers or four earliest-due released pending customers
+  to a ready EV's first service, removing its previous soft ownership if needed.
+  One bounded insertion/ejection recovery round evaluates each validated
+  continuation. This is not exhaustive enumeration of charge targets or waits.
+  At most 12 alternative complete
   continuations are independently replayed and scored. Only strict improvement
   of the existing canonical objective can change dispatch. Diagnostic screening
   counts after hypothetical commitments are necessary conditions only.

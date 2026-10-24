@@ -18,10 +18,14 @@ corrections and separately audited MP reference coverage. See the consolidated
 [publication package](results/desaulniers/publication_package_v1/RESULTS.md)
 and [completion report](results/desaulniers/publication_package_v1/FINAL_REPORT.md).
 
-The separate [targeted service study](results/desaulniers/targeted_service_v1/METHODS.md)
-tests three opt-in constructor, resource-decoder and first-control candidates
-under a frozen parent-partitioned development protocol. None is enabled by
-default or substituted into the historical primary results. Its separate
+The separate [targeted service study](results/desaulniers/targeted_service_v1/FINAL_REPORT.md)
+completed all 288 independently audited development runs for three opt-in
+constructor, resource-decoder and first-control candidates. No candidate
+passed the predefined parent-clustered promotion checks, so all remain disabled
+by default and no new final holdout was opened. The strongest resource-decoder
+candidate increased matched ALNS service from 99.143% to 99.286%, but its
+95% paired parent interval included zero (-0.095 to +0.381 percentage points).
+The original primary results remain unchanged. Its separate
 [offline investigation](results/desaulniers/targeted_service_v1/offline_resources/RESULTS.md)
 closes the two remaining physical reference-witness cases, bringing combined
 witness coverage to 168/168 without replacing historical reference fleets.

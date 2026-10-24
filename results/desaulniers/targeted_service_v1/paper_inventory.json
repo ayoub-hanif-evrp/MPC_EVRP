@@ -1,6 +1,42 @@
 {
   "artifacts": [
     {
+      "path": "results/desaulniers/targeted_service_v1/development/paper/computation_totals.md",
+      "sha256": "5536b0cf54be813d37563058d9833166894be8e601ad3578ba1724a313bfd206"
+    },
+    {
+      "path": "results/desaulniers/targeted_service_v1/development/paper/conditional_efficiency.md",
+      "sha256": "a1fcef3fd10c564b6b2097bbeb7f29cb1cc015ca65928f7bdda2ee7a1734f720"
+    },
+    {
+      "path": "results/desaulniers/targeted_service_v1/development/paper/paired_scenarios.md",
+      "sha256": "a7ee84a1d5014dd50421639b43aa3f7741cc1e0e8d1b67e704aa8d5fff08b1f7"
+    },
+    {
+      "path": "results/desaulniers/targeted_service_v1/development/paper/promotion.md",
+      "sha256": "05662810f30f317fbee8888a2065c81cdb7aa539502591a9eec61f4342466ebc"
+    },
+    {
+      "path": "results/desaulniers/targeted_service_v1/development/paper/runtime.md",
+      "sha256": "4aa616eb5d39251c23592dd89fa521648e52ae2e0a6d6846f0cd04e87e030e02"
+    },
+    {
+      "path": "results/desaulniers/targeted_service_v1/development/paper/service.md",
+      "sha256": "e8ca94cbb9d9e8d20cc3eaffcd2fea656fc27f9b1e3a0d6e5e28ecca47900c07"
+    },
+    {
+      "path": "results/desaulniers/targeted_service_v1/development/paper/strata.md",
+      "sha256": "895b4efe83da523a57699d1b8cb4333f6ec1f6a62fc6b0abce132c8d4242d565"
+    },
+    {
+      "path": "results/desaulniers/targeted_service_v1/development/paper/uncertainty.md",
+      "sha256": "6682846676a9160fc9f934a0269fe632dec15a0cba035034a7f2d42002e47efb"
+    },
+    {
+      "path": "results/desaulniers/targeted_service_v1/development/RESULTS.md",
+      "sha256": "4bd916052104d7743c2ce4bdc9ae1453f3de72ab29099392e91aa609b4c19aa3"
+    },
+    {
       "path": "results/desaulniers/targeted_service_v1/diagnosis/paper/arrival_bounds.md",
       "sha256": "787a1b6051cb35445aa9e427c0a9512e140b26f936c21662a5a3bc4001f2ff15"
     },
@@ -21,8 +57,12 @@
       "sha256": "92360f784595c4d1308bca3822c898c0dc184d32cd9904cc5048f8be1da2a111"
     },
     {
+      "path": "results/desaulniers/targeted_service_v1/FINAL_REPORT.md",
+      "sha256": "b000ffaebf2ad0541aec77deee79d3fd1e6fd28973b36a4c48e96dd6aed9394f"
+    },
+    {
       "path": "results/desaulniers/targeted_service_v1/METHODS.md",
-      "sha256": "ceec0ee510d1983e1e48d4141b6fd451bac0750b9f07c1542eee15dc2212e7ff"
+      "sha256": "d1695d46c528cdf1d66eed63db909bcf3519f4a0af0d2b5ac7567ee932a2eea0"
     },
     {
       "path": "results/desaulniers/targeted_service_v1/offline_resources/RESULTS.md",
@@ -34,7 +74,23 @@
     },
     {
       "path": "results/desaulniers/targeted_service_v1/REPORTING_NOTES.md",
-      "sha256": "ba447c3e10939956cf122886788c896cf87779ac3ac312a87847c04a04ae3149"
+      "sha256": "ad3955c84c0f6d816d526c8dbaf384d930556b2fa3ae251e1da1d6213392efef"
+    },
+    {
+      "path": "results/desaulniers/targeted_service_v1/development/paper/complete_service.png",
+      "sha256": "acfc3741104c34a5bbc799cbe86eee5a4f97ecbaa012e84097b3d899579c0c1b"
+    },
+    {
+      "path": "results/desaulniers/targeted_service_v1/development/paper/hundred_customer_service.png",
+      "sha256": "5df82391809d113f9c95c3f8c224e9bb2e2038d090a1a38f20fd7895e13d025e"
+    },
+    {
+      "path": "results/desaulniers/targeted_service_v1/development/paper/paired_service.png",
+      "sha256": "281ccf7d9f0d3764246974015be589ff500736fed33579cd11837ecc8146b8a0"
+    },
+    {
+      "path": "results/desaulniers/targeted_service_v1/development/paper/runtime_ecdf.png",
+      "sha256": "3aee8af398c61d0ac1d651e4f742180e3455c21cd97238c121ae1b69bce3ce1c"
     },
     {
       "path": "results/desaulniers/targeted_service_v1/diagnosis/paper/diagnosis.png",
