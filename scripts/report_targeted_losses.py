@@ -6,12 +6,21 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
-from evrp.instance import load_instance
+from evrp.instance import load_instance,travel_time
+from evrp.model import Action,EPS,Observation,transition
 from evrp.storage import BENCHMARK, ROOT, load_json, save_json, writable_path
-from scripts.analyze_planning_losses import covered
+from scripts.analyze_planning_losses import covered,vehicle
 
 OUTPUT=ROOT/"results/desaulniers/targeted_service_v1/diagnosis"
 ARCHIVE=ROOT/"results/desaulniers/publication_development/frozen_inputs_v1"
+
+
+def arrival_bound(origins,customer,parameters):
+    values={k:max(s.time+travel_time(s.location,customer,parameters),customer.ready)
+            for k,s in origins.items() if not s.finished and customer.id not in s.served_customers}
+    return dict(earliest_service_start_lower_bound=min(values.values()) if values else None,
+                time_eligible_vehicles=sum(t<=customer.due+EPS for t in values.values()),
+                by_vehicle=values)
 
 
 def report():
@@ -46,8 +55,23 @@ def report():
         trace=decision["planning_trace"]
         selected=covered(trace["stages"]["validation"])
         constructor=covered(trace["stages"]["optimizer"])
+        origins={int(k):vehicle(s) for k,s in root["origins"].items()}
+        after=dict(origins)
+        observation=Observation(root["time"],instance.infrastructure,
+            tuple(customers[c["id"]] for c in root["observation"]["customers"]),
+            tuple(tuple(pair) for pair in root["observation"]["committed_customers"]))
+        for k in root["ready_vehicles"]:
+            actions=root["initial_routes"].get(str(k),[])
+            if actions:
+                after[k]=transition(origins[k],Action(**actions[0]),observation).after
         for target in root["selected_targets"]:
             customer=target["customer"]
+            if releases[customer]>root["time"]+EPS:
+                raise ValueError("A diagnostic target must already be released")
+            before_bound=arrival_bound(origins,customers[customer],instance.infrastructure.parameters)
+            after_bound=arrival_bound(after,customers[customer],instance.infrastructure.parameters)
+            if customer in selected and not after_bound["time_eligible_vehicles"]:
+                raise ValueError("Arrival bound contradicts a validated planned continuation")
             screens=[e for e in trace["events"] if e["kind"]=="insertion_screen" and e.get("customer")==customer]
             decodes=[e for e in trace["events"] if e["kind"]=="route_decode" and customer in e.get("sequence",[])]
             options=root["counterfactual"].get("selected_commitment_state",{}).get("screened_options",{}).get(customer)
@@ -64,6 +88,7 @@ def report():
                              decodes_with_target=sum(e["outcome"]=="feasible" for e in decodes),
                              bounded_decode_failures=sum(e["outcome"]=="bounded_decoder_failure" for e in decodes),
                              necessary_screen_options_after_commitment=options,
+                             time_bound_before_commitment=before_bound,time_bound_after_commitment=after_bound,
                              root_charging_failures=sum(e["kind"]=="charging_connection_failure" for e in trace["events"])))
     save_json(OUTPUT/"loss_ledger.json",dict(rows=rows,unserved=missed,
               interpretation="observed associations only; no mathematical or causal infeasibility certificates"))
@@ -85,6 +110,25 @@ def report():
                      f"{r['time_window_screen_rejections']} / {r['screen_passes']} | {r['decodes_with_target']} / "
                      f"{r['bounded_decode_failures']} | {r['necessary_screen_options_after_commitment']} | {r['root_charging_failures']} |")
     writable_path(OUTPUT/"paper/loss_ledger.md").write_text("\n".join(lines)+"\n",encoding="utf-8")
+    bounds=["# Optimistic arrival bounds around actual first commitments", "",
+            "Counts ignore energy, remaining payload, other customer obligations and terminal return.",
+            "A positive count is not a feasible insertion witness. A zero count means no measured",
+            "origin meets even this optimistic time test under the stated immutable commitments;",
+            "it is not an infeasibility claim about the original offline instance or all prior controls.",
+            "Busy origins already represent immutable-action after-states. Ready origins are then",
+            "advanced through the selected first action only, without revealing future requests.",
+            "No eventually missed target is itself served by these first commitments.","",
+            "| Instance | Target | Root time | Optimistic EV count before / after | Earliest service bound before / after | Due |",
+            "| --- | --- | ---: | --- | --- | ---: |"]
+    for row in rows:
+        before,after=row["time_bound_before_commitment"],row["time_bound_after_commitment"]
+        def number(value):
+            return "NA" if value is None else f"{value:.3f}"
+        bounds.append(f"| {row['instance']} | {row['customer']} | {row['time']:.3f} | "
+                      f"{before['time_eligible_vehicles']} / {after['time_eligible_vehicles']} | "
+                      f"{number(before['earliest_service_start_lower_bound'])} / "
+                      f"{number(after['earliest_service_start_lower_bound'])} | {row['due']:.3f} |")
+    writable_path(OUTPUT/"paper/arrival_bounds.md").write_text("\n".join(bounds)+"\n",encoding="utf-8")
     fig,ax=plt.subplots(figsize=(10,max(4,len(missed)*.24)))
     for i,r in enumerate(missed):
         ax.hlines(i,r["ready"],r["due"],color="#4d7d99",linewidth=3)

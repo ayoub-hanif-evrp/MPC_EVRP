@@ -1,6 +1,7 @@
 """Render supplemental figures from saved audited aggregates, without optimization."""
 
 from hashlib import sha256
+from statistics import mean,median
 
 import matplotlib
 matplotlib.use("Agg")
@@ -45,6 +46,25 @@ def render():
             continue
         data=load_json(path)
         paper=OUTPUT/stage/"paper"
+        manifest=load_json(OUTPUT/stage/"manifest.json")
+        if (manifest["status"]!="complete" or manifest["completed_runs"]!=data["independent_audited_runs"]):
+            raise ValueError("Computation totals require a complete independently audited study")
+        lines=["# Scenario-level computation totals, shared machine", "",
+               "Planning hours and process hours are cumulative measured worker totals, not per-decision limits.",
+               "More optimization events can increase scenario cost even when every decision respects five seconds.",
+               "Process time includes Python startup, simulation, independent audit and raw serialization.","",
+               "| Engine | Variant | Scenarios | Mean optimization events | Planning hours | Process hours | Median process s | Mean simulation s |",
+               "| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |"]
+        keys=sorted({(r["method"],r["variant"]) for r in manifest["records"]})
+        for method,variant in keys:
+            rows=[r for r in manifest["records"] if (r["method"],r["variant"])==(method,variant)]
+            lines.append(f"| {method} | {variant} | {len(rows)} | "
+                         f"{mean(r['metrics']['optimization_triggers'] for r in rows):.2f} | "
+                         f"{sum(r['metrics']['total_planning_time'] for r in rows)/3600:.4f} | "
+                         f"{sum(r['process_wall_seconds'] for r in rows)/3600:.4f} | "
+                         f"{median(r['process_wall_seconds'] for r in rows):.3f} | "
+                         f"{mean(r['metrics']['complete_instance_wall_clock_seconds'] for r in rows):.3f} |")
+        writable_path(paper/"computation_totals.md").write_text("\n".join(lines)+"\n",encoding="utf-8")
         methods=list(dict.fromkeys(s["method"] for s in data["summaries"]))
         for name,field,ylabel in (("complete_service","complete","Complete-service change (pp)"),
                                  ("hundred_customer_service","hundred","100-customer service change (pp)")):

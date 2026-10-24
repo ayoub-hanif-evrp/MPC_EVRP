@@ -1,6 +1,8 @@
 from dataclasses import replace
 
 from evrp import targeted_recovery as targeted
+from evrp.fleet_mcts import _FleetProblem
+from evrp.model import Action
 from evrp.planning_budget import PlanningDeadlineExceeded, remaining_time
 from tests.test_repair import customer, setup
 
@@ -55,3 +57,16 @@ def test_expired_counterfactual_probe_restores_deadline_and_preserves_incumbent(
                                                           {0}, seconds=1e-9)
     assert routes == original and proof is None and record["deadline_reached"]
     assert remaining_time() == float("inf")
+
+
+def test_canonical_comparison_preserves_constructor_ownership_reference():
+    origins,observation,config=problem()
+    actions=(Action("serve","A"),Action("serve","B"))
+    routes={0:actions,1:()}
+    reference={0:(),1:actions}
+    fleet=_FleetProblem(origins,observation,config,5,2)
+    unanchored=fleet.initial(routes)
+    anchored=targeted._initialize(fleet,routes,reference)
+    assert fleet.initial_owners=={"A":1,"B":1}
+    assert anchored.score==fleet._score(anchored.sequences,anchored.actions,anchored.costs)[0]
+    assert anchored.score!=unanchored.score

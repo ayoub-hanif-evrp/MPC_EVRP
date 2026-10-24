@@ -1,6 +1,10 @@
 {
   "artifacts": [
     {
+      "path": "results/desaulniers/targeted_service_v1/diagnosis/paper/arrival_bounds.md",
+      "sha256": "787a1b6051cb35445aa9e427c0a9512e140b26f936c21662a5a3bc4001f2ff15"
+    },
+    {
       "path": "results/desaulniers/targeted_service_v1/diagnosis/paper/event_counts.md",
       "sha256": "593c9c47878c7c5ad4aab7c6b03495cd2238613992665288cf44ef66c9bdae30"
     },
@@ -27,6 +31,10 @@
     {
       "path": "results/desaulniers/targeted_service_v1/REFERENCE_INVENTORY.md",
       "sha256": "8c5f20b10ee381683ce057887e31424ea1ebf22e8112e935f8bdc52486a98c92"
+    },
+    {
+      "path": "results/desaulniers/targeted_service_v1/REPORTING_NOTES.md",
+      "sha256": "ba447c3e10939956cf122886788c896cf87779ac3ac312a87847c04a04ae3149"
     },
     {
       "path": "results/desaulniers/targeted_service_v1/diagnosis/paper/diagnosis.png",

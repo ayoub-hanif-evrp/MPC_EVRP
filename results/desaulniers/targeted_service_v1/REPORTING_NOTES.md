@@ -14,6 +14,13 @@ The targeted study uses paired original/A/B/C runs on a different, declared
 development grid. Every claimed candidate effect must use its matched
 original run on the identical scenario, not the historical aggregate above.
 
+The new development grid benchmarks ALNS (the strongest observed fixed engine)
+and Completion (the no-search control). All five engines pass candidate
+integration tests, but synthetic tests are not benchmark performance evidence.
+Unless a candidate earns the conditional five-engine holdout, this study cannot
+establish its effect on MCTS, HGS or ACS. Failure of the ALNS-focused promotion
+gate is not proof that a candidate can never help another optimizer or dataset.
+
 ## Evidence versus explanation
 
 The retrospective loss ledger contains 20 root/customer rows covering ten
@@ -29,6 +36,17 @@ evidence that all feasible actions were enumerated or that future-aware
 control could not serve the customer. Charging failures are attempted
 connections; screen and decoder counts are heuristic calls, not missed-customer
 counts or mathematical infeasibility proofs. See diagnosis/paper/loss_ledger.md.
+
+An additional read-only check computes direct-travel service-start lower bounds
+from every measured origin, keeping busy actions immutable. Four of the ten
+missed customers already have zero time-eligible origins at first visibility:
+r101_21_25/C8, and r101_21_100/C61, C19 and C25. Their earliest optimistic service
+bounds are 47.482, 41.190, 62.670 and 147.417 against deadlines 37, 39, 58 and 147.
+This is a conditional measured-state timing bound, not infeasibility of the
+offline instance or evidence that every earlier control would fail. No sampled
+first commitment changes a positive arrival-bound count to zero. Positive
+counts ignore battery, payload and other obligations, so they are not insertion
+witnesses. See diagnosis/paper/arrival_bounds.md.
 
 The two successful new offline witnesses close physical coverage to 168/168.
 They do not reduce any historical online fleet or retroactively modify request
