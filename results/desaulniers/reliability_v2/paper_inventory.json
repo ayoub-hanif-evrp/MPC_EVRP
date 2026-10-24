@@ -1,0 +1,24 @@
+{
+  "artifacts": [
+    {
+      "path": "results/desaulniers/reliability_v2/diagnosis/PROBES.md",
+      "sha256": "563d8cdafb6356bc1a7f66564dc5781a9b5ee8a493ddd1bcac25575e5678d7fa"
+    },
+    {
+      "path": "results/desaulniers/reliability_v2/diagnosis/RESULTS.md",
+      "sha256": "0eb60cab6032a20990b14de66c4d6d52af81a1596a69708eaa91ae83a20c3c2e"
+    },
+    {
+      "path": "results/desaulniers/reliability_v2/FINAL_REPORT.md",
+      "sha256": "62c326ad89242e82915bcb21144366c1b82d9236e767053c534068d5bf233e29"
+    },
+    {
+      "path": "results/desaulniers/reliability_v2/preflight/AMENDMENT.md",
+      "sha256": "d67546ca55fe8ce0adf75304bcd5fdd89a17f7e08923e131eaca2da84a96ec3f"
+    },
+    {
+      "path": "results/desaulniers/reliability_v2/PREREGISTRATION.md",
+      "sha256": "95619fb457f8e9f8d4567733bbe921933edfdf97a405e7efc939a0bf95d08cb9"
+    }
+  ]
+}

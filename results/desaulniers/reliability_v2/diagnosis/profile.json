@@ -1,0 +1,4926 @@
+{
+  "caveat": "Instrumented offline replay, not latency certification or closed-loop performance",
+  "profiles": [
+    {
+      "deadline": false,
+      "elapsed": 0.033428499940782785,
+      "functions": [
+        {
+          "calls": 1,
+          "cumulative_seconds": 0.0203522,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "construct_fleet_root",
+          "line": 1154,
+          "own_seconds": 0.0001286
+        },
+        {
+          "calls": 6,
+          "cumulative_seconds": 0.0106788,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_decode",
+          "line": 402,
+          "own_seconds": 3.3e-05
+        },
+        {
+          "calls": 6,
+          "cumulative_seconds": 0.0093118,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\repair.py",
+          "function": "build_route",
+          "line": 152,
+          "own_seconds": 8.77e-05
+        },
+        {
+          "calls": 6,
+          "cumulative_seconds": 0.009106600000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\repair.py",
+          "function": "_build_route_original",
+          "line": 68,
+          "own_seconds": 0.000281
+        },
+        {
+          "calls": 116,
+          "cumulative_seconds": 0.0087416,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\mpc.py",
+          "function": "predict",
+          "line": 162,
+          "own_seconds": 0.0006169000000000001
+        },
+        {
+          "calls": 1,
+          "cumulative_seconds": 0.008647700000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\__init__.py",
+          "function": "create_optimizer",
+          "line": 5,
+          "own_seconds": 1.5300000000000003e-05
+        },
+        {
+          "calls": 6,
+          "cumulative_seconds": 0.008629000000000001,
+          "file": "<frozen importlib._bootstrap>",
+          "function": "_find_and_load",
+          "line": 1349,
+          "own_seconds": 6.450000000000001e-05
+        },
+        {
+          "calls": 6,
+          "cumulative_seconds": 0.0085316,
+          "file": "<frozen importlib._bootstrap>",
+          "function": "_find_and_load_unlocked",
+          "line": 1304,
+          "own_seconds": 4.22e-05
+        },
+        {
+          "calls": 6,
+          "cumulative_seconds": 0.0082416,
+          "file": "<frozen importlib._bootstrap>",
+          "function": "_load_unlocked",
+          "line": 911,
+          "own_seconds": 2.7000000000000002e-05
+        },
+        {
+          "calls": 6,
+          "cumulative_seconds": 0.0081657,
+          "file": "<frozen importlib._bootstrap_external>",
+          "function": "exec_module",
+          "line": 993,
+          "own_seconds": 2.5900000000000003e-05
+        },
+        {
+          "calls": 8,
+          "cumulative_seconds": 0.0077295,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_criticality",
+          "line": 379,
+          "own_seconds": 0.00012790000000000002
+        },
+        {
+          "calls": 3,
+          "cumulative_seconds": 0.007472,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_score",
+          "line": 245,
+          "own_seconds": 2.9e-05
+        },
+        {
+          "calls": 3,
+          "cumulative_seconds": 0.007429700000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\objective.py",
+          "function": "evaluate",
+          "line": 30,
+          "own_seconds": 0.0001168
+        },
+        {
+          "calls": 128,
+          "cumulative_seconds": 0.007427400000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\model.py",
+          "function": "transition",
+          "line": 200,
+          "own_seconds": 0.0012848
+        },
+        {
+          "calls": 27,
+          "cumulative_seconds": 0.0073781,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "screened_options",
+          "line": 340,
+          "own_seconds": 0.0005726
+        },
+        {
+          "calls": 108,
+          "cumulative_seconds": 0.007109900000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\mpc.py",
+          "function": "_predict",
+          "line": 180,
+          "own_seconds": 0.0003619
+        },
+        {
+          "calls": 6,
+          "cumulative_seconds": 0.0066692,
+          "file": "<frozen importlib._bootstrap_external>",
+          "function": "get_code",
+          "line": 1066,
+          "own_seconds": 8.55e-05
+        },
+        {
+          "calls": 12,
+          "cumulative_seconds": 0.0066299,
+          "file": "<frozen importlib._bootstrap>",
+          "function": "_call_with_frames_removed",
+          "line": 480,
+          "own_seconds": 1.02e-05
+        },
+        {
+          "calls": 6,
+          "cumulative_seconds": 0.0066255,
+          "file": "~",
+          "function": "<built-in method builtins.exec>",
+          "line": 0,
+          "own_seconds": 2.15e-05
+        },
+        {
+          "calls": 1,
+          "cumulative_seconds": 0.0066219,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\registry.py",
+          "function": "<module>",
+          "line": 1,
+          "own_seconds": 2.54e-05
+        },
+        {
+          "calls": 6,
+          "cumulative_seconds": 0.0058018,
+          "file": "<frozen importlib._bootstrap_external>",
+          "function": "get_data",
+          "line": 1187,
+          "own_seconds": 3.7500000000000003e-05
+        },
+        {
+          "calls": 4295,
+          "cumulative_seconds": 0.0050743,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\instance.py",
+          "function": "energy",
+          "line": 137,
+          "own_seconds": 0.003089
+        },
+        {
+          "calls": 394,
+          "cumulative_seconds": 0.004943,
+          "file": "~",
+          "function": "<built-in method builtins.min>",
+          "line": 0,
+          "own_seconds": 0.0006763
+        },
+        {
+          "calls": 1,
+          "cumulative_seconds": 0.004865,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "initial",
+          "line": 432,
+          "own_seconds": 6.08e-05
+        },
+        {
+          "calls": 92,
+          "cumulative_seconds": 0.0045851,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_screen_gap",
+          "line": 286,
+          "own_seconds": 5.1200000000000004e-05
+        },
+        {
+          "calls": 92,
+          "cumulative_seconds": 0.0045339,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_screen_gap_detail",
+          "line": 290,
+          "own_seconds": 0.0001084
+        },
+        {
+          "calls": 92,
+          "cumulative_seconds": 0.004357300000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_screen_gap_detail_untraced",
+          "line": 300,
+          "own_seconds": 0.00044720000000000003
+        },
+        {
+          "calls": 6,
+          "cumulative_seconds": 0.0041885,
+          "file": "~",
+          "function": "<built-in method _io.open_code>",
+          "line": 0,
+          "own_seconds": 0.0041885
+        },
+        {
+          "calls": 137,
+          "cumulative_seconds": 0.0036285,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\model.py",
+          "function": "escape",
+          "line": 188,
+          "own_seconds": 0.00044820000000000005
+        },
+        {
+          "calls": 60,
+          "cumulative_seconds": 0.0028475,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\model.py",
+          "function": "_escape_geometry",
+          "line": 157,
+          "own_seconds": 0.0008784000000000001
+        },
+        {
+          "calls": 5626,
+          "cumulative_seconds": 0.0027202000000000003,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\instance.py",
+          "function": "_rounded_up",
+          "line": 112,
+          "own_seconds": 0.0019222000000000002
+        },
+        {
+          "calls": 1,
+          "cumulative_seconds": 0.0024731,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\completion.py",
+          "function": "optimize",
+          "line": 11,
+          "own_seconds": 2.0300000000000002e-05
+        },
+        {
+          "calls": 1,
+          "cumulative_seconds": 0.0024469,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\base.py",
+          "function": "evaluated_result",
+          "line": 86,
+          "own_seconds": 8.26e-05
+        },
+        {
+          "calls": 71,
+          "cumulative_seconds": 0.0021115,
+          "file": "~",
+          "function": "<built-in method builtins.sorted>",
+          "line": 0,
+          "own_seconds": 0.0001885
+        },
+        {
+          "calls": 1495,
+          "cumulative_seconds": 0.0020091,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "<genexpr>",
+          "line": 318,
+          "own_seconds": 0.0004551
+        },
+        {
+          "calls": 8,
+          "cumulative_seconds": 0.0019727,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\repair.py",
+          "function": "route_proposal",
+          "line": 55,
+          "own_seconds": 3.1100000000000004e-05
+        },
+        {
+          "calls": 8,
+          "cumulative_seconds": 0.0019416000000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\repair.py",
+          "function": "_evaluate",
+          "line": 34,
+          "own_seconds": 6.43e-05
+        },
+        {
+          "calls": 209,
+          "cumulative_seconds": 0.0019239,
+          "file": "~",
+          "function": "<built-in method builtins.sum>",
+          "line": 0,
+          "own_seconds": 0.00022740000000000003
+        },
+        {
+          "calls": 1331,
+          "cumulative_seconds": 0.0018640000000000002,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\instance.py",
+          "function": "distance",
+          "line": 105,
+          "own_seconds": 0.0011291
+        },
+        {
+          "calls": 185,
+          "cumulative_seconds": 0.0016665,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "<lambda>",
+          "line": 375,
+          "own_seconds": 8.98e-05
+        }
+      ],
+      "method": "MPC_COMPLETION",
+      "root": "results/desaulniers/targeted_service_v1/diagnosis/roots/e8fc24eb65114d77.json"
+    },
+    {
+      "deadline": false,
+      "elapsed": 1.108676999923773,
+      "functions": [
+        {
+          "calls": 1,
+          "cumulative_seconds": 0.9264478,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\mcts.py",
+          "function": "optimize",
+          "line": 22,
+          "own_seconds": 0.0012648000000000002
+        },
+        {
+          "calls": 1,
+          "cumulative_seconds": 0.9225858,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "solve_fleet_mcts",
+          "line": 1012,
+          "own_seconds": 0.010298900000000001
+        },
+        {
+          "calls": 79,
+          "cumulative_seconds": 0.8861529,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "candidates",
+          "line": 681,
+          "own_seconds": 0.0087863
+        },
+        {
+          "calls": 79,
+          "cumulative_seconds": 0.6046264,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_full_service_moves",
+          "line": 819,
+          "own_seconds": 0.018256500000000002
+        },
+        {
+          "calls": 2758,
+          "cumulative_seconds": 0.47702910000000004,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "change",
+          "line": 457,
+          "own_seconds": 0.031346900000000004
+        },
+        {
+          "calls": 1994,
+          "cumulative_seconds": 0.32367830000000003,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "keep",
+          "line": 826,
+          "own_seconds": 0.0052061
+        },
+        {
+          "calls": 5120,
+          "cumulative_seconds": 0.3116759,
+          "file": "~",
+          "function": "<built-in method builtins.sorted>",
+          "line": 0,
+          "own_seconds": 0.015209400000000001
+        },
+        {
+          "calls": 1931,
+          "cumulative_seconds": 0.2785383,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_score",
+          "line": 245,
+          "own_seconds": 0.006196500000000001
+        },
+        {
+          "calls": 1931,
+          "cumulative_seconds": 0.2674493,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\objective.py",
+          "function": "evaluate",
+          "line": 30,
+          "own_seconds": 0.049651200000000006
+        },
+        {
+          "calls": 2703,
+          "cumulative_seconds": 0.1947026,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_positions",
+          "line": 484,
+          "own_seconds": 0.0099729
+        },
+        {
+          "calls": 28545,
+          "cumulative_seconds": 0.1806885,
+          "file": "~",
+          "function": "<built-in method builtins.min>",
+          "line": 0,
+          "own_seconds": 0.029039400000000003
+        },
+        {
+          "calls": 6462,
+          "cumulative_seconds": 0.1661285,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_screen_gap",
+          "line": 286,
+          "own_seconds": 0.003959600000000001
+        },
+        {
+          "calls": 4404,
+          "cumulative_seconds": 0.1650065,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "<genexpr>",
+          "line": 493,
+          "own_seconds": 0.0042277
+        },
+        {
+          "calls": 6462,
+          "cumulative_seconds": 0.1621689,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_screen_gap_detail",
+          "line": 290,
+          "own_seconds": 0.007721
+        },
+        {
+          "calls": 4910,
+          "cumulative_seconds": 0.15487510000000002,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_decode",
+          "line": 402,
+          "own_seconds": 0.0099196
+        },
+        {
+          "calls": 6462,
+          "cumulative_seconds": 0.1497707,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_screen_gap_detail_untraced",
+          "line": 300,
+          "own_seconds": 0.028934900000000003
+        },
+        {
+          "calls": 29970,
+          "cumulative_seconds": 0.11403450000000001,
+          "file": "~",
+          "function": "<built-in method builtins.sum>",
+          "line": 0,
+          "own_seconds": 0.036258200000000004
+        },
+        {
+          "calls": 206,
+          "cumulative_seconds": 0.11349360000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\repair.py",
+          "function": "build_route",
+          "line": 152,
+          "own_seconds": 0.0018062000000000002
+        },
+        {
+          "calls": 1389,
+          "cumulative_seconds": 0.1108045,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_nearest_vehicles",
+          "line": 501,
+          "own_seconds": 0.002733
+        },
+        {
+          "calls": 196,
+          "cumulative_seconds": 0.10869820000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\repair.py",
+          "function": "_build_route_original",
+          "line": 68,
+          "own_seconds": 0.005288500000000001
+        },
+        {
+          "calls": 2527,
+          "cumulative_seconds": 0.10263470000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\model.py",
+          "function": "transition",
+          "line": 200,
+          "own_seconds": 0.025995200000000003
+        },
+        {
+          "calls": 12501,
+          "cumulative_seconds": 0.1014251,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "<lambda>",
+          "line": 507,
+          "own_seconds": 0.005921900000000001
+        },
+        {
+          "calls": 12501,
+          "cumulative_seconds": 0.09550320000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "proximity",
+          "line": 503,
+          "own_seconds": 0.0283792
+        },
+        {
+          "calls": 1702,
+          "cumulative_seconds": 0.091228,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\mpc.py",
+          "function": "predict",
+          "line": 162,
+          "own_seconds": 0.0053913
+        },
+        {
+          "calls": 70400,
+          "cumulative_seconds": 0.0895563,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\instance.py",
+          "function": "energy",
+          "line": 137,
+          "own_seconds": 0.0559486
+        },
+        {
+          "calls": 12944,
+          "cumulative_seconds": 0.0782231,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_metrics",
+          "line": 171,
+          "own_seconds": 0.0222024
+        },
+        {
+          "calls": 47112,
+          "cumulative_seconds": 0.0781714,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\instance.py",
+          "function": "distance",
+          "line": 105,
+          "own_seconds": 0.046863600000000005
+        },
+        {
+          "calls": 1600,
+          "cumulative_seconds": 0.0709618,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\mpc.py",
+          "function": "_predict",
+          "line": 180,
+          "own_seconds": 0.005634
+        },
+        {
+          "calls": 117512,
+          "cumulative_seconds": 0.0649155,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\instance.py",
+          "function": "_rounded_up",
+          "line": 112,
+          "own_seconds": 0.045908700000000004
+        },
+        {
+          "calls": 40618,
+          "cumulative_seconds": 0.062282800000000006,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "<genexpr>",
+          "line": 318,
+          "own_seconds": 0.014059700000000001
+        },
+        {
+          "calls": 17373,
+          "cumulative_seconds": 0.048213900000000004,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\objective.py",
+          "function": "<lambda>",
+          "line": 39,
+          "own_seconds": 0.015353700000000001
+        },
+        {
+          "calls": 19310,
+          "cumulative_seconds": 0.0472626,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\objective.py",
+          "function": "<genexpr>",
+          "line": 49,
+          "own_seconds": 0.0113451
+        },
+        {
+          "calls": 33336,
+          "cumulative_seconds": 0.0453801,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "<genexpr>",
+          "line": 506,
+          "own_seconds": 0.0099894
+        },
+        {
+          "calls": 17592,
+          "cumulative_seconds": 0.0369666,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_control_metrics",
+          "line": 206,
+          "own_seconds": 0.0133287
+        },
+        {
+          "calls": 108600,
+          "cumulative_seconds": 0.031216800000000003,
+          "file": "~",
+          "function": "<built-in method builtins.hash>",
+          "line": 0,
+          "own_seconds": 0.0260331
+        },
+        {
+          "calls": 13751,
+          "cumulative_seconds": 0.0304933,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\instance.py",
+          "function": "travel_time",
+          "line": 131,
+          "own_seconds": 0.007471200000000001
+        },
+        {
+          "calls": 2334,
+          "cumulative_seconds": 0.0247718,
+          "file": "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\dataclasses.py",
+          "function": "replace",
+          "line": 1540,
+          "own_seconds": 0.012052
+        },
+        {
+          "calls": 37265,
+          "cumulative_seconds": 0.0237066,
+          "file": "~",
+          "function": "<built-in method builtins.max>",
+          "line": 0,
+          "own_seconds": 0.0148223
+        },
+        {
+          "calls": 102,
+          "cumulative_seconds": 0.0231511,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\repair.py",
+          "function": "route_proposal",
+          "line": 55,
+          "own_seconds": 0.00035160000000000004
+        },
+        {
+          "calls": 102,
+          "cumulative_seconds": 0.0227995,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\repair.py",
+          "function": "_evaluate",
+          "line": 34,
+          "own_seconds": 0.0007993000000000001
+        }
+      ],
+      "method": "MPC_MCTS",
+      "root": "results/desaulniers/targeted_service_v1/diagnosis/roots/e8fc24eb65114d77.json"
+    },
+    {
+      "deadline": false,
+      "elapsed": 0.12641099991742522,
+      "functions": [
+        {
+          "calls": 1,
+          "cumulative_seconds": 0.1129074,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\alns.py",
+          "function": "optimize",
+          "line": 130,
+          "own_seconds": 0.0019136000000000001
+        },
+        {
+          "calls": 600,
+          "cumulative_seconds": 0.0974793,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "change",
+          "line": 457,
+          "own_seconds": 0.0062713000000000005
+        },
+        {
+          "calls": 603,
+          "cumulative_seconds": 0.08465210000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_score",
+          "line": 245,
+          "own_seconds": 0.0014903000000000002
+        },
+        {
+          "calls": 603,
+          "cumulative_seconds": 0.0819144,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\objective.py",
+          "function": "evaluate",
+          "line": 30,
+          "own_seconds": 0.0126096
+        },
+        {
+          "calls": 100,
+          "cumulative_seconds": 0.0804141,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\alns.py",
+          "function": "_repair",
+          "line": 124,
+          "own_seconds": 0.00039010000000000005
+        },
+        {
+          "calls": 100,
+          "cumulative_seconds": 0.08002400000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\alns.py",
+          "function": "_repair",
+          "line": 62,
+          "own_seconds": 0.0019971
+        },
+        {
+          "calls": 9013,
+          "cumulative_seconds": 0.0327449,
+          "file": "~",
+          "function": "<built-in method builtins.sum>",
+          "line": 0,
+          "own_seconds": 0.009940200000000001
+        },
+        {
+          "calls": 3406,
+          "cumulative_seconds": 0.0212859,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_metrics",
+          "line": 171,
+          "own_seconds": 0.006064600000000001
+        },
+        {
+          "calls": 6030,
+          "cumulative_seconds": 0.014534700000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\objective.py",
+          "function": "<genexpr>",
+          "line": 49,
+          "own_seconds": 0.0030791
+        },
+        {
+          "calls": 208,
+          "cumulative_seconds": 0.0143254,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_criticality",
+          "line": 379,
+          "own_seconds": 0.0003486
+        },
+        {
+          "calls": 182,
+          "cumulative_seconds": 0.013788900000000002,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "screened_options",
+          "line": 340,
+          "own_seconds": 0.0011094
+        },
+        {
+          "calls": 1,
+          "cumulative_seconds": 0.0119859,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "construct_fleet_root",
+          "line": 1154,
+          "own_seconds": 0.0001172
+        },
+        {
+          "calls": 4821,
+          "cumulative_seconds": 0.011869900000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\objective.py",
+          "function": "<lambda>",
+          "line": 39,
+          "own_seconds": 0.0038591000000000003
+        },
+        {
+          "calls": 2269,
+          "cumulative_seconds": 0.0115495,
+          "file": "~",
+          "function": "<built-in method builtins.min>",
+          "line": 0,
+          "own_seconds": 0.0022072000000000003
+        },
+        {
+          "calls": 5427,
+          "cumulative_seconds": 0.011455600000000002,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_control_metrics",
+          "line": 206,
+          "own_seconds": 0.0036972000000000003
+        },
+        {
+          "calls": 606,
+          "cumulative_seconds": 0.010782700000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_decode",
+          "line": 402,
+          "own_seconds": 0.0012424
+        },
+        {
+          "calls": 176,
+          "cumulative_seconds": 0.0094716,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_screen_gap",
+          "line": 286,
+          "own_seconds": 0.00010910000000000001
+        },
+        {
+          "calls": 176,
+          "cumulative_seconds": 0.009362500000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_screen_gap_detail",
+          "line": 290,
+          "own_seconds": 0.00021920000000000002
+        },
+        {
+          "calls": 176,
+          "cumulative_seconds": 0.0090033,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_screen_gap_detail_untraced",
+          "line": 300,
+          "own_seconds": 0.0008801000000000001
+        },
+        {
+          "calls": 7040,
+          "cumulative_seconds": 0.0083487,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\instance.py",
+          "function": "energy",
+          "line": 137,
+          "own_seconds": 0.0051267000000000005
+        },
+        {
+          "calls": 40,
+          "cumulative_seconds": 0.0074564,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\repair.py",
+          "function": "route_proposal",
+          "line": 55,
+          "own_seconds": 0.00012220000000000002
+        },
+        {
+          "calls": 40,
+          "cumulative_seconds": 0.007334200000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\repair.py",
+          "function": "_evaluate",
+          "line": 34,
+          "own_seconds": 0.0002747
+        },
+        {
+          "calls": 2,
+          "cumulative_seconds": 0.0070832,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "initial",
+          "line": 432,
+          "own_seconds": 9.810000000000001e-05
+        },
+        {
+          "calls": 227,
+          "cumulative_seconds": 0.0070212,
+          "file": "~",
+          "function": "<built-in method builtins.sorted>",
+          "line": 0,
+          "own_seconds": 0.0007105000000000001
+        },
+        {
+          "calls": 171,
+          "cumulative_seconds": 0.0069556,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\model.py",
+          "function": "transition",
+          "line": 200,
+          "own_seconds": 0.0018291000000000002
+        },
+        {
+          "calls": 30015,
+          "cumulative_seconds": 0.0063556,
+          "file": "~",
+          "function": "<built-in method builtins.hash>",
+          "line": 0,
+          "own_seconds": 0.0058928
+        },
+        {
+          "calls": 122,
+          "cumulative_seconds": 0.0056167000000000005,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\mpc.py",
+          "function": "predict",
+          "line": 162,
+          "own_seconds": 0.0003979
+        },
+        {
+          "calls": 100,
+          "cumulative_seconds": 0.004712,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\alns.py",
+          "function": "_removal_order",
+          "line": 28,
+          "own_seconds": 0.0005608000000000001
+        },
+        {
+          "calls": 8545,
+          "cumulative_seconds": 0.004155,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\instance.py",
+          "function": "_rounded_up",
+          "line": 112,
+          "own_seconds": 0.0029311000000000003
+        },
+        {
+          "calls": 82,
+          "cumulative_seconds": 0.0040008000000000005,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\mpc.py",
+          "function": "_predict",
+          "line": 180,
+          "own_seconds": 0.00037140000000000003
+        },
+        {
+          "calls": 2599,
+          "cumulative_seconds": 0.0036864000000000003,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "<genexpr>",
+          "line": 318,
+          "own_seconds": 0.0008406
+        },
+        {
+          "calls": 176,
+          "cumulative_seconds": 0.0029498000000000003,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_screen_profile",
+          "line": 251,
+          "own_seconds": 0.0004578
+        },
+        {
+          "calls": 4115,
+          "cumulative_seconds": 0.0027905,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\objective.py",
+          "function": "<genexpr>",
+          "line": 55,
+          "own_seconds": 0.0020732000000000003
+        },
+        {
+          "calls": 18054,
+          "cumulative_seconds": 0.0027526,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\objective.py",
+          "function": "<genexpr>",
+          "line": 39,
+          "own_seconds": 0.0027526
+        },
+        {
+          "calls": 1505,
+          "cumulative_seconds": 0.0025254,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\instance.py",
+          "function": "distance",
+          "line": 105,
+          "own_seconds": 0.0015924000000000001
+        },
+        {
+          "calls": 6030,
+          "cumulative_seconds": 0.0023648000000000002,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\objective.py",
+          "function": "<genexpr>",
+          "line": 35,
+          "own_seconds": 0.0023648000000000002
+        },
+        {
+          "calls": 233,
+          "cumulative_seconds": 0.0022704,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "<lambda>",
+          "line": 375,
+          "own_seconds": 0.0001787
+        },
+        {
+          "calls": 5993,
+          "cumulative_seconds": 0.0022038,
+          "file": "~",
+          "function": "<built-in method builtins.max>",
+          "line": 0,
+          "own_seconds": 0.0021048
+        },
+        {
+          "calls": 36,
+          "cumulative_seconds": 0.0021435,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\repair.py",
+          "function": "build_route",
+          "line": 152,
+          "own_seconds": 0.00020040000000000002
+        },
+        {
+          "calls": 233,
+          "cumulative_seconds": 0.0020917,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_option_rank",
+          "line": 326,
+          "own_seconds": 0.0008369
+        }
+      ],
+      "method": "MPC_ALNS",
+      "root": "results/desaulniers/targeted_service_v1/diagnosis/roots/e8fc24eb65114d77.json"
+    },
+    {
+      "deadline": false,
+      "elapsed": 0.23304589989129454,
+      "functions": [
+        {
+          "calls": 1,
+          "cumulative_seconds": 0.2205243,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\hgs.py",
+          "function": "optimize",
+          "line": 215,
+          "own_seconds": 0.0006748
+        },
+        {
+          "calls": 593,
+          "cumulative_seconds": 0.1451868,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "change",
+          "line": 457,
+          "own_seconds": 0.0067067
+        },
+        {
+          "calls": 512,
+          "cumulative_seconds": 0.11864390000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_score",
+          "line": 245,
+          "own_seconds": 0.0014708000000000002
+        },
+        {
+          "calls": 512,
+          "cumulative_seconds": 0.1160425,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\objective.py",
+          "function": "evaluate",
+          "line": 30,
+          "own_seconds": 0.011341700000000001
+        },
+        {
+          "calls": 32,
+          "cumulative_seconds": 0.11225850000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\hgs.py",
+          "function": "_crossover",
+          "line": 173,
+          "own_seconds": 0.002186
+        },
+        {
+          "calls": 96,
+          "cumulative_seconds": 0.0593616,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\hgs.py",
+          "function": "_biased_ranks",
+          "line": 25,
+          "own_seconds": 0.0032752000000000002
+        },
+        {
+          "calls": 763,
+          "cumulative_seconds": 0.0541128,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\hgs.py",
+          "function": "_diversity",
+          "line": 18,
+          "own_seconds": 0.0036199
+        },
+        {
+          "calls": 298,
+          "cumulative_seconds": 0.050456100000000004,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_criticality",
+          "line": 379,
+          "own_seconds": 0.0016772
+        },
+        {
+          "calls": 314,
+          "cumulative_seconds": 0.046312200000000005,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "screened_options",
+          "line": 340,
+          "own_seconds": 0.0044138
+        },
+        {
+          "calls": 7352,
+          "cumulative_seconds": 0.0436403,
+          "file": "~",
+          "function": "<built-in method builtins.sum>",
+          "line": 0,
+          "own_seconds": 0.008961700000000001
+        },
+        {
+          "calls": 64,
+          "cumulative_seconds": 0.039652900000000005,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\hgs.py",
+          "function": "_select_parent",
+          "line": 41,
+          "own_seconds": 0.00025110000000000003
+        },
+        {
+          "calls": 39,
+          "cumulative_seconds": 0.0384622,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\hgs.py",
+          "function": "_educate",
+          "line": 94,
+          "own_seconds": 0.0023772000000000003
+        },
+        {
+          "calls": 6068,
+          "cumulative_seconds": 0.036726600000000005,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\hgs.py",
+          "function": "_edges",
+          "line": 12,
+          "own_seconds": 0.0116977
+        },
+        {
+          "calls": 42476,
+          "cumulative_seconds": 0.025028900000000003,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\hgs.py",
+          "function": "<genexpr>",
+          "line": 13,
+          "own_seconds": 0.025028900000000003
+        },
+        {
+          "calls": 940,
+          "cumulative_seconds": 0.0234735,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_decode",
+          "line": 402,
+          "own_seconds": 0.0020072
+        },
+        {
+          "calls": 3057,
+          "cumulative_seconds": 0.023095800000000003,
+          "file": "~",
+          "function": "<built-in method builtins.min>",
+          "line": 0,
+          "own_seconds": 0.0042767000000000005
+        },
+        {
+          "calls": 2588,
+          "cumulative_seconds": 0.0230255,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_metrics",
+          "line": 171,
+          "own_seconds": 0.0052489
+        },
+        {
+          "calls": 18147,
+          "cumulative_seconds": 0.0221952,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\instance.py",
+          "function": "energy",
+          "line": 137,
+          "own_seconds": 0.013506700000000002
+        },
+        {
+          "calls": 32,
+          "cumulative_seconds": 0.0220208,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\hgs.py",
+          "function": "_survivors",
+          "line": 47,
+          "own_seconds": 0.0004735
+        },
+        {
+          "calls": 902,
+          "cumulative_seconds": 0.0215441,
+          "file": "~",
+          "function": "<built-in method builtins.sorted>",
+          "line": 0,
+          "own_seconds": 0.0026254
+        },
+        {
+          "calls": 445,
+          "cumulative_seconds": 0.0201663,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_screen_gap",
+          "line": 286,
+          "own_seconds": 0.00027100000000000003
+        },
+        {
+          "calls": 445,
+          "cumulative_seconds": 0.0198953,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_screen_gap_detail",
+          "line": 290,
+          "own_seconds": 0.0005323
+        },
+        {
+          "calls": 445,
+          "cumulative_seconds": 0.019019,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_screen_gap_detail_untraced",
+          "line": 300,
+          "own_seconds": 0.0020837
+        },
+        {
+          "calls": 1887,
+          "cumulative_seconds": 0.0179443,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "<lambda>",
+          "line": 375,
+          "own_seconds": 0.0009344
+        },
+        {
+          "calls": 1887,
+          "cumulative_seconds": 0.0170099,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_option_rank",
+          "line": 326,
+          "own_seconds": 0.006497500000000001
+        },
+        {
+          "calls": 5120,
+          "cumulative_seconds": 0.0158826,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\objective.py",
+          "function": "<genexpr>",
+          "line": 49,
+          "own_seconds": 0.0027956
+        },
+        {
+          "calls": 81,
+          "cumulative_seconds": 0.014741700000000002,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\repair.py",
+          "function": "route_proposal",
+          "line": 55,
+          "own_seconds": 0.00022480000000000002
+        },
+        {
+          "calls": 81,
+          "cumulative_seconds": 0.014516900000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\repair.py",
+          "function": "_evaluate",
+          "line": 34,
+          "own_seconds": 0.0005062
+        },
+        {
+          "calls": 353,
+          "cumulative_seconds": 0.0143172,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\model.py",
+          "function": "transition",
+          "line": 200,
+          "own_seconds": 0.0036887
+        },
+        {
+          "calls": 4608,
+          "cumulative_seconds": 0.013087000000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_control_metrics",
+          "line": 206,
+          "own_seconds": 0.0034620000000000002
+        },
+        {
+          "calls": 6068,
+          "cumulative_seconds": 0.012342500000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\hgs.py",
+          "function": "<genexpr>",
+          "line": 21,
+          "own_seconds": 0.009864000000000001
+        },
+        {
+          "calls": 1,
+          "cumulative_seconds": 0.0109783,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "construct_fleet_root",
+          "line": 1154,
+          "own_seconds": 9.76e-05
+        },
+        {
+          "calls": 244,
+          "cumulative_seconds": 0.0109701,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\mpc.py",
+          "function": "predict",
+          "line": 162,
+          "own_seconds": 0.0007837
+        },
+        {
+          "calls": 20599,
+          "cumulative_seconds": 0.0102424,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\instance.py",
+          "function": "_rounded_up",
+          "line": 112,
+          "own_seconds": 0.0072002
+        },
+        {
+          "calls": 163,
+          "cumulative_seconds": 0.0078837,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\mpc.py",
+          "function": "_predict",
+          "line": 180,
+          "own_seconds": 0.0007115
+        },
+        {
+          "calls": 2862,
+          "cumulative_seconds": 0.007612600000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\objective.py",
+          "function": "<lambda>",
+          "line": 39,
+          "own_seconds": 0.0024614000000000003
+        },
+        {
+          "calls": 445,
+          "cumulative_seconds": 0.0074038,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_screen_profile",
+          "line": 251,
+          "own_seconds": 0.0011536
+        },
+        {
+          "calls": 2,
+          "cumulative_seconds": 0.0068804,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "initial",
+          "line": 432,
+          "own_seconds": 9.580000000000001e-05
+        },
+        {
+          "calls": 21897,
+          "cumulative_seconds": 0.0064022,
+          "file": "~",
+          "function": "<built-in method builtins.hash>",
+          "line": 0,
+          "own_seconds": 0.0053025
+        },
+        {
+          "calls": 4531,
+          "cumulative_seconds": 0.0063306000000000005,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "<genexpr>",
+          "line": 318,
+          "own_seconds": 0.0014236000000000001
+        }
+      ],
+      "method": "MPC_HGS",
+      "root": "results/desaulniers/targeted_service_v1/diagnosis/roots/e8fc24eb65114d77.json"
+    },
+    {
+      "deadline": false,
+      "elapsed": 0.18417140003293753,
+      "functions": [
+        {
+          "calls": 1,
+          "cumulative_seconds": 0.17162390000000002,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\acs.py",
+          "function": "optimize",
+          "line": 47,
+          "own_seconds": 0.0033989000000000003
+        },
+        {
+          "calls": 433,
+          "cumulative_seconds": 0.16226290000000002,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "change",
+          "line": 457,
+          "own_seconds": 0.0046198
+        },
+        {
+          "calls": 436,
+          "cumulative_seconds": 0.14688310000000002,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_score",
+          "line": 245,
+          "own_seconds": 0.0011813000000000001
+        },
+        {
+          "calls": 436,
+          "cumulative_seconds": 0.1447893,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\objective.py",
+          "function": "evaluate",
+          "line": 30,
+          "own_seconds": 0.0087741
+        },
+        {
+          "calls": 465,
+          "cumulative_seconds": 0.0972534,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_criticality",
+          "line": 379,
+          "own_seconds": 0.0033867000000000003
+        },
+        {
+          "calls": 737,
+          "cumulative_seconds": 0.087907,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "screened_options",
+          "line": 340,
+          "own_seconds": 0.009327
+        },
+        {
+          "calls": 1239,
+          "cumulative_seconds": 0.0494167,
+          "file": "~",
+          "function": "<built-in method builtins.sorted>",
+          "line": 0,
+          "own_seconds": 0.0038679
+        },
+        {
+          "calls": 4942,
+          "cumulative_seconds": 0.044764500000000006,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "<lambda>",
+          "line": 375,
+          "own_seconds": 0.0022851
+        },
+        {
+          "calls": 4942,
+          "cumulative_seconds": 0.0424794,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_option_rank",
+          "line": 326,
+          "own_seconds": 0.015952400000000002
+        },
+        {
+          "calls": 28764,
+          "cumulative_seconds": 0.0346855,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\instance.py",
+          "function": "energy",
+          "line": 137,
+          "own_seconds": 0.0206576
+        },
+        {
+          "calls": 693,
+          "cumulative_seconds": 0.0260582,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_screen_gap",
+          "line": 286,
+          "own_seconds": 0.000413
+        },
+        {
+          "calls": 2899,
+          "cumulative_seconds": 0.025763300000000003,
+          "file": "~",
+          "function": "<built-in method builtins.min>",
+          "line": 0,
+          "own_seconds": 0.0048103
+        },
+        {
+          "calls": 693,
+          "cumulative_seconds": 0.0256452,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_screen_gap_detail",
+          "line": 290,
+          "own_seconds": 0.0008094
+        },
+        {
+          "calls": 693,
+          "cumulative_seconds": 0.0242973,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_screen_gap_detail_untraced",
+          "line": 300,
+          "own_seconds": 0.0031371000000000003
+        },
+        {
+          "calls": 4748,
+          "cumulative_seconds": 0.021600900000000003,
+          "file": "~",
+          "function": "<built-in method builtins.sum>",
+          "line": 0,
+          "own_seconds": 0.0055696
+        },
+        {
+          "calls": 1508,
+          "cumulative_seconds": 0.0176373,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_metrics",
+          "line": 171,
+          "own_seconds": 0.0032853
+        },
+        {
+          "calls": 447,
+          "cumulative_seconds": 0.016087900000000002,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_decode",
+          "line": 402,
+          "own_seconds": 0.0010774
+        },
+        {
+          "calls": 31616,
+          "cumulative_seconds": 0.0157811,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\instance.py",
+          "function": "_rounded_up",
+          "line": 112,
+          "own_seconds": 0.0110662
+        },
+        {
+          "calls": 62,
+          "cumulative_seconds": 0.0136615,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\repair.py",
+          "function": "route_proposal",
+          "line": 55,
+          "own_seconds": 0.0002034
+        },
+        {
+          "calls": 62,
+          "cumulative_seconds": 0.0134581,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\repair.py",
+          "function": "_evaluate",
+          "line": 34,
+          "own_seconds": 0.00047210000000000004
+        },
+        {
+          "calls": 325,
+          "cumulative_seconds": 0.013193600000000002,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\model.py",
+          "function": "transition",
+          "line": 200,
+          "own_seconds": 0.0034872
+        },
+        {
+          "calls": 4360,
+          "cumulative_seconds": 0.0115449,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\objective.py",
+          "function": "<genexpr>",
+          "line": 49,
+          "own_seconds": 0.0022642
+        },
+        {
+          "calls": 1,
+          "cumulative_seconds": 0.010989200000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "construct_fleet_root",
+          "line": 1154,
+          "own_seconds": 9.800000000000001e-05
+        },
+        {
+          "calls": 205,
+          "cumulative_seconds": 0.009609900000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\mpc.py",
+          "function": "predict",
+          "line": 162,
+          "own_seconds": 0.0006583
+        },
+        {
+          "calls": 693,
+          "cumulative_seconds": 0.0094003,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_screen_profile",
+          "line": 251,
+          "own_seconds": 0.001497
+        },
+        {
+          "calls": 3924,
+          "cumulative_seconds": 0.009280700000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_control_metrics",
+          "line": 206,
+          "own_seconds": 0.0023817
+        },
+        {
+          "calls": 27650,
+          "cumulative_seconds": 0.0075763,
+          "file": "~",
+          "function": "<built-in method builtins.max>",
+          "line": 0,
+          "own_seconds": 0.0072031000000000005
+        },
+        {
+          "calls": 5221,
+          "cumulative_seconds": 0.007270400000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "<genexpr>",
+          "line": 318,
+          "own_seconds": 0.0016630000000000002
+        },
+        {
+          "calls": 143,
+          "cumulative_seconds": 0.0069522,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\mpc.py",
+          "function": "_predict",
+          "line": 180,
+          "own_seconds": 0.0006338
+        },
+        {
+          "calls": 2,
+          "cumulative_seconds": 0.006923,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "initial",
+          "line": 432,
+          "own_seconds": 0.0001005
+        },
+        {
+          "calls": 31616,
+          "cumulative_seconds": 0.0047149,
+          "file": "~",
+          "function": "<built-in method math.ceil>",
+          "line": 0,
+          "own_seconds": 0.0047149
+        },
+        {
+          "calls": 2852,
+          "cumulative_seconds": 0.0045802,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\instance.py",
+          "function": "distance",
+          "line": 105,
+          "own_seconds": 0.002827
+        },
+        {
+          "calls": 2898,
+          "cumulative_seconds": 0.0044982,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "<genexpr>",
+          "line": 187,
+          "own_seconds": 0.0009947
+        },
+        {
+          "calls": 7731,
+          "cumulative_seconds": 0.0038729000000000003,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_check_search_time",
+          "line": 163,
+          "own_seconds": 0.0024922
+        },
+        {
+          "calls": 10848,
+          "cumulative_seconds": 0.0037876000000000003,
+          "file": "~",
+          "function": "<built-in method builtins.hash>",
+          "line": 0,
+          "own_seconds": 0.0030106
+        },
+        {
+          "calls": 1725,
+          "cumulative_seconds": 0.0037705000000000004,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\instance.py",
+          "function": "travel_time",
+          "line": 131,
+          "own_seconds": 0.0009528000000000001
+        },
+        {
+          "calls": 1464,
+          "cumulative_seconds": 0.0036278,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\objective.py",
+          "function": "<lambda>",
+          "line": 39,
+          "own_seconds": 0.0013287000000000002
+        },
+        {
+          "calls": 325,
+          "cumulative_seconds": 0.0035319,
+          "file": "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\dataclasses.py",
+          "function": "replace",
+          "line": 1540,
+          "own_seconds": 0.0017478
+        },
+        {
+          "calls": 2507,
+          "cumulative_seconds": 0.0033216,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "<genexpr>",
+          "line": 270,
+          "own_seconds": 0.0007914
+        },
+        {
+          "calls": 62,
+          "cumulative_seconds": 0.0031857,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\mpc.py",
+          "function": "proposal_from_state",
+          "line": 467,
+          "own_seconds": 0.0005048
+        }
+      ],
+      "method": "MPC_ACS",
+      "root": "results/desaulniers/targeted_service_v1/diagnosis/roots/e8fc24eb65114d77.json"
+    },
+    {
+      "deadline": false,
+      "elapsed": 0.0150765998987481,
+      "functions": [
+        {
+          "calls": 1,
+          "cumulative_seconds": 0.0101505,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "construct_fleet_root",
+          "line": 1154,
+          "own_seconds": 8.300000000000001e-05
+        },
+        {
+          "calls": 4,
+          "cumulative_seconds": 0.0060717,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_score",
+          "line": 245,
+          "own_seconds": 1.8200000000000002e-05
+        },
+        {
+          "calls": 4,
+          "cumulative_seconds": 0.0060416,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\objective.py",
+          "function": "evaluate",
+          "line": 30,
+          "own_seconds": 0.0001427
+        },
+        {
+          "calls": 24,
+          "cumulative_seconds": 0.0058164,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\repair.py",
+          "function": "route_proposal",
+          "line": 55,
+          "own_seconds": 6.37e-05
+        },
+        {
+          "calls": 1,
+          "cumulative_seconds": 0.0058006,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "initial",
+          "line": 432,
+          "own_seconds": 7.59e-05
+        },
+        {
+          "calls": 24,
+          "cumulative_seconds": 0.0057527,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\repair.py",
+          "function": "_evaluate",
+          "line": 34,
+          "own_seconds": 0.0001405
+        },
+        {
+          "calls": 68,
+          "cumulative_seconds": 0.0043452000000000005,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\mpc.py",
+          "function": "predict",
+          "line": 162,
+          "own_seconds": 0.00020920000000000002
+        },
+        {
+          "calls": 66,
+          "cumulative_seconds": 0.004234,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\model.py",
+          "function": "transition",
+          "line": 200,
+          "own_seconds": 0.0006962
+        },
+        {
+          "calls": 1,
+          "cumulative_seconds": 0.0038748000000000003,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\completion.py",
+          "function": "optimize",
+          "line": 11,
+          "own_seconds": 1.18e-05
+        },
+        {
+          "calls": 1,
+          "cumulative_seconds": 0.0038592,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\base.py",
+          "function": "evaluated_result",
+          "line": 86,
+          "own_seconds": 5.6000000000000006e-05
+        },
+        {
+          "calls": 310,
+          "cumulative_seconds": 0.0036077,
+          "file": "~",
+          "function": "<built-in method builtins.min>",
+          "line": 0,
+          "own_seconds": 0.0004448
+        },
+        {
+          "calls": 44,
+          "cumulative_seconds": 0.0034991,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\mpc.py",
+          "function": "_predict",
+          "line": 180,
+          "own_seconds": 0.00018470000000000002
+        },
+        {
+          "calls": 7,
+          "cumulative_seconds": 0.0032534,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_criticality",
+          "line": 379,
+          "own_seconds": 4.55e-05
+        },
+        {
+          "calls": 4,
+          "cumulative_seconds": 0.0031782000000000004,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "screened_options",
+          "line": 340,
+          "own_seconds": 0.0001354
+        },
+        {
+          "calls": 54,
+          "cumulative_seconds": 0.0030009000000000004,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_screen_gap",
+          "line": 286,
+          "own_seconds": 3.15e-05
+        },
+        {
+          "calls": 54,
+          "cumulative_seconds": 0.0029694,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_screen_gap_detail",
+          "line": 290,
+          "own_seconds": 5.8500000000000006e-05
+        },
+        {
+          "calls": 2434,
+          "cumulative_seconds": 0.0029676000000000004,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\instance.py",
+          "function": "energy",
+          "line": 137,
+          "own_seconds": 0.0018502000000000002
+        },
+        {
+          "calls": 54,
+          "cumulative_seconds": 0.0028680000000000003,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_screen_gap_detail_untraced",
+          "line": 300,
+          "own_seconds": 0.00017010000000000001
+        },
+        {
+          "calls": 1,
+          "cumulative_seconds": 0.0027816,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\repair.py",
+          "function": "regret_repair",
+          "line": 454,
+          "own_seconds": 2.4e-05
+        },
+        {
+          "calls": 1,
+          "cumulative_seconds": 0.0027576000000000002,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\repair.py",
+          "function": "_regret_repair_impl",
+          "line": 262,
+          "own_seconds": 9.690000000000001e-05
+        },
+        {
+          "calls": 54,
+          "cumulative_seconds": 0.0025208,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_screen_profile",
+          "line": 251,
+          "own_seconds": 0.0003039
+        },
+        {
+          "calls": 48,
+          "cumulative_seconds": 0.0025009000000000003,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_metrics",
+          "line": 171,
+          "own_seconds": 0.0002923
+        },
+        {
+          "calls": 105,
+          "cumulative_seconds": 0.0024621,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\model.py",
+          "function": "escape",
+          "line": 188,
+          "own_seconds": 0.0003457
+        },
+        {
+          "calls": 214,
+          "cumulative_seconds": 0.0016494,
+          "file": "~",
+          "function": "<built-in method builtins.sum>",
+          "line": 0,
+          "own_seconds": 0.0002175
+        },
+        {
+          "calls": 9,
+          "cumulative_seconds": 0.0014404,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\model.py",
+          "function": "_escape_geometry",
+          "line": 157,
+          "own_seconds": 0.0004017
+        },
+        {
+          "calls": 2929,
+          "cumulative_seconds": 0.0014252000000000002,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\instance.py",
+          "function": "_rounded_up",
+          "line": 112,
+          "own_seconds": 0.0010017000000000001
+        },
+        {
+          "calls": 24,
+          "cumulative_seconds": 0.0012026,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\mpc.py",
+          "function": "proposal_from_state",
+          "line": 467,
+          "own_seconds": 0.00016120000000000002
+        },
+        {
+          "calls": 40,
+          "cumulative_seconds": 0.001048,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\objective.py",
+          "function": "<genexpr>",
+          "line": 49,
+          "own_seconds": 3.43e-05
+        },
+        {
+          "calls": 36,
+          "cumulative_seconds": 0.0010137,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_control_metrics",
+          "line": 206,
+          "own_seconds": 0.0001667
+        },
+        {
+          "calls": 621,
+          "cumulative_seconds": 0.0008919,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "<genexpr>",
+          "line": 262,
+          "own_seconds": 0.00020360000000000002
+        },
+        {
+          "calls": 621,
+          "cumulative_seconds": 0.0008446,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "<genexpr>",
+          "line": 270,
+          "own_seconds": 0.00019130000000000001
+        },
+        {
+          "calls": 495,
+          "cumulative_seconds": 0.000821,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\instance.py",
+          "function": "distance",
+          "line": 105,
+          "own_seconds": 0.0005132
+        },
+        {
+          "calls": 506,
+          "cumulative_seconds": 0.0007875,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "<genexpr>",
+          "line": 187,
+          "own_seconds": 0.00017590000000000002
+        },
+        {
+          "calls": 66,
+          "cumulative_seconds": 0.0007139000000000001,
+          "file": "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\dataclasses.py",
+          "function": "replace",
+          "line": 1540,
+          "own_seconds": 0.0003463
+        },
+        {
+          "calls": 414,
+          "cumulative_seconds": 0.0006382,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "<genexpr>",
+          "line": 234,
+          "own_seconds": 0.0001286
+        },
+        {
+          "calls": 937,
+          "cumulative_seconds": 0.0005700000000000001,
+          "file": "~",
+          "function": "<built-in method builtins.hash>",
+          "line": 0,
+          "own_seconds": 0.0003746
+        },
+        {
+          "calls": 33,
+          "cumulative_seconds": 0.0005250000000000001,
+          "file": "<string>",
+          "function": "__eq__",
+          "line": 2,
+          "own_seconds": 0.0001644
+        },
+        {
+          "calls": 136,
+          "cumulative_seconds": 0.0004916,
+          "file": "<string>",
+          "function": "__hash__",
+          "line": 2,
+          "own_seconds": 7.010000000000001e-05
+        },
+        {
+          "calls": 27,
+          "cumulative_seconds": 0.00046560000000000004,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\mpc.py",
+          "function": "terminal_cost",
+          "line": 218,
+          "own_seconds": 2.9400000000000003e-05
+        },
+        {
+          "calls": 2929,
+          "cumulative_seconds": 0.00042350000000000005,
+          "file": "~",
+          "function": "<built-in method math.ceil>",
+          "line": 0,
+          "own_seconds": 0.00042350000000000005
+        }
+      ],
+      "method": "MPC_COMPLETION",
+      "root": "results/desaulniers/targeted_service_v1/diagnosis/roots/ef4592b24defb7a4.json"
+    },
+    {
+      "deadline": false,
+      "elapsed": 0.029637300060130656,
+      "functions": [
+        {
+          "calls": 1,
+          "cumulative_seconds": 0.019577300000000002,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\mcts.py",
+          "function": "optimize",
+          "line": 22,
+          "own_seconds": 5.2600000000000005e-05
+        },
+        {
+          "calls": 1,
+          "cumulative_seconds": 0.0172508,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "solve_fleet_mcts",
+          "line": 1012,
+          "own_seconds": 0.0026379000000000003
+        },
+        {
+          "calls": 1,
+          "cumulative_seconds": 0.008654100000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "construct_fleet_root",
+          "line": 1154,
+          "own_seconds": 7.450000000000001e-05
+        },
+        {
+          "calls": 2,
+          "cumulative_seconds": 0.0084065,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "initial",
+          "line": 432,
+          "own_seconds": 0.0001294
+        },
+        {
+          "calls": 4,
+          "cumulative_seconds": 0.006308800000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_score",
+          "line": 245,
+          "own_seconds": 1.7e-05
+        },
+        {
+          "calls": 4,
+          "cumulative_seconds": 0.006280600000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\objective.py",
+          "function": "evaluate",
+          "line": 30,
+          "own_seconds": 0.0001452
+        },
+        {
+          "calls": 30,
+          "cumulative_seconds": 0.0055548,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\repair.py",
+          "function": "route_proposal",
+          "line": 55,
+          "own_seconds": 7.98e-05
+        },
+        {
+          "calls": 30,
+          "cumulative_seconds": 0.005475000000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\repair.py",
+          "function": "_evaluate",
+          "line": 34,
+          "own_seconds": 0.00017140000000000002
+        },
+        {
+          "calls": 3132,
+          "cumulative_seconds": 0.0043635,
+          "file": "~",
+          "function": "<built-in method builtins.min>",
+          "line": 0,
+          "own_seconds": 0.0011085000000000001
+        },
+        {
+          "calls": 85,
+          "cumulative_seconds": 0.0037366,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\mpc.py",
+          "function": "predict",
+          "line": 162,
+          "own_seconds": 0.0002516
+        },
+        {
+          "calls": 77,
+          "cumulative_seconds": 0.0035367000000000003,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\model.py",
+          "function": "transition",
+          "line": 200,
+          "own_seconds": 0.0008041000000000001
+        },
+        {
+          "calls": 265,
+          "cumulative_seconds": 0.0035280000000000003,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_criticality",
+          "line": 379,
+          "own_seconds": 0.00019700000000000002
+        },
+        {
+          "calls": 256,
+          "cumulative_seconds": 0.0034593000000000002,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "value",
+          "line": 973,
+          "own_seconds": 0.0014037000000000001
+        },
+        {
+          "calls": 5,
+          "cumulative_seconds": 0.0033046000000000004,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "screened_options",
+          "line": 340,
+          "own_seconds": 0.00014220000000000001
+        },
+        {
+          "calls": 72,
+          "cumulative_seconds": 0.0032132000000000003,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_screen_gap_detail",
+          "line": 290,
+          "own_seconds": 8.170000000000001e-05
+        },
+        {
+          "calls": 54,
+          "cumulative_seconds": 0.0031087000000000003,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_screen_gap",
+          "line": 286,
+          "own_seconds": 3.3e-05
+        },
+        {
+          "calls": 72,
+          "cumulative_seconds": 0.0030779,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_screen_gap_detail_untraced",
+          "line": 300,
+          "own_seconds": 0.00022490000000000002
+        },
+        {
+          "calls": 55,
+          "cumulative_seconds": 0.0027075000000000003,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\mpc.py",
+          "function": "_predict",
+          "line": 180,
+          "own_seconds": 0.000213
+        },
+        {
+          "calls": 48,
+          "cumulative_seconds": 0.0026596000000000002,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_metrics",
+          "line": 171,
+          "own_seconds": 0.0003063
+        },
+        {
+          "calls": 72,
+          "cumulative_seconds": 0.0026076000000000003,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_screen_profile",
+          "line": 251,
+          "own_seconds": 0.00033120000000000003
+        },
+        {
+          "calls": 2145,
+          "cumulative_seconds": 0.0025874,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\instance.py",
+          "function": "energy",
+          "line": 137,
+          "own_seconds": 0.0015940000000000001
+        },
+        {
+          "calls": 1,
+          "cumulative_seconds": 0.0024887,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\repair.py",
+          "function": "regret_repair",
+          "line": 454,
+          "own_seconds": 8.7e-06
+        },
+        {
+          "calls": 1,
+          "cumulative_seconds": 0.00248,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\repair.py",
+          "function": "_regret_repair_impl",
+          "line": 262,
+          "own_seconds": 8.630000000000001e-05
+        },
+        {
+          "calls": 2202,
+          "cumulative_seconds": 0.0017980000000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_unit",
+          "line": 167,
+          "own_seconds": 0.0008819
+        },
+        {
+          "calls": 256,
+          "cumulative_seconds": 0.0015605,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "complete_rollout",
+          "line": 509,
+          "own_seconds": 0.0006555
+        },
+        {
+          "calls": 30,
+          "cumulative_seconds": 0.0015125000000000002,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\mpc.py",
+          "function": "proposal_from_state",
+          "line": 467,
+          "own_seconds": 0.00022140000000000001
+        },
+        {
+          "calls": 256,
+          "cumulative_seconds": 0.0014314,
+          "file": "~",
+          "function": "<method 'setdefault' of 'dict' objects>",
+          "line": 0,
+          "own_seconds": 0.0005367
+        },
+        {
+          "calls": 120,
+          "cumulative_seconds": 0.0013243,
+          "file": "~",
+          "function": "<built-in method builtins.sum>",
+          "line": 0,
+          "own_seconds": 0.0001448
+        },
+        {
+          "calls": 1,
+          "cumulative_seconds": 0.0012883,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\base.py",
+          "function": "evaluated_result",
+          "line": 86,
+          "own_seconds": 4.94e-05
+        },
+        {
+          "calls": 2536,
+          "cumulative_seconds": 0.0012535,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\instance.py",
+          "function": "_rounded_up",
+          "line": 112,
+          "own_seconds": 0.0008878
+        },
+        {
+          "calls": 257,
+          "cumulative_seconds": 0.0011893000000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "first_control_signature",
+          "line": 994,
+          "own_seconds": 0.0006999
+        },
+        {
+          "calls": 122,
+          "cumulative_seconds": 0.0011561,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\model.py",
+          "function": "escape",
+          "line": 188,
+          "own_seconds": 0.0003862
+        },
+        {
+          "calls": 4562,
+          "cumulative_seconds": 0.0011119,
+          "file": "~",
+          "function": "<built-in method builtins.max>",
+          "line": 0,
+          "own_seconds": 0.0011119
+        },
+        {
+          "calls": 40,
+          "cumulative_seconds": 0.0010324000000000002,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\objective.py",
+          "function": "<genexpr>",
+          "line": 49,
+          "own_seconds": 3.3600000000000004e-05
+        },
+        {
+          "calls": 36,
+          "cumulative_seconds": 0.0009988,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_control_metrics",
+          "line": 206,
+          "own_seconds": 0.00014810000000000002
+        },
+        {
+          "calls": 2608,
+          "cumulative_seconds": 0.0009809,
+          "file": "~",
+          "function": "<built-in method builtins.hash>",
+          "line": 0,
+          "own_seconds": 0.00076
+        },
+        {
+          "calls": 1,
+          "cumulative_seconds": 0.0009728,
+          "file": "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\dataclasses.py",
+          "function": "asdict",
+          "line": 1308,
+          "own_seconds": 2.3e-06
+        },
+        {
+          "calls": 604,
+          "cumulative_seconds": 0.0009684,
+          "file": "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\dataclasses.py",
+          "function": "_asdict_inner",
+          "line": 1332,
+          "own_seconds": 0.0005222
+        },
+        {
+          "calls": 621,
+          "cumulative_seconds": 0.0009205000000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "<genexpr>",
+          "line": 262,
+          "own_seconds": 0.00022610000000000002
+        },
+        {
+          "calls": 621,
+          "cumulative_seconds": 0.0008611000000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "<genexpr>",
+          "line": 270,
+          "own_seconds": 0.0001866
+        }
+      ],
+      "method": "MPC_MCTS",
+      "root": "results/desaulniers/targeted_service_v1/diagnosis/roots/ef4592b24defb7a4.json"
+    },
+    {
+      "deadline": false,
+      "elapsed": 0.22236989997327328,
+      "functions": [
+        {
+          "calls": 1,
+          "cumulative_seconds": 0.2118752,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\alns.py",
+          "function": "optimize",
+          "line": 130,
+          "own_seconds": 0.0020362
+        },
+        {
+          "calls": 535,
+          "cumulative_seconds": 0.19153420000000002,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "change",
+          "line": 457,
+          "own_seconds": 0.0057236000000000006
+        },
+        {
+          "calls": 100,
+          "cumulative_seconds": 0.1575387,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\alns.py",
+          "function": "_repair",
+          "line": 124,
+          "own_seconds": 0.00020510000000000003
+        },
+        {
+          "calls": 100,
+          "cumulative_seconds": 0.15733360000000002,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\alns.py",
+          "function": "_repair",
+          "line": 62,
+          "own_seconds": 0.0026373
+        },
+        {
+          "calls": 516,
+          "cumulative_seconds": 0.09750790000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_score",
+          "line": 245,
+          "own_seconds": 0.0014477000000000001
+        },
+        {
+          "calls": 516,
+          "cumulative_seconds": 0.09497030000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\objective.py",
+          "function": "evaluate",
+          "line": 30,
+          "own_seconds": 0.012476500000000001
+        },
+        {
+          "calls": 535,
+          "cumulative_seconds": 0.0894697,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_decode",
+          "line": 402,
+          "own_seconds": 0.0011943000000000001
+        },
+        {
+          "calls": 46,
+          "cumulative_seconds": 0.08021700000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\repair.py",
+          "function": "build_route",
+          "line": 152,
+          "own_seconds": 0.00047720000000000005
+        },
+        {
+          "calls": 46,
+          "cumulative_seconds": 0.0789056,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\repair.py",
+          "function": "_build_route_original",
+          "line": 68,
+          "own_seconds": 0.0013557
+        },
+        {
+          "calls": 2266,
+          "cumulative_seconds": 0.060618700000000005,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\model.py",
+          "function": "transition",
+          "line": 200,
+          "own_seconds": 0.0132525
+        },
+        {
+          "calls": 6,
+          "cumulative_seconds": 0.035388100000000006,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\repair.py",
+          "function": "_decode_one_station",
+          "line": 166,
+          "own_seconds": 0.0026143
+        },
+        {
+          "calls": 524,
+          "cumulative_seconds": 0.0332309,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\mpc.py",
+          "function": "predict",
+          "line": 162,
+          "own_seconds": 0.0016123
+        },
+        {
+          "calls": 6079,
+          "cumulative_seconds": 0.032672900000000005,
+          "file": "~",
+          "function": "<built-in method builtins.sum>",
+          "line": 0,
+          "own_seconds": 0.0083601
+        },
+        {
+          "calls": 6902,
+          "cumulative_seconds": 0.0294879,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_metrics",
+          "line": 171,
+          "own_seconds": 0.0083444
+        },
+        {
+          "calls": 454,
+          "cumulative_seconds": 0.0269777,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\mpc.py",
+          "function": "_predict",
+          "line": 180,
+          "own_seconds": 0.001544
+        },
+        {
+          "calls": 4008,
+          "cumulative_seconds": 0.0220989,
+          "file": "~",
+          "function": "<built-in method builtins.min>",
+          "line": 0,
+          "own_seconds": 0.0039120000000000005
+        },
+        {
+          "calls": 1058,
+          "cumulative_seconds": 0.0216796,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\model.py",
+          "function": "escape",
+          "line": 188,
+          "own_seconds": 0.0037296
+        },
+        {
+          "calls": 715,
+          "cumulative_seconds": 0.0209896,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_criticality",
+          "line": 379,
+          "own_seconds": 0.0016632
+        },
+        {
+          "calls": 15841,
+          "cumulative_seconds": 0.019593700000000002,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\instance.py",
+          "function": "energy",
+          "line": 137,
+          "own_seconds": 0.0121601
+        },
+        {
+          "calls": 512,
+          "cumulative_seconds": 0.018826600000000002,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "screened_options",
+          "line": 340,
+          "own_seconds": 0.0028215000000000002
+        },
+        {
+          "calls": 5160,
+          "cumulative_seconds": 0.0161776,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\objective.py",
+          "function": "<genexpr>",
+          "line": 49,
+          "own_seconds": 0.0027953
+        },
+        {
+          "calls": 350,
+          "cumulative_seconds": 0.013494,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_screen_gap",
+          "line": 286,
+          "own_seconds": 0.0002197
+        },
+        {
+          "calls": 4644,
+          "cumulative_seconds": 0.013382300000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_control_metrics",
+          "line": 206,
+          "own_seconds": 0.0040912000000000006
+        },
+        {
+          "calls": 350,
+          "cumulative_seconds": 0.013274300000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_screen_gap_detail",
+          "line": 290,
+          "own_seconds": 0.0004159
+        },
+        {
+          "calls": 70,
+          "cumulative_seconds": 0.0128813,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\repair.py",
+          "function": "route_proposal",
+          "line": 55,
+          "own_seconds": 0.00019250000000000002
+        },
+        {
+          "calls": 70,
+          "cumulative_seconds": 0.0126888,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\repair.py",
+          "function": "_evaluate",
+          "line": 34,
+          "own_seconds": 0.0004137
+        },
+        {
+          "calls": 350,
+          "cumulative_seconds": 0.012589300000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_screen_gap_detail_untraced",
+          "line": 300,
+          "own_seconds": 0.0013623
+        },
+        {
+          "calls": 21339,
+          "cumulative_seconds": 0.0108588,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\instance.py",
+          "function": "_rounded_up",
+          "line": 112,
+          "own_seconds": 0.007678300000000001
+        },
+        {
+          "calls": 41536,
+          "cumulative_seconds": 0.0105581,
+          "file": "~",
+          "function": "<built-in method builtins.hash>",
+          "line": 0,
+          "own_seconds": 0.008969600000000001
+        },
+        {
+          "calls": 6,
+          "cumulative_seconds": 0.0097368,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\reference.py",
+          "function": "full_charge_connection",
+          "line": 112,
+          "own_seconds": 0.0014029000000000001
+        },
+        {
+          "calls": 5498,
+          "cumulative_seconds": 0.0091001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\instance.py",
+          "function": "distance",
+          "line": 105,
+          "own_seconds": 0.0056749
+        },
+        {
+          "calls": 133,
+          "cumulative_seconds": 0.008977,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\model.py",
+          "function": "_escape_geometry",
+          "line": 157,
+          "own_seconds": 0.0025892000000000003
+        },
+        {
+          "calls": 872,
+          "cumulative_seconds": 0.0086143,
+          "file": "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\dataclasses.py",
+          "function": "replace",
+          "line": 1540,
+          "own_seconds": 0.004191
+        },
+        {
+          "calls": 1,
+          "cumulative_seconds": 0.008561000000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "construct_fleet_root",
+          "line": 1154,
+          "own_seconds": 6.96e-05
+        },
+        {
+          "calls": 755,
+          "cumulative_seconds": 0.0084752,
+          "file": "~",
+          "function": "<built-in method builtins.sorted>",
+          "line": 0,
+          "own_seconds": 0.0014436000000000002
+        },
+        {
+          "calls": 535,
+          "cumulative_seconds": 0.008198,
+          "file": "<string>",
+          "function": "__eq__",
+          "line": 2,
+          "own_seconds": 0.0025702000000000003
+        },
+        {
+          "calls": 2,
+          "cumulative_seconds": 0.0080347,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "initial",
+          "line": 432,
+          "own_seconds": 0.000125
+        },
+        {
+          "calls": 2549,
+          "cumulative_seconds": 0.0079766,
+          "file": "~",
+          "function": "<built-in method builtins.all>",
+          "line": 0,
+          "own_seconds": 0.0029363
+        },
+        {
+          "calls": 350,
+          "cumulative_seconds": 0.007710000000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_screen_profile",
+          "line": 251,
+          "own_seconds": 0.0011326
+        },
+        {
+          "calls": 347,
+          "cumulative_seconds": 0.0065608,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\repair.py",
+          "function": "add_goal",
+          "line": 175,
+          "own_seconds": 0.0004245
+        }
+      ],
+      "method": "MPC_ALNS",
+      "root": "results/desaulniers/targeted_service_v1/diagnosis/roots/ef4592b24defb7a4.json"
+    },
+    {
+      "deadline": false,
+      "elapsed": 0.885815600049682,
+      "functions": [
+        {
+          "calls": 1,
+          "cumulative_seconds": 0.8752172,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\hgs.py",
+          "function": "optimize",
+          "line": 215,
+          "own_seconds": 0.000781
+        },
+        {
+          "calls": 844,
+          "cumulative_seconds": 0.7835791000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "change",
+          "line": 457,
+          "own_seconds": 0.0100482
+        },
+        {
+          "calls": 32,
+          "cumulative_seconds": 0.675587,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\hgs.py",
+          "function": "_crossover",
+          "line": 173,
+          "own_seconds": 0.0036265000000000004
+        },
+        {
+          "calls": 1215,
+          "cumulative_seconds": 0.4416414,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_decode",
+          "line": 402,
+          "own_seconds": 0.0028859000000000003
+        },
+        {
+          "calls": 194,
+          "cumulative_seconds": 0.4143965,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\repair.py",
+          "function": "build_route",
+          "line": 152,
+          "own_seconds": 0.0018802
+        },
+        {
+          "calls": 148,
+          "cumulative_seconds": 0.40885770000000005,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\repair.py",
+          "function": "_build_route_original",
+          "line": 68,
+          "own_seconds": 0.0045348
+        },
+        {
+          "calls": 710,
+          "cumulative_seconds": 0.33015130000000004,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_score",
+          "line": 245,
+          "own_seconds": 0.0022895000000000003
+        },
+        {
+          "calls": 710,
+          "cumulative_seconds": 0.3262448,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\objective.py",
+          "function": "evaluate",
+          "line": 30,
+          "own_seconds": 0.0191072
+        },
+        {
+          "calls": 9484,
+          "cumulative_seconds": 0.3018863,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\model.py",
+          "function": "transition",
+          "line": 200,
+          "own_seconds": 0.06513730000000001
+        },
+        {
+          "calls": 14,
+          "cumulative_seconds": 0.2723514,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\repair.py",
+          "function": "_decode_one_station",
+          "line": 166,
+          "own_seconds": 0.016497
+        },
+        {
+          "calls": 746,
+          "cumulative_seconds": 0.2106049,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_criticality",
+          "line": 379,
+          "own_seconds": 0.0120742
+        },
+        {
+          "calls": 2262,
+          "cumulative_seconds": 0.1817213,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "screened_options",
+          "line": 340,
+          "own_seconds": 0.029458900000000003
+        },
+        {
+          "calls": 39,
+          "cumulative_seconds": 0.11235310000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\hgs.py",
+          "function": "_educate",
+          "line": 94,
+          "own_seconds": 0.0022389000000000003
+        },
+        {
+          "calls": 86998,
+          "cumulative_seconds": 0.10769580000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\instance.py",
+          "function": "energy",
+          "line": 137,
+          "own_seconds": 0.0655723
+        },
+        {
+          "calls": 1798,
+          "cumulative_seconds": 0.103576,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\mpc.py",
+          "function": "predict",
+          "line": 162,
+          "own_seconds": 0.005508600000000001
+        },
+        {
+          "calls": 5959,
+          "cumulative_seconds": 0.1009159,
+          "file": "~",
+          "function": "<built-in method builtins.sorted>",
+          "line": 0,
+          "own_seconds": 0.011546200000000001
+        },
+        {
+          "calls": 5486,
+          "cumulative_seconds": 0.0995394,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\model.py",
+          "function": "escape",
+          "line": 188,
+          "own_seconds": 0.018706300000000002
+        },
+        {
+          "calls": 16315,
+          "cumulative_seconds": 0.0855251,
+          "file": "~",
+          "function": "<built-in method builtins.min>",
+          "line": 0,
+          "own_seconds": 0.0170597
+        },
+        {
+          "calls": 1653,
+          "cumulative_seconds": 0.0824535,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\mpc.py",
+          "function": "_predict",
+          "line": 180,
+          "own_seconds": 0.0052081
+        },
+        {
+          "calls": 8559,
+          "cumulative_seconds": 0.08120150000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "<lambda>",
+          "line": 375,
+          "own_seconds": 0.004159100000000001
+        },
+        {
+          "calls": 8559,
+          "cumulative_seconds": 0.07704240000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_option_rank",
+          "line": 326,
+          "own_seconds": 0.028933100000000003
+        },
+        {
+          "calls": 96,
+          "cumulative_seconds": 0.07095090000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\hgs.py",
+          "function": "_biased_ranks",
+          "line": 25,
+          "own_seconds": 0.004003700000000001
+        },
+        {
+          "calls": 2750,
+          "cumulative_seconds": 0.0707577,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\repair.py",
+          "function": "add_goal",
+          "line": 175,
+          "own_seconds": 0.0032374
+        },
+        {
+          "calls": 793,
+          "cumulative_seconds": 0.06491090000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\hgs.py",
+          "function": "_diversity",
+          "line": 18,
+          "own_seconds": 0.0039235
+        },
+        {
+          "calls": 9786,
+          "cumulative_seconds": 0.0647559,
+          "file": "~",
+          "function": "<built-in method builtins.sum>",
+          "line": 0,
+          "own_seconds": 0.0142398
+        },
+        {
+          "calls": 111996,
+          "cumulative_seconds": 0.057519900000000006,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\instance.py",
+          "function": "_rounded_up",
+          "line": 112,
+          "own_seconds": 0.040558500000000004
+        },
+        {
+          "calls": 1760,
+          "cumulative_seconds": 0.0502791,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_screen_gap",
+          "line": 286,
+          "own_seconds": 0.0010839
+        },
+        {
+          "calls": 1760,
+          "cumulative_seconds": 0.0491952,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_screen_gap_detail",
+          "line": 290,
+          "own_seconds": 0.0020921
+        },
+        {
+          "calls": 5047,
+          "cumulative_seconds": 0.0479006,
+          "file": "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\dataclasses.py",
+          "function": "replace",
+          "line": 1540,
+          "own_seconds": 0.022653600000000003
+        },
+        {
+          "calls": 8387,
+          "cumulative_seconds": 0.047769200000000005,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_metrics",
+          "line": 171,
+          "own_seconds": 0.0112914
+        },
+        {
+          "calls": 1760,
+          "cumulative_seconds": 0.045736700000000005,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_screen_gap_detail_untraced",
+          "line": 300,
+          "own_seconds": 0.007087100000000001
+        },
+        {
+          "calls": 6560,
+          "cumulative_seconds": 0.045605400000000004,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\hgs.py",
+          "function": "_edges",
+          "line": 12,
+          "own_seconds": 0.0153506
+        },
+        {
+          "calls": 64,
+          "cumulative_seconds": 0.045237,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\hgs.py",
+          "function": "_select_parent",
+          "line": 41,
+          "own_seconds": 0.00027560000000000003
+        },
+        {
+          "calls": 2875,
+          "cumulative_seconds": 0.0427389,
+          "file": "<string>",
+          "function": "__eq__",
+          "line": 2,
+          "own_seconds": 0.013311600000000002
+        },
+        {
+          "calls": 24998,
+          "cumulative_seconds": 0.0394824,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\instance.py",
+          "function": "distance",
+          "line": 105,
+          "own_seconds": 0.024086
+        },
+        {
+          "calls": 10474,
+          "cumulative_seconds": 0.0337755,
+          "file": "~",
+          "function": "<built-in method builtins.all>",
+          "line": 0,
+          "own_seconds": 0.0123733
+        },
+        {
+          "calls": 145,
+          "cumulative_seconds": 0.030724500000000002,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\repair.py",
+          "function": "route_proposal",
+          "line": 55,
+          "own_seconds": 0.0004553
+        },
+        {
+          "calls": 145,
+          "cumulative_seconds": 0.030269200000000003,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\repair.py",
+          "function": "_evaluate",
+          "line": 34,
+          "own_seconds": 0.0009955
+        },
+        {
+          "calls": 65600,
+          "cumulative_seconds": 0.030254800000000002,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\hgs.py",
+          "function": "<genexpr>",
+          "line": 13,
+          "own_seconds": 0.030254800000000002
+        },
+        {
+          "calls": 361,
+          "cumulative_seconds": 0.028971200000000003,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\model.py",
+          "function": "_escape_geometry",
+          "line": 157,
+          "own_seconds": 0.0078641
+        }
+      ],
+      "method": "MPC_HGS",
+      "root": "results/desaulniers/targeted_service_v1/diagnosis/roots/ef4592b24defb7a4.json"
+    },
+    {
+      "deadline": false,
+      "elapsed": 0.2202973000239581,
+      "functions": [
+        {
+          "calls": 1,
+          "cumulative_seconds": 0.21003860000000002,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\acs.py",
+          "function": "optimize",
+          "line": 47,
+          "own_seconds": 0.005335100000000001
+        },
+        {
+          "calls": 745,
+          "cumulative_seconds": 0.19467050000000002,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "change",
+          "line": 457,
+          "own_seconds": 0.007806700000000001
+        },
+        {
+          "calls": 716,
+          "cumulative_seconds": 0.1589326,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_score",
+          "line": 245,
+          "own_seconds": 0.0019621
+        },
+        {
+          "calls": 716,
+          "cumulative_seconds": 0.15548,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\objective.py",
+          "function": "evaluate",
+          "line": 30,
+          "own_seconds": 0.015994
+        },
+        {
+          "calls": 799,
+          "cumulative_seconds": 0.08373860000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_criticality",
+          "line": 379,
+          "own_seconds": 0.004201600000000001
+        },
+        {
+          "calls": 937,
+          "cumulative_seconds": 0.0739032,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "screened_options",
+          "line": 340,
+          "own_seconds": 0.0099412
+        },
+        {
+          "calls": 1499,
+          "cumulative_seconds": 0.041269400000000005,
+          "file": "~",
+          "function": "<built-in method builtins.sorted>",
+          "line": 0,
+          "own_seconds": 0.0036048
+        },
+        {
+          "calls": 3982,
+          "cumulative_seconds": 0.036580600000000005,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "<lambda>",
+          "line": 375,
+          "own_seconds": 0.0018451000000000001
+        },
+        {
+          "calls": 3982,
+          "cumulative_seconds": 0.0347355,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_option_rank",
+          "line": 326,
+          "own_seconds": 0.012902100000000001
+        },
+        {
+          "calls": 7473,
+          "cumulative_seconds": 0.0316844,
+          "file": "~",
+          "function": "<built-in method builtins.sum>",
+          "line": 0,
+          "own_seconds": 0.009900800000000001
+        },
+        {
+          "calls": 22922,
+          "cumulative_seconds": 0.028544700000000003,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\instance.py",
+          "function": "energy",
+          "line": 137,
+          "own_seconds": 0.0172151
+        },
+        {
+          "calls": 753,
+          "cumulative_seconds": 0.0281916,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_decode",
+          "line": 402,
+          "own_seconds": 0.0015798000000000001
+        },
+        {
+          "calls": 6250,
+          "cumulative_seconds": 0.020523700000000002,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_metrics",
+          "line": 171,
+          "own_seconds": 0.0061533000000000004
+        },
+        {
+          "calls": 478,
+          "cumulative_seconds": 0.0198368,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\model.py",
+          "function": "transition",
+          "line": 200,
+          "own_seconds": 0.0042817
+        },
+        {
+          "calls": 690,
+          "cumulative_seconds": 0.0197983,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_screen_gap",
+          "line": 286,
+          "own_seconds": 0.0003996
+        },
+        {
+          "calls": 3440,
+          "cumulative_seconds": 0.019746800000000002,
+          "file": "~",
+          "function": "<built-in method builtins.min>",
+          "line": 0,
+          "own_seconds": 0.004194300000000001
+        },
+        {
+          "calls": 690,
+          "cumulative_seconds": 0.0193987,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_screen_gap_detail",
+          "line": 290,
+          "own_seconds": 0.0007892000000000001
+        },
+        {
+          "calls": 34,
+          "cumulative_seconds": 0.0192567,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\repair.py",
+          "function": "build_route",
+          "line": 152,
+          "own_seconds": 0.00027
+        },
+        {
+          "calls": 4,
+          "cumulative_seconds": 0.0181403,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\repair.py",
+          "function": "_build_route_original",
+          "line": 68,
+          "own_seconds": 0.0002995
+        },
+        {
+          "calls": 690,
+          "cumulative_seconds": 0.0180966,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_screen_gap_detail_untraced",
+          "line": 300,
+          "own_seconds": 0.0026575
+        },
+        {
+          "calls": 238,
+          "cumulative_seconds": 0.0140429,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\mpc.py",
+          "function": "predict",
+          "line": 162,
+          "own_seconds": 0.0007737
+        },
+        {
+          "calls": 25980,
+          "cumulative_seconds": 0.013217600000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\instance.py",
+          "function": "_rounded_up",
+          "line": 112,
+          "own_seconds": 0.0092674
+        },
+        {
+          "calls": 7160,
+          "cumulative_seconds": 0.0132081,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\objective.py",
+          "function": "<genexpr>",
+          "line": 49,
+          "own_seconds": 0.0037616000000000004
+        },
+        {
+          "calls": 60,
+          "cumulative_seconds": 0.011305200000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\repair.py",
+          "function": "route_proposal",
+          "line": 55,
+          "own_seconds": 0.00016820000000000002
+        },
+        {
+          "calls": 60,
+          "cumulative_seconds": 0.011137000000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\repair.py",
+          "function": "_evaluate",
+          "line": 34,
+          "own_seconds": 0.0003623
+        },
+        {
+          "calls": 178,
+          "cumulative_seconds": 0.010997100000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\mpc.py",
+          "function": "_predict",
+          "line": 180,
+          "own_seconds": 0.0007418
+        },
+        {
+          "calls": 6444,
+          "cumulative_seconds": 0.0094465,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_control_metrics",
+          "line": 206,
+          "own_seconds": 0.0035394000000000003
+        },
+        {
+          "calls": 1,
+          "cumulative_seconds": 0.0085825,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\repair.py",
+          "function": "_decode_one_station",
+          "line": 166,
+          "own_seconds": 0.0005756
+        },
+        {
+          "calls": 1,
+          "cumulative_seconds": 0.0083383,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "construct_fleet_root",
+          "line": 1154,
+          "own_seconds": 7.21e-05
+        },
+        {
+          "calls": 2,
+          "cumulative_seconds": 0.0082094,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "initial",
+          "line": 432,
+          "own_seconds": 0.00012680000000000002
+        },
+        {
+          "calls": 26393,
+          "cumulative_seconds": 0.0080163,
+          "file": "~",
+          "function": "<built-in method builtins.max>",
+          "line": 0,
+          "own_seconds": 0.0073867
+        },
+        {
+          "calls": 459,
+          "cumulative_seconds": 0.007479800000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\model.py",
+          "function": "escape",
+          "line": 188,
+          "own_seconds": 0.0016179
+        },
+        {
+          "calls": 690,
+          "cumulative_seconds": 0.0065637000000000004,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_screen_profile",
+          "line": 251,
+          "own_seconds": 0.001163
+        },
+        {
+          "calls": 22579,
+          "cumulative_seconds": 0.0059510000000000006,
+          "file": "~",
+          "function": "<built-in method builtins.hash>",
+          "line": 0,
+          "own_seconds": 0.0051203
+        },
+        {
+          "calls": 2148,
+          "cumulative_seconds": 0.005881,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\objective.py",
+          "function": "<lambda>",
+          "line": 39,
+          "own_seconds": 0.0019603000000000003
+        },
+        {
+          "calls": 3058,
+          "cumulative_seconds": 0.0050365,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\instance.py",
+          "function": "distance",
+          "line": 105,
+          "own_seconds": 0.0031485000000000003
+        },
+        {
+          "calls": 3496,
+          "cumulative_seconds": 0.004898400000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "<genexpr>",
+          "line": 318,
+          "own_seconds": 0.0010782
+        },
+        {
+          "calls": 9307,
+          "cumulative_seconds": 0.00453,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_check_search_time",
+          "line": 163,
+          "own_seconds": 0.0028750000000000004
+        },
+        {
+          "calls": 25980,
+          "cumulative_seconds": 0.0039502,
+          "file": "~",
+          "function": "<built-in method math.ceil>",
+          "line": 0,
+          "own_seconds": 0.0039502
+        },
+        {
+          "calls": 338,
+          "cumulative_seconds": 0.0036105000000000004,
+          "file": "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\dataclasses.py",
+          "function": "replace",
+          "line": 1540,
+          "own_seconds": 0.0017485
+        }
+      ],
+      "method": "MPC_ACS",
+      "root": "results/desaulniers/targeted_service_v1/diagnosis/roots/ef4592b24defb7a4.json"
+    },
+    {
+      "deadline": false,
+      "elapsed": 0.02863780001644045,
+      "functions": [
+        {
+          "calls": 1,
+          "cumulative_seconds": 0.022089,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "construct_fleet_root",
+          "line": 1154,
+          "own_seconds": 0.0001049
+        },
+        {
+          "calls": 317,
+          "cumulative_seconds": 0.011618700000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\model.py",
+          "function": "transition",
+          "line": 200,
+          "own_seconds": 0.0023706
+        },
+        {
+          "calls": 4,
+          "cumulative_seconds": 0.0108278,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_decode",
+          "line": 402,
+          "own_seconds": 2.1400000000000002e-05
+        },
+        {
+          "calls": 4,
+          "cumulative_seconds": 0.0105127,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\repair.py",
+          "function": "build_route",
+          "line": 152,
+          "own_seconds": 4.1400000000000003e-05
+        },
+        {
+          "calls": 2,
+          "cumulative_seconds": 0.0103961,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\repair.py",
+          "function": "_build_route_original",
+          "line": 68,
+          "own_seconds": 8.020000000000001e-05
+        },
+        {
+          "calls": 1,
+          "cumulative_seconds": 0.007712200000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\repair.py",
+          "function": "_decode_one_station",
+          "line": 166,
+          "own_seconds": 0.00045480000000000005
+        },
+        {
+          "calls": 4,
+          "cumulative_seconds": 0.0070756000000000005,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_score",
+          "line": 245,
+          "own_seconds": 2.11e-05
+        },
+        {
+          "calls": 4,
+          "cumulative_seconds": 0.0070407,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\objective.py",
+          "function": "evaluate",
+          "line": 30,
+          "own_seconds": 0.000192
+        },
+        {
+          "calls": 36,
+          "cumulative_seconds": 0.0064815,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\repair.py",
+          "function": "route_proposal",
+          "line": 55,
+          "own_seconds": 8.16e-05
+        },
+        {
+          "calls": 36,
+          "cumulative_seconds": 0.0063999,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\repair.py",
+          "function": "_evaluate",
+          "line": 34,
+          "own_seconds": 0.0001841
+        },
+        {
+          "calls": 107,
+          "cumulative_seconds": 0.005686200000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\mpc.py",
+          "function": "predict",
+          "line": 162,
+          "own_seconds": 0.0003467
+        },
+        {
+          "calls": 1,
+          "cumulative_seconds": 0.0055788,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "initial",
+          "line": 432,
+          "own_seconds": 7.37e-05
+        },
+        {
+          "calls": 589,
+          "cumulative_seconds": 0.0049903000000000005,
+          "file": "~",
+          "function": "<built-in method builtins.min>",
+          "line": 0,
+          "own_seconds": 0.0006831000000000001
+        },
+        {
+          "calls": 1,
+          "cumulative_seconds": 0.004789300000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\completion.py",
+          "function": "optimize",
+          "line": 11,
+          "own_seconds": 1.4700000000000002e-05
+        },
+        {
+          "calls": 1,
+          "cumulative_seconds": 0.0047708,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\base.py",
+          "function": "evaluated_result",
+          "line": 86,
+          "own_seconds": 6.41e-05
+        },
+        {
+          "calls": 9,
+          "cumulative_seconds": 0.0045931,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_criticality",
+          "line": 379,
+          "own_seconds": 7.950000000000001e-05
+        },
+        {
+          "calls": 225,
+          "cumulative_seconds": 0.0045703,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\model.py",
+          "function": "escape",
+          "line": 188,
+          "own_seconds": 0.0008016000000000001
+        },
+        {
+          "calls": 11,
+          "cumulative_seconds": 0.0044536,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "screened_options",
+          "line": 340,
+          "own_seconds": 0.0002638
+        },
+        {
+          "calls": 71,
+          "cumulative_seconds": 0.0043445,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\mpc.py",
+          "function": "_predict",
+          "line": 180,
+          "own_seconds": 0.0002614
+        },
+        {
+          "calls": 3493,
+          "cumulative_seconds": 0.0043168,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\instance.py",
+          "function": "energy",
+          "line": 137,
+          "own_seconds": 0.0026451
+        },
+        {
+          "calls": 95,
+          "cumulative_seconds": 0.0040372,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_screen_gap",
+          "line": 286,
+          "own_seconds": 5.44e-05
+        },
+        {
+          "calls": 95,
+          "cumulative_seconds": 0.0039828,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_screen_gap_detail",
+          "line": 290,
+          "own_seconds": 0.00010460000000000001
+        },
+        {
+          "calls": 95,
+          "cumulative_seconds": 0.0038077000000000002,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_screen_gap_detail_untraced",
+          "line": 300,
+          "own_seconds": 0.0003178
+        },
+        {
+          "calls": 1,
+          "cumulative_seconds": 0.0035123000000000003,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\repair.py",
+          "function": "regret_repair",
+          "line": 454,
+          "own_seconds": 1.1000000000000001e-05
+        },
+        {
+          "calls": 1,
+          "cumulative_seconds": 0.0035013,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\repair.py",
+          "function": "_regret_repair_impl",
+          "line": 262,
+          "own_seconds": 0.0001221
+        },
+        {
+          "calls": 95,
+          "cumulative_seconds": 0.0029807,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_screen_profile",
+          "line": 251,
+          "own_seconds": 0.0003865
+        },
+        {
+          "calls": 70,
+          "cumulative_seconds": 0.0027337000000000004,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_metrics",
+          "line": 171,
+          "own_seconds": 0.0003548
+        },
+        {
+          "calls": 4512,
+          "cumulative_seconds": 0.0023241,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\instance.py",
+          "function": "_rounded_up",
+          "line": 112,
+          "own_seconds": 0.0016422000000000001
+        },
+        {
+          "calls": 126,
+          "cumulative_seconds": 0.0019133000000000002,
+          "file": "<string>",
+          "function": "__eq__",
+          "line": 2,
+          "own_seconds": 0.0006027000000000001
+        },
+        {
+          "calls": 36,
+          "cumulative_seconds": 0.0018058000000000002,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\mpc.py",
+          "function": "proposal_from_state",
+          "line": 467,
+          "own_seconds": 0.0002321
+        },
+        {
+          "calls": 80,
+          "cumulative_seconds": 0.0017552000000000002,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\repair.py",
+          "function": "add_goal",
+          "line": 175,
+          "own_seconds": 0.00010310000000000001
+        },
+        {
+          "calls": 185,
+          "cumulative_seconds": 0.0017075,
+          "file": "~",
+          "function": "<built-in method builtins.sum>",
+          "line": 0,
+          "own_seconds": 0.0002146
+        },
+        {
+          "calls": 168,
+          "cumulative_seconds": 0.0016974000000000002,
+          "file": "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\dataclasses.py",
+          "function": "replace",
+          "line": 1540,
+          "own_seconds": 0.0008178
+        },
+        {
+          "calls": 1019,
+          "cumulative_seconds": 0.0016693,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\instance.py",
+          "function": "distance",
+          "line": 105,
+          "own_seconds": 0.0010169
+        },
+        {
+          "calls": 26,
+          "cumulative_seconds": 0.0016104000000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\model.py",
+          "function": "_escape_geometry",
+          "line": 157,
+          "own_seconds": 0.0004148
+        },
+        {
+          "calls": 374,
+          "cumulative_seconds": 0.0012692,
+          "file": "~",
+          "function": "<built-in method builtins.all>",
+          "line": 0,
+          "own_seconds": 0.00047190000000000003
+        },
+        {
+          "calls": 40,
+          "cumulative_seconds": 0.0012114,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\objective.py",
+          "function": "<genexpr>",
+          "line": 49,
+          "own_seconds": 3.8700000000000006e-05
+        },
+        {
+          "calls": 36,
+          "cumulative_seconds": 0.0011727,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_control_metrics",
+          "line": 206,
+          "own_seconds": 0.000172
+        },
+        {
+          "calls": 667,
+          "cumulative_seconds": 0.0010268,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "<genexpr>",
+          "line": 262,
+          "own_seconds": 0.0002324
+        },
+        {
+          "calls": 690,
+          "cumulative_seconds": 0.0009985,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "<genexpr>",
+          "line": 270,
+          "own_seconds": 0.00021270000000000002
+        }
+      ],
+      "method": "MPC_COMPLETION",
+      "root": "results/desaulniers/targeted_service_v1/diagnosis/roots/39e65c2c131629d1.json"
+    },
+    {
+      "deadline": false,
+      "elapsed": 0.12588269996922463,
+      "functions": [
+        {
+          "calls": 1,
+          "cumulative_seconds": 0.0229816,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\mcts.py",
+          "function": "optimize",
+          "line": 22,
+          "own_seconds": 5.86e-05
+        },
+        {
+          "calls": 1,
+          "cumulative_seconds": 0.0199497,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "solve_fleet_mcts",
+          "line": 1012,
+          "own_seconds": 0.0028161
+        },
+        {
+          "calls": 1,
+          "cumulative_seconds": 0.0107928,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "construct_fleet_root",
+          "line": 1154,
+          "own_seconds": 9.48e-05
+        },
+        {
+          "calls": 2,
+          "cumulative_seconds": 0.009992000000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "initial",
+          "line": 432,
+          "own_seconds": 0.0001465
+        },
+        {
+          "calls": 4,
+          "cumulative_seconds": 0.0075306,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_score",
+          "line": 245,
+          "own_seconds": 2.15e-05
+        },
+        {
+          "calls": 4,
+          "cumulative_seconds": 0.0074974,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\objective.py",
+          "function": "evaluate",
+          "line": 30,
+          "own_seconds": 0.0001717
+        },
+        {
+          "calls": 45,
+          "cumulative_seconds": 0.007127100000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\repair.py",
+          "function": "route_proposal",
+          "line": 55,
+          "own_seconds": 0.00010580000000000001
+        },
+        {
+          "calls": 45,
+          "cumulative_seconds": 0.0070213,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\repair.py",
+          "function": "_evaluate",
+          "line": 34,
+          "own_seconds": 0.00023400000000000002
+        },
+        {
+          "calls": 3196,
+          "cumulative_seconds": 0.0052072,
+          "file": "~",
+          "function": "<built-in method builtins.min>",
+          "line": 0,
+          "own_seconds": 0.0012421
+        },
+        {
+          "calls": 267,
+          "cumulative_seconds": 0.0048786,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_criticality",
+          "line": 379,
+          "own_seconds": 0.00022360000000000001
+        },
+        {
+          "calls": 12,
+          "cumulative_seconds": 0.0045979,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "screened_options",
+          "line": 340,
+          "own_seconds": 0.0002975
+        },
+        {
+          "calls": 105,
+          "cumulative_seconds": 0.0044197,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\mpc.py",
+          "function": "predict",
+          "line": 162,
+          "own_seconds": 0.0003258
+        },
+        {
+          "calls": 117,
+          "cumulative_seconds": 0.0044015,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_screen_gap_detail",
+          "line": 290,
+          "own_seconds": 0.0001274
+        },
+        {
+          "calls": 98,
+          "cumulative_seconds": 0.0042969,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_screen_gap",
+          "line": 286,
+          "own_seconds": 5.6200000000000004e-05
+        },
+        {
+          "calls": 117,
+          "cumulative_seconds": 0.0041857000000000005,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_screen_gap_detail_untraced",
+          "line": 300,
+          "own_seconds": 0.000395
+        },
+        {
+          "calls": 86,
+          "cumulative_seconds": 0.0039585,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\model.py",
+          "function": "transition",
+          "line": 200,
+          "own_seconds": 0.0009316000000000001
+        },
+        {
+          "calls": 256,
+          "cumulative_seconds": 0.0036070000000000004,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "value",
+          "line": 973,
+          "own_seconds": 0.0014736
+        },
+        {
+          "calls": 1,
+          "cumulative_seconds": 0.0033135,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\repair.py",
+          "function": "regret_repair",
+          "line": 454,
+          "own_seconds": 1.0300000000000001e-05
+        },
+        {
+          "calls": 1,
+          "cumulative_seconds": 0.0033032,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\repair.py",
+          "function": "_regret_repair_impl",
+          "line": 262,
+          "own_seconds": 0.00011090000000000001
+        },
+        {
+          "calls": 2498,
+          "cumulative_seconds": 0.0032161000000000004,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\instance.py",
+          "function": "energy",
+          "line": 137,
+          "own_seconds": 0.0020409
+        },
+        {
+          "calls": 117,
+          "cumulative_seconds": 0.0031907000000000003,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_screen_profile",
+          "line": 251,
+          "own_seconds": 0.00043040000000000005
+        },
+        {
+          "calls": 60,
+          "cumulative_seconds": 0.0030914000000000002,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\mpc.py",
+          "function": "_predict",
+          "line": 180,
+          "own_seconds": 0.0002587
+        },
+        {
+          "calls": 70,
+          "cumulative_seconds": 0.0030574,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_metrics",
+          "line": 171,
+          "own_seconds": 0.0003926
+        },
+        {
+          "calls": 45,
+          "cumulative_seconds": 0.0022757000000000003,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\mpc.py",
+          "function": "proposal_from_state",
+          "line": 467,
+          "own_seconds": 0.0003044
+        },
+        {
+          "calls": 256,
+          "cumulative_seconds": 0.0019969000000000002,
+          "file": "~",
+          "function": "<method 'setdefault' of 'dict' objects>",
+          "line": 0,
+          "own_seconds": 0.0006755
+        },
+        {
+          "calls": 2241,
+          "cumulative_seconds": 0.0018941000000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_unit",
+          "line": 167,
+          "own_seconds": 0.0009295000000000001
+        },
+        {
+          "calls": 1,
+          "cumulative_seconds": 0.0016248,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\base.py",
+          "function": "evaluated_result",
+          "line": 86,
+          "own_seconds": 5.75e-05
+        },
+        {
+          "calls": 256,
+          "cumulative_seconds": 0.0015913000000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "complete_rollout",
+          "line": 509,
+          "own_seconds": 0.0006778
+        },
+        {
+          "calls": 2997,
+          "cumulative_seconds": 0.0015165,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\instance.py",
+          "function": "_rounded_up",
+          "line": 112,
+          "own_seconds": 0.0010732
+        },
+        {
+          "calls": 148,
+          "cumulative_seconds": 0.0015066,
+          "file": "~",
+          "function": "<built-in method builtins.sum>",
+          "line": 0,
+          "own_seconds": 0.00017160000000000002
+        },
+        {
+          "calls": 150,
+          "cumulative_seconds": 0.0014695,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\model.py",
+          "function": "escape",
+          "line": 188,
+          "own_seconds": 0.0004869
+        },
+        {
+          "calls": 1,
+          "cumulative_seconds": 0.0013331,
+          "file": "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\dataclasses.py",
+          "function": "asdict",
+          "line": 1308,
+          "own_seconds": 2.3e-06
+        },
+        {
+          "calls": 784,
+          "cumulative_seconds": 0.0013288,
+          "file": "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\dataclasses.py",
+          "function": "_asdict_inner",
+          "line": 1332,
+          "own_seconds": 0.0007035
+        },
+        {
+          "calls": 3645,
+          "cumulative_seconds": 0.0013242,
+          "file": "~",
+          "function": "<built-in method builtins.hash>",
+          "line": 0,
+          "own_seconds": 0.0010229
+        },
+        {
+          "calls": 257,
+          "cumulative_seconds": 0.0012669,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "first_control_signature",
+          "line": 994,
+          "own_seconds": 0.0007484000000000001
+        },
+        {
+          "calls": 4750,
+          "cumulative_seconds": 0.0011958000000000001,
+          "file": "~",
+          "function": "<built-in method builtins.max>",
+          "line": 0,
+          "own_seconds": 0.0011958000000000001
+        },
+        {
+          "calls": 60,
+          "cumulative_seconds": 0.001185,
+          "file": "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\dataclasses.py",
+          "function": "<genexpr>",
+          "line": 1382,
+          "own_seconds": 4.13e-05
+        },
+        {
+          "calls": 40,
+          "cumulative_seconds": 0.0011589,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\objective.py",
+          "function": "<genexpr>",
+          "line": 49,
+          "own_seconds": 3.19e-05
+        },
+        {
+          "calls": 736,
+          "cumulative_seconds": 0.0011414,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "<genexpr>",
+          "line": 262,
+          "own_seconds": 0.0002597
+        },
+        {
+          "calls": 36,
+          "cumulative_seconds": 0.001127,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_control_metrics",
+          "line": 206,
+          "own_seconds": 0.00015350000000000002
+        }
+      ],
+      "method": "MPC_MCTS",
+      "root": "results/desaulniers/targeted_service_v1/diagnosis/roots/39e65c2c131629d1.json"
+    },
+    {
+      "deadline": false,
+      "elapsed": 0.13606889999937266,
+      "functions": [
+        {
+          "calls": 1,
+          "cumulative_seconds": 0.12262340000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\alns.py",
+          "function": "optimize",
+          "line": 130,
+          "own_seconds": 0.0018266
+        },
+        {
+          "calls": 311,
+          "cumulative_seconds": 0.10243820000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "change",
+          "line": 457,
+          "own_seconds": 0.0030417
+        },
+        {
+          "calls": 100,
+          "cumulative_seconds": 0.07890380000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\alns.py",
+          "function": "_repair",
+          "line": 124,
+          "own_seconds": 0.0001628
+        },
+        {
+          "calls": 100,
+          "cumulative_seconds": 0.078741,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\alns.py",
+          "function": "_repair",
+          "line": 62,
+          "own_seconds": 0.0018359000000000001
+        },
+        {
+          "calls": 315,
+          "cumulative_seconds": 0.055301,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_decode",
+          "line": 402,
+          "own_seconds": 0.0006775
+        },
+        {
+          "calls": 15,
+          "cumulative_seconds": 0.052409300000000006,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\repair.py",
+          "function": "build_route",
+          "line": 152,
+          "own_seconds": 0.00021590000000000002
+        },
+        {
+          "calls": 10,
+          "cumulative_seconds": 0.0518763,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\repair.py",
+          "function": "_build_route_original",
+          "line": 68,
+          "own_seconds": 0.0005155
+        },
+        {
+          "calls": 249,
+          "cumulative_seconds": 0.049413900000000004,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_score",
+          "line": 245,
+          "own_seconds": 0.0007551000000000001
+        },
+        {
+          "calls": 249,
+          "cumulative_seconds": 0.0480958,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\objective.py",
+          "function": "evaluate",
+          "line": 30,
+          "own_seconds": 0.0067628
+        },
+        {
+          "calls": 1352,
+          "cumulative_seconds": 0.0407213,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\model.py",
+          "function": "transition",
+          "line": 200,
+          "own_seconds": 0.008962300000000001
+        },
+        {
+          "calls": 4,
+          "cumulative_seconds": 0.0304373,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\repair.py",
+          "function": "_decode_one_station",
+          "line": 166,
+          "own_seconds": 0.0019943
+        },
+        {
+          "calls": 295,
+          "cumulative_seconds": 0.0172442,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\mpc.py",
+          "function": "predict",
+          "line": 162,
+          "own_seconds": 0.0009494000000000001
+        },
+        {
+          "calls": 3105,
+          "cumulative_seconds": 0.0169906,
+          "file": "~",
+          "function": "<built-in method builtins.sum>",
+          "line": 0,
+          "own_seconds": 0.0047179000000000006
+        },
+        {
+          "calls": 4717,
+          "cumulative_seconds": 0.015275200000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_metrics",
+          "line": 171,
+          "own_seconds": 0.004592000000000001
+        },
+        {
+          "calls": 664,
+          "cumulative_seconds": 0.014485600000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\model.py",
+          "function": "escape",
+          "line": 188,
+          "own_seconds": 0.0025386000000000002
+        },
+        {
+          "calls": 244,
+          "cumulative_seconds": 0.0136127,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\mpc.py",
+          "function": "_predict",
+          "line": 180,
+          "own_seconds": 0.0007999000000000001
+        },
+        {
+          "calls": 2388,
+          "cumulative_seconds": 0.012306000000000001,
+          "file": "~",
+          "function": "<built-in method builtins.min>",
+          "line": 0,
+          "own_seconds": 0.0022102000000000003
+        },
+        {
+          "calls": 1,
+          "cumulative_seconds": 0.011654600000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "construct_fleet_root",
+          "line": 1154,
+          "own_seconds": 0.00010120000000000001
+        },
+        {
+          "calls": 454,
+          "cumulative_seconds": 0.0115527,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_criticality",
+          "line": 379,
+          "own_seconds": 0.0007674
+        },
+        {
+          "calls": 8483,
+          "cumulative_seconds": 0.01103,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\instance.py",
+          "function": "energy",
+          "line": 137,
+          "own_seconds": 0.0068547
+        },
+        {
+          "calls": 441,
+          "cumulative_seconds": 0.0109858,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "screened_options",
+          "line": 340,
+          "own_seconds": 0.0014773000000000002
+        },
+        {
+          "calls": 2,
+          "cumulative_seconds": 0.0098993,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "initial",
+          "line": 432,
+          "own_seconds": 0.00014130000000000002
+        },
+        {
+          "calls": 299,
+          "cumulative_seconds": 0.0086505,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_screen_gap",
+          "line": 286,
+          "own_seconds": 0.000174
+        },
+        {
+          "calls": 51,
+          "cumulative_seconds": 0.0086352,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\repair.py",
+          "function": "route_proposal",
+          "line": 55,
+          "own_seconds": 0.00012790000000000002
+        },
+        {
+          "calls": 51,
+          "cumulative_seconds": 0.0085073,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\repair.py",
+          "function": "_evaluate",
+          "line": 34,
+          "own_seconds": 0.000286
+        },
+        {
+          "calls": 299,
+          "cumulative_seconds": 0.008476500000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_screen_gap_detail",
+          "line": 290,
+          "own_seconds": 0.0003378
+        },
+        {
+          "calls": 299,
+          "cumulative_seconds": 0.0079162,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_screen_gap_detail_untraced",
+          "line": 300,
+          "own_seconds": 0.001093
+        },
+        {
+          "calls": 2490,
+          "cumulative_seconds": 0.0077996,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\objective.py",
+          "function": "<genexpr>",
+          "line": 49,
+          "own_seconds": 0.0013678000000000002
+        },
+        {
+          "calls": 461,
+          "cumulative_seconds": 0.0075858,
+          "file": "~",
+          "function": "<built-in method builtins.sorted>",
+          "line": 0,
+          "own_seconds": 0.0011119
+        },
+        {
+          "calls": 461,
+          "cumulative_seconds": 0.0072747,
+          "file": "<string>",
+          "function": "__eq__",
+          "line": 2,
+          "own_seconds": 0.0022506
+        },
+        {
+          "calls": 12298,
+          "cumulative_seconds": 0.006658000000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\instance.py",
+          "function": "_rounded_up",
+          "line": 112,
+          "own_seconds": 0.0047316
+        },
+        {
+          "calls": 3815,
+          "cumulative_seconds": 0.006474700000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\instance.py",
+          "function": "distance",
+          "line": 105,
+          "own_seconds": 0.003992
+        },
+        {
+          "calls": 2241,
+          "cumulative_seconds": 0.0064318000000000005,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_control_metrics",
+          "line": 206,
+          "own_seconds": 0.0020153000000000003
+        },
+        {
+          "calls": 289,
+          "cumulative_seconds": 0.005825100000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\repair.py",
+          "function": "add_goal",
+          "line": 175,
+          "own_seconds": 0.00036070000000000004
+        },
+        {
+          "calls": 4,
+          "cumulative_seconds": 0.005745500000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\reference.py",
+          "function": "full_charge_connection",
+          "line": 112,
+          "own_seconds": 0.0007926000000000001
+        },
+        {
+          "calls": 564,
+          "cumulative_seconds": 0.0057238,
+          "file": "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\dataclasses.py",
+          "function": "replace",
+          "line": 1540,
+          "own_seconds": 0.0027481000000000003
+        },
+        {
+          "calls": 100,
+          "cumulative_seconds": 0.0057118,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\alns.py",
+          "function": "_removal_order",
+          "line": 28,
+          "own_seconds": 0.0005767000000000001
+        },
+        {
+          "calls": 21381,
+          "cumulative_seconds": 0.005513700000000001,
+          "file": "~",
+          "function": "<built-in method builtins.hash>",
+          "line": 0,
+          "own_seconds": 0.0046601
+        },
+        {
+          "calls": 1511,
+          "cumulative_seconds": 0.005065200000000001,
+          "file": "~",
+          "function": "<built-in method builtins.all>",
+          "line": 0,
+          "own_seconds": 0.0018597000000000002
+        },
+        {
+          "calls": 299,
+          "cumulative_seconds": 0.0045839,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_screen_profile",
+          "line": 251,
+          "own_seconds": 0.0007291
+        }
+      ],
+      "method": "MPC_ALNS",
+      "root": "results/desaulniers/targeted_service_v1/diagnosis/roots/39e65c2c131629d1.json"
+    },
+    {
+      "deadline": false,
+      "elapsed": 0.4499888999853283,
+      "functions": [
+        {
+          "calls": 1,
+          "cumulative_seconds": 0.436226,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\hgs.py",
+          "function": "optimize",
+          "line": 215,
+          "own_seconds": 0.0006671
+        },
+        {
+          "calls": 662,
+          "cumulative_seconds": 0.3513483,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "change",
+          "line": 457,
+          "own_seconds": 0.0068636
+        },
+        {
+          "calls": 32,
+          "cumulative_seconds": 0.3154813,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\hgs.py",
+          "function": "_crossover",
+          "line": 173,
+          "own_seconds": 0.0026479000000000003
+        },
+        {
+          "calls": 379,
+          "cumulative_seconds": 0.176741,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_score",
+          "line": 245,
+          "own_seconds": 0.0013399
+        },
+        {
+          "calls": 379,
+          "cumulative_seconds": 0.1744541,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\objective.py",
+          "function": "evaluate",
+          "line": 30,
+          "own_seconds": 0.0115572
+        },
+        {
+          "calls": 1094,
+          "cumulative_seconds": 0.17040160000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_decode",
+          "line": 402,
+          "own_seconds": 0.0025625
+        },
+        {
+          "calls": 202,
+          "cumulative_seconds": 0.1545494,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\repair.py",
+          "function": "build_route",
+          "line": 152,
+          "own_seconds": 0.0014437
+        },
+        {
+          "calls": 187,
+          "cumulative_seconds": 0.14940150000000002,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\repair.py",
+          "function": "_build_route_original",
+          "line": 68,
+          "own_seconds": 0.0034346000000000003
+        },
+        {
+          "calls": 3407,
+          "cumulative_seconds": 0.10982220000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\model.py",
+          "function": "transition",
+          "line": 200,
+          "own_seconds": 0.0225872
+        },
+        {
+          "calls": 417,
+          "cumulative_seconds": 0.10858820000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_criticality",
+          "line": 379,
+          "own_seconds": 0.0080107
+        },
+        {
+          "calls": 1560,
+          "cumulative_seconds": 0.09094350000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "screened_options",
+          "line": 340,
+          "own_seconds": 0.0194495
+        },
+        {
+          "calls": 96,
+          "cumulative_seconds": 0.0631,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\hgs.py",
+          "function": "_biased_ranks",
+          "line": 25,
+          "own_seconds": 0.0038947
+        },
+        {
+          "calls": 944,
+          "cumulative_seconds": 0.0630289,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\mpc.py",
+          "function": "predict",
+          "line": 162,
+          "own_seconds": 0.0036945000000000003
+        },
+        {
+          "calls": 15,
+          "cumulative_seconds": 0.062409400000000004,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\repair.py",
+          "function": "_decode_one_station",
+          "line": 166,
+          "own_seconds": 0.0040587
+        },
+        {
+          "calls": 734,
+          "cumulative_seconds": 0.0571766,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\hgs.py",
+          "function": "_diversity",
+          "line": 18,
+          "own_seconds": 0.0033855
+        },
+        {
+          "calls": 839,
+          "cumulative_seconds": 0.0505526,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\mpc.py",
+          "function": "_predict",
+          "line": 180,
+          "own_seconds": 0.0028281
+        },
+        {
+          "calls": 5637,
+          "cumulative_seconds": 0.043207600000000006,
+          "file": "~",
+          "function": "<built-in method builtins.sum>",
+          "line": 0,
+          "own_seconds": 0.0091226
+        },
+        {
+          "calls": 1731,
+          "cumulative_seconds": 0.0431455,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\model.py",
+          "function": "escape",
+          "line": 188,
+          "own_seconds": 0.006762300000000001
+        },
+        {
+          "calls": 31195,
+          "cumulative_seconds": 0.0417985,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\instance.py",
+          "function": "energy",
+          "line": 137,
+          "own_seconds": 0.0257112
+        },
+        {
+          "calls": 64,
+          "cumulative_seconds": 0.0405159,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\hgs.py",
+          "function": "_select_parent",
+          "line": 41,
+          "own_seconds": 0.00026470000000000004
+        },
+        {
+          "calls": 5237,
+          "cumulative_seconds": 0.0393656,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\hgs.py",
+          "function": "_edges",
+          "line": 12,
+          "own_seconds": 0.013590000000000001
+        },
+        {
+          "calls": 3630,
+          "cumulative_seconds": 0.0386454,
+          "file": "~",
+          "function": "<built-in method builtins.sorted>",
+          "line": 0,
+          "own_seconds": 0.005916
+        },
+        {
+          "calls": 39,
+          "cumulative_seconds": 0.0382681,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\hgs.py",
+          "function": "_educate",
+          "line": 94,
+          "own_seconds": 0.0022695000000000002
+        },
+        {
+          "calls": 6490,
+          "cumulative_seconds": 0.035121,
+          "file": "~",
+          "function": "<built-in method builtins.min>",
+          "line": 0,
+          "own_seconds": 0.007880100000000001
+        },
+        {
+          "calls": 1272,
+          "cumulative_seconds": 0.030017400000000003,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_screen_gap",
+          "line": 286,
+          "own_seconds": 0.0007821000000000001
+        },
+        {
+          "calls": 2758,
+          "cumulative_seconds": 0.029274500000000002,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "<lambda>",
+          "line": 375,
+          "own_seconds": 0.0016314
+        },
+        {
+          "calls": 1272,
+          "cumulative_seconds": 0.029235300000000002,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_screen_gap_detail",
+          "line": 290,
+          "own_seconds": 0.0015282000000000002
+        },
+        {
+          "calls": 2758,
+          "cumulative_seconds": 0.0276431,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_option_rank",
+          "line": 326,
+          "own_seconds": 0.010360000000000001
+        },
+        {
+          "calls": 5793,
+          "cumulative_seconds": 0.026923500000000003,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_metrics",
+          "line": 171,
+          "own_seconds": 0.006854900000000001
+        },
+        {
+          "calls": 1272,
+          "cumulative_seconds": 0.026728900000000003,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_screen_gap_detail_untraced",
+          "line": 300,
+          "own_seconds": 0.0049521
+        },
+        {
+          "calls": 57470,
+          "cumulative_seconds": 0.025775600000000003,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\hgs.py",
+          "function": "<genexpr>",
+          "line": 13,
+          "own_seconds": 0.025775600000000003
+        },
+        {
+          "calls": 32,
+          "cumulative_seconds": 0.0251363,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\hgs.py",
+          "function": "_survivors",
+          "line": 47,
+          "own_seconds": 0.0004988
+        },
+        {
+          "calls": 41036,
+          "cumulative_seconds": 0.022671700000000003,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\instance.py",
+          "function": "_rounded_up",
+          "line": 112,
+          "own_seconds": 0.0159655
+        },
+        {
+          "calls": 105,
+          "cumulative_seconds": 0.0195623,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\repair.py",
+          "function": "route_proposal",
+          "line": 55,
+          "own_seconds": 0.0003231
+        },
+        {
+          "calls": 105,
+          "cumulative_seconds": 0.0192392,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\repair.py",
+          "function": "_evaluate",
+          "line": 34,
+          "own_seconds": 0.0006656
+        },
+        {
+          "calls": 1191,
+          "cumulative_seconds": 0.0188522,
+          "file": "<string>",
+          "function": "__eq__",
+          "line": 2,
+          "own_seconds": 0.0059023
+        },
+        {
+          "calls": 9841,
+          "cumulative_seconds": 0.0171089,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\instance.py",
+          "function": "distance",
+          "line": 105,
+          "own_seconds": 0.010524500000000001
+        },
+        {
+          "calls": 16,
+          "cumulative_seconds": 0.0163558,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\reference.py",
+          "function": "full_charge_connection",
+          "line": 112,
+          "own_seconds": 0.0023058
+        },
+        {
+          "calls": 1466,
+          "cumulative_seconds": 0.0153185,
+          "file": "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\dataclasses.py",
+          "function": "replace",
+          "line": 1540,
+          "own_seconds": 0.007444500000000001
+        },
+        {
+          "calls": 149,
+          "cumulative_seconds": 0.014749400000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\model.py",
+          "function": "_escape_geometry",
+          "line": 157,
+          "own_seconds": 0.0042324
+        }
+      ],
+      "method": "MPC_HGS",
+      "root": "results/desaulniers/targeted_service_v1/diagnosis/roots/39e65c2c131629d1.json"
+    },
+    {
+      "deadline": false,
+      "elapsed": 0.23083970008883625,
+      "functions": [
+        {
+          "calls": 1,
+          "cumulative_seconds": 0.2178157,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\acs.py",
+          "function": "optimize",
+          "line": 47,
+          "own_seconds": 0.0058196
+        },
+        {
+          "calls": 819,
+          "cumulative_seconds": 0.20069320000000002,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "change",
+          "line": 457,
+          "own_seconds": 0.0080537
+        },
+        {
+          "calls": 690,
+          "cumulative_seconds": 0.18235700000000002,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_score",
+          "line": 245,
+          "own_seconds": 0.0020145000000000002
+        },
+        {
+          "calls": 690,
+          "cumulative_seconds": 0.1788651,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\objective.py",
+          "function": "evaluate",
+          "line": 30,
+          "own_seconds": 0.0170814
+        },
+        {
+          "calls": 775,
+          "cumulative_seconds": 0.1043071,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_criticality",
+          "line": 379,
+          "own_seconds": 0.007144
+        },
+        {
+          "calls": 1638,
+          "cumulative_seconds": 0.08822870000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "screened_options",
+          "line": 340,
+          "own_seconds": 0.0173266
+        },
+        {
+          "calls": 2643,
+          "cumulative_seconds": 0.0438691,
+          "file": "~",
+          "function": "<built-in method builtins.sorted>",
+          "line": 0,
+          "own_seconds": 0.0045496
+        },
+        {
+          "calls": 3823,
+          "cumulative_seconds": 0.038489600000000006,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "<lambda>",
+          "line": 375,
+          "own_seconds": 0.0020056
+        },
+        {
+          "calls": 3823,
+          "cumulative_seconds": 0.036484,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_option_rank",
+          "line": 326,
+          "own_seconds": 0.013663000000000002
+        },
+        {
+          "calls": 7151,
+          "cumulative_seconds": 0.032898000000000004,
+          "file": "~",
+          "function": "<built-in method builtins.sum>",
+          "line": 0,
+          "own_seconds": 0.0103567
+        },
+        {
+          "calls": 19633,
+          "cumulative_seconds": 0.026262,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\instance.py",
+          "function": "energy",
+          "line": 137,
+          "own_seconds": 0.0158345
+        },
+        {
+          "calls": 8206,
+          "cumulative_seconds": 0.021436700000000003,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_metrics",
+          "line": 171,
+          "own_seconds": 0.0067407000000000005
+        },
+        {
+          "calls": 819,
+          "cumulative_seconds": 0.0209442,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_screen_gap",
+          "line": 286,
+          "own_seconds": 0.00047420000000000003
+        },
+        {
+          "calls": 819,
+          "cumulative_seconds": 0.020470000000000002,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_screen_gap_detail",
+          "line": 290,
+          "own_seconds": 0.0009952000000000001
+        },
+        {
+          "calls": 819,
+          "cumulative_seconds": 0.018838,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_screen_gap_detail_untraced",
+          "line": 300,
+          "own_seconds": 0.0031420000000000003
+        },
+        {
+          "calls": 3599,
+          "cumulative_seconds": 0.0178102,
+          "file": "~",
+          "function": "<built-in method builtins.min>",
+          "line": 0,
+          "own_seconds": 0.0046097
+        },
+        {
+          "calls": 6900,
+          "cumulative_seconds": 0.013613400000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\objective.py",
+          "function": "<genexpr>",
+          "line": 49,
+          "own_seconds": 0.0037891
+        },
+        {
+          "calls": 74,
+          "cumulative_seconds": 0.013520500000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\repair.py",
+          "function": "route_proposal",
+          "line": 55,
+          "own_seconds": 0.00019610000000000002
+        },
+        {
+          "calls": 74,
+          "cumulative_seconds": 0.0133244,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\repair.py",
+          "function": "_evaluate",
+          "line": 34,
+          "own_seconds": 0.0004583
+        },
+        {
+          "calls": 831,
+          "cumulative_seconds": 0.011946,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_decode",
+          "line": 402,
+          "own_seconds": 0.0017543
+        },
+        {
+          "calls": 21635,
+          "cumulative_seconds": 0.0118227,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\instance.py",
+          "function": "_rounded_up",
+          "line": 112,
+          "own_seconds": 0.008256000000000001
+        },
+        {
+          "calls": 1,
+          "cumulative_seconds": 0.0112315,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "construct_fleet_root",
+          "line": 1154,
+          "own_seconds": 9.54e-05
+        },
+        {
+          "calls": 6210,
+          "cumulative_seconds": 0.009824300000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_control_metrics",
+          "line": 206,
+          "own_seconds": 0.0035923
+        },
+        {
+          "calls": 2,
+          "cumulative_seconds": 0.009736,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "initial",
+          "line": 432,
+          "own_seconds": 0.0001451
+        },
+        {
+          "calls": 184,
+          "cumulative_seconds": 0.0093352,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\model.py",
+          "function": "transition",
+          "line": 200,
+          "own_seconds": 0.0021493000000000003
+        },
+        {
+          "calls": 183,
+          "cumulative_seconds": 0.0090094,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\mpc.py",
+          "function": "predict",
+          "line": 162,
+          "own_seconds": 0.0006410000000000001
+        },
+        {
+          "calls": 819,
+          "cumulative_seconds": 0.0081029,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_screen_profile",
+          "line": 251,
+          "own_seconds": 0.0021680000000000002
+        },
+        {
+          "calls": 24948,
+          "cumulative_seconds": 0.008019400000000001,
+          "file": "~",
+          "function": "<built-in method builtins.max>",
+          "line": 0,
+          "own_seconds": 0.007392900000000001
+        },
+        {
+          "calls": 15531,
+          "cumulative_seconds": 0.007444500000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\fleet_mcts.py",
+          "function": "_check_search_time",
+          "line": 163,
+          "own_seconds": 0.004735700000000001
+        },
+        {
+          "calls": 2070,
+          "cumulative_seconds": 0.006549200000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\optimizers\\objective.py",
+          "function": "<lambda>",
+          "line": 39,
+          "own_seconds": 0.0020111
+        },
+        {
+          "calls": 109,
+          "cumulative_seconds": 0.006487000000000001,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\mpc.py",
+          "function": "_predict",
+          "line": 180,
+          "own_seconds": 0.0005309000000000001
+        },
+        {
+          "calls": 21175,
+          "cumulative_seconds": 0.0055249,
+          "file": "~",
+          "function": "<built-in method builtins.hash>",
+          "line": 0,
+          "own_seconds": 0.0047462
+        },
+        {
+          "calls": 74,
+          "cumulative_seconds": 0.0040949,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\mpc.py",
+          "function": "proposal_from_state",
+          "line": 467,
+          "own_seconds": 0.0005455000000000001
+        },
+        {
+          "calls": 2002,
+          "cumulative_seconds": 0.0038047000000000003,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\instance.py",
+          "function": "distance",
+          "line": 105,
+          "own_seconds": 0.0024095
+        },
+        {
+          "calls": 316,
+          "cumulative_seconds": 0.0037494000000000004,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\model.py",
+          "function": "escape",
+          "line": 188,
+          "own_seconds": 0.0011323000000000001
+        },
+        {
+          "calls": 1417,
+          "cumulative_seconds": 0.0035915,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\instance.py",
+          "function": "travel_time",
+          "line": 131,
+          "own_seconds": 0.0008218
+        },
+        {
+          "calls": 21635,
+          "cumulative_seconds": 0.0035667000000000003,
+          "file": "~",
+          "function": "<built-in method math.ceil>",
+          "line": 0,
+          "own_seconds": 0.0035667000000000003
+        },
+        {
+          "calls": 1,
+          "cumulative_seconds": 0.0034369,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\repair.py",
+          "function": "regret_repair",
+          "line": 454,
+          "own_seconds": 1.06e-05
+        },
+        {
+          "calls": 1,
+          "cumulative_seconds": 0.0034263,
+          "file": "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\evrp\\repair.py",
+          "function": "_regret_repair_impl",
+          "line": 262,
+          "own_seconds": 0.00011020000000000001
+        },
+        {
+          "calls": 16406,
+          "cumulative_seconds": 0.0032257,
+          "file": "~",
+          "function": "<built-in method builtins.len>",
+          "line": 0,
+          "own_seconds": 0.0032257
+        }
+      ],
+      "method": "MPC_ACS",
+      "root": "results/desaulniers/targeted_service_v1/diagnosis/roots/39e65c2c131629d1.json"
+    }
+  ],
+  "roots": 3
+}

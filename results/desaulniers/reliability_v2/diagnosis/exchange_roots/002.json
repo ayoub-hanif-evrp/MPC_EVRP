@@ -1,0 +1,134 @@
+{
+  "independently_replayed": false,
+  "result": {
+    "candidates": 1,
+    "deadline_reached": false,
+    "initial_score": [
+      1,
+      1,
+      0,
+      0.20718322418184254,
+      0.23633333333333345,
+      0.7831570256142835,
+      0.17333333333333334,
+      0.8231701467719758
+    ],
+    "seconds": 0.002692999900318682,
+    "selected": 0,
+    "selected_score": [
+      1,
+      1,
+      0,
+      0.20718322418184254,
+      0.23633333333333345,
+      0.7831570256142835,
+      0.17333333333333334,
+      0.8231701467719758
+    ],
+    "selective_label_attempts": 1,
+    "validated": 0
+  },
+  "role": "Retrospective bounded observable-state probe, not online performance",
+  "selected_routes": {
+    "0": [
+      {
+        "destination": "S13",
+        "kind": "charge",
+        "target_battery": 16.47,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C88",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      }
+    ],
+    "1": [
+      {
+        "destination": "C47",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      }
+    ],
+    "2": [
+      {
+        "destination": "C25",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      }
+    ],
+    "3": [
+      {
+        "destination": "C99",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "S13",
+        "kind": "charge",
+        "target_battery": 6.91,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C87",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      }
+    ],
+    "4": [
+      {
+        "destination": "C67",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      }
+    ],
+    "5": [
+      {
+        "destination": "C71",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      }
+    ],
+    "6": [
+      {
+        "destination": "C64",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      }
+    ],
+    "7": [
+      {
+        "destination": "C82",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      }
+    ],
+    "8": [
+      {
+        "destination": "C77",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      }
+    ]
+  },
+  "source_root": {
+    "candidates": 4,
+    "improved": false,
+    "instance": "r101_21_25",
+    "root": "results/desaulniers/targeted_service_v1/diagnosis/roots/39e65c2c131629d1.json",
+    "sha256": "011798dc82bafaa0d3417cb0fdfbcb11106990ec80f9243cefd0a630560b74a4",
+    "time": 86.84301916075763,
+    "timeout": false
+  },
+  "source_sha256": "337523e8f07cf343a8504ba764e20a29781aa8dfd6dc5b713029ef48516429fb"
+}

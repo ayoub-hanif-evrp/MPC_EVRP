@@ -1,0 +1,482 @@
+{
+  "independently_replayed": false,
+  "result": {
+    "candidates": 0,
+    "deadline_reached": false,
+    "initial_score": [
+      2,
+      1,
+      0,
+      0.2420813052662146,
+      0.3903157405067413,
+      0.8439759105336101,
+      0.725,
+      0.3018945939274253
+    ],
+    "seconds": 0.009627799969166517,
+    "selected": 0,
+    "selected_score": [
+      2,
+      1,
+      0,
+      0.2420813052662146,
+      0.3903157405067413,
+      0.8439759105336101,
+      0.725,
+      0.3018945939274253
+    ],
+    "selective_label_attempts": 0,
+    "validated": 0
+  },
+  "role": "Retrospective bounded observable-state probe, not online performance",
+  "selected_routes": {
+    "0": [
+      {
+        "destination": "C31",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "S11",
+        "kind": "charge",
+        "target_battery": 202.61249999999998,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C26",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C10",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      }
+    ],
+    "1": [
+      {
+        "destination": "C38",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C37",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C35",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "S11",
+        "kind": "charge",
+        "target_battery": 64.81,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C51",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "S13",
+        "kind": "charge",
+        "target_battery": 19.18,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C49",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      }
+    ],
+    "2": [
+      {
+        "destination": "C71",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C76",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "S19",
+        "kind": "charge",
+        "target_battery": 119.11,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C72",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      }
+    ],
+    "3": [
+      {
+        "destination": "S9",
+        "kind": "charge",
+        "target_battery": 39.54,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C28",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "S9",
+        "kind": "charge",
+        "target_battery": 81.61,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C17",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "S7",
+        "kind": "charge",
+        "target_battery": 116.9,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C13",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      }
+    ],
+    "4": [
+      {
+        "destination": "C69",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "S0",
+        "kind": "charge",
+        "target_battery": 135.075,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C4",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C6",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C7",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "S0",
+        "kind": "charge",
+        "target_battery": 79.51,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C52",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      }
+    ],
+    "5": [
+      {
+        "destination": "S0",
+        "kind": "charge",
+        "target_battery": 115.5,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C2",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "S3",
+        "kind": "charge",
+        "target_battery": 40.68,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C100",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C99",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      }
+    ],
+    "6": [
+      {
+        "destination": "C19",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "S7",
+        "kind": "charge",
+        "target_battery": 202.61249999999998,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C15",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C3",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C5",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C8",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      }
+    ],
+    "7": [
+      {
+        "destination": "C48",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C54",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C55",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C57",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      }
+    ],
+    "8": [
+      {
+        "destination": "C79",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C77",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C80",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C81",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "S19",
+        "kind": "charge",
+        "target_battery": 119.10000000000001,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C61",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      }
+    ],
+    "9": [
+      {
+        "destination": "S1",
+        "kind": "charge",
+        "target_battery": 135.075001,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C82",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "S1",
+        "kind": "charge",
+        "target_battery": 202.61249999999998,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C84",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C85",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C88",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C89",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C91",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      }
+    ],
+    "10": [
+      {
+        "destination": "C92",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C93",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C97",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "S3",
+        "kind": "charge",
+        "target_battery": 135.075,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C11",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C9",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      }
+    ],
+    "11": [
+      {
+        "destination": "C53",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C46",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C47",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C43",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "S15",
+        "kind": "charge",
+        "target_battery": 135.075,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C66",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      }
+    ]
+  },
+  "source_root": {
+    "candidates": 6,
+    "improved": false,
+    "instance": "c101_21_100",
+    "root": "results/desaulniers/targeted_service_v1/diagnosis/roots/af0a79ea93904f45.json",
+    "sha256": "77b3a66550aa6870e3845a4dcf2bce06796ae6a6a64d73ff94a295b2cdac398b",
+    "time": 421.24,
+    "timeout": false
+  },
+  "source_sha256": "337523e8f07cf343a8504ba764e20a29781aa8dfd6dc5b713029ef48516429fb"
+}

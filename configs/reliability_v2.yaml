@@ -1,0 +1,37 @@
+study: reliability_v2
+development_parents: [c106_21, c107_21, c206_21, c207_21, r109_21, r110_21, r209_21, r210_21, rc106_21, rc107_21, rc206_21, rc207_21]
+reserved_parents: [c102_21, c202_21, r102_21, r202_21, rc102_21, rc202_21]
+# All 12 parents at size 100. One smaller size per parent, alternated within family.
+# This is a balanced partial size panel, not the full parent x size factorial.
+seeds: [0, 1]
+dynamicities: [0.25, 0.75]
+methods: [MPC_COMPLETION, MPC_MCTS, MPC_ALNS, MPC_HGS, MPC_ACS]
+common:
+  optimizer_initialization_policy: validated_incumbent_v1
+  coordination_policy: forced_retained_v1
+variants:
+  original: {}
+  flex_exchange: {first_action_policy: flex_exchange_v2, proposal_cache_policy: root_v1}
+  cache_only: {proposal_cache_policy: root_v1}
+  completion_first_action: {first_action_policy: counterfactual_v1}
+# Cache ablation: size100, seed0, DoD.75, all five engines, all 12 parents.
+# Completion prospective contrast: all scenarios, only MPC_COMPLETION.
+primary:
+  method: MPC_ALNS
+  variant: flex_exchange
+  hundred_complete_ci_lower_above: 0
+  service_ci_lower_at_least: 0
+  minimum_service_gain: 0
+  each_seed_service_gain_at_least: 0
+completion_primary:
+  method: MPC_COMPLETION
+  variant: completion_first_action
+  hundred_complete_ci_lower_above: 0
+  service_ci_lower_above: 0
+# Two primary promotion hypotheses: Bonferroni 97.5% two-sided parent intervals.
+confidence_level: 0.975
+bootstrap_draws: 20000
+bootstrap_seed: 20261024
+maximum_campaign_hours: 12
+whole_worker_timeout_seconds: 3900
+timing_conditions: sequential study workers; shared machine; unrelated workloads unchanged

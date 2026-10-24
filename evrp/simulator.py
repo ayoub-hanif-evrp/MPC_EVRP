@@ -60,6 +60,7 @@ class SimulationConfig:
     coordination_policy: str = "original"
     constructor_policy: str = "original"
     first_action_policy: str = "original"
+    proposal_cache_policy: str = "original"
 
     def __post_init__(self):
         if self.algorithm not in ALGORITHMS or self.workers < 1 or self.max_events < 1:
@@ -75,8 +76,10 @@ class SimulationConfig:
             raise ValueError("Unknown coordination policy")
         if self.constructor_policy not in {"original", "urgency_recovery_v1"}:
             raise ValueError("Unknown constructor policy")
-        if self.first_action_policy not in {"original", "counterfactual_v1"}:
+        if self.first_action_policy not in {"original", "counterfactual_v1", "flex_exchange_v2"}:
             raise ValueError("Unknown first-action policy")
+        if self.proposal_cache_policy not in {"original", "root_v1"}:
+            raise ValueError("Unknown proposal cache policy")
         if self.fleet_mode != "fixed_reference":
             raise ValueError("Only the fixed K_ref fleet is supported")
         if self.route_continuity and self.trace_level == "none":
@@ -267,6 +270,7 @@ class EventDrivenSimulator:
         previous_root_hash = None
         previous_root_routes = None
         trace_token = None
+        memo_token = None
         coordination_forced_choices = coordination_solver_invocations = 0
         optimizer_initialization_fallbacks = 0
         event_triggered = config.algorithm in COMMON_CONSTRUCTOR_ALGORITHMS
@@ -421,6 +425,10 @@ class EventDrivenSimulator:
                 if (ready or revealed) and not skip_optimization:
                     observation = get_agent_observation(state, instance)
                     started = perf_counter()
+                    proposal_memo = None
+                    if config.proposal_cache_policy == "root_v1":
+                        from .proposal_memo import begin
+                        proposal_memo, memo_token = begin()
                     deadline_token = (set_deadline(started + config.total_planning_time_limit -
                                                    min(0.25 if event_triggered else 0.15,
                                                        config.total_planning_time_limit * 0.1))
@@ -634,7 +642,8 @@ class EventDrivenSimulator:
                                 deadline=(started + config.total_planning_time_limit -
                                           min(0.25 if event_triggered else 0.15,
                                               config.total_planning_time_limit * 0.1)
-                                          - (.3 if config.first_action_policy == "counterfactual_v1" else 0)
+                                          - (.3 if config.first_action_policy == "counterfactual_v1" else
+                                             .4 if config.first_action_policy == "flex_exchange_v2" else 0)
                                           if config.total_planning_time_limit is not None else None),
                                 seed=agent_seed(config.experiment_seed, self.scenario.scenario_seed, epochs, -1),
                                 mpc=config.mpc)
@@ -650,6 +659,14 @@ class EventDrivenSimulator:
                             from .targeted_recovery import counterfactual_actions
                             candidate, proof, targeted_control = counterfactual_actions(
                                 origins, routes, observation, config.mpc, ready, seconds=.25,
+                                reference_routes=constructor_for_objective)
+                            if proof is not None:
+                                routes = targeted_routes = candidate
+                                targeted_validated = proof
+                        elif config.first_action_policy == "flex_exchange_v2":
+                            from .flex_exchange import improve_first_controls
+                            candidate, proof, targeted_control = improve_first_controls(
+                                origins, routes, observation, config.mpc, ready, seconds=.35,
                                 reference_routes=constructor_for_objective)
                             if proof is not None:
                                 routes = targeted_routes = candidate
@@ -721,6 +738,10 @@ class EventDrivenSimulator:
                     if deadline_token is not None:
                         reset_deadline(deadline_token)
                         deadline_token = None
+                    if memo_token is not None:
+                        from .proposal_memo import end
+                        end(memo_token)
+                        memo_token = None
                     if any(p is None for p in validated.values()):
                         raise RuntimeError("Repair failed final route reconciliation")
                     if event_triggered:
@@ -836,6 +857,9 @@ class EventDrivenSimulator:
                     if config.algorithm == "FLEET_MPC_MCTS":
                         decision["final_validation_seconds"] = final_validation_seconds
                         decision["deadline_fallback"] = deadline_fallback
+                    if proposal_memo is not None:
+                        decision["proposal_memo"] = dict(hits=proposal_memo.hits, misses=proposal_memo.misses,
+                                                         entries=len(proposal_memo.values))
                     if config.trace_level == "full":
                         decision["candidates"] = {str(k): [asdict(p) for p in r.candidates] for k, r in plans.items()}
                     if planning_evidence is not None:
@@ -884,6 +908,9 @@ class EventDrivenSimulator:
             else:
                 raise RuntimeError("Simulation event guard exceeded")
         finally:
+            if memo_token is not None:
+                from .proposal_memo import end
+                end(memo_token)
             if trace_token is not None:
                 reset_trace(trace_token)
             set_deadline(None)

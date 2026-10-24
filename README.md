@@ -34,6 +34,16 @@ document the paired design and the gated MP-witness holdout policy. Complete or
 resume that separate workflow with `python -u -m scripts.complete_targeted_study`;
 do not run a second campaign parent while one is already active.
 
+The separate [reliability V2 protocol](results/desaulniers/reliability_v2/PREREGISTRATION.md)
+adds event-level loss evidence, opt-in two-EV exchanges, exact root-local replay
+memoization and a prospective Completion-only control comparison. Its new
+12-parent panel uses structural DoD eligibility only, with crossed seed/DoD
+within each selected file; no historical result is replaced. See its
+[live status and report](results/desaulniers/reliability_v2/FINAL_REPORT.md).
+Run or resume only that bounded workflow with
+`python -u -m scripts.run_reliability_study`. No new improvement or independent
+final result is claimed before the complete preregistered checks pass.
+
 ## Active benchmark
 
 The active static source is the [Desaulniers et al. (2016) EVRPTW bundle](https://doi.org/10.1287/opre.2016.1535)

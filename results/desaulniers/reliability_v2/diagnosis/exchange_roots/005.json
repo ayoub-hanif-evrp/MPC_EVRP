@@ -1,0 +1,270 @@
+{
+  "independently_replayed": false,
+  "result": {
+    "candidates": 6,
+    "deadline_reached": false,
+    "initial_score": [
+      1,
+      1,
+      0,
+      0.1069379912100705,
+      0.08,
+      0.823273350573887,
+      0.18607142857142858,
+      0.7315576153220046
+    ],
+    "seconds": 0.0063229999504983425,
+    "selected": 0,
+    "selected_score": [
+      1,
+      1,
+      0,
+      0.1069379912100705,
+      0.08,
+      0.823273350573887,
+      0.18607142857142858,
+      0.7315576153220046
+    ],
+    "selective_label_attempts": 6,
+    "validated": 0
+  },
+  "role": "Retrospective bounded observable-state probe, not online performance",
+  "selected_routes": {
+    "0": [
+      {
+        "destination": "C56",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C54",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      }
+    ],
+    "1": [
+      {
+        "destination": "C16",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      }
+    ],
+    "2": [
+      {
+        "destination": "C70",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "S13",
+        "kind": "charge",
+        "target_battery": 3.04,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C59",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      }
+    ],
+    "3": [
+      {
+        "destination": "C8",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C65",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "S8",
+        "kind": "charge",
+        "target_battery": 11.74,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C45",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      }
+    ],
+    "4": [
+      {
+        "destination": "C68",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C79",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      }
+    ],
+    "5": [
+      {
+        "destination": "C89",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C17",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C84",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      }
+    ],
+    "6": [
+      {
+        "destination": "C66",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      }
+    ],
+    "7": [
+      {
+        "destination": "C39",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C15",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      }
+    ],
+    "8": [
+      {
+        "destination": "S11",
+        "kind": "charge",
+        "target_battery": 16.8,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C38",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "S11",
+        "kind": "charge",
+        "target_battery": 14.39,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C53",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "S0",
+        "kind": "charge",
+        "target_battery": 6.08,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C28",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      }
+    ],
+    "9": [
+      {
+        "destination": "C7",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      }
+    ],
+    "10": [
+      {
+        "destination": "S15",
+        "kind": "charge",
+        "target_battery": 6.08,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C58",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      }
+    ],
+    "11": [
+      {
+        "destination": "S8",
+        "kind": "charge",
+        "target_battery": 14.72,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C83",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      }
+    ],
+    "12": [
+      {
+        "destination": "C2",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      }
+    ],
+    "13": [
+      {
+        "destination": "S3",
+        "kind": "charge",
+        "target_battery": 9.6,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C50",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      }
+    ],
+    "14": [],
+    "15": [],
+    "16": [],
+    "17": [],
+    "18": [],
+    "19": []
+  },
+  "source_root": {
+    "candidates": 12,
+    "improved": false,
+    "instance": "r101_21_100",
+    "root": "results/desaulniers/targeted_service_v1/diagnosis/roots/219bffea81a97e08.json",
+    "sha256": "406031ff83894740baafe39abc824cb35672ba0e2055cbba6baaa31a3c41afdc",
+    "time": 18.257696160680645,
+    "timeout": false
+  },
+  "source_sha256": "337523e8f07cf343a8504ba764e20a29781aa8dfd6dc5b713029ef48516429fb"
+}

@@ -18,6 +18,7 @@ from .model import (EPS, Action, InfeasibleAction, InfeasibilityReason,
 from .mpc import MPCConfig, MPCPlanningProblem, MPCProposal, action_key
 from .planning_budget import PlanningDeadlineExceeded, check_deadline
 from .planning_trace import current_trace
+from .proposal_memo import current as current_proposal_memo
 from .reference import full_charge_connection
 
 
@@ -61,7 +62,17 @@ def route_proposal(state: VehicleState, actions: tuple[Action, ...],
     retained routes must end at their last service. No prediction-horizon truncation
     or temporary horizon increase is used. The supplied state is never mutated.
     """
+    memo = current_proposal_memo()
+    if memo is not None:
+        check_deadline()
+        key = (state, tuple(actions), observation, config)
+        if key in memo.values:
+            memo.hits += 1
+            return memo.values[key]
+        memo.misses += 1
     evaluated = _evaluate(state, tuple(actions), observation, config)
+    if memo is not None and len(memo.values) < memo.limit:
+        memo.values[key] = evaluated[0] if evaluated is not None else None
     return evaluated[0] if evaluated is not None else None
 
 

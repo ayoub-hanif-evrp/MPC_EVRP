@@ -1,0 +1,101 @@
+{
+  "independently_replayed": false,
+  "result": {
+    "candidates": 1,
+    "deadline_reached": false,
+    "initial_score": [
+      0,
+      0.03930010194645665,
+      0.5190017664258091,
+      2,
+      0.400207510153912,
+      229.35999999999999,
+      0.0
+    ],
+    "seconds": 0.0013657000381499529,
+    "selected": 0,
+    "selected_score": [
+      0,
+      0.03930010194645665,
+      0.5190017664258091,
+      2,
+      0.400207510153912,
+      229.35999999999999,
+      0.0
+    ],
+    "selective_label_attempts": 1,
+    "validated": 0
+  },
+  "role": "Retrospective bounded observable-state probe, not online performance",
+  "selected_routes": {
+    "0": [
+      {
+        "destination": "C96",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C89",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C98",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "S13",
+        "kind": "charge",
+        "target_battery": 16.47,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C88",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      }
+    ],
+    "1": [
+      {
+        "destination": "C81",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "S19",
+        "kind": "charge",
+        "target_battery": 13.25,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C67",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      }
+    ],
+    "2": [],
+    "3": [],
+    "4": [],
+    "5": [],
+    "6": [],
+    "7": [],
+    "8": []
+  },
+  "source_root": {
+    "candidates": 12,
+    "improved": false,
+    "instance": "r101_21_25",
+    "root": "results/desaulniers/targeted_service_v1/diagnosis/roots/e8fc24eb65114d77.json",
+    "sha256": "56fbbb9625f3c49906c70cc1013225d1d6fcf57cbf0b195743d17c3b3d4e334e",
+    "time": 0.0,
+    "timeout": false
+  },
+  "source_sha256": "337523e8f07cf343a8504ba764e20a29781aa8dfd6dc5b713029ef48516429fb"
+}

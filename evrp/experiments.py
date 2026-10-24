@@ -78,7 +78,8 @@ def simulation_config(config: dict) -> SimulationConfig:
                             optimizer_initialization_policy=config.get("optimizer_initialization_policy", "original"),
                             coordination_policy=config.get("coordination_policy", "original"),
                             constructor_policy=config.get("constructor_policy", "original"),
-                            first_action_policy=config.get("first_action_policy", "original"))
+                            first_action_policy=config.get("first_action_policy", "original"),
+                            proposal_cache_policy=config.get("proposal_cache_policy", "original"))
 
 
 def results_path(path):

@@ -152,6 +152,11 @@ logs/
 !/results/desaulniers/targeted_service_v1/**/*.csv
 !/results/desaulniers/targeted_service_v1/**/*.xml
 !/results/desaulniers/targeted_service_v1/**/*.png
+!/results/desaulniers/reliability_v2/**/*.json
+!/results/desaulniers/reliability_v2/**/*.json.gz
+!/results/desaulniers/reliability_v2/**/*.md
+!/results/desaulniers/reliability_v2/**/*.xml
+!/results/desaulniers/reliability_v2/**/*.png
 !/results/desaulniers/robustness_v2/raw/*.json.gz
 /results/.pytest_work/
 /results/t[0-9]*/
