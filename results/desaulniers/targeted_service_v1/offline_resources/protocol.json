@@ -1,0 +1,13 @@
+{
+  "scientific": {
+    "historical_fleets_replaced": false,
+    "instances": [
+      "r204_21_100",
+      "r208_21_100"
+    ],
+    "seconds_per_instance": 120,
+    "source_sha256": "18f360ae94f03162ae7bfd5080dacad38caf44a07905e3fd5caefcfe9134686c",
+    "strategy": "same first-feasible offline insertion with opt-in resource_labels_v2"
+  },
+  "source_commit": "ead2d5fb0b8de1d9813e0171f22efeb738e9bdd3"
+}

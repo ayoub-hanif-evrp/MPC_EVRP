@@ -18,6 +18,14 @@ corrections and separately audited MP reference coverage. See the consolidated
 [publication package](results/desaulniers/publication_package_v1/RESULTS.md)
 and [completion report](results/desaulniers/publication_package_v1/FINAL_REPORT.md).
 
+The separate [targeted service study](results/desaulniers/targeted_service_v1/METHODS.md)
+tests three opt-in constructor, resource-decoder and first-control candidates
+under a frozen parent-partitioned development protocol. None is enabled by
+default or substituted into the historical primary results. Its separate
+[offline investigation](results/desaulniers/targeted_service_v1/offline_resources/RESULTS.md)
+closes the two remaining physical reference-witness cases, bringing combined
+witness coverage to 168/168 without replacing historical reference fleets.
+
 ## Active benchmark
 
 The active static source is the [Desaulniers et al. (2016) EVRPTW bundle](https://doi.org/10.1287/opre.2016.1535)

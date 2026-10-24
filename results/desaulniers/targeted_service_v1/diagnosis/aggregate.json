@@ -1,0 +1,39 @@
+{
+  "candidate_statuses": {
+    "bounded_route_reconstruction_failure": 82,
+    "physically_validated": 26
+  },
+  "event_counts": [
+    {
+      "events": 14343,
+      "kind": "insertion_screen",
+      "reason": "feasible"
+    },
+    {
+      "events": 20821,
+      "kind": "route_decode",
+      "reason": "feasible"
+    },
+    {
+      "events": 135191,
+      "kind": "insertion_screen",
+      "reason": "time_window"
+    },
+    {
+      "events": 2313,
+      "kind": "charging_connection_failure",
+      "reason": ""
+    },
+    {
+      "events": 11270,
+      "kind": "route_decode",
+      "reason": "bounded_decoder_failure"
+    },
+    {
+      "events": 2174,
+      "kind": "insertion_screen",
+      "reason": "capacity"
+    }
+  ],
+  "roots": 20
+}

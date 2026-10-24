@@ -1,7 +1,7 @@
 """Independent replay, parent-clustered paired inference and PNG-only reporting."""
 
 import argparse
-from collections import defaultdict
+from collections import Counter, defaultdict
 from hashlib import sha256
 from statistics import mean
 
@@ -24,6 +24,40 @@ def table(path, title, headers, rows):
              "| " + " | ".join("---" for _ in headers) + " |"]
     lines.extend("| " + " | ".join(str(x) for x in row) + " |" for row in rows)
     writable_path(path).write_text("\n".join(lines)+"\n", encoding="utf-8")
+
+
+def render_diagnosis():
+    output=OUTPUT/"diagnosis"
+    manifest=load_json(output/"manifest.json")
+    counts, candidates=Counter(),Counter()
+    for row in manifest["records"]:
+        path=ROOT/row["root"]
+        if sha256(path.read_bytes()).hexdigest()!=row["sha256"]:
+            raise ValueError("Diagnostic root bytes changed")
+        raw=load_json(path)
+        for event in raw["observed_failures"]:
+            counts[event["kind"],event["reason"]]+=event["events"]
+        candidates.update(c["status"] for c in raw["counterfactual"]["candidates"])
+    table(output/"paper/event_counts.md","Recorded diagnostic events at selected roots, not causal loss counts",
+          ["Kind","Reason","Events"],[[kind,reason,n] for (kind,reason),n in sorted(counts.items())])
+    table(output/"paper/next_actions.md","Bounded next-control probes",
+          ["Outcome","Count"],[[k,v] for k,v in sorted(candidates.items())]+
+          [["Canonical improvements",sum(r["improved"] for r in manifest["records"])],
+           ["Probe deadlines",sum(r["timeout"] for r in manifest["records"])]])
+    fig,axes=plt.subplots(1,2,figsize=(11,4))
+    labels=[f"{k[0]} / {k[1] or 'unspecified'}" for k in counts]
+    axes[0].barh(labels,list(counts.values()),color="#4d7d99")
+    axes[0].set(xlabel="Heuristic events at selected roots (not missed customers)")
+    axes[1].bar(["Bounded reconstruction\nfailure","Validated continuation","Canonical improvement"],
+                [candidates["bounded_route_reconstruction_failure"],candidates["physically_validated"],
+                 sum(r["improved"] for r in manifest["records"])],color=["#b44345","#267a66","#4d7d99"])
+    axes[1].set(ylabel="Counterfactual alternatives")
+    fig.tight_layout()
+    fig.savefig(writable_path(output/"paper/diagnosis.png"),dpi=300)
+    plt.close(fig)
+    save_json(output/"aggregate.json",dict(roots=len(manifest["records"]),
+              event_counts=[dict(kind=k[0],reason=k[1],events=v) for k,v in counts.items()],
+              candidate_statuses=dict(candidates)))
 
 
 def analyze(stage):
@@ -218,6 +252,7 @@ def analyze(stage):
 
 
 def finalize(selection):
+    render_diagnosis()
     development = load_json(OUTPUT/"development/analysis.json")
     lines = ["# Final targeted MPC service-improvement report", "",
              f"Frozen development source: `{load_json(OUTPUT/'development/protocol.json')['source_commit']}`.",
@@ -250,8 +285,9 @@ def finalize(selection):
               "Twenty-six alternatives were physically validated; none improved the canonical plan. Eighty-two",
               "bounded reconstruction failures are not physical infeasibility proofs. This does not establish",
               "which action would have improved eventual service, and unobserved future requests are never used.",
-              "The two formerly unresolved offline cases are separately investigated under offline_resources/.",
-              "Any new witness is a separate physical upper bound, never a replacement historical fleet.","",
+              "Both formerly unresolved offline cases now have independently replayed full-service references:",
+              "r204_21_100 uses three EVs and r208_21_100 uses five. Physical witness coverage is 168/168.",
+              "These are separate physical upper bounds, never replacements for historical fleets.","",
               "## Publication limits", "",
               "Historical primary results and original 270/450-run studies are immutable. This extension uses six",
               "development parents, not 18 independent size variants. Bootstrap uncertainty is exploratory;",

@@ -1,0 +1,29 @@
+{
+  "completed_instances": 2,
+  "planned_instances": 2,
+  "protocol_identifier": "4db2eb75119c68420f25fc7464c28bb88a98673e4cf203595eea9f8553b609ed",
+  "records": [
+    {
+      "fleet_size": 3,
+      "instance": "r204_21_100",
+      "instance_sha256": "8c11ac4fc4653bfcf55a86124042bd5cf4d50f88bff750a85f8c3e109f50fc49",
+      "protocol_identifier": "4db2eb75119c68420f25fc7464c28bb88a98673e4cf203595eea9f8553b609ed",
+      "reference": "results/desaulniers/targeted_service_v1/offline_resources/references/r204_21_100.json",
+      "reference_id": "9cec3b4c391e3fac4fa0f25ffce0c13f01478d5226defaa6b562ea8d028dfee7",
+      "reference_sha256": "532d0cdcf0624cb30a9b5c9ecc0337ccc408227781d6b6517b3d3a989eb6bc38",
+      "seconds": 6.744487600051798,
+      "status": "feasible_reference_found"
+    },
+    {
+      "fleet_size": 5,
+      "instance": "r208_21_100",
+      "instance_sha256": "c0a60857d718b8e3466216a6dde5cd6e62df5dad061b63edbf1d9cc348e49e22",
+      "protocol_identifier": "4db2eb75119c68420f25fc7464c28bb88a98673e4cf203595eea9f8553b609ed",
+      "reference": "results/desaulniers/targeted_service_v1/offline_resources/references/r208_21_100.json",
+      "reference_id": "ed1f45e5a6974c36a7896d14e6752bb2c5c10dfa2aef86de40bbe12621bc5a18",
+      "reference_sha256": "daf10c0720e733d3538ad5d3ea048a215184f861c2dcfaf4a85ba3773a3b8498",
+      "seconds": 13.591696099960245,
+      "status": "feasible_reference_found"
+    }
+  ]
+}

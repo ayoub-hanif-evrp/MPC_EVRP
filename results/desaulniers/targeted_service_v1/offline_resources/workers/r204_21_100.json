@@ -1,0 +1,11 @@
+{
+  "fleet_size": 3,
+  "instance": "r204_21_100",
+  "instance_sha256": "8c11ac4fc4653bfcf55a86124042bd5cf4d50f88bff750a85f8c3e109f50fc49",
+  "protocol_identifier": "4db2eb75119c68420f25fc7464c28bb88a98673e4cf203595eea9f8553b609ed",
+  "reference": "results/desaulniers/targeted_service_v1/offline_resources/references/r204_21_100.json",
+  "reference_id": "9cec3b4c391e3fac4fa0f25ffce0c13f01478d5226defaa6b562ea8d028dfee7",
+  "reference_sha256": "532d0cdcf0624cb30a9b5c9ecc0337ccc408227781d6b6517b3d3a989eb6bc38",
+  "seconds": 6.744487600051798,
+  "status": "feasible_reference_found"
+}
