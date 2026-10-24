@@ -151,7 +151,11 @@ def _build_route_original(state: VehicleState, customer_sequence: tuple[str, ...
 
 def build_route(state: VehicleState, customer_sequence: tuple[str, ...],
                 observation: Observation, config: MPCConfig) -> tuple[Action, ...] | None:
-    """Preserve the original decoder, optionally adding a validated LP fallback."""
+    """Select an explicit decoder without changing the original default."""
+    if config.route_decoder_version == "resource_labels_v2":
+        from .resource_decoder import decode_resource_labels
+        check_deadline()
+        return decode_resource_labels(state, tuple(customer_sequence), observation, config)
     original = _build_route_original(state, customer_sequence, observation, config)
     if original is not None or config.route_decoder_version == "original":
         return original

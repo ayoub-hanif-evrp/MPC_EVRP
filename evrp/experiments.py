@@ -76,7 +76,9 @@ def simulation_config(config: dict) -> SimulationConfig:
                             engineering_watchdog_seconds=config.get("engineering_watchdog_seconds"),
                             dispatch_policy=config.get("dispatch_policy", "original"),
                             optimizer_initialization_policy=config.get("optimizer_initialization_policy", "original"),
-                            coordination_policy=config.get("coordination_policy", "original"))
+                            coordination_policy=config.get("coordination_policy", "original"),
+                            constructor_policy=config.get("constructor_policy", "original"),
+                            first_action_policy=config.get("first_action_policy", "original"))
 
 
 def results_path(path):

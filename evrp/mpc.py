@@ -42,7 +42,7 @@ class MPCConfig:
             raise ValueError("Unknown computation budget or charging mode")
         if self.proposal_selection not in {"quality", "coverage_diverse"}:
             raise ValueError("Unknown proposal selection mode")
-        if self.route_decoder_version not in {"original", "linear_charge_v1"}:
+        if self.route_decoder_version not in {"original", "linear_charge_v1", "resource_labels_v2"}:
             raise ValueError("Unknown route decoder version")
         if not isfinite(self.uct_c) or self.uct_c < 0 or not isfinite(self.time_limit) or self.time_limit <= 0:
             raise ValueError("Invalid UCT coefficient or wall-clock budget")

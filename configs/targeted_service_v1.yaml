@@ -1,0 +1,32 @@
+study: targeted_service_v1
+output: results/desaulniers/targeted_service_v1
+development_parents: [c101_21, c201_21, r101_21, r201_21, rc101_21, rc201_21]
+reserved_parents: [c102_21, c202_21, r102_21, r202_21, rc102_21, rc202_21]
+sizes: [25, 50, 100]
+seeds: [0, 1]
+dynamicities: [0.25, 0.75]
+design: paired_fractional_size_seed_dynamicity
+# Each parent/size has two seeds. DoD alternates by size index plus seed.
+# DoD/seed effects are descriptive, not independently identifiable per file.
+methods: [MPC_COMPLETION, MPC_ALNS]
+holdout_methods: [MPC_COMPLETION, MPC_MCTS, MPC_ALNS, MPC_HGS, MPC_ACS]
+common:
+  optimizer_initialization_policy: validated_incumbent_v1
+  coordination_policy: forced_retained_v1
+variants:
+  original: {}
+  A_urgency: {constructor_policy: urgency_recovery_v1}
+  B_resources: {route_decoder_version: resource_labels_v2}
+  C_first_action: {first_action_policy: counterfactual_v1}
+selection:
+  primary_method: MPC_ALNS
+  parent_service_95_ci_lower_above: 0
+  complete_service_change_at_least: 0
+  hundred_customer_gain_at_least: 0
+  gain_in_each_seed_at_least: 0
+  completion_baseline_total_gain_at_least: 0
+  maximum_decision_seconds: 5
+  tie_break: [service_gain, complete_service_gain, variant_name]
+whole_worker_timeout_seconds: 3900
+maximum_campaign_hours: 12
+timing_conditions: sequential study workers; shared machine; unrelated workload left running

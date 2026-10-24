@@ -1,0 +1,3436 @@
+{
+  "busy_actions": {},
+  "constructor_routes": {
+    "0": [
+      {
+        "destination": "C23",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C22",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C25",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C33",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C31",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C46",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C43",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "S13",
+        "kind": "charge",
+        "target_battery": 15.18,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C52",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      }
+    ],
+    "1": [
+      {
+        "destination": "C20",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C24",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C29",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "S13",
+        "kind": "charge",
+        "target_battery": 202.61249999999998,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C44",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C38",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C37",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C35",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "S11",
+        "kind": "charge",
+        "target_battery": 64.81,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C51",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "S13",
+        "kind": "charge",
+        "target_battery": 19.18,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C49",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      }
+    ],
+    "10": [],
+    "11": [],
+    "2": [
+      {
+        "destination": "C21",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "S0",
+        "kind": "charge",
+        "target_battery": 270.15,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C98",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "S1",
+        "kind": "charge",
+        "target_battery": 202.61249999999998,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C79",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C77",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C80",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "S18",
+        "kind": "charge",
+        "target_battery": 202.61249999999998,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C72",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C66",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      }
+    ],
+    "3": [
+      {
+        "destination": "C90",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C87",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C86",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "S0",
+        "kind": "charge",
+        "target_battery": 165.82999999999998,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C39",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "S12",
+        "kind": "charge",
+        "target_battery": 142.72,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C26",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      }
+    ],
+    "4": [
+      {
+        "destination": "C63",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C65",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C62",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C64",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C68",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C69",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "S0",
+        "kind": "charge",
+        "target_battery": 135.075,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C4",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "S3",
+        "kind": "charge",
+        "target_battery": 135.075,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C88",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C89",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      }
+    ],
+    "5": [
+      {
+        "destination": "C67",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "S3",
+        "kind": "charge",
+        "target_battery": 135.075,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C96",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C95",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C94",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C92",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C93",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C97",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C100",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C99",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "S3",
+        "kind": "charge",
+        "target_battery": 135.075,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C8",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      }
+    ],
+    "6": [
+      {
+        "destination": "C75",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C1",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C12",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C14",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C16",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C19",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "S7",
+        "kind": "charge",
+        "target_battery": 202.61249999999998,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C15",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C3",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C5",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      }
+    ],
+    "7": [
+      {
+        "destination": "C41",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "S13",
+        "kind": "charge",
+        "target_battery": 202.61249999999998,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C34",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C32",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C30",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "S9",
+        "kind": "charge",
+        "target_battery": 90.52,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C18",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "S7",
+        "kind": "charge",
+        "target_battery": 135.075,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C10",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C11",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C9",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      }
+    ],
+    "8": [
+      {
+        "destination": "S15",
+        "kind": "charge",
+        "target_battery": 270.15,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C59",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C60",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C58",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C56",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "S18",
+        "kind": "charge",
+        "target_battery": 135.075,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C76",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C81",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "S19",
+        "kind": "charge",
+        "target_battery": 202.61249999999998,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C91",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      }
+    ],
+    "9": [
+      {
+        "destination": "S1",
+        "kind": "charge",
+        "target_battery": 270.15,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C84",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "S16",
+        "kind": "charge",
+        "target_battery": 135.075,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C54",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C55",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      }
+    ]
+  },
+  "counterfactual": {
+    "accepted_improvements": 0,
+    "candidates": [
+      {
+        "status": "bounded_route_reconstruction_failure",
+        "vehicle": 0
+      },
+      {
+        "status": "bounded_route_reconstruction_failure",
+        "vehicle": 0
+      },
+      {
+        "status": "bounded_route_reconstruction_failure",
+        "vehicle": 0
+      },
+      {
+        "status": "bounded_route_reconstruction_failure",
+        "vehicle": 0
+      },
+      {
+        "status": "bounded_route_reconstruction_failure",
+        "vehicle": 0
+      },
+      {
+        "status": "bounded_route_reconstruction_failure",
+        "vehicle": 1
+      },
+      {
+        "status": "bounded_route_reconstruction_failure",
+        "vehicle": 1
+      },
+      {
+        "status": "bounded_route_reconstruction_failure",
+        "vehicle": 1
+      },
+      {
+        "status": "bounded_route_reconstruction_failure",
+        "vehicle": 1
+      },
+      {
+        "status": "bounded_route_reconstruction_failure",
+        "vehicle": 1
+      },
+      {
+        "status": "bounded_route_reconstruction_failure",
+        "vehicle": 2
+      },
+      {
+        "status": "bounded_route_reconstruction_failure",
+        "vehicle": 2
+      }
+    ],
+    "chain_candidates": 0,
+    "deadline_reached": false,
+    "evaluated_insertions": 0,
+    "first_action_candidates": 12,
+    "first_action_changes": 0,
+    "initial_score": [
+      0,
+      0.0866042099798326,
+      0.7388814916174719,
+      10,
+      0.44479358148641707,
+      1450.09,
+      0.0
+    ],
+    "seconds": 0.0067408999893814325,
+    "selected_commitment_state": {
+      "first_commitments": [
+        {
+          "destination": "C23",
+          "kind": "serve",
+          "vehicle": 0
+        },
+        {
+          "destination": "C20",
+          "kind": "serve",
+          "vehicle": 1
+        },
+        {
+          "destination": "C21",
+          "kind": "serve",
+          "vehicle": 2
+        },
+        {
+          "destination": "C90",
+          "kind": "serve",
+          "vehicle": 3
+        },
+        {
+          "destination": "C63",
+          "kind": "serve",
+          "vehicle": 4
+        },
+        {
+          "destination": "C67",
+          "kind": "serve",
+          "vehicle": 5
+        },
+        {
+          "destination": "C75",
+          "kind": "serve",
+          "vehicle": 6
+        },
+        {
+          "destination": "C41",
+          "kind": "serve",
+          "vehicle": 7
+        },
+        {
+          "destination": "S15",
+          "kind": "charge",
+          "vehicle": 8
+        },
+        {
+          "destination": "S1",
+          "kind": "charge",
+          "vehicle": 9
+        }
+      ],
+      "interpretation": "necessary-condition screens, not physical infeasibility certificates",
+      "screened_options": {}
+    },
+    "selected_score": [
+      0,
+      0.0866042099798326,
+      0.7388814916174719,
+      10,
+      0.44479358148641707,
+      1450.09,
+      0.0
+    ]
+  },
+  "initial_routes": {
+    "0": [
+      {
+        "destination": "C23",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C22",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C25",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C33",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C31",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C46",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C43",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "S13",
+        "kind": "charge",
+        "target_battery": 15.18,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C52",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      }
+    ],
+    "1": [
+      {
+        "destination": "C20",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C24",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C29",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "S13",
+        "kind": "charge",
+        "target_battery": 202.61249999999998,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C44",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C38",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C37",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C35",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "S11",
+        "kind": "charge",
+        "target_battery": 64.81,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C51",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "S13",
+        "kind": "charge",
+        "target_battery": 19.18,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C49",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      }
+    ],
+    "10": [],
+    "11": [],
+    "2": [
+      {
+        "destination": "C21",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "S0",
+        "kind": "charge",
+        "target_battery": 270.15,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C98",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "S1",
+        "kind": "charge",
+        "target_battery": 202.61249999999998,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C79",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C77",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C80",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "S18",
+        "kind": "charge",
+        "target_battery": 202.61249999999998,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C72",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C66",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      }
+    ],
+    "3": [
+      {
+        "destination": "C90",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C87",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C86",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "S0",
+        "kind": "charge",
+        "target_battery": 165.82999999999998,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C39",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "S12",
+        "kind": "charge",
+        "target_battery": 142.72,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C26",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      }
+    ],
+    "4": [
+      {
+        "destination": "C63",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C65",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C62",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C64",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C68",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C69",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "S0",
+        "kind": "charge",
+        "target_battery": 135.075,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C4",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "S3",
+        "kind": "charge",
+        "target_battery": 135.075,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C88",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C89",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      }
+    ],
+    "5": [
+      {
+        "destination": "C67",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "S3",
+        "kind": "charge",
+        "target_battery": 135.075,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C96",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C95",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C94",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C92",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C93",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C97",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C100",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C99",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "S3",
+        "kind": "charge",
+        "target_battery": 135.075,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C8",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      }
+    ],
+    "6": [
+      {
+        "destination": "C75",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C1",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C12",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C14",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C16",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C19",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "S7",
+        "kind": "charge",
+        "target_battery": 202.61249999999998,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C15",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C3",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C5",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      }
+    ],
+    "7": [
+      {
+        "destination": "C41",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "S13",
+        "kind": "charge",
+        "target_battery": 202.61249999999998,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C34",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C32",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C30",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "S9",
+        "kind": "charge",
+        "target_battery": 90.52,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C18",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "S7",
+        "kind": "charge",
+        "target_battery": 135.075,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C10",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C11",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C9",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      }
+    ],
+    "8": [
+      {
+        "destination": "S15",
+        "kind": "charge",
+        "target_battery": 270.15,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C59",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C60",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C58",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C56",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "S18",
+        "kind": "charge",
+        "target_battery": 135.075,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C76",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C81",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "S19",
+        "kind": "charge",
+        "target_battery": 202.61249999999998,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C91",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      }
+    ],
+    "9": [
+      {
+        "destination": "S1",
+        "kind": "charge",
+        "target_battery": 270.15,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C84",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "S16",
+        "kind": "charge",
+        "target_battery": 135.075,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C54",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C55",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      }
+    ]
+  },
+  "instance": "c101_21_100",
+  "observation": {
+    "committed_customers": [],
+    "customers": [
+      {
+        "demand": 10.0,
+        "distance_precision": 100,
+        "due": 140.0,
+        "id": "C1",
+        "kind": "c",
+        "ready": 78.0,
+        "service": 90.0,
+        "x": 45.0,
+        "y": 68.0
+      },
+      {
+        "demand": 10.0,
+        "distance_precision": 100,
+        "due": 845.0,
+        "id": "C10",
+        "kind": "c",
+        "ready": 779.0,
+        "service": 90.0,
+        "x": 35.0,
+        "y": 66.0
+      },
+      {
+        "demand": 20.0,
+        "distance_precision": 100,
+        "due": 798.0,
+        "id": "C100",
+        "kind": "c",
+        "ready": 744.0,
+        "service": 90.0,
+        "x": 55.0,
+        "y": 85.0
+      },
+      {
+        "demand": 10.0,
+        "distance_precision": 100,
+        "due": 941.0,
+        "id": "C11",
+        "kind": "c",
+        "ready": 869.0,
+        "service": 90.0,
+        "x": 35.0,
+        "y": 69.0
+      },
+      {
+        "demand": 20.0,
+        "distance_precision": 100,
+        "due": 228.0,
+        "id": "C12",
+        "kind": "c",
+        "ready": 176.0,
+        "service": 90.0,
+        "x": 25.0,
+        "y": 85.0
+      },
+      {
+        "demand": 10.0,
+        "distance_precision": 100,
+        "due": 327.0,
+        "id": "C14",
+        "kind": "c",
+        "ready": 263.0,
+        "service": 90.0,
+        "x": 22.0,
+        "y": 85.0
+      },
+      {
+        "demand": 40.0,
+        "distance_precision": 100,
+        "due": 789.0,
+        "id": "C15",
+        "kind": "c",
+        "ready": 745.0,
+        "service": 90.0,
+        "x": 20.0,
+        "y": 80.0
+      },
+      {
+        "demand": 40.0,
+        "distance_precision": 100,
+        "due": 416.0,
+        "id": "C16",
+        "kind": "c",
+        "ready": 358.0,
+        "service": 90.0,
+        "x": 20.0,
+        "y": 85.0
+      },
+      {
+        "demand": 20.0,
+        "distance_precision": 100,
+        "due": 601.0,
+        "id": "C18",
+        "kind": "c",
+        "ready": 557.0,
+        "service": 90.0,
+        "x": 15.0,
+        "y": 75.0
+      },
+      {
+        "demand": 10.0,
+        "distance_precision": 100,
+        "due": 513.0,
+        "id": "C19",
+        "kind": "c",
+        "ready": 455.0,
+        "service": 90.0,
+        "x": 15.0,
+        "y": 80.0
+      },
+      {
+        "demand": 10.0,
+        "distance_precision": 100,
+        "due": 70.0,
+        "id": "C20",
+        "kind": "c",
+        "ready": 10.0,
+        "service": 90.0,
+        "x": 30.0,
+        "y": 50.0
+      },
+      {
+        "demand": 20.0,
+        "distance_precision": 100,
+        "due": 73.0,
+        "id": "C21",
+        "kind": "c",
+        "ready": 11.0,
+        "service": 90.0,
+        "x": 30.0,
+        "y": 52.0
+      },
+      {
+        "demand": 20.0,
+        "distance_precision": 100,
+        "due": 131.0,
+        "id": "C22",
+        "kind": "c",
+        "ready": 73.0,
+        "service": 90.0,
+        "x": 28.0,
+        "y": 52.0
+      },
+      {
+        "demand": 10.0,
+        "distance_precision": 100,
+        "due": 70.0,
+        "id": "C23",
+        "kind": "c",
+        "ready": 13.0,
+        "service": 90.0,
+        "x": 28.0,
+        "y": 55.0
+      },
+      {
+        "demand": 10.0,
+        "distance_precision": 100,
+        "due": 138.0,
+        "id": "C24",
+        "kind": "c",
+        "ready": 72.0,
+        "service": 90.0,
+        "x": 25.0,
+        "y": 50.0
+      },
+      {
+        "demand": 40.0,
+        "distance_precision": 100,
+        "due": 232.0,
+        "id": "C25",
+        "kind": "c",
+        "ready": 158.0,
+        "service": 90.0,
+        "x": 25.0,
+        "y": 52.0
+      },
+      {
+        "demand": 10.0,
+        "distance_precision": 100,
+        "due": 744.0,
+        "id": "C26",
+        "kind": "c",
+        "ready": 672.0,
+        "service": 90.0,
+        "x": 25.0,
+        "y": 55.0
+      },
+      {
+        "demand": 10.0,
+        "distance_precision": 100,
+        "due": 226.0,
+        "id": "C29",
+        "kind": "c",
+        "ready": 174.0,
+        "service": 90.0,
+        "x": 20.0,
+        "y": 50.0
+      },
+      {
+        "demand": 10.0,
+        "distance_precision": 100,
+        "due": 931.0,
+        "id": "C3",
+        "kind": "c",
+        "ready": 863.0,
+        "service": 90.0,
+        "x": 42.0,
+        "y": 66.0
+      },
+      {
+        "demand": 10.0,
+        "distance_precision": 100,
+        "due": 407.0,
+        "id": "C30",
+        "kind": "c",
+        "ready": 355.0,
+        "service": 90.0,
+        "x": 20.0,
+        "y": 55.0
+      },
+      {
+        "demand": 20.0,
+        "distance_precision": 100,
+        "due": 517.0,
+        "id": "C31",
+        "kind": "c",
+        "ready": 467.0,
+        "service": 90.0,
+        "x": 10.0,
+        "y": 35.0
+      },
+      {
+        "demand": 30.0,
+        "distance_precision": 100,
+        "due": 337.0,
+        "id": "C32",
+        "kind": "c",
+        "ready": 271.0,
+        "service": 90.0,
+        "x": 10.0,
+        "y": 40.0
+      },
+      {
+        "demand": 40.0,
+        "distance_precision": 100,
+        "due": 437.0,
+        "id": "C33",
+        "kind": "c",
+        "ready": 355.0,
+        "service": 90.0,
+        "x": 8.0,
+        "y": 40.0
+      },
+      {
+        "demand": 20.0,
+        "distance_precision": 100,
+        "due": 244.0,
+        "id": "C34",
+        "kind": "c",
+        "ready": 194.0,
+        "service": 90.0,
+        "x": 8.0,
+        "y": 45.0
+      },
+      {
+        "demand": 10.0,
+        "distance_precision": 100,
+        "due": 725.0,
+        "id": "C35",
+        "kind": "c",
+        "ready": 655.0,
+        "service": 90.0,
+        "x": 5.0,
+        "y": 35.0
+      },
+      {
+        "demand": 20.0,
+        "distance_precision": 100,
+        "due": 619.0,
+        "id": "C37",
+        "kind": "c",
+        "ready": 569.0,
+        "service": 90.0,
+        "x": 2.0,
+        "y": 40.0
+      },
+      {
+        "demand": 30.0,
+        "distance_precision": 100,
+        "due": 532.0,
+        "id": "C38",
+        "kind": "c",
+        "ready": 472.0,
+        "service": 90.0,
+        "x": 0.0,
+        "y": 40.0
+      },
+      {
+        "demand": 20.0,
+        "distance_precision": 100,
+        "due": 440.0,
+        "id": "C39",
+        "kind": "c",
+        "ready": 374.0,
+        "service": 90.0,
+        "x": 0.0,
+        "y": 45.0
+      },
+      {
+        "demand": 10.0,
+        "distance_precision": 100,
+        "due": 656.0,
+        "id": "C4",
+        "kind": "c",
+        "ready": 584.0,
+        "service": 90.0,
+        "x": 42.0,
+        "y": 68.0
+      },
+      {
+        "demand": 10.0,
+        "distance_precision": 100,
+        "due": 109.0,
+        "id": "C41",
+        "kind": "c",
+        "ready": 49.0,
+        "service": 90.0,
+        "x": 35.0,
+        "y": 32.0
+      },
+      {
+        "demand": 10.0,
+        "distance_precision": 100,
+        "due": 849.0,
+        "id": "C43",
+        "kind": "c",
+        "ready": 789.0,
+        "service": 90.0,
+        "x": 33.0,
+        "y": 35.0
+      },
+      {
+        "demand": 10.0,
+        "distance_precision": 100,
+        "due": 387.0,
+        "id": "C44",
+        "kind": "c",
+        "ready": 325.0,
+        "service": 90.0,
+        "x": 32.0,
+        "y": 30.0
+      },
+      {
+        "demand": 30.0,
+        "distance_precision": 100,
+        "due": 665.0,
+        "id": "C46",
+        "kind": "c",
+        "ready": 601.0,
+        "service": 90.0,
+        "x": 30.0,
+        "y": 32.0
+      },
+      {
+        "demand": 10.0,
+        "distance_precision": 100,
+        "due": 1073.0,
+        "id": "C49",
+        "kind": "c",
+        "ready": 1011.0,
+        "service": 90.0,
+        "x": 28.0,
+        "y": 35.0
+      },
+      {
+        "demand": 10.0,
+        "distance_precision": 100,
+        "due": 1026.0,
+        "id": "C5",
+        "kind": "c",
+        "ready": 950.0,
+        "service": 90.0,
+        "x": 42.0,
+        "y": 65.0
+      },
+      {
+        "demand": 10.0,
+        "distance_precision": 100,
+        "due": 889.0,
+        "id": "C51",
+        "kind": "c",
+        "ready": 823.0,
+        "service": 90.0,
+        "x": 25.0,
+        "y": 30.0
+      },
+      {
+        "demand": 10.0,
+        "distance_precision": 100,
+        "due": 1102.0,
+        "id": "C52",
+        "kind": "c",
+        "ready": 1042.0,
+        "service": 90.0,
+        "x": 25.0,
+        "y": 35.0
+      },
+      {
+        "demand": 40.0,
+        "distance_precision": 100,
+        "due": 868.0,
+        "id": "C54",
+        "kind": "c",
+        "ready": 810.0,
+        "service": 90.0,
+        "x": 42.0,
+        "y": 10.0
+      },
+      {
+        "demand": 10.0,
+        "distance_precision": 100,
+        "due": 963.0,
+        "id": "C55",
+        "kind": "c",
+        "ready": 905.0,
+        "service": 90.0,
+        "x": 42.0,
+        "y": 15.0
+      },
+      {
+        "demand": 30.0,
+        "distance_precision": 100,
+        "due": 410.0,
+        "id": "C56",
+        "kind": "c",
+        "ready": 350.0,
+        "service": 90.0,
+        "x": 40.0,
+        "y": 5.0
+      },
+      {
+        "demand": 30.0,
+        "distance_precision": 100,
+        "due": 320.0,
+        "id": "C58",
+        "kind": "c",
+        "ready": 256.0,
+        "service": 90.0,
+        "x": 38.0,
+        "y": 5.0
+      },
+      {
+        "demand": 10.0,
+        "distance_precision": 100,
+        "due": 124.0,
+        "id": "C59",
+        "kind": "c",
+        "ready": 66.0,
+        "service": 90.0,
+        "x": 38.0,
+        "y": 15.0
+      },
+      {
+        "demand": 20.0,
+        "distance_precision": 100,
+        "due": 223.0,
+        "id": "C60",
+        "kind": "c",
+        "ready": 167.0,
+        "service": 90.0,
+        "x": 35.0,
+        "y": 5.0
+      },
+      {
+        "demand": 20.0,
+        "distance_precision": 100,
+        "due": 229.0,
+        "id": "C62",
+        "kind": "c",
+        "ready": 169.0,
+        "service": 90.0,
+        "x": 50.0,
+        "y": 35.0
+      },
+      {
+        "demand": 50.0,
+        "distance_precision": 100,
+        "due": 85.0,
+        "id": "C63",
+        "kind": "c",
+        "ready": 15.0,
+        "service": 90.0,
+        "x": 50.0,
+        "y": 40.0
+      },
+      {
+        "demand": 10.0,
+        "distance_precision": 100,
+        "due": 325.0,
+        "id": "C64",
+        "kind": "c",
+        "ready": 263.0,
+        "service": 90.0,
+        "x": 48.0,
+        "y": 30.0
+      },
+      {
+        "demand": 10.0,
+        "distance_precision": 100,
+        "due": 139.0,
+        "id": "C65",
+        "kind": "c",
+        "ready": 67.0,
+        "service": 90.0,
+        "x": 48.0,
+        "y": 40.0
+      },
+      {
+        "demand": 10.0,
+        "distance_precision": 100,
+        "due": 1129.0,
+        "id": "C66",
+        "kind": "c",
+        "ready": 1068.0,
+        "service": 90.0,
+        "x": 47.0,
+        "y": 35.0
+      },
+      {
+        "demand": 10.0,
+        "distance_precision": 100,
+        "due": 88.0,
+        "id": "C67",
+        "kind": "c",
+        "ready": 13.0,
+        "service": 90.0,
+        "x": 47.0,
+        "y": 40.0
+      },
+      {
+        "demand": 10.0,
+        "distance_precision": 100,
+        "due": 420.0,
+        "id": "C68",
+        "kind": "c",
+        "ready": 354.0,
+        "service": 90.0,
+        "x": 45.0,
+        "y": 30.0
+      },
+      {
+        "demand": 10.0,
+        "distance_precision": 100,
+        "due": 516.0,
+        "id": "C69",
+        "kind": "c",
+        "ready": 448.0,
+        "service": 90.0,
+        "x": 45.0,
+        "y": 35.0
+      },
+      {
+        "demand": 10.0,
+        "distance_precision": 100,
+        "due": 954.0,
+        "id": "C72",
+        "kind": "c",
+        "ready": 904.0,
+        "service": 90.0,
+        "x": 53.0,
+        "y": 30.0
+      },
+      {
+        "demand": 20.0,
+        "distance_precision": 100,
+        "due": 91.0,
+        "id": "C75",
+        "kind": "c",
+        "ready": 16.0,
+        "service": 90.0,
+        "x": 45.0,
+        "y": 65.0
+      },
+      {
+        "demand": 10.0,
+        "distance_precision": 100,
+        "due": 639.0,
+        "id": "C76",
+        "kind": "c",
+        "ready": 575.0,
+        "service": 90.0,
+        "x": 90.0,
+        "y": 35.0
+      },
+      {
+        "demand": 10.0,
+        "distance_precision": 100,
+        "due": 600.0,
+        "id": "C77",
+        "kind": "c",
+        "ready": 534.0,
+        "service": 90.0,
+        "x": 88.0,
+        "y": 30.0
+      },
+      {
+        "demand": 10.0,
+        "distance_precision": 100,
+        "due": 506.0,
+        "id": "C79",
+        "kind": "c",
+        "ready": 446.0,
+        "service": 90.0,
+        "x": 87.0,
+        "y": 30.0
+      },
+      {
+        "demand": 20.0,
+        "distance_precision": 100,
+        "due": 1125.0,
+        "id": "C8",
+        "kind": "c",
+        "ready": 1057.0,
+        "service": 90.0,
+        "x": 38.0,
+        "y": 68.0
+      },
+      {
+        "demand": 10.0,
+        "distance_precision": 100,
+        "due": 689.0,
+        "id": "C80",
+        "kind": "c",
+        "ready": 637.0,
+        "service": 90.0,
+        "x": 85.0,
+        "y": 25.0
+      },
+      {
+        "demand": 30.0,
+        "distance_precision": 100,
+        "due": 823.0,
+        "id": "C81",
+        "kind": "c",
+        "ready": 761.0,
+        "service": 90.0,
+        "x": 85.0,
+        "y": 35.0
+      },
+      {
+        "demand": 20.0,
+        "distance_precision": 100,
+        "due": 710.0,
+        "id": "C84",
+        "kind": "c",
+        "ready": 650.0,
+        "service": 90.0,
+        "x": 70.0,
+        "y": 58.0
+      },
+      {
+        "demand": 10.0,
+        "distance_precision": 100,
+        "due": 241.0,
+        "id": "C86",
+        "kind": "c",
+        "ready": 173.0,
+        "service": 90.0,
+        "x": 66.0,
+        "y": 55.0
+      },
+      {
+        "demand": 20.0,
+        "distance_precision": 100,
+        "due": 145.0,
+        "id": "C87",
+        "kind": "c",
+        "ready": 87.0,
+        "service": 90.0,
+        "x": 65.0,
+        "y": 55.0
+      },
+      {
+        "demand": 30.0,
+        "distance_precision": 100,
+        "due": 895.0,
+        "id": "C88",
+        "kind": "c",
+        "ready": 837.0,
+        "service": 90.0,
+        "x": 65.0,
+        "y": 60.0
+      },
+      {
+        "demand": 10.0,
+        "distance_precision": 100,
+        "due": 989.0,
+        "id": "C89",
+        "kind": "c",
+        "ready": 929.0,
+        "service": 90.0,
+        "x": 63.0,
+        "y": 58.0
+      },
+      {
+        "demand": 10.0,
+        "distance_precision": 100,
+        "due": 1040.0,
+        "id": "C9",
+        "kind": "c",
+        "ready": 958.0,
+        "service": 90.0,
+        "x": 38.0,
+        "y": 70.0
+      },
+      {
+        "demand": 10.0,
+        "distance_precision": 100,
+        "due": 84.0,
+        "id": "C90",
+        "kind": "c",
+        "ready": 21.0,
+        "service": 90.0,
+        "x": 60.0,
+        "y": 55.0
+      },
+      {
+        "demand": 10.0,
+        "distance_precision": 100,
+        "due": 1096.0,
+        "id": "C91",
+        "kind": "c",
+        "ready": 1010.0,
+        "service": 90.0,
+        "x": 60.0,
+        "y": 60.0
+      },
+      {
+        "demand": 20.0,
+        "distance_precision": 100,
+        "due": 519.0,
+        "id": "C92",
+        "kind": "c",
+        "ready": 459.0,
+        "service": 90.0,
+        "x": 67.0,
+        "y": 85.0
+      },
+      {
+        "demand": 40.0,
+        "distance_precision": 100,
+        "due": 616.0,
+        "id": "C93",
+        "kind": "c",
+        "ready": 546.0,
+        "service": 90.0,
+        "x": 65.0,
+        "y": 85.0
+      },
+      {
+        "demand": 10.0,
+        "distance_precision": 100,
+        "due": 423.0,
+        "id": "C94",
+        "kind": "c",
+        "ready": 367.0,
+        "service": 90.0,
+        "x": 65.0,
+        "y": 82.0
+      },
+      {
+        "demand": 30.0,
+        "distance_precision": 100,
+        "due": 330.0,
+        "id": "C95",
+        "kind": "c",
+        "ready": 274.0,
+        "service": 90.0,
+        "x": 62.0,
+        "y": 80.0
+      },
+      {
+        "demand": 10.0,
+        "distance_precision": 100,
+        "due": 243.0,
+        "id": "C96",
+        "kind": "c",
+        "ready": 177.0,
+        "service": 90.0,
+        "x": 60.0,
+        "y": 80.0
+      },
+      {
+        "demand": 30.0,
+        "distance_precision": 100,
+        "due": 707.0,
+        "id": "C97",
+        "kind": "c",
+        "ready": 645.0,
+        "service": 90.0,
+        "x": 60.0,
+        "y": 85.0
+      },
+      {
+        "demand": 20.0,
+        "distance_precision": 100,
+        "due": 247.0,
+        "id": "C98",
+        "kind": "c",
+        "ready": 181.0,
+        "service": 90.0,
+        "x": 58.0,
+        "y": 75.0
+      },
+      {
+        "demand": 10.0,
+        "distance_precision": 100,
+        "due": 896.0,
+        "id": "C99",
+        "kind": "c",
+        "ready": 836.0,
+        "service": 90.0,
+        "x": 55.0,
+        "y": 80.0
+      }
+    ],
+    "infrastructure": {
+      "depot": {
+        "demand": 0.0,
+        "distance_precision": 100,
+        "due": 1236.0,
+        "id": "D0",
+        "kind": "d",
+        "ready": 0.0,
+        "service": 0.0,
+        "x": 40.0,
+        "y": 50.0
+      },
+      "parameters": {
+        "allow_station_to_station": false,
+        "battery": 270.15,
+        "capacity": 200.0,
+        "consumption": 3.39,
+        "energy_precision": 100,
+        "inverse_charge_rate": 1.0,
+        "speed": 1.0
+      },
+      "stations": [
+        {
+          "demand": 0.0,
+          "distance_precision": 100,
+          "due": 1236.0,
+          "id": "S0",
+          "kind": "f",
+          "ready": 0.0,
+          "service": 0.0,
+          "x": 40.0,
+          "y": 50.0
+        },
+        {
+          "demand": 0.0,
+          "distance_precision": 100,
+          "due": 1236.0,
+          "id": "S1",
+          "kind": "f",
+          "ready": 0.0,
+          "service": 0.0,
+          "x": 73.0,
+          "y": 52.0
+        },
+        {
+          "demand": 0.0,
+          "distance_precision": 100,
+          "due": 1236.0,
+          "id": "S2",
+          "kind": "f",
+          "ready": 0.0,
+          "service": 0.0,
+          "x": 90.0,
+          "y": 55.0
+        },
+        {
+          "demand": 0.0,
+          "distance_precision": 100,
+          "due": 1236.0,
+          "id": "S3",
+          "kind": "f",
+          "ready": 0.0,
+          "service": 0.0,
+          "x": 55.0,
+          "y": 79.0
+        },
+        {
+          "demand": 0.0,
+          "distance_precision": 100,
+          "due": 1236.0,
+          "id": "S4",
+          "kind": "f",
+          "ready": 0.0,
+          "service": 0.0,
+          "x": 69.0,
+          "y": 89.0
+        },
+        {
+          "demand": 0.0,
+          "distance_precision": 100,
+          "due": 1236.0,
+          "id": "S5",
+          "kind": "f",
+          "ready": 0.0,
+          "service": 0.0,
+          "x": 32.0,
+          "y": 80.0
+        },
+        {
+          "demand": 0.0,
+          "distance_precision": 100,
+          "due": 1236.0,
+          "id": "S6",
+          "kind": "f",
+          "ready": 0.0,
+          "service": 0.0,
+          "x": 39.0,
+          "y": 96.0
+        },
+        {
+          "demand": 0.0,
+          "distance_precision": 100,
+          "due": 1236.0,
+          "id": "S7",
+          "kind": "f",
+          "ready": 0.0,
+          "service": 0.0,
+          "x": 23.0,
+          "y": 80.0
+        },
+        {
+          "demand": 0.0,
+          "distance_precision": 100,
+          "due": 1236.0,
+          "id": "S8",
+          "kind": "f",
+          "ready": 0.0,
+          "service": 0.0,
+          "x": 4.0,
+          "y": 83.0
+        },
+        {
+          "demand": 0.0,
+          "distance_precision": 100,
+          "due": 1236.0,
+          "id": "S9",
+          "kind": "f",
+          "ready": 0.0,
+          "service": 0.0,
+          "x": 18.0,
+          "y": 58.0
+        },
+        {
+          "demand": 0.0,
+          "distance_precision": 100,
+          "due": 1236.0,
+          "id": "S10",
+          "kind": "f",
+          "ready": 0.0,
+          "service": 0.0,
+          "x": 1.0,
+          "y": 56.0
+        },
+        {
+          "demand": 0.0,
+          "distance_precision": 100,
+          "due": 1236.0,
+          "id": "S11",
+          "kind": "f",
+          "ready": 0.0,
+          "service": 0.0,
+          "x": 13.0,
+          "y": 31.0
+        },
+        {
+          "demand": 0.0,
+          "distance_precision": 100,
+          "due": 1236.0,
+          "id": "S12",
+          "kind": "f",
+          "ready": 0.0,
+          "service": 0.0,
+          "x": -5.0,
+          "y": 38.0
+        },
+        {
+          "demand": 0.0,
+          "distance_precision": 100,
+          "due": 1236.0,
+          "id": "S13",
+          "kind": "f",
+          "ready": 0.0,
+          "service": 0.0,
+          "x": 26.0,
+          "y": 37.0
+        },
+        {
+          "demand": 0.0,
+          "distance_precision": 100,
+          "due": 1236.0,
+          "id": "S14",
+          "kind": "f",
+          "ready": 0.0,
+          "service": 0.0,
+          "x": 28.0,
+          "y": 13.0
+        },
+        {
+          "demand": 0.0,
+          "distance_precision": 100,
+          "due": 1236.0,
+          "id": "S15",
+          "kind": "f",
+          "ready": 0.0,
+          "service": 0.0,
+          "x": 39.0,
+          "y": 31.0
+        },
+        {
+          "demand": 0.0,
+          "distance_precision": 100,
+          "due": 1236.0,
+          "id": "S16",
+          "kind": "f",
+          "ready": 0.0,
+          "service": 0.0,
+          "x": 48.0,
+          "y": 11.0
+        },
+        {
+          "demand": 0.0,
+          "distance_precision": 100,
+          "due": 1236.0,
+          "id": "S17",
+          "kind": "f",
+          "ready": 0.0,
+          "service": 0.0,
+          "x": 59.0,
+          "y": 17.0
+        },
+        {
+          "demand": 0.0,
+          "distance_precision": 100,
+          "due": 1236.0,
+          "id": "S18",
+          "kind": "f",
+          "ready": 0.0,
+          "service": 0.0,
+          "x": 73.0,
+          "y": 23.0
+        },
+        {
+          "demand": 0.0,
+          "distance_precision": 100,
+          "due": 1236.0,
+          "id": "S19",
+          "kind": "f",
+          "ready": 0.0,
+          "service": 0.0,
+          "x": 74.0,
+          "y": 32.0
+        },
+        {
+          "demand": 0.0,
+          "distance_precision": 100,
+          "due": 1236.0,
+          "id": "S20",
+          "kind": "f",
+          "ready": 0.0,
+          "service": 0.0,
+          "x": 90.0,
+          "y": 44.0
+        }
+      ]
+    },
+    "time": 0.0
+  },
+  "observed_failures": [
+    {
+      "events": 4763,
+      "kind": "insertion_screen",
+      "reason": "feasible"
+    },
+    {
+      "events": 1480,
+      "kind": "route_decode",
+      "reason": "feasible"
+    },
+    {
+      "events": 26433,
+      "kind": "insertion_screen",
+      "reason": "time_window"
+    },
+    {
+      "events": 480,
+      "kind": "charging_connection_failure",
+      "reason": ""
+    },
+    {
+      "events": 520,
+      "kind": "route_decode",
+      "reason": "bounded_decoder_failure"
+    },
+    {
+      "events": 1303,
+      "kind": "insertion_screen",
+      "reason": "capacity"
+    }
+  ],
+  "origins": {
+    "0": {
+      "battery": 270.15,
+      "charging_time": 0.0,
+      "current_committed_action": null,
+      "departed": false,
+      "distance_travelled": 0.0,
+      "finished": false,
+      "id": 0,
+      "load": 200.0,
+      "location": {
+        "demand": 0.0,
+        "distance_precision": 100,
+        "due": 1236.0,
+        "id": "D0",
+        "kind": "d",
+        "ready": 0.0,
+        "service": 0.0,
+        "x": 40.0,
+        "y": 50.0
+      },
+      "route_history": [
+        "D0"
+      ],
+      "served_customers": [],
+      "status": "idle",
+      "time": 0.0,
+      "waiting_time": 0.0
+    },
+    "1": {
+      "battery": 270.15,
+      "charging_time": 0.0,
+      "current_committed_action": null,
+      "departed": false,
+      "distance_travelled": 0.0,
+      "finished": false,
+      "id": 1,
+      "load": 200.0,
+      "location": {
+        "demand": 0.0,
+        "distance_precision": 100,
+        "due": 1236.0,
+        "id": "D0",
+        "kind": "d",
+        "ready": 0.0,
+        "service": 0.0,
+        "x": 40.0,
+        "y": 50.0
+      },
+      "route_history": [
+        "D0"
+      ],
+      "served_customers": [],
+      "status": "idle",
+      "time": 0.0,
+      "waiting_time": 0.0
+    },
+    "10": {
+      "battery": 270.15,
+      "charging_time": 0.0,
+      "current_committed_action": null,
+      "departed": false,
+      "distance_travelled": 0.0,
+      "finished": false,
+      "id": 10,
+      "load": 200.0,
+      "location": {
+        "demand": 0.0,
+        "distance_precision": 100,
+        "due": 1236.0,
+        "id": "D0",
+        "kind": "d",
+        "ready": 0.0,
+        "service": 0.0,
+        "x": 40.0,
+        "y": 50.0
+      },
+      "route_history": [
+        "D0"
+      ],
+      "served_customers": [],
+      "status": "idle",
+      "time": 0.0,
+      "waiting_time": 0.0
+    },
+    "11": {
+      "battery": 270.15,
+      "charging_time": 0.0,
+      "current_committed_action": null,
+      "departed": false,
+      "distance_travelled": 0.0,
+      "finished": false,
+      "id": 11,
+      "load": 200.0,
+      "location": {
+        "demand": 0.0,
+        "distance_precision": 100,
+        "due": 1236.0,
+        "id": "D0",
+        "kind": "d",
+        "ready": 0.0,
+        "service": 0.0,
+        "x": 40.0,
+        "y": 50.0
+      },
+      "route_history": [
+        "D0"
+      ],
+      "served_customers": [],
+      "status": "idle",
+      "time": 0.0,
+      "waiting_time": 0.0
+    },
+    "2": {
+      "battery": 270.15,
+      "charging_time": 0.0,
+      "current_committed_action": null,
+      "departed": false,
+      "distance_travelled": 0.0,
+      "finished": false,
+      "id": 2,
+      "load": 200.0,
+      "location": {
+        "demand": 0.0,
+        "distance_precision": 100,
+        "due": 1236.0,
+        "id": "D0",
+        "kind": "d",
+        "ready": 0.0,
+        "service": 0.0,
+        "x": 40.0,
+        "y": 50.0
+      },
+      "route_history": [
+        "D0"
+      ],
+      "served_customers": [],
+      "status": "idle",
+      "time": 0.0,
+      "waiting_time": 0.0
+    },
+    "3": {
+      "battery": 270.15,
+      "charging_time": 0.0,
+      "current_committed_action": null,
+      "departed": false,
+      "distance_travelled": 0.0,
+      "finished": false,
+      "id": 3,
+      "load": 200.0,
+      "location": {
+        "demand": 0.0,
+        "distance_precision": 100,
+        "due": 1236.0,
+        "id": "D0",
+        "kind": "d",
+        "ready": 0.0,
+        "service": 0.0,
+        "x": 40.0,
+        "y": 50.0
+      },
+      "route_history": [
+        "D0"
+      ],
+      "served_customers": [],
+      "status": "idle",
+      "time": 0.0,
+      "waiting_time": 0.0
+    },
+    "4": {
+      "battery": 270.15,
+      "charging_time": 0.0,
+      "current_committed_action": null,
+      "departed": false,
+      "distance_travelled": 0.0,
+      "finished": false,
+      "id": 4,
+      "load": 200.0,
+      "location": {
+        "demand": 0.0,
+        "distance_precision": 100,
+        "due": 1236.0,
+        "id": "D0",
+        "kind": "d",
+        "ready": 0.0,
+        "service": 0.0,
+        "x": 40.0,
+        "y": 50.0
+      },
+      "route_history": [
+        "D0"
+      ],
+      "served_customers": [],
+      "status": "idle",
+      "time": 0.0,
+      "waiting_time": 0.0
+    },
+    "5": {
+      "battery": 270.15,
+      "charging_time": 0.0,
+      "current_committed_action": null,
+      "departed": false,
+      "distance_travelled": 0.0,
+      "finished": false,
+      "id": 5,
+      "load": 200.0,
+      "location": {
+        "demand": 0.0,
+        "distance_precision": 100,
+        "due": 1236.0,
+        "id": "D0",
+        "kind": "d",
+        "ready": 0.0,
+        "service": 0.0,
+        "x": 40.0,
+        "y": 50.0
+      },
+      "route_history": [
+        "D0"
+      ],
+      "served_customers": [],
+      "status": "idle",
+      "time": 0.0,
+      "waiting_time": 0.0
+    },
+    "6": {
+      "battery": 270.15,
+      "charging_time": 0.0,
+      "current_committed_action": null,
+      "departed": false,
+      "distance_travelled": 0.0,
+      "finished": false,
+      "id": 6,
+      "load": 200.0,
+      "location": {
+        "demand": 0.0,
+        "distance_precision": 100,
+        "due": 1236.0,
+        "id": "D0",
+        "kind": "d",
+        "ready": 0.0,
+        "service": 0.0,
+        "x": 40.0,
+        "y": 50.0
+      },
+      "route_history": [
+        "D0"
+      ],
+      "served_customers": [],
+      "status": "idle",
+      "time": 0.0,
+      "waiting_time": 0.0
+    },
+    "7": {
+      "battery": 270.15,
+      "charging_time": 0.0,
+      "current_committed_action": null,
+      "departed": false,
+      "distance_travelled": 0.0,
+      "finished": false,
+      "id": 7,
+      "load": 200.0,
+      "location": {
+        "demand": 0.0,
+        "distance_precision": 100,
+        "due": 1236.0,
+        "id": "D0",
+        "kind": "d",
+        "ready": 0.0,
+        "service": 0.0,
+        "x": 40.0,
+        "y": 50.0
+      },
+      "route_history": [
+        "D0"
+      ],
+      "served_customers": [],
+      "status": "idle",
+      "time": 0.0,
+      "waiting_time": 0.0
+    },
+    "8": {
+      "battery": 270.15,
+      "charging_time": 0.0,
+      "current_committed_action": null,
+      "departed": false,
+      "distance_travelled": 0.0,
+      "finished": false,
+      "id": 8,
+      "load": 200.0,
+      "location": {
+        "demand": 0.0,
+        "distance_precision": 100,
+        "due": 1236.0,
+        "id": "D0",
+        "kind": "d",
+        "ready": 0.0,
+        "service": 0.0,
+        "x": 40.0,
+        "y": 50.0
+      },
+      "route_history": [
+        "D0"
+      ],
+      "served_customers": [],
+      "status": "idle",
+      "time": 0.0,
+      "waiting_time": 0.0
+    },
+    "9": {
+      "battery": 270.15,
+      "charging_time": 0.0,
+      "current_committed_action": null,
+      "departed": false,
+      "distance_travelled": 0.0,
+      "finished": false,
+      "id": 9,
+      "load": 200.0,
+      "location": {
+        "demand": 0.0,
+        "distance_precision": 100,
+        "due": 1236.0,
+        "id": "D0",
+        "kind": "d",
+        "ready": 0.0,
+        "service": 0.0,
+        "x": 40.0,
+        "y": 50.0
+      },
+      "route_history": [
+        "D0"
+      ],
+      "served_customers": [],
+      "status": "idle",
+      "time": 0.0,
+      "waiting_time": 0.0
+    }
+  },
+  "protocol_identifier": "3e65815af609331e5a51338e3813050b49d93d8cc112979d0ac95511a1d2bcf2",
+  "ready_vehicles": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+  ],
+  "selected_routes": {
+    "0": [
+      {
+        "destination": "C23",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C22",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C25",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C33",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C31",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C46",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C43",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "S13",
+        "kind": "charge",
+        "target_battery": 15.18,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C52",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      }
+    ],
+    "1": [
+      {
+        "destination": "C20",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C24",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C29",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "S13",
+        "kind": "charge",
+        "target_battery": 202.61249999999998,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C44",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C38",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C37",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C35",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "S11",
+        "kind": "charge",
+        "target_battery": 64.81,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C51",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "S13",
+        "kind": "charge",
+        "target_battery": 19.18,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C49",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      }
+    ],
+    "2": [
+      {
+        "destination": "C21",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "S0",
+        "kind": "charge",
+        "target_battery": 270.15,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C98",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "S1",
+        "kind": "charge",
+        "target_battery": 202.61249999999998,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C79",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C77",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C80",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "S18",
+        "kind": "charge",
+        "target_battery": 202.61249999999998,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C72",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C66",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      }
+    ],
+    "3": [
+      {
+        "destination": "C90",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C87",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C86",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "S0",
+        "kind": "charge",
+        "target_battery": 165.82999999999998,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C39",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "S12",
+        "kind": "charge",
+        "target_battery": 142.72,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C26",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      }
+    ],
+    "4": [
+      {
+        "destination": "C63",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C65",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C62",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C64",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C68",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C69",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "S0",
+        "kind": "charge",
+        "target_battery": 135.075,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C4",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "S3",
+        "kind": "charge",
+        "target_battery": 135.075,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C88",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C89",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      }
+    ],
+    "5": [
+      {
+        "destination": "C67",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "S3",
+        "kind": "charge",
+        "target_battery": 135.075,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C96",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C95",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C94",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C92",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C93",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C97",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C100",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C99",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "S3",
+        "kind": "charge",
+        "target_battery": 135.075,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C8",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      }
+    ],
+    "6": [
+      {
+        "destination": "C75",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C1",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C12",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C14",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C16",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C19",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "S7",
+        "kind": "charge",
+        "target_battery": 202.61249999999998,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C15",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C3",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C5",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      }
+    ],
+    "7": [
+      {
+        "destination": "C41",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "S13",
+        "kind": "charge",
+        "target_battery": 202.61249999999998,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C34",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C32",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C30",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "S9",
+        "kind": "charge",
+        "target_battery": 90.52,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C18",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "S7",
+        "kind": "charge",
+        "target_battery": 135.075,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C10",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C11",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C9",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      }
+    ],
+    "8": [
+      {
+        "destination": "S15",
+        "kind": "charge",
+        "target_battery": 270.15,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C59",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C60",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C58",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C56",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "S18",
+        "kind": "charge",
+        "target_battery": 135.075,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C76",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C81",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "S19",
+        "kind": "charge",
+        "target_battery": 202.61249999999998,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C91",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      }
+    ],
+    "9": [
+      {
+        "destination": "S1",
+        "kind": "charge",
+        "target_battery": 270.15,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C84",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "S16",
+        "kind": "charge",
+        "target_battery": 135.075,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C54",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      },
+      {
+        "destination": "C55",
+        "kind": "serve",
+        "target_battery": 0.0,
+        "wait_duration": 0.0
+      }
+    ],
+    "10": [],
+    "11": []
+  },
+  "selected_targets": [
+    {
+      "customer": "C18",
+      "selection": "first_visible"
+    }
+  ],
+  "source_decision_index": 0,
+  "source_raw": "results/desaulniers/publication_development/instrumented_v1/raw/c101_21_100_MPC_ALNS_instrumented_76745b278f4248ce.json.gz",
+  "source_raw_sha256": "0b91dece5694b904e4cd48d70ccd2b43b8de8b2af425ac457b7416e85106e7d0",
+  "time": 0.0
+}

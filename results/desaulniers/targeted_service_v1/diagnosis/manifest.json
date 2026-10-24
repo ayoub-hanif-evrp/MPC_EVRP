@@ -1,0 +1,188 @@
+{
+  "maximum_roots": 24,
+  "protocol_identifier": "3e65815af609331e5a51338e3813050b49d93d8cc112979d0ac95511a1d2bcf2",
+  "records": [
+    {
+      "candidates": 12,
+      "improved": false,
+      "instance": "r101_21_25",
+      "root": "results/desaulniers/targeted_service_v1/diagnosis/roots/e8fc24eb65114d77.json",
+      "sha256": "56fbbb9625f3c49906c70cc1013225d1d6fcf57cbf0b195743d17c3b3d4e334e",
+      "time": 0.0,
+      "timeout": false
+    },
+    {
+      "candidates": 12,
+      "improved": false,
+      "instance": "r101_21_25",
+      "root": "results/desaulniers/targeted_service_v1/diagnosis/roots/ef4592b24defb7a4.json",
+      "sha256": "13eeafc2a91f6be07268ba6c547c0bb3a44da5d73f0d93b9be09b83741352bc8",
+      "time": 21.23248886541483,
+      "timeout": false
+    },
+    {
+      "candidates": 4,
+      "improved": false,
+      "instance": "r101_21_25",
+      "root": "results/desaulniers/targeted_service_v1/diagnosis/roots/39e65c2c131629d1.json",
+      "sha256": "011798dc82bafaa0d3417cb0fdfbcb11106990ec80f9243cefd0a630560b74a4",
+      "time": 86.84301916075763,
+      "timeout": false
+    },
+    {
+      "candidates": 0,
+      "improved": false,
+      "instance": "r101_21_25",
+      "root": "results/desaulniers/targeted_service_v1/diagnosis/roots/c93a6d371177464a.json",
+      "sha256": "0f61e3e7c6f98ccbf46c2d5de3d20c2046a05215c00eb84cbc70170ca10281ae",
+      "time": 94.6298488107895,
+      "timeout": false
+    },
+    {
+      "candidates": 12,
+      "improved": false,
+      "instance": "r101_21_100",
+      "root": "results/desaulniers/targeted_service_v1/diagnosis/roots/88b5d85e32e0a40a.json",
+      "sha256": "36f23d72678de2686b9852284aa0639f4972adfaf6dc0103a4d202ec672b49a6",
+      "time": 8.39128806840705,
+      "timeout": false
+    },
+    {
+      "candidates": 12,
+      "improved": false,
+      "instance": "r101_21_100",
+      "root": "results/desaulniers/targeted_service_v1/diagnosis/roots/219bffea81a97e08.json",
+      "sha256": "406031ff83894740baafe39abc824cb35672ba0e2055cbba6baaa31a3c41afdc",
+      "time": 18.257696160680645,
+      "timeout": false
+    },
+    {
+      "candidates": 8,
+      "improved": false,
+      "instance": "r101_21_100",
+      "root": "results/desaulniers/targeted_service_v1/diagnosis/roots/ffb3472dce60a7f9.json",
+      "sha256": "e69eef3efd962d0af3d79e8f2f4c9851cc39adff61e56b18841e9b2ed3779506",
+      "time": 36.40807593179471,
+      "timeout": false
+    },
+    {
+      "candidates": 12,
+      "improved": false,
+      "instance": "r101_21_100",
+      "root": "results/desaulniers/targeted_service_v1/diagnosis/roots/8165e1ffd495a276.json",
+      "sha256": "90ba3e5fd7f56ff20b3a2e7194e99137cf6f08fbea22e4c3694a10acaf174a1f",
+      "time": 38.382282719159775,
+      "timeout": false
+    },
+    {
+      "candidates": 8,
+      "improved": false,
+      "instance": "r101_21_100",
+      "root": "results/desaulniers/targeted_service_v1/diagnosis/roots/f324a97f201fb12f.json",
+      "sha256": "720f2b05c03a589b941da9d071878cd731952ef3ec512ec4164cb4f5c8120076",
+      "time": 38.735903302738514,
+      "timeout": false
+    },
+    {
+      "candidates": 0,
+      "improved": false,
+      "instance": "r101_21_100",
+      "root": "results/desaulniers/targeted_service_v1/diagnosis/roots/12df24fe7ff44f67.json",
+      "sha256": "7093d3dc48b3cd8b6fb87640645e14fe041b20be5f317e7299e461a894f7d533",
+      "time": 64.9049868857671,
+      "timeout": false
+    },
+    {
+      "candidates": 0,
+      "improved": false,
+      "instance": "r101_21_100",
+      "root": "results/desaulniers/targeted_service_v1/diagnosis/roots/240bf5d2d6d50d51.json",
+      "sha256": "5545587f7f13c29399ff5bc9697bb1eae49c95a6a376880ebaa18c8534d63a5f",
+      "time": 81.32375526913951,
+      "timeout": false
+    },
+    {
+      "candidates": 0,
+      "improved": false,
+      "instance": "r101_21_100",
+      "root": "results/desaulniers/targeted_service_v1/diagnosis/roots/9eabd0a46874cb0e.json",
+      "sha256": "91e1a9ec5990919e22f8558341c4b980e024d7d1737f8c1e8bfdf87f860ed934",
+      "time": 103.54566728379403,
+      "timeout": false
+    },
+    {
+      "candidates": 0,
+      "improved": false,
+      "instance": "r101_21_100",
+      "root": "results/desaulniers/targeted_service_v1/diagnosis/roots/ff2a86bf3754aa12.json",
+      "sha256": "398c2a2e2dafa2dcd2c84e429dbe00de42fff3abec2cdda7674d4af8b558b415",
+      "time": 104.77797639001571,
+      "timeout": false
+    },
+    {
+      "candidates": 0,
+      "improved": false,
+      "instance": "r101_21_100",
+      "root": "results/desaulniers/targeted_service_v1/diagnosis/roots/20cbde2d0c05aa4f.json",
+      "sha256": "46dd0f0e4723896e6f19e3c57bde0462361e6f204cc7c9ac534bd0a44b827be2",
+      "time": 126.00598045401487,
+      "timeout": false
+    },
+    {
+      "candidates": 12,
+      "improved": false,
+      "instance": "c101_21_100",
+      "root": "results/desaulniers/targeted_service_v1/diagnosis/roots/f45e8f0a535e64e3.json",
+      "sha256": "ae786718cee6cfae37daf73693750c5fe9103ba97c54af1ac4cb2d97e51563eb",
+      "time": 0.0,
+      "timeout": false
+    },
+    {
+      "candidates": 5,
+      "improved": false,
+      "instance": "c101_21_100",
+      "root": "results/desaulniers/targeted_service_v1/diagnosis/roots/ff126a096d7cf28a.json",
+      "sha256": "91709fbec4a183172d653751d3cd2a2e14a6f7e0e86e80816b271de3ad38138b",
+      "time": 387.78,
+      "timeout": false
+    },
+    {
+      "candidates": 5,
+      "improved": false,
+      "instance": "c101_21_100",
+      "root": "results/desaulniers/targeted_service_v1/diagnosis/roots/5231d02399560db9.json",
+      "sha256": "e8313c082b7b1d7322b0139404bafe8cf98eab4b9013373e17c79630891698ed",
+      "time": 388.35250099999996,
+      "timeout": false
+    },
+    {
+      "candidates": 0,
+      "improved": false,
+      "instance": "c101_21_100",
+      "root": "results/desaulniers/targeted_service_v1/diagnosis/roots/26ad463681a5df16.json",
+      "sha256": "5ecb59616d10af3d301fa1c1e641eeb3c609d82aa24ef4ff6e6423d3531b5fdc",
+      "time": 394.78029344292946,
+      "timeout": false
+    },
+    {
+      "candidates": 0,
+      "improved": false,
+      "instance": "c101_21_100",
+      "root": "results/desaulniers/targeted_service_v1/diagnosis/roots/66fa5c0cab6b6ea6.json",
+      "sha256": "eb92ed7fdd711e788bc4beecf796373e55cd21bcc0d6e78b7e7fd0768b8290a5",
+      "time": 409.0500884143206,
+      "timeout": false
+    },
+    {
+      "candidates": 6,
+      "improved": false,
+      "instance": "c101_21_100",
+      "root": "results/desaulniers/targeted_service_v1/diagnosis/roots/af0a79ea93904f45.json",
+      "sha256": "77b3a66550aa6870e3845a4dcf2bce06796ae6a6a64d73ff94a295b2cdac398b",
+      "time": 421.24,
+      "timeout": false
+    }
+  ],
+  "roots": 20,
+  "status": "complete"
+}

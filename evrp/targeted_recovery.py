@@ -203,16 +203,13 @@ def counterfactual_actions(origins, routes, observation, config, ready, *,
             if diagnostic:
                 evidence["commitment_state"] = _commitment_opportunities(problem, candidate, ready)
             record["candidates"].append(evidence)
-            if candidate.score < best.score:
-                best, validated = candidate, proposals
-                result = _routes(problem, best)
-                record["accepted_improvements"] += 1
         record["selected_score"] = best.score
     except (PlanningDeadlineExceeded, _SearchBudgetReached):
         record["deadline_reached"] = True
     finally:
         reset_deadline(token)
     record["seconds"] = perf_counter() - started
-    record["first_action_changes"] = sum(bool(routes.get(k)) and bool(result.get(k)) and
-                                          routes[k][0] != result[k][0] for k in ready)
+    record["first_action_changes"] = sum(
+        (routes[k][0] if routes.get(k) else None) != (result[k][0] if result.get(k) else None)
+        for k in ready)
     return result, validated, record

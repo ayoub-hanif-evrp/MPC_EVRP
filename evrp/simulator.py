@@ -58,6 +58,8 @@ class SimulationConfig:
     dispatch_policy: str = "original"
     optimizer_initialization_policy: str = "original"
     coordination_policy: str = "original"
+    constructor_policy: str = "original"
+    first_action_policy: str = "original"
 
     def __post_init__(self):
         if self.algorithm not in ALGORITHMS or self.workers < 1 or self.max_events < 1:
@@ -71,6 +73,10 @@ class SimulationConfig:
             raise ValueError("Unknown optimizer initialization policy")
         if self.coordination_policy not in {"original", "forced_retained_v1"}:
             raise ValueError("Unknown coordination policy")
+        if self.constructor_policy not in {"original", "urgency_recovery_v1"}:
+            raise ValueError("Unknown constructor policy")
+        if self.first_action_policy not in {"original", "counterfactual_v1"}:
+            raise ValueError("Unknown first-action policy")
         if self.fleet_mode != "fixed_reference":
             raise ValueError("Only the fixed K_ref fleet is supported")
         if self.route_continuity and self.trace_level == "none":
@@ -508,6 +514,8 @@ class EventDrivenSimulator:
                     fleet_mcts_record = None
                     optimizer_result = None
                     optimizer_initialization_fallback = False
+                    targeted_constructor = targeted_control = None
+                    targeted_routes = targeted_validated = None
                     if config.regret_repair:
                         repair_start = perf_counter()
                         eligible = origins if config.route_continuity else {k: origins[k] for k in ready}
@@ -519,10 +527,27 @@ class EventDrivenSimulator:
                                                             0.4 * config.total_planning_time_limit)
                             try:
                                 if config.algorithm in COMMON_CONSTRUCTOR_ALGORITHMS:
-                                    constructor_record = construct_fleet_root(
-                                        eligible, routes, observation, config.mpc)
-                                    routes, insertions = (constructor_record.routes,
-                                                          constructor_record.insertions)
+                                    reference_routes = dict(routes)
+                                    recovery_token = None
+                                    if config.constructor_policy == "urgency_recovery_v1":
+                                        recovery_token = set_deadline(perf_counter() + max(0, remaining_time()-.3))
+                                    try:
+                                        try:
+                                            constructor_record = construct_fleet_root(
+                                                eligible, routes, observation, config.mpc)
+                                            routes, insertions = (constructor_record.routes,
+                                                                  constructor_record.insertions)
+                                        except PlanningDeadlineExceeded:
+                                            if recovery_token is None:
+                                                raise
+                                    finally:
+                                        if recovery_token is not None:
+                                            reset_deadline(recovery_token)
+                                    if config.constructor_policy == "urgency_recovery_v1":
+                                        from .targeted_recovery import improve_constructor
+                                        routes, _, targeted_constructor = improve_constructor(
+                                            eligible, routes, observation, config.mpc, seconds=.3,
+                                            reference_routes=reference_routes)
                                 else:
                                     routes, insertions = regret_repair(
                                         eligible, routes, observation, config.mpc,
@@ -594,6 +619,7 @@ class EventDrivenSimulator:
                         except PlanningDeadlineExceeded:
                             deadline_events += 1
                     if config.algorithm in OPTIMIZER_ALGORITHMS:
+                        constructor_for_objective = dict(routes)
                         if planning_evidence is not None:
                             planning_evidence.stage("optimizer", routes)
                         try:
@@ -608,6 +634,7 @@ class EventDrivenSimulator:
                                 deadline=(started + config.total_planning_time_limit -
                                           min(0.25 if event_triggered else 0.15,
                                               config.total_planning_time_limit * 0.1)
+                                          - (.3 if config.first_action_policy == "counterfactual_v1" else 0)
                                           if config.total_planning_time_limit is not None else None),
                                 seed=agent_seed(config.experiment_seed, self.scenario.scenario_seed, epochs, -1),
                                 mpc=config.mpc)
@@ -619,6 +646,14 @@ class EventDrivenSimulator:
                                 optimizer_initialization_fallback = True
                                 optimizer_initialization_fallbacks += 1
                             deadline_events += 1
+                        if config.first_action_policy == "counterfactual_v1":
+                            from .targeted_recovery import counterfactual_actions
+                            candidate, proof, targeted_control = counterfactual_actions(
+                                origins, routes, observation, config.mpc, ready, seconds=.25,
+                                reference_routes=constructor_for_objective)
+                            if proof is not None:
+                                routes = targeted_routes = candidate
+                                targeted_validated = proof
                     # Reconcile all future suffixes before dispatching any physical action.
                     if planning_evidence is not None:
                         planning_evidence.stage("validation", routes)
@@ -633,7 +668,9 @@ class EventDrivenSimulator:
                         validated = {k: route_proposal(origins[k], a, observation, config.mpc)
                                      for k, a in routes.items() if a}
                     except PlanningDeadlineExceeded:
-                        if fleet_mcts_record is not None:
+                        if targeted_validated is not None:
+                            routes, validated = targeted_routes, targeted_validated
+                        elif fleet_mcts_record is not None:
                             routes = fleet_mcts_record.routes
                             validated = fleet_mcts_record.validated
                         elif optimizer_result is not None:
@@ -709,6 +746,8 @@ class EventDrivenSimulator:
                     decision = dict(epoch=epochs, time=state.time, available=[c.id for c in observation.customers],
                                     coordination_shortcut_used=coordination_shortcut_used,
                                     optimizer_initialization_fallback=optimizer_initialization_fallback,
+                                    targeted_constructor=targeted_constructor,
+                                    targeted_control=targeted_control,
                                     optimization_latency_seconds=(timings[-1] if event_triggered else None),
                                     optimization_trigger_reason=trigger_reason,
                                     optimization_root_hash=root_hash,

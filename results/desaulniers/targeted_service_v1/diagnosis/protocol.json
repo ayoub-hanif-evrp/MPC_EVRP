@@ -1,0 +1,11 @@
+{
+  "scientific": {
+    "maximum_roots": 24,
+    "role": "loss-selected development diagnosis; no causal or infeasibility claim",
+    "seconds_per_root": 1.0,
+    "selection": "first visibility, last planned, first subsequent plan loss",
+    "source_manifest_identifier": "661d6b1a055c332a5c3fec7a659364893963ec3417bdeddc74b65eb35d474ec4",
+    "source_sha256": "c0dc7ee2aad474aa8edda3ea94f1eb8c9e0b6c7be580fa193d97fa867481f71f"
+  },
+  "source_commit": "e4eb2d8573f1d3e95ae232dd18cf74b2f9e692c1"
+}
