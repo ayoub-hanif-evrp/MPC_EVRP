@@ -1,0 +1,23 @@
+{
+  "execution": "one study worker at a time; unrelated workloads left running; shared-machine timing",
+  "logical_cores": 24,
+  "machine": "AMD64",
+  "os": "Windows-11-10.0.26200-SP0",
+  "packages": {
+    "Pillow": "12.3.0",
+    "PyYAML": "6.0.3",
+    "matplotlib": "3.11.2",
+    "numpy": "2.5.3",
+    "pandas": "3.0.6",
+    "scikit-learn": "1.9.1",
+    "scipy": "1.18.1"
+  },
+  "power": "temporary Windows system-awake request bound to campaign parent; no permanent power setting changes",
+  "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+  "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+  "thread_environment": {
+    "MKL_NUM_THREADS": null,
+    "OMP_NUM_THREADS": null,
+    "OPENBLAS_NUM_THREADS": null
+  }
+}

@@ -25,6 +25,10 @@ default or substituted into the historical primary results. Its separate
 [offline investigation](results/desaulniers/targeted_service_v1/offline_resources/RESULTS.md)
 closes the two remaining physical reference-witness cases, bringing combined
 witness coverage to 168/168 without replacing historical reference fleets.
+The [targeted reporting notes](results/desaulniers/targeted_service_v1/REPORTING_NOTES.md)
+document the paired design and the gated MP-witness holdout policy. Complete or
+resume that separate workflow with `python -u -m scripts.complete_targeted_study`;
+do not run a second campaign parent while one is already active.
 
 ## Active benchmark
 
