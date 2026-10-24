@@ -1,0 +1,223 @@
+{
+  "base_instance": "rc108_21_25",
+  "base_instance_sha": "e981e0dfca92c8db3a93dd77ec6de8a8fe694c56f5374d9b22080c8dd467d4b8",
+  "customer_release_times": [
+    [
+      "C10",
+      0.0
+    ],
+    [
+      "C21",
+      27.242222930043535
+    ],
+    [
+      "C22",
+      0.0
+    ],
+    [
+      "C25",
+      53.143999514421914
+    ],
+    [
+      "C33",
+      16.11692252562322
+    ],
+    [
+      "C34",
+      24.806015216103443
+    ],
+    [
+      "C35",
+      26.98177171095214
+    ],
+    [
+      "C36",
+      5.144463409810314
+    ],
+    [
+      "C39",
+      0.7918681022679577
+    ],
+    [
+      "C49",
+      8.350441616150059
+    ],
+    [
+      "C54",
+      0.0
+    ],
+    [
+      "C56",
+      0.0
+    ],
+    [
+      "C6",
+      1.956680991208346
+    ],
+    [
+      "C61",
+      18.62601562837802
+    ],
+    [
+      "C66",
+      0.0
+    ],
+    [
+      "C68",
+      0.0
+    ],
+    [
+      "C69",
+      0.0
+    ],
+    [
+      "C71",
+      0.0
+    ],
+    [
+      "C74",
+      23.774806153108678
+    ],
+    [
+      "C78",
+      3.3383364970562153
+    ],
+    [
+      "C84",
+      0.0
+    ],
+    [
+      "C85",
+      0.0
+    ],
+    [
+      "C9",
+      0.0
+    ],
+    [
+      "C91",
+      0.0
+    ],
+    [
+      "C92",
+      19.9090122893272
+    ]
+  ],
+  "eligible_count": 21,
+  "fleet_size": 4,
+  "instance_sha256": "e981e0dfca92c8db3a93dd77ec6de8a8fe694c56f5374d9b22080c8dd467d4b8",
+  "objective_version": "service-activation-distance-v2",
+  "realized_DoD": 0.52,
+  "reference_schedule_hash": "967f26a3dab4c3d161af119d38cc7cebcbf799e39312b30786fb7ee78b6e2727",
+  "reference_schedule_identifier": "967f26a3dab4c3d161af119d38cc7cebcbf799e39312b30786fb7ee78b6e2727",
+  "reference_solver_version": "published-full-replay-or-pareto-repair-v3",
+  "release_upper_bounds": [
+    [
+      "C10",
+      54.0
+    ],
+    [
+      "C21",
+      55.0
+    ],
+    [
+      "C22",
+      24.0
+    ],
+    [
+      "C25",
+      74.0
+    ],
+    [
+      "C33",
+      66.0
+    ],
+    [
+      "C34",
+      65.0
+    ],
+    [
+      "C35",
+      36.0
+    ],
+    [
+      "C36",
+      57.0
+    ],
+    [
+      "C39",
+      46.0
+    ],
+    [
+      "C49",
+      44.0
+    ],
+    [
+      "C54",
+      100.0
+    ],
+    [
+      "C56",
+      77.0
+    ],
+    [
+      "C6",
+      20.0
+    ],
+    [
+      "C61",
+      27.0
+    ],
+    [
+      "C66",
+      0.0
+    ],
+    [
+      "C68",
+      49.0
+    ],
+    [
+      "C69",
+      0.0
+    ],
+    [
+      "C71",
+      0.0
+    ],
+    [
+      "C74",
+      88.0
+    ],
+    [
+      "C78",
+      33.0
+    ],
+    [
+      "C84",
+      28.0
+    ],
+    [
+      "C85",
+      36.0
+    ],
+    [
+      "C9",
+      69.0
+    ],
+    [
+      "C91",
+      0.0
+    ],
+    [
+      "C92",
+      63.0
+    ]
+  ],
+  "requested_dynamic_count": 13,
+  "scenario_generator_version": "reference-preserving-exact-eligible-v3",
+  "scenario_method": "reference-schedule-preserving dynamicization inspired by Yang et al.",
+  "scenario_seed": 0,
+  "schema_version": 2,
+  "selection_mode": "exact_count",
+  "target_DoD": 0.5
+}

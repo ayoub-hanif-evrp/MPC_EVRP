@@ -13,6 +13,7 @@ Current saved-evidence reproduction:
 
 ```powershell
 python -m pytest tests -q --basetemp results/.pytest_reproduce
+python -m scripts.archive_frozen_inputs --restore
 python -m scripts.audit_frozen_studies
 python -m scripts.audit_enhancement_studies
 python -m scripts.audit_reference_inventory
@@ -22,6 +23,11 @@ python -m scripts.render_publication_package
 ```
 
 See the [consolidated completion report](../results/desaulniers/publication_package_v1/FINAL_REPORT.md).
+The exact 42 reference schedules and 198 scenarios used by these studies are
+archived under `publication_development/frozen_inputs_v1/`. Restore them before
+auditing a fresh checkout; restoration validates canonical identities and
+physical replay and never invokes a reference optimizer or overwrites a
+conflicting cache. The fresh-cache regression tests prohibit regeneration.
 The paired Stable V3 development screen did not satisfy its frozen promotion
 criterion. No new independent enhanced-method final holdout was opened.
 

@@ -105,6 +105,7 @@ are an open research problem, not an uncompleted background campaign.
 
 ```powershell
 python -m pytest tests -q --basetemp results/.pytest_publication
+python -m scripts.archive_frozen_inputs --restore
 python -m scripts.audit_frozen_studies
 python -m scripts.audit_enhancement_studies
 python -m scripts.audit_reference_inventory

@@ -50,6 +50,7 @@ Python 3.11+ is required. From the repository root:
 ```powershell
 python -m pip install -r requirements.txt
 python -m pytest tests -q --basetemp results/.pytest_reproduce
+python -m scripts.archive_frozen_inputs --restore
 python -m scripts.audit_frozen_studies
 python -m scripts.audit_enhancement_studies
 python -m scripts.audit_reference_inventory

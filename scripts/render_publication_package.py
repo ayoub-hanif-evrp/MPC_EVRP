@@ -101,6 +101,7 @@ def render():
     audits = load_json(DEVELOPMENT / "audits/historical_integrity.json")
     enhancement_audits = load_json(DEVELOPMENT / "audits/enhancement_integrity.json")
     reference_inventory = load_json(DEVELOPMENT / "audits/reference_inventory.json")
+    frozen_inputs = load_json(DEVELOPMENT / "frozen_inputs_v1/manifest.json")
     runtime = load_json(DEVELOPMENT / "runtime_validation_v1/analysis.json")
     runtime_manifest = load_json(DEVELOPMENT / "runtime_validation_v1/manifest.json")
     runtime_source = load_json(DEVELOPMENT / "runtime_validation_v1/protocol.json")["source_commit"]
@@ -140,6 +141,8 @@ def render():
                     writable_path(OUTPUT / "enhancement_validation.md"))
     shutil.copyfile(DEVELOPMENT / "audits/REFERENCE_INVENTORY.md",
                     writable_path(OUTPUT / "reference_inventory.md"))
+    shutil.copyfile(DEVELOPMENT / "frozen_inputs_v1/RESULTS.md",
+                    writable_path(OUTPUT / "FROZEN_INPUTS.md"))
     architecture()
     diagnosis_figure()
     source_commit = subprocess.run(["git", "rev-parse", "HEAD"], cwd=ROOT, capture_output=True,
@@ -426,6 +429,7 @@ The evidence inventory binds copied artifacts to file SHA-256 digests.
 
 ```powershell
 python -m pytest tests -q --basetemp results/.pytest_publication
+python -m scripts.archive_frozen_inputs --restore
 python -m scripts.audit_frozen_studies
 python -m scripts.audit_enhancement_studies
 python -m scripts.audit_reference_inventory
@@ -437,6 +441,8 @@ python -m scripts.render_publication_package
 
 The historical-source auditor checks Git blobs at the exact executed source
 revisions instead of requiring the current development tree to be identical.
+On a fresh checkout the input-restoration command restores exact archived
+references and scenarios first, without running a reference optimizer.
 The old study-specific runners still enforce their own original fingerprints;
 use the archived commits when reproducing their optimization, rather than
 editing their protocols. Raw evidence remains in the original result paths.
@@ -478,6 +484,7 @@ Stable V3 enhancement did not satisfy its frozen promotion rule.
 - [Enhancement evidence audit](enhancement_validation.md)
 - [Methodological references](LITERATURE.md)
 - [Reproduction commands](REPRODUCTION.md)
+- [Exact frozen reference and scenario inputs](FROZEN_INPUTS.md)
 - [Figure and table inventory](FIGURES_AND_TABLES.md)
 
 The primary paper contribution is a common event-triggered MPC comparison of
@@ -497,6 +504,10 @@ new independent instances. No optimality or universal superiority is claimed.
                     "that condition into the normal validated-constructor fallback. The",
                     "original control option remains available. Historical physical traces",
                     "show no hard-constraint or future-information violation.", "",
+                    "Exact executed inputs were previously available only in ignored local",
+                    "caches. A separate byte-preserving archive and cache-alias restoration",
+                    "now allow fresh-checkout audits without reference optimization. The",
+                    "empty-cache regression explicitly forbids input regeneration.", "",
                     "Equal-service customer replacement was observed at four of five",
                     "instrumented missed-customer drops. It is allowed by the unchanged",
                     "canonical objective and is an optimization limitation, not a plant",
@@ -557,6 +568,8 @@ new independent instances. No optimality or universal superiority is claimed.
                      "preserved bounded-search timeouts, not proofs of infeasibility.",
                      "Exact source revisions, raw SHA-256 manifests, independently replayed",
                      "witnesses, failure records, tests, figures and tables are retained.",
+                     f"Exact input archive: {sum(row['kind'] == 'reference_schedules' for row in frozen_inputs['inputs'])} reference schedules and",
+                     f"{len(frozen_inputs['scenario_ids'])} scenarios; fresh-cache tests forbid input regeneration.",
                      "`artifact_inventory.json` lists the paper artifacts and their hashes.",
                      "See `REPRODUCTION.md` for commands and historical source checks.", "",
                      "## G. Recommendation and limits", "",

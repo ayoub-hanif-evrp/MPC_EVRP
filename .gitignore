@@ -125,6 +125,10 @@ logs/
 !/results/desaulniers/publication_development/audits/*.json
 !/results/desaulniers/publication_development/audits/*.md
 !/results/desaulniers/publication_development/audits/*.xml
+!/results/desaulniers/publication_development/frozen_inputs_v1/*.json
+!/results/desaulniers/publication_development/frozen_inputs_v1/*.md
+!/results/desaulniers/publication_development/frozen_inputs_v1/reference_schedules/*.json
+!/results/desaulniers/publication_development/frozen_inputs_v1/scenarios/*.json
 !/results/desaulniers/publication_development/coordination_probe_v1/*.json
 !/results/desaulniers/publication_development/coordination_probe_v1/*.md
 !/results/desaulniers/publication_development/reference_extension_v1/*.json
