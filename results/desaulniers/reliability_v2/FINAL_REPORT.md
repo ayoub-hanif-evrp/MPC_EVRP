@@ -1,6 +1,6 @@
 # Reliability study V2
 
-Implementation and diagnostic work prepared; prospective online comparison has not started. No new performance claim.
+Prospective campaign running under the frozen protocol. Partial results are not final evidence.
 
 ## Evidence and limits
 
@@ -13,6 +13,10 @@ Two primary promotion contrasts use 97.5% parent bootstrap intervals; other engi
 Development promotion is not final superiority. Shared-machine timing is not isolated certification.
 
 See diagnosis/RESULTS.md and diagnosis/profile.json for measured bounds and profiling, not causal claims.
+
+## Development
+
+Runs: 8/1116; status: partial.
 
 No completed new independent final result is claimed. Original ALNS remains the paper's primary system.
 

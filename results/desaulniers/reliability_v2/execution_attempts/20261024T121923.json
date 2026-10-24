@@ -1,0 +1,9 @@
+{
+  "display_awake": false,
+  "maximum_campaign_hours": 12,
+  "runner_pid": 7368,
+  "source_sha256": "fd39b52c497f6eed363add07f9fd12aa923c15731f77ead1a630c7cf6574269c",
+  "supervisor_pid": 21216,
+  "temporary_system_awake": true,
+  "timing_conditions": "sequential study workers; shared machine; unrelated workloads unchanged"
+}

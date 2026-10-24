@@ -5,12 +5,16 @@
       "sha256": "563d8cdafb6356bc1a7f66564dc5781a9b5ee8a493ddd1bcac25575e5678d7fa"
     },
     {
+      "path": "results/desaulniers/reliability_v2/diagnosis/PROFILE.md",
+      "sha256": "dbf5c91dcb11a8cbb6d3dce15c3856efeecd2a430276ee3253c85ed58ba29d63"
+    },
+    {
       "path": "results/desaulniers/reliability_v2/diagnosis/RESULTS.md",
       "sha256": "0eb60cab6032a20990b14de66c4d6d52af81a1596a69708eaa91ae83a20c3c2e"
     },
     {
       "path": "results/desaulniers/reliability_v2/FINAL_REPORT.md",
-      "sha256": "62c326ad89242e82915bcb21144366c1b82d9236e767053c534068d5bf233e29"
+      "sha256": "fb50cc4f6016abb2b1bd0d4248e92bf3212b158af1f573f6aebb3f9d171db2b2"
     },
     {
       "path": "results/desaulniers/reliability_v2/preflight/AMENDMENT.md",
@@ -19,6 +23,10 @@
     {
       "path": "results/desaulniers/reliability_v2/PREREGISTRATION.md",
       "sha256": "95619fb457f8e9f8d4567733bbe921933edfdf97a405e7efc939a0bf95d08cb9"
+    },
+    {
+      "path": "results/desaulniers/reliability_v2/REPRODUCE.md",
+      "sha256": "aeef2381fbdadb7124515e3b11b79086e60b1106f91e5b07a8495a23243df87e"
     }
   ]
 }
