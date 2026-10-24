@@ -1,0 +1,4880 @@
+{
+  "historical_reference_policy": 144,
+  "instances": 168,
+  "physically_witnessed": 168,
+  "prior_inventory_sha256": "1d58172c60ffdda56a67ee48c43d1f9a9e2a16796078ab1af345dfe22870cd90",
+  "rows": [
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "127576640cb5516aa129a4bb4749200b0953eccf9bba94aecb475d359ef6f659"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "22efbb9236decbccbb10592d471d200bfb0d1ae940c4a9b1c70f3cbd734c487d"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "7e716ebe3c4b6f77f8a1bfe351766c5284bb7169c70f5a37bdd74ea0cf9b8863"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "82a9d9ee443ce5a2e7275ed017ec9f6456c474b1ecf097892b4bc05ed6c68929"
+        }
+      },
+      "fleet_size": 12,
+      "historical_reference_policy": true,
+      "instance": "c101_21_100",
+      "instance_sha256": "56a0b01c0e0ef32d9d31d03359d6bbfa785af7f4574ef97acee96d8fda6fe197",
+      "physical_witness": true,
+      "reference_id": "9ec5f050bb6ec7f47bb1e6ff4d2d4c80aea09461e8d5203f8597683cb301ba74",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "756395726bf0cfc43dbf0b38291530d155be8669ca64bf8a594111674392c9c1"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "6c354dba20c9b7052938202d12006f0509c1b9a71245c72fe4a9cdcabde2dfb9"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "49032b13ff2537585629756c162b2243a044f9d74078859eec864c36c033c25c"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "1e063363c4822f6ea6108dd6739de52a159a88b243065d96b2a580f2369012a3"
+        }
+      },
+      "fleet_size": 7,
+      "historical_reference_policy": true,
+      "instance": "c101_21_25",
+      "instance_sha256": "9f40aeeee1afb96fb479b6164f9ce8185a0328dd032a25bbf75ddc8e60dc72b0",
+      "physical_witness": true,
+      "reference_id": "5c392c359dbbd3aea760eb275cb6613e014a067b481eac6b05e81f2506471880",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "55cfc6dffeefd81ed8ca3af302015efa19e1552c93226bcfabf16d6d76a940af"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "978e662416fdfd6eddf2ee291779909b4a23e83108aa48ba123ebbb364f800b5"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "8b436aca44134388524913b370e573110aeaf3b75533916974744ac3a8f529db"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "b0aa884c62788101ec3ae4165cbc2b156ecfb0eeed6af56a41ae46720823dcee"
+        }
+      },
+      "fleet_size": 9,
+      "historical_reference_policy": true,
+      "instance": "c101_21_50",
+      "instance_sha256": "00ee57eb1ea2088cab7c548b33010ee32076dbb2d48c2d6641dad4f4c3db2a5f",
+      "physical_witness": true,
+      "reference_id": "7eeea08d4a930a3d9e0c3977566b94eac3ddd52ad001b3dcf05af36d33579549",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "2c02caa8a01e8d8653b9d3d4f6ed2b5cee10ef540278774be619eaf8a69d03b0"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "f447a335dc1b51576b8863ae5be4dfe69a4b4e94440676c59e2fef63b492ee1b"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "9bfa92e507bfa11b1aefa75093d4354a634503fa6c6b54c684615e8056b5ee39"
+        },
+        "0.75": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 75 requested, 69 eligible"
+        }
+      },
+      "fleet_size": 12,
+      "historical_reference_policy": true,
+      "instance": "c102_21_100",
+      "instance_sha256": "73f1507e83e065b41b2631b72c0f9321cf723b87505298fc769393f1fe5a8587",
+      "physical_witness": true,
+      "reference_id": "707b2469cc396e8206a02dcaef39d4539422200999d90e50a1ff2b0dc0803c78",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "888cff6068d5e1e8e860f9d8828000731e10cee119a96b3951bca29bfa5c6731"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "793c218c2780c05b5bb4652ed5e2a1e7b5db9dee589b427359fc59d81746602c"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "f02fd784eb816e5b730a6203980cbb6b9bce3d605bb4c4a3b42b374c6b29a739"
+        },
+        "0.75": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 19 requested, 13 eligible"
+        }
+      },
+      "fleet_size": 5,
+      "historical_reference_policy": true,
+      "instance": "c102_21_25",
+      "instance_sha256": "2a6c6bfa69956bfef8805a25cd45186fb423603d2b2ce1b64594eda298a0fdd1",
+      "physical_witness": true,
+      "reference_id": "bd15df98838293da76a7f3eba9c8295d1b12e16f5b9d79f38fd8d85fcd9d41fd",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "a03ee231bdeb82e25190ca0eaa1dd46f77778a4c9dc2c0bf45a60ccca774f172"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "0aeeb89a2cf4fb77614a20397c5bcfbbb7eac15b71358577cd346b6519043b8c"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "0899842e6bedea2eebe419ad309bd678ac1531086b3739cdcdd4474b5aea9a97"
+        },
+        "0.75": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 38 requested, 33 eligible"
+        }
+      },
+      "fleet_size": 8,
+      "historical_reference_policy": true,
+      "instance": "c102_21_50",
+      "instance_sha256": "35f734ed520d6e66e20eca800c1a49e3f202492e840c9eb6894ba37504430241",
+      "physical_witness": true,
+      "reference_id": "770211d95faa60882ed8f082316d84855e0bb943d2f0d8c3c5fdc4b761dde325",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": "results/desaulniers/reference_validation/references/c103_21_100_94b10b29360bc06f.json",
+      "artifact_sha256": "871c10612dfbbdc6749370bb2975cecefa90757fa7a36ffe41583b5d943960c2",
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "898a03b27848174b7e8fe7c5c83e5cd6bcbe6d186706244cd85df580c54ac8cb"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "57b658c371d3d63b491629192099567d4e126a6d31fa23289a7b96f922a3c262"
+        },
+        "0.5": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 50 requested, 47 eligible"
+        },
+        "0.75": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 75 requested, 47 eligible"
+        }
+      },
+      "fleet_size": 13,
+      "historical_reference_policy": true,
+      "instance": "c103_21_100",
+      "instance_sha256": "180803a9443b98c75a8f818709516ddcc4acc9ae9fd3e536bedf3c76bcf8c275",
+      "physical_witness": true,
+      "reference_id": "94b10b29360bc06f3b9f217aaec783674442552cacbd84f4eeeb00668c3e6be1",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "e61c17f68ec235eeb8be24cf32b8ddbdbec1ae0a16c512f141c6ce1951b75517"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "9c33adaba2f7e185345f8dd6b1fbc522e526753bdc734693603d2284a2e37253"
+        },
+        "0.5": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 13 requested, 8 eligible"
+        },
+        "0.75": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 19 requested, 8 eligible"
+        }
+      },
+      "fleet_size": 4,
+      "historical_reference_policy": true,
+      "instance": "c103_21_25",
+      "instance_sha256": "9a0ee8cffc69d98c71b33fc70a4f1e57091de320c805aa5f23251c461a4b8885",
+      "physical_witness": true,
+      "reference_id": "7086b49bb92f6d76db5d658f76fa8d90bdc7a9e7c9a17e147150351d41ad33f0",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "3466be7af714af51bdcb2604f557523af466f454bee99926e2e2e858feeaf82e"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "05551c16c359ecb2584f1d64d187d8fc07f6b07a62995a2d7abe98367a79d870"
+        },
+        "0.5": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 25 requested, 24 eligible"
+        },
+        "0.75": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 38 requested, 24 eligible"
+        }
+      },
+      "fleet_size": 7,
+      "historical_reference_policy": true,
+      "instance": "c103_21_50",
+      "instance_sha256": "809a2cc32613bae303d383003e7ebcf3a1169a3dd051e36ea0ff346fa906ee30",
+      "physical_witness": true,
+      "reference_id": "01ce50508d51c6ba1d5ea0b66feb12b85872bd694d77a2b31a6e901e72da8a48",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": "results/desaulniers/reference_validation/references/c104_21_100_72e4f8003f6a8539.json",
+      "artifact_sha256": "2eb7938306e0979bc3f4f49cfed77dc6e926d7c7b9ea3d51b1b338c1b4066d9c",
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "f41723bd373367a9463c9a109b4a1278776598bd8d81292193bf5a0757071f62"
+        },
+        "0.25": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 25 requested, 24 eligible"
+        },
+        "0.5": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 50 requested, 24 eligible"
+        },
+        "0.75": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 75 requested, 24 eligible"
+        }
+      },
+      "fleet_size": 13,
+      "historical_reference_policy": true,
+      "instance": "c104_21_100",
+      "instance_sha256": "48227cef55990cc16e0f4c1cf8531d2255a4d93efa6a55cccb174a4858f5678c",
+      "physical_witness": true,
+      "reference_id": "72e4f8003f6a853985dc1b3d6293c528451d552e8c4ada62a3a554ac716137cb",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "69034400bfb8ed8e8952a8a731b6d3c6b3464a951d292db30495039a0f358dbe"
+        },
+        "0.25": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 6 requested, 5 eligible"
+        },
+        "0.5": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 13 requested, 5 eligible"
+        },
+        "0.75": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 19 requested, 5 eligible"
+        }
+      },
+      "fleet_size": 4,
+      "historical_reference_policy": true,
+      "instance": "c104_21_25",
+      "instance_sha256": "a888ff6f0abe1e96fca7496976bfea6b563a2a7b06872760b9be725ff065e5c8",
+      "physical_witness": true,
+      "reference_id": "15d91583faa79401b7a79500faa255aa896159051a11f4d826f352776b90fd58",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "714584f05d0a6d2a45a16b2bd7bc50134a4cb4a2b17cc7a3d7a9ab432ba1f06d"
+        },
+        "0.25": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 13 requested, 8 eligible"
+        },
+        "0.5": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 25 requested, 8 eligible"
+        },
+        "0.75": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 38 requested, 8 eligible"
+        }
+      },
+      "fleet_size": 5,
+      "historical_reference_policy": true,
+      "instance": "c104_21_50",
+      "instance_sha256": "f21f14409b5aff57c49c84bce71c51896c4982e510a1d84615c827f1ae4f2855",
+      "physical_witness": true,
+      "reference_id": "f2aef3f789159e19bdd6eaed1240923978250b0b84a46442fc0906b2cdc3f1d4",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "1c76b1422db1fd097b4362b087441ca5316cd6ad1a7b7d17b4c45583d0944713"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "87aa57d13e57f7751a5710115801a43bbb8e23edf5cf8d37c9f16ccfc29bcb94"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "01b482421f0c865884eefb95895ad4a7fd2312768b60e6c9c18f9ad74ad7bf7d"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "3f9a8df5b1cbe0229602d2541f41fcd3942fbecb61c25887fbba68426ea400f2"
+        }
+      },
+      "fleet_size": 12,
+      "historical_reference_policy": true,
+      "instance": "c105_21_100",
+      "instance_sha256": "01c4094c934bd8b0f9a64bc7011afe8f23e0e3e414b8694d2f77a997ab6df4e7",
+      "physical_witness": true,
+      "reference_id": "a9256f6145bb931cc7d515a6d047a290bcdbdaf9036fff45176ac8be5661888e",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "aec88bf6df5f8e169f4634e903fa01ee59824d722577e787c928a832f76cd239"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "6ab5d6ae5849262abca441670dafdbea1287ec8802840efddcfca58dbead8849"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "bfe4fdbafd19fd313389780d2c59ce7b3b833314036074d3a8adea784b9f289d"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "8e86dd66fcebdc5556a97182a1c7eb8623930c5f637cfa9977ee61253a40f836"
+        }
+      },
+      "fleet_size": 6,
+      "historical_reference_policy": true,
+      "instance": "c105_21_25",
+      "instance_sha256": "7fc66cd33bac97032af222516abd7883b4fb762b04f48d2e4e6012323f8f0220",
+      "physical_witness": true,
+      "reference_id": "580dd6227a07f560ff7c55757393274aa68f168c590733bb1e03f3ec743d1f20",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "d86b0520e48febc1aff98a6588fc453c05ebe21f6277cdaaec893fb1793ad76e"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "5e887d0bc321eadb23bc451f39efb2f8a641f1c25049889db27146d14380eaaf"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "6ed49c903e8988b8872a367b0cd0401904f9e39f9d229fe800cb223bfb719a98"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "e9cf6079e1739b02144c83f40425482958c8160db327887696a8a2bf1b9cc12c"
+        }
+      },
+      "fleet_size": 9,
+      "historical_reference_policy": true,
+      "instance": "c105_21_50",
+      "instance_sha256": "d96808ffe3efe99644d10b82a4223d561a91fe48a23287b22ad4851d57c950ad",
+      "physical_witness": true,
+      "reference_id": "8050c863e82f752a84c0398898c74356a3daafab42555c1e32e6a42a2bc4c98d",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "368096a9290064fe418fae5c5f002843979120720fc1c6803d80e17ae54a7b13"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "a5edc7e0f6a3a1dd50498482fd8030293b00be67832a1c469cdd2d6f7164697d"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "ee648149640f95a88c95073ff77c8a69045ca164df62dc702149bb8d609f357e"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "f47989201277f3dd268837bd7702cf413e8686c932bbbae37aa4a577ee734bbf"
+        }
+      },
+      "fleet_size": 12,
+      "historical_reference_policy": true,
+      "instance": "c106_21_100",
+      "instance_sha256": "2f552757d0ca14ff41ddaba63c0dcbc0a610cbb158000c9f65cefb7ca615f89d",
+      "physical_witness": true,
+      "reference_id": "6c52486a7f904b0a537d125daf5cdfb4deb798280d8661388485df3bdf10885d",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "08a320b65d46b6c51894427b79b535f87bea5e7ab87d6d5b83f18e3230870fc9"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "0d0b679b5501e0101f5e2c14736101f2262c0931c0aa0ed937677f45e5c6705d"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "4aa05b42b707b89700149ee4a84ba2ddb16145f94ff2e7707f2116a7270b4202"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "83542b16b5d7a0dc2aec02a67cffc3e7735d4e86618fe64e151497a73c8ad741"
+        }
+      },
+      "fleet_size": 5,
+      "historical_reference_policy": true,
+      "instance": "c106_21_25",
+      "instance_sha256": "318605a0e3a56106a55eb64bb7d471f686491741e87606f478b4ef0c44130cf9",
+      "physical_witness": true,
+      "reference_id": "da4662b0acac4d3e27e7d3e9d9363095e4609759a4222357ccb2a8b90c750454",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "cfa5f819e03a28a58cd8093186aed73a5bc9082f6a2a64ff3f1e7344831e8fc5"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "bfecb22da7b20858ba1e9b56497ecd4efd0e870432e6dddaa9efa6b33070bfce"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "42db0d4ba424114214e82f0b7cbf7f140c9899af8e3de9098bf8420b616722d6"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "bc6cb9be47950596a4aa9efb06e0b0dd38eff64607ad4de47b3c6e4bc95cf966"
+        }
+      },
+      "fleet_size": 9,
+      "historical_reference_policy": true,
+      "instance": "c106_21_50",
+      "instance_sha256": "29f4a9fc1e320334f77bf2152a23b9f5d42b9a9d9c893649931107d1012391b1",
+      "physical_witness": true,
+      "reference_id": "dba86dbdb5c2de7dd6940caf4f03dc4ae1248cd857f4ad4297195b4fafedf9c7",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "b1d6ba6c93495f6ee16b24605f05ccd0b448fdedc6a025f6013c57980231e48f"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "6cccf057df0bbac75feca96c108151967fde11a7631a441135ae7a0e002588e4"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "5e219235682d1535f21c707f20301985567a662856879152d6a22b2b8a9bc785"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "f20a4ff73b702cfd2455826ee1d25f02f4ca764b7df5ecaf96e1f0afa5065db5"
+        }
+      },
+      "fleet_size": 12,
+      "historical_reference_policy": true,
+      "instance": "c107_21_100",
+      "instance_sha256": "e7f07655b7f815acb174331475d34905eb6c4c87edcc6624aaaa40781c08730a",
+      "physical_witness": true,
+      "reference_id": "38d2d4b553f2b5b47b621c8736561ceb7594e7951fae06562a8628f355d299c6",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "8640e235638dd60c366811d8542f0bdfec97bf1953d19182c01949d87c132b70"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "429733592264540e59bf150c56acd34027e032603bd7845d11368f44d2a7d1dc"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "7f861d11d8170b48bd51158c10bdd66a49775ac1d1771d7becbcd5586c7dc50a"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "bbaa66c1afaae75422246c1e40abb2b68bdcbbec49c6de101071a11a619e904b"
+        }
+      },
+      "fleet_size": 6,
+      "historical_reference_policy": true,
+      "instance": "c107_21_25",
+      "instance_sha256": "bb1672806ad0d86d5e03f4d1d7acf1ae434133abf0310d79043e2d4207d366f6",
+      "physical_witness": true,
+      "reference_id": "068b0a62bc7e57c1b8098fd46e1cfb9f3b84c6723463d4eb9b4258afa3286b7f",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "6d85f0c8fd7a610626b75f534f40b0e269b8960c73180e6bbf861af6e1129a99"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "335fb5e95e139e34fa2e5861c12350440fe7d499c41d7b9d90497cfa213cab88"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "cf130e02fcb41ab610ff5b512deb93d974c8811ef8540f8eb146fe7e559e1d4c"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "c154e303c3edaaf89336d93d4ad2a91e62ae541e43e3d3409abcd924b8c97496"
+        }
+      },
+      "fleet_size": 7,
+      "historical_reference_policy": true,
+      "instance": "c107_21_50",
+      "instance_sha256": "6ba799ca8088508d354ebaf614be3e1ad6525ec436f1c02f0983c2a513aa8753",
+      "physical_witness": true,
+      "reference_id": "e4b8e70673e558f40a88d8a31a822697034c258f0d89340d66506cf6a568799f",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "f55821a039b14819b5bae6645d3ca0fcfffc299b37d5f363a836e011d4917a25"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "3aeabbf41fe6362fcd46374fb6cf5b05aaecd43a819eaa4cb1026ab9d371e68d"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "46a36975e2a93ae8529399d4f50b2fba68e835f66e08b07fdb5f66459a9c7e56"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "19466cf4ba44f26b80502cabdbd444c3b70f482dbfaa0ec0f9053de737208e51"
+        }
+      },
+      "fleet_size": 11,
+      "historical_reference_policy": true,
+      "instance": "c108_21_100",
+      "instance_sha256": "9f46f63ff8287b395565bb5cbd6953baa70f5997435a21c46083f4f87b50107b",
+      "physical_witness": true,
+      "reference_id": "2b5f192b2834d7ba8dd69e04fe845dd104434fa4f021ee3b44d9ba91a286e657",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "826e6428b6b30a0919dad16133c13819dc55b0cd14bbca66301db94957c909b7"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "d8fc563f624516efb0acd44076b89767a5d5965044d36892c3af1acb9bc4e940"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "a143de2d8be5ca0cbfbf49b247d170c0407a8c25c03d401112ad3130246a1d45"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "2769b68c190ffba4bf2f7f8c6586011a6279ab9037beb283f72c430f15e72358"
+        }
+      },
+      "fleet_size": 5,
+      "historical_reference_policy": true,
+      "instance": "c108_21_25",
+      "instance_sha256": "d98350f3e3481f2990a1d1163c6a6b8bb2d4fb28b6081370b3df554d2141a892",
+      "physical_witness": true,
+      "reference_id": "78000926b4336a1346bf545efa7580321a2f63f8be6219dc8404676df4e5cc92",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "7a80ceea09334fb8412ea2592d9f62a416497195b165ec11362fe8c6fc1c892a"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "516449567910884018bd1252c3b29809a27d1881217083b2b79e8aae8fb1fdb6"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "2992bb4c7cb4d20cef7f28387f48bb7fc096357785a84cbf3b185673030ff71a"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "f18dd65cc0a0b255df58f1970b6b48ee8008a7ebe0c589c623a52a6099d8a15d"
+        }
+      },
+      "fleet_size": 8,
+      "historical_reference_policy": true,
+      "instance": "c108_21_50",
+      "instance_sha256": "9dbf23a020507193b70e216a787703c38e69bed4f45f61dbbe4a0f8d725df3cc",
+      "physical_witness": true,
+      "reference_id": "292dc39e7b3bcbb83669a7ab3243ea38cbf13233683a905601012e71794f8305",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": "results/desaulniers/reference_validation/references/c109_21_100_533ae505cce7d4d3.json",
+      "artifact_sha256": "aaf1d63f4358330739da4dc8600929a8b4b187e8a2e446b4265e0441bc0ed24f",
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "b90656f3c917784297d0048c31e7c3642500e384981cc885751c40bc19ba70b9"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "6f6fee84fe59a56b856a7342bde4c7abea51dd85150efcc36daba950bdd02fc1"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "fef96fcb5769fe3a32b5d4596224175cfb470ae5ff8d6d16fd5c0438e9e39c81"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "67f419d2ec4df20ff434cdbfb8b3516acb11229c395ad89831a9c1c3b7ad424b"
+        }
+      },
+      "fleet_size": 14,
+      "historical_reference_policy": true,
+      "instance": "c109_21_100",
+      "instance_sha256": "7a313370bca73c53c711d80c7a423459147e7c257bbc9063e5b7c135ecd22e1c",
+      "physical_witness": true,
+      "reference_id": "533ae505cce7d4d37ae79cdb49afa063ad8d1b92f61bb398c3b11632c32bb60d",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "fa84c9b8b28a762f4034dad4248665ce95c48162fe269cfbb45635cc1213db97"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "2adea718d80252001b4942b5d99c53e9db31856a55e0e6f94260960eb6221b4a"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "9eb2212ff629e8a02c809705d1d90d25f84515b796bcf4cb56d4d727826dc1a6"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "0e92f7f2a555eadcbdfae672d248d203673ce1936d4294f99a013fa19a4de257"
+        }
+      },
+      "fleet_size": 4,
+      "historical_reference_policy": true,
+      "instance": "c109_21_25",
+      "instance_sha256": "e391b137361a2b8bfaf4dc81e22f7d0de0ebaa07a81998cdabb457ed83cfa55a",
+      "physical_witness": true,
+      "reference_id": "80d0e5462813618fd852d242d4cf493cdaa3f0f531f2469c92c2e0d409fe8c31",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "6eaab39871491f5d206c5c8731cb404d1ca9a013406755da44d507f9190e7a0a"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "3fcbcc301dfb46a3bb338356c37b69dc0d8136f83b34e2f952b4d6f02f5b8f3b"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "3bcb923e01a9e3cb92d24083808120de305108f51c68477aa73f2fecc8f6690c"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "65954611bbd3c084c644a80572068e7d97872573d361b9ee46c8a2f685cc61a1"
+        }
+      },
+      "fleet_size": 7,
+      "historical_reference_policy": true,
+      "instance": "c109_21_50",
+      "instance_sha256": "5c6ab2a30b48b49ce634ad8f7da9b6c5e0bf23dd38abd7410a5e4ac891c4cc88",
+      "physical_witness": true,
+      "reference_id": "e7c2a702b4467c93d08978d3602defc48d2f6abfd95f07c4d860988fe2f86ed9",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": "results/desaulniers/reference_validation/references/c201_21_100_0360b67429d9ad99.json",
+      "artifact_sha256": "657f4032da4284f9d4ee53de5d1b5cbe833f54f18a8a3077b9df65b064b07a74",
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "8ec08d7657a87e779a25cc2119d4f4835102c3ad8343f2d8afb7a76b82ad209d"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "b1ca171656a720639f3e317305648f824c0174ea1d1d0ba54e6b5d8d988394ac"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "7dfaa2f681110d2ccc7512c74be6eb9621c4cce4a921850e2a83c1d2e58585df"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "5d45df73b13c78088748dccefd80a88ccf826d8b53a6f04d9366b430b73e18d8"
+        }
+      },
+      "fleet_size": 5,
+      "historical_reference_policy": true,
+      "instance": "c201_21_100",
+      "instance_sha256": "fc511075cdd19580df68914887a7852601ac96dd6b7e1990fb8e1c076f0301c4",
+      "physical_witness": true,
+      "reference_id": "0360b67429d9ad99b6088403f584b36580b22f5c1b31baf3b5ec7f7eb68566a0",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "ed62df9fdc68188a5d7ab403e66aafe8bc5dfaa6b0ee7959bdd1ecfd70a98098"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "d4319bf11615f397c85412d741978ce034489276a5289b55144103acbc9ba0c5"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "816e4be5b2f823d9c07885bd6a699d6ef35d8926be6049617644ffa190d22f2b"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "68c5e9ea1ef72e54614babfbb521b095e7ef404a9c61d644048d888253ed94e0"
+        }
+      },
+      "fleet_size": 3,
+      "historical_reference_policy": true,
+      "instance": "c201_21_25",
+      "instance_sha256": "2f573eaa52c0fa08378c0e2cd3a460f02024cef5909e89be63ca9f0bcc05f0d9",
+      "physical_witness": true,
+      "reference_id": "15db7b7c9eb469d1e50530af296cceaf30a0142e63413f66877a4c626a82c11d",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "29bd8b09f406fb47e9167da2ec9aeda64d9927c0f3700b18f851b356df749e31"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "8e968fa8b0459fa0dc985c48f2159135729877dceb6d0468b6fe2304d0b90c38"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "a4a031ebafe7b0f37d7d8e6f2c3de305e711dc0ca48299d91109600f47059a52"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "9054e799ead7810125fef17e850d40ed56ec8f9e2fe7692158b2e27253cd2e61"
+        }
+      },
+      "fleet_size": 4,
+      "historical_reference_policy": true,
+      "instance": "c201_21_50",
+      "instance_sha256": "59bf5fd28a5b74580af25b92cf2d99eb60f6e8f391f0b1df470cb3dc4c96223f",
+      "physical_witness": true,
+      "reference_id": "ac7ad3f574aac4e21d94b215681ea153b8790c9e666f16b145e75d8d6b3acc71",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": "results/desaulniers/enhancement_development/partial_reference_witnesses/references/c202_21_100.json",
+      "artifact_sha256": "e9d73b2b4584a33489814c794f7552e465de07d793699235d8ad4c07c864e87e",
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "669158f790462a3afc5951525a7986524299193220672f19e129df3426d9ab0a"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "0d83386ce98fa6c86b7fba3e5525e176c6cdd15be74e13248e02c491396b3fca"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "4c036fb0e17edbd0f9fff2047d459b05de303d31cef5c9c6c1dc5cddc20149d9"
+        },
+        "0.75": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 75 requested, 71 eligible"
+        }
+      },
+      "fleet_size": 4,
+      "historical_reference_policy": false,
+      "instance": "c202_21_100",
+      "instance_sha256": "11eb5b873d010323c577d34e30abc3dc8514dc77ccd8eefbddb7de4307535367",
+      "physical_witness": true,
+      "reference_id": "b1d1ce225b911531f622a0e061c4a1d5b898a11821d5ec6f373193a0df3421a8",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "2103738db0b6186923a9c2474b40ac3e8fb1d108db7bb7175cb3f267d7df5f68"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "b3b752d95efd4f5ba6cb8d35cc263ce46799bfe0fe7986026f22bd7715e1414e"
+        },
+        "0.5": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 13 requested, 12 eligible"
+        },
+        "0.75": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 19 requested, 12 eligible"
+        }
+      },
+      "fleet_size": 3,
+      "historical_reference_policy": true,
+      "instance": "c202_21_25",
+      "instance_sha256": "da831621a082e1fb4a4c4925bfbe13b356b3ce1de4a895a73486ca91bc20707f",
+      "physical_witness": true,
+      "reference_id": "7deabb78522fafdfe5a5d3cef1ac28ee8644c587bfded9a10866edcda8f3aed5",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "a5e4128d5ce5a7e65f3cbe8331c58b70b38c15b40350c51485fbcfafc63f857a"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "822d89eb15e40575fe293ebf68a1d7b3814df645717ce953949fe8fdf8b9ae1f"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "ec135b8ee2fdb7bf56be21423ebccf1310546c734788b0bea46cc1e23c39a338"
+        },
+        "0.75": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 38 requested, 36 eligible"
+        }
+      },
+      "fleet_size": 4,
+      "historical_reference_policy": true,
+      "instance": "c202_21_50",
+      "instance_sha256": "28ac6e9d70b80a14f57c5cc6a298bb55e230df7cb330da42c0ecc002087e5e4c",
+      "physical_witness": true,
+      "reference_id": "72c363d611981c79a284cb112c8ec65047f848124eaa9b00418576b0f0a85f94",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": "results/desaulniers/enhancement_development/partial_reference_witnesses/references/c203_21_100.json",
+      "artifact_sha256": "db62ca46b74fcb757556956fd0932205f0ee5cc308cd084ade7ff67b8bac5d2b",
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "f74aec391847413b9eb6755881812d5ce23df735a811f6b1217d669e6083118e"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "a3f336288f356d4b2ee4cfa3d42ac0260f97afe7e4012de007a0898a46d714b9"
+        },
+        "0.5": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 50 requested, 49 eligible"
+        },
+        "0.75": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 75 requested, 49 eligible"
+        }
+      },
+      "fleet_size": 4,
+      "historical_reference_policy": false,
+      "instance": "c203_21_100",
+      "instance_sha256": "aaa3f26e283b94b567cb4287f0f1109d64b74cf45164d98667d7e7276af4eeef",
+      "physical_witness": true,
+      "reference_id": "c493b4f686f24eff2513763ef0438d2d4fc08d3d7c12a5e2fbaf73f4055153d3",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "226eaf32617c12693165791132f80059ab8727127ad714fe667246343c798602"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "15c9c7e9731c24756be5592afd49377b60a8bee776f2405962757d175f4dbdf2"
+        },
+        "0.5": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 13 requested, 9 eligible"
+        },
+        "0.75": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 19 requested, 9 eligible"
+        }
+      },
+      "fleet_size": 2,
+      "historical_reference_policy": true,
+      "instance": "c203_21_25",
+      "instance_sha256": "f1446bf60746c7933c3aa317fd9476c8f885ab045ec8beb7f25e8f4b3b8cdbf8",
+      "physical_witness": true,
+      "reference_id": "56a6e2d196a8a29d8dc8e62309d807de22c732091d0d600331a5309f217659f5",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "0aba3bbd1458575409c4d346705eb662551e53785a9419b5103211430b0d7adb"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "aad29c4be1d418ebe300aefeb5fdcc1df917ef77cd17136506539a27f29cfaab"
+        },
+        "0.5": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 25 requested, 21 eligible"
+        },
+        "0.75": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 38 requested, 21 eligible"
+        }
+      },
+      "fleet_size": 4,
+      "historical_reference_policy": true,
+      "instance": "c203_21_50",
+      "instance_sha256": "0a601b4f61d3ab2de0fbc60ebd58fa46dd2635d63966a684074360c9397aeda7",
+      "physical_witness": true,
+      "reference_id": "757dd55a111fffc1a71f217424b44bb7fc71cef0a38b1ed679f1329981b01eec",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": "results/desaulniers/publication_development/reference_extension_v1/references/c204_21_100.json",
+      "artifact_sha256": "b291174de48da83bc1453a29902cea67852ac29253ab0793fd9d24b2f0b017c5",
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "f84992ae94a86253acfd0b6c4f3ccfd78e94ce55fa2e9c5113cdd299f43b0524"
+        },
+        "0.25": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 25 requested, 24 eligible"
+        },
+        "0.5": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 50 requested, 24 eligible"
+        },
+        "0.75": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 75 requested, 24 eligible"
+        }
+      },
+      "fleet_size": 4,
+      "historical_reference_policy": false,
+      "instance": "c204_21_100",
+      "instance_sha256": "e961c9f736ba42995f02338a908591a63ad05a53746356559863b182c675ae50",
+      "physical_witness": true,
+      "reference_id": "e64980338d8aa38b3d5335adba5e2c6ad7badc3935911f237faaa323a62bfac6",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "91cbd48a88b208e910e98e0348cf231772d68e0b68e6e1b131d4f26e049237ad"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "7edd0c2b6713b8acf1fb871977dbe80fff963f8e3c4f9b57a6218cefe9809e1d"
+        },
+        "0.5": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 13 requested, 8 eligible"
+        },
+        "0.75": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 19 requested, 8 eligible"
+        }
+      },
+      "fleet_size": 3,
+      "historical_reference_policy": true,
+      "instance": "c204_21_25",
+      "instance_sha256": "484a7a396fe0ac93c8e8a6267f30585e194bd79be88d64405d0cbbfda6e36cff",
+      "physical_witness": true,
+      "reference_id": "a7653a4b19f45ff45875bddd979e0d464d6bf2246326f14fd3736fe296c5e411",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "1a576139aca221b76fef0a5ec704725ab1c56209d33b33743eb1619a6a9bb944"
+        },
+        "0.25": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 13 requested, 11 eligible"
+        },
+        "0.5": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 25 requested, 11 eligible"
+        },
+        "0.75": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 38 requested, 11 eligible"
+        }
+      },
+      "fleet_size": 3,
+      "historical_reference_policy": true,
+      "instance": "c204_21_50",
+      "instance_sha256": "b6112bd5f139bdbcadd76034684c6af12b9b923441706430d9f56ab0357eca9c",
+      "physical_witness": true,
+      "reference_id": "77c5c446ba693fdb65874a5da92c9a0002bfb4ccd9fdaf30d0b28a3685425991",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": "results/desaulniers/reference_validation/references/c205_21_100_858c000605998cb7.json",
+      "artifact_sha256": "bca90c47fa68ada3b34bf087cc3524fadaaa222e02e712520ddb114075884e02",
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "8c3808476fc62f119640ba04af05ce4fa3d6f5901f93385fb11c6243f07ddea6"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "3d01ccaa8fee7b891ddd0af365a872009e1a50bccce7d5a5cdcda7e1a6080e68"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "3f08652675909c1dfb661ffb3332736a983a72ff39f9f7f0d911dc401a015561"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "330beacf3c12ad1a7107d0f795ed648929a4dfa89df4d82f3cd1ee88e1931ccf"
+        }
+      },
+      "fleet_size": 6,
+      "historical_reference_policy": true,
+      "instance": "c205_21_100",
+      "instance_sha256": "09e9e01517537c63bf9c676b194359e777119a32c92b11ee1c446a6a116e84d0",
+      "physical_witness": true,
+      "reference_id": "858c000605998cb7f97bd904c75c8da78b785ae27f9d2a60de0cd533d807af47",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "5f633ca837bcf9643d33e559c1f7fd139eddc7b6335585fdfaa0e24898a88117"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "2a3b25a63f922322e5add7fda64269cec8c7d132b14bb6dc45df15de84a516c2"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "22de4744725fc3bebf2e1d4220fb284cace0470210879408319303297781fe4d"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "8b90b93d3ae705207110202319e10436af691d299e51ec03e7cb29b6f3f6074c"
+        }
+      },
+      "fleet_size": 3,
+      "historical_reference_policy": true,
+      "instance": "c205_21_25",
+      "instance_sha256": "fc2ce15018fea536395c0a6df5b05b36d2bc7318e26e6e17ccc42f92e5808659",
+      "physical_witness": true,
+      "reference_id": "17a73f9ae39cb04cd7b9bd2614dbe3ae7355a6fd34ee2a531d323723112ada84",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "926273e55cf3b04fdc9e1db26d20c558df78130d77769020738f061574d52020"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "2766ad8b65ec1e1f1f6003b9b8b071a29fc51b4d15d425a1720ba0235ed1e3e8"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "60b0031d58ff9f8a3e848a053c3123d988018c190ec802000fb7bc151df919ea"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "8726b904b238ee9df1d798e5179c12321c69bf5809410f0a4c32484899478dd3"
+        }
+      },
+      "fleet_size": 4,
+      "historical_reference_policy": true,
+      "instance": "c205_21_50",
+      "instance_sha256": "3af2e7ec6cec79f35efc0be51be6185101a9d93156ec9a6d2f6df3073606a27f",
+      "physical_witness": true,
+      "reference_id": "db4c003e1962590beff199b2bb3071d0e987075d00a7c58767edfa2b3e56d5c3",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": "results/desaulniers/reference_validation/references/c206_21_100_6c539dcdc1572806.json",
+      "artifact_sha256": "ce0738bf66f29049fdf09e230e02afbdb14b64da30e1b7ec9e4705c0c047e292",
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "03f06add6021ab4a20cd47ce6b3c6f82392d31ec2b7d7b4c5a7a80018c3e1bee"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "876e91c94229980a3d752a0eaf86acb0681ce1902a3034a34bebce5c2f762182"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "92008520595517cca750074b9e9292f0f1078c4974cfd744870bbb80a512fcba"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "280e4b6e96d62c98470b533e26c24d08639d5e01871b5763d02fec42d827d779"
+        }
+      },
+      "fleet_size": 5,
+      "historical_reference_policy": true,
+      "instance": "c206_21_100",
+      "instance_sha256": "36896b744168b9b9764a9d682aaeab6c9589071f209ac9819e074205d0400390",
+      "physical_witness": true,
+      "reference_id": "6c539dcdc157280643926d7a88c87dcf9d8ba5d59da2b834e666f91aaaabd6ba",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "b27e88195b0d89e9cbad44d8ab001367c30faaf2b863ae26da471f903b2cb918"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "7db42df9a9777503ce389ddfc565b72dfa4ee297b007b17d4365399355e4db81"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "9746ad7b96782b1268b1374ade84630ad92394e8c45de49435f97f519df76d93"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "c403375abc5073e7b97cc75f4a71e1a77223a4f99d377f769fc8cd4229620766"
+        }
+      },
+      "fleet_size": 3,
+      "historical_reference_policy": true,
+      "instance": "c206_21_25",
+      "instance_sha256": "77ddb502bed9406e60db4896657b7a50254bc218eb3e80f55bcc0c4fff7ac7d4",
+      "physical_witness": true,
+      "reference_id": "158ee25cfe8b752a767f6ae675f194f081516eb4b2a936ac702776360b58e209",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "1be8a5ab0a79b913203aca57809f43da2ffd73fe6687a7ab5479d83e89d37d3f"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "61cec1a8871bf20c05fe33a6d39a8c306e687fb19f8499d969896ef174b4800d"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "a2207764643ec6c41d6ee5e9c281487dc95a6ecde033badfe047c8f0af03a9bf"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "350ba8b464db806f5b39a44b26556de3da788ec83988ab1b51d985d68db71ba0"
+        }
+      },
+      "fleet_size": 4,
+      "historical_reference_policy": true,
+      "instance": "c206_21_50",
+      "instance_sha256": "bf893cc3d5e0cc4e9a4b4758652186cc495e051b084177fadf40ced71f84eb09",
+      "physical_witness": true,
+      "reference_id": "4435408701af9b43228515830363676e7dcf5542a0e655cc3d41c8081a7b1704",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": "results/desaulniers/enhancement_development/partial_reference_witnesses/references/c207_21_100.json",
+      "artifact_sha256": "170dfb3a39ad3874b57cbc290bbfa623a9d89703ac2dad5603f6e8cc61708619",
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "0a09b8d2d8c556198c378aa7f53077f412f4ae45975872a8dce26376e7ce1658"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "315cd4eeedeb64fc60442fbb99cd04acc36408492387b74e1668c15f0791da77"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "4d87c15f5bff4064d54f38e0a0482571b8710055b100ce05181eea480b6b8831"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "4c75f7e19f47f2861e1b97fde1e40bbb78217c6144cc6fe7c7a2d27fab3783b8"
+        }
+      },
+      "fleet_size": 4,
+      "historical_reference_policy": false,
+      "instance": "c207_21_100",
+      "instance_sha256": "075133e0e34bc10c7cc07355ae4e5028731ccf686af3c46e1e3e8d5891927a12",
+      "physical_witness": true,
+      "reference_id": "89da68174341b106b7c4711c82037d477f1ae68d9ea30612e27f9ff3662218d1",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "12ea210a8b7dcc7ee5392da6142cac8931d40b14fc7b38c172c6ceee0e6f0704"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "471b1c656ab5b6b20cace30faeb2fc69683c09c92c7c8d4d991dc0fe85f09086"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "0deff322a9182ce9c8db0bf3be2915caac3d36f4776f2f78386bc2089191eb84"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "6e1a8cfa98c0bd49f9d1ead8b7dd9ea3ea16736b65c3e9ed1e88599f378d966c"
+        }
+      },
+      "fleet_size": 3,
+      "historical_reference_policy": true,
+      "instance": "c207_21_25",
+      "instance_sha256": "3705f19347100f1b8735e601b64455c80e931453cde2518159af906fc8c7c7a1",
+      "physical_witness": true,
+      "reference_id": "584c6846cc004d0a8d68ce7028d256d51fead5e7c3cfdff72b0b55d2b6ecae13",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "e05512692e594745be54eea4cc5f5c29c6d7985f9cfe8e3020affe20116d3767"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "bd4056b9080830462bac0221abbb19bc144953192a447d99c4ad849b2b6e5579"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "d5dfc8ea40478f3ead5f86d25f046ebe8bbb14ce13c5a7d15b1fe72301f73668"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "01fd4e548291ebc0c9056f704be0c4a59473f7dc4773a048bef3a4ac43380388"
+        }
+      },
+      "fleet_size": 4,
+      "historical_reference_policy": true,
+      "instance": "c207_21_50",
+      "instance_sha256": "e357540f6642271a6bf7e4988d0ba0b650f402c0f0a11c6ef246a20420410d60",
+      "physical_witness": true,
+      "reference_id": "91c7d139a045f922c64a866e6b03d7e49a6aa130cdd34fecd971d2ecca5cc5b5",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": "results/desaulniers/reference_validation/references/c208_21_100_58d4e168348e44be.json",
+      "artifact_sha256": "0c9d279f07f0be2f22191261cd923dd537c637a8330152ce089b4ee476be7871",
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "495a4b590a99532459f9824cdcf1d89ba8e8ec721d5724a3314f8e76405eadbe"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "e8773b4d41c28103612e2554a68f7176e87e39846e556660fd90c7fc37efaa69"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "fc2c3dff8ad3ca6220dca79e7d7caeb039071be395bec5dfd4cfdb8f800ac19d"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "31d8c9e0d61806e09fb28957128ccb9f8a8edef3adf6dd3d0f9e1b3255165fb2"
+        }
+      },
+      "fleet_size": 5,
+      "historical_reference_policy": true,
+      "instance": "c208_21_100",
+      "instance_sha256": "548ce6e7e6cd3d0e8781ccc521bc4566c40309a84b704e448116ab12289538ee",
+      "physical_witness": true,
+      "reference_id": "58d4e168348e44be5a281e84429b1e04f43b353fba27655c9718ed5e81184895",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "410bceac1cd4a0412aacb3dfc32e99d674ae848d86753756c72c6f17c0d2657a"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "198861c747a6e12b7149aa7b46d0cd8e42bef93ad85c4c413b5b8e83aa821cb0"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "b487d1f39bb4921e842cf0b703ea631456b7d9c5d653caf207a01b045dedbc23"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "4620532c2562480c6aafc535cde53fc10f3599a28c3fac4e3aba175c58b9a79d"
+        }
+      },
+      "fleet_size": 2,
+      "historical_reference_policy": true,
+      "instance": "c208_21_25",
+      "instance_sha256": "21db9d0c2646c8ef0d331a0d3fc99c9adb7a76bc90427817943e50ad3e50e565",
+      "physical_witness": true,
+      "reference_id": "ebf95362d83d106927324693ca0f93514d339be531afca94f42c034400e4321f",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "44b33a6e559850fa0e1c1b50e29222f0a62916418da73449da37345813484145"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "1cb6cb645f7bf00096d0857582fb1f03eda01e4328e23981f49d797a74a96152"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "bdabe80619b955b6e6be4e185b7c42a5a6e7fc4a220005426d27fb5c5d0e4093"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "4166270734571db700eb566230056d7b3248b583384757f17f1425c657adb8ae"
+        }
+      },
+      "fleet_size": 4,
+      "historical_reference_policy": true,
+      "instance": "c208_21_50",
+      "instance_sha256": "41721c4cacdefb6c2ec2eb92b90385915afde24cafb7294f70200a234253ae17",
+      "physical_witness": true,
+      "reference_id": "09406e95fee333a31f0e2c619fe90b4f5475282f7713b8f88508cafbdd47fe53",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "e117ac3b2760b02244bc82869db6571452c955d2e0c2746927f7719292c178d1"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "9909974cdec4dab9b59cee73894ed0f170115681e108b5b8107e339aa47f2b52"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "dea13ef0b6fa3b007879a7d7118530e93547bdd9f9e88cd6e25fe9f4819d3200"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "9f20e3911a2e36f8bb8936bf7a5d0cecb19a51e8820d0fbe2bc94143356f2132"
+        }
+      },
+      "fleet_size": 20,
+      "historical_reference_policy": true,
+      "instance": "r101_21_100",
+      "instance_sha256": "2c3ab4fbeb56a09dd2f1bb3babcdf8ed5fd5111376547af26cbca674f008e979",
+      "physical_witness": true,
+      "reference_id": "138781a29cba6152cd5eab316d3afb433ce912352ca173c0ced12738a53b0d57",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "98dc44d1d2f5e026e544861d1716241f6a162eff80bf5416b6a9e43ca21074b7"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "3eab89882da4f75845895e27c2d03829da7a3344dd10ab62f5b1082bd4acf013"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "d84a239e9491e8fcb314f4f46a711f790fb84f8df3ba82f458f947237772cf0f"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "69c7a6016ebbd51751dd6d23a553fd3a3e8e261dc5fbf9338886b6781927fc1c"
+        }
+      },
+      "fleet_size": 9,
+      "historical_reference_policy": true,
+      "instance": "r101_21_25",
+      "instance_sha256": "4521328d90195ef54c3418f241b13f32fee752eb0bebf56231affbdc0372e5a9",
+      "physical_witness": true,
+      "reference_id": "167591b58386ec15b2138eff2ae67d54d0c258fc834224dfc55b06853d51dfeb",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "8e66d6a97f64188640494a527842ab576add1a97fca2362940b415693b9d26a3"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "0e08da6c1ec3e4e6f6f5e23973ce8a1c2b880b020a5417811429d7754cd918aa"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "d1c2cfde7a85c9e7e179907f701b2e0cc42f6b68742b3d4e6d0c72b3936d9378"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "88d7d0a37596fe7fb813d82ad4d39e141897ee3e0f53d8503a69bcd71ce2db32"
+        }
+      },
+      "fleet_size": 12,
+      "historical_reference_policy": true,
+      "instance": "r101_21_50",
+      "instance_sha256": "ca48e58d72eb0fbe2e6d023f80961f93d1cd0303cb70bb94cf35e1966e5dfb7d",
+      "physical_witness": true,
+      "reference_id": "23e6a266a62dedf52f8bcf200315c838104ffe2c6c8de39f186a024b7626392c",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "8c944c2f7010cafe4516a682fc74fbc9e312513dd808ef8ad7b020043299d59c"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "b58035372505b699799c70e31f7f8f20d854a73ad7d777828ed22ece1a09d106"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "fdff32b4a86ceaf3e43af7af07565d5e81a9619e75ed93a5615a7324a4e0b9b4"
+        },
+        "0.75": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 75 requested, 67 eligible"
+        }
+      },
+      "fleet_size": 18,
+      "historical_reference_policy": true,
+      "instance": "r102_21_100",
+      "instance_sha256": "c1e77d7f528e39d64d539ffe32c78d2747b6bfb6fcb37c7c7a905d72896fef7d",
+      "physical_witness": true,
+      "reference_id": "49de79231a0d78c778733139e020022f0407d6e3aa1b34765312efe9b9b9e0a8",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "6f07d44dad4d6a26ac986a13c9e692502019d5699c9cd0933fcc045948dbc74a"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "954059245f5f57198e2b34475dea197d65f8867e0d54c39e36203af3751acefa"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "c7cdafb5f4f4865d820709f711e726f75e0361e899360f1a67b76fdf3340bff3"
+        },
+        "0.75": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 19 requested, 13 eligible"
+        }
+      },
+      "fleet_size": 6,
+      "historical_reference_policy": true,
+      "instance": "r102_21_25",
+      "instance_sha256": "f521afccc1e9e93773656033efa03bcab75e1bed41685de9f30b4050e12e517a",
+      "physical_witness": true,
+      "reference_id": "2352eeaf89419b0bb615dad253ce287bf68ebced4681e58ab6f77d50755e2505",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "d826372f8a7a5d37c2da4339d8f3f7777296df94a99f195511aec022c628a18b"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "da1e26627a739286c153b3b81422697d41b61471730574d851503b58b54d56e2"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "19439cf38f239d0e844af828b922710d77cbcd7171f80f6ff3a78c573f4c2148"
+        },
+        "0.75": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 38 requested, 34 eligible"
+        }
+      },
+      "fleet_size": 10,
+      "historical_reference_policy": true,
+      "instance": "r102_21_50",
+      "instance_sha256": "d775ad7934c99ebf787d2d06926f5edf6fc3acb6bd3ecfa4410e3c5f1fc05bc9",
+      "physical_witness": true,
+      "reference_id": "be9cf632b91fc434827a1dc69fd09a1ec8360f643d66552ca7b0749b70407680",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": "results/desaulniers/reference_validation/references/r103_21_100_10a42e969295d023.json",
+      "artifact_sha256": "02f896b516bd97f465988df0a94122f902a9d6f6976aabf729e53d6a78d27b5d",
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "770e86814811f0e13ab062b67cc1c25d26e582db16f67d8a8b6665fde38de870"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "56dc81e9281bb48f562267a4d95eecd877a94d633eff6978662f276929532942"
+        },
+        "0.5": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 50 requested, 48 eligible"
+        },
+        "0.75": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 75 requested, 48 eligible"
+        }
+      },
+      "fleet_size": 16,
+      "historical_reference_policy": true,
+      "instance": "r103_21_100",
+      "instance_sha256": "f0e577966c511a782b145074fa64a57c007669d4277795aa4f6046a5be5d13ec",
+      "physical_witness": true,
+      "reference_id": "10a42e969295d023f93812ced7f913417f9c5104cc78da904811e4bc8dbc037b",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "3e599ad80426828d763178cb64c7dc2ef8f8991fd77c6e54be71dcb81986d3a3"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "bed4d51a2113f887158242d525e3b00fae06b7efd2dd96eb7e6a720e20fccbc4"
+        },
+        "0.5": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 13 requested, 11 eligible"
+        },
+        "0.75": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 19 requested, 11 eligible"
+        }
+      },
+      "fleet_size": 6,
+      "historical_reference_policy": true,
+      "instance": "r103_21_25",
+      "instance_sha256": "a092cdf12f50d4af60d803ad396738b5410c6dc7e70c7109a71a58d97bdc6c93",
+      "physical_witness": true,
+      "reference_id": "04f50fc056ae9d2fc90eb44d563ef014d97d9bcf1b86c97e06cec60d08118391",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "f56bfad1715e63aeaed6707541e2a467696f6a341b60abb2110d4ecf0fbd362a"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "50c4e0a051a3b69f1202be700079a3cea917ac1fb49290e079e3492d1a8624bd"
+        },
+        "0.5": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 25 requested, 23 eligible"
+        },
+        "0.75": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 38 requested, 23 eligible"
+        }
+      },
+      "fleet_size": 9,
+      "historical_reference_policy": true,
+      "instance": "r103_21_50",
+      "instance_sha256": "29e55607956dc635218363e897e1cc646b3d81ba73adb318087d3fbeef9f2bac",
+      "physical_witness": true,
+      "reference_id": "f29fd053b1dbad68b16fbd9b55466a9763bd5dd6a938707fef64bfdd123392e9",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": "results/desaulniers/reference_validation/references/r104_21_100_3732c2ff8f8f0b2c.json",
+      "artifact_sha256": "3066de85d44ce8311734df5dc3a1f8bb5977fe173d9b64adcf19f316b428b59c",
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "74bba2f0ba1acd3e27176be6cd4263ee277d1296761f16d7badbc326764487dc"
+        },
+        "0.25": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 25 requested, 23 eligible"
+        },
+        "0.5": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 50 requested, 23 eligible"
+        },
+        "0.75": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 75 requested, 23 eligible"
+        }
+      },
+      "fleet_size": 15,
+      "historical_reference_policy": true,
+      "instance": "r104_21_100",
+      "instance_sha256": "e84b7065d3f22e8a867fd1507d11b3d1aab840444d45dac06def5b75d67866ad",
+      "physical_witness": true,
+      "reference_id": "3732c2ff8f8f0b2c52b7414ef83b11bf4c71b9ac7847c297cc9e484c0b8abdfd",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "14355aa0c20cae22b70c6300d78012a338aab08e0d272eb3b996e2d114a4e6c0"
+        },
+        "0.25": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 6 requested, 2 eligible"
+        },
+        "0.5": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 13 requested, 2 eligible"
+        },
+        "0.75": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 19 requested, 2 eligible"
+        }
+      },
+      "fleet_size": 4,
+      "historical_reference_policy": true,
+      "instance": "r104_21_25",
+      "instance_sha256": "c590d69a7d8fa9018a2860f903fe51eacf292acff3d4be5aa180c9a4bbf9664f",
+      "physical_witness": true,
+      "reference_id": "1c0c28da11fd4c435cfa668e26a036f245a594df138bf9ee642fbfbac2261516",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": "results/desaulniers/reference_validation/references/r104_21_50_13b473a0ac9af36e.json",
+      "artifact_sha256": "9bb269587b33266cdabb3d5ee6a5d8b601cdd4baa1ac1c61392a95acb3449dba",
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "e6774957818914247e802757c56da44fe41f00d3a7ada40092dfb4a3d14b5db6"
+        },
+        "0.25": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 13 requested, 10 eligible"
+        },
+        "0.5": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 25 requested, 10 eligible"
+        },
+        "0.75": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 38 requested, 10 eligible"
+        }
+      },
+      "fleet_size": 8,
+      "historical_reference_policy": true,
+      "instance": "r104_21_50",
+      "instance_sha256": "b69b3fc1cca342ac20cb3d1eaa2eec9c5a6b19db17ad767a37b79d0fc2686e0a",
+      "physical_witness": true,
+      "reference_id": "13b473a0ac9af36e88658ae2bd81476725c4ce5a4778b24218bcc717c3135bd7",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "eb696020b554719af3051f48d474e36e0f3366a8b8edab6154c1f962b01e5702"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "89658447a0ab3da58d8c52d29735d3afba14ec21b1704cc4d1331e45f128e1ee"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "9a1040ec98b4d1ce05007229df5802c83a50b3ff1019a4eeaec03fa2f8c6b512"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "aa1ac85a267c4f403a14597aeac418ebdca2a88f1d027535a633c1a9bf4fe090"
+        }
+      },
+      "fleet_size": 15,
+      "historical_reference_policy": true,
+      "instance": "r105_21_100",
+      "instance_sha256": "db6284653efb4ecfd25030442c8da80ef2792d56a4bf5df06103ba5edc2efb3d",
+      "physical_witness": true,
+      "reference_id": "aba53d326b9d75f4dfb0d54bf744caa221a811df7a3401de5d5e614ead372743",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "ff1ff2a11edfd1e17536ed6e764fc08badfc922180e23a0ee1369d3987c1ce9b"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "0fe53f1e950aae470f5d1ad1461ae8ce389bf5bc41793a23e55c3167c48854bd"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "534ca5e0b8f8ebc90592f030d18ee9f685fcc6acd7a96abf5a4343bf1a0ecfd2"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "07e13f84dc9785cbf9e489af64ae2c1a89cb47b0dbd7176e741a2d8bb94fd07a"
+        }
+      },
+      "fleet_size": 6,
+      "historical_reference_policy": true,
+      "instance": "r105_21_25",
+      "instance_sha256": "72ccef11faa6b71317d8442969de79a4de15172709896f82f3ae768987998d88",
+      "physical_witness": true,
+      "reference_id": "ec737a407362f742443e3658eda60b308d1aefaa64151913976885bd8e9d6226",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "f44c114b4548a5c9f2e69ab1feea9c8151b1cdec8205d18ba5f60e334b2b2731"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "1cbb9905aad4e97d445deae48fd71b973b8f71fd3305ed29f0a9ddb4ccbca57e"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "fb51495e2ef35f8a926c962f1b47cbc9d35b86962aeaaa1a1751ff9037ece0b8"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "488e98403a0e87ffdb1f6a92dff05158fcda2eef99d92a775359bc1d7fe2980b"
+        }
+      },
+      "fleet_size": 10,
+      "historical_reference_policy": true,
+      "instance": "r105_21_50",
+      "instance_sha256": "94c1d303eb85ea2e46fdc902d4a3d83a589e487069346472a412b22336a4fa33",
+      "physical_witness": true,
+      "reference_id": "cbbb3d87f7fc2e565930755b1b6a40120a33aff74836eff6e4222c79e5e82cbc",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "b042a0a018b681c91f992e8176cf510d2c3ffe5b7753824718d7d7ee9812fa02"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "af4c179b374dbb1ffe4238e4a2a4bf7ed7820a36cc3ec0e2edb7ba97771c3edd"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "eaa93c8e1ca10190c0b22192747afb47fca68851e4d5315f13b711f05b60dd55"
+        },
+        "0.75": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 75 requested, 69 eligible"
+        }
+      },
+      "fleet_size": 14,
+      "historical_reference_policy": true,
+      "instance": "r106_21_100",
+      "instance_sha256": "abe9de4ab773106edcd1783179a71e3cdf1ed7e8082ff0ea20ae430a438571fd",
+      "physical_witness": true,
+      "reference_id": "d68536ffbeed8e01c98bcccf70ed03a6bda54321d94d48ed0602890f89db3c75",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "702cfc5633e857f12dda03d22cc0bc185b1647b4e3ecb943e60cd6d9fb62535f"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "b38c6827046ce17df1a6a317de4de22cbcbc0519fe00ba1f194009a2ec79190d"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "77b6858c44fbc5226ddf858a5a51691c6d77d7222f439b8ad2d8f41ce7f30ff2"
+        },
+        "0.75": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 19 requested, 13 eligible"
+        }
+      },
+      "fleet_size": 5,
+      "historical_reference_policy": true,
+      "instance": "r106_21_25",
+      "instance_sha256": "e30407ac55f319da0bc3d0f1bca39fa5d32c3b0cc3c24df280b7de4f3879fa6a",
+      "physical_witness": true,
+      "reference_id": "c25d2b2c0675848d99b067eaa39ac107600d632bbfa0ea9eef2aa25bb2857baa",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "5e93b773419a6c654a8dcc473fd3ea88b5687c98ca22eee8650509452da66ff2"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "f3cdd9f0cdb9edcdc178e3ccc5df94fa6cf41aa3a44a2c0d9f35ee520b3e3926"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "c402000167cc5fe54cd6e3214e38c1dff4d1ad4b04bec52277d32972faec8e82"
+        },
+        "0.75": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 38 requested, 33 eligible"
+        }
+      },
+      "fleet_size": 9,
+      "historical_reference_policy": true,
+      "instance": "r106_21_50",
+      "instance_sha256": "4b66d717058653b0a0fcc05fc94666a13703fadcab0c476dd8d84a7bb04edb14",
+      "physical_witness": true,
+      "reference_id": "686a437719d04ed79a519d75a1ea126e5684fcecaab4534a94b9678b49eb3ce8",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "9efdcab54fe76525bf6f77150981545cf709ccf8cf7962f5706ba2833833dbc6"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "0c973a4d1415c8bffa13e9ed2a27473b2a3d7317d50d7fb4bf714db07914f9cc"
+        },
+        "0.5": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 50 requested, 45 eligible"
+        },
+        "0.75": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 75 requested, 45 eligible"
+        }
+      },
+      "fleet_size": 13,
+      "historical_reference_policy": true,
+      "instance": "r107_21_100",
+      "instance_sha256": "3720b666e6829a6d76a0a059be18a10e075bc441d3b898bde7833c0ecf857e70",
+      "physical_witness": true,
+      "reference_id": "14fdc6e2f4d0deb893e6416953fb41ede07cd07f45ec117b9c9f5dc75648f088",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "8e0d1abc94308fae8cbb94948d96a5d9a57e2db9f4f2845bb6c3721b94bba7cd"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "f115e54568997d729c4692374bf126a470cd7930fe2ec34472457d148753bdb4"
+        },
+        "0.5": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 13 requested, 11 eligible"
+        },
+        "0.75": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 19 requested, 11 eligible"
+        }
+      },
+      "fleet_size": 5,
+      "historical_reference_policy": true,
+      "instance": "r107_21_25",
+      "instance_sha256": "a72a1a90992cf1a590b0cf5b7ea6cbcc1e40b3308904e9d9dbaf283a22dd80b3",
+      "physical_witness": true,
+      "reference_id": "854b6f42c3c306bb5ac0df79b049394a04c74cb82ce3aaf88a3eaf83d3e7e661",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "cd5a227057d803ed2443df80790396b22924489d1f4c5b0d0785832e7e3582d8"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "efd40391502fcf7e5e21d86131f2735ec25bb761dadd978d1cc4e4898d040e79"
+        },
+        "0.5": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 25 requested, 24 eligible"
+        },
+        "0.75": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 38 requested, 24 eligible"
+        }
+      },
+      "fleet_size": 8,
+      "historical_reference_policy": true,
+      "instance": "r107_21_50",
+      "instance_sha256": "babf346f43c735c7e7125c431be2f54f472fea8de74712c753698e15a62572ca",
+      "physical_witness": true,
+      "reference_id": "bc7fa8608f1b56508392da43f3176b327fd0f1526e8d7e63150b0321f439841f",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": "results/desaulniers/reference_validation/references/r108_21_100_aac445b125685f8c.json",
+      "artifact_sha256": "2d67c0b99aab8edb0628d3084e30be134b369488472f755e104981716ab6e2fc",
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "f9bc6719397da6e6480cd0502702a6f5791ca372688bdbeee295ef78ab79b5a9"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "6c2933d4dfe2842f74e4c3497c6420bbdab9a790742e58a3a4a3afad33ad0f83"
+        },
+        "0.5": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 50 requested, 25 eligible"
+        },
+        "0.75": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 75 requested, 25 eligible"
+        }
+      },
+      "fleet_size": 15,
+      "historical_reference_policy": true,
+      "instance": "r108_21_100",
+      "instance_sha256": "dad483794845374e5395833217b64493df23f147683c7e38b54d1ee7f02cf72a",
+      "physical_witness": true,
+      "reference_id": "aac445b125685f8c2e749e1fbf7de8b7acbb097dfeee523041faba806e024cef",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "e05f6088b48c2cafce16a8b23b0d58f7a7d9375399fd052744e5c4303c5e7b58"
+        },
+        "0.25": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 6 requested, 4 eligible"
+        },
+        "0.5": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 13 requested, 4 eligible"
+        },
+        "0.75": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 19 requested, 4 eligible"
+        }
+      },
+      "fleet_size": 4,
+      "historical_reference_policy": true,
+      "instance": "r108_21_25",
+      "instance_sha256": "8e0cab9d4927484c6633080743bb22f6bddab6f146c1a5138e21b2915c8554a6",
+      "physical_witness": true,
+      "reference_id": "5813a9d97c4d7fc76625492265a567bf193c192bc088b7244dfe50fa3639c634",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "0c4abb9b84010d550e345bd3b3e387a81973d3b5bbdc3f86f7d6120ff1678574"
+        },
+        "0.25": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 13 requested, 10 eligible"
+        },
+        "0.5": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 25 requested, 10 eligible"
+        },
+        "0.75": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 38 requested, 10 eligible"
+        }
+      },
+      "fleet_size": 6,
+      "historical_reference_policy": true,
+      "instance": "r108_21_50",
+      "instance_sha256": "39e2083167a5b594568cc58e9a8cd9ab028b68a636fbb84949d2d4d6a7f2dff7",
+      "physical_witness": true,
+      "reference_id": "869574bd185b6919b7ee13cfee4b1ba12250dad39072b6d3418408e5535ad62f",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": "results/desaulniers/reference_validation/references/r109_21_100_075fe5d35a663f3b.json",
+      "artifact_sha256": "d5d56e76f67517e53d860d1440320faf8b91eff20ed2c98934f6bdd0ed3de103",
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "63a3c803dd031031d95fb46d253103e6d326d59570787b6a587e2f4b2d02a331"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "5fa6afcc02b26306b382e2a945de0080f16c58fcbbb4daa3c58e89f7312ea682"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "a8deeb46f22e3f1a27913a3ea4c6cf25cbecc15c245c9b1e91a479dcbd40d06d"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "41875626a82d180acbec3246bc131410d1c16070860e05cd01e5ecd54a26532a"
+        }
+      },
+      "fleet_size": 19,
+      "historical_reference_policy": true,
+      "instance": "r109_21_100",
+      "instance_sha256": "a641db8f3f25591090967d47543a15ce1f6241b75a3cee919ef15f482cd17eec",
+      "physical_witness": true,
+      "reference_id": "075fe5d35a663f3be1f684cabe7a21c9ac73b8dca5dbb2b3884b381eb7c7cea6",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "2c0825fe45e0a813ce4c83983a0650df187b54215c8522393a50766ce3679a98"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "3a6af1861dd2c7a7dc7dda832fd4cf136111d076b8ee65072cd0feb64f6f2e96"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "27c3778cac29e08cab2567ff3b5333eb03a603954ec54225b05f9730ae2cc665"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "920bf9bfa811b0d2a8e0fd153dacedda7d4b2c78755e1c5cac6f7c792055fe53"
+        }
+      },
+      "fleet_size": 5,
+      "historical_reference_policy": true,
+      "instance": "r109_21_25",
+      "instance_sha256": "7bcc32e1aaf80034b29ed59d1fc7c1b0a56be032c578b1cf3b4ef25ea1a409fb",
+      "physical_witness": true,
+      "reference_id": "c04093eb860c8e267a10397f646759e7beda373136fc328d9aec92c6d8c166b0",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "88606893de81e56b0a1147f2459389acd5993e942792c5f8423aa247c673b1a1"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "6415454e8901cf53a085886c2f299675b31464d41e5298bb470fec2e7db186e8"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "b63dd8b2d513ac6b70448d46752f518591942170e45ecac552da1ad4b1793908"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "6a17b916a4e68c630b0d8d8a9c92f0d085e4c63aca795dccefe128630ab26d54"
+        }
+      },
+      "fleet_size": 8,
+      "historical_reference_policy": true,
+      "instance": "r109_21_50",
+      "instance_sha256": "749953abd6b3039ce6b24553b1150b2b60d9bd0ba8736f0a541d5b74b5adeebd",
+      "physical_witness": true,
+      "reference_id": "6e64e3e34f4c26b1b864e78f7861968f0d8b7ed37897e9c31ca144a026ce7d74",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": "results/desaulniers/reference_validation/references/r110_21_100_79f580059a617969.json",
+      "artifact_sha256": "980b47f84cbe83c55ca7bc6cd46a6f362cee70c722e54d5d54e16155fdbfc6a6",
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "3fc60877939e4d17044a0518311797f9860b2903cc6f7619660983fbeb93111f"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "b166a99c1ef23e6a7c2d80ae5e93b4f80ce50bc430486c4d2aa0a5bc5eb3cfac"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "4b213d04e6eff507d62727d21cba5107ca217c16e6fe26b851b25731ce98f6d4"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "68a692934c809504d80da0c255f9b6da6e890bab975083702290cb389d6b3d12"
+        }
+      },
+      "fleet_size": 18,
+      "historical_reference_policy": true,
+      "instance": "r110_21_100",
+      "instance_sha256": "30c5655c6dcb9222feb1a671e78cab7783352f7db845d8223340723a77ec7629",
+      "physical_witness": true,
+      "reference_id": "79f580059a617969cfa2bf5f84f9d7d6aa3686307ab96d568ef73c904c761b93",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "289553821ec2c9503cedc82431833bafb8f700b2327600303ce2a02852a0fe4d"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "9aa1187b5717c067e726f6848304e8523e68fbe9aae7553f1fd307aae9fa70fa"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "0f71f1a81fee6a4ee2f9bda281616975f24afe4149807ce3d74857875e8731ec"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "29093b0f402686c35fb6d4eecc0be30dbb9a8bd5eef7401ef2d8aa15c505773c"
+        }
+      },
+      "fleet_size": 4,
+      "historical_reference_policy": true,
+      "instance": "r110_21_25",
+      "instance_sha256": "c1916f2b7e5b3ead33453d3f46cd8d108c646342827630237f408a319038106e",
+      "physical_witness": true,
+      "reference_id": "01e4ef90401042d1cb3907ef2ecbd4bce3b42566057c6841113d016f046d0449",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "47a52834e7b11f123da8e6805c1ad1cceca7e67e5ccc88df55448ba560b484a1"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "283c2fc34e8abb07e2f1da11b951e671ec93c56714c8db415316a50b3a603fe7"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "c8b0dc85f1b94cc258831e166f19237e2aae76a9e4d745f2a0f0d1aed3c4bfff"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "e62dc17cd679d9dcc2fc6ffbdb57caf6ee22179ed981f3a232ff77bc0bc98805"
+        }
+      },
+      "fleet_size": 7,
+      "historical_reference_policy": true,
+      "instance": "r110_21_50",
+      "instance_sha256": "b4a966b661c6f4848a9ce9f61b380c21eb26ddc2bb863d5df2160e72b034027c",
+      "physical_witness": true,
+      "reference_id": "2f3f33365d57cc72d904181ef878850c2bc0de1d3753790997c00072307f14fa",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": "results/desaulniers/reference_validation/references/r111_21_100_0b8c99961798dffb.json",
+      "artifact_sha256": "754ae6ba1fdec8fd3ca7fae8c740be3a928ba3ec873da930d69541643b1d208c",
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "08b55f2e0b25935c235c71f62c1e598839c43e48897740bd7e141a08aa617c3b"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "320c7a473d55412cba5364febbaf46ee052863f7e0c6ca5c1b9a59d9515f9ddd"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "b9f5f0a7af7bffd4f6d1728746d047d036a952f552f8130b53ea9ef3269ecdfc"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "7202a71cf3e9c9f6bd283f81b262fb0cbf85174459ebf343ec037989ac3671a6"
+        }
+      },
+      "fleet_size": 17,
+      "historical_reference_policy": true,
+      "instance": "r111_21_100",
+      "instance_sha256": "c33f8128803f7d4ee40510f06add74b86fb3eb48a293614b707c71bc6122aa5b",
+      "physical_witness": true,
+      "reference_id": "0b8c99961798dffb220f7c2f8a2e09de56277cdadb85c12a4a8c1a0f126cc19c",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "adcc0c01d3680349d2959f34dde8a9e4fbd75626785ba6764a8b30c6d27d8c91"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "d711c76aa0fbd08e6c5d399d0d98b1ee34cd8f91468a6b51db0dab024439d00d"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "4443a0bd91e5cb0ee10b3b68ffcb4e9356d77c9c14339f1115d7d361f868a38d"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "e8255c02f70e887c8a1a2d66db647424d24a019c58c850b101bcf06b9568d79d"
+        }
+      },
+      "fleet_size": 4,
+      "historical_reference_policy": true,
+      "instance": "r111_21_25",
+      "instance_sha256": "3be457e991d967a4a183c7895180c66ab6adafc2a1e65819716da5a0294157d8",
+      "physical_witness": true,
+      "reference_id": "57a993173dc699bb47ff418aead28ccf7e9ed73114c8ee596dc88fc6015320ad",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "2d8994b85954ab592924d8695eae2e12e531c8ec59155246fb46ee5b9d3f6d75"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "79bc4aa16be13615cb3962fd58e1d15b1b7fd036a32fa6ea4270a7b130ff26d1"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "975fd7a1a54c760c782477125806f59ede306abbce1c3927b81634ee148e3a81"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "c4f3acd795497d0a149cab8980f8cdc7a6d0889b08f6d64f951f2a5c6dd5313e"
+        }
+      },
+      "fleet_size": 7,
+      "historical_reference_policy": true,
+      "instance": "r111_21_50",
+      "instance_sha256": "475ef65ef14fd4ce64ec1d19d6697a8beca7ad63c7471ce0ef8a3f706ec772b2",
+      "physical_witness": true,
+      "reference_id": "153651adee433c9fd2b7fe05ce2d2b451e04daf125d3bc0f48776f6c9a1b963f",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": "results/desaulniers/reference_validation/references/r112_21_100_2b96e637501852d1.json",
+      "artifact_sha256": "42d77be069f5fc2040559f39bace2ff2f4b0a255772c57a6b95a6287a16dede4",
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "a77a94c85b76c1be9ca3a4eccb6048ffa450b1cb8ca0ffdc1c912425e9ef4fad"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "4d377e12b084e7c8dbf522f02de9ee6c87cd90b79243b0ae7e46c38dddf66b8e"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "4ef84837dd1608c052db36ef9ffdc35cbe2a622ff08e704cfad985ffa290604c"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "a51863fb2bf3d1b1799c5a54efeed5f40e7ede4b41f1aeec6f22be33c4322af4"
+        }
+      },
+      "fleet_size": 19,
+      "historical_reference_policy": true,
+      "instance": "r112_21_100",
+      "instance_sha256": "b37e8154b8e5a455b71f89179186e1a7e86b38d602cc14e67a1703a155808fbb",
+      "physical_witness": true,
+      "reference_id": "2b96e637501852d13421e6e3989a39df500242c1159e248877baf37b166c964a",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "168d37de9c11477a1ba71c191818f67663b7ed4cde6d5c205fac4cfc2906881a"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "14776c2cb3b6bab7ab9fec722c95c80499b80f738141b8114fa8faeb58116419"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "7ff40fc7eca25447ce818aa4c375fd6cec4ec32a132b34b250aa6c3337a14894"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "02327f92fdf56e1dd796a80153395e0fb573fdad87b016260f62665d012b13b4"
+        }
+      },
+      "fleet_size": 4,
+      "historical_reference_policy": true,
+      "instance": "r112_21_25",
+      "instance_sha256": "1d66464a12ca96915178855d8d081d156b54fb196812565590b7243790e84dd3",
+      "physical_witness": true,
+      "reference_id": "b6658f7496ac22d2de3b14b3698ece16bec9af3fff689be47c1adbc163493345",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "c74e1d69a402aa729f64c91b9dc09af9a0c766b662e53309fdb65ee97bab8aa5"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "9e46b3cc7a4be9221f0742b96aa4fe1ec2f261bc21628eb09b5c028c99a6d4fb"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "afb5a70274de4dd573096986d8be383ce3234cc8f1ee9894a75ca6aeb94c2c98"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "502ef588019b024345faf247b17a5b41b07bd3757f79228a6640f5998b22f9d9"
+        }
+      },
+      "fleet_size": 6,
+      "historical_reference_policy": true,
+      "instance": "r112_21_50",
+      "instance_sha256": "5f277756076ca06e60f2241639bf9d2f3939456e3227a6a0b5a7ba696c6b7e59",
+      "physical_witness": true,
+      "reference_id": "65e5fb4d8ea03010cdd8372ec19e389cbd6d706fc1323cfc28b1dfe10733a37d",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "a804745ae6642ab57c1e708959204e092c891f93f0880ad711a0c3c1b8e556f9"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "2e5a990e0019acedce62ba37750542dc255d71b33e3a84861d422e3d7db37122"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "f3c8ea3d94e69f89fb6a93f1b25959a0ee6e035ad9eb80d835dd6225c6b69955"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "dc2db78c275d1c504cb01c00b99b19454c0820d54c4bdd2171603cb7a707ceb7"
+        }
+      },
+      "fleet_size": 8,
+      "historical_reference_policy": true,
+      "instance": "r201_21_100",
+      "instance_sha256": "9c2d36fc28ba72726cb989424ce37358a62efd7ed73f0c2419d37f7c4b5d2d1b",
+      "physical_witness": true,
+      "reference_id": "4f9aa1105b7992fdcd035132b58a201ffb826c2c0fcec356bb2ecf59fbed46f4",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "d8e20b0c999d8241d2a307058da91e26c4f1f6e2af6e9a8e1e7b64d9b06b4568"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "2ba13e2fa2f4731d2ae6a7299d1a9997d471fe8f7610642de2065fbe0c16231b"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "8f38c3089efb448fb803e459dda1fecf55de43a199d252dd311bd016342835b4"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "ce50f5b970a9a84bd7463fd1b5b98ef466a99599500c80c64ca3b62f865c3f36"
+        }
+      },
+      "fleet_size": 4,
+      "historical_reference_policy": true,
+      "instance": "r201_21_25",
+      "instance_sha256": "1eaf04b1da5f99c7d3a77bfa56baeebb50dbcf02ac4f4107696541ca944a9b2f",
+      "physical_witness": true,
+      "reference_id": "8d3f3287f23873e397c3346034a972807d8a51739830796a26c4549de412e8ab",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "ece87190dc54b3dae9cf2c30db484e57a31893a5a56469e03d1a893c5a5beaa8"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "d30a15174cbb9315c41bdf557f86b867d2b315f71e0560bc9622ac134b2010f5"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "6b93b7650f30b624bc2a9a3f7f094e75db9e8445da5c21bce45a3363eb7fdf4e"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "8164f335d371af020b2f6aa6694cfd09de6e72988cf9dde1837ce2cc3624dbbd"
+        }
+      },
+      "fleet_size": 5,
+      "historical_reference_policy": true,
+      "instance": "r201_21_50",
+      "instance_sha256": "7fae0489512bb607191d4cb6ec7ac2d6d786ee217e0c600871dbff6fdbcf13a3",
+      "physical_witness": true,
+      "reference_id": "906c3c0749da6539b4c58792b6ea8aa5581f1f5730b815f88a11011d80b14f7f",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": "results/desaulniers/publication_development/reference_extension_v1/references/r202_21_100.json",
+      "artifact_sha256": "da22d6ebe566bb1080603b24e643dbacd907757e40478bf7b729b4aed74dbdf8",
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "4d5b809f02a4202588407b9d975fbd52e357c9e60b4aa8889941d61b2f301329"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "9472df701c1407adafcc195c2d7a6fb71d0995d67340460db7e8ae6a0f0827c4"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "58ce8b1023bd174ac5e7ecf1f785ccf1a8a784125ff1e60ae886e705e8e973f1"
+        },
+        "0.75": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 75 requested, 73 eligible"
+        }
+      },
+      "fleet_size": 4,
+      "historical_reference_policy": false,
+      "instance": "r202_21_100",
+      "instance_sha256": "7c595fce7f11c131e3219adcccce19910313280ff7c08bf7cadf502f43ff9ebf",
+      "physical_witness": true,
+      "reference_id": "072cc346f02b1bc79d4f61b8bb1785af73d4d89338c764d915368bb1433b8af0",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "4e9a2a17d49a6b6dfcf1a9e35100ce3d52e6addd21718e81095f5c7a46c21f0c"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "585d66bbb17e644fc368d388f274b3cfc83ed784ab5a355f4787236e50d07fda"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "9c47b7cdcaa48f97c7db838933208276711dc90f426ff40707a84572cbd36a26"
+        },
+        "0.75": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 19 requested, 15 eligible"
+        }
+      },
+      "fleet_size": 3,
+      "historical_reference_policy": true,
+      "instance": "r202_21_25",
+      "instance_sha256": "4677806492c041dd490e161dc153fc4a0ed35da70ddd66e12e057dcb6960002f",
+      "physical_witness": true,
+      "reference_id": "0232a9c361477501af9bdaa80013c0efce33b9d32a26fc296ace200cb6142fd1",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "b1cd66796c790a73d3a8018b988062b283844c9056dbdbee71c00092a4cee620"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "500a91d489bbd4ef383db71ff030fd76e9d751855a50a3d6c1b03c6ca5443645"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "3db7e148cd293f3d92fe74f579fb66bf8b198e0338664bab601a17737cfb3bf6"
+        },
+        "0.75": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 38 requested, 31 eligible"
+        }
+      },
+      "fleet_size": 5,
+      "historical_reference_policy": true,
+      "instance": "r202_21_50",
+      "instance_sha256": "82460746c056333e85852300266df4e734f5ab1881ab589775e05a8f807575a5",
+      "physical_witness": true,
+      "reference_id": "b0626cfd17ade8670d06d902a79757b2c79d3e7d3875cb48e3a626a3e9b28a28",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": "results/desaulniers/publication_development/reference_extension_v1/references/r203_21_100.json",
+      "artifact_sha256": "46e8af61bb8feffd1f0e8137429988b9811e3747bfc71a425776c6989612fb62",
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "6a76446727cb67146c74058d0e2dc71d2734f7cbd33d169c2aacffe7d82537b0"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "fe3caa0748d55569fb815603560a60c041961ff225d31fab49666b44b8174789"
+        },
+        "0.5": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 50 requested, 49 eligible"
+        },
+        "0.75": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 75 requested, 49 eligible"
+        }
+      },
+      "fleet_size": 3,
+      "historical_reference_policy": false,
+      "instance": "r203_21_100",
+      "instance_sha256": "1d8c227c6f5068096bfc3b90a8754df31e2ea816ab24645b950263ccda14b3a5",
+      "physical_witness": true,
+      "reference_id": "c95d8c752555b0b6548c4497fb7f562fc3fddf0df539d163a9dc9a7d97999327",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "411ce15d3dd33126f13976891123d9abf70ff58274c5d31bc237ad3ebeaea823"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "a1d67e5fb9057aa98c44131bb91a1c4305203f57fea0039a8d2f9aab14c7ed94"
+        },
+        "0.5": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 13 requested, 11 eligible"
+        },
+        "0.75": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 19 requested, 11 eligible"
+        }
+      },
+      "fleet_size": 2,
+      "historical_reference_policy": true,
+      "instance": "r203_21_25",
+      "instance_sha256": "a610da64a5d774d532c08cd66be5c16f330e276463b4ef9ddd2daa0a527b1522",
+      "physical_witness": true,
+      "reference_id": "bcc7fa4b120ab6e9f44a0906961a66daea0bd588a0eea4303506d7f751942658",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "0bd210e38cadb500841302fd5af905095eee3e7e02dbe1519d0f7d7395cdc3d1"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "7c5d6930a405c6bb0c05d897484844be714b5cfdd1c32cd7cf8f1668a4abb0f1"
+        },
+        "0.5": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 25 requested, 19 eligible"
+        },
+        "0.75": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 38 requested, 19 eligible"
+        }
+      },
+      "fleet_size": 4,
+      "historical_reference_policy": true,
+      "instance": "r203_21_50",
+      "instance_sha256": "999cdd088a89bb8e920965d5026aa7551bce2744a167bf35a1ea3ff0cd4d1207",
+      "physical_witness": true,
+      "reference_id": "6bc019ef6a808608404321ce02138331ab1b794881a7828e8dd0fe89b371a520",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": "results/desaulniers/targeted_service_v1/offline_resources/references/r204_21_100.json",
+      "artifact_sha256": "532d0cdcf0624cb30a9b5c9ecc0337ccc408227781d6b6517b3d3a989eb6bc38",
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "5147614851e34e3e3a85d56a050729112027fe1f75df578c30bc22b250a7881f"
+        },
+        "0.25": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 25 requested, 24 eligible"
+        },
+        "0.5": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 50 requested, 24 eligible"
+        },
+        "0.75": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 75 requested, 24 eligible"
+        }
+      },
+      "fleet_size": 3,
+      "historical_reference_policy": false,
+      "instance": "r204_21_100",
+      "instance_sha256": "8c11ac4fc4653bfcf55a86124042bd5cf4d50f88bff750a85f8c3e109f50fc49",
+      "physical_witness": true,
+      "reference_id": "9cec3b4c391e3fac4fa0f25ffce0c13f01478d5226defaa6b562ea8d028dfee7",
+      "source": "separate_resource_labels_v2"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "ee7b6171ed670a4c3555d6970b0c6edc8411a2a2410cb6f816b721df86d34d89"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "c8535707b2def3834086b5036fd9dae43a3146628fa832f63dfd124ebd10858c"
+        },
+        "0.5": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 13 requested, 8 eligible"
+        },
+        "0.75": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 19 requested, 8 eligible"
+        }
+      },
+      "fleet_size": 2,
+      "historical_reference_policy": true,
+      "instance": "r204_21_25",
+      "instance_sha256": "a98a4865b92e7c61e770353bdd4cbbf8f9cc59b25888904e446686bcc9c5a7d1",
+      "physical_witness": true,
+      "reference_id": "043409ed4fbc0f7be547bf62ea120b502757f042d42bd2cc4cfaafb2a2e1e399",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": "results/desaulniers/publication_development/reference_extension_v1/references/r204_21_50.json",
+      "artifact_sha256": "6c2054b157ae8b930aa09729475a71e480efa1d5956bba89be192538d02977e7",
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "d5971dc535be07d4497f47f49cb8d432ef1db924acdbcf3e92c362daac81aa81"
+        },
+        "0.25": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 13 requested, 10 eligible"
+        },
+        "0.5": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 25 requested, 10 eligible"
+        },
+        "0.75": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 38 requested, 10 eligible"
+        }
+      },
+      "fleet_size": 2,
+      "historical_reference_policy": false,
+      "instance": "r204_21_50",
+      "instance_sha256": "33899ceffc1674d43ca9bbbcff64f74009509055e3a0499304558812c8d0b6df",
+      "physical_witness": true,
+      "reference_id": "70f032518258555c5a96d13d5b23ab447a138a0cbea1c4af5f575ce282d16bbe",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": "results/desaulniers/publication_development/reference_extension_v1/references/r205_21_100.json",
+      "artifact_sha256": "c1afa453fb6527b2d5614ef2c699bcb2293a2248df2faca90bc24efa33e5454f",
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "48d00e6465159bdf5b35a775fc7e142c70e3a7e5c897a8f1627ff93d4296eea3"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "dfe0cb1cfff0ccb00276172b4fd084f1aad4027b3b566ef2ad527c55972438f5"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "015459d2dc98fa54141a1cc73eef372ee581cb1c37e1dd0b260f94b8fe1bff87"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "1e406c7fce35f48cc3a04b63451fe9b031ff682ade15d76700c92617b8f37546"
+        }
+      },
+      "fleet_size": 4,
+      "historical_reference_policy": false,
+      "instance": "r205_21_100",
+      "instance_sha256": "9f0f87f897f4de25ffaf184cf4345440930fa7047f134c36c682d72b9a5bc53a",
+      "physical_witness": true,
+      "reference_id": "edada61656bcc97cad0f401115f01226b4cb2b4089f94a57b44c999efea39ee3",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "ceee22005725cb2bea8f702b9fbc059707c70b2cb48dc4744344ecdec3696298"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "29f4cf72cd7f2879c7145062361b0195b7a5232ca750edf3959eacbc25511d50"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "4e7dfe55b6d772bb267428ffa9502013d3b6d6bc8bf932938ab8dfa2b697e5a6"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "5c57ee3db5bf7ba7b8a1f19d9851ec2836a5e7262d58936e4873e1212ee235cf"
+        }
+      },
+      "fleet_size": 3,
+      "historical_reference_policy": true,
+      "instance": "r205_21_25",
+      "instance_sha256": "e7187b10642278ca02eddd5870ea3adec4ae49e0d7d57a39578ba2a84ec70ede",
+      "physical_witness": true,
+      "reference_id": "2d241aa2918c42add48f38344a0b154d8af290127db94f7e9d8cbc9fd13158b0",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "8e8624e51101fd48c3c09c20399460fda430eade069991a90439b87908247fd5"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "143fb841acd2fffde44bec9f47b49b0b55f25cab58a71ddbb99125c29fbcf42f"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "4f8ffd17b23a5353ba8f1077d4bb3c223e2b830d2674c8f1ab1d8b7474551e8e"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "acbed758f026d0dc1706d477b37260ced22e857623c2e51f8051f0050c8b16bc"
+        }
+      },
+      "fleet_size": 5,
+      "historical_reference_policy": true,
+      "instance": "r205_21_50",
+      "instance_sha256": "78b35c5ab3977ad884440479f82f0e6ba073447445f758ff99708e3ae888496b",
+      "physical_witness": true,
+      "reference_id": "d4dbb3b895caf883af42b05a300810e7d74b56025c2c48f17f71492cff9060b8",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": "results/desaulniers/publication_development/reference_extension_v1/references/r206_21_100.json",
+      "artifact_sha256": "78aad1696ffe37e99d869dea5c91c0ffcb948dc6ffb0ae07a23d17e704b2a7f7",
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "a0e8769003b512e0ae6da6c1a5fb340aaf78dffed99d26c19402e2448e998121"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "d9f219f82f6947ee982b55a45bf7ce0feb81d3382efabf966d192db38705b981"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "f79a951fa076c4e7b9558e5879cf44ec4a1a432f52360a4e30d48887092dfc99"
+        },
+        "0.75": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 75 requested, 72 eligible"
+        }
+      },
+      "fleet_size": 5,
+      "historical_reference_policy": false,
+      "instance": "r206_21_100",
+      "instance_sha256": "5e19e5afb41f899a3ef4962ec0730e947a1c00f55968661ef33ebe715f2d3281",
+      "physical_witness": true,
+      "reference_id": "57cb79a4832ecfc240a5e09d6aeabbffa75f2bf4c50943ae0666d704aa34ed25",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "c4e6bb9f6d41056225a9ffb1978c9ad2cc9d1350e5d50e370fadce54ceb57f10"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "2ad95c47666e9715037085021e0bbeb9bc77dc462386162ce354054f9611ff62"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "ba5a237b470abf95e2386829446c3559781e1a712d3cb1c235e0284d7178173f"
+        },
+        "0.75": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 19 requested, 17 eligible"
+        }
+      },
+      "fleet_size": 3,
+      "historical_reference_policy": true,
+      "instance": "r206_21_25",
+      "instance_sha256": "54e580d9a88c19acca030040f125017f265171af2f78d8c82a96eb49ca03df9e",
+      "physical_witness": true,
+      "reference_id": "c11c7e2b142909b638901200c6af972c59097d73691d27fa49d5b381a9c92b09",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": "results/desaulniers/enhancement_development/partial_reference_witnesses/references/r206_21_50.json",
+      "artifact_sha256": "efd71a66427dc698c0bdb4d79a64cc18114060e8fbe7b0fc15a6fc24c57d562d",
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "a6eb7814618b9f3323051432d5066562dede1a7aa627c8c3ad1271e4f0abc96f"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "f646622fb4d372727a08a8f1370263391446d357ffff32458dfaed89112d2471"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "b09e51f823585b5352fc7d30abc5c8d1655d789f35b8d58de9b062d7ee95d6cf"
+        },
+        "0.75": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 38 requested, 33 eligible"
+        }
+      },
+      "fleet_size": 5,
+      "historical_reference_policy": false,
+      "instance": "r206_21_50",
+      "instance_sha256": "4b38368e0d490d24d5ec335b26ca32e5d1f5e73a549b049864a9324dc1376048",
+      "physical_witness": true,
+      "reference_id": "922d41f9c2edcd85f09ec7902cd5fdd7ab1040be69857004ee9a7bfe808a5aa7",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": "results/desaulniers/publication_development/reference_extension_v1/references/r207_21_100.json",
+      "artifact_sha256": "68b19d7124bfe6343f112f67d94b6596f06e1065d2bb8a32835d304f52da69e6",
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "2954c82c6dd6df2aee93c242a293129f17f15383dd5a8b9c738a9c851e7a3156"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "47705d6b151b9a9ea9d6ea3d0a2f6bc8ddcf0f49f1a1c0925720db84c41936e9"
+        },
+        "0.5": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 50 requested, 49 eligible"
+        },
+        "0.75": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 75 requested, 49 eligible"
+        }
+      },
+      "fleet_size": 3,
+      "historical_reference_policy": false,
+      "instance": "r207_21_100",
+      "instance_sha256": "eccddd39e2111f3bdb5ea4f419e9bec4395445a1b5d924ffacf8229eee2b5bee",
+      "physical_witness": true,
+      "reference_id": "079a03393518f661f23faaafa23d2cb7d70cc4b1a9723306ebab858f50f52fa4",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "2cd2b812c2e3e47cc10afe63595083a997caaf4949ffd04223770e2a6fa91594"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "7a1cebebbf5be64ae283d46d42e941b82ea03b111fc94052aae90cb3e03cce5c"
+        },
+        "0.5": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 13 requested, 10 eligible"
+        },
+        "0.75": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 19 requested, 10 eligible"
+        }
+      },
+      "fleet_size": 2,
+      "historical_reference_policy": true,
+      "instance": "r207_21_25",
+      "instance_sha256": "cb1c2561d4abb6c6457d4e5fd13add93616121c37733a7fc5e7ac15ba99678cb",
+      "physical_witness": true,
+      "reference_id": "ff720255459fc66ede48104eaae48886b60678a84f4846571333b77b690ee7a9",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": "results/desaulniers/enhancement_development/partial_reference_witnesses/references/r207_21_50.json",
+      "artifact_sha256": "ce1551f7889b9ca9c299f2ba1d0fede963db9b8e44943626e0009c0c000b7f87",
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "e5ac0ffa8628f8761582db3107bdc3eb53cdcb587d69b62921a04547ea0a18fb"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "4a7f8545ff5e59596b87e6069348c643321cf209b7b4471ebf771e9a4bd22871"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "15260300d3b933e54d34edbb54fd8e1807154477f5be201a57306f2b1f54374c"
+        },
+        "0.75": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 38 requested, 25 eligible"
+        }
+      },
+      "fleet_size": 3,
+      "historical_reference_policy": false,
+      "instance": "r207_21_50",
+      "instance_sha256": "b3a68777fa9a4ebc11ab4facf5a5f3802c066afc9ad3f095ffad35568799eff7",
+      "physical_witness": true,
+      "reference_id": "63209af0b52e60a9e983b963758a76b38b0b771e920de3da39c945224135ccda",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": "results/desaulniers/targeted_service_v1/offline_resources/references/r208_21_100.json",
+      "artifact_sha256": "daf10c0720e733d3538ad5d3ea048a215184f861c2dcfaf4a85ba3773a3b8498",
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "18d603975b850fd9fd77d58ee635329bd78ce332709de751b0210d8dd22892f1"
+        },
+        "0.25": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 25 requested, 24 eligible"
+        },
+        "0.5": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 50 requested, 24 eligible"
+        },
+        "0.75": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 75 requested, 24 eligible"
+        }
+      },
+      "fleet_size": 5,
+      "historical_reference_policy": false,
+      "instance": "r208_21_100",
+      "instance_sha256": "c0a60857d718b8e3466216a6dde5cd6e62df5dad061b63edbf1d9cc348e49e22",
+      "physical_witness": true,
+      "reference_id": "ed1f45e5a6974c36a7896d14e6752bb2c5c10dfa2aef86de40bbe12621bc5a18",
+      "source": "separate_resource_labels_v2"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "0a49c1ace4cf99a13a01ef91eca52a14c595e88e4b2591d258e0da6f59abc673"
+        },
+        "0.25": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 6 requested, 5 eligible"
+        },
+        "0.5": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 13 requested, 5 eligible"
+        },
+        "0.75": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 19 requested, 5 eligible"
+        }
+      },
+      "fleet_size": 2,
+      "historical_reference_policy": true,
+      "instance": "r208_21_25",
+      "instance_sha256": "785595a5eff543635a7272d1b189b75eb5310b58a433758bdba3aced160f099e",
+      "physical_witness": true,
+      "reference_id": "a1a352a14e5c0e996a82a8846100435be4dbc9dfcfa0bbe44861d8315a3809e3",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": "results/desaulniers/publication_development/reference_extension_v1/references/r208_21_50.json",
+      "artifact_sha256": "0fde79b8d5355da0540a2ebf0789768e2fa2352f8076bdd31f5231f007b2309b",
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "715279e9a639b0e7dee0e3265d25040e5b527ba4dd13bb65256bf0112fa20ccc"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "b487b9da1c266e468a5b91d94516caaeacfd7729f5db91805b9926f2e20ebfd8"
+        },
+        "0.5": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 25 requested, 13 eligible"
+        },
+        "0.75": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 38 requested, 13 eligible"
+        }
+      },
+      "fleet_size": 2,
+      "historical_reference_policy": false,
+      "instance": "r208_21_50",
+      "instance_sha256": "5a024724d9fd6b9781779894b2f04f0939b67b12266923cdaee71f4d2772566c",
+      "physical_witness": true,
+      "reference_id": "9ab9ad5c8a4723b8f08387ef67c0159d3c680b7dc21151c07293a241cdccc82e",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": "results/desaulniers/publication_development/reference_extension_v1/references/r209_21_100.json",
+      "artifact_sha256": "b3841fc736bcb5ab46397ea4a88eef20317607017af5348eaf96178201561018",
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "d8494b3eba4988b2c27279b90efaf4f6ab315a75e4b0baa67fa224fef6a41fd4"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "9765387bb096b7f2d8a52377e324a08b6022705bf8ff18ff718142a93b32a571"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "5eb7a2e65711e35a73720ff6deee0fc69551b9efcdb94d2e01900682b4e6d508"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "7e1e8993f0a8d7b062a06a5193c055cc0c7f1108a077d59854a5da9c2ec992a3"
+        }
+      },
+      "fleet_size": 4,
+      "historical_reference_policy": false,
+      "instance": "r209_21_100",
+      "instance_sha256": "278cd32ba42a8e19b8f049b73ba7b55a72c1b84d113abda91fe71f23c33dd4ec",
+      "physical_witness": true,
+      "reference_id": "af5258957d684ee2599355b327ab01aa08cf0b32e0141002211ed5ecdd5472a6",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "1760b4cc25ab2107a26b274730374d3ba1e46b191c797de1424087e0213d8f5c"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "d6c6fd35d09bb964841c378b663ea4b3230095ca3b34fc6cbe464801729aed26"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "dd77aaf28c7eeb7227f9fa5224d59f884daf9c5179a6765c924bc1bff8e2fb52"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "0b18b280ad27f34f4711e6a2af44887fe3a6366df14dd33d85f1045053f84e53"
+        }
+      },
+      "fleet_size": 3,
+      "historical_reference_policy": true,
+      "instance": "r209_21_25",
+      "instance_sha256": "257a527b84e82b44f6cacd37ddfb1ace6c029fa608cb3fa65d82b961847f80e7",
+      "physical_witness": true,
+      "reference_id": "490b2ba0137d82d6aa820f40de50dce35c949e0e1ae0fb88d586952da2b908b2",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": "results/desaulniers/publication_development/reference_extension_v1/references/r209_21_50.json",
+      "artifact_sha256": "40a9072629a316405db4919a39327b44236656fb90dee53882321ee7a9be1013",
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "53bae0d1f9b7f92bcf4eff802e2403deb453158447c986c2ffb22a7b57f1649c"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "a3f5ba169247785b66496837ecfaafc12b63ca3661b58c0a88fe8c1ca1512d04"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "4e3c2285ad19dc4176874c197b6a06e19df4f31d8b14f3d21084a59c12b3cfc6"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "5f581850215bf97c4991f9b33fe92f8dcb63ab69e091f1d7c8e721b40210b7f5"
+        }
+      },
+      "fleet_size": 2,
+      "historical_reference_policy": false,
+      "instance": "r209_21_50",
+      "instance_sha256": "e8cf4bd800a0d10914f30e8d99551f24a512c3c18b2f56f95aa74d93f5babf96",
+      "physical_witness": true,
+      "reference_id": "344217d25a002bcd707e05f716e420b541ec130e0ab0cf8c32b836730e27a595",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": "results/desaulniers/publication_development/reference_extension_v1/references/r210_21_100.json",
+      "artifact_sha256": "ab5ab3aa4c099b207162b4211bad1e6317a9dd62a354e330e5c8186b55cba43a",
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "5f7ea2766a0be288dab75510ca59a5545bd21e97d224e2be2768d0dfc2a4a982"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "48bb31c4636a0b7b13731b2f557ede28ef87e00190bc61dee1425bed37654bb3"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "2ef08abdb8f2289e82219bf90cbd6281ca37b59e67ef3be6dc224c5085c3683e"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "f6449e6b0a932c43e5e219adad885be7d89c094308c5f89d8481b3c000f1c7e6"
+        }
+      },
+      "fleet_size": 5,
+      "historical_reference_policy": false,
+      "instance": "r210_21_100",
+      "instance_sha256": "ffbeff4bad9a0c86bbd1e3cb5453697cffec0fc460d16b413d8f7e26383ac775",
+      "physical_witness": true,
+      "reference_id": "d96c3dd5e5d10ce1bbb03ce98a31bb4d2b2f70a3f94baa653b5d005e956193b9",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "6ef6109887560bfe3c368047ebfc694e449033d312740f6297d26050a53a6a5b"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "e72e2eca3d97bb1f535ef5893466e05b5b2fdfe012b1fcac6ee05e6f57d7280f"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "422240b9473c90637dc6ee61afa046b97db4738d9aaad14420b3b8c76fef900a"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "b1f50fa5b0ddaa7b7b5fbe7545e6d59c7259442bbc2595de02d73e5f09654cb6"
+        }
+      },
+      "fleet_size": 2,
+      "historical_reference_policy": true,
+      "instance": "r210_21_25",
+      "instance_sha256": "3423718bceb764c397bd58778864cfe1efa4adcace526964108228555c4fca15",
+      "physical_witness": true,
+      "reference_id": "be544da6d3312a0ed61d83cf4d89addfcc5e8793cf99430d698b4738e1ff0157",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": "results/desaulniers/enhancement_development/partial_reference_witnesses/references/r210_21_50.json",
+      "artifact_sha256": "2932b1f9af328c1aab81378524afd9862a1c0b13490b51caf0c4be2a7efdc457",
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "15073b954b7f9004507869f03d46a71c4ca606fc202cf3aca65ebc6a92bb9d95"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "eeb5e2a99f59623080a3fc295a9ebcd98ad09b3dceb04dbde843fc377137c695"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "01f49f410b8a517487b57380e735f43b01ef7595c0ef74736f417a3e1f06f451"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "2b4087a47ecdc0c9e38b417b485b8f480fb095c1f8e57af2dfc675140df05a3b"
+        }
+      },
+      "fleet_size": 3,
+      "historical_reference_policy": false,
+      "instance": "r210_21_50",
+      "instance_sha256": "cee7e3b46eec570b787865d4b393b535896584a0936a202113084f21ac5a8caa",
+      "physical_witness": true,
+      "reference_id": "ec31825346ace39405a1b5c9acb3e0d8d5c769d74ed935025d9678c8f3a6575c",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": "results/desaulniers/reference_validation/references/r211_21_100_bcf72401e6a114cf.json",
+      "artifact_sha256": "8e54d18dc08eb75ff6ea08c18611f3b6c0f9affbc7c447f966ffb4ecaa6117b8",
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "82cd9dcfc1e5788b6a717c9ddae06b427ea41c4edad241af970fb112ff0f4ea8"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "dfc8e5308c1d814c0973f195672bad8a430fc760be4017780055d9bb33457d60"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "c9e20b8ff5831ff40aacd6ce298fb776c1614bc3b994bf9970e34e2bf1f643c6"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "0927eef12a149acb946aef622fbf5e787dac91677ceac153d9f781903c798977"
+        }
+      },
+      "fleet_size": 3,
+      "historical_reference_policy": true,
+      "instance": "r211_21_100",
+      "instance_sha256": "33da3f1c8289fab12d366d03f0fc63fdcb3edcea8cf99aa17bb1a65a550ef032",
+      "physical_witness": true,
+      "reference_id": "bcf72401e6a114cf5df5fd58ac30f9ecc9631ee49ed7cf2935e6ce2257f52741",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "e57472e91fbd2058a69907d9eaa5cd9473626a31d914f36095430e907efecab7"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "e598c56d7ae5ed4e80048357847a7c07eacb1f5a283efc24b6ecb1bf687a83ab"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "d5c55d0307c1938252a19806f297e82674073e748cdcadc0dfece579e07e6afb"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "8385874b02e7ac53c74e61ca97277c2506800c46c5a0716d73c1281dda31eba4"
+        }
+      },
+      "fleet_size": 2,
+      "historical_reference_policy": true,
+      "instance": "r211_21_25",
+      "instance_sha256": "288609d3fc414b020769a8528b5d35d063e33f5a4339a11753b35498eb8f0a35",
+      "physical_witness": true,
+      "reference_id": "8c3c98f7184aa18732ed49fe1c33ff9bfa2e6b8386abf882fc226881b7651751",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": "results/desaulniers/reference_validation/references/r211_21_50_27c49d88178d3d2c.json",
+      "artifact_sha256": "571df946636fc606f4395eed8badf9a403a7001861c982dbf50abdfa06b77d07",
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "fcacb224af49bd346ea497efeb061c4a67e14a88978a93ca7e240504efadf7ff"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "ed93515605fd9ebdcc76eb22015f144616311aad8e89a272a5e366aa638c28f5"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "83a90aeeffb62bd47c992b1902bbd4a4543ca4bc308a79e22e51e123a00a1ea6"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "a156e48309497d0fed41509cfdb81de8b274ba7e16f3f1734e4ac26a899035cf"
+        }
+      },
+      "fleet_size": 2,
+      "historical_reference_policy": true,
+      "instance": "r211_21_50",
+      "instance_sha256": "293ee7bfab4e3b86ae4fc3d29387e73996a9940ff42c2823bc41b41eac675311",
+      "physical_witness": true,
+      "reference_id": "27c49d88178d3d2c06a532e13a84cb5066b5979cca1e682030a6ebbb73ebe0e8",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": "results/desaulniers/reference_validation/references/rc101_21_100_64a44bae0126434f.json",
+      "artifact_sha256": "38d5541108f59a2c2b3c7944ce6ebf40faae86a42e5802b9d509b68ae4883dad",
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "306b98eb97e1d0032499ba334ece63ff9dbc93c3bcc319cbf3ba3737e4461ac1"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "bc52c7bee6a14a52ec06c7afccf963b472d77d3eb7812cb09af2e4bdd254963a"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "bc35fe0f74a18ba33f24e264d146fea60a57f0e71ac02152b22177b0fd2a0303"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "fa17173f98a741a9cbd9061926f8e0e518d041d164a020d8fb0741fd10ff6d1a"
+        }
+      },
+      "fleet_size": 20,
+      "historical_reference_policy": true,
+      "instance": "rc101_21_100",
+      "instance_sha256": "da53ce958f755d4072cb8e66d5628f54c2eb5b5b5d47cba8fedee37100b4ace1",
+      "physical_witness": true,
+      "reference_id": "64a44bae0126434f4fc5eedc6bc7ea3c4a439791c530712b0579f5c18d9879ff",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "91290a42a5f0874e3df5874253acddffba414fa4299d85ce06a9d230b7ed0646"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "84d2a7e68d388470069b0f25d368146827ae1c0435a7ef0e83cb8a4bfb597cee"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "b74c52ddaae1e4d454e5157be697ffce8e5ce26112f7e3a52b6c18aa6fa4f1af"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "9d84123e7e4a0ce233c377a0379d60b5c7c4fc8c579c643cd36915062836a65b"
+        }
+      },
+      "fleet_size": 7,
+      "historical_reference_policy": true,
+      "instance": "rc101_21_25",
+      "instance_sha256": "43195e2c73b52d0ad2714edd0745f994f48708690bf23880a4f341b75fdd4f80",
+      "physical_witness": true,
+      "reference_id": "05202b49b6bfea805d21e6d0ececde87fc8e8875d1fe7471028a5b88c0b371ca",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "6a7e92485382fca171a675f31d4f6f4e74f6496a3dad36a5936b786b344d2f59"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "a1755253c0a694358ecabb7681fb0e9473a0e3f8a71fd61d3487b4d22fcd22ff"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "6921593e2b243ae6475d7b4772e9a5c85d089860df12012f2f6771723f5ed801"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "131d96fee5978815e652a94d45e0dd2c9a3c6e55417728e1a9fb17c72797709e"
+        }
+      },
+      "fleet_size": 11,
+      "historical_reference_policy": true,
+      "instance": "rc101_21_50",
+      "instance_sha256": "85978e85aba8c131610b698f8f6d7becd92a0473e1c2a559159e4c08330114c2",
+      "physical_witness": true,
+      "reference_id": "2ab04364869b4ce074d3f5697a0fdaae4945879716912db9d581dedd6d17b22e",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "7d12b3ddf6e1e6b82029b01d339f12a07ca0a70baf2c4545512e29c9a20ae5ce"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "4776ff4faef111b183543ac54decca205bf432be353de32bebebd20b64430484"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "cac4110c6dd2c7de7475d5ef8c40aacf4aa838ef7f4d88ea394066b49a45fe2f"
+        },
+        "0.75": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 75 requested, 68 eligible"
+        }
+      },
+      "fleet_size": 16,
+      "historical_reference_policy": true,
+      "instance": "rc102_21_100",
+      "instance_sha256": "2f13948d4e3450c77cc0d473d1e3611d4821563f3e79559ae8ad2494d5fad420",
+      "physical_witness": true,
+      "reference_id": "e4504a89fa6748465a2150368dc9b89ef77a36f3d885b29f4fa9280de45b08d2",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "651ce0a036810c299158580cc3ec33b1b096e7dba8e77f1786f1633b1d0d5459"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "ca68280d4a9a8598d6651cc698fc677c598de630c93db685033300ba7ffcfce0"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "ae18784f9f0c8e4cbfd143b2703e3da9426938afc33608ef2268389746e2b318"
+        },
+        "0.75": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 19 requested, 17 eligible"
+        }
+      },
+      "fleet_size": 7,
+      "historical_reference_policy": true,
+      "instance": "rc102_21_25",
+      "instance_sha256": "b4d87f8b33476b60c9d6964c08bdb875585e5cf3cb0193b29a319b3e4dcaa779",
+      "physical_witness": true,
+      "reference_id": "73e4675cf2a0f242f3a532f440ef62348dc7ec4a68134c37863c6eaa6ec702fd",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "985033cbb70fd75508cf1dba6f96c08f02d4f4c73f6e95c95e51396c0cee079d"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "5b67d4a499af7b0b2c7dae05e172467c2ae3084238e65de73e3dfc63395a9a9e"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "998346dcf4300b461f67be6036b1621aadd2f60edf0961fc8f074cc2a9cabcc2"
+        },
+        "0.75": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 38 requested, 31 eligible"
+        }
+      },
+      "fleet_size": 10,
+      "historical_reference_policy": true,
+      "instance": "rc102_21_50",
+      "instance_sha256": "5fa770818a6b78946ceff184ce93f64130be418f8118a5d946a83fb99644ae74",
+      "physical_witness": true,
+      "reference_id": "26f79a4ebc8f770da12fd0a8a1a04dca2784028c614e77b29bedbbad2b8d8ed9",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": "results/desaulniers/reference_validation/references/rc103_21_100_b5ebf58bcdb2fa8e.json",
+      "artifact_sha256": "d7b8d94fe597d10a7f7746a1b562a8f9e9bbd8ef14b3e90d34fddac8a274da9e",
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "050dfbf6ce9fb931c739bea4a5dbb534b160a191497b0c2a964ba1156e923015"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "735c330997777670646225c6ba0ea4406c6ed8572154e54873afe77bafbe1d13"
+        },
+        "0.5": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 50 requested, 45 eligible"
+        },
+        "0.75": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 75 requested, 45 eligible"
+        }
+      },
+      "fleet_size": 16,
+      "historical_reference_policy": true,
+      "instance": "rc103_21_100",
+      "instance_sha256": "5c65933ed5aa71ea1110de871ecd4dc84fb29e5e5444e787351f5586d5ab6bc8",
+      "physical_witness": true,
+      "reference_id": "b5ebf58bcdb2fa8e20d81ba3438eadfc8e4457930ff78869ffa82ecae4f10c32",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "a58791559a196dc557981398ebc9f07b497f75697ae43fec385ed0ff774d5724"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "756b7280c91f384107846081951a6bcd26725baf0d70949723598fdfa9a76718"
+        },
+        "0.5": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 13 requested, 10 eligible"
+        },
+        "0.75": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 19 requested, 10 eligible"
+        }
+      },
+      "fleet_size": 6,
+      "historical_reference_policy": true,
+      "instance": "rc103_21_25",
+      "instance_sha256": "f5d0464edc2bbc40294c3f9b75d383f20de598ff3cca74c11c7a56100ec95f9c",
+      "physical_witness": true,
+      "reference_id": "77dd72ef19b495839008420b4a2b47ce3152a710e505e843627fb75838a52c48",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "fc35ddcb43ba831e3a083b899c5a8093adceaa9cbbeb0db24a8fa2e2ada9faed"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "0c0d9d4a2a11440fd778b852be1c32957a8299e0013031faa5b2448978a3bc94"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "6d2927403c407ce2e8ee1e9a5b100d04a004b4bc00b2414c770eb098b68ba12e"
+        },
+        "0.75": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 38 requested, 25 eligible"
+        }
+      },
+      "fleet_size": 8,
+      "historical_reference_policy": true,
+      "instance": "rc103_21_50",
+      "instance_sha256": "0e343c1fd99178ccd62ddec2401f35e4279ef94667b085d8455232c7f366ddd7",
+      "physical_witness": true,
+      "reference_id": "6f456b40d837823e4a913bbcd03916d23da1da629d6ed47dabea0ce6bd5313fa",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": "results/desaulniers/reference_validation/references/rc104_21_100_6c6c0057b3dd1d4d.json",
+      "artifact_sha256": "1e0118651e3c9a27e90ba50a88358a00115076bb1b4d5c3e9b4db7b5d3e41b13",
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "beff7e3d81a931e5b0211af8695923f4f7de40874eaafafa11649e8d6c521142"
+        },
+        "0.25": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 25 requested, 23 eligible"
+        },
+        "0.5": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 50 requested, 23 eligible"
+        },
+        "0.75": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 75 requested, 23 eligible"
+        }
+      },
+      "fleet_size": 17,
+      "historical_reference_policy": true,
+      "instance": "rc104_21_100",
+      "instance_sha256": "b6193be63b1cfaf61d38f310d1eae416f001529bc80607174df253c45452c683",
+      "physical_witness": true,
+      "reference_id": "6c6c0057b3dd1d4df366a72debdcffbb145db62c08a36b9e9ca747e0001890c3",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "c95161bab07b208990d32bfe5e520200db00c77ef635a25cc5c446ba2a989f92"
+        },
+        "0.25": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 6 requested, 4 eligible"
+        },
+        "0.5": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 13 requested, 4 eligible"
+        },
+        "0.75": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 19 requested, 4 eligible"
+        }
+      },
+      "fleet_size": 4,
+      "historical_reference_policy": true,
+      "instance": "rc104_21_25",
+      "instance_sha256": "27b8233d27becdb1559b9b56cc742fff7c9ec82aad6348be677d1af3d0e00b7f",
+      "physical_witness": true,
+      "reference_id": "1721c7cafa015a2dc005a6de4252246b1623ae2bbbf1901de6fe85aaf6eeafd0",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "a404c5ce2c6fdac1e9007bfd7797d86b42b6e0cad7d493c78a1625a44b50613e"
+        },
+        "0.25": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 13 requested, 8 eligible"
+        },
+        "0.5": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 25 requested, 8 eligible"
+        },
+        "0.75": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 38 requested, 8 eligible"
+        }
+      },
+      "fleet_size": 7,
+      "historical_reference_policy": true,
+      "instance": "rc104_21_50",
+      "instance_sha256": "daf794eebd5389c9197438f03fe50bc2fc8fe0bae56361db555b39366420de20",
+      "physical_witness": true,
+      "reference_id": "e0e586450ff4e62e902105949d08336a54b52b7a1c66868895f0e6bc0e4d5d07",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "df72ac185ca8d7cc5029b6a47acd3b904309edde224c8cae98ccb4106f663ac5"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "c3a646a74e2ae54b62132fac5053631925a6ba8e89426caad47f539691da864c"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "6c1bb7fe5c880075ec2961c28e0ab0efedf18f22cd4485eb5a2f0a0a8e5dc26b"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "8ccc2d56a2929564b48cf5d24421f6d773b79f6e6b38e523070d3c1380c3cb13"
+        }
+      },
+      "fleet_size": 15,
+      "historical_reference_policy": true,
+      "instance": "rc105_21_100",
+      "instance_sha256": "679c2e9dcdbe6762a385021604b2fad94a683d66888848f72649b4f95f35476e",
+      "physical_witness": true,
+      "reference_id": "4917e1d92d88d6162d9e694a61a59633e85617b51d56ed01f822fc74b65041de",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "32e32dcc9e62a1e47a19f3e265121a8062591fa4801a10c14aada3c3ca1ef753"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "86232d2076cebcfb73c9547aacb1abfa0a22d12cc6e34198dc9228ea2bd60632"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "6f3d10c635ef65eb11e8353fe36852c8fdff80dbd2e55e59bd641d4f11dfc6f9"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "b0158c03a6cd4bf215c7fccd3e32a191a92a36b3b39da6744476e68b02934b97"
+        }
+      },
+      "fleet_size": 6,
+      "historical_reference_policy": true,
+      "instance": "rc105_21_25",
+      "instance_sha256": "ebbb22b482a0242ae424c4b1b0b4048fb7c8572aa5ffb770b0305f87d20a00ed",
+      "physical_witness": true,
+      "reference_id": "5158e3492bb6bc28ca87b561497a54dd920970746aa5b3c1aeb42b0d4cda5943",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "95616352d06205756f5dad0d6e07160675f8cd32c186fa67240677d1da406da7"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "413ea8589c4e2981255fbcfcb0cfbb5c27b6f9d022d30bd36c295e5a541c571a"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "63c4997c739deb5ded1ac9d5237b590000b7054c9c484b14ead8ffc710a8304f"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "7e5662e1a81cf1beb12651c32fd430ef8ee13a583fdb94c1de36326022b7f7a4"
+        }
+      },
+      "fleet_size": 10,
+      "historical_reference_policy": true,
+      "instance": "rc105_21_50",
+      "instance_sha256": "9ea9c1b280b791980b9e43588138bcca7228c783c7e264a423dee6ba2e880a51",
+      "physical_witness": true,
+      "reference_id": "4b234114d3db31491a21aa18611cf881fc49a201d270cd7ddc1e8ee0e8b2a188",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": "results/desaulniers/reference_validation/references/rc106_21_100_33a467e8cff25904.json",
+      "artifact_sha256": "69df02ef52af1eee795217f0c77804e9475f7fdd177f9949d1851d8f617d6640",
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "f33822478a7c4bca0d64f3835fc8fb435e1690fcb0aead1e2bedbe8067fda4b5"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "b031542b419cdd827f1e72f42449f9bdd0a6e4860fc40d3d932e6aa6fdf929ad"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "476de2d59bad02cbbda3c169813754a7509f069801eea1305d72efe0aec3f2eb"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "2307f6fe08f0e179097478e951bd5b4ddb6e23cb296ada03103075b914108ab0"
+        }
+      },
+      "fleet_size": 19,
+      "historical_reference_policy": true,
+      "instance": "rc106_21_100",
+      "instance_sha256": "f70027752256a3210ae2cb1e940b1e2add8822dd3518d5a294d043ec0f236f7e",
+      "physical_witness": true,
+      "reference_id": "33a467e8cff25904270a23c128361048de0c37b2ce32b697dc1f7d9699b0d53e",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "41f36541e0c373074b430af690fbd66bd09f2ad9b411e35c744f784213b51b53"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "1eced8eb7595efff8a1c57863706405a95a72c42c0c4cf4a2e651a001a236e5e"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "2ab113b72619ecbd8114689ab4e8e56f305de3e9e4573d5f1ce9706588cd83ed"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "fce1179ad68c0f36bcef2927648bc6886b1656253a09f5e765a76316b54834ca"
+        }
+      },
+      "fleet_size": 5,
+      "historical_reference_policy": true,
+      "instance": "rc106_21_25",
+      "instance_sha256": "703e4b82ff48a83ec8d0ee5398eedbacc18c2a4cec141747326dc25f509f65cc",
+      "physical_witness": true,
+      "reference_id": "8cea18c82feae344fd5072c4a8c076e493a097fe6f40f3d752ef20947e85257e",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "1f9ca553a36fd7c9250e3795f598cb397dbdc642e53365a8700cbaca22105029"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "027638e9486722179b6f7c2bbcacf48c251c72e02379a1c834d1da1c3caeb0b0"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "2b8ecd9f7919f767abffc8cca5bfc36eafc1769a7b0f3e47e747bdf82eab8732"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "4d11f8b6ac774bff88f25d545b4755d4a6418a3aee9b86322bcaaa08f470634d"
+        }
+      },
+      "fleet_size": 8,
+      "historical_reference_policy": true,
+      "instance": "rc106_21_50",
+      "instance_sha256": "dd375a226d5137ffe4c2b283873850a5b978919aa01e5f80615aec20b218ae2a",
+      "physical_witness": true,
+      "reference_id": "357cc7512769452ceee9ebace84f99869e1e40f95fe80c2cd563642900782b8a",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": "results/desaulniers/reference_validation/references/rc107_21_100_498cadd8ae08defe.json",
+      "artifact_sha256": "c06bc870973a0764925e0bc8dbe787a92ef129dd3863e2fe5c22792ba120fd11",
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "ab57a324ce310e39c836c23f8800811570418c593e1f1acfa4a0d78eae150a96"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "e30a00d5b7bf0197a57998b25e5a12aed5d382e06c249745a16708a8f081761f"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "3d2d319c7d8d5449335a202175b776351b34a6bcbe86686594fdce2c83989120"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "f00bdcad08b5f0df1fd3de277872eb03f03d8bf14b405ab18bad3baf74bfcd76"
+        }
+      },
+      "fleet_size": 19,
+      "historical_reference_policy": true,
+      "instance": "rc107_21_100",
+      "instance_sha256": "468e45efc62992ff13095ad06366e9a8ec21a67cbbdd84af0dc152cb3e45853b",
+      "physical_witness": true,
+      "reference_id": "498cadd8ae08defeb176e71acd978fdfe23bad8b797c184da28a989b7b9336d3",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "b433abdf162a3e46462ef34c5770918bc02b14527fd93a5add332372555b0e82"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "838ad7f83f24f0942dbf83664769f2c17a44c49b3273633582dc54c3072f7734"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "f7c5e08d27bf6a86b4077609c3291e7adb82d66d96ee61b7637bfebf6eaede09"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "48535498743c02a104c1aa9b2f401d1311a709b535b175fa1daee48b5f0c51d3"
+        }
+      },
+      "fleet_size": 4,
+      "historical_reference_policy": true,
+      "instance": "rc107_21_25",
+      "instance_sha256": "290094fc943ec94921dd37807b6f93e863f0e553cf43a50df13275c75508a147",
+      "physical_witness": true,
+      "reference_id": "bc2b7aee31a24aa9b3e81509bcd534db34c5226bf5d01b6129d635618a2ecb34",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "066535f6f341ebd760c4306768253836a038c6489931d80892ef655f5eb5abdf"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "2265c5d85697cc5f92e2b7d034827c165e0d402669b7a55f996467ef1a99197a"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "a2968672f3d94629f07fd1950660d559f5ec8701ea2734296a1260dcc3f4a893"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "d3cafc6ae612d8dca149c60ced0fd055c3231ee9c5e7b8439a6f677ba1647148"
+        }
+      },
+      "fleet_size": 7,
+      "historical_reference_policy": true,
+      "instance": "rc107_21_50",
+      "instance_sha256": "2392c3eabd93fca0d7b01eb31e0db566ac5aaabfc5fb1006e3ba6a332233560b",
+      "physical_witness": true,
+      "reference_id": "adce3e25b40189bca977447a99f00525824a1061a51e58cc6b2bedb00a4bd244",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": "results/desaulniers/reference_validation/references/rc108_21_100_e0142204538abecc.json",
+      "artifact_sha256": "e852406e07d86b75bc60f24cb28f8e3873c07e544a74323e674046fc1bced7c7",
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "d43bbcedb277e07686c56ab38a350e7fadfda068987947f1a7150a4bd0aa47e4"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "93dbbe5541cac112b13fcd0216ab72bf09cf51a2d2c66625e8738f4e806e80ac"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "1386cbada3eca5540ea783be02a982dbec9fc0cc9c8bf205d91db64b63e00d9e"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "07d1b2d8c953ab21625d63cd3074316db72e11602a0d0514c32ddeb080715712"
+        }
+      },
+      "fleet_size": 20,
+      "historical_reference_policy": true,
+      "instance": "rc108_21_100",
+      "instance_sha256": "acf5c493f7657c23df1fcba6fa33d25ac7fe76d65d87af3aaeeb18db034ff9e7",
+      "physical_witness": true,
+      "reference_id": "e0142204538abecc4b43adae3b41cdf1851455d92d69532bbd0aec5837199634",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "529e883127e2a0274351a58d4632337814c2f485f8dd9c6f94bef323bd170817"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "f26818bc159ec3b293afe1cfcb88b8e18cad21a005bf495d1a11f8698bc15e19"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "29a6f90c87b64c729ef141e0414989eb6f73de4e8542e901a21514aa915cb888"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "cd6dafe2991ee448f2159b335698d7a732db5aff0b63d921980567ed9bc202d3"
+        }
+      },
+      "fleet_size": 4,
+      "historical_reference_policy": true,
+      "instance": "rc108_21_25",
+      "instance_sha256": "e981e0dfca92c8db3a93dd77ec6de8a8fe694c56f5374d9b22080c8dd467d4b8",
+      "physical_witness": true,
+      "reference_id": "967f26a3dab4c3d161af119d38cc7cebcbf799e39312b30786fb7ee78b6e2727",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "4d51ff13ecfc95100274dba8a9ef9e5f07762939032b1c78308ceef1991ba78e"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "ccb80511132990c29aa69c02b7359f1f84ae5a772ce23725c72eab08f89e1273"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "3d19dea7a4e2c9053c3035c534cc536d1f5f72e0ca54fa8f8c5fe149a8907699"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "4406d8bea851bb0c02da9311769adfae15f8898863586acfdf79b95771d7eaed"
+        }
+      },
+      "fleet_size": 7,
+      "historical_reference_policy": true,
+      "instance": "rc108_21_50",
+      "instance_sha256": "e56c7c7df8488764663fab9d5796fe4eb6e47cedca24c35bf0e6ca6bd7782baf",
+      "physical_witness": true,
+      "reference_id": "e001011557e0f23c5e833d563d1fe688c259351fda150379b0da224be8c39a90",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "6a152e2ec42d76ad428b195c3334a2fc08924569adf1ad30d314882c12917da9"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "ade3c15eaed5f1d11e97dd7709a47eed11df2426731751c44d66bae8514eb32e"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "83a64e2025f377c16ecbfdd6f72c5604a7d52be0100ad412bf588e175c78311b"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "13b92a91253e342bd835dc92b972462feba470721e3a9f007f849e695d2966ab"
+        }
+      },
+      "fleet_size": 9,
+      "historical_reference_policy": true,
+      "instance": "rc201_21_100",
+      "instance_sha256": "af0047d9aa510495319bfba9f692a9995820da4bb124d01e28ad8ff129ee79e4",
+      "physical_witness": true,
+      "reference_id": "c2e12f404495fb3edd8da3105dc8fc51c6e11fc67244decc052b6c5cafe0c9bf",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "89ff10a1c8bfbfc1977dc3d9e1efdb37b23420ba6469e2683299e016eb69beb5"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "8adfcfc16dbef821c748d3d683e86a66c1440d5c9fc416cc3c29057a370d1a7c"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "ea8e202323574e3977f85b7740eef3992030cd33afd6216729828b515846b323"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "afdd42604da9cafb57c12183d4c9dc4a85c418fc51304168f6d9d03fe9bf652e"
+        }
+      },
+      "fleet_size": 5,
+      "historical_reference_policy": true,
+      "instance": "rc201_21_25",
+      "instance_sha256": "8123a16e60d323aae9514b81e08ffb4d1f27fd7c0ec954f057008ed07a9e227e",
+      "physical_witness": true,
+      "reference_id": "97a3c426ab7001c699a2c0a47335d90f23a12efe2ffe2ddd9d5002eee4c55668",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "9c56b0f53ae93c1b37b897f62fa7059e6f401033465ede68f99127ff3f3e8773"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "36ad7dd7699d7ad0249a97eecb51c712b134f206987bdf9e4144a154d6fd33c0"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "3bd959dd011279cc38306b5fae240f437405720cfacac80cfd83c22fc071c498"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "b001d711589a79041465d26cb3f8af8e8795125ae7cce881b57a6998aa7a6577"
+        }
+      },
+      "fleet_size": 7,
+      "historical_reference_policy": true,
+      "instance": "rc201_21_50",
+      "instance_sha256": "d56de0979e1acc3958c16b43cc12bbe6866dd9972865837a0e2dbb1b4505b519",
+      "physical_witness": true,
+      "reference_id": "eeb2ac671eab13b27fb422ace8bc06917f4c3b6ddd28eaeab7f784d1498707b9",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": "results/desaulniers/publication_development/reference_extension_v1/references/rc202_21_100.json",
+      "artifact_sha256": "3cd1a1fa7a70620c6b6b6a10dd0055c26ea9a437d680f13d8dae1cbd14bc9e11",
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "acfd92bcc3076945dd79e0ebf02772c3c9325163e53010cb31b8fc1e2c3cb939"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "cd2577d4a5b188143b24388ea9d0fd6f0ccad757bb68061e9c38e1c75bf24eb8"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "f884c3fba020fbd5c26aee4808b93206a9eaa10a7215e545486986a6ffad107a"
+        },
+        "0.75": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 75 requested, 72 eligible"
+        }
+      },
+      "fleet_size": 4,
+      "historical_reference_policy": false,
+      "instance": "rc202_21_100",
+      "instance_sha256": "06420888c1a4974258e918540317eb54a8a33e668952a9b4f455b6c47b77f84a",
+      "physical_witness": true,
+      "reference_id": "91ba61917f7561715631d1aa887839b53adf0ff9aecce42c61b732ecb2b76354",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "e8d6b7756aad0f70376423ff35df5821fd73529057a7482ea9d434067dfc6d53"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "f683063cc1c66bf2a6f705f91998afd6b73c4b7e16d16fddb6ae04530a8e82c6"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "17083f3bf2d8bd70965bb2f0100b41cb72b0d9797a646910b1e1155bf7aa701f"
+        },
+        "0.75": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 19 requested, 17 eligible"
+        }
+      },
+      "fleet_size": 4,
+      "historical_reference_policy": true,
+      "instance": "rc202_21_25",
+      "instance_sha256": "87e9b7ee0c2d4c2e90947f435c6b33e3aeb837d0bc7b2cbf9aad952ee6c3bf8e",
+      "physical_witness": true,
+      "reference_id": "7cc776c4c1a49191c624973094d5d2cee976e8b3eef17ba6fe9ab9ac558a18bd",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "e0aae8213782d219cc5c2381afaccde7aa07fb3baf016356436cd74d2874f99b"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "aa918c812ff4748f27b994382e32dfb963070e215d9c72d58dcdd70bf9ccf678"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "3ff27b020fe95853d1e11bc8ecfae622f279edc96ca0dc529525c7fcf588e89d"
+        },
+        "0.75": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 38 requested, 33 eligible"
+        }
+      },
+      "fleet_size": 5,
+      "historical_reference_policy": true,
+      "instance": "rc202_21_50",
+      "instance_sha256": "829ceb4ac5573f80ec7053cd3aa0ef5246efb18730016c8b97a59f9ce3e68484",
+      "physical_witness": true,
+      "reference_id": "cc106d0d6633aab5bf6a8e2d2117b94b67e4017e1721f12dd4a68f9b7a267282",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": "results/desaulniers/publication_development/reference_extension_v1/references/rc203_21_100.json",
+      "artifact_sha256": "6df31aec79ff1bd75be29a4052b012a6526b2857327da5f20d91dd4d0f9f26ce",
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "c662a85a0a80eb19fdb27fd576097decac9e9148d3a0dd937057ad4429c2174e"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "74b454a717dc20e69b974fe7d3bfda73b6d98d68e78785eac2b9026eb4bff3b4"
+        },
+        "0.5": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 50 requested, 49 eligible"
+        },
+        "0.75": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 75 requested, 49 eligible"
+        }
+      },
+      "fleet_size": 5,
+      "historical_reference_policy": false,
+      "instance": "rc203_21_100",
+      "instance_sha256": "10474ffdb9def33d1d205c3077a8b22928d601a51c2899de3a50fc794eb214eb",
+      "physical_witness": true,
+      "reference_id": "0ba51aa88c394407b2ace5eb37129199fae83f05e0f65f5c4e470024ceffff27",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "ccb4756fa01177e307af9bcfd97636165d1fbdcc3d1045698fb383d28c47a5d8"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "72dd0b4a8f9a04b021010aa6b37ebfbe59791c16f57bb5abee974e444f77f1d8"
+        },
+        "0.5": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 13 requested, 9 eligible"
+        },
+        "0.75": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 19 requested, 9 eligible"
+        }
+      },
+      "fleet_size": 3,
+      "historical_reference_policy": true,
+      "instance": "rc203_21_25",
+      "instance_sha256": "489f9919964e91a1dbdd9c935f4e87c69c9816786810c79cae7b6ca8c9ddae28",
+      "physical_witness": true,
+      "reference_id": "989eb400a7f2d1635f925f0de6f9a9276782dd8e3a72e8a97f23a456a92d3cef",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "a32cbd83ddf7ce888d6318c92f5ed0f2acfdb68ded5315bcede8bd53454577b0"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "e18bc31b5cad154e4ed1e6cf71c35c5040412193aac73519c6f0c7bc4c2e80f2"
+        },
+        "0.5": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 25 requested, 20 eligible"
+        },
+        "0.75": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 38 requested, 20 eligible"
+        }
+      },
+      "fleet_size": 5,
+      "historical_reference_policy": true,
+      "instance": "rc203_21_50",
+      "instance_sha256": "f1fad7ebc522f377870f8dce19ceed832c323d12851fda1882b1628bf6433929",
+      "physical_witness": true,
+      "reference_id": "86419eb6969ae13fe02ea05ce778539c5fc58a77db328bb2e26449819f327718",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": "results/desaulniers/publication_development/reference_extension_v1/references/rc204_21_100.json",
+      "artifact_sha256": "d31723bc0eb7ee025d39bf42bfa605bb9d1249bbeff5882590abd7247198938e",
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "0f8f7aa52b769e4b58042d8e21222c5a36d1b91b49dbdc99535026295b92806d"
+        },
+        "0.25": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 25 requested, 23 eligible"
+        },
+        "0.5": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 50 requested, 23 eligible"
+        },
+        "0.75": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 75 requested, 23 eligible"
+        }
+      },
+      "fleet_size": 4,
+      "historical_reference_policy": false,
+      "instance": "rc204_21_100",
+      "instance_sha256": "0bd30f8b75fba39669da6533aeba24db640289bd1beeeec54556daf56b248ba4",
+      "physical_witness": true,
+      "reference_id": "88f485b8f1f28f7c669e40d91a171bba7b5d06a72a386eb1c70831d4d6d3e7a2",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "250aefa5ab499a32cb09420f78134e1f88dc12161111576b8c0f2d948a9000a4"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "7259157c31eb617d4dfe4ba6e450aae8e33ba1b57d42c6b801c8b55a75281b1d"
+        },
+        "0.5": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 13 requested, 8 eligible"
+        },
+        "0.75": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 19 requested, 8 eligible"
+        }
+      },
+      "fleet_size": 3,
+      "historical_reference_policy": true,
+      "instance": "rc204_21_25",
+      "instance_sha256": "69d140e0b9983e4d3ad9943b08916d83bfc9b98db4e453ae70218d199246de11",
+      "physical_witness": true,
+      "reference_id": "3a808035ab45a4fb565bbe05c94d195df623643d3d7831310b39a484a403c99d",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "1ef4224d640ba5fad9fbd2e4045bcbd02981ae03d111dbb6f7684e13b707edcd"
+        },
+        "0.25": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 13 requested, 11 eligible"
+        },
+        "0.5": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 25 requested, 11 eligible"
+        },
+        "0.75": {
+          "eligible": false,
+          "reason": "Target DoD is ineligible: 38 requested, 11 eligible"
+        }
+      },
+      "fleet_size": 3,
+      "historical_reference_policy": true,
+      "instance": "rc204_21_50",
+      "instance_sha256": "21e726b7b06c6b5ad02b02c5708613250ca6ca890292a5809ee43c8fdf60e7c5",
+      "physical_witness": true,
+      "reference_id": "62b2264379aaa534206e9e8aa24e4a0db9137cf1de70eb5892e7df7dd5529f86",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "84e2aa2a043dd0093a09d4eb21875ee282bfe2d7cb18da81e23b56035c6f635b"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "676afe4661dd9d6f7bc3700290545dc000e2b16facd63732bf38ad932a32c1f0"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "e7ae05a1e8e30a578290e415cb6cad158f2badcc7014039e2faa621e1d8bbf98"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "ec573c439efd6ecab560bcfae7c4f6d1b6ada47f1d8fd69159de9be87211c55c"
+        }
+      },
+      "fleet_size": 6,
+      "historical_reference_policy": true,
+      "instance": "rc205_21_100",
+      "instance_sha256": "c50d92eb28220e250beba06ac4478a2f6b213d28a35185c3e803d7f2372477f1",
+      "physical_witness": true,
+      "reference_id": "585068208ec048d5092e8f0a14d1dae33c6d99c9b8e41edfd6c7690a6f198d79",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "5e4121eb4593730ecf11290cd883c8c48b798ed3d895b1574b4e8617d6844d24"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "0101cde1b525b1fa41ffbfa9a5c77204682808844d353a7b862f9c3bda774807"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "c9d4d4c69e1445e740df896afb00683e9018941257f6be737e5e40d8f95f53f7"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "d20697ea013db185897eaa8fb244f2cb262d5f90a87a3c80541ddf5bd35dbc76"
+        }
+      },
+      "fleet_size": 5,
+      "historical_reference_policy": true,
+      "instance": "rc205_21_25",
+      "instance_sha256": "03bc0aabc71243d0cac40f7dd40a282e433a618e870431f7eb0644a3163f5e05",
+      "physical_witness": true,
+      "reference_id": "23053e7e89d4a195144a35965921917c1eb0fe85262ec30dbb08b53154d7a0ee",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "de16b942e31c51e039758c17d3b6360564f34650a899926bc90a0bb248336cd9"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "d1549dd02608bed4ae2935a9f50f26667e2928c9fcce81d95993e8e68b7ffebb"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "b7de981618a3538402a5e26e21893a61fe3cd1b2ca7fda2b36777a2704cb5984"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "32916f431c6440b0c5b325420a6418bc58a5f21bd8daef542831d2f67f125e02"
+        }
+      },
+      "fleet_size": 5,
+      "historical_reference_policy": true,
+      "instance": "rc205_21_50",
+      "instance_sha256": "4bc9110c8de3bad4b7f6ffd0221943e4821d131c067c681b64bcb10dc861e0eb",
+      "physical_witness": true,
+      "reference_id": "5a182f790a38efb96b7ef3c17513ee1396e165dd314187499bbc4112316a557f",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": "results/desaulniers/publication_development/reference_extension_v1/references/rc206_21_100.json",
+      "artifact_sha256": "1fd63bb4fc11800d433f528e149abaeee2492f9c4f787fcd1d01e1893e8753c5",
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "7a600cc6eeb323f891c497cc8a61113625c1971d223bf9e00beab938387578bc"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "5e390db68553f7c28bd3a2164fa5e0b5ec8c873828ab36f2a2f2a535e17d26a1"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "45a327086dd01da3f6854002dbfa699a482841111ad602880493daea7b55fe0c"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "ba57a04f7fcc221eacf7354777c08ad941bf8baf1e2ef4b964431d1097aaa08a"
+        }
+      },
+      "fleet_size": 4,
+      "historical_reference_policy": false,
+      "instance": "rc206_21_100",
+      "instance_sha256": "ab159680fabae6b51379d2effb6335c3675a9821e4013c2ea421b637ddb50989",
+      "physical_witness": true,
+      "reference_id": "d1780cf5c1195b62e61c9b5f46f26fc11d5ae167df0ba318992ece85eb9dc740",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "109ccef1e4e592eee69e3e873c96fb23d7d7e2013bfded224a5a35df22c8fc98"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "a960473d13cf9e7417c0e9790b5fbe7f56fa12746980ba7a4194a2af7cee3c1a"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "f267262f5d75ae00425808e05db12e27b9b72a1897bca61ddb7d81d7a18b9c34"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "e9e7a06aeefa1598de6985ab7d5080206c5a6d0cb5dcfa6cdf5788826a6722c2"
+        }
+      },
+      "fleet_size": 4,
+      "historical_reference_policy": true,
+      "instance": "rc206_21_25",
+      "instance_sha256": "d4f947dcaf38605c952d9dd67bf1b74797129d310742b7256181b56019f99a38",
+      "physical_witness": true,
+      "reference_id": "714efdb4323f83bcf9757ee9528e6767b77a66cc78f4f0b8e9ea5149e6d295ac",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "c28ea0556d3c595c455bbf6a0029dc090cc702bd19dcff8cb3f749f6075a44a0"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "ea0337ccc362122ad0ca8e7fe7fa05c6fbda1f334be91607c48527a0c38d12d3"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "f083d368bb6fc491219c0c28e1132a60d2906a1bacad98d08bf43fba7e9172ad"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "74a15184557854356f6097b603184386a186fe5b595b2178a9e60158ba2c4224"
+        }
+      },
+      "fleet_size": 5,
+      "historical_reference_policy": true,
+      "instance": "rc206_21_50",
+      "instance_sha256": "1f6c0d44ba3f4fdb21e5baf64e03ef0909d257ccfe59a878f919327b62497ea7",
+      "physical_witness": true,
+      "reference_id": "a55b5efd825da0f2c90d18369573533cdab926e7fae85864d8b0995725c0e4c3",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": "results/desaulniers/publication_development/reference_extension_v1/references/rc207_21_100.json",
+      "artifact_sha256": "3a0260942e52a49ebe5829791821ba81c996df9342787451113341e3530ef43b",
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "5ee004d6985c5e79019d9489045fc56eef63de91ce9a7ff038355e2046362b26"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "5b8b0331018e11167cf7f870f1c08299b333c5c6d025da6a46ca81b23b8e8d68"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "241dcfaec1ec6a5d3b20b78e4d8b953426679511e5c8c6942b6a45c85ab4341d"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "9fc3014fb2c4d8c9412268f5f07036511ea77ba3e3020f47dc76b988467ec27e"
+        }
+      },
+      "fleet_size": 4,
+      "historical_reference_policy": false,
+      "instance": "rc207_21_100",
+      "instance_sha256": "0a4a39b64bb0759c8213025797bea1ca4f3316a4167bd2eff82de730d438b820",
+      "physical_witness": true,
+      "reference_id": "45c8c92477f3f48ae26117962fcdc23973f96579f391b4bac64f809b96e5f9c8",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "d753a3b13ac47ce065aeb1baccccbffe222b4a6207db6e4d2f762ad6d473ab0b"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "42a087192514e3b124695c584fd624cfca09674fba92949d6cf7dbc82849f213"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "101e0c10762700b654a97296566e5b9f75064c6984832ec4a23a17d93f752df4"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "29411488b57003fa8eebc7912856fb9e58699abdc7932479d069311f2c7837b5"
+        }
+      },
+      "fleet_size": 3,
+      "historical_reference_policy": true,
+      "instance": "rc207_21_25",
+      "instance_sha256": "563a4df38cd15316604bdca8f8dd614474b7f351a18cae150270ebd84a964b9a",
+      "physical_witness": true,
+      "reference_id": "848455e5710c7507651941e3ebeb394c8d18f3b3e8f5955a0afb9f377a6a9edd",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "0aa03a34903d7e9d79dd293f1713f82d21e7bdd17c6e5defb310a72432f3a6b2"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "92e9f4d0639661b0a6d175319da5e7f41630749439ccecbca98db3da28e9ca0b"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "2fc776b628fd6eb85e639d5d0ad6e663989007bab9555c744d24416ce4b709aa"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "4d09b082f636b90dffd71b8186f86a4bd797966170d6fb5ba58ea5067b6d1744"
+        }
+      },
+      "fleet_size": 4,
+      "historical_reference_policy": true,
+      "instance": "rc207_21_50",
+      "instance_sha256": "1449b3aaf3731b515ddde959cbb137fd9dded04df76a7b44c8a52ba7b39900f7",
+      "physical_witness": true,
+      "reference_id": "088eb08b349e46935ea0f7e08e9e6ce38148f458bbb457475109a9571ed4137a",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": "results/desaulniers/reference_validation/references/rc208_21_100_92b71ed554032807.json",
+      "artifact_sha256": "db4fea7d4db27e8aa259201c183a1e20c9d14e782703cd9334e05252f052a288",
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "d3728f5e0b43952417096898b15237943f92dd71c27d9af52b768a2d598f6cac"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "19e1a2e6906ffe9b315eec1c957476aa793c070217d0d07ab30e3d6d57651b27"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "918f7006dc6b3d3504d28bed11b26a151dfd6e4cf960621a6a8740535f4db3c9"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "b9eea81391bcb1f3e26afff58a59c54b053eba0173a91d0344894696496e2baf"
+        }
+      },
+      "fleet_size": 4,
+      "historical_reference_policy": true,
+      "instance": "rc208_21_100",
+      "instance_sha256": "4494aedc7078f1cc693e042a66d046adfbed91e4cc6c390a25c40a3a6ff6bfc3",
+      "physical_witness": true,
+      "reference_id": "92b71ed5540328075afdc7f34b369754bb1c71c82cbe9e9fcd4bccd7f2cae3c5",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "27d83f1c5f7f29a631449c7fef0422e35059f7cc6b2fb53d8d24ccfcd0642b44"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "571e620048cec1568809671cb5cc2ebb7d89b604186ffb46e9b8b2e7ffe4fd89"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "ce18d8467585bf968f1cf4775dc0da0fbeee835cb77dd0d7dfd75d01a26b5e0e"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "8471fa11102ae149480fec8127d439df995448d00c39e63cf9e6c290e24daece"
+        }
+      },
+      "fleet_size": 2,
+      "historical_reference_policy": true,
+      "instance": "rc208_21_25",
+      "instance_sha256": "fed1b6c6938f80ca08c25ea43a0a96da6ffca25f6f0d4ac1a7b9c07dabd86382",
+      "physical_witness": true,
+      "reference_id": "3c96d8c8e1c0c9cb1d461d363e3d61e6ff1767581325067740a06773242ba78d",
+      "source": "preserved_prior_inventory"
+    },
+    {
+      "artifact": null,
+      "artifact_sha256": null,
+      "dynamicity_preflight": {
+        "0": {
+          "eligible": true,
+          "scenario_id": "095c065a6d892bc9d1c4912a7c03e3e0f5939513aaefb05167d7ee4b47d91888"
+        },
+        "0.25": {
+          "eligible": true,
+          "scenario_id": "7b2f47398a22db3867e6ad8ceb57e3785e87b707e23bd6d619032846f64d929b"
+        },
+        "0.5": {
+          "eligible": true,
+          "scenario_id": "09cacb1e56dbb6f4eda1d1c52216374a8d394344e05ee26869aa5b864428944a"
+        },
+        "0.75": {
+          "eligible": true,
+          "scenario_id": "cf05723ec9d02c83cdd7827f6ef428cc5bbd52c94a05b9b1f2911e4c761e1563"
+        }
+      },
+      "fleet_size": 4,
+      "historical_reference_policy": true,
+      "instance": "rc208_21_50",
+      "instance_sha256": "d9d5d216be432ecb853c2e0a2d3196262149cd2ea2b7c9cdf8744e781441ba93",
+      "physical_witness": true,
+      "reference_id": "6f7adf0796476ab98bd906fab14f507f83f25ae2dbd5450f4b22df4e4263caf5",
+      "source": "preserved_prior_inventory"
+    }
+  ]
+}

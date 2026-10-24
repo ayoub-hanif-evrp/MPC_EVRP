@@ -1,0 +1,40 @@
+{
+  "artifacts": [
+    {
+      "path": "results/desaulniers/targeted_service_v1/diagnosis/paper/event_counts.md",
+      "sha256": "593c9c47878c7c5ad4aab7c6b03495cd2238613992665288cf44ef66c9bdae30"
+    },
+    {
+      "path": "results/desaulniers/targeted_service_v1/diagnosis/paper/loss_ledger.md",
+      "sha256": "440f09ed8e498900f1d319fcbd5ca584c1b4c4c0e0822fbd870bfa0a88ce71a5"
+    },
+    {
+      "path": "results/desaulniers/targeted_service_v1/diagnosis/paper/next_actions.md",
+      "sha256": "48791b372a91676a77e077e9f3701e2a63f5951dc47978bb6757f468b02ddaa6"
+    },
+    {
+      "path": "results/desaulniers/targeted_service_v1/diagnosis/RESULTS.md",
+      "sha256": "92360f784595c4d1308bca3822c898c0dc184d32cd9904cc5048f8be1da2a111"
+    },
+    {
+      "path": "results/desaulniers/targeted_service_v1/METHODS.md",
+      "sha256": "ceec0ee510d1983e1e48d4141b6fd451bac0750b9f07c1542eee15dc2212e7ff"
+    },
+    {
+      "path": "results/desaulniers/targeted_service_v1/offline_resources/RESULTS.md",
+      "sha256": "64be4f3dc11c7af807b080aeb3eb0293607eb44b3b81a169eb9ba8f3992f80ea"
+    },
+    {
+      "path": "results/desaulniers/targeted_service_v1/REFERENCE_INVENTORY.md",
+      "sha256": "8c5f20b10ee381683ce057887e31424ea1ebf22e8112e935f8bdc52486a98c92"
+    },
+    {
+      "path": "results/desaulniers/targeted_service_v1/diagnosis/paper/diagnosis.png",
+      "sha256": "24d05e8ed780a62a679a9554b0a9855c19e7c74d1d4be227bd42370d6601b977"
+    },
+    {
+      "path": "results/desaulniers/targeted_service_v1/diagnosis/paper/unserved_windows.png",
+      "sha256": "f34445eedf9662cc2aa2415318b4b16af467b3fe717d77b138c9f67b22a0b632"
+    }
+  ]
+}
