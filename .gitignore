@@ -146,6 +146,12 @@ logs/
 !/results/desaulniers/publication_package_v1/*.json
 !/results/desaulniers/publication_package_v1/**/*.md
 !/results/desaulniers/publication_package_v1/**/*.png
+!/results/desaulniers/targeted_service_v1/**/*.json
+!/results/desaulniers/targeted_service_v1/**/*.json.gz
+!/results/desaulniers/targeted_service_v1/**/*.md
+!/results/desaulniers/targeted_service_v1/**/*.csv
+!/results/desaulniers/targeted_service_v1/**/*.xml
+!/results/desaulniers/targeted_service_v1/**/*.png
 !/results/desaulniers/robustness_v2/raw/*.json.gz
 /results/.pytest_work/
 /results/t[0-9]*/
