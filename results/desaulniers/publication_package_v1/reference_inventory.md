@@ -1,0 +1,183 @@
+# Complete MP benchmark and physical reference inventory
+
+Parsed and all arcs validated: 168/168. Independently replayed full-service
+reference witnesses: 166/168; unresolved searches: 2.
+
+The historical reference policy still contains exactly 144 instances.
+New witnesses are separate heuristic fleet upper bounds and do not change
+historical K_ref, request releases, scenario IDs, protocols or results.
+
+DoD eligibility was preflighted without online optimization. Every eligible
+generated release schedule preserves legal dispatch in its clairvoyant
+offline reference. This reference is not an online MPC competitor.
+
+| Instance | Source | Physical witness | Fleet size | Distance | DoD .25 / .50 / .75 |
+| --- | --- | --- | ---: | ---: | --- |
+| c101_21_100 | historical_reference | True | 12 | 1054.19 | True / True / True |
+| c101_21_25 | historical_reference | True | 7 | 627.08 | True / True / True |
+| c101_21_50 | historical_reference | True | 9 | 783.84 | True / True / True |
+| c102_21_100 | historical_reference | True | 12 | 1022.9300000000001 | True / True / False |
+| c102_21_25 | historical_reference | True | 5 | 526.41 | True / True / False |
+| c102_21_50 | historical_reference | True | 8 | 784.93 | True / True / False |
+| c103_21_100 | historical_reference | True | 13 | 1794.57 | True / False / False |
+| c103_21_25 | historical_reference | True | 4 | 345.53999999999996 | True / False / False |
+| c103_21_50 | historical_reference | True | 7 | 656.9 | True / False / False |
+| c104_21_100 | historical_reference | True | 13 | 2063.3 | False / False / False |
+| c104_21_25 | historical_reference | True | 4 | 449.91 | False / False / False |
+| c104_21_50 | historical_reference | True | 5 | 582.87 | False / False / False |
+| c105_21_100 | historical_reference | True | 12 | 1034.28 | True / True / True |
+| c105_21_25 | historical_reference | True | 6 | 541.49 | True / True / True |
+| c105_21_50 | historical_reference | True | 9 | 737.03 | True / True / True |
+| c106_21_100 | historical_reference | True | 12 | 1027.6200000000001 | True / True / True |
+| c106_21_25 | historical_reference | True | 5 | 562.41 | True / True / True |
+| c106_21_50 | historical_reference | True | 9 | 755.21 | True / True / True |
+| c107_21_100 | historical_reference | True | 12 | 1025.99 | True / True / True |
+| c107_21_25 | historical_reference | True | 6 | 505.86 | True / True / True |
+| c107_21_50 | historical_reference | True | 7 | 708.98 | True / True / True |
+| c108_21_100 | historical_reference | True | 11 | 1024.69 | True / True / True |
+| c108_21_25 | historical_reference | True | 5 | 508.39 | True / True / True |
+| c108_21_50 | historical_reference | True | 8 | 726.23 | True / True / True |
+| c109_21_100 | historical_reference | True | 14 | 2185.48 | True / True / True |
+| c109_21_25 | historical_reference | True | 4 | 473.55 | True / True / True |
+| c109_21_50 | historical_reference | True | 7 | 677.25 | True / True / True |
+| c201_21_100 | historical_reference | True | 5 | 775.0 | True / True / True |
+| c201_21_25 | historical_reference | True | 3 | 416.37 | True / True / True |
+| c201_21_50 | historical_reference | True | 4 | 503.26 | True / True / True |
+| c202_21_100 | separate_published_partial_route_witness | True | 4 | 630.35 | True / True / False |
+| c202_21_25 | historical_reference | True | 3 | 404.57 | True / False / False |
+| c202_21_50 | historical_reference | True | 4 | 523.75 | True / True / False |
+| c203_21_100 | separate_published_partial_route_witness | True | 4 | 630.35 | True / False / False |
+| c203_21_25 | historical_reference | True | 2 | 391.72 | True / False / False |
+| c203_21_50 | historical_reference | True | 4 | 513.8199999999999 | True / False / False |
+| c204_21_100 | separate_mp_first_feasible_witness | True | 4 | 1306.21 | False / False / False |
+| c204_21_25 | historical_reference | True | 3 | 362.93 | True / False / False |
+| c204_21_50 | historical_reference | True | 3 | 469.56 | False / False / False |
+| c205_21_100 | historical_reference | True | 6 | 1104.0 | True / True / True |
+| c205_21_25 | historical_reference | True | 3 | 409.05 | True / True / True |
+| c205_21_50 | historical_reference | True | 4 | 513.75 | True / True / True |
+| c206_21_100 | historical_reference | True | 5 | 1270.03 | True / True / True |
+| c206_21_25 | historical_reference | True | 3 | 389.19 | True / True / True |
+| c206_21_50 | historical_reference | True | 4 | 515.97 | True / True / True |
+| c207_21_100 | separate_published_partial_route_witness | True | 4 | 630.35 | True / True / True |
+| c207_21_25 | historical_reference | True | 3 | 397.31 | True / True / True |
+| c207_21_50 | historical_reference | True | 4 | 531.13 | True / True / True |
+| c208_21_100 | historical_reference | True | 5 | 1098.38 | True / True / True |
+| c208_21_25 | historical_reference | True | 2 | 394.68999999999994 | True / True / True |
+| c208_21_50 | historical_reference | True | 4 | 528.4 | True / True / True |
+| r101_21_100 | historical_reference | True | 20 | 1602.41 | True / True / True |
+| r101_21_25 | historical_reference | True | 9 | 662.33 | True / True / True |
+| r101_21_50 | historical_reference | True | 12 | 940.22 | True / True / True |
+| r102_21_100 | historical_reference | True | 18 | 1455.56 | True / True / False |
+| r102_21_25 | historical_reference | True | 6 | 453.08 | True / True / False |
+| r102_21_50 | historical_reference | True | 10 | 867.02 | True / True / False |
+| r103_21_100 | historical_reference | True | 16 | 1729.68 | True / False / False |
+| r103_21_25 | historical_reference | True | 6 | 494.65 | True / False / False |
+| r103_21_50 | historical_reference | True | 9 | 803.48 | True / False / False |
+| r104_21_100 | historical_reference | True | 15 | 1807.65 | False / False / False |
+| r104_21_25 | historical_reference | True | 4 | 352.16 | False / False / False |
+| r104_21_50 | historical_reference | True | 8 | 946.4200000000001 | False / False / False |
+| r105_21_100 | historical_reference | True | 15 | 1340.79 | True / True / True |
+| r105_21_25 | historical_reference | True | 6 | 584.61 | True / True / True |
+| r105_21_50 | historical_reference | True | 10 | 842.73 | True / True / True |
+| r106_21_100 | historical_reference | True | 14 | 1229.89 | True / True / False |
+| r106_21_25 | historical_reference | True | 5 | 480.22 | True / True / False |
+| r106_21_50 | historical_reference | True | 9 | 794.31 | True / True / False |
+| r107_21_100 | historical_reference | True | 13 | 1167.68 | True / False / False |
+| r107_21_25 | historical_reference | True | 5 | 416.51 | True / False / False |
+| r107_21_50 | historical_reference | True | 8 | 691.7 | True / False / False |
+| r108_21_100 | historical_reference | True | 15 | 1875.72 | True / False / False |
+| r108_21_25 | historical_reference | True | 4 | 429.37 | False / False / False |
+| r108_21_50 | historical_reference | True | 6 | 543.83 | False / False / False |
+| r109_21_100 | historical_reference | True | 19 | 2211.58 | True / True / True |
+| r109_21_25 | historical_reference | True | 5 | 462.24 | True / True / True |
+| r109_21_50 | historical_reference | True | 8 | 789.72 | True / True / True |
+| r110_21_100 | historical_reference | True | 18 | 2159.6 | True / True / True |
+| r110_21_25 | historical_reference | True | 4 | 419.67 | True / True / True |
+| r110_21_50 | historical_reference | True | 7 | 713.74 | True / True / True |
+| r111_21_100 | historical_reference | True | 17 | 2020.14 | True / True / True |
+| r111_21_25 | historical_reference | True | 4 | 383.04 | True / True / True |
+| r111_21_50 | historical_reference | True | 7 | 745.44 | True / True / True |
+| r112_21_100 | historical_reference | True | 19 | 2299.79 | True / True / True |
+| r112_21_25 | historical_reference | True | 4 | 397.42 | True / True / True |
+| r112_21_50 | historical_reference | True | 6 | 603.11 | True / True / True |
+| r201_21_100 | historical_reference | True | 8 | 1098.61 | True / True / True |
+| r201_21_25 | historical_reference | True | 4 | 374.28 | True / True / True |
+| r201_21_50 | historical_reference | True | 5 | 674.75 | True / True / True |
+| r202_21_100 | separate_mp_first_feasible_witness | True | 4 | 1528.22 | True / True / False |
+| r202_21_25 | historical_reference | True | 3 | 375.3 | True / True / False |
+| r202_21_50 | historical_reference | True | 5 | 647.1700000000001 | True / True / False |
+| r203_21_100 | separate_mp_first_feasible_witness | True | 3 | 1265.16 | True / False / False |
+| r203_21_25 | historical_reference | True | 2 | 382.77 | True / False / False |
+| r203_21_50 | historical_reference | True | 4 | 571.02 | True / False / False |
+| r204_21_100 | unresolved_search | False |  |  | False / False / False |
+| r204_21_25 | historical_reference | True | 2 | 315.52 | True / False / False |
+| r204_21_50 | separate_mp_first_feasible_witness | True | 2 | 845.8900000000001 | False / False / False |
+| r205_21_100 | separate_mp_first_feasible_witness | True | 4 | 1835.94 | True / True / True |
+| r205_21_25 | historical_reference | True | 3 | 374.0 | True / True / True |
+| r205_21_50 | historical_reference | True | 5 | 606.4300000000001 | True / True / True |
+| r206_21_100 | separate_mp_first_feasible_witness | True | 5 | 1663.82 | True / True / False |
+| r206_21_25 | historical_reference | True | 3 | 424.51 | True / True / False |
+| r206_21_50 | separate_published_partial_route_witness | True | 5 | 579.37 | True / True / False |
+| r207_21_100 | separate_mp_first_feasible_witness | True | 3 | 1182.97 | True / False / False |
+| r207_21_25 | historical_reference | True | 2 | 330.96000000000004 | True / False / False |
+| r207_21_50 | separate_published_partial_route_witness | True | 3 | 512.56 | True / True / False |
+| r208_21_100 | unresolved_search | False |  |  | False / False / False |
+| r208_21_25 | historical_reference | True | 2 | 315.59000000000003 | False / False / False |
+| r208_21_50 | separate_mp_first_feasible_witness | True | 2 | 663.3 | True / False / False |
+| r209_21_100 | separate_mp_first_feasible_witness | True | 4 | 1623.9 | True / True / True |
+| r209_21_25 | historical_reference | True | 3 | 422.39 | True / True / True |
+| r209_21_50 | separate_mp_first_feasible_witness | True | 2 | 904.66 | True / True / True |
+| r210_21_100 | separate_mp_first_feasible_witness | True | 5 | 1776.39 | True / True / True |
+| r210_21_25 | historical_reference | True | 2 | 315.27 | True / True / True |
+| r210_21_50 | separate_published_partial_route_witness | True | 3 | 519.78 | True / True / True |
+| r211_21_100 | historical_reference | True | 3 | 1299.8000000000002 | True / True / True |
+| r211_21_25 | historical_reference | True | 2 | 383.81 | True / True / True |
+| r211_21_50 | historical_reference | True | 2 | 734.11 | True / True / True |
+| rc101_21_100 | historical_reference | True | 20 | 2398.04 | True / True / True |
+| rc101_21_25 | historical_reference | True | 7 | 738.17 | True / True / True |
+| rc101_21_50 | historical_reference | True | 11 | 1074.42 | True / True / True |
+| rc102_21_100 | historical_reference | True | 16 | 1532.31 | True / True / False |
+| rc102_21_25 | historical_reference | True | 7 | 648.52 | True / True / False |
+| rc102_21_50 | historical_reference | True | 10 | 897.54 | True / True / False |
+| rc103_21_100 | historical_reference | True | 16 | 2080.75 | True / False / False |
+| rc103_21_25 | historical_reference | True | 6 | 560.91 | True / False / False |
+| rc103_21_50 | historical_reference | True | 8 | 829.68 | True / True / False |
+| rc104_21_100 | historical_reference | True | 17 | 2262.9 | False / False / False |
+| rc104_21_25 | historical_reference | True | 4 | 516.43 | False / False / False |
+| rc104_21_50 | historical_reference | True | 7 | 690.21 | False / False / False |
+| rc105_21_100 | historical_reference | True | 15 | 1482.7 | True / True / True |
+| rc105_21_25 | historical_reference | True | 6 | 589.86 | True / True / True |
+| rc105_21_50 | historical_reference | True | 10 | 984.24 | True / True / True |
+| rc106_21_100 | historical_reference | True | 19 | 2335.35 | True / True / True |
+| rc106_21_25 | historical_reference | True | 5 | 557.23 | True / True / True |
+| rc106_21_50 | historical_reference | True | 8 | 888.28 | True / True / True |
+| rc107_21_100 | historical_reference | True | 19 | 2568.78 | True / True / True |
+| rc107_21_25 | historical_reference | True | 4 | 497.65000000000003 | True / True / True |
+| rc107_21_50 | historical_reference | True | 7 | 786.4300000000001 | True / True / True |
+| rc108_21_100 | historical_reference | True | 20 | 2795.04 | True / True / True |
+| rc108_21_25 | historical_reference | True | 4 | 479.73 | True / True / True |
+| rc108_21_50 | historical_reference | True | 7 | 742.3000000000001 | True / True / True |
+| rc201_21_100 | historical_reference | True | 9 | 1258.27 | True / True / True |
+| rc201_21_25 | historical_reference | True | 5 | 594.89 | True / True / True |
+| rc201_21_50 | historical_reference | True | 7 | 812.23 | True / True / True |
+| rc202_21_100 | separate_mp_first_feasible_witness | True | 4 | 2123.48 | True / True / False |
+| rc202_21_25 | historical_reference | True | 4 | 540.87 | True / True / False |
+| rc202_21_50 | historical_reference | True | 5 | 799.71 | True / True / False |
+| rc203_21_100 | separate_mp_first_feasible_witness | True | 5 | 1936.94 | True / False / False |
+| rc203_21_25 | historical_reference | True | 3 | 443.28 | True / False / False |
+| rc203_21_50 | historical_reference | True | 5 | 670.03 | True / False / False |
+| rc204_21_100 | separate_mp_first_feasible_witness | True | 4 | 1706.19 | False / False / False |
+| rc204_21_25 | historical_reference | True | 3 | 445.51 | True / False / False |
+| rc204_21_50 | historical_reference | True | 3 | 605.71 | False / False / False |
+| rc205_21_100 | historical_reference | True | 6 | 1072.08 | True / True / True |
+| rc205_21_25 | historical_reference | True | 5 | 536.35 | True / True / True |
+| rc205_21_50 | historical_reference | True | 5 | 720.66 | True / True / True |
+| rc206_21_100 | separate_mp_first_feasible_witness | True | 4 | 2215.58 | True / True / True |
+| rc206_21_25 | historical_reference | True | 4 | 589.19 | True / True / True |
+| rc206_21_50 | historical_reference | True | 5 | 795.2 | True / True / True |
+| rc207_21_100 | separate_mp_first_feasible_witness | True | 4 | 1844.63 | True / True / True |
+| rc207_21_25 | historical_reference | True | 3 | 485.88 | True / True / True |
+| rc207_21_50 | historical_reference | True | 4 | 646.78 | True / True / True |
+| rc208_21_100 | historical_reference | True | 4 | 1822.35 | True / True / True |
+| rc208_21_25 | historical_reference | True | 2 | 438.39000000000004 | True / True / True |
+| rc208_21_50 | historical_reference | True | 4 | 577.3299999999999 | True / True / True |

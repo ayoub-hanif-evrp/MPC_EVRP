@@ -1,0 +1,805 @@
+{
+  "artifacts": [
+    {
+      "path": "ABLATIONS.md",
+      "sha256": "109d6a0462ca8024d29d52639eb3cafc56cc777fdd701a059c8afcc6ef562fd9"
+    },
+    {
+      "dpi": [
+        350.012,
+        350.012
+      ],
+      "height": 2100,
+      "path": "architecture.png",
+      "sha256": "b45cb1a4e4df7dd2df1d2bb1322398dd38c34f6cb8479491087ea368d57675f3",
+      "width": 4200
+    },
+    {
+      "path": "conditional_efficiency.md",
+      "sha256": "c1b54921ca960b9a6a2eb843d0111787767e47a3a29eecb0f932e045f596ba48"
+    },
+    {
+      "path": "coordination_efficiency.md",
+      "sha256": "791abf7b5e3b124becc6fc3872e6cf9b2182534380f2c9c6f78185d1cd29ef8a"
+    },
+    {
+      "path": "development/paper/conditional_efficiency.md",
+      "sha256": "0206b86e84299d0be3e6edcdfc7ca4a5248eb6e83bbd26f07eba38c00fe1c02f"
+    },
+    {
+      "path": "development/paper/paired_scenarios.md",
+      "sha256": "b485a9bb72769d10e944fed164c22ff4cd89a5ff729efc90482d05df8d788373"
+    },
+    {
+      "dpi": [
+        299.9994,
+        299.9994
+      ],
+      "height": 1350,
+      "path": "development/paper/paired_service.png",
+      "sha256": "65f8a669f9d6bad845cd21c328dc85ac5a5ef1146c1f461aac2d3dbb87c51bbe",
+      "width": 2400
+    },
+    {
+      "path": "development/paper/runtime.md",
+      "sha256": "c50176174560f7bf5fcb38b1e236155e495619ef02cee6b45ca5670109de6463"
+    },
+    {
+      "dpi": [
+        299.9994,
+        299.9994
+      ],
+      "height": 1350,
+      "path": "development/paper/runtime_ecdf.png",
+      "sha256": "b8c01e0c4927eb540d7e597fbc5d9b6efbdde013fa4023e16df6f3d1ee9cbbe8",
+      "width": 2400
+    },
+    {
+      "path": "development/paper/service.md",
+      "sha256": "a4b912a3348da78765c026b9cab7f16f4bfc7758b80e298977d247fccb717327"
+    },
+    {
+      "path": "development/paper/strata.md",
+      "sha256": "dac37b4d3da82e0cc64b0c4b1b9a227c97100e76e74d6ab997889d4589669f44"
+    },
+    {
+      "path": "development/RESULTS.md",
+      "sha256": "cd99b2a8cb1681afbee563bbaed26799139d73217a9c977b66ca8fea7132343f"
+    },
+    {
+      "path": "diagnosis/DIAGNOSIS.md",
+      "sha256": "a26d8cce4c3cd3ec01179e5dc98a211149dd7d83d39e313d9aeb8389a5d7213a"
+    },
+    {
+      "dpi": [
+        350.012,
+        350.012
+      ],
+      "height": 1470,
+      "path": "diagnosis/first_visible_evidence.png",
+      "sha256": "a9cb8baecaed47f8a72c3064e1f40993b3530aad9bf81275a3e2b71fff1ee09d",
+      "width": 4550
+    },
+    {
+      "path": "diagnosis/LOCAL_REORDERING.md",
+      "sha256": "5457e8980dd40c955d89d3a625fc9534a988c93ac1ca09ce665d55a71e106e1d"
+    },
+    {
+      "path": "diagnosis/STATION_SKELETON.md",
+      "sha256": "9c08bf7ce328503c68133527877d3ffa518c29ac1c798f3b3dd91dee6546ffce"
+    },
+    {
+      "path": "enhancement_validation.md",
+      "sha256": "2e4f10f251e197864d290ed3368638c5cdb4ab1870c983425c88a0b27dfabe62"
+    },
+    {
+      "path": "EXPERIMENTS.md",
+      "sha256": "b1c96b3b66609e1474423868f6dd6545252db30128e99162f4ecf385065fac1c"
+    },
+    {
+      "path": "FAILURE_ANALYSIS.md",
+      "sha256": "afdd3cdaf838b66ac33e4dafa5e41465b19283f9fd83a708adb857fc6e49b3a8"
+    },
+    {
+      "path": "FIGURES_AND_TABLES.md",
+      "sha256": "6ea4b7bda3abe30373a1de8da7f195c4e0b8b7e0e88b18647ffba3dd48e79356"
+    },
+    {
+      "path": "FINAL_REPORT.md",
+      "sha256": "80814f7584e2e65ba2a447b099f6ff10e826319ec5ac1e05dd4b6c692f7ae41c"
+    },
+    {
+      "path": "FROZEN_INPUTS.md",
+      "sha256": "be16d74465ffe4c25f534e2ba680b467c3657e1f80de611c6f84be64ef90a8ec"
+    },
+    {
+      "path": "LITERATURE.md",
+      "sha256": "475e49527c536337c6988ae7b66d0da7b5054fdd5600acca1ad81ce34a52160b"
+    },
+    {
+      "path": "METHODS.md",
+      "sha256": "7f31c355b9420edb091ac3b4bbd9dd8886581a43fcb14de4476148554f490e8d"
+    },
+    {
+      "dpi": [
+        299.9994,
+        299.9994
+      ],
+      "height": 1350,
+      "path": "original_final/complete_service.png",
+      "sha256": "5a8561a17400f77acaacf98ab6c6b057282a6e7a3fc216c0a424cbd4cd6793fc",
+      "width": 2400
+    },
+    {
+      "dpi": [
+        299.9994,
+        299.9994
+      ],
+      "height": 1350,
+      "path": "original_final/paired_service.png",
+      "sha256": "f63ff274d8e4442f6b35451af3fb41c2ee1209be2a3742b1b913e2908bac944f",
+      "width": 2400
+    },
+    {
+      "path": "original_final/RESULTS.md",
+      "sha256": "c4c4ffc23c5cc63aa2c9e3c87e1d9e46e7c4c34d393732d5e20f99a322e1e323"
+    },
+    {
+      "dpi": [
+        299.9994,
+        299.9994
+      ],
+      "height": 1350,
+      "path": "original_final/runtime_ecdf.png",
+      "sha256": "c34fd65bdfdf86b40f6071fc64380ed68e966bc2de19cbb750223af8f2470d6e",
+      "width": 2400
+    },
+    {
+      "dpi": [
+        299.9994,
+        299.9994
+      ],
+      "height": 1350,
+      "path": "original_final/service_by_dod.png",
+      "sha256": "c20dadd56ae1cc8471f05e30fe0a49b949ad0628dbaf2f5736fa982c9b5ecf85",
+      "width": 2400
+    },
+    {
+      "dpi": [
+        299.9994,
+        299.9994
+      ],
+      "height": 1350,
+      "path": "original_final/service_by_size.png",
+      "sha256": "b4913ef02c858eea2db481618e044ee6f62cd7d235318dcd6ca967129a992829",
+      "width": 2400
+    },
+    {
+      "path": "original_final/table1_benchmark.md",
+      "sha256": "f9e7e666b8b2db1dabafad5c6eea34483838bce5c45838019c76d1f109e27075"
+    },
+    {
+      "path": "original_final/table2_protocol.md",
+      "sha256": "fc1a8cdbba4ed13b290f6eaa8ac83dc90bbe02aafe51604e570a800f7d1c80a8"
+    },
+    {
+      "path": "original_final/table3_overall.md",
+      "sha256": "e839760122e9918c5fd5143fca030436852d1bb9eb67337d57a71c06e5079456"
+    },
+    {
+      "path": "original_final/table4_size.md",
+      "sha256": "9cd7ae18e1d1c8c27d000d9f86a26f66bdf63dcaa99f961f77443f35b83eee0c"
+    },
+    {
+      "path": "original_final/table5_dod.md",
+      "sha256": "2029db78e139c9f56860324fdc5d838f2ff1f0c4ac0b94196b7bc89b15041c25"
+    },
+    {
+      "path": "original_final/table6_paired.md",
+      "sha256": "378f445dfaf5403b18cbdd7e5d168ff873164eefc3bf0f3a84aaef9543c4114a"
+    },
+    {
+      "path": "original_final/table7_family.md",
+      "sha256": "7e9a66c65a0eeac53f43ddc1833b9222ad0b6f040c8436ba4ff1517dcdfe055b"
+    },
+    {
+      "path": "primary_results.md",
+      "sha256": "b89ee38e022aa1ff97dfc74feea05477cc359812a03d2afb48569505107b942a"
+    },
+    {
+      "path": "reference_coverage.md",
+      "sha256": "41d2b70fa87023c01bac32090c317ec70272a69ccb341d998b0c890cb5d5c81b"
+    },
+    {
+      "path": "reference_inventory.md",
+      "sha256": "7d7c2c5e958439af851ea582b258c07402bb4ea50d9e6bb6e17e9ca232142efc"
+    },
+    {
+      "path": "REPRODUCTION.md",
+      "sha256": "cce5875efbf7f139c119abeab6a4539fb8ce2f5407eb8977fe3aceb49a991900"
+    },
+    {
+      "path": "RESULTS.md",
+      "sha256": "9a491ea73e51b49bd7d81914e5bb2bd90f8bf3e5cf43884da5f9ca84b40f64c2"
+    },
+    {
+      "path": "robustness_v3/RESULTS.md",
+      "sha256": "3165cc4dac329f5a70bd6778a445dc173d2deffd9641fa1ff01d915b6370b6f9"
+    },
+    {
+      "dpi": [
+        299.9994,
+        299.9994
+      ],
+      "height": 1350,
+      "path": "robustness_v3/runtime_ecdf.png",
+      "sha256": "598c90dd31dd60c28ea205de4b9330564514dbd26a935066d8e4b1132a280b30",
+      "width": 2400
+    },
+    {
+      "dpi": [
+        299.9994,
+        299.9994
+      ],
+      "height": 1350,
+      "path": "robustness_v3/service_by_seed.png",
+      "sha256": "c514d924c9ca68d3a5bf4f748a71af41330df700c56f9dce7d812e16cae1b33d",
+      "width": 2400
+    },
+    {
+      "path": "robustness_v3/SUMMARY.md",
+      "sha256": "feb4727a1870e1cbde5f5cf262fc88263f52570b1453ce8d40a71d5d7e8ae12e"
+    },
+    {
+      "path": "runtime_validation/EXECUTION_NOTES.md",
+      "sha256": "3babaad54b469d49c45a04832c3bfa848536192de25c2e4b7a44e94d96f21159"
+    },
+    {
+      "path": "runtime_validation/paper/method_results.md",
+      "sha256": "495c72b8d2c08b7072ed90689e2f94f81c36b526436ece7fbbbfc1293130753f"
+    },
+    {
+      "dpi": [
+        299.9994,
+        299.9994
+      ],
+      "height": 1800,
+      "path": "runtime_validation/paper/runtime_ecdf.png",
+      "sha256": "390e08dfee963613adf1c5d65487a165a43bafac29d046997d0553e297384091",
+      "width": 3300
+    },
+    {
+      "path": "runtime_validation/paper/size_results.md",
+      "sha256": "f66ae7815a64b2f131c2c5442479c274d5acfb27de58f83910051f431d692841"
+    },
+    {
+      "path": "runtime_validation/RESULTS.md",
+      "sha256": "495c72b8d2c08b7072ed90689e2f94f81c36b526436ece7fbbbfc1293130753f"
+    },
+    {
+      "path": "validation.md",
+      "sha256": "2ce2513d076d12e90e6b1a6c4205d07ff52a02b725a2c4d995ce6ea87c2e59ac"
+    }
+  ],
+  "enhancement_audits": {
+    "audited_runs": 159,
+    "studies": [
+      {
+        "all_independent_audits_passed": true,
+        "manifest_sha256": "386d2d0353c285073d252ca9e6741d4ba49e576d539f4e0838c522bb2b005ac1",
+        "protocol_identifier": "5f3c4b53ecfe6ad49866831e0d4fd8fb7db9fa4772dfadf79df4b642ad515399",
+        "runs": 12,
+        "source_sha256": "728fd03ff22fb2cc0981b3c78c1502a799f5e9610177b173a7ee6aaee8d1e191",
+        "study": "results/desaulniers/enhancement_development/alns_recovery_pilot"
+      },
+      {
+        "all_independent_audits_passed": true,
+        "manifest_sha256": "ed9ec4435b8ab07a83a1e20feac9d3cfd2224b704132c2b5ebfc6e21aae20202",
+        "protocol_identifier": "dfc6b2ebcc9f17e457ce2cadc69e412255f345a14027cc8e260b014115d8d785",
+        "runs": 36,
+        "source_sha256": "615dc2b98e1aa0dcdd6fd5cfb8b10029db74cc37103c5c25feafe8057d5986d7",
+        "study": "results/desaulniers/enhancement_development/alns_recovery_screen"
+      },
+      {
+        "all_independent_audits_passed": true,
+        "manifest_sha256": "c18e8c56e0db403b760e1e4931e372465b3839312d9bd76856383ba16462c4c3",
+        "protocol_identifier": "857bf7dddf715710c3c5697b659b0d473b0d35ae367d8e5031081643ff1e7c97",
+        "runs": 12,
+        "source_sha256": "4b824c25e4f3abbecd6b4edb98beeb94888a4909ce6ea86dd12c232e3d1badb2",
+        "study": "results/desaulniers/enhancement_development/decoder_pilot"
+      },
+      {
+        "all_independent_audits_passed": true,
+        "manifest_sha256": "61c8bebd2af9d7dd6c89a27d8e8cfe89211b56c520add73e2d1e554267fdc023",
+        "protocol_identifier": "a35fae0b1bcd6d399670eafd1abfd035458676943582eed9ed77538d382d6ad4",
+        "runs": 12,
+        "source_sha256": "df65df75155fa1afbe8320ca3c2342d6eec3bdd5e0f14eadcf263ef3f74876d8",
+        "study": "results/desaulniers/enhancement_development/dispatch_pilot"
+      },
+      {
+        "all_independent_audits_passed": true,
+        "manifest_sha256": "edf949da53e2471bc307910d602a8fa326730f3bbfa5ffda5aaec4ba912d579f",
+        "protocol_identifier": "acee640832efc3b6b403dec02d581611dcd3f83c6b782d01d62aa70f15f0a557",
+        "runs": 3,
+        "source_sha256": "f35fa242c5774abbacd2c08b63718a1efc30b33bbffa85ab339790bf86fdda99",
+        "study": "results/desaulniers/publication_development/instrumented_v1"
+      },
+      {
+        "all_independent_audits_passed": true,
+        "manifest_sha256": "3609e79556ba9e25eae56ce0f1980c5fdf42af83df0519885cbdeb317aa74556",
+        "protocol_identifier": "62fef11a4f1871bcdb87a1e25dbc62dc6bb7588ba8fb4b5b33fabf85d7134bfb",
+        "runs": 12,
+        "source_sha256": "60c2443d66011b9102cc9027e55ea989dc14fa20535d48de8962cf328af1c461",
+        "study": "results/desaulniers/publication_development/reserve_pilot"
+      },
+      {
+        "all_independent_audits_passed": true,
+        "manifest_sha256": "d23bbd5a085206ede61410124cff827f8458f85cd602d2a563a8fea39a50dd2e",
+        "protocol_identifier": "06cbf49424cedafb774c30e0deff2488050b25804a4c98dd1fa43904bc31b825",
+        "runs": 30,
+        "source_sha256": "cf6f48b2ed59227c0a1d636f45e6ef8ed612b19150cc953c69274512367e51d5",
+        "study": "results/desaulniers/publication_development/runtime_validation_v1"
+      },
+      {
+        "all_independent_audits_passed": true,
+        "manifest_sha256": "5795a68b74eafe4e17c657ea55083f62c5401fcac20d7c14815c0a2d38da79d3",
+        "protocol_identifier": "6f5983189f3b684a9549f2c4ace1c377a12649b25014804a593c0947349be068",
+        "runs": 6,
+        "source_sha256": "50fb46a16065edb540eac5622856435177481638d174bb6845e40d931a07b5f6",
+        "study": "results/desaulniers/publication_development/stable_pilot_v1"
+      },
+      {
+        "all_independent_audits_passed": true,
+        "manifest_sha256": "5c9da74206e82d5a73f30431390e4a0c06520c122f427d1b8df99a379297372f",
+        "protocol_identifier": "6f698f8791456c2f913c3c99a0eb66cd425a2a1e60840e4c9963978471114aa4",
+        "runs": 36,
+        "source_sha256": "2e3db6b4f5dee96cc0ea34768a952687dcbd368b42a8e88bc29efc55d74991b0",
+        "study": "results/desaulniers/publication_development/stable_screen_v1"
+      }
+    ]
+  },
+  "original_study_audits": {
+    "dataset_sha256": "02011e3273fef190bd61cc223b4504d8265ca5be30ccf02a34f674f27d58741e",
+    "studies": {
+      "corrected_final": {
+        "all_independent_audits_passed": true,
+        "audited_runs": 270,
+        "base_instances": 18,
+        "current_physics_matches_historical": true,
+        "matching_source_files": 42,
+        "methods": {
+          "MPC_ACS": {
+            "complete_scenarios": 36,
+            "conditional_efficiency": {
+              "common_complete_scenarios": 19,
+              "total_charging_time": 333.8238157894737,
+              "total_charging_visits": 8.736842105263158,
+              "total_distance": 852.1547368421053,
+              "total_energy_charged": 333.8238157894737,
+              "vehicles_activated": 3.3684210526315788
+            },
+            "customer_opportunities": 3150,
+            "customers_served": 3093,
+            "max_decision_seconds": 4.87077469995711,
+            "scenarios": 54,
+            "service": 0.981904761904762
+          },
+          "MPC_ALNS": {
+            "complete_scenarios": 44,
+            "conditional_efficiency": {
+              "common_complete_scenarios": 19,
+              "total_charging_time": 473.5471052631579,
+              "total_charging_visits": 9.526315789473685,
+              "total_distance": 978.5915789473685,
+              "total_energy_charged": 473.5471052631579,
+              "vehicles_activated": 2.8947368421052633
+            },
+            "customer_opportunities": 3150,
+            "customers_served": 3123,
+            "max_decision_seconds": 4.8445298000006005,
+            "scenarios": 54,
+            "service": 0.9914285714285714
+          },
+          "MPC_COMPLETION": {
+            "complete_scenarios": 19,
+            "conditional_efficiency": {
+              "common_complete_scenarios": 19,
+              "total_charging_time": 478.6197368421052,
+              "total_charging_visits": 11.31578947368421,
+              "total_distance": 1011.3510526315789,
+              "total_energy_charged": 478.6197368421052,
+              "vehicles_activated": 3.3684210526315788
+            },
+            "customer_opportunities": 3150,
+            "customers_served": 2904,
+            "max_decision_seconds": 2.044883199967444,
+            "scenarios": 54,
+            "service": 0.9219047619047619
+          },
+          "MPC_HGS": {
+            "complete_scenarios": 38,
+            "conditional_efficiency": {
+              "common_complete_scenarios": 19,
+              "total_charging_time": 541.2797368421053,
+              "total_charging_visits": 11.578947368421053,
+              "total_distance": 1088.2347368421051,
+              "total_energy_charged": 541.2797368421053,
+              "vehicles_activated": 3.210526315789474
+            },
+            "customer_opportunities": 3150,
+            "customers_served": 3115,
+            "max_decision_seconds": 4.788091100053862,
+            "scenarios": 54,
+            "service": 0.9888888888888889
+          },
+          "MPC_MCTS": {
+            "complete_scenarios": 27,
+            "conditional_efficiency": {
+              "common_complete_scenarios": 19,
+              "total_charging_time": 575.1902631578947,
+              "total_charging_visits": 12.105263157894736,
+              "total_distance": 1081.4557894736843,
+              "total_energy_charged": 575.1902631578947,
+              "vehicles_activated": 3.263157894736842
+            },
+            "customer_opportunities": 3150,
+            "customers_served": 3024,
+            "max_decision_seconds": 4.778918499941938,
+            "scenarios": 54,
+            "service": 0.96
+          }
+        },
+        "paired_scenarios": 54,
+        "parent_clustered_sensitivity": {
+          "MPC_ACS_vs_MPC_COMPLETION": {
+            "holm_adjusted_p": 0.15625,
+            "mean_scenario_service_effect": 0.06574074074074075,
+            "parent_cases": 6,
+            "parent_clustered_ci": [
+              0.024444444444444446,
+              0.11129629629629632
+            ],
+            "parent_sign_flip_p": 0.03125
+          },
+          "MPC_ALNS_vs_MPC_COMPLETION": {
+            "holm_adjusted_p": 0.1875,
+            "mean_scenario_service_effect": 0.07833333333333334,
+            "parent_cases": 6,
+            "parent_clustered_ci": [
+              0.025740740740740745,
+              0.13685185185185186
+            ],
+            "parent_sign_flip_p": 0.0625
+          },
+          "MPC_ALNS_vs_MPC_HGS": {
+            "holm_adjusted_p": 0.8125,
+            "mean_scenario_service_effect": 0.0007407407407407411,
+            "parent_cases": 6,
+            "parent_clustered_ci": [
+              -0.007222222222222221,
+              0.009074074074074075
+            ],
+            "parent_sign_flip_p": 0.8125
+          },
+          "MPC_HGS_vs_MPC_COMPLETION": {
+            "holm_adjusted_p": 0.15625,
+            "mean_scenario_service_effect": 0.0775925925925926,
+            "parent_cases": 6,
+            "parent_clustered_ci": [
+              0.02962962962962963,
+              0.13314814814814815
+            ],
+            "parent_sign_flip_p": 0.03125
+          },
+          "MPC_MCTS_vs_MPC_COMPLETION": {
+            "holm_adjusted_p": 0.4375,
+            "mean_scenario_service_effect": 0.047037037037037044,
+            "parent_cases": 6,
+            "parent_clustered_ci": [
+              0.006851851851851852,
+              0.09555555555555557
+            ],
+            "parent_sign_flip_p": 0.21875
+          }
+        },
+        "parent_instances": 6,
+        "protocol_identifier": "7df67351bba717cc1f9af9b9ca99b83ff0eb38925ca8ac7df154f906d8f7e228",
+        "source_commit": "380099c280da6d4c7d751137aca68d40cb9b3e96",
+        "source_sha256": "463e4043906ca513d9e11469f7ce4e2a781392558374f92a2ae606558f93c97a"
+      },
+      "development": {
+        "all_independent_audits_passed": true,
+        "audited_runs": 270,
+        "base_instances": 18,
+        "current_physics_matches_historical": true,
+        "matching_source_files": 41,
+        "methods": {
+          "MPC_ACS": {
+            "complete_scenarios": 33,
+            "conditional_efficiency": {
+              "common_complete_scenarios": 24,
+              "total_charging_time": 342.7862500416666,
+              "total_charging_visits": 9.458333333333334,
+              "total_distance": 1184.7266666666667,
+              "total_energy_charged": 342.7862500416666,
+              "vehicles_activated": 4.041666666666667
+            },
+            "customer_opportunities": 3150,
+            "customers_served": 3090,
+            "max_decision_seconds": 4.7916617000009865,
+            "scenarios": 54,
+            "service": 0.9809523809523809
+          },
+          "MPC_ALNS": {
+            "complete_scenarios": 39,
+            "conditional_efficiency": {
+              "common_complete_scenarios": 24,
+              "total_charging_time": 501.11770837500006,
+              "total_charging_visits": 10.166666666666666,
+              "total_distance": 1309.62875,
+              "total_energy_charged": 501.11770837500006,
+              "vehicles_activated": 4.041666666666667
+            },
+            "customer_opportunities": 3150,
+            "customers_served": 3117,
+            "max_decision_seconds": 4.83354360004887,
+            "scenarios": 54,
+            "service": 0.9895238095238095
+          },
+          "MPC_COMPLETION": {
+            "complete_scenarios": 28,
+            "conditional_efficiency": {
+              "common_complete_scenarios": 24,
+              "total_charging_time": 378.6601041666667,
+              "total_charging_visits": 11.791666666666666,
+              "total_distance": 1283.2229166666668,
+              "total_energy_charged": 378.6601041666667,
+              "vehicles_activated": 4.416666666666667
+            },
+            "customer_opportunities": 3150,
+            "customers_served": 2986,
+            "max_decision_seconds": 2.0176881999941543,
+            "scenarios": 54,
+            "service": 0.947936507936508
+          },
+          "MPC_HGS": {
+            "complete_scenarios": 39,
+            "conditional_efficiency": {
+              "common_complete_scenarios": 24,
+              "total_charging_time": 603.8179166666666,
+              "total_charging_visits": 12.583333333333334,
+              "total_distance": 1411.82625,
+              "total_energy_charged": 603.8179166666667,
+              "vehicles_activated": 3.9583333333333335
+            },
+            "customer_opportunities": 3150,
+            "customers_served": 3112,
+            "max_decision_seconds": 4.826025299960747,
+            "scenarios": 54,
+            "service": 0.9879365079365079
+          },
+          "MPC_MCTS": {
+            "complete_scenarios": 32,
+            "conditional_efficiency": {
+              "common_complete_scenarios": 24,
+              "total_charging_time": 432.97239583333334,
+              "total_charging_visits": 10.166666666666666,
+              "total_distance": 1317.1316666666667,
+              "total_energy_charged": 432.97239583333334,
+              "vehicles_activated": 4.25
+            },
+            "customer_opportunities": 3150,
+            "customers_served": 3056,
+            "max_decision_seconds": 4.802729099988937,
+            "scenarios": 54,
+            "service": 0.9701587301587301
+          }
+        },
+        "paired_scenarios": 54,
+        "parent_clustered_sensitivity": {
+          "MPC_ACS_vs_MPC_COMPLETION": {
+            "holm_adjusted_p": 0.625,
+            "mean_scenario_service_effect": 0.02925925925925926,
+            "parent_cases": 6,
+            "parent_clustered_ci": [
+              0.007777777777777778,
+              0.0525925925925926
+            ],
+            "parent_sign_flip_p": 0.125
+          },
+          "MPC_ALNS_vs_MPC_COMPLETION": {
+            "holm_adjusted_p": 0.625,
+            "mean_scenario_service_effect": 0.035555555555555556,
+            "parent_cases": 6,
+            "parent_clustered_ci": [
+              0.008518518518518517,
+              0.06796296296296296
+            ],
+            "parent_sign_flip_p": 0.125
+          },
+          "MPC_ALNS_vs_MPC_HGS": {
+            "holm_adjusted_p": 0.875,
+            "mean_scenario_service_effect": -0.0007407407407407409,
+            "parent_cases": 6,
+            "parent_clustered_ci": [
+              -0.007037037037037037,
+              0.005555555555555556
+            ],
+            "parent_sign_flip_p": 0.875
+          },
+          "MPC_HGS_vs_MPC_COMPLETION": {
+            "holm_adjusted_p": 0.625,
+            "mean_scenario_service_effect": 0.0362962962962963,
+            "parent_cases": 6,
+            "parent_clustered_ci": [
+              0.008888888888888889,
+              0.07314814814814816
+            ],
+            "parent_sign_flip_p": 0.125
+          },
+          "MPC_MCTS_vs_MPC_COMPLETION": {
+            "holm_adjusted_p": 0.625,
+            "mean_scenario_service_effect": 0.021481481481481483,
+            "parent_cases": 6,
+            "parent_clustered_ci": [
+              0.0029629629629629637,
+              0.046481481481481485
+            ],
+            "parent_sign_flip_p": 0.25
+          }
+        },
+        "parent_instances": 6,
+        "protocol_identifier": "30bf9318bf952adf148873c54b06a933c167b3c287fac9c40419d680b8897d08",
+        "source_commit": "59424520b7cba1d83e3627dde317addfa659cfd5",
+        "source_sha256": "05f7e02c9a724bea90f3ff183ee432b81ed4f5e5714c1e2fce01e5a3ec225dde"
+      },
+      "robustness_v3": {
+        "all_independent_audits_passed": true,
+        "audited_runs": 450,
+        "base_instances": 6,
+        "current_physics_matches_historical": true,
+        "matching_source_files": 42,
+        "methods": {
+          "MPC_ACS": {
+            "complete_scenarios": 49,
+            "conditional_efficiency": {
+              "common_complete_scenarios": 39,
+              "total_charging_time": 230.0276282051282,
+              "total_charging_visits": 6.333333333333333,
+              "total_distance": 772.3423076923077,
+              "total_energy_charged": 230.0276282051282,
+              "vehicles_activated": 3.051282051282051
+            },
+            "customer_opportunities": 5250,
+            "customers_served": 5039,
+            "max_decision_seconds": 4.782436899957247,
+            "scenarios": 90,
+            "service": 0.9598095238095238
+          },
+          "MPC_ALNS": {
+            "complete_scenarios": 63,
+            "conditional_efficiency": {
+              "common_complete_scenarios": 39,
+              "total_charging_time": 528.381282051282,
+              "total_charging_visits": 8.948717948717949,
+              "total_distance": 1017.6671794871794,
+              "total_energy_charged": 528.381282051282,
+              "vehicles_activated": 2.8974358974358974
+            },
+            "customer_opportunities": 5250,
+            "customers_served": 5195,
+            "max_decision_seconds": 4.780194699997082,
+            "scenarios": 90,
+            "service": 0.9895238095238095
+          },
+          "MPC_COMPLETION": {
+            "complete_scenarios": 40,
+            "conditional_efficiency": {
+              "common_complete_scenarios": 39,
+              "total_charging_time": 426.7247435897436,
+              "total_charging_visits": 9.564102564102564,
+              "total_distance": 995.3582051282052,
+              "total_energy_charged": 426.7247435897436,
+              "vehicles_activated": 3.358974358974359
+            },
+            "customer_opportunities": 5250,
+            "customers_served": 4586,
+            "max_decision_seconds": 2.0119974999688566,
+            "scenarios": 90,
+            "service": 0.8735238095238095
+          },
+          "MPC_HGS": {
+            "complete_scenarios": 58,
+            "conditional_efficiency": {
+              "common_complete_scenarios": 39,
+              "total_charging_time": 591.1313462051281,
+              "total_charging_visits": 9.153846153846153,
+              "total_distance": 1044.9902564102565,
+              "total_energy_charged": 591.1313462051281,
+              "vehicles_activated": 2.8974358974358974
+            },
+            "customer_opportunities": 5250,
+            "customers_served": 5117,
+            "max_decision_seconds": 4.796266699908301,
+            "scenarios": 90,
+            "service": 0.9746666666666667
+          },
+          "MPC_MCTS": {
+            "complete_scenarios": 45,
+            "conditional_efficiency": {
+              "common_complete_scenarios": 39,
+              "total_charging_time": 507.4788461538461,
+              "total_charging_visits": 9.205128205128204,
+              "total_distance": 1001.4133333333334,
+              "total_energy_charged": 507.4788461538461,
+              "vehicles_activated": 3.051282051282051
+            },
+            "customer_opportunities": 5250,
+            "customers_served": 4874,
+            "max_decision_seconds": 4.790881099994294,
+            "scenarios": 90,
+            "service": 0.9283809523809524
+          }
+        },
+        "paired_scenarios": 90,
+        "parent_clustered_sensitivity": {
+          "MPC_ACS_vs_MPC_COMPLETION": {
+            "holm_adjusted_p": 0.625,
+            "mean_scenario_service_effect": 0.06166666666666666,
+            "parent_cases": 6,
+            "parent_clustered_ci": [
+              0.01577777777777778,
+              0.111
+            ],
+            "parent_sign_flip_p": 0.125
+          },
+          "MPC_ALNS_vs_MPC_COMPLETION": {
+            "holm_adjusted_p": 0.625,
+            "mean_scenario_service_effect": 0.08333333333333333,
+            "parent_cases": 6,
+            "parent_clustered_ci": [
+              0.021555555555555553,
+              0.15066666666666667
+            ],
+            "parent_sign_flip_p": 0.125
+          },
+          "MPC_ALNS_vs_MPC_HGS": {
+            "holm_adjusted_p": 0.625,
+            "mean_scenario_service_effect": 0.006333333333333334,
+            "parent_cases": 6,
+            "parent_clustered_ci": [
+              -0.006222222222222223,
+              0.019444444444444448
+            ],
+            "parent_sign_flip_p": 0.5
+          },
+          "MPC_HGS_vs_MPC_COMPLETION": {
+            "holm_adjusted_p": 0.625,
+            "mean_scenario_service_effect": 0.077,
+            "parent_cases": 6,
+            "parent_clustered_ci": [
+              0.02411111111111111,
+              0.136
+            ],
+            "parent_sign_flip_p": 0.125
+          },
+          "MPC_MCTS_vs_MPC_COMPLETION": {
+            "holm_adjusted_p": 0.625,
+            "mean_scenario_service_effect": 0.04066666666666667,
+            "parent_cases": 6,
+            "parent_clustered_ci": [
+              0.011777777777777778,
+              0.07177777777777779
+            ],
+            "parent_sign_flip_p": 0.125
+          }
+        },
+        "parent_instances": 6,
+        "protocol_identifier": "2b1455ef958f14f9d4dcabc4bfd5098fa2e79d2a644426862ab90a8b942eb266",
+        "source_commit": "73e28a85d88390a0c142d965e483681db9ae7f1e",
+        "source_sha256": "bb593ad57e9b0196ad3712d8c9d873addb5ed156c32ea7857e21471a1fe3f140"
+      }
+    }
+  },
+  "source_commit": "6503ba965a8ca2b3d4f01f82650ffa2f176b651f"
+}
