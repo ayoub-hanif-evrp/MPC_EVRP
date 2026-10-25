@@ -8,7 +8,7 @@ released requests, and five-second optimization-decision limit. The old
 Schneider campaigns are historical Git evidence, not results for the active
 dataset.
 
-The separate [enhancement development branch status](results/desaulniers/enhancement_development/STATUS.md)
+The separate [enhancement development record](results/desaulniers/enhancement_development/STATUS.md)
 reports audited loss diagnostics and controlled experiments. No enhanced
 method has yet earned a new independent final evaluation; the original
 paper results remain the primary findings.
@@ -46,6 +46,23 @@ explains the runtime and the next budget-controlled alternatives. The launcher
 refuses to restart while `STOP_REQUESTED.json` exists; do not bypass that guard
 with the direct runner. All saved evidence remains intact. No new improvement
 or independent final result is claimed from this incomplete comparison.
+
+The separate [performance-engineering report](results/desaulniers/performance_engineering_v1/FINAL_REPORT.md)
+evaluates exact decision-local transition, route-prefix, charging-frontier and
+objective reuse through the optional `proposal_cache_policy=incremental_v1`.
+It compares all five engines on three previously seen 25/50/100-customer cases,
+with separate profiling and allocation probes: all 75 workers, including 30
+full simulations, completed in 35.2 charged minutes. The physical model, canonical
+objective, search settings and five-second decision limit are unchanged.
+Runtime gains are workload-dependent, not a general service improvement:
+aggregate pilot CPU time fell about 16%, but the 100-customer HGS pair served
+100 customers originally versus 98 incrementally, and ACS fell from 96 to 95.
+**The original evaluator remains the default.** All 389 tests passed, 36 saved
+trajectories passed independent replay, and maximum pilot latency was 4.807 s.
+The staged runner enforces a persistent 7,200-second allowance, complete-pair
+admission, per-worker watchdogs, hash-verified checkpoints and no silent retry.
+It never resumes Reliability V2 or automatically starts a holdout. Execution
+source and reproduction commands are recorded in the consolidated report.
 
 ## Active benchmark
 

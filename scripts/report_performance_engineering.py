@@ -26,6 +26,17 @@ def markdown(headers, rows):
 
 def build():
     protocol, manifest = (load_json(OUTPUT/name) for name in ("protocol.json","manifest.json"))
+    stopped=ROOT/"results/desaulniers/reliability_v2"
+    stop=load_json(stopped/"STOP_REQUESTED.json")
+    historical=load_json(stopped/"development/manifest.json")
+    if stop["state"]!="stopped_by_user" or len(historical["records"])!=361:
+        raise ValueError("Stopped campaign preservation guard changed")
+    for row in historical["records"]:
+        if sha256((ROOT/row["raw"]).read_bytes()).hexdigest()!=row["raw_sha256"]:
+            raise ValueError("Stopped campaign evidence changed")
+    preservation=dict(verified_raw_records=len(historical["records"]),
+        stop_sha256=sha256((stopped/"STOP_REQUESTED.json").read_bytes()).hexdigest(),
+        manifest_sha256=sha256((stopped/"development/manifest.json").read_bytes()).hexdigest())
     specs = {j["id"]:j for b in protocol["blocks"] for j in b["jobs"]}
     if manifest["protocol_identifier"] != identifier(protocol):
         raise ValueError("Report protocol mismatch")
@@ -39,9 +50,24 @@ def build():
         if sha256(path.read_bytes()).hexdigest()!=row["sha256"]:
             raise ValueError("Finished evidence bytes changed")
         raw=load_json(path)
-        verify_raw(raw,protocol,specs[row["id"]])
+        spec=specs[row["id"]]
+        if raw["kind"]!=spec["kind"] or raw["method"]!=spec["method"] or row["execution"]["status"]!="complete":
+            raise ValueError("Worker method, kind or completion evidence mismatch")
+        serialization=load_json(OUTPUT/"serialization"/f"{row['id']}.json")
+        if serialization["raw_sha256"]!=row["sha256"] or serialization["raw_bytes"]!=path.stat().st_size:
+            raise ValueError("Serialization sidecar disagrees with saved raw")
+        verify_raw(raw,protocol,spec)
         if raw["kind"] in {"pilot","profile"}:
             index=raw["case_index"]
+            info=protocol["cases"][index]
+            meta,metrics=raw["result"]["metadata"],raw["result"]["metrics"]
+            if (meta["algorithm"]!=raw["method"] or meta["performance_protocol"]!=identifier(protocol) or
+                    meta["source_sha256"]!=protocol["source_sha256"] or meta["performance_variant"]!=raw["variant"] or
+                    meta["reference_schedule_identifier"]!=info["reference_id"] or
+                    meta["instance_sha256"]!=info["instance_sha256"] or meta["scenario_seed"]!=info["case"][2] or
+                    meta["DoD_target"]!=info["case"][1] or any(metrics[k] for k in ("battery_violations","capacity_violations",
+                        "time_window_violations","duplicate_service_violations","hidden_information_violations"))):
+                raise ValueError("Scientific identity, physical or information metric mismatch")
             if index not in prepared:
                 prepared[index]=load_case(protocol,index)
             instance,scenario=prepared[index]
@@ -116,16 +142,29 @@ def build():
         roots=[r for r in roots if r is not None]
         unchanged=sum(d.get("optimizer_kept_constructor") is True for d in result["decisions"])
         label=f"{protocol['cases'][i]['case'][0]} / {method} / {variant}"
-        timings.append([label,len(latencies),f"{mean(latencies):.6f}",f"{np.percentile(latencies,95):.6f}",f"{max(latencies):.6f}"])
+        execution=records[raw["job_id"]]["execution"]
+        utilization=execution.get("cpu_to_wall")
+        timings.append([label,len(latencies),f"{mean(latencies):.6f}",f"{np.percentile(latencies,95):.6f}",
+                        f"{max(latencies):.6f}",f"{result['metrics']['total_planning_time']:.4f}",
+                        "unavailable" if utilization is None else f"{100*utilization:.2f}"])
         t=raw["timing"]
         serialization=load_json(OUTPUT/"serialization"/f"{raw['job_id']}.json")
         execution=records[raw["job_id"]]["execution"]
         startup=max(0,execution["elapsed_seconds"]-raw["worker_wall_seconds"]-serialization["seconds"])
+        other_planning=max(0,result["metrics"]["total_planning_time"]-t["constructor_seconds"]-
+                           t["optimizer_seconds"]-t["final_validation_seconds"])
         stages.append([label,*[f"{t[k]:.4f}" for k in ("preparation_seconds","constructor_seconds","optimizer_seconds",
-            "final_validation_seconds","nonplanning_simulation_seconds","audit_seconds")],f"{serialization['seconds']:.4f}",f"{startup:.4f}"])
-        reuse.append([label,len(roots)-len(set(roots)),unchanged,hits,misses,memo_counts["transition_hits"],
+            "final_validation_seconds")],f"{other_planning:.4f}",
+            *[f"{t[k]:.4f}" for k in ("nonplanning_simulation_seconds","audit_seconds")],
+            f"{serialization['seconds']:.4f}",f"{startup:.4f}"])
+        empty=sum(not d["available"] and not d.get("route_owners_after_repair") for d in result["decisions"]
+                  if d.get("optimization_latency_seconds") is not None)
+        reuse.append([label,len(roots)-len(set(roots)),empty,unchanged,hits,misses,memo_counts["transition_hits"],
                       memo_counts["transition_misses"],memo_counts["greedy_customers_reused"],memo_counts["label_customers_reused"],
-                      memo_counts["objective_hits"]])
+                      memo_counts["objective_hits"],
+                      f"{100*hits/(hits+misses):.2f}" if hits+misses else "not enabled",
+                      f"{100*memo_counts['transition_hits']/(memo_counts['transition_hits']+memo_counts['transition_misses']):.2f}"
+                      if memo_counts["transition_hits"]+memo_counts["transition_misses"] else "not enabled"])
         counter=raw["measurements"]["counts"]
         counts.append([label,*[counter.get(k,0) for k in ("route_build_requests","charging_decoder_calls","fleet_decode_requests",
              "distinct_route_decodes_within_problem","objective_requests","objective_computations")],raw["global_route_cache"]["hits"],raw["global_route_cache"]["misses"]])
@@ -154,20 +193,41 @@ def build():
     tests=[]
     if (OUTPUT/"tests.xml").exists():
         tests=[r.attrib for r in ET.parse(OUTPUT/"tests.xml").getroot().iter("testsuite")]
+    test_summary="; ".join(f"{r['tests']} tests, {r['failures']} failures, {r['errors']} errors, "
+                           f"{r['skipped']} skipped ({r['time']} s)" for r in tests) or "No test evidence saved"
     data=dict(protocol_identifier=identifier(protocol),manifest_sha256=sha256((OUTPUT/"manifest.json").read_bytes()).hexdigest(),
               status=manifest["status"],independently_replayed_scenarios=physical_audits,pairs=pairs,summaries=summaries,
               completed_jobs=len(records),planned_jobs=protocol["planned_jobs"],tests=tests,
+              stopped_study_preservation=preservation,
+              reporting_source_sha256=sha256(Path(__file__).read_bytes()).hexdigest(),
               default_policy="original",no_automatic_holdout=True)
     save_json(OUTPUT/"analysis.json",data)
     lines=["# Performance engineering: consolidated technical report","",
         f"Status: {manifest['status']}; {len(records)}/{protocol['planned_jobs']} diagnostic/pilot workers saved; {len(pairs)}/15 complete unprofiled pairs.",
         f"Execution source: `{protocol['source_commit']}`. Shared machine, fresh sequential processes, one native thread per worker.",
-        "This is a three-parent development engineering pilot, not a new independent final study. The original policy remains the default.","",
+        "This is a three-parent development engineering pilot, not a new independent final study. The original policy remains the default.",""]
+    if pairs:
+        old_total=sum(r["original_wall"] for r in pairs)
+        new_total=sum(r["optimized_wall"] for r in pairs)
+        old_cpu=sum(r["original_cpu"] or 0 for r in pairs)
+        new_cpu=sum(r["optimized_cpu"] or 0 for r in pairs)
+        regressions=[r for r in pairs if r["optimized_served"]<r["original_served"] or r["optimized_complete"]<r["original_complete"]]
+        lines += ["## Executive Result","",
+            f"For the tested paired workload, aggregate unprofiled process time was {old_total:.3f} s original versus {new_total:.3f} s incremental "
+            f"({old_total/max(new_total,1e-12):.2f}x), with {old_cpu:.3f} versus {new_cpu:.3f} process CPU seconds ({old_cpu/max(new_cpu,1e-12):.2f}x).",
+            f"Service/complete-service regressions occurred in {len(regressions)} of {len(pairs)} pairs. Every case is listed below, including losses.",
+            "These totals summarize this engineering workload, not a universal five-engine speedup. Keep the original default; the new evaluator is an explicit optional policy.",""]
+        for loss in regressions:
+            lines += [f"Observed service regression: {loss['case'][0]}, {loss['method']}: "
+                      f"{loss['original_served']} to {loss['optimized_served']} served; "
+                      f"{loss['original_triggers']} to {loss['optimized_triggers']} optimization triggers. "
+                      "Exact fixed-work equivalence does not establish closed-loop service noninferiority, and this pilot does not isolate the causal source of trajectory differences.",""]
+    lines += [
         "## 1. Why the earlier study was expensive","",
         "The stopped Reliability V2 study performed 28,843 optimization calls: 13.567 of 13.692 worker hours were planning (99.09%).",
         "Its 1,116-run grid multiplied full scenarios by five engines and multiple variants before effectiveness was established.",
         "Five seconds bounds one MPC decision, not a full scenario. Its prior 12-hour control was a soft scenario-boundary pause.",
-        "All 361 Reliability V2 raws, protocols, stop marker and historical primary results are preserved; that campaign was not resumed.","",
+        "All 361 Reliability V2 raws were byte-hash verified against their saved manifest, and the stopped_by_user marker was verified. Protocols and historical primary results are preserved; that campaign was not resumed.","",
         "## 2. Exact implementation changes","",
         "- Optional `proposal_cache_policy=incremental_v1`; original and prior cache-only (`root_v1`) implementations remain runnable.",
         "- Reuse exact greedy MPC prefix states and the original bounded charging decoder's complete prefix frontiers. Prefix choices do not depend on later customers.",
@@ -179,17 +239,21 @@ def build():
         "- Every cache is bounded and closed at a decision boundary or exception. Deadlines precede planning cache hits. No event is suppressed and no optimizer strategy or iteration count is reduced.",
         "- The independent plant/auditor in evrp/model.py and canonical evrp/optimizers/objective.py are unchanged.","",
         "## 3. Tests and fixed-work equivalence","",
-        f"Test suite evidence: {tests}.",
+        f"Test suite evidence: {test_summary}.",
         f"Independently replayed saved profile/pilot trajectories: {physical_audits}. All accepted route microbenchmarks are also replayed by the uncached original transition.",
         "Tests cover randomized and boundary charging routes, MP topology, complete observation/config invalidation, exact fixed-work optimizer results for all five engines, deadlines and finite cache caps.",
         "Original/cache-only/incremental microchecksums must agree before pilot admission. Wall-clock-limited search need not produce identical trajectories.","",
         "### Fixed-work measurements","",
-        "One first-observation root per size, at most 12 unique candidates and eight-service prefixes. Forced fallback and repeated-score phases deliberately isolate bottlenecks; they do not establish a general scenario speedup.",""]
+        "One first-observation root per size, at most 12 unique candidates and eight-service prefixes. Forced fallback and repeated-score phases deliberately isolate bottlenecks; they do not establish a general scenario speedup.",
+        "These short microtimings are single trials, some below Windows process-CPU clock granularity. Wall times and call reuse are descriptive; full-scenario CPU is the more stable end-to-end measure.",""]
     lines+=markdown(["Instance","Phase","Variant","Wall s","CPU s","Wall speedup vs original"],micro_rows)
     lines += ["","### Python allocation probes (separate from timing runs)",""]
     lines += markdown(["Instance","Variant","Current bytes","Peak bytes"],allocation_rows)
+    lines += ["","Allocation probes include input preparation, whose peak can dominate cache allocation. Equal peaks do not prove that caches use no memory."]
     lines += ["","## 4. Unprofiled original versus optimized scenarios","",
         "Three prespecified previously seen eligible cases: 25, 50 and 100 customers. Identical archived scenario/ref/fleet and full original parameters; matched pair order alternates.",
+        "The reference is original evaluator mode in the same frozen build, with common telemetry/dispatch wrappers on both sides, not a separate timing checkout of the historical primary executable.",
+        "Both sides retain the existing validated_incumbent_v1 initialization and forced_retained_v1 coordination policies; first-action, constructor and route-decoder policies are original. The only paired configuration difference is proposal_cache_policy.",
         "Both variants use the same lightweight operation counters. cProfile and tracemalloc run in different workers and are never pooled into pilot runtimes.",""]
     lines+=markdown(["Method","Pairs","Original process s","Optimized process s","Wall ratio","Original CPU s","Optimized CPU s","CPU ratio","Original service %","Optimized service %","Original complete %","Optimized complete %"],
         [[s["method"],s["pairs"],*[f"{s[k]:.3f}" for k in ("original_seconds","optimized_seconds","wall_speedup","original_cpu","optimized_cpu","cpu_speedup")],
@@ -199,19 +263,19 @@ def build():
         [[r["case"][0],r["method"],f"{r['original_served']} / {r['optimized_served']}",f"{r['original_complete']} / {r['optimized_complete']}",
           f"{r['original_wall']:.3f} / {r['optimized_wall']:.3f}"] for r in pairs])
     lines += ["","### Decision latency, not whole-scenario cost",""]
-    lines+=markdown(["Case / method / variant","Decisions","Mean s","p95 s","Max s"],timings)
+    lines+=markdown(["Case / method / variant","Decisions","Mean s","p95 s","Max s","Planning s","Process CPU / wall %"],timings)
     lines += ["","## 5. Where CPU work is reused","",
         "Repeated ownership alone does not define an identical physical/observable root and is never used to skip a meaningful event.",
         "Returning the constructor unchanged does not prove another search was useless or that early stopping is harmless.",""]
-    lines+=markdown(["Case / method / variant","Repeated root hashes","Constructor unchanged","Replay hits","Replay misses","Transition hits","Transition misses","Greedy customers reused","Label customers reused","Objective hits"],reuse)
+    lines+=markdown(["Case / method / variant","Repeated root hashes","Empty service sets","Constructor unchanged","Replay hits","Replay misses","Transition hits","Transition misses","Greedy customers reused","Label customers reused","Objective hits","Replay hit %","Transition hit %"],reuse)
     lines += ["","### Route and objective call counts","",
         "Distinct route decodes are distinct keys within each immutable fleet problem; counts summed across problems may repeat equivalent roots. Global LRU misses are not claimed as globally unique routes.",""]
     lines+=markdown(["Case / method / variant","Build requests","Charging fallbacks","Fleet decode requests","Distinct problem decodes","Score requests","Score computations","Global route LRU hits","Global route LRU misses"],counts)
     lines += ["","## 6. Phase costs","",
-        "Disjoint high-level measurements: input preparation, constructor, optimizer, final replay, nonplanning simulation, independent audit, serialization and startup/polling residual.",
+        "Disjoint high-level measurements: input preparation, constructor, optimizer, final replay, other planning overhead, nonplanning simulation, independent audit, serialization and startup/polling residual.",
         "Nonplanning simulation includes event processing, state hashing and physical dispatch. The startup residual also includes process teardown and monitor granularity.",
         "Nested cProfile cumulative times below overlap; they must not be added as a time partition.",""]
-    lines+=markdown(["Case / method / variant","Prepare s","Constructor s","Optimizer s","Final validation s","Nonplanning simulation s","Audit s","Serialize s","Startup/residual s"],stages)
+    lines+=markdown(["Case / method / variant","Prepare s","Constructor s","Optimizer s","Final validation s","Other planning s","Nonplanning simulation s","Audit s","Serialize s","Startup/residual s"],stages)
     lines += ["","### Size- and method-specific hotspot ranking","",
         "Sorted by own time within bounded separate profiles. Completion uses full scenarios; other engines use one saved root and the unchanged iteration settings with the usual 4.75-second inner allowance. Profiling perturbs search.",""]
     lines+=markdown(["Instance","Engine","Variant","Function","Calls","Own s","Cumulative s"],hotspot_rows)
@@ -224,12 +288,17 @@ def build():
         "Keep future work staged: fixed-work correctness and profiling first, then a prespecified small matched pilot, then explicit review. No automatic holdout or five-engine multi-seed expansion."]
     if pairs:
         avg_cost=mean(r["original_wall"]+r["optimized_wall"] for r in pairs)
-        lines += [f"Observed mean paired-method process cost: {avg_cost:.1f} s. A future 6-parent x 3-size x 2-DoD x 2-seed x 5-engine paired study would have 360 paired blocks (720 simulations),",
+        lines += [f"Observed mean paired-method process cost: {avg_cost:.1f} s. A future 6-files-per-size x 3-sizes x 2-DoD x 2-seeds x 5-engines paired study would have 360 paired blocks (720 simulations),",
                   f"projecting about {360*avg_cost/3600:.1f} shared-machine process hours at this pilot's mix. This is a scenario-mix extrapolation, not a reliable forecast; preflight must use size/method-specific bounds."]
+        if len(pairs)==15:
+            lines += ["A smaller next step, only after explicit authorization, is three other structurally selected seen-development parents (one per size), one prespecified seed/DoD each, all five engines and both evaluators: 15 pairs, 30 simulations. This retains balanced method coverage rather than dropping slow or unfavorable engines.",
+                      f"At this pilot's mix that projects {sum(r['original_wall']+r['optimized_wall'] for r in pairs)/60:.1f} process minutes before profiling, audit and safety margins. This is illustrative, not an admitted budget.",
+                      "Select parents without their service outcomes, retain full search settings, and refuse the entire plan unless case/method-specific conservative upper bounds plus reporting fit its separately authorized allowance. Review paired regressions before any broader rollout."]
     lines += ["","## 8. Recommendation and limitations","",
         "Original policy stays the default. Exact evaluator speedups demonstrate less work for a fixed workload, but time-limited optimizers can spend the same five seconds exploring more candidates.",
         "Consequently faster kernels do not guarantee shorter scenario time, better closed-loop service or fewer planning calls. Inspect every regression above before any method-wide rollout.",
         "Only three previously seen parents and one seed/DoD per file were tested. Shared-machine load, profiler perturbation, fresh-process startup and bounded Python caches limit generalization.",
+        "The runner requests one native thread through the same thread-count environment variables for both variants; measured CPU/wall ratios record actual process utilization. PYTHONHASHSEED is inherited rather than separately pinned, and wall-clock-limited trajectories are not promised bitwise reproducible.",
         "The prior root-v1 cache is explicitly benchmarked; a larger cache is not automatically faster. No statistically independent new paper superiority claim or final holdout is made.",
         "No adaptive early stop, fewer events, reduced search or objective approximation was introduced. Such policies would require separate names and new evaluation.","",
         "## 9. Reproduction","","```powershell","python -m pytest -q",
@@ -250,14 +319,14 @@ def build():
         fig.savefig(writable_path(OUTPUT/"fixed_work.png"),dpi=300)
         plt.close(fig)
     if summaries:
-        fig,axes=plt.subplots(1,2,figsize=(12,4))
+        fig,axes=plt.subplots(1,2,figsize=(12,4.6))
         x=np.arange(len(summaries))
         for offset,prefix,label,color in ((-.18,"original","Original","#687887"),(.18,"optimized","Incremental","#267a66")):
             axes[0].bar(x+offset,[s[prefix+"_seconds"] for s in summaries],.36,label=label,color=color)
             axes[1].bar(x+offset,[100*s[prefix+"_service"] for s in summaries],.36,label=label,color=color)
         for ax in axes:
             ax.set(xticks=x,xticklabels=[s["method"].replace("MPC_","") for s in summaries])
-            ax.legend(fontsize=8)
+            ax.legend(fontsize=8,loc="lower left",bbox_to_anchor=(0,1.01),ncol=2,frameon=False)
         axes[0].set(ylabel="Total unprofiled process seconds (three cases)")
         axes[1].set(ylabel="Customers served (%)",ylim=(0,101))
         fig.tight_layout()

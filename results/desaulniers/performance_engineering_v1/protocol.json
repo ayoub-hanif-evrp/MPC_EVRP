@@ -1,0 +1,1187 @@
+{
+  "blocks": [
+    {
+      "id": "micro_0",
+      "jobs": [
+        {
+          "case_index": 0,
+          "id": "micro_0_MPC_COMPLETION_original",
+          "kind": "micro",
+          "method": "MPC_COMPLETION",
+          "upper_seconds": 45,
+          "variant": "original"
+        },
+        {
+          "case_index": 0,
+          "id": "micro_0_MPC_COMPLETION_root_v1",
+          "kind": "micro",
+          "method": "MPC_COMPLETION",
+          "upper_seconds": 45,
+          "variant": "root_v1"
+        },
+        {
+          "case_index": 0,
+          "id": "micro_0_MPC_COMPLETION_incremental_v1",
+          "kind": "micro",
+          "method": "MPC_COMPLETION",
+          "upper_seconds": 45,
+          "variant": "incremental_v1"
+        }
+      ],
+      "stage": "engineering"
+    },
+    {
+      "id": "profile_0",
+      "jobs": [
+        {
+          "case_index": 0,
+          "id": "profile_0_MPC_COMPLETION_original",
+          "kind": "profile",
+          "method": "MPC_COMPLETION",
+          "upper_seconds": 20,
+          "variant": "original"
+        },
+        {
+          "case_index": 0,
+          "id": "profile_0_MPC_COMPLETION_incremental_v1",
+          "kind": "profile",
+          "method": "MPC_COMPLETION",
+          "upper_seconds": 20,
+          "variant": "incremental_v1"
+        }
+      ],
+      "stage": "engineering"
+    },
+    {
+      "id": "allocation_0",
+      "jobs": [
+        {
+          "case_index": 0,
+          "id": "allocation_0_MPC_COMPLETION_original",
+          "kind": "allocation",
+          "method": "MPC_COMPLETION",
+          "upper_seconds": 20,
+          "variant": "original"
+        },
+        {
+          "case_index": 0,
+          "id": "allocation_0_MPC_COMPLETION_incremental_v1",
+          "kind": "allocation",
+          "method": "MPC_COMPLETION",
+          "upper_seconds": 20,
+          "variant": "incremental_v1"
+        }
+      ],
+      "stage": "engineering"
+    },
+    {
+      "id": "optimizer_profile_0_MPC_MCTS",
+      "jobs": [
+        {
+          "case_index": 0,
+          "id": "optimizer_profile_0_MPC_MCTS_original",
+          "kind": "optimizer_profile",
+          "method": "MPC_MCTS",
+          "upper_seconds": 10,
+          "variant": "original"
+        },
+        {
+          "case_index": 0,
+          "id": "optimizer_profile_0_MPC_MCTS_incremental_v1",
+          "kind": "optimizer_profile",
+          "method": "MPC_MCTS",
+          "upper_seconds": 10,
+          "variant": "incremental_v1"
+        }
+      ],
+      "stage": "engineering"
+    },
+    {
+      "id": "optimizer_profile_0_MPC_ALNS",
+      "jobs": [
+        {
+          "case_index": 0,
+          "id": "optimizer_profile_0_MPC_ALNS_original",
+          "kind": "optimizer_profile",
+          "method": "MPC_ALNS",
+          "upper_seconds": 10,
+          "variant": "original"
+        },
+        {
+          "case_index": 0,
+          "id": "optimizer_profile_0_MPC_ALNS_incremental_v1",
+          "kind": "optimizer_profile",
+          "method": "MPC_ALNS",
+          "upper_seconds": 10,
+          "variant": "incremental_v1"
+        }
+      ],
+      "stage": "engineering"
+    },
+    {
+      "id": "optimizer_profile_0_MPC_HGS",
+      "jobs": [
+        {
+          "case_index": 0,
+          "id": "optimizer_profile_0_MPC_HGS_original",
+          "kind": "optimizer_profile",
+          "method": "MPC_HGS",
+          "upper_seconds": 10,
+          "variant": "original"
+        },
+        {
+          "case_index": 0,
+          "id": "optimizer_profile_0_MPC_HGS_incremental_v1",
+          "kind": "optimizer_profile",
+          "method": "MPC_HGS",
+          "upper_seconds": 10,
+          "variant": "incremental_v1"
+        }
+      ],
+      "stage": "engineering"
+    },
+    {
+      "id": "optimizer_profile_0_MPC_ACS",
+      "jobs": [
+        {
+          "case_index": 0,
+          "id": "optimizer_profile_0_MPC_ACS_original",
+          "kind": "optimizer_profile",
+          "method": "MPC_ACS",
+          "upper_seconds": 10,
+          "variant": "original"
+        },
+        {
+          "case_index": 0,
+          "id": "optimizer_profile_0_MPC_ACS_incremental_v1",
+          "kind": "optimizer_profile",
+          "method": "MPC_ACS",
+          "upper_seconds": 10,
+          "variant": "incremental_v1"
+        }
+      ],
+      "stage": "engineering"
+    },
+    {
+      "id": "micro_1",
+      "jobs": [
+        {
+          "case_index": 1,
+          "id": "micro_1_MPC_COMPLETION_original",
+          "kind": "micro",
+          "method": "MPC_COMPLETION",
+          "upper_seconds": 45,
+          "variant": "original"
+        },
+        {
+          "case_index": 1,
+          "id": "micro_1_MPC_COMPLETION_root_v1",
+          "kind": "micro",
+          "method": "MPC_COMPLETION",
+          "upper_seconds": 45,
+          "variant": "root_v1"
+        },
+        {
+          "case_index": 1,
+          "id": "micro_1_MPC_COMPLETION_incremental_v1",
+          "kind": "micro",
+          "method": "MPC_COMPLETION",
+          "upper_seconds": 45,
+          "variant": "incremental_v1"
+        }
+      ],
+      "stage": "engineering"
+    },
+    {
+      "id": "profile_1",
+      "jobs": [
+        {
+          "case_index": 1,
+          "id": "profile_1_MPC_COMPLETION_original",
+          "kind": "profile",
+          "method": "MPC_COMPLETION",
+          "upper_seconds": 20,
+          "variant": "original"
+        },
+        {
+          "case_index": 1,
+          "id": "profile_1_MPC_COMPLETION_incremental_v1",
+          "kind": "profile",
+          "method": "MPC_COMPLETION",
+          "upper_seconds": 20,
+          "variant": "incremental_v1"
+        }
+      ],
+      "stage": "engineering"
+    },
+    {
+      "id": "allocation_1",
+      "jobs": [
+        {
+          "case_index": 1,
+          "id": "allocation_1_MPC_COMPLETION_original",
+          "kind": "allocation",
+          "method": "MPC_COMPLETION",
+          "upper_seconds": 20,
+          "variant": "original"
+        },
+        {
+          "case_index": 1,
+          "id": "allocation_1_MPC_COMPLETION_incremental_v1",
+          "kind": "allocation",
+          "method": "MPC_COMPLETION",
+          "upper_seconds": 20,
+          "variant": "incremental_v1"
+        }
+      ],
+      "stage": "engineering"
+    },
+    {
+      "id": "optimizer_profile_1_MPC_MCTS",
+      "jobs": [
+        {
+          "case_index": 1,
+          "id": "optimizer_profile_1_MPC_MCTS_original",
+          "kind": "optimizer_profile",
+          "method": "MPC_MCTS",
+          "upper_seconds": 10,
+          "variant": "original"
+        },
+        {
+          "case_index": 1,
+          "id": "optimizer_profile_1_MPC_MCTS_incremental_v1",
+          "kind": "optimizer_profile",
+          "method": "MPC_MCTS",
+          "upper_seconds": 10,
+          "variant": "incremental_v1"
+        }
+      ],
+      "stage": "engineering"
+    },
+    {
+      "id": "optimizer_profile_1_MPC_ALNS",
+      "jobs": [
+        {
+          "case_index": 1,
+          "id": "optimizer_profile_1_MPC_ALNS_original",
+          "kind": "optimizer_profile",
+          "method": "MPC_ALNS",
+          "upper_seconds": 10,
+          "variant": "original"
+        },
+        {
+          "case_index": 1,
+          "id": "optimizer_profile_1_MPC_ALNS_incremental_v1",
+          "kind": "optimizer_profile",
+          "method": "MPC_ALNS",
+          "upper_seconds": 10,
+          "variant": "incremental_v1"
+        }
+      ],
+      "stage": "engineering"
+    },
+    {
+      "id": "optimizer_profile_1_MPC_HGS",
+      "jobs": [
+        {
+          "case_index": 1,
+          "id": "optimizer_profile_1_MPC_HGS_original",
+          "kind": "optimizer_profile",
+          "method": "MPC_HGS",
+          "upper_seconds": 10,
+          "variant": "original"
+        },
+        {
+          "case_index": 1,
+          "id": "optimizer_profile_1_MPC_HGS_incremental_v1",
+          "kind": "optimizer_profile",
+          "method": "MPC_HGS",
+          "upper_seconds": 10,
+          "variant": "incremental_v1"
+        }
+      ],
+      "stage": "engineering"
+    },
+    {
+      "id": "optimizer_profile_1_MPC_ACS",
+      "jobs": [
+        {
+          "case_index": 1,
+          "id": "optimizer_profile_1_MPC_ACS_original",
+          "kind": "optimizer_profile",
+          "method": "MPC_ACS",
+          "upper_seconds": 10,
+          "variant": "original"
+        },
+        {
+          "case_index": 1,
+          "id": "optimizer_profile_1_MPC_ACS_incremental_v1",
+          "kind": "optimizer_profile",
+          "method": "MPC_ACS",
+          "upper_seconds": 10,
+          "variant": "incremental_v1"
+        }
+      ],
+      "stage": "engineering"
+    },
+    {
+      "id": "micro_2",
+      "jobs": [
+        {
+          "case_index": 2,
+          "id": "micro_2_MPC_COMPLETION_original",
+          "kind": "micro",
+          "method": "MPC_COMPLETION",
+          "upper_seconds": 45,
+          "variant": "original"
+        },
+        {
+          "case_index": 2,
+          "id": "micro_2_MPC_COMPLETION_root_v1",
+          "kind": "micro",
+          "method": "MPC_COMPLETION",
+          "upper_seconds": 45,
+          "variant": "root_v1"
+        },
+        {
+          "case_index": 2,
+          "id": "micro_2_MPC_COMPLETION_incremental_v1",
+          "kind": "micro",
+          "method": "MPC_COMPLETION",
+          "upper_seconds": 45,
+          "variant": "incremental_v1"
+        }
+      ],
+      "stage": "engineering"
+    },
+    {
+      "id": "profile_2",
+      "jobs": [
+        {
+          "case_index": 2,
+          "id": "profile_2_MPC_COMPLETION_original",
+          "kind": "profile",
+          "method": "MPC_COMPLETION",
+          "upper_seconds": 20,
+          "variant": "original"
+        },
+        {
+          "case_index": 2,
+          "id": "profile_2_MPC_COMPLETION_incremental_v1",
+          "kind": "profile",
+          "method": "MPC_COMPLETION",
+          "upper_seconds": 20,
+          "variant": "incremental_v1"
+        }
+      ],
+      "stage": "engineering"
+    },
+    {
+      "id": "allocation_2",
+      "jobs": [
+        {
+          "case_index": 2,
+          "id": "allocation_2_MPC_COMPLETION_original",
+          "kind": "allocation",
+          "method": "MPC_COMPLETION",
+          "upper_seconds": 20,
+          "variant": "original"
+        },
+        {
+          "case_index": 2,
+          "id": "allocation_2_MPC_COMPLETION_incremental_v1",
+          "kind": "allocation",
+          "method": "MPC_COMPLETION",
+          "upper_seconds": 20,
+          "variant": "incremental_v1"
+        }
+      ],
+      "stage": "engineering"
+    },
+    {
+      "id": "optimizer_profile_2_MPC_MCTS",
+      "jobs": [
+        {
+          "case_index": 2,
+          "id": "optimizer_profile_2_MPC_MCTS_original",
+          "kind": "optimizer_profile",
+          "method": "MPC_MCTS",
+          "upper_seconds": 10,
+          "variant": "original"
+        },
+        {
+          "case_index": 2,
+          "id": "optimizer_profile_2_MPC_MCTS_incremental_v1",
+          "kind": "optimizer_profile",
+          "method": "MPC_MCTS",
+          "upper_seconds": 10,
+          "variant": "incremental_v1"
+        }
+      ],
+      "stage": "engineering"
+    },
+    {
+      "id": "optimizer_profile_2_MPC_ALNS",
+      "jobs": [
+        {
+          "case_index": 2,
+          "id": "optimizer_profile_2_MPC_ALNS_original",
+          "kind": "optimizer_profile",
+          "method": "MPC_ALNS",
+          "upper_seconds": 10,
+          "variant": "original"
+        },
+        {
+          "case_index": 2,
+          "id": "optimizer_profile_2_MPC_ALNS_incremental_v1",
+          "kind": "optimizer_profile",
+          "method": "MPC_ALNS",
+          "upper_seconds": 10,
+          "variant": "incremental_v1"
+        }
+      ],
+      "stage": "engineering"
+    },
+    {
+      "id": "optimizer_profile_2_MPC_HGS",
+      "jobs": [
+        {
+          "case_index": 2,
+          "id": "optimizer_profile_2_MPC_HGS_original",
+          "kind": "optimizer_profile",
+          "method": "MPC_HGS",
+          "upper_seconds": 10,
+          "variant": "original"
+        },
+        {
+          "case_index": 2,
+          "id": "optimizer_profile_2_MPC_HGS_incremental_v1",
+          "kind": "optimizer_profile",
+          "method": "MPC_HGS",
+          "upper_seconds": 10,
+          "variant": "incremental_v1"
+        }
+      ],
+      "stage": "engineering"
+    },
+    {
+      "id": "optimizer_profile_2_MPC_ACS",
+      "jobs": [
+        {
+          "case_index": 2,
+          "id": "optimizer_profile_2_MPC_ACS_original",
+          "kind": "optimizer_profile",
+          "method": "MPC_ACS",
+          "upper_seconds": 10,
+          "variant": "original"
+        },
+        {
+          "case_index": 2,
+          "id": "optimizer_profile_2_MPC_ACS_incremental_v1",
+          "kind": "optimizer_profile",
+          "method": "MPC_ACS",
+          "upper_seconds": 10,
+          "variant": "incremental_v1"
+        }
+      ],
+      "stage": "engineering"
+    },
+    {
+      "id": "pilot_0_MPC_COMPLETION",
+      "jobs": [
+        {
+          "case_index": 0,
+          "id": "pilot_0_MPC_COMPLETION_original",
+          "kind": "pilot",
+          "method": "MPC_COMPLETION",
+          "upper_seconds": 45,
+          "variant": "original"
+        },
+        {
+          "case_index": 0,
+          "id": "pilot_0_MPC_COMPLETION_incremental_v1",
+          "kind": "pilot",
+          "method": "MPC_COMPLETION",
+          "upper_seconds": 45,
+          "variant": "incremental_v1"
+        }
+      ],
+      "stage": "pilot"
+    },
+    {
+      "id": "pilot_0_MPC_MCTS",
+      "jobs": [
+        {
+          "case_index": 0,
+          "id": "pilot_0_MPC_MCTS_incremental_v1",
+          "kind": "pilot",
+          "method": "MPC_MCTS",
+          "upper_seconds": 45,
+          "variant": "incremental_v1"
+        },
+        {
+          "case_index": 0,
+          "id": "pilot_0_MPC_MCTS_original",
+          "kind": "pilot",
+          "method": "MPC_MCTS",
+          "upper_seconds": 45,
+          "variant": "original"
+        }
+      ],
+      "stage": "pilot"
+    },
+    {
+      "id": "pilot_0_MPC_ALNS",
+      "jobs": [
+        {
+          "case_index": 0,
+          "id": "pilot_0_MPC_ALNS_original",
+          "kind": "pilot",
+          "method": "MPC_ALNS",
+          "upper_seconds": 45,
+          "variant": "original"
+        },
+        {
+          "case_index": 0,
+          "id": "pilot_0_MPC_ALNS_incremental_v1",
+          "kind": "pilot",
+          "method": "MPC_ALNS",
+          "upper_seconds": 45,
+          "variant": "incremental_v1"
+        }
+      ],
+      "stage": "pilot"
+    },
+    {
+      "id": "pilot_0_MPC_HGS",
+      "jobs": [
+        {
+          "case_index": 0,
+          "id": "pilot_0_MPC_HGS_incremental_v1",
+          "kind": "pilot",
+          "method": "MPC_HGS",
+          "upper_seconds": 55.87414859991986,
+          "variant": "incremental_v1"
+        },
+        {
+          "case_index": 0,
+          "id": "pilot_0_MPC_HGS_original",
+          "kind": "pilot",
+          "method": "MPC_HGS",
+          "upper_seconds": 55.87414859991986,
+          "variant": "original"
+        }
+      ],
+      "stage": "pilot"
+    },
+    {
+      "id": "pilot_0_MPC_ACS",
+      "jobs": [
+        {
+          "case_index": 0,
+          "id": "pilot_0_MPC_ACS_original",
+          "kind": "pilot",
+          "method": "MPC_ACS",
+          "upper_seconds": 45,
+          "variant": "original"
+        },
+        {
+          "case_index": 0,
+          "id": "pilot_0_MPC_ACS_incremental_v1",
+          "kind": "pilot",
+          "method": "MPC_ACS",
+          "upper_seconds": 45,
+          "variant": "incremental_v1"
+        }
+      ],
+      "stage": "pilot"
+    },
+    {
+      "id": "pilot_1_MPC_COMPLETION",
+      "jobs": [
+        {
+          "case_index": 1,
+          "id": "pilot_1_MPC_COMPLETION_incremental_v1",
+          "kind": "pilot",
+          "method": "MPC_COMPLETION",
+          "upper_seconds": 45,
+          "variant": "incremental_v1"
+        },
+        {
+          "case_index": 1,
+          "id": "pilot_1_MPC_COMPLETION_original",
+          "kind": "pilot",
+          "method": "MPC_COMPLETION",
+          "upper_seconds": 45,
+          "variant": "original"
+        }
+      ],
+      "stage": "pilot"
+    },
+    {
+      "id": "pilot_1_MPC_MCTS",
+      "jobs": [
+        {
+          "case_index": 1,
+          "id": "pilot_1_MPC_MCTS_original",
+          "kind": "pilot",
+          "method": "MPC_MCTS",
+          "upper_seconds": 389.9264497999102,
+          "variant": "original"
+        },
+        {
+          "case_index": 1,
+          "id": "pilot_1_MPC_MCTS_incremental_v1",
+          "kind": "pilot",
+          "method": "MPC_MCTS",
+          "upper_seconds": 389.9264497999102,
+          "variant": "incremental_v1"
+        }
+      ],
+      "stage": "pilot"
+    },
+    {
+      "id": "pilot_1_MPC_ALNS",
+      "jobs": [
+        {
+          "case_index": 1,
+          "id": "pilot_1_MPC_ALNS_incremental_v1",
+          "kind": "pilot",
+          "method": "MPC_ALNS",
+          "upper_seconds": 371.9052193998359,
+          "variant": "incremental_v1"
+        },
+        {
+          "case_index": 1,
+          "id": "pilot_1_MPC_ALNS_original",
+          "kind": "pilot",
+          "method": "MPC_ALNS",
+          "upper_seconds": 371.9052193998359,
+          "variant": "original"
+        }
+      ],
+      "stage": "pilot"
+    },
+    {
+      "id": "pilot_1_MPC_HGS",
+      "jobs": [
+        {
+          "case_index": 1,
+          "id": "pilot_1_MPC_HGS_original",
+          "kind": "pilot",
+          "method": "MPC_HGS",
+          "upper_seconds": 534.7262284001336,
+          "variant": "original"
+        },
+        {
+          "case_index": 1,
+          "id": "pilot_1_MPC_HGS_incremental_v1",
+          "kind": "pilot",
+          "method": "MPC_HGS",
+          "upper_seconds": 534.7262284001336,
+          "variant": "incremental_v1"
+        }
+      ],
+      "stage": "pilot"
+    },
+    {
+      "id": "pilot_1_MPC_ACS",
+      "jobs": [
+        {
+          "case_index": 1,
+          "id": "pilot_1_MPC_ACS_incremental_v1",
+          "kind": "pilot",
+          "method": "MPC_ACS",
+          "upper_seconds": 212.1168883999344,
+          "variant": "incremental_v1"
+        },
+        {
+          "case_index": 1,
+          "id": "pilot_1_MPC_ACS_original",
+          "kind": "pilot",
+          "method": "MPC_ACS",
+          "upper_seconds": 212.1168883999344,
+          "variant": "original"
+        }
+      ],
+      "stage": "pilot"
+    },
+    {
+      "id": "pilot_2_MPC_COMPLETION",
+      "jobs": [
+        {
+          "case_index": 2,
+          "id": "pilot_2_MPC_COMPLETION_original",
+          "kind": "pilot",
+          "method": "MPC_COMPLETION",
+          "upper_seconds": 45,
+          "variant": "original"
+        },
+        {
+          "case_index": 2,
+          "id": "pilot_2_MPC_COMPLETION_incremental_v1",
+          "kind": "pilot",
+          "method": "MPC_COMPLETION",
+          "upper_seconds": 45,
+          "variant": "incremental_v1"
+        }
+      ],
+      "stage": "pilot"
+    },
+    {
+      "id": "pilot_2_MPC_MCTS",
+      "jobs": [
+        {
+          "case_index": 2,
+          "id": "pilot_2_MPC_MCTS_incremental_v1",
+          "kind": "pilot",
+          "method": "MPC_MCTS",
+          "upper_seconds": 77.85094540007412,
+          "variant": "incremental_v1"
+        },
+        {
+          "case_index": 2,
+          "id": "pilot_2_MPC_MCTS_original",
+          "kind": "pilot",
+          "method": "MPC_MCTS",
+          "upper_seconds": 77.85094540007412,
+          "variant": "original"
+        }
+      ],
+      "stage": "pilot"
+    },
+    {
+      "id": "pilot_2_MPC_ALNS",
+      "jobs": [
+        {
+          "case_index": 2,
+          "id": "pilot_2_MPC_ALNS_original",
+          "kind": "pilot",
+          "method": "MPC_ALNS",
+          "upper_seconds": 86.75980559992604,
+          "variant": "original"
+        },
+        {
+          "case_index": 2,
+          "id": "pilot_2_MPC_ALNS_incremental_v1",
+          "kind": "pilot",
+          "method": "MPC_ALNS",
+          "upper_seconds": 86.75980559992604,
+          "variant": "incremental_v1"
+        }
+      ],
+      "stage": "pilot"
+    },
+    {
+      "id": "pilot_2_MPC_HGS",
+      "jobs": [
+        {
+          "case_index": 2,
+          "id": "pilot_2_MPC_HGS_incremental_v1",
+          "kind": "pilot",
+          "method": "MPC_HGS",
+          "upper_seconds": 300.5899311997928,
+          "variant": "incremental_v1"
+        },
+        {
+          "case_index": 2,
+          "id": "pilot_2_MPC_HGS_original",
+          "kind": "pilot",
+          "method": "MPC_HGS",
+          "upper_seconds": 300.5899311997928,
+          "variant": "original"
+        }
+      ],
+      "stage": "pilot"
+    },
+    {
+      "id": "pilot_2_MPC_ACS",
+      "jobs": [
+        {
+          "case_index": 2,
+          "id": "pilot_2_MPC_ACS_original",
+          "kind": "pilot",
+          "method": "MPC_ACS",
+          "upper_seconds": 542.0246606001165,
+          "variant": "original"
+        },
+        {
+          "case_index": 2,
+          "id": "pilot_2_MPC_ACS_incremental_v1",
+          "kind": "pilot",
+          "method": "MPC_ACS",
+          "upper_seconds": 542.0246606001165,
+          "variant": "incremental_v1"
+        }
+      ],
+      "stage": "pilot"
+    }
+  ],
+  "cases": [
+    {
+      "base_options": {
+        "algorithm": "MPC_COMPLETION",
+        "budget_mode": "iterations",
+        "candidate_limit": 12,
+        "candidate_position_limit": 3,
+        "charge_target_limit": 5,
+        "charging_mode": "partial",
+        "control_horizon": 1,
+        "diagnostics": false,
+        "dynamic_selection_mode": "exact_count",
+        "dynamicity": 0.25,
+        "engineering_watchdog_seconds": 3600.0,
+        "experiment_seed": 0,
+        "fleet_mcts_branch_limit": 24,
+        "fleet_mcts_depth": 4,
+        "fleet_mcts_iterations": 256,
+        "fleet_mode": "fixed_reference",
+        "lns_destroy_fraction": 0.1,
+        "lns_iterations": 100,
+        "lns_time_limit": 5.0,
+        "max_idle_wait": 0,
+        "mcts_iterations": 32,
+        "parallel_agents": false,
+        "prediction_horizon": 5,
+        "proposal_selection": "quality",
+        "reference_improvement_passes": 1,
+        "reference_label_limit": 24,
+        "reference_seed": 0,
+        "reference_solver_multistarts": 3,
+        "regret_repair": true,
+        "require_root_coverage": false,
+        "rollout_regret_k": 2,
+        "route_continuity": true,
+        "scenario_seed": 0,
+        "station_candidate_limit": 4,
+        "study": "desaulniers_mp_development",
+        "top_L": 3,
+        "total_planning_time_limit": 5.0,
+        "trace_level": "summary",
+        "uct_c": 1.4,
+        "workers": 1
+      },
+      "case": [
+        "c101_21_25",
+        0.25,
+        0
+      ],
+      "instance_sha256": "9f40aeeee1afb96fb479b6164f9ce8185a0328dd032a25bbf75ddc8e60dc72b0",
+      "k_ref": 7,
+      "micro_raw": {
+        "path": "results/desaulniers/targeted_service_v1/development/raw/000_MPC_COMPLETION_original_648518eaebae.json.gz",
+        "sha256": "28320139c88f5bd7773202f30c4b17a3a155a7efa39b5de0703e73e58beeafa3"
+      },
+      "reference": {
+        "path": "results/desaulniers/performance_engineering_v1/inputs/references/c101_21_25_ccc15930a0f1a533.json",
+        "sha256": "3e0776afbe68ff33da0346abe44d431e9820523af764e14dbbbecae1ebe46e8e"
+      },
+      "reference_id": "5c392c359dbbd3aea760eb275cb6613e014a067b481eac6b05e81f2506471880",
+      "scenario": {
+        "path": "results/desaulniers/performance_engineering_v1/inputs/scenarios/c101_21_25_cad52eddd9d656ddb584.json",
+        "sha256": "b3922d5d67a27c8b124ff86e6b5cf937a0f6c0a9e2c43747e26c4c7bb65f68da"
+      },
+      "scenario_id": "84a3c66134adba6b1bf619fe258f7171c42c317fb141fedc3109d894578f07d0"
+    },
+    {
+      "base_options": {
+        "algorithm": "MPC_COMPLETION",
+        "budget_mode": "iterations",
+        "candidate_limit": 12,
+        "candidate_position_limit": 3,
+        "charge_target_limit": 5,
+        "charging_mode": "partial",
+        "control_horizon": 1,
+        "diagnostics": false,
+        "dynamic_selection_mode": "exact_count",
+        "dynamicity": 0.75,
+        "engineering_watchdog_seconds": 3600.0,
+        "experiment_seed": 0,
+        "fleet_mcts_branch_limit": 24,
+        "fleet_mcts_depth": 4,
+        "fleet_mcts_iterations": 256,
+        "fleet_mode": "fixed_reference",
+        "lns_destroy_fraction": 0.1,
+        "lns_iterations": 100,
+        "lns_time_limit": 5.0,
+        "max_idle_wait": 0,
+        "mcts_iterations": 32,
+        "parallel_agents": false,
+        "prediction_horizon": 5,
+        "proposal_selection": "quality",
+        "reference_improvement_passes": 1,
+        "reference_label_limit": 24,
+        "reference_seed": 0,
+        "reference_solver_multistarts": 3,
+        "regret_repair": true,
+        "require_root_coverage": false,
+        "rollout_regret_k": 2,
+        "route_continuity": true,
+        "scenario_seed": 0,
+        "station_candidate_limit": 4,
+        "study": "desaulniers_mp_development",
+        "top_L": 3,
+        "total_planning_time_limit": 5.0,
+        "trace_level": "summary",
+        "uct_c": 1.4,
+        "workers": 1
+      },
+      "case": [
+        "c201_21_50",
+        0.75,
+        0
+      ],
+      "instance_sha256": "59bf5fd28a5b74580af25b92cf2d99eb60f6e8f391f0b1df470cb3dc4c96223f",
+      "k_ref": 4,
+      "micro_raw": {
+        "path": "results/desaulniers/targeted_service_v1/development/raw/008_MPC_COMPLETION_original_648518eaebae.json.gz",
+        "sha256": "697d9bd455334908e355914e013cd2453c182d516de0bfc701ba89d31a15a1c0"
+      },
+      "reference": {
+        "path": "results/desaulniers/performance_engineering_v1/inputs/references/c201_21_50_68f4810e5330cbb4.json",
+        "sha256": "e41f75c45330051992eb148ff97a4e3b08ca1d32027f311798e9184c93ada124"
+      },
+      "reference_id": "ac7ad3f574aac4e21d94b215681ea153b8790c9e666f16b145e75d8d6b3acc71",
+      "scenario": {
+        "path": "results/desaulniers/performance_engineering_v1/inputs/scenarios/c201_21_50_12ea931ee0e8b4a60737.json",
+        "sha256": "debf56742e9648e2da967a7adbec3f1ae755e8c1167656b7b6f5adba7227fb93"
+      },
+      "scenario_id": "1a6f81b17b89467f29dbba39efea9b264b3fa6be96d932e941007ecbecd6c77a"
+    },
+    {
+      "base_options": {
+        "algorithm": "MPC_COMPLETION",
+        "budget_mode": "iterations",
+        "candidate_limit": 12,
+        "candidate_position_limit": 3,
+        "charge_target_limit": 5,
+        "charging_mode": "partial",
+        "control_horizon": 1,
+        "diagnostics": false,
+        "dynamic_selection_mode": "exact_count",
+        "dynamicity": 0.25,
+        "engineering_watchdog_seconds": 3600.0,
+        "experiment_seed": 0,
+        "fleet_mcts_branch_limit": 24,
+        "fleet_mcts_depth": 4,
+        "fleet_mcts_iterations": 256,
+        "fleet_mode": "fixed_reference",
+        "lns_destroy_fraction": 0.1,
+        "lns_iterations": 100,
+        "lns_time_limit": 5.0,
+        "max_idle_wait": 0,
+        "mcts_iterations": 32,
+        "parallel_agents": false,
+        "prediction_horizon": 5,
+        "proposal_selection": "quality",
+        "reference_improvement_passes": 1,
+        "reference_label_limit": 24,
+        "reference_seed": 0,
+        "reference_solver_multistarts": 3,
+        "regret_repair": true,
+        "require_root_coverage": false,
+        "rollout_regret_k": 2,
+        "route_continuity": true,
+        "scenario_seed": 0,
+        "station_candidate_limit": 4,
+        "study": "desaulniers_mp_development",
+        "top_L": 3,
+        "total_planning_time_limit": 5.0,
+        "trace_level": "summary",
+        "uct_c": 1.4,
+        "workers": 1
+      },
+      "case": [
+        "r101_21_100",
+        0.25,
+        0
+      ],
+      "instance_sha256": "2c3ab4fbeb56a09dd2f1bb3babcdf8ed5fd5111376547af26cbca674f008e979",
+      "k_ref": 20,
+      "micro_raw": {
+        "path": "results/desaulniers/targeted_service_v1/development/raw/016_MPC_COMPLETION_original_648518eaebae.json.gz",
+        "sha256": "21938982fe0a512949c7bc686bb5ba3b99a2c90b9c48c466ddee9d28342b4488"
+      },
+      "reference": {
+        "path": "results/desaulniers/performance_engineering_v1/inputs/references/r101_21_100_36bed2d04f07826f.json",
+        "sha256": "e45322e5d2871448ea17579bb3d0401199a54a811519d518e3e2a3b6f8c11fa9"
+      },
+      "reference_id": "138781a29cba6152cd5eab316d3afb433ce912352ca173c0ced12738a53b0d57",
+      "scenario": {
+        "path": "results/desaulniers/performance_engineering_v1/inputs/scenarios/r101_21_100_fcc3e5c233b0980fcd6e.json",
+        "sha256": "346a6f735a7340c900393940f1ff869e7e42b8c0e0c94b2ddb314a0ffe879a89"
+      },
+      "scenario_id": "ad06d753f57f4bbf5f16d3fc19f4a83b1ad49f56459df2862d417600ca24fd23"
+    }
+  ],
+  "config": {
+    "allocation_upper_seconds": 20,
+    "cases": [
+      [
+        "c101_21_25",
+        0.25,
+        0
+      ],
+      [
+        "c201_21_50",
+        0.75,
+        0
+      ],
+      [
+        "r101_21_100",
+        0.25,
+        0
+      ]
+    ],
+    "common": {
+      "constructor_policy": "original",
+      "coordination_policy": "forced_retained_v1",
+      "first_action_policy": "original",
+      "optimizer_initialization_policy": "validated_incumbent_v1",
+      "route_decoder_version": "original"
+    },
+    "final_report_reserve_seconds": 180,
+    "historical_cost_factor": 2,
+    "maximum_total_seconds": 7200,
+    "methods": [
+      "MPC_COMPLETION",
+      "MPC_MCTS",
+      "MPC_ALNS",
+      "MPC_HGS",
+      "MPC_ACS"
+    ],
+    "micro_max_sequences": 12,
+    "micro_max_service_prefix": 8,
+    "micro_root_index": 0,
+    "micro_upper_seconds": 45,
+    "micro_variants": [
+      "original",
+      "root_v1",
+      "incremental_v1"
+    ],
+    "no_automatic_holdout": true,
+    "optimizer_profile_upper_seconds": 10,
+    "profile_upper_seconds": 20,
+    "study": "performance_engineering_v1",
+    "timing_conditions": "sequential fresh workers; shared computer; one native thread per worker; unrelated workloads unchanged",
+    "variants": [
+      "original",
+      "incremental_v1"
+    ],
+    "worker_floor_seconds": 45,
+    "worker_startup_margin_seconds": 15
+  },
+  "estimated_upper_seconds_including_report": 6748.548554799287,
+  "historical_costs": [
+    {
+      "case_index": 0,
+      "method": "MPC_COMPLETION",
+      "raw": "results/desaulniers/development_campaign/raw/c101_21_25_0.25_0_MPC_COMPLETION_09784c5a0c42.json.gz",
+      "seconds": 0.3500385999795981,
+      "sha256": "e8cfc9f43b4ef12e90f7890ba4314bef55a1e309ea13b7763e1a622e3dbdf91e"
+    },
+    {
+      "case_index": 0,
+      "method": "MPC_MCTS",
+      "raw": "results/desaulniers/development_campaign/raw/c101_21_25_0.25_0_MPC_MCTS_74dee45da42b.json.gz",
+      "seconds": 13.054830800043419,
+      "sha256": "00bc85100c5c42d30b6e4d9f255350d4228bc13aee73025f0a8f2872c29653a7"
+    },
+    {
+      "case_index": 0,
+      "method": "MPC_ALNS",
+      "raw": "results/desaulniers/development_campaign/raw/c101_21_25_0.25_0_MPC_ALNS_50b06e0fe744.json.gz",
+      "seconds": 4.561451699992176,
+      "sha256": "9a8846949b444340f4bd12a5b3fec219109a6cc8d12487a20d8caf169a018ae4"
+    },
+    {
+      "case_index": 0,
+      "method": "MPC_HGS",
+      "raw": "results/desaulniers/development_campaign/raw/c101_21_25_0.25_0_MPC_HGS_0d221c27dd19.json.gz",
+      "seconds": 20.43707429995993,
+      "sha256": "cb79e1c2c52709d1bdfef02f74847a0e4f3a9f6c943c6a9ccfac1006b5d0c6e9"
+    },
+    {
+      "case_index": 0,
+      "method": "MPC_ACS",
+      "raw": "results/desaulniers/development_campaign/raw/c101_21_25_0.25_0_MPC_ACS_20a12af13ce4.json.gz",
+      "seconds": 4.628259400022216,
+      "sha256": "3269e262f38901bf55d76d3c61c282bba42c855cc4bc7e3e8ef6025d57f3f4bc"
+    },
+    {
+      "case_index": 1,
+      "method": "MPC_COMPLETION",
+      "raw": "results/desaulniers/development_campaign/raw/c201_21_50_0.75_0_MPC_COMPLETION_5ac6273d82cd.json.gz",
+      "seconds": 1.8085461999289691,
+      "sha256": "60516bc711e162dc135bf185f5488ea8544aea4e359071b9acb3d9d975691766"
+    },
+    {
+      "case_index": 1,
+      "method": "MPC_MCTS",
+      "raw": "results/desaulniers/development_campaign/raw/c201_21_50_0.75_0_MPC_MCTS_894c3e4202fb.json.gz",
+      "seconds": 187.4632248999551,
+      "sha256": "34a0fd7c0b20def42ed906d920780e8594f4a15c4d6d4a6c8bb4d82cc9f1b278"
+    },
+    {
+      "case_index": 1,
+      "method": "MPC_ALNS",
+      "raw": "results/desaulniers/development_campaign/raw/c201_21_50_0.75_0_MPC_ALNS_715bce7e106c.json.gz",
+      "seconds": 178.45260969991796,
+      "sha256": "00f493a8f4a9cb276418593806f2c9ed2eaf756b3584b7127828bf9521a5fbcf"
+    },
+    {
+      "case_index": 1,
+      "method": "MPC_HGS",
+      "raw": "results/desaulniers/development_campaign/raw/c201_21_50_0.75_0_MPC_HGS_b9ee0bad41fa.json.gz",
+      "seconds": 259.8631142000668,
+      "sha256": "c5319b0029c5b21fa83f7166c6ea4c3274f70ba66102905e2ae2ca63c173f941"
+    },
+    {
+      "case_index": 1,
+      "method": "MPC_ACS",
+      "raw": "results/desaulniers/development_campaign/raw/c201_21_50_0.75_0_MPC_ACS_06f5a63b5748.json.gz",
+      "seconds": 98.5584441999672,
+      "sha256": "bab647c0d1cecbc554a7af657ab32d9efb2dd1f25fa327fffe85b830921dc021"
+    },
+    {
+      "case_index": 2,
+      "method": "MPC_COMPLETION",
+      "raw": "results/desaulniers/development_campaign/raw/r101_21_100_0.25_0_MPC_COMPLETION_a7aaba9d470a.json.gz",
+      "seconds": 2.5199194999877363,
+      "sha256": "c0bd62a2d291a8c30c3c49129572a8d6ba2244409ce9c7b5f0b5bc7c2aadccd0"
+    },
+    {
+      "case_index": 2,
+      "method": "MPC_MCTS",
+      "raw": "results/desaulniers/development_campaign/raw/r101_21_100_0.25_0_MPC_MCTS_7eb8c235c8d5.json.gz",
+      "seconds": 31.425472700037062,
+      "sha256": "e3998dee384ec6cbb5ad8628a9d66de75ab3739b7f7c3e67648b903b2dce2063"
+    },
+    {
+      "case_index": 2,
+      "method": "MPC_ALNS",
+      "raw": "results/desaulniers/development_campaign/raw/r101_21_100_0.25_0_MPC_ALNS_b3352ff021ec.json.gz",
+      "seconds": 35.87990279996302,
+      "sha256": "8e51e47c1181a9c605779d0dda31bbe69363d4a5e493757fa7dbdb2abf5e28fb"
+    },
+    {
+      "case_index": 2,
+      "method": "MPC_HGS",
+      "raw": "results/desaulniers/development_campaign/raw/r101_21_100_0.25_0_MPC_HGS_22011efcbe76.json.gz",
+      "seconds": 142.7949655998964,
+      "sha256": "18b44ecda0f2ce434c3fcdd7917cd67f023dcef279b2ec5b779b7d1d7768eccd"
+    },
+    {
+      "case_index": 2,
+      "method": "MPC_ACS",
+      "raw": "results/desaulniers/development_campaign/raw/r101_21_100_0.25_0_MPC_ACS_1e05c02d5dfe.json.gz",
+      "seconds": 263.51233030005824,
+      "sha256": "e995118eb61539dac8b77013b0f339741e3f25656181b1c33b22ca69f23b567d"
+    }
+  ],
+  "notes": "Three previously seen development parents, not a new paper holdout. Full original engine parameters and five seconds unchanged. Paired order alternates. Profiles/allocation are separate from unprofiled pilot outcomes. No early-stop or event-suppression policy.",
+  "planned_jobs": 75,
+  "planned_simulations": 30,
+  "source_commit": "d9cc8cb9520c3cf2558466ba17b6b4635960b016",
+  "source_sha256": "53968931fe835384458d15da2d2087ebd0694955e5d9595038d81c16d80fb30f"
+}

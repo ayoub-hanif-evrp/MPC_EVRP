@@ -1,0 +1,20 @@
+{
+  "artifacts": [
+    {
+      "path": "results/desaulniers/performance_engineering_v1/fixed_work.png",
+      "sha256": "435c8917cb9a957a6b5cca2de670cf48865a0a48e99e8f4972be2285ba322aa0"
+    },
+    {
+      "path": "results/desaulniers/performance_engineering_v1/pilot.png",
+      "sha256": "4b73dd5aeba5300a89441ce5b7e1eff8fa83aaeb226452d321b1b5fd0a11b35c"
+    },
+    {
+      "path": "results/desaulniers/performance_engineering_v1/FINAL_REPORT.md",
+      "sha256": "2ed8656c77f70a26cfb08fbc8093f4d0b468201fdb81247f18c4c22756e5cad1"
+    },
+    {
+      "path": "results/desaulniers/performance_engineering_v1/PREREGISTRATION.md",
+      "sha256": "cd81ebb6e37c11a48e085649753fab9ce93e33aa3259a875e4c165d30247ed5f"
+    }
+  ]
+}
