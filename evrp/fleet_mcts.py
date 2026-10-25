@@ -6,12 +6,15 @@ from random import Random
 from time import perf_counter
 
 from .instance import distance, energy, travel_time
-from .model import EPS, Action, Observation, VehicleState, escape, transition
+from .model import EPS, Action, Observation, VehicleState, escape
+from .evaluation_cache import transition
+from .proposal_memo import current as current_proposal_memo
 from .mpc import MPCConfig, MPCPlanningProblem, MPCProposal
 from .planning_budget import PlanningDeadlineExceeded, check_deadline, remaining_time
 from .planning_trace import current_trace
 from .repair import build_route, route_proposal
 from .optimizers.objective import FleetObjectiveEvaluator
+from . import performance as perf
 
 
 class _SearchBudgetReached(Exception):
@@ -159,6 +162,9 @@ class _FleetProblem:
         self.screen_cache: dict[tuple[int, tuple[str, ...]], _RouteProfile] = {}
         # This cache belongs only to the immutable root observation and origins.
         self.decoded: dict[tuple[int, tuple[str, ...]], tuple[tuple[Action, ...], MPCProposal | None] | None] = {}
+        memo = current_proposal_memo()
+        self._score_memo = memo if memo is not None and memo.incremental else None
+        self._scores = {}
 
     def _check_search_time(self) -> None:
         if self.search_until is not None and perf_counter() >= self.search_until:
@@ -243,10 +249,24 @@ class _FleetProblem:
         return result
 
     def _score(self, sequences, actions, costs):
+        perf.count("objective_requests")
+        if self._score_memo is not None:
+            key = (tuple(sequences), tuple(actions), tuple(costs), tuple(sorted(self.initial_owners.items())))
+            if key in self._scores:
+                self._check_search_time()
+                check_deadline()
+                self._score_memo.counts["objective_hits"] += 1
+                score, components = self._scores[key]
+                return score, dict(components)
+            self._score_memo.counts["objective_misses"] += 1
         evaluator = FleetObjectiveEvaluator(
             self.ids, self.origins, self.pending, self.dscale, self.initial_owners,
             self._metrics, self._control_metrics, self._criticality)
-        return evaluator.evaluate(sequences, actions, costs)
+        perf.count("objective_computations")
+        result = evaluator.evaluate(sequences, actions, costs)
+        if self._score_memo is not None and len(self._scores) < 4096:
+            self._scores[key] = (result[0], dict(result[1]))
+        return result
 
     def _screen_profile(self, k: int, sequence: tuple[str, ...]):
         key = (k, sequence)
@@ -400,6 +420,7 @@ class _FleetProblem:
         stats[field] = stats.get(field, 0) + 1
 
     def _decode(self, k: int, sequence: tuple[str, ...]):
+        perf.count("fleet_decode_requests")
         self._check_search_time()
         check_deadline()
         key = (k, sequence)
@@ -407,6 +428,7 @@ class _FleetProblem:
         cached = key in self.decoded
         began = perf_counter() if trace is not None else None
         if key not in self.decoded:
+            perf.count("distinct_route_decodes_within_problem")
             self.exact_decoded_options += 1
             if not sequence:
                 self.decoded[key] = ((), None)

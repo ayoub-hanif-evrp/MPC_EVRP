@@ -14,12 +14,14 @@ from math import inf, isfinite
 
 from .instance import distance, energy, travel_time
 from .model import (EPS, Action, InfeasibleAction, InfeasibilityReason,
-                    Observation, VehicleState, escape, transition)
+                    Observation, VehicleState, escape)
+from .evaluation_cache import transition
 from .mpc import MPCConfig, MPCPlanningProblem, MPCProposal, action_key
 from .planning_budget import PlanningDeadlineExceeded, check_deadline
 from .planning_trace import current_trace
 from .proposal_memo import current as current_proposal_memo
 from .reference import full_charge_connection
+from . import performance as perf
 
 
 def _valid_origin(state: VehicleState, observation: Observation) -> bool:
@@ -62,10 +64,14 @@ def route_proposal(state: VehicleState, actions: tuple[Action, ...],
     retained routes must end at their last service. No prediction-horizon truncation
     or temporary horizon increase is used. The supplied state is never mutated.
     """
+    perf.count("route_replay_requests")
     memo = current_proposal_memo()
+    memo_key = memo.observation_key(observation) if memo is not None and memo.incremental else observation
+    if memo_key is None:
+        memo = None
     if memo is not None:
         check_deadline()
-        key = (state, tuple(actions), observation, config)
+        key = (state, tuple(actions), memo_key, config)
         if key in memo.values:
             memo.hits += 1
             return memo.values[key]
@@ -106,14 +112,32 @@ def _build_route_original(state: VehicleState, customer_sequence: tuple[str, ...
         location = customer
     problem = MPCPlanningProblem(observation, state, config)
     predicted, actions = problem.initial, ()
+    memo = current_proposal_memo()
+    optimized = memo is not None and memo.incremental
+    memo_key = memo.observation_key(observation) if optimized else None
+    optimized = optimized and memo_key is not None
+    start_index = 0
+    if optimized:
+        for length in range(len(sequence), 0, -1):
+            saved = memo.greedy_prefixes.get((state, memo_key, config, sequence[:length]))
+            if saved is not None:
+                predicted, actions = saved
+                start_index = length
+                memo.counts["greedy_prefix_hits"] += 1
+                memo.counts["greedy_customers_reused"] += length
+                break
+    def remember(length):
+        if optimized and len(memo.greedy_prefixes) < memo.prefix_limit:
+            memo.greedy_prefixes[state, memo_key, config, sequence[:length]] = (predicted, actions)
     energy_failures = {InfeasibilityReason.BATTERY,
                        InfeasibilityReason.UNREACHABLE_SAFE_CONTINUATION}
-    for customer in sequence:
+    for index, customer in enumerate(sequence[start_index:], start_index):
         check_deadline()
         goal = Action("serve", customer)
         try:
             predicted, _ = problem.predict(predicted, goal)
             actions += (goal,)
+            remember(index + 1)
             continue
         except InfeasibleAction as error:
             trace = current_trace()
@@ -155,6 +179,7 @@ def _build_route_original(state: VehicleState, customer_sequence: tuple[str, ...
             except InfeasibleAction:
                 return _decode_one_station(state, sequence, observation, config)
         actions += bridge
+        remember(index + 1)
     if not isfinite(problem.terminal_cost(predicted)):
         return _decode_one_station(state, sequence, observation, config)
     return actions
@@ -163,6 +188,7 @@ def _build_route_original(state: VehicleState, customer_sequence: tuple[str, ...
 def build_route(state: VehicleState, customer_sequence: tuple[str, ...],
                 observation: Observation, config: MPCConfig) -> tuple[Action, ...] | None:
     """Select an explicit decoder without changing the original default."""
+    perf.count("route_build_requests")
     if config.route_decoder_version == "resource_labels_v2":
         from .resource_decoder import decode_resource_labels
         check_deadline()
@@ -178,10 +204,28 @@ def _decode_one_station(state: VehicleState, sequence: tuple[str, ...],
                         observation: Observation, config: MPCConfig
                         ) -> tuple[Action, ...] | None:
     """Pareto-label charging fallback with at most one station per service gap."""
+    perf.count("charging_decoder_calls")
     p = observation.infrastructure.parameters
     if sum(observation.customer_by_id[c].demand for c in sequence) > state.load + EPS:
         return None
     labels: list[tuple[VehicleState, tuple[Action, ...]]] = [(state, ())]
+    memo = current_proposal_memo()
+    optimized = memo is not None and memo.incremental
+    memo_key = memo.observation_key(observation) if optimized else None
+    optimized = optimized and memo_key is not None
+    start_index = 0
+    if optimized:
+        for length in range(len(sequence), 0, -1):
+            key = (state, memo_key, config, sequence[:length])
+            if key in memo.label_prefixes:
+                check_deadline()
+                labels = list(memo.label_prefixes[key])
+                if not labels:
+                    return None
+                start_index = length
+                memo.counts["label_prefix_hits"] += 1
+                memo.counts["label_customers_reused"] += length
+                break
 
     def add_goal(current: VehicleState, actions: tuple[Action, ...], goal: Action,
                  output: list[tuple[VehicleState, tuple[Action, ...]]]) -> None:
@@ -191,21 +235,35 @@ def _decode_one_station(state: VehicleState, sequence: tuple[str, ...],
             return
         output.append((step.after, actions + (goal,)))
 
-    for customer_id in sequence:
+    for index, customer_id in enumerate(sequence[start_index:], start_index):
         check_deadline()
         goal = Action("serve", customer_id)
         customer = observation.customer_by_id[customer_id]
+        nearest_safe_once = (min(energy(customer, node, p) for node in
+                             (observation.infrastructure.depot,) + observation.infrastructure.stations)
+                             if optimized else None)
         next_labels: list[tuple[VehicleState, tuple[Action, ...]]] = []
         for current, actions in labels:
             check_deadline()
             add_goal(current, actions, goal, next_labels)
             for station in observation.infrastructure.stations:
                 check_deadline()
-                if energy(current.location, station, p) > current.battery + EPS:
+                if optimized:
+                    if (current.location.kind == "f" and station.id != current.location.id
+                            and not p.allow_station_to_station):
+                        memo.counts["station_topology_prunes"] += 1
+                        continue
+                    arrival = max(current.time + travel_time(current.location, station, p), station.ready)
+                    if (arrival > station.due + EPS or
+                            max(arrival + travel_time(station, customer, p), customer.ready) > customer.due + EPS):
+                        memo.counts["station_time_prunes"] += 1
+                        continue
+                consumed = energy(current.location, station, p)
+                if consumed > current.battery + EPS:
                     continue
-                arrival_battery = current.battery - energy(current.location, station, p)
-                nearest_safe = min(energy(customer, node, p) for node in
-                                   (observation.infrastructure.depot,) + observation.infrastructure.stations)
+                arrival_battery = current.battery - consumed
+                nearest_safe = (nearest_safe_once if optimized else min(energy(customer, node, p) for node in
+                                (observation.infrastructure.depot,) + observation.infrastructure.stations))
                 needed = energy(station, customer, p) + nearest_safe
                 targets = ({p.battery} if config.charging_mode == "full" else
                            {p.battery, *(p.battery * fraction for fraction in config.charge_fractions),
@@ -221,6 +279,8 @@ def _decode_one_station(state: VehicleState, sequence: tuple[str, ...],
                         continue
                     add_goal(step.after, actions + (charge,), goal, next_labels)
         if not next_labels:
+            if optimized and len(memo.label_prefixes) < memo.label_limit:
+                memo.label_prefixes[state, memo_key, config, sequence[:index+1]] = ()
             return None
         frontier: list[tuple[VehicleState, tuple[Action, ...]]] = []
         for candidate in sorted(next_labels, key=lambda item: (item[0].distance_travelled,
@@ -239,6 +299,8 @@ def _decode_one_station(state: VehicleState, sequence: tuple[str, ...],
         labels = sorted(frontier, key=lambda item: (item[0].distance_travelled,
                         item[0].time, -item[0].battery,
                         tuple(action_key(a) for a in item[1])))[:24]
+        if optimized and len(memo.label_prefixes) < memo.label_limit:
+            memo.label_prefixes[state, memo_key, config, sequence[:index+1]] = tuple(labels)
     ranked = []
     for end, actions in labels:
         check_deadline()

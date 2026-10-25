@@ -157,6 +157,12 @@ logs/
 !/results/desaulniers/reliability_v2/**/*.md
 !/results/desaulniers/reliability_v2/**/*.xml
 !/results/desaulniers/reliability_v2/**/*.png
+!/results/desaulniers/performance_engineering_v1/**/*.json
+!/results/desaulniers/performance_engineering_v1/**/*.json.gz
+!/results/desaulniers/performance_engineering_v1/**/*.md
+!/results/desaulniers/performance_engineering_v1/**/*.png
+!/results/desaulniers/performance_engineering_v1/**/*.xml
+!/results/desaulniers/performance_engineering_v1/**/*.log
 !/results/desaulniers/robustness_v2/raw/*.json.gz
 /results/.pytest_work/
 /results/t[0-9]*/

@@ -1,0 +1,28 @@
+study: performance_engineering_v1
+maximum_total_seconds: 7200
+final_report_reserve_seconds: 180
+cases:
+  - [c101_21_25, 0.25, 0]
+  - [c201_21_50, 0.75, 0]
+  - [r101_21_100, 0.25, 0]
+methods: [MPC_COMPLETION, MPC_MCTS, MPC_ALNS, MPC_HGS, MPC_ACS]
+variants: [original, incremental_v1]
+micro_variants: [original, root_v1, incremental_v1]
+micro_upper_seconds: 45
+profile_upper_seconds: 20
+allocation_upper_seconds: 20
+optimizer_profile_upper_seconds: 10
+worker_floor_seconds: 45
+historical_cost_factor: 2
+worker_startup_margin_seconds: 15
+micro_root_index: 0
+micro_max_sequences: 12
+micro_max_service_prefix: 8
+common:
+  optimizer_initialization_policy: validated_incumbent_v1
+  coordination_policy: forced_retained_v1
+  first_action_policy: original
+  constructor_policy: original
+  route_decoder_version: original
+timing_conditions: sequential fresh workers; shared computer; one native thread per worker; unrelated workloads unchanged
+no_automatic_holdout: true

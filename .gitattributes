@@ -14,4 +14,6 @@ results/desaulniers/publication_development/frozen_inputs_v1/** -text
 results/desaulniers/publication_package_v1/** -text
 results/desaulniers/targeted_service_v1/** -text whitespace=cr-at-eol
 configs/reliability_*.yaml text eol=lf
+configs/performance_engineering_*.yaml text eol=lf
 results/desaulniers/reliability_v2/** -text whitespace=cr-at-eol
+results/desaulniers/performance_engineering_v1/** -text whitespace=cr-at-eol

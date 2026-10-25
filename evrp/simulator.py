@@ -78,7 +78,7 @@ class SimulationConfig:
             raise ValueError("Unknown constructor policy")
         if self.first_action_policy not in {"original", "counterfactual_v1", "flex_exchange_v2"}:
             raise ValueError("Unknown first-action policy")
-        if self.proposal_cache_policy not in {"original", "root_v1"}:
+        if self.proposal_cache_policy not in {"original", "root_v1", "incremental_v1"}:
             raise ValueError("Unknown proposal cache policy")
         if self.fleet_mode != "fixed_reference":
             raise ValueError("Only the fixed K_ref fleet is supported")
@@ -426,9 +426,9 @@ class EventDrivenSimulator:
                     observation = get_agent_observation(state, instance)
                     started = perf_counter()
                     proposal_memo = None
-                    if config.proposal_cache_policy == "root_v1":
+                    if config.proposal_cache_policy in {"root_v1", "incremental_v1"}:
                         from .proposal_memo import begin
-                        proposal_memo, memo_token = begin()
+                        proposal_memo, memo_token = begin(incremental=config.proposal_cache_policy == "incremental_v1")
                     deadline_token = (set_deadline(started + config.total_planning_time_limit -
                                                    min(0.25 if event_triggered else 0.15,
                                                        config.total_planning_time_limit * 0.1))
@@ -857,9 +857,15 @@ class EventDrivenSimulator:
                     if config.algorithm == "FLEET_MPC_MCTS":
                         decision["final_validation_seconds"] = final_validation_seconds
                         decision["deadline_fallback"] = deadline_fallback
+                    if config.algorithm in OPTIMIZER_ALGORITHMS:
+                        decision["final_validation_seconds"] = final_validation_seconds
+                        decision["optimizer_kept_constructor"] = (all(tuple(optimizer_result.routes.get(k, ())) ==
+                            tuple(constructor_for_objective.get(k, ())) for k in origins)
+                            if optimizer_result is not None else None)
                     if proposal_memo is not None:
                         decision["proposal_memo"] = dict(hits=proposal_memo.hits, misses=proposal_memo.misses,
-                                                         entries=len(proposal_memo.values))
+                                                         entries=len(proposal_memo.values),
+                                                         incremental_counts=dict(proposal_memo.counts))
                     if config.trace_level == "full":
                         decision["candidates"] = {str(k): [asdict(p) for p in r.candidates] for k, r in plans.items()}
                     if planning_evidence is not None:

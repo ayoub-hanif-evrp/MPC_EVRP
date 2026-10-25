@@ -5,7 +5,8 @@ from math import isfinite
 
 from .instance import distance, energy, travel_time
 from .model import (EPS, Action, InfeasibleAction, Observation, Transition, VehicleState,
-                    escape, escape_action, transition)
+                    escape, escape_action)
+from .evaluation_cache import transition
 from .reference import full_charge_connection
 from . import performance as perf
 
