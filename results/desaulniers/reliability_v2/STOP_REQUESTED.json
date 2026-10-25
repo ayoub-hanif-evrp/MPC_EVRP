@@ -1,0 +1,9 @@
+{
+  "state": "stopped_by_user",
+  "request_date": "2026-10-25",
+  "reason": "User requested stopping the slow campaign and investigating computational cost.",
+  "completed_runs_at_stop": 361,
+  "planned_runs": 1116,
+  "preserve_all_saved_results": true,
+  "restart_requires_explicit_user_authorization": true
+}

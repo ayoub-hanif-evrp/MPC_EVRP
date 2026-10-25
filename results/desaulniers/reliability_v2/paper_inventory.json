@@ -1,6 +1,10 @@
 {
   "artifacts": [
     {
+      "path": "results/desaulniers/reliability_v2/compute_review/RESULTS.md",
+      "sha256": "b88cefb3e5563a0902cfadd5b9a12625e41aa843d11d82cd84fb676eafe30363"
+    },
+    {
       "path": "results/desaulniers/reliability_v2/diagnosis/PROBES.md",
       "sha256": "563d8cdafb6356bc1a7f66564dc5781a9b5ee8a493ddd1bcac25575e5678d7fa"
     },
@@ -14,7 +18,7 @@
     },
     {
       "path": "results/desaulniers/reliability_v2/FINAL_REPORT.md",
-      "sha256": "fb50cc4f6016abb2b1bd0d4248e92bf3212b158af1f573f6aebb3f9d171db2b2"
+      "sha256": "71a3e4c685c04bf5aa8f84f639cd27fb842f06dd7100e2b65985f44519c20cbf"
     },
     {
       "path": "results/desaulniers/reliability_v2/preflight/AMENDMENT.md",
@@ -26,7 +30,7 @@
     },
     {
       "path": "results/desaulniers/reliability_v2/REPRODUCE.md",
-      "sha256": "aeef2381fbdadb7124515e3b11b79086e60b1106f91e5b07a8495a23243df87e"
+      "sha256": "fcbc9f9f23c3d8b5f691b6c6e871867657b8da3850f12ffe2b05681f4a49c42d"
     }
   ]
 }

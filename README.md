@@ -39,10 +39,13 @@ adds event-level loss evidence, opt-in two-EV exchanges, exact root-local replay
 memoization and a prospective Completion-only control comparison. Its new
 12-parent panel uses structural DoD eligibility only, with crossed seed/DoD
 within each selected file; no historical result is replaced. See its
-[live status and report](results/desaulniers/reliability_v2/FINAL_REPORT.md).
-Run or resume only that bounded workflow with
-`python -u -m scripts.run_reliability_study`. No new improvement or independent
-final result is claimed before the complete preregistered checks pass.
+[status and report](results/desaulniers/reliability_v2/FINAL_REPORT.md).
+This campaign is **stopped at the user's request after 361/1116 runs**.
+The [compute-cost review](results/desaulniers/reliability_v2/compute_review/RESULTS.md)
+explains the runtime and the next budget-controlled alternatives. The launcher
+refuses to restart while `STOP_REQUESTED.json` exists; do not bypass that guard
+with the direct runner. All saved evidence remains intact. No new improvement
+or independent final result is claimed from this incomplete comparison.
 
 ## Active benchmark
 

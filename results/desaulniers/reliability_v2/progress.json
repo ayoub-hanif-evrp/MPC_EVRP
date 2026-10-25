@@ -1,0 +1,16 @@
+{
+  "log": "results/desaulniers/reliability_v2/run.log",
+  "runner_pid": null,
+  "stages": {
+    "development": {
+      "all_audits": true,
+      "completed": 361,
+      "maximum_decision": 4.832695599994622,
+      "planned": 1116,
+      "status": "partial"
+    }
+  },
+  "state": "stopped_by_user",
+  "supervisor_pid": null,
+  "updated_utc": "2026-10-25T20:52:50.485762+00:00"
+}

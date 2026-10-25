@@ -31,6 +31,9 @@ def snapshot(pid, supervisor_pid, state):
 
 
 def main():
+    if (OUTPUT/"STOP_REQUESTED.json").exists():
+        print("Campaign stopped by the user. Explicit resume authorization is required before removing the stop marker.", flush=True)
+        return 0
     protocol = load_json(OUTPUT/"development/protocol.json")
     if protocol["source_sha256"] != source_hash():
         raise ValueError("Cannot launch a source-drifted campaign")

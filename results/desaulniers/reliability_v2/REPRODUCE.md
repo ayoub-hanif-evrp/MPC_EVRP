@@ -1,6 +1,13 @@
 # Execute and reproduce Reliability V2
 
-## Running study
+## Stopped Study
+
+The user stopped this campaign on 2026-10-25 after 361/1116 saved runs.
+No campaign runner or worker remained active when checked. STOP_REQUESTED.json
+blocks the unattended launcher. Do not remove that marker or use the direct
+runner without explicit authorization to resume. The commands below are
+retained reproduction instructions, not permission to restart this study.
+See compute_review/RESULTS.md for the measured cost and bounded alternatives.
 
 Execution source commit: ed9f7cd54cfa596c02eace54437820b34138e64c.
 The later supervisor/input checkpoint does not change the scientific source.

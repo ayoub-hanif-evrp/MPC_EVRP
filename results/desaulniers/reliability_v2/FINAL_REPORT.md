@@ -1,6 +1,6 @@
 # Reliability study V2
 
-Prospective campaign running under the frozen protocol. Partial results are not final evidence.
+Stopped at the user's request on 2026-10-25 for computation cost. No runner or worker is active. Preserve all 361 results; no restart without explicit authorization. See compute_review/RESULTS.md for the runtime diagnosis and budget-controlled alternatives.
 
 ## Evidence and limits
 
@@ -16,7 +16,7 @@ See diagnosis/RESULTS.md and diagnosis/profile.json for measured bounds and prof
 
 ## Development
 
-Runs: 8/1116; status: partial.
+Runs: 361/1116; status: partial.
 
 No completed new independent final result is claimed. Original ALNS remains the paper's primary system.
 
