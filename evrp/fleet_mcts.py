@@ -165,6 +165,7 @@ class _FleetProblem:
         memo = current_proposal_memo()
         self._score_memo = memo if memo is not None and memo.incremental else None
         self._fast_screen = bool(memo is not None and memo.fast_screen)
+        self._compiled_screen = bool(memo is not None and memo.compiled_screen)
         self.rollout_skip_blocked = False
         self._scores = {}
 
@@ -381,9 +382,18 @@ class _FleetProblem:
                 continue
             self.screened_vehicle_evaluations += 1
             vehicle_options = []
+            optimistic = None
+            if self._compiled_screen and current_trace() is None:
+                from .compiled_screen import optimistic_time_mask
+                optimistic = optimistic_time_mask(self, k, sequence, customer_id)
+                if optimistic is not None:
+                    perf.count("compiled_screen_batches")
             for pos in range(len(sequence) + 1):
                 self._check_search_time()
                 self.screened_insertions += 1
+                if optimistic is not None and not optimistic[pos]:
+                    perf.count("compiled_screen_proven_late")
+                    continue
                 passed, slack = self._screen_gap(k, sequence, customer_id, pos)
                 if not passed:
                     continue

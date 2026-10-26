@@ -81,7 +81,9 @@ def simulation_config(config: dict) -> SimulationConfig:
                             first_action_policy=config.get("first_action_policy", "original"),
                             proposal_cache_policy=config.get("proposal_cache_policy", "original"),
                             computation_policy=config.get("computation_policy", "original"),
-                            mcts_rollout_policy=config.get("mcts_rollout_policy", "original"))
+                            mcts_rollout_policy=config.get("mcts_rollout_policy", "original"),
+                            quality_policy=config.get("quality_policy", "original"),
+                            service_recovery_policy=config.get("service_recovery_policy", "original"))
 
 
 def results_path(path):

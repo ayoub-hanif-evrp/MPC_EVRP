@@ -63,6 +63,8 @@ class SimulationConfig:
     proposal_cache_policy: str = "original"
     computation_policy: str = "original"
     mcts_rollout_policy: str = "original"
+    quality_policy: str = "original"
+    service_recovery_policy: str = "original"
 
     def __post_init__(self):
         if self.algorithm not in ALGORITHMS or self.workers < 1 or self.max_events < 1:
@@ -81,12 +83,17 @@ class SimulationConfig:
         if self.first_action_policy not in {"original", "counterfactual_v1", "flex_exchange_v2",
                                             "service_guard_v1"}:
             raise ValueError("Unknown first-action policy")
-        if self.proposal_cache_policy not in {"original", "root_v1", "incremental_v1", "fast_framework_v1"}:
+        if self.proposal_cache_policy not in {"original", "root_v1", "incremental_v1", "fast_framework_v1",
+                                              "compiled_cpu_v1"}:
             raise ValueError("Unknown proposal cache policy")
         if self.computation_policy not in {"original", "adaptive_compute_v1"}:
             raise ValueError("Unknown computation policy")
         if self.mcts_rollout_policy not in {"original", "skip_blocked_v1"}:
             raise ValueError("Unknown MCTS rollout policy")
+        if self.quality_policy not in {"original", "epsilon_route_v1"}:
+            raise ValueError("Unknown route quality policy")
+        if self.service_recovery_policy not in {"original", "critical_insert_v1"}:
+            raise ValueError("Unknown service recovery policy")
         if self.fleet_mode != "fixed_reference":
             raise ValueError("Only the fixed K_ref fleet is supported")
         if self.route_continuity and self.trace_level == "none":
@@ -269,6 +276,9 @@ class EventDrivenSimulator:
         final_validation_times = []
         deadline_fallbacks = 0
         run_started = perf_counter()
+        if config.proposal_cache_policy == "compiled_cpu_v1":
+            from .compiled_screen import prepare
+            prepare()
         simulation_events = optimization_triggers = mcts_calls = 0
         optimization_latencies = []
         trigger_counts = Counter()
@@ -433,11 +443,14 @@ class EventDrivenSimulator:
                     observation = get_agent_observation(state, instance)
                     started = perf_counter()
                     proposal_memo = None
-                    if config.proposal_cache_policy in {"root_v1", "incremental_v1", "fast_framework_v1"}:
+                    if config.proposal_cache_policy in {"root_v1", "incremental_v1", "fast_framework_v1",
+                                                        "compiled_cpu_v1"}:
                         from .proposal_memo import begin
                         proposal_memo, memo_token = begin(
-                            incremental=config.proposal_cache_policy in {"incremental_v1", "fast_framework_v1"},
-                            fast_screen=config.proposal_cache_policy == "fast_framework_v1")
+                            incremental=config.proposal_cache_policy in {"incremental_v1", "fast_framework_v1",
+                                                                         "compiled_cpu_v1"},
+                            fast_screen=config.proposal_cache_policy in {"fast_framework_v1", "compiled_cpu_v1"},
+                            compiled_screen=config.proposal_cache_policy == "compiled_cpu_v1")
                     deadline_token = (set_deadline(started + config.total_planning_time_limit -
                                                    min(0.25 if event_triggered else 0.15,
                                                        config.total_planning_time_limit * 0.1))
@@ -531,7 +544,7 @@ class EventDrivenSimulator:
                     fleet_mcts_record = None
                     optimizer_result = None
                     optimizer_initialization_fallback = False
-                    targeted_constructor = targeted_control = None
+                    targeted_constructor = targeted_control = quality_control = recovery_control = None
                     targeted_routes = targeted_validated = None
                     if config.regret_repair:
                         repair_start = perf_counter()
@@ -695,6 +708,20 @@ class EventDrivenSimulator:
                             if proof is not None:
                                 routes = targeted_routes = candidate
                                 targeted_validated = proof
+                    if config.quality_policy == "epsilon_route_v1":
+                        from .quality_policy import refine
+                        candidate, proof, quality_control = refine(
+                            origins, routes, observation, config.mpc, quality=True)
+                        if proof is not None:
+                            routes = targeted_routes = candidate
+                            targeted_validated = proof
+                    if config.service_recovery_policy == "critical_insert_v1":
+                        from .quality_policy import refine
+                        candidate, proof, recovery_control = refine(
+                            origins, routes, observation, config.mpc, recovery=True)
+                        if proof is not None:
+                            routes = targeted_routes = candidate
+                            targeted_validated = proof
                     # Reconcile all future suffixes before dispatching any physical action.
                     if planning_evidence is not None:
                         planning_evidence.stage("validation", routes)
@@ -793,6 +820,8 @@ class EventDrivenSimulator:
                                     optimizer_initialization_fallback=optimizer_initialization_fallback,
                                     targeted_constructor=targeted_constructor,
                                     targeted_control=targeted_control,
+                                    quality_control=quality_control,
+                                    recovery_control=recovery_control,
                                     optimization_latency_seconds=(timings[-1] if event_triggered else None),
                                     optimization_trigger_reason=trigger_reason,
                                     optimization_root_hash=root_hash,
