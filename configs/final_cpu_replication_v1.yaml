@@ -1,0 +1,20 @@
+study: final_cpu_replication_v1
+base_controller: configs/paper_controller.yaml
+charging_policy: MP
+methods: [MPC_COMPLETION, MPC_MCTS, MPC_ALNS, MPC_HGS, MPC_ACS]
+instances:
+  - c102_21_100
+  - c202_21_50
+  - r102_21_100
+  - r202_21_25
+  - rc102_21_25
+  - rc202_21_50
+dynamicity: 0.50
+scenario_seeds: [6, 7]
+total_planning_time_limit: 5.0
+engineering_watchdog_seconds: 900.0
+maximum_wall_seconds: 28800
+maximum_worker_cpu_seconds: 43200
+setup_charge_seconds: 600
+analysis_reserve_seconds: 600
+no_enhanced_holdout: true
