@@ -5,6 +5,7 @@ from dataclasses import asdict
 from hashlib import sha256
 import os
 from pathlib import Path
+import shutil
 import subprocess
 import sys
 
@@ -37,20 +38,41 @@ def archived_input(rows, name, kind, key):
 
 
 def job(kind, index, method, variant, upper):
-    return dict(id=f"{kind}_{index}_{method}_{variant}", kind=kind,
+    return dict(id=f"r1_{kind}_{index}_{method}_{variant}", kind=kind,
                 case_index=index, method=method, variant=variant, upper_seconds=upper)
 
 
-def freeze():
+def freeze(revise=False):
     config = load_config(CONFIG)
     if config["maximum_total_seconds"] != 7200 or not config["no_automatic_holdout"]:
         raise ValueError("Only the authorized two-hour development study is allowed")
     path = OUTPUT / "protocol.json"
     if path.exists():
         protocol = load_json(path)
-        if protocol["source_sha256"] != source_hash() or protocol["config"] != config:
-            raise ValueError("Frozen source or protocol drift")
-        return protocol
+        if protocol["source_sha256"] == source_hash() and protocol["config"] == config:
+            return protocol
+        if not revise or config.get("revision") != 1:
+            raise ValueError("Frozen source or protocol drift; explicit revision required")
+        manifest = load_json(OUTPUT / "manifest.json")
+        budget = load_json(OUTPUT / "budget.json")
+        if (manifest["records"] or len(budget["jobs"]) != 2 or
+                budget["jobs"][0]["id"] != "micro_0_MPC_COMPLETION_compiled_cpu_v1" or
+                budget["jobs"][0]["status"] != "failed" or
+                budget["jobs"][1]["id"] != "final_report" or
+                budget["jobs"][1]["status"] != "complete"):
+            raise ValueError("Revision allowed only for recorded setup failure with zero scenario evidence")
+        archive_dir = OUTPUT / "revision0_setup_failure"
+        if archive_dir.exists():
+            raise ValueError("Prior revision archive exists")
+        archive_dir.mkdir(parents=True)
+        for name in ("protocol.json", "manifest.json", "budget.json", "FINAL_REPORT.md", "analysis.json"):
+            source = OUTPUT / name
+            if source.exists():
+                shutil.copy2(source, archive_dir / name)
+        if sha256((archive_dir / "protocol.json").read_bytes()).digest() != sha256(path.read_bytes()).digest():
+            raise ValueError("Revision archive copy failed")
+        path.unlink()
+        (OUTPUT / "manifest.json").unlink()
     scoped = ["evrp", "configs/hybrid_acceleration_v1.yaml", "scripts/run_hybrid_acceleration.py",
               "scripts/hybrid_acceleration_worker.py", "scripts/report_hybrid_acceleration.py",
               "scripts/benchmark_hybrid_acceleration.py"]
@@ -91,7 +113,7 @@ def freeze():
                 if sha256(raw.read_bytes()).hexdigest() != row["raw_sha256"]:
                     raise ValueError("Historical admission evidence changed")
                 elapsed = load_json(raw)["metrics"]["worker_wall_seconds"]
-            upper = max(45, 2 * elapsed + 20)
+            upper = max(45, 1.9 * elapsed + 20)
             historical_costs.append(dict(index=i, method=method, historical_seconds=elapsed,
                                          upper_seconds=upper))
             stage = "compiled_pilot" if i < 3 else "quality_validation"
@@ -101,9 +123,10 @@ def freeze():
                                jobs=[job("scenario", i, method, variant, upper) for variant in order]))
     estimate = (config["prestudy_charge_seconds"] + config["report_reserve_seconds"] +
                 sum(j["upper_seconds"] for block in blocks for j in block["jobs"]))
-    if estimate > config["maximum_total_seconds"]:
+    prior_charge = load_json(OUTPUT / "budget.json")["charged_seconds"] if (OUTPUT / "budget.json").exists() else config["prestudy_charge_seconds"]
+    if estimate - config["prestudy_charge_seconds"] + prior_charge > config["maximum_total_seconds"]:
         save_json(OUTPUT / "admission_refused.json", dict(upper_seconds=estimate,
-                  allowance_seconds=config["maximum_total_seconds"]))
+                  prior_charge_seconds=prior_charge, allowance_seconds=config["maximum_total_seconds"]))
         raise ValueError("Planned upper bounds exceed two-hour allowance")
     protocol = dict(config=config, cases=cases, common=previous["config"]["common"],
                     blocks=blocks, historical_costs=historical_costs,
@@ -158,8 +181,9 @@ def verify(raw, protocol, spec):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--freeze", action="store_true")
+    parser.add_argument("--revise", action="store_true")
     args = parser.parse_args()
-    protocol = freeze()
+    protocol = freeze(revise=args.revise)
     if args.freeze:
         return print(f"Frozen {sum(len(b['jobs']) for b in protocol['blocks'])} jobs; "
                      f"upper {protocol['estimated_upper_seconds_including_setup_and_report']:.1f}/7200 s")
@@ -182,7 +206,7 @@ def main():
     status = "complete"
     for block in protocol["blocks"]:
         if block["stage"] == "compiled_pilot" and not all(
-                f"micro_{i}_MPC_COMPLETION_compiled_cpu_v1" in records for i in range(3)):
+                f"r1_micro_{i}_MPC_COMPLETION_compiled_cpu_v1" in records for i in range(3)):
             raise ValueError("Compiled pilot requires all fixed-work audits")
         pending = [j for j in block["jobs"] if j["id"] not in records]
         if pending and not admit(budget.remaining(), sum(j["upper_seconds"] for j in pending),
@@ -219,7 +243,7 @@ def main():
     manifest.update(status=status, records=list(records.values()))
     save_json(manifest_path, manifest)
     budget.flush()
-    execution = budget.execute("final_report", [sys.executable, "-u", "-m", "scripts.report_hybrid_acceleration"],
+    execution = budget.execute("r1_final_report", [sys.executable, "-u", "-m", "scripts.report_hybrid_acceleration"],
                                protocol["config"]["report_reserve_seconds"], env=env, reserve=0)
     if execution is None or execution["status"] != "complete":
         print("Report worker incomplete; raw evidence remains intact", flush=True)

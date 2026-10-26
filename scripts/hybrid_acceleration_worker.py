@@ -82,7 +82,7 @@ def worker(kind, index, method, variant):
     protocol = load_json(OUTPUT / "protocol.json")
     if source_hash() != protocol["source_sha256"]:
         raise ValueError("Frozen scientific source drift")
-    job_id = f"{kind}_{index}_{method}_{variant}"
+    job_id = f"r1_{kind}_{index}_{method}_{variant}"
     if not any(job_id == j["id"] for block in protocol["blocks"] for j in block["jobs"]):
         raise ValueError("Job outside protocol")
     path = OUTPUT / "raw" / f"{job_id}.json.gz"

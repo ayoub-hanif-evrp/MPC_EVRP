@@ -130,7 +130,7 @@ def build():
     for index, case in enumerate(protocol["cases"]):
         for method in protocol["config"]["methods"]:
             variant = "compiled_cpu_v1" if index < 3 else "quality_recovery_v1"
-            keys = [f"scenario_{index}_{method}_{v}" for v in ("original", variant)]
+            keys = [f"r1_scenario_{index}_{method}_{v}" for v in ("original", variant)]
             for key in keys:
                 if key in measures:
                     detail.append((case["case"], method, key.rsplit("_", 1)[-1], raw[key]["variant"], measures[key]))
@@ -154,7 +154,7 @@ def build():
              "## Fixed-work checks", ""]
     micro_rows = []
     for index in range(3):
-        key = f"micro_{index}_MPC_COMPLETION_compiled_cpu_v1"
+        key = f"r1_micro_{index}_MPC_COMPLETION_compiled_cpu_v1"
         if key in raw:
             variants = raw[key]["micro"]["variants"]
             micro_rows.append([protocol["cases"][index]["case"][0],

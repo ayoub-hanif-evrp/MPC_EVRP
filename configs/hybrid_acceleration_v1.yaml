@@ -1,4 +1,8 @@
 study: hybrid_acceleration_v1
+revision: 1
+micro_root_index: 0
+micro_max_service_prefix: 8
+micro_max_sequences: 12
 maximum_total_seconds: 7200
 prestudy_charge_seconds: 300
 report_reserve_seconds: 120
