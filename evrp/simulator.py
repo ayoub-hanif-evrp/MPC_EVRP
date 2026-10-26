@@ -61,6 +61,8 @@ class SimulationConfig:
     constructor_policy: str = "original"
     first_action_policy: str = "original"
     proposal_cache_policy: str = "original"
+    computation_policy: str = "original"
+    mcts_rollout_policy: str = "original"
 
     def __post_init__(self):
         if self.algorithm not in ALGORITHMS or self.workers < 1 or self.max_events < 1:
@@ -76,10 +78,15 @@ class SimulationConfig:
             raise ValueError("Unknown coordination policy")
         if self.constructor_policy not in {"original", "urgency_recovery_v1"}:
             raise ValueError("Unknown constructor policy")
-        if self.first_action_policy not in {"original", "counterfactual_v1", "flex_exchange_v2"}:
+        if self.first_action_policy not in {"original", "counterfactual_v1", "flex_exchange_v2",
+                                            "service_guard_v1"}:
             raise ValueError("Unknown first-action policy")
-        if self.proposal_cache_policy not in {"original", "root_v1", "incremental_v1"}:
+        if self.proposal_cache_policy not in {"original", "root_v1", "incremental_v1", "fast_framework_v1"}:
             raise ValueError("Unknown proposal cache policy")
+        if self.computation_policy not in {"original", "adaptive_compute_v1"}:
+            raise ValueError("Unknown computation policy")
+        if self.mcts_rollout_policy not in {"original", "skip_blocked_v1"}:
+            raise ValueError("Unknown MCTS rollout policy")
         if self.fleet_mode != "fixed_reference":
             raise ValueError("Only the fixed K_ref fleet is supported")
         if self.route_continuity and self.trace_level == "none":
@@ -426,9 +433,11 @@ class EventDrivenSimulator:
                     observation = get_agent_observation(state, instance)
                     started = perf_counter()
                     proposal_memo = None
-                    if config.proposal_cache_policy in {"root_v1", "incremental_v1"}:
+                    if config.proposal_cache_policy in {"root_v1", "incremental_v1", "fast_framework_v1"}:
                         from .proposal_memo import begin
-                        proposal_memo, memo_token = begin(incremental=config.proposal_cache_policy == "incremental_v1")
+                        proposal_memo, memo_token = begin(
+                            incremental=config.proposal_cache_policy in {"incremental_v1", "fast_framework_v1"},
+                            fast_screen=config.proposal_cache_policy == "fast_framework_v1")
                     deadline_token = (set_deadline(started + config.total_planning_time_limit -
                                                    min(0.25 if event_triggered else 0.15,
                                                        config.total_planning_time_limit * 0.1))
@@ -628,6 +637,12 @@ class EventDrivenSimulator:
                             deadline_events += 1
                     if config.algorithm in OPTIMIZER_ALGORITHMS:
                         constructor_for_objective = dict(routes)
+                        compute_gate = None
+                        if config.computation_policy == "adaptive_compute_v1":
+                            from .compute_policy import AdaptiveComputeGate, stable_full_service
+                            eligible, reason = (stable_full_service(origins, routes, observation)
+                                                if remaining_time() > 0.5 else (False, "insufficient_time"))
+                            compute_gate = AdaptiveComputeGate(eligible, reason)
                         if planning_evidence is not None:
                             planning_evidence.stage("optimizer", routes)
                         try:
@@ -643,10 +658,11 @@ class EventDrivenSimulator:
                                           min(0.25 if event_triggered else 0.15,
                                               config.total_planning_time_limit * 0.1)
                                           - (.3 if config.first_action_policy == "counterfactual_v1" else
-                                             .4 if config.first_action_policy == "flex_exchange_v2" else 0)
+                                             .4 if config.first_action_policy == "flex_exchange_v2" else
+                                             .18 if config.first_action_policy == "service_guard_v1" else 0)
                                           if config.total_planning_time_limit is not None else None),
                                 seed=agent_seed(config.experiment_seed, self.scenario.scenario_seed, epochs, -1),
-                                mpc=config.mpc)
+                                mpc=config.mpc, compute_gate=compute_gate)
                             optimizer_result = create_optimizer(config.algorithm, config).optimize(context)
                             routes = dict(optimizer_result.routes)
                             deadline_events += int(optimizer_result.deadline_reached)
@@ -667,6 +683,14 @@ class EventDrivenSimulator:
                             from .flex_exchange import improve_first_controls
                             candidate, proof, targeted_control = improve_first_controls(
                                 origins, routes, observation, config.mpc, ready, seconds=.35,
+                                reference_routes=constructor_for_objective)
+                            if proof is not None:
+                                routes = targeted_routes = candidate
+                                targeted_validated = proof
+                        elif config.first_action_policy == "service_guard_v1":
+                            from .targeted_recovery import service_guard_v1
+                            candidate, proof, targeted_control = service_guard_v1(
+                                origins, routes, observation, config.mpc, ready,
                                 reference_routes=constructor_for_objective)
                             if proof is not None:
                                 routes = targeted_routes = candidate
@@ -859,6 +883,7 @@ class EventDrivenSimulator:
                         decision["deadline_fallback"] = deadline_fallback
                     if config.algorithm in OPTIMIZER_ALGORITHMS:
                         decision["final_validation_seconds"] = final_validation_seconds
+                        decision["adaptive_compute"] = compute_gate.report() if compute_gate else None
                         decision["optimizer_kept_constructor"] = (all(tuple(optimizer_result.routes.get(k, ())) ==
                             tuple(constructor_for_objective.get(k, ())) for k in origins)
                             if optimizer_result is not None else None)

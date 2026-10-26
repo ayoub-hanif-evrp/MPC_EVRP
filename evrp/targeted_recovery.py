@@ -158,6 +158,65 @@ def _commitment_opportunities(problem, plan, ready):
                 interpretation="necessary-condition screens, not physical infeasibility certificates")
 
 
+def service_guard_v1(origins, routes, observation, config, ready, *,
+                     seconds=.15, reference_routes=None):
+    """Try at most two urgent insertions when current first actions erase an option."""
+    started = perf_counter()
+    record = dict(triggered=False, candidates=0, accepted=False, seconds=0.0)
+    result, validated = dict(routes), None
+    owned = {a.destination for actions in routes.values() for a in actions if a.kind == "serve"}
+    served = {c for state in origins.values() for c in state.served_customers}
+    horizon = max(1.0, observation.infrastructure.depot.due - observation.infrastructure.depot.ready)
+    urgent = sorted((c for c in observation.customer_by_id
+                     if c not in owned and c not in observation.committed_ids and c not in served
+                     and observation.customer_by_id[c].due - observation.time <= max(4.0, .03 * horizon)),
+                    key=lambda c: (observation.customer_by_id[c].due, c))[:2]
+    if not urgent or remaining_time() < .2:
+        return result, validated, record
+    token = set_deadline(started + min(seconds, max(0.0, remaining_time() - .03)))
+    try:
+        problem = _FleetProblem(origins, observation, config, 3, 2)
+        initial = _initialize(problem, routes, reference_routes)
+        advanced = dict(origins)
+        remaining_routes = dict(routes)
+        for k in sorted(set(ready) & set(origins)):
+            actions = routes.get(k, ())
+            if actions:
+                advanced[k] = transition(origins[k], actions[0], observation).after
+                remaining_routes[k] = actions[1:]
+        after = _FleetProblem(advanced, observation, config, 3, 2)
+        after_sequences = tuple(tuple(a.destination for a in remaining_routes.get(k, ()) if a.kind == "serve")
+                                for k in after.ids)
+        for customer in urgent:
+            check_deadline()
+            before_options = problem.screened_options(initial.sequences, customer)
+            if len(before_options) > 2 or not before_options:
+                continue
+            if after.screened_options(after_sequences, customer):
+                continue
+            record["triggered"] = True
+            for _, _, k, position, _ in before_options[:2]:
+                check_deadline()
+                index = problem.ids.index(k)
+                sequence = initial.sequences[index]
+                candidate = problem.change(initial, {
+                    k: sequence[:position] + (customer,) + sequence[position:]})
+                record["candidates"] += 1
+                if candidate is not None and candidate.score < initial.score:
+                    proof = _validated(problem, candidate)
+                    result, validated = _routes(problem, candidate), proof
+                    record["accepted"] = True
+                    break
+            if record["accepted"]:
+                break
+    except (PlanningDeadlineExceeded, _SearchBudgetReached):
+        record["deadline_reached"] = True
+    finally:
+        reset_deadline(token)
+    record["seconds"] = perf_counter() - started
+    return result, validated, record
+
+
 def counterfactual_actions(origins, routes, observation, config, ready, *,
                            seconds=.25, reference_routes=None, diagnostic=False):
     started = perf_counter()

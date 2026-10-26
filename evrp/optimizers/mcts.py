@@ -12,12 +12,14 @@ class FleetMCTSOptimizer:
     name = "MPC_MCTS"
 
     def __init__(self, *, iterations: int = 256, depth: int = 4,
-                 branch_limit: int = 12, position_limit: int = 3, regret_k: int = 2):
+                 branch_limit: int = 12, position_limit: int = 3, regret_k: int = 2,
+                 rollout_skip_blocked: bool = False):
         self.iterations = iterations
         self.depth = depth
         self.branch_limit = branch_limit
         self.position_limit = position_limit
         self.regret_k = regret_k
+        self.rollout_skip_blocked = rollout_skip_blocked
 
     def optimize(self, context: OptimizationContext) -> OptimizationResult:
         started = perf_counter()
@@ -27,7 +29,9 @@ class FleetMCTSOptimizer:
                                       context.observation, context.mpc, seed=context.seed,
                                       iterations=self.iterations, depth=self.depth,
                                       branch_limit=self.branch_limit,
-                                      position_limit=self.position_limit, regret_k=self.regret_k)
+                                      position_limit=self.position_limit, regret_k=self.regret_k,
+                                      compute_gate=context.compute_gate,
+                                      rollout_skip_blocked=self.rollout_skip_blocked)
         finally:
             reset_deadline(token)
         diagnostics = asdict(result)

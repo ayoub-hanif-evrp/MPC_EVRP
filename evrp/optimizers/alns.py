@@ -146,7 +146,11 @@ class ALNSOptimizer:
         try:
             current = best = problem.initial(dict(context.constructor_routes))
             initializing = False
+            if context.compute_gate is not None:
+                context.compute_gate.observe(best.score)
             for iteration in range(self.iterations):
+                if context.compute_gate is not None and context.compute_gate.should_stop(completed):
+                    break
                 check_deadline()
                 problem._check_search_time()
                 owned = sum(map(len, current.sequences))
@@ -176,6 +180,8 @@ class ALNSOptimizer:
                 if candidate.score < best.score:
                     if self._eligible_best(candidate, best):
                         best = candidate
+                        if context.compute_gate is not None:
+                            context.compute_gate.observe(best.score)
                         best_times.append(perf_counter() - started)
                         reward = 6
                     else:

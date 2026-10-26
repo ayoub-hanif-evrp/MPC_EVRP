@@ -60,11 +60,15 @@ class ACSOptimizer:
         try:
             best = constructor = problem.initial(dict(context.constructor_routes))
             initializing = False
+            if context.compute_gate is not None:
+                context.compute_gate.observe(best.score)
             # Every ant builds afresh; the common constructor is retained separately.
             empty = problem.change(constructor, {k: () for k in problem.ids})
             if empty is None:
                 raise ValueError("Empty fleet route is not feasible")
             for _ in range(self.ants):
+                if context.compute_gate is not None and context.compute_gate.should_stop(completed):
+                    break
                 check_deadline()
                 problem._check_search_time()
                 current = empty
@@ -109,6 +113,8 @@ class ACSOptimizer:
                     else:
                         objective_improvements += 1
                     best = current
+                    if context.compute_gate is not None:
+                        context.compute_gate.observe(best.score)
                     improvement_times.append(perf_counter() - started)
                 for key in tuple(pheromone):
                     pheromone[key] = max(1e-9, (1 - self.rho) * pheromone[key])

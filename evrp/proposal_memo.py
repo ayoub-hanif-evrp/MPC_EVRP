@@ -12,6 +12,7 @@ class ProposalMemo:
     misses: int = 0
     limit: int = 4096
     incremental: bool = False
+    fast_screen: bool = False
     transitions: dict = field(default_factory=dict)
     greedy_prefixes: dict = field(default_factory=dict)
     label_prefixes: dict = field(default_factory=dict)
@@ -34,8 +35,8 @@ class ProposalMemo:
 _current = ContextVar("mpc_proposal_memo", default=None)
 
 
-def begin(*, incremental=False):
-    memo = ProposalMemo(incremental=incremental)
+def begin(*, incremental=False, fast_screen=False):
+    memo = ProposalMemo(incremental=incremental, fast_screen=fast_screen)
     return memo, _current.set(memo)
 
 

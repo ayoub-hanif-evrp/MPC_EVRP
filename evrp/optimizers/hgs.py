@@ -242,7 +242,11 @@ class HGSOptimizer:
                     population.append(individual)
                 if individual.score < best.score:
                     best = individual
+            if context.compute_gate is not None:
+                context.compute_gate.observe(best.score)
             for _ in range(self.generations):
+                if context.compute_gate is not None and context.compute_gate.should_stop(generations):
+                    break
                 check_deadline()
                 problem._check_search_time()
                 if len(population) < 2:
@@ -259,6 +263,8 @@ class HGSOptimizer:
                 offspring_service_insertions += recovered_count
                 if child.score < best.score:
                     best = child
+                    if context.compute_gate is not None:
+                        context.compute_gate.observe(best.score)
                 if crossover_timed_out:
                     raise PlanningDeadlineExceeded
                 child = _educate(problem, child, rng, self.education_attempts)
@@ -266,6 +272,8 @@ class HGSOptimizer:
                 generations += 1
                 if child.score < best.score:
                     best = child
+                    if context.compute_gate is not None:
+                        context.compute_gate.observe(best.score)
                 if child.sequences not in {p.sequences for p in population}:
                     population.append(child)
                 population = _survivors(population, self.population_size, problem.ids)

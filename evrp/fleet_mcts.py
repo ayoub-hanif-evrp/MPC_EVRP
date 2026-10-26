@@ -164,6 +164,8 @@ class _FleetProblem:
         self.decoded: dict[tuple[int, tuple[str, ...]], tuple[tuple[Action, ...], MPCProposal | None] | None] = {}
         memo = current_proposal_memo()
         self._score_memo = memo if memo is not None and memo.incremental else None
+        self._fast_screen = bool(memo is not None and memo.fast_screen)
+        self.rollout_skip_blocked = False
         self._scores = {}
 
     def _check_search_time(self) -> None:
@@ -279,15 +281,17 @@ class _FleetProblem:
         safe_nodes = (self.observation.infrastructure.depot,) + self.observation.infrastructure.stations
         forward = [self.origins[k].time]
         prefix_distance = [0.0]
-        safe_energy = [min(energy(self.origins[k].location, node, p) for node in safe_nodes)]
+        safe_energy = ([] if self._fast_screen else
+                       [min(energy(self.origins[k].location, node, p) for node in safe_nodes)])
         location = self.origins[k].location
         demand = 0.0
         for customer_id in sequence:
             customer = customer_map[customer_id]
             start = max(forward[-1] + travel_time(location, customer, p), customer.ready)
             forward.append(start + customer.service)
-            prefix_distance.append(prefix_distance[-1] + distance(location, customer))
-            safe_energy.append(min(energy(customer, node, p) for node in safe_nodes))
+            if not self._fast_screen:
+                prefix_distance.append(prefix_distance[-1] + distance(location, customer))
+                safe_energy.append(min(energy(customer, node, p) for node in safe_nodes))
             location = customer
             demand += customer.demand
         backward = [0.0] * len(sequence)
@@ -548,6 +552,10 @@ class _FleetProblem:
                     ranked = sorted(ranked, key=lambda row: (
                         row[1] == 0, row[1] > 1,
                         self.observation.customer_by_id[row[0]].due, row[0]))
+                if self.rollout_skip_blocked:
+                    ranked = [row for row in ranked if row[1] > 0]
+                    if not ranked:
+                        break
                 target, count, _, _, _ = ranked[0]
                 if count == 0:
                     break
@@ -1034,11 +1042,13 @@ def select_root_control(constructor: FleetPlan, constructor_signature,
 def solve_fleet_mcts(origins: dict[int, VehicleState], routes: dict[int, tuple[Action, ...]],
                      observation: Observation, config: MPCConfig, *, seed: int,
                      iterations: int = 256, depth: int = 4, branch_limit: int = 24,
-                     position_limit: int = 3, regret_k: int = 2) -> FleetMCTSResult:
+                     position_limit: int = 3, regret_k: int = 2, compute_gate=None,
+                     rollout_skip_blocked: bool = False) -> FleetMCTSResult:
     if min(iterations, depth, branch_limit, position_limit) < 1 or regret_k not in {2, 3}:
         raise ValueError("Invalid fleet MCTS configuration")
     started = perf_counter()
     problem = _FleetProblem(origins, observation, config, position_limit, regret_k)
+    problem.rollout_skip_blocked = rollout_skip_blocked
     problem.search_until = perf_counter() + max(0.0, remaining_time() - 0.15)
     try:
         root_plan = problem.initial(routes)
@@ -1046,6 +1056,8 @@ def solve_fleet_mcts(origins: dict[int, VehicleState], routes: dict[int, tuple[A
         raise PlanningDeadlineExceeded from error
     root_criticality = []
     best = root_plan
+    if compute_gate is not None:
+        compute_gate.observe(best.score)
     root = _Node(root_plan, 0)
     rng = Random(seed)
     policy_usage = {policy: 0 for policy in ROLLOUT_POLICIES}
@@ -1060,6 +1072,8 @@ def solve_fleet_mcts(origins: dict[int, VehicleState], routes: dict[int, tuple[A
     try:
         root_criticality = problem._criticality(root_plan.sequences)
         for iteration in range(iterations):
+            if compute_gate is not None and compute_gate.should_stop(completed):
+                break
             iteration_started = perf_counter()
             phase_service = bool(root.plan.score[0])
             check_deadline()
@@ -1112,6 +1126,8 @@ def solve_fleet_mcts(origins: dict[int, VehicleState], routes: dict[int, tuple[A
                     else:
                         objective_only_improvements += 1
                     best = rollout
+                    if compute_gate is not None:
+                        compute_gate.observe(best.score)
                     tree_improvements += 1
                 value = problem.value(rollout)
                 signature = first_control_signature(problem, rollout)

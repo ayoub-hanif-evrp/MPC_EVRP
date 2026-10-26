@@ -17,7 +17,8 @@ def create_optimizer(name, config):
                                depth=config.fleet_mcts_depth,
                                branch_limit=config.fleet_mcts_branch_limit,
                                position_limit=config.candidate_position_limit,
-                               regret_k=config.rollout_regret_k)
+                               regret_k=config.rollout_regret_k,
+                               rollout_skip_blocked=getattr(config, "mcts_rollout_policy", "original") == "skip_blocked_v1")
     if name == "MPC_ALNS":
         return ALNSOptimizer(iterations=config.lns_iterations,
                              destroy_fraction=config.lns_destroy_fraction,

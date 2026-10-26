@@ -29,6 +29,7 @@ class OptimizationContext:
     deadline: float | None
     seed: int
     mpc: MPCConfig
+    compute_gate: object | None = None
 
     def __post_init__(self):
         for field_name in ("origins", "busy_actions", "soft_suffixes", "constructor_routes"):
