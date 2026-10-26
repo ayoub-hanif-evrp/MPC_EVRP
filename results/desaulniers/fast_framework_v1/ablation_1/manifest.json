@@ -1,0 +1,276 @@
+{
+  "protocol_identifier": "9fc29d2ad08797240133ca9627035f930ce8606a0cfb0f54293893ea433c1deb",
+  "records": [
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.run_fast_ablation",
+          "--worker",
+          "MPC_HGS",
+          "original"
+        ],
+        "cpu_seconds": 149.1875,
+        "cpu_to_wall": 0.9852618641093426,
+        "elapsed_seconds": 151.4191357998643,
+        "id": "MPC_HGS_original",
+        "log": "results/desaulniers/fast_framework_v1/ablation_1/logs/MPC_HGS_original.log",
+        "pid": 28108,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T16:16:18.937518+00:00",
+        "status": "complete",
+        "upper_seconds": 310.89240400027484
+      },
+      "id": "MPC_HGS_original",
+      "raw": "results/desaulniers/fast_framework_v1/ablation_1/raw/MPC_HGS_original.json.gz",
+      "sha256": "de8676acb0296382025b709fcac5f0783033173d7f22ee59ca2b8e0130b4eb9b"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.run_fast_ablation",
+          "--worker",
+          "MPC_HGS",
+          "fast_only"
+        ],
+        "cpu_seconds": 75.6875,
+        "cpu_to_wall": 0.9846023644632035,
+        "elapsed_seconds": 76.87113370001316,
+        "id": "MPC_HGS_fast_only",
+        "log": "results/desaulniers/fast_framework_v1/ablation_1/logs/MPC_HGS_fast_only.log",
+        "pid": 34048,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T16:18:50.417524+00:00",
+        "status": "complete",
+        "upper_seconds": 310.89240400027484
+      },
+      "id": "MPC_HGS_fast_only",
+      "raw": "results/desaulniers/fast_framework_v1/ablation_1/raw/MPC_HGS_fast_only.json.gz",
+      "sha256": "e2b7ce84bc10e6218d9ac3d72016717ce58dd1d203f772e7a3be7407bf1a389d"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.run_fast_ablation",
+          "--worker",
+          "MPC_HGS",
+          "adaptive_only"
+        ],
+        "cpu_seconds": 143.515625,
+        "cpu_to_wall": 0.9585953681578611,
+        "elapsed_seconds": 149.71449870010838,
+        "id": "MPC_HGS_adaptive_only",
+        "log": "results/desaulniers/fast_framework_v1/ablation_1/logs/MPC_HGS_adaptive_only.log",
+        "pid": 7520,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T16:20:07.337020+00:00",
+        "status": "complete",
+        "upper_seconds": 310.89240400027484
+      },
+      "id": "MPC_HGS_adaptive_only",
+      "raw": "results/desaulniers/fast_framework_v1/ablation_1/raw/MPC_HGS_adaptive_only.json.gz",
+      "sha256": "e9511a651b629c257e6c8aa2c64264cc004ebc2c1d1b00592623e450f1ec66bc"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.run_fast_ablation",
+          "--worker",
+          "MPC_HGS",
+          "guard_only"
+        ],
+        "cpu_seconds": 142.140625,
+        "cpu_to_wall": 0.9875179036171634,
+        "elapsed_seconds": 143.93726379983127,
+        "id": "MPC_HGS_guard_only",
+        "log": "results/desaulniers/fast_framework_v1/ablation_1/logs/MPC_HGS_guard_only.log",
+        "pid": 27064,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T16:22:37.121905+00:00",
+        "status": "complete",
+        "upper_seconds": 310.89240400027484
+      },
+      "id": "MPC_HGS_guard_only",
+      "raw": "results/desaulniers/fast_framework_v1/ablation_1/raw/MPC_HGS_guard_only.json.gz",
+      "sha256": "3016771a6a0ee78cf287b87621cbcbc3db5e2a57083a2afc0df0ca899a656999"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.run_fast_ablation",
+          "--worker",
+          "MPC_HGS",
+          "combined"
+        ],
+        "cpu_seconds": 120.171875,
+        "cpu_to_wall": 0.9870079915551827,
+        "elapsed_seconds": 121.75370009988546,
+        "id": "MPC_HGS_combined",
+        "log": "results/desaulniers/fast_framework_v1/ablation_1/logs/MPC_HGS_combined.log",
+        "pid": 32984,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T16:25:01.104376+00:00",
+        "status": "complete",
+        "upper_seconds": 310.89240400027484
+      },
+      "id": "MPC_HGS_combined",
+      "raw": "results/desaulniers/fast_framework_v1/ablation_1/raw/MPC_HGS_combined.json.gz",
+      "sha256": "7df2264f24f8600e20bd3d2a18bf9fc12c0041e85584b724e7451427a718fc7c"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.run_fast_ablation",
+          "--worker",
+          "MPC_ACS",
+          "original"
+        ],
+        "cpu_seconds": 255.65625,
+        "cpu_to_wall": 0.9881454991755646,
+        "elapsed_seconds": 258.72328540007584,
+        "id": "MPC_ACS_original",
+        "log": "results/desaulniers/fast_framework_v1/ablation_1/logs/MPC_ACS_original.log",
+        "pid": 21484,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T16:27:02.899965+00:00",
+        "status": "complete",
+        "upper_seconds": 532.8106471998617
+      },
+      "id": "MPC_ACS_original",
+      "raw": "results/desaulniers/fast_framework_v1/ablation_1/raw/MPC_ACS_original.json.gz",
+      "sha256": "70295910765d6946311f537ec7df4cf8d82aa2296da7d2113b0586f00be3933c"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.run_fast_ablation",
+          "--worker",
+          "MPC_ACS",
+          "fast_only"
+        ],
+        "cpu_seconds": 229.65625,
+        "cpu_to_wall": 0.9879881726757599,
+        "elapsed_seconds": 232.44837979995646,
+        "id": "MPC_ACS_fast_only",
+        "log": "results/desaulniers/fast_framework_v1/ablation_1/logs/MPC_ACS_fast_only.log",
+        "pid": 33828,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T16:31:21.680265+00:00",
+        "status": "complete",
+        "upper_seconds": 532.8106471998617
+      },
+      "id": "MPC_ACS_fast_only",
+      "raw": "results/desaulniers/fast_framework_v1/ablation_1/raw/MPC_ACS_fast_only.json.gz",
+      "sha256": "93362e7b9903da694909c09c2be45a62fe8b36cea8beb390b92a9e3e54cb497c"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.run_fast_ablation",
+          "--worker",
+          "MPC_ACS",
+          "adaptive_only"
+        ],
+        "cpu_seconds": 264.921875,
+        "cpu_to_wall": 0.9885290419711152,
+        "elapsed_seconds": 267.9960464001633,
+        "id": "MPC_ACS_adaptive_only",
+        "log": "results/desaulniers/fast_framework_v1/ablation_1/logs/MPC_ACS_adaptive_only.log",
+        "pid": 31664,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T16:35:14.167936+00:00",
+        "status": "complete",
+        "upper_seconds": 532.8106471998617
+      },
+      "id": "MPC_ACS_adaptive_only",
+      "raw": "results/desaulniers/fast_framework_v1/ablation_1/raw/MPC_ACS_adaptive_only.json.gz",
+      "sha256": "b43b0f6dd47a0e8d38ae9a98bdde797c5987186558e9c579432cb7fc536af451"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.run_fast_ablation",
+          "--worker",
+          "MPC_ACS",
+          "guard_only"
+        ],
+        "cpu_seconds": 253.03125,
+        "cpu_to_wall": 0.9882715702000989,
+        "elapsed_seconds": 256.03412830014713,
+        "id": "MPC_ACS_guard_only",
+        "log": "results/desaulniers/fast_framework_v1/ablation_1/logs/MPC_ACS_guard_only.log",
+        "pid": 30000,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T16:39:42.219944+00:00",
+        "status": "complete",
+        "upper_seconds": 532.8106471998617
+      },
+      "id": "MPC_ACS_guard_only",
+      "raw": "results/desaulniers/fast_framework_v1/ablation_1/raw/MPC_ACS_guard_only.json.gz",
+      "sha256": "40e1d753c4de2c0279a9da448cf4b7406845957bbfd30f587df2a9d994d525ff"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.run_fast_ablation",
+          "--worker",
+          "MPC_ACS",
+          "combined"
+        ],
+        "cpu_seconds": 246.296875,
+        "cpu_to_wall": 0.9860795343674468,
+        "elapsed_seconds": 249.77384320017882,
+        "id": "MPC_ACS_combined",
+        "log": "results/desaulniers/fast_framework_v1/ablation_1/logs/MPC_ACS_combined.log",
+        "pid": 30044,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T16:43:58.304845+00:00",
+        "status": "complete",
+        "upper_seconds": 532.8106471998617
+      },
+      "id": "MPC_ACS_combined",
+      "raw": "results/desaulniers/fast_framework_v1/ablation_1/raw/MPC_ACS_combined.json.gz",
+      "sha256": "c64525864a240a061e860d5523e18a58c0dad989b8cc4802cdd424e7b94420aa"
+    }
+  ],
+  "status": "complete"
+}

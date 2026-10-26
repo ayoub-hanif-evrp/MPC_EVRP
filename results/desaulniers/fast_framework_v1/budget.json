@@ -1,0 +1,50 @@
+{
+  "charged_seconds": 2.1036527000833303,
+  "jobs": [
+    {
+      "command": [
+        "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "-u",
+        "-m",
+        "scripts.fast_framework_worker",
+        "micro",
+        "0",
+        "MPC_COMPLETION",
+        "enhanced"
+      ],
+      "cpu_seconds": 0.8125,
+      "cpu_to_wall": 0.7651419232831974,
+      "elapsed_seconds": 1.0618944999296218,
+      "id": "micro_0_MPC_COMPLETION_enhanced",
+      "log": "results/desaulniers/fast_framework_v1/logs/micro_0_MPC_COMPLETION_enhanced.log",
+      "pid": 35260,
+      "reason": null,
+      "returncode": 1,
+      "started_utc": "2026-10-26T15:40:52.145267+00:00",
+      "status": "failed",
+      "upper_seconds": 45
+    },
+    {
+      "command": [
+        "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "-u",
+        "-m",
+        "scripts.report_fast_framework"
+      ],
+      "cpu_seconds": 0.71875,
+      "cpu_to_wall": 0.7112757718251775,
+      "elapsed_seconds": 1.0105082001537085,
+      "id": "report_0",
+      "log": "results/desaulniers/fast_framework_v1/logs/report_0.log",
+      "pid": 26248,
+      "reason": null,
+      "returncode": 0,
+      "started_utc": "2026-10-26T15:40:53.214928+00:00",
+      "status": "complete",
+      "upper_seconds": 120
+    }
+  ],
+  "limit_seconds": 7200,
+  "orchestration_cpu_seconds": 0.03125,
+  "policy": "Charge max(worker elapsed, worker CPU); no automatic retry; hard per-job and campaign limits"
+}

@@ -64,6 +64,19 @@ admission, per-worker watchdogs, hash-verified checkpoints and no silent retry.
 It never resumes Reliability V2 or automatically starts a holdout. Execution
 source and reproduction commands are recorded in the consolidated report.
 
+The [fast-framework development report](results/desaulniers/fast_framework_v1/FINAL_REPORT.md)
+evaluates an optional faster shared screen/cache, conservative adaptive search
+stopping, an urgent service guard, and a separately labeled MCTS rollout fix.
+All five methods were compared on three matched 25/50/100-customer development
+cases under a cumulative two-hour execution allowance. The combined variant
+reduced CPU but HGS served 99 instead of 100 on the 100-customer case; the
+predeclared gate therefore skipped additional-parent confirmation. A controlled
+[HGS/ACS component ablation](results/desaulniers/fast_framework_v1/ablation_1/REPORT.md)
+also found service losses with fast evaluation alone. **All enhancements remain
+opt-in; the original publication configuration and results are unchanged.**
+The complete suite passes 393/393 tests when Windows filesystem and pipe
+permissions allow the test runner to create its temporary resources.
+
 ## Active benchmark
 
 The active static source is the [Desaulniers et al. (2016) EVRPTW bundle](https://doi.org/10.1287/opre.2016.1535)

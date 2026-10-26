@@ -167,6 +167,8 @@ logs/
 !/results/desaulniers/fast_framework_v1/**/*.json.gz
 !/results/desaulniers/fast_framework_v1/**/*.md
 !/results/desaulniers/fast_framework_v1/**/*.png
+!/results/desaulniers/fast_framework_v1/**/*.log
+/results/desaulniers/fast_framework_v1/tmp_*/
 !/results/desaulniers/robustness_v2/raw/*.json.gz
 /results/.pytest_work/
 /results/t[0-9]*/

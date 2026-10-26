@@ -1,0 +1,15 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\Users\AYOUB\OneDrive - EMSI\Bureau\PHD_WORK\MPC_MCTS_Multi_agents_EVRP\scripts\fast_framework_worker.py", line 118, in <module>
+    worker(args.kind, args.index, args.method, args.variant)
+  File "C:\Users\AYOUB\OneDrive - EMSI\Bureau\PHD_WORK\MPC_MCTS_Multi_agents_EVRP\scripts\fast_framework_worker.py", line 86, in worker
+    record["fixed_work"] = micro(protocol, index)
+                           ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\AYOUB\OneDrive - EMSI\Bureau\PHD_WORK\MPC_MCTS_Multi_agents_EVRP\scripts\fast_framework_worker.py", line 34, in micro
+    origins, observation, routes, sequences = corpus(protocol, index, instance)
+                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\AYOUB\OneDrive - EMSI\Bureau\PHD_WORK\MPC_MCTS_Multi_agents_EVRP\scripts\performance_engineering_worker.py", line 56, in corpus
+    decision = decisions[protocol["config"]["micro_root_index"]]
+                         ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+KeyError: 'micro_root_index'
