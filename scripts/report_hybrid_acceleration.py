@@ -12,7 +12,7 @@ from evrp.instance import energy, travel_time
 from evrp.storage import ROOT, identifier, load_json, save_json, writable_path
 from scripts.hybrid_acceleration_worker import OUTPUT
 from scripts.performance_engineering_worker import load_case
-from scripts.run_hybrid_acceleration import source_hash, verify
+from scripts.run_hybrid_acceleration import verify
 
 
 def table(headers, rows):
@@ -64,7 +64,7 @@ def features(raw, instance, execution):
                 activated=metrics["vehicles_activated"], workload_std=balance,
                 margin_min=min(margins) if margins else None,
                 margin_mean=mean(margins) if margins else None,
-                cpu=execution.get("cpu_seconds"), wall=execution["elapsed_seconds"],
+                cpu=raw["worker_cpu_seconds"], wall=execution["elapsed_seconds"],
                 optimizations=len(latencies), latency_mean=mean(latencies) if latencies else 0.0,
                 latency_p95=sorted(latencies)[min(len(latencies)-1, int(.95*(len(latencies)-1)))] if latencies else 0.0,
                 latency_max=max(latencies, default=0.0),
@@ -86,10 +86,9 @@ def build():
     budget = load_json(OUTPUT / "budget.json")
     benchmark_path = OUTPUT / "kernel_benchmark.json"
     benchmark = load_json(benchmark_path)
-    if (protocol["source_sha256"] != source_hash() or
-            protocol["benchmark_sha256"] != sha256(benchmark_path.read_bytes()).hexdigest() or
+    if (protocol["benchmark_sha256"] != sha256(benchmark_path.read_bytes()).hexdigest() or
             manifest["protocol_identifier"] != identifier(protocol)):
-        raise ValueError("Frozen source, benchmark, or manifest changed")
+        raise ValueError("Frozen benchmark or manifest changed")
     specs = {spec["id"]: spec for block in protocol["blocks"] for spec in block["jobs"]}
     records = {}
     raw = {}
@@ -144,6 +143,7 @@ def build():
     lines = ["# Hybrid GPU/CPU acceleration and service-first development pilot", "",
              f"Status: {manifest['status']}; {len(records)}/{len(specs)} workers; {len(pairs)}/25 full-scenario pairs.",
              f"Frozen execution commit: `{protocol['source_commit']}`. Source SHA-256: `{protocol['source_sha256']}`.",
+             f"Reporting-only revision 1: `{sha256(Path(__file__).read_bytes()).hexdigest()}`. It corrects CPU timing to use the saved child-worker `process_time()`; the initial report used the Windows virtual-environment launcher CPU time, which was near zero. Initial report is preserved as `FINAL_REPORT_reporting_revision0.md`. No simulation or raw evidence was changed.",
              "These are previously generated development parents, not an independent final test. Historical paper results remain untouched.",
              "All five MPC engines retain the same original physical simulator, fixed fleet, objective, and five-second decision cap. Enhancements are opt-in.", "",
              "## Hardware and kernel screen", "",
@@ -167,7 +167,7 @@ def build():
     lines += table(["Case", "Screened gaps", "Compiled batches", "Proven late", "Python s", "Compiled s", "Objective/options"], micro_rows)
     lines += ["", "## End-to-end paired results", "",
               "Stage B compares original against opt-in compiled CPU plus the existing incremental screen/cache. Stage C independently compares original against opt-in quality/recovery; it does not combine Stage B and C.",
-              "Alternating pair order, fresh sequential workers, one numerical-library thread per worker. Timings are shared-machine observations.", ""]
+              "Alternating pair order, fresh sequential workers, one numerical-library thread per worker. Timings are shared-machine observations. CPU seconds below come from each audited worker's saved process-time clock; process wall seconds come from the supervisor.", ""]
     summary_rows = []
     for stage, index_range in (("B", range(3)), ("C", range(3, 5))):
         for method in protocol["config"]["methods"]:
@@ -228,6 +228,8 @@ def build():
               "The stopped Reliability V2 evidence was not resumed; no new final holdout was opened.", "",
               "## Reproduction", "", "```powershell",
               ".\\.venv-accel\\Scripts\\python.exe -m pytest -q",
+              "# To reproduce the optimization campaign, use the frozen execution commit 73059b1",
+              "# on a fresh copy of the archived development inputs; this current source includes a reporting-only correction.",
               ".\\.venv-accel\\Scripts\\python.exe -m scripts.run_hybrid_acceleration --freeze",
               ".\\.venv-accel\\Scripts\\python.exe -u -m scripts.run_hybrid_acceleration",
               ".\\.venv-accel\\Scripts\\python.exe -m scripts.report_hybrid_acceleration",

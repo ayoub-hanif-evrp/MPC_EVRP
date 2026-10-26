@@ -77,6 +77,20 @@ opt-in; the original publication configuration and results are unchanged.**
 The complete suite passes 393/393 tests when Windows filesystem and pipe
 permissions allow the test runner to create its temporary resources.
 
+The [hybrid acceleration and quality development report](results/desaulniers/hybrid_acceleration_v1/FINAL_REPORT.md)
+records 53 bounded workers, 25 matched pairs across all five methods, and 50
+independently replayed full scenarios. The RTX A2000 lost to compiled CPU on
+representative insertion batches once transfers and synchronization were included,
+so the GPU is not used in MPC. Opt-in compiled screening reduced aggregate pilot
+CPU time but lost one served customer each for HGS and ACS on the 100-customer
+case. The separate shared quality/recovery policy produced no service gain and
+lost one customer for HGS on a 50-customer case. Six equal-service pairs had
+shorter distance, but this small development pilot does not justify promotion;
+**the original configuration remains the default**. The report documents a
+reporting-only correction from Windows launcher CPU time to saved worker CPU time.
+All 396 tests passed before the frozen run. The stopped Reliability V2 campaign
+and the original publication results remain untouched; no new holdout was opened.
+
 ## Active benchmark
 
 The active static source is the [Desaulniers et al. (2016) EVRPTW bundle](https://doi.org/10.1287/opre.2016.1535)

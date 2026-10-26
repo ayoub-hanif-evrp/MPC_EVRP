@@ -1,0 +1,1543 @@
+{
+  "protocol_identifier": "3c738161a636a0494e03875c5121fe1027477c4badcb7627e55b9dbe75886e05",
+  "records": [
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\.venv-accel\\Scripts\\python.exe",
+          "-u",
+          "-m",
+          "scripts.hybrid_acceleration_worker",
+          "micro",
+          "0",
+          "MPC_COMPLETION",
+          "compiled_cpu_v1"
+        ],
+        "cpu_seconds": 0.015625,
+        "cpu_to_wall": 0.011818624169230612,
+        "elapsed_seconds": 1.322065900079906,
+        "id": "r1_micro_0_MPC_COMPLETION_compiled_cpu_v1",
+        "log": "results/desaulniers/hybrid_acceleration_v1/logs/r1_micro_0_MPC_COMPLETION_compiled_cpu_v1.log",
+        "pid": 18972,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T18:30:31.979193+00:00",
+        "status": "complete",
+        "upper_seconds": 30
+      },
+      "id": "r1_micro_0_MPC_COMPLETION_compiled_cpu_v1",
+      "kind": "micro",
+      "raw": "results/desaulniers/hybrid_acceleration_v1/raw/r1_micro_0_MPC_COMPLETION_compiled_cpu_v1.json.gz",
+      "sha256": "9a7a14fb844b725a6cbb3f10a83b55be63419508c4a427def37f77f3a406ca06"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\.venv-accel\\Scripts\\python.exe",
+          "-u",
+          "-m",
+          "scripts.hybrid_acceleration_worker",
+          "micro",
+          "1",
+          "MPC_COMPLETION",
+          "compiled_cpu_v1"
+        ],
+        "cpu_seconds": 0.0,
+        "cpu_to_wall": 0.0,
+        "elapsed_seconds": 1.3149192000273615,
+        "id": "r1_micro_1_MPC_COMPLETION_compiled_cpu_v1",
+        "log": "results/desaulniers/hybrid_acceleration_v1/logs/r1_micro_1_MPC_COMPLETION_compiled_cpu_v1.log",
+        "pid": 2380,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T18:30:33.307636+00:00",
+        "status": "complete",
+        "upper_seconds": 30
+      },
+      "id": "r1_micro_1_MPC_COMPLETION_compiled_cpu_v1",
+      "kind": "micro",
+      "raw": "results/desaulniers/hybrid_acceleration_v1/raw/r1_micro_1_MPC_COMPLETION_compiled_cpu_v1.json.gz",
+      "sha256": "ea236d8da5f88a1542cd40707affaf81bc4c0a2b0ee8213f9a60979906de7b75"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\.venv-accel\\Scripts\\python.exe",
+          "-u",
+          "-m",
+          "scripts.hybrid_acceleration_worker",
+          "micro",
+          "2",
+          "MPC_COMPLETION",
+          "compiled_cpu_v1"
+        ],
+        "cpu_seconds": 0.0,
+        "cpu_to_wall": 0.0,
+        "elapsed_seconds": 1.4133611998986453,
+        "id": "r1_micro_2_MPC_COMPLETION_compiled_cpu_v1",
+        "log": "results/desaulniers/hybrid_acceleration_v1/logs/r1_micro_2_MPC_COMPLETION_compiled_cpu_v1.log",
+        "pid": 27848,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T18:30:34.639714+00:00",
+        "status": "complete",
+        "upper_seconds": 30
+      },
+      "id": "r1_micro_2_MPC_COMPLETION_compiled_cpu_v1",
+      "kind": "micro",
+      "raw": "results/desaulniers/hybrid_acceleration_v1/raw/r1_micro_2_MPC_COMPLETION_compiled_cpu_v1.json.gz",
+      "sha256": "d4b378b77dcd4340f0b1f142d93bc21a6b4f010b5e38bba774eef34d1598539c"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\.venv-accel\\Scripts\\python.exe",
+          "-u",
+          "-m",
+          "scripts.hybrid_acceleration_worker",
+          "scenario",
+          "0",
+          "MPC_COMPLETION",
+          "original"
+        ],
+        "cpu_seconds": 0.015625,
+        "cpu_to_wall": 0.013408071858309703,
+        "elapsed_seconds": 1.1653427998535335,
+        "id": "r1_scenario_0_MPC_COMPLETION_original",
+        "log": "results/desaulniers/hybrid_acceleration_v1/logs/r1_scenario_0_MPC_COMPLETION_original.log",
+        "pid": 3296,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T18:30:36.070984+00:00",
+        "status": "complete",
+        "upper_seconds": 45
+      },
+      "id": "r1_scenario_0_MPC_COMPLETION_original",
+      "kind": "scenario",
+      "raw": "results/desaulniers/hybrid_acceleration_v1/raw/r1_scenario_0_MPC_COMPLETION_original.json.gz",
+      "sha256": "4409b5c95fd73bc1966aa8a1fc790d3dc36877231979cef8ed41dc9a61273f03"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\.venv-accel\\Scripts\\python.exe",
+          "-u",
+          "-m",
+          "scripts.hybrid_acceleration_worker",
+          "scenario",
+          "0",
+          "MPC_COMPLETION",
+          "compiled_cpu_v1"
+        ],
+        "cpu_seconds": 0.0,
+        "cpu_to_wall": 0.0,
+        "elapsed_seconds": 1.4652329001110047,
+        "id": "r1_scenario_0_MPC_COMPLETION_compiled_cpu_v1",
+        "log": "results/desaulniers/hybrid_acceleration_v1/logs/r1_scenario_0_MPC_COMPLETION_compiled_cpu_v1.log",
+        "pid": 11044,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T18:30:37.249302+00:00",
+        "status": "complete",
+        "upper_seconds": 45
+      },
+      "id": "r1_scenario_0_MPC_COMPLETION_compiled_cpu_v1",
+      "kind": "scenario",
+      "raw": "results/desaulniers/hybrid_acceleration_v1/raw/r1_scenario_0_MPC_COMPLETION_compiled_cpu_v1.json.gz",
+      "sha256": "ab2aaa148c3a39af7922c0658133298f8adf28a572915c34156b7b45cd591fdd"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\.venv-accel\\Scripts\\python.exe",
+          "-u",
+          "-m",
+          "scripts.hybrid_acceleration_worker",
+          "scenario",
+          "0",
+          "MPC_MCTS",
+          "compiled_cpu_v1"
+        ],
+        "cpu_seconds": 0.0,
+        "cpu_to_wall": 0.0,
+        "elapsed_seconds": 6.007173900026828,
+        "id": "r1_scenario_0_MPC_MCTS_compiled_cpu_v1",
+        "log": "results/desaulniers/hybrid_acceleration_v1/logs/r1_scenario_0_MPC_MCTS_compiled_cpu_v1.log",
+        "pid": 14868,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T18:30:38.733112+00:00",
+        "status": "complete",
+        "upper_seconds": 45
+      },
+      "id": "r1_scenario_0_MPC_MCTS_compiled_cpu_v1",
+      "kind": "scenario",
+      "raw": "results/desaulniers/hybrid_acceleration_v1/raw/r1_scenario_0_MPC_MCTS_compiled_cpu_v1.json.gz",
+      "sha256": "8b7d5d751aef675ea583f13b11ce0434b9d90ba4fae1531104fb61464bd7c0f6"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\.venv-accel\\Scripts\\python.exe",
+          "-u",
+          "-m",
+          "scripts.hybrid_acceleration_worker",
+          "scenario",
+          "0",
+          "MPC_MCTS",
+          "original"
+        ],
+        "cpu_seconds": 0.0,
+        "cpu_to_wall": 0.0,
+        "elapsed_seconds": 9.03300300007686,
+        "id": "r1_scenario_0_MPC_MCTS_original",
+        "log": "results/desaulniers/hybrid_acceleration_v1/logs/r1_scenario_0_MPC_MCTS_original.log",
+        "pid": 9892,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T18:30:44.761464+00:00",
+        "status": "complete",
+        "upper_seconds": 45
+      },
+      "id": "r1_scenario_0_MPC_MCTS_original",
+      "kind": "scenario",
+      "raw": "results/desaulniers/hybrid_acceleration_v1/raw/r1_scenario_0_MPC_MCTS_original.json.gz",
+      "sha256": "7e6ec9b3e0341b1031b59d8d037cdb79a1a1eaf56e20136ce40ee4d3081168a0"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\.venv-accel\\Scripts\\python.exe",
+          "-u",
+          "-m",
+          "scripts.hybrid_acceleration_worker",
+          "scenario",
+          "0",
+          "MPC_ALNS",
+          "original"
+        ],
+        "cpu_seconds": 0.015625,
+        "cpu_to_wall": 0.004618358235608476,
+        "elapsed_seconds": 3.383236899971962,
+        "id": "r1_scenario_0_MPC_ALNS_original",
+        "log": "results/desaulniers/hybrid_acceleration_v1/logs/r1_scenario_0_MPC_ALNS_original.log",
+        "pid": 35508,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T18:30:53.831534+00:00",
+        "status": "complete",
+        "upper_seconds": 45
+      },
+      "id": "r1_scenario_0_MPC_ALNS_original",
+      "kind": "scenario",
+      "raw": "results/desaulniers/hybrid_acceleration_v1/raw/r1_scenario_0_MPC_ALNS_original.json.gz",
+      "sha256": "dfe7f0c0374a1bb88ef8674044bac11585a21cba7ee6b1dab38a160ef836d574"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\.venv-accel\\Scripts\\python.exe",
+          "-u",
+          "-m",
+          "scripts.hybrid_acceleration_worker",
+          "scenario",
+          "0",
+          "MPC_ALNS",
+          "compiled_cpu_v1"
+        ],
+        "cpu_seconds": 0.0,
+        "cpu_to_wall": 0.0,
+        "elapsed_seconds": 2.7763036999385804,
+        "id": "r1_scenario_0_MPC_ALNS_compiled_cpu_v1",
+        "log": "results/desaulniers/hybrid_acceleration_v1/logs/r1_scenario_0_MPC_ALNS_compiled_cpu_v1.log",
+        "pid": 21852,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T18:30:57.231489+00:00",
+        "status": "complete",
+        "upper_seconds": 45
+      },
+      "id": "r1_scenario_0_MPC_ALNS_compiled_cpu_v1",
+      "kind": "scenario",
+      "raw": "results/desaulniers/hybrid_acceleration_v1/raw/r1_scenario_0_MPC_ALNS_compiled_cpu_v1.json.gz",
+      "sha256": "dbcb1f20825636718e94d76c3f493b4f5465a91dcd150a411c7402b76f3da0cf"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\.venv-accel\\Scripts\\python.exe",
+          "-u",
+          "-m",
+          "scripts.hybrid_acceleration_worker",
+          "scenario",
+          "0",
+          "MPC_HGS",
+          "compiled_cpu_v1"
+        ],
+        "cpu_seconds": 0.0,
+        "cpu_to_wall": 0.0,
+        "elapsed_seconds": 9.129012600053102,
+        "id": "r1_scenario_0_MPC_HGS_compiled_cpu_v1",
+        "log": "results/desaulniers/hybrid_acceleration_v1/logs/r1_scenario_0_MPC_HGS_compiled_cpu_v1.log",
+        "pid": 7556,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T18:31:00.026099+00:00",
+        "status": "complete",
+        "upper_seconds": 45
+      },
+      "id": "r1_scenario_0_MPC_HGS_compiled_cpu_v1",
+      "kind": "scenario",
+      "raw": "results/desaulniers/hybrid_acceleration_v1/raw/r1_scenario_0_MPC_HGS_compiled_cpu_v1.json.gz",
+      "sha256": "b4bdda42a0e0e81bba8d0b1cb761fb26d0b2169a0f4c2fea830b89fc26b67785"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\.venv-accel\\Scripts\\python.exe",
+          "-u",
+          "-m",
+          "scripts.hybrid_acceleration_worker",
+          "scenario",
+          "0",
+          "MPC_HGS",
+          "original"
+        ],
+        "cpu_seconds": 0.0,
+        "cpu_to_wall": 0.0,
+        "elapsed_seconds": 13.26541590015404,
+        "id": "r1_scenario_0_MPC_HGS_original",
+        "log": "results/desaulniers/hybrid_acceleration_v1/logs/r1_scenario_0_MPC_HGS_original.log",
+        "pid": 14136,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T18:31:09.189844+00:00",
+        "status": "complete",
+        "upper_seconds": 45
+      },
+      "id": "r1_scenario_0_MPC_HGS_original",
+      "kind": "scenario",
+      "raw": "results/desaulniers/hybrid_acceleration_v1/raw/r1_scenario_0_MPC_HGS_original.json.gz",
+      "sha256": "f484df0f9da8011b362d37a80db5255d9905987dda18b7bb541d3f38c74dc045"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\.venv-accel\\Scripts\\python.exe",
+          "-u",
+          "-m",
+          "scripts.hybrid_acceleration_worker",
+          "scenario",
+          "0",
+          "MPC_ACS",
+          "original"
+        ],
+        "cpu_seconds": 0.015625,
+        "cpu_to_wall": 0.00476273022926961,
+        "elapsed_seconds": 3.2806812999770045,
+        "id": "r1_scenario_0_MPC_ACS_original",
+        "log": "results/desaulniers/hybrid_acceleration_v1/logs/r1_scenario_0_MPC_ACS_original.log",
+        "pid": 23860,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T18:31:22.480560+00:00",
+        "status": "complete",
+        "upper_seconds": 45
+      },
+      "id": "r1_scenario_0_MPC_ACS_original",
+      "kind": "scenario",
+      "raw": "results/desaulniers/hybrid_acceleration_v1/raw/r1_scenario_0_MPC_ACS_original.json.gz",
+      "sha256": "ead03e75181cb966e335e92eeb35cca34c906d626daf6ff751aee2e414e07393"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\.venv-accel\\Scripts\\python.exe",
+          "-u",
+          "-m",
+          "scripts.hybrid_acceleration_worker",
+          "scenario",
+          "0",
+          "MPC_ACS",
+          "compiled_cpu_v1"
+        ],
+        "cpu_seconds": 0.0,
+        "cpu_to_wall": 0.0,
+        "elapsed_seconds": 2.926891300128773,
+        "id": "r1_scenario_0_MPC_ACS_compiled_cpu_v1",
+        "log": "results/desaulniers/hybrid_acceleration_v1/logs/r1_scenario_0_MPC_ACS_compiled_cpu_v1.log",
+        "pid": 25680,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T18:31:25.788252+00:00",
+        "status": "complete",
+        "upper_seconds": 45
+      },
+      "id": "r1_scenario_0_MPC_ACS_compiled_cpu_v1",
+      "kind": "scenario",
+      "raw": "results/desaulniers/hybrid_acceleration_v1/raw/r1_scenario_0_MPC_ACS_compiled_cpu_v1.json.gz",
+      "sha256": "3fd011839af613186d7b065fd7ed3388469b6da461acc115aa9aa23be5fe998e"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\.venv-accel\\Scripts\\python.exe",
+          "-u",
+          "-m",
+          "scripts.hybrid_acceleration_worker",
+          "scenario",
+          "1",
+          "MPC_COMPLETION",
+          "compiled_cpu_v1"
+        ],
+        "cpu_seconds": 0.0,
+        "cpu_to_wall": 0.0,
+        "elapsed_seconds": 2.2753449000883847,
+        "id": "r1_scenario_1_MPC_COMPLETION_compiled_cpu_v1",
+        "log": "results/desaulniers/hybrid_acceleration_v1/logs/r1_scenario_1_MPC_COMPLETION_compiled_cpu_v1.log",
+        "pid": 6356,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T18:31:28.742972+00:00",
+        "status": "complete",
+        "upper_seconds": 45
+      },
+      "id": "r1_scenario_1_MPC_COMPLETION_compiled_cpu_v1",
+      "kind": "scenario",
+      "raw": "results/desaulniers/hybrid_acceleration_v1/raw/r1_scenario_1_MPC_COMPLETION_compiled_cpu_v1.json.gz",
+      "sha256": "53f3b9012688935c2a78c40f9288a4833c50e2bd7674cc13be5cd28218504c9d"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\.venv-accel\\Scripts\\python.exe",
+          "-u",
+          "-m",
+          "scripts.hybrid_acceleration_worker",
+          "scenario",
+          "1",
+          "MPC_COMPLETION",
+          "original"
+        ],
+        "cpu_seconds": 0.0,
+        "cpu_to_wall": 0.0,
+        "elapsed_seconds": 1.9210824999026954,
+        "id": "r1_scenario_1_MPC_COMPLETION_original",
+        "log": "results/desaulniers/hybrid_acceleration_v1/logs/r1_scenario_1_MPC_COMPLETION_original.log",
+        "pid": 28204,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T18:31:31.055625+00:00",
+        "status": "complete",
+        "upper_seconds": 45
+      },
+      "id": "r1_scenario_1_MPC_COMPLETION_original",
+      "kind": "scenario",
+      "raw": "results/desaulniers/hybrid_acceleration_v1/raw/r1_scenario_1_MPC_COMPLETION_original.json.gz",
+      "sha256": "f2053249feadd67765a93d5779bc8e03faeb22e269f25a7f133bdec6169985f0"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\.venv-accel\\Scripts\\python.exe",
+          "-u",
+          "-m",
+          "scripts.hybrid_acceleration_worker",
+          "scenario",
+          "1",
+          "MPC_MCTS",
+          "original"
+        ],
+        "cpu_seconds": 0.0,
+        "cpu_to_wall": 0.0,
+        "elapsed_seconds": 193.6635464001447,
+        "id": "r1_scenario_1_MPC_MCTS_original",
+        "log": "results/desaulniers/hybrid_acceleration_v1/logs/r1_scenario_1_MPC_MCTS_original.log",
+        "pid": 19564,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T18:31:33.004409+00:00",
+        "status": "complete",
+        "upper_seconds": 339.7056183100096
+      },
+      "id": "r1_scenario_1_MPC_MCTS_original",
+      "kind": "scenario",
+      "raw": "results/desaulniers/hybrid_acceleration_v1/raw/r1_scenario_1_MPC_MCTS_original.json.gz",
+      "sha256": "05120a544a2f9e82492403ffb74399a13e9261d51ef24c4a698950214ac767e6"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\.venv-accel\\Scripts\\python.exe",
+          "-u",
+          "-m",
+          "scripts.hybrid_acceleration_worker",
+          "scenario",
+          "1",
+          "MPC_MCTS",
+          "compiled_cpu_v1"
+        ],
+        "cpu_seconds": 0.0,
+        "cpu_to_wall": 0.0,
+        "elapsed_seconds": 146.9267365001142,
+        "id": "r1_scenario_1_MPC_MCTS_compiled_cpu_v1",
+        "log": "results/desaulniers/hybrid_acceleration_v1/logs/r1_scenario_1_MPC_MCTS_compiled_cpu_v1.log",
+        "pid": 25772,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T18:34:46.705486+00:00",
+        "status": "complete",
+        "upper_seconds": 339.7056183100096
+      },
+      "id": "r1_scenario_1_MPC_MCTS_compiled_cpu_v1",
+      "kind": "scenario",
+      "raw": "results/desaulniers/hybrid_acceleration_v1/raw/r1_scenario_1_MPC_MCTS_compiled_cpu_v1.json.gz",
+      "sha256": "c28991576c2d9542511a808f6927d8ba160e5a169e454e9f5d97a2513a99745b"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\.venv-accel\\Scripts\\python.exe",
+          "-u",
+          "-m",
+          "scripts.hybrid_acceleration_worker",
+          "scenario",
+          "1",
+          "MPC_ALNS",
+          "compiled_cpu_v1"
+        ],
+        "cpu_seconds": 0.0,
+        "cpu_to_wall": 0.0,
+        "elapsed_seconds": 120.54000350018032,
+        "id": "r1_scenario_1_MPC_ALNS_compiled_cpu_v1",
+        "log": "results/desaulniers/hybrid_acceleration_v1/logs/r1_scenario_1_MPC_ALNS_compiled_cpu_v1.log",
+        "pid": 9112,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T18:37:13.672509+00:00",
+        "status": "complete",
+        "upper_seconds": 289.1702083300566
+      },
+      "id": "r1_scenario_1_MPC_ALNS_compiled_cpu_v1",
+      "kind": "scenario",
+      "raw": "results/desaulniers/hybrid_acceleration_v1/raw/r1_scenario_1_MPC_ALNS_compiled_cpu_v1.json.gz",
+      "sha256": "c8e75665fa6cde27f42a30b83d9cc12a8b407213df500db4dac679ffef3cb476"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\.venv-accel\\Scripts\\python.exe",
+          "-u",
+          "-m",
+          "scripts.hybrid_acceleration_worker",
+          "scenario",
+          "1",
+          "MPC_ALNS",
+          "original"
+        ],
+        "cpu_seconds": 0.0,
+        "cpu_to_wall": 0.0,
+        "elapsed_seconds": 147.71745040011592,
+        "id": "r1_scenario_1_MPC_ALNS_original",
+        "log": "results/desaulniers/hybrid_acceleration_v1/logs/r1_scenario_1_MPC_ALNS_original.log",
+        "pid": 12516,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T18:39:14.260906+00:00",
+        "status": "complete",
+        "upper_seconds": 289.1702083300566
+      },
+      "id": "r1_scenario_1_MPC_ALNS_original",
+      "kind": "scenario",
+      "raw": "results/desaulniers/hybrid_acceleration_v1/raw/r1_scenario_1_MPC_ALNS_original.json.gz",
+      "sha256": "8503cc846f11a1b9ebaedd169e8318c140751906694c7f7754c9b13706beb47a"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\.venv-accel\\Scripts\\python.exe",
+          "-u",
+          "-m",
+          "scripts.hybrid_acceleration_worker",
+          "scenario",
+          "1",
+          "MPC_HGS",
+          "original"
+        ],
+        "cpu_seconds": 0.015625,
+        "cpu_to_wall": 8.641674793098064e-05,
+        "elapsed_seconds": 180.8098589000292,
+        "id": "r1_scenario_1_MPC_HGS_original",
+        "log": "results/desaulniers/hybrid_acceleration_v1/logs/r1_scenario_1_MPC_HGS_original.log",
+        "pid": 25308,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T18:41:42.016946+00:00",
+        "status": "complete",
+        "upper_seconds": 353.99888016985494
+      },
+      "id": "r1_scenario_1_MPC_HGS_original",
+      "kind": "scenario",
+      "raw": "results/desaulniers/hybrid_acceleration_v1/raw/r1_scenario_1_MPC_HGS_original.json.gz",
+      "sha256": "ff2fbf76dc801aa141a5e1ce5c5f32654632b9cba757f4c0901e2d84e8d7384c"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\.venv-accel\\Scripts\\python.exe",
+          "-u",
+          "-m",
+          "scripts.hybrid_acceleration_worker",
+          "scenario",
+          "1",
+          "MPC_HGS",
+          "compiled_cpu_v1"
+        ],
+        "cpu_seconds": 0.0,
+        "cpu_to_wall": 0.0,
+        "elapsed_seconds": 162.2212559999898,
+        "id": "r1_scenario_1_MPC_HGS_compiled_cpu_v1",
+        "log": "results/desaulniers/hybrid_acceleration_v1/logs/r1_scenario_1_MPC_HGS_compiled_cpu_v1.log",
+        "pid": 23516,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T18:44:42.840581+00:00",
+        "status": "complete",
+        "upper_seconds": 353.99888016985494
+      },
+      "id": "r1_scenario_1_MPC_HGS_compiled_cpu_v1",
+      "kind": "scenario",
+      "raw": "results/desaulniers/hybrid_acceleration_v1/raw/r1_scenario_1_MPC_HGS_compiled_cpu_v1.json.gz",
+      "sha256": "319f4018ca2b619235642f6917bcbfe96962ed93b9e0d526674fe824e632b8ed"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\.venv-accel\\Scripts\\python.exe",
+          "-u",
+          "-m",
+          "scripts.hybrid_acceleration_worker",
+          "scenario",
+          "1",
+          "MPC_ACS",
+          "compiled_cpu_v1"
+        ],
+        "cpu_seconds": 0.0,
+        "cpu_to_wall": 0.0,
+        "elapsed_seconds": 40.58401190000586,
+        "id": "r1_scenario_1_MPC_ACS_compiled_cpu_v1",
+        "log": "results/desaulniers/hybrid_acceleration_v1/logs/r1_scenario_1_MPC_ACS_compiled_cpu_v1.log",
+        "pid": 20192,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T18:47:25.103587+00:00",
+        "status": "complete",
+        "upper_seconds": 157.45956884996266
+      },
+      "id": "r1_scenario_1_MPC_ACS_compiled_cpu_v1",
+      "kind": "scenario",
+      "raw": "results/desaulniers/hybrid_acceleration_v1/raw/r1_scenario_1_MPC_ACS_compiled_cpu_v1.json.gz",
+      "sha256": "6deeb729fe7e8b7a94897af5ec450e70c00c1ed54812f069b1491f3d9cd01d63"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\.venv-accel\\Scripts\\python.exe",
+          "-u",
+          "-m",
+          "scripts.hybrid_acceleration_worker",
+          "scenario",
+          "1",
+          "MPC_ACS",
+          "original"
+        ],
+        "cpu_seconds": 0.0,
+        "cpu_to_wall": 0.0,
+        "elapsed_seconds": 71.81440759985708,
+        "id": "r1_scenario_1_MPC_ACS_original",
+        "log": "results/desaulniers/hybrid_acceleration_v1/logs/r1_scenario_1_MPC_ACS_original.log",
+        "pid": 35204,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T18:48:05.707626+00:00",
+        "status": "complete",
+        "upper_seconds": 157.45956884996266
+      },
+      "id": "r1_scenario_1_MPC_ACS_original",
+      "kind": "scenario",
+      "raw": "results/desaulniers/hybrid_acceleration_v1/raw/r1_scenario_1_MPC_ACS_original.json.gz",
+      "sha256": "54160d8f14e6b77b8bdf54e8a5b51c3746f4d69dc151efc6fd712181959f70d2"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\.venv-accel\\Scripts\\python.exe",
+          "-u",
+          "-m",
+          "scripts.hybrid_acceleration_worker",
+          "scenario",
+          "2",
+          "MPC_COMPLETION",
+          "original"
+        ],
+        "cpu_seconds": 0.015625,
+        "cpu_to_wall": 0.004489917498869623,
+        "elapsed_seconds": 3.480019399896264,
+        "id": "r1_scenario_2_MPC_COMPLETION_original",
+        "log": "results/desaulniers/hybrid_acceleration_v1/logs/r1_scenario_2_MPC_COMPLETION_original.log",
+        "pid": 27380,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T18:49:17.548630+00:00",
+        "status": "complete",
+        "upper_seconds": 45
+      },
+      "id": "r1_scenario_2_MPC_COMPLETION_original",
+      "kind": "scenario",
+      "raw": "results/desaulniers/hybrid_acceleration_v1/raw/r1_scenario_2_MPC_COMPLETION_original.json.gz",
+      "sha256": "66b93137c726b4d28ed068d8a94b705665c90ff0be1853f858103c7d1ad5afb7"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\.venv-accel\\Scripts\\python.exe",
+          "-u",
+          "-m",
+          "scripts.hybrid_acceleration_worker",
+          "scenario",
+          "2",
+          "MPC_COMPLETION",
+          "compiled_cpu_v1"
+        ],
+        "cpu_seconds": 0.015625,
+        "cpu_to_wall": 0.005343042659206955,
+        "elapsed_seconds": 2.924363699974492,
+        "id": "r1_scenario_2_MPC_COMPLETION_compiled_cpu_v1",
+        "log": "results/desaulniers/hybrid_acceleration_v1/logs/r1_scenario_2_MPC_COMPLETION_compiled_cpu_v1.log",
+        "pid": 7012,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T18:49:21.066729+00:00",
+        "status": "complete",
+        "upper_seconds": 45
+      },
+      "id": "r1_scenario_2_MPC_COMPLETION_compiled_cpu_v1",
+      "kind": "scenario",
+      "raw": "results/desaulniers/hybrid_acceleration_v1/raw/r1_scenario_2_MPC_COMPLETION_compiled_cpu_v1.json.gz",
+      "sha256": "ad68b3dd46377716c740088c2721798fc22cc24c2e19057afb29821ea2d65ebb"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\.venv-accel\\Scripts\\python.exe",
+          "-u",
+          "-m",
+          "scripts.hybrid_acceleration_worker",
+          "scenario",
+          "2",
+          "MPC_MCTS",
+          "compiled_cpu_v1"
+        ],
+        "cpu_seconds": 0.0,
+        "cpu_to_wall": 0.0,
+        "elapsed_seconds": 24.379628299968317,
+        "id": "r1_scenario_2_MPC_MCTS_compiled_cpu_v1",
+        "log": "results/desaulniers/hybrid_acceleration_v1/logs/r1_scenario_2_MPC_MCTS_compiled_cpu_v1.log",
+        "pid": 2028,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T18:49:24.041185+00:00",
+        "status": "complete",
+        "upper_seconds": 81.52373754996806
+      },
+      "id": "r1_scenario_2_MPC_MCTS_compiled_cpu_v1",
+      "kind": "scenario",
+      "raw": "results/desaulniers/hybrid_acceleration_v1/raw/r1_scenario_2_MPC_MCTS_compiled_cpu_v1.json.gz",
+      "sha256": "28acdcfa39b69acdded75f323bd9578d2a0f85b9b0f3116de976029e8c59c700"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\.venv-accel\\Scripts\\python.exe",
+          "-u",
+          "-m",
+          "scripts.hybrid_acceleration_worker",
+          "scenario",
+          "2",
+          "MPC_MCTS",
+          "original"
+        ],
+        "cpu_seconds": 0.0,
+        "cpu_to_wall": 0.0,
+        "elapsed_seconds": 29.321332100080326,
+        "id": "r1_scenario_2_MPC_MCTS_original",
+        "log": "results/desaulniers/hybrid_acceleration_v1/logs/r1_scenario_2_MPC_MCTS_original.log",
+        "pid": 4852,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T18:49:48.474300+00:00",
+        "status": "complete",
+        "upper_seconds": 81.52373754996806
+      },
+      "id": "r1_scenario_2_MPC_MCTS_original",
+      "kind": "scenario",
+      "raw": "results/desaulniers/hybrid_acceleration_v1/raw/r1_scenario_2_MPC_MCTS_original.json.gz",
+      "sha256": "c6fabed05540d311c442e2a22732681141244e1d8c4e60bd08b23794a8a5b69c"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\.venv-accel\\Scripts\\python.exe",
+          "-u",
+          "-m",
+          "scripts.hybrid_acceleration_worker",
+          "scenario",
+          "2",
+          "MPC_ALNS",
+          "original"
+        ],
+        "cpu_seconds": 0.0,
+        "cpu_to_wall": 0.0,
+        "elapsed_seconds": 37.04993740003556,
+        "id": "r1_scenario_2_MPC_ALNS_original",
+        "log": "results/desaulniers/hybrid_acceleration_v1/logs/r1_scenario_2_MPC_ALNS_original.log",
+        "pid": 35164,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T18:50:17.840978+00:00",
+        "status": "complete",
+        "upper_seconds": 89.45464154984802
+      },
+      "id": "r1_scenario_2_MPC_ALNS_original",
+      "kind": "scenario",
+      "raw": "results/desaulniers/hybrid_acceleration_v1/raw/r1_scenario_2_MPC_ALNS_original.json.gz",
+      "sha256": "5333cfe4103a2d596d66a6bf787f2e9688db2d7cecb9b6a2e7507a6cf89ab0d2"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\.venv-accel\\Scripts\\python.exe",
+          "-u",
+          "-m",
+          "scripts.hybrid_acceleration_worker",
+          "scenario",
+          "2",
+          "MPC_ALNS",
+          "compiled_cpu_v1"
+        ],
+        "cpu_seconds": 0.0,
+        "cpu_to_wall": 0.0,
+        "elapsed_seconds": 26.328556000022218,
+        "id": "r1_scenario_2_MPC_ALNS_compiled_cpu_v1",
+        "log": "results/desaulniers/hybrid_acceleration_v1/logs/r1_scenario_2_MPC_ALNS_compiled_cpu_v1.log",
+        "pid": 20580,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T18:50:54.947037+00:00",
+        "status": "complete",
+        "upper_seconds": 89.45464154984802
+      },
+      "id": "r1_scenario_2_MPC_ALNS_compiled_cpu_v1",
+      "kind": "scenario",
+      "raw": "results/desaulniers/hybrid_acceleration_v1/raw/r1_scenario_2_MPC_ALNS_compiled_cpu_v1.json.gz",
+      "sha256": "028798fc26630ccafaee4366db7c95ecd1d22823194870a3569f98486b59a964"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\.venv-accel\\Scripts\\python.exe",
+          "-u",
+          "-m",
+          "scripts.hybrid_acceleration_worker",
+          "scenario",
+          "2",
+          "MPC_HGS",
+          "compiled_cpu_v1"
+        ],
+        "cpu_seconds": 0.015625,
+        "cpu_to_wall": 0.00011798184699970687,
+        "elapsed_seconds": 132.43562799994834,
+        "id": "r1_scenario_2_MPC_HGS_compiled_cpu_v1",
+        "log": "results/desaulniers/hybrid_acceleration_v1/logs/r1_scenario_2_MPC_HGS_compiled_cpu_v1.log",
+        "pid": 24932,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T18:51:21.315151+00:00",
+        "status": "complete",
+        "upper_seconds": 294.5251003099605
+      },
+      "id": "r1_scenario_2_MPC_HGS_compiled_cpu_v1",
+      "kind": "scenario",
+      "raw": "results/desaulniers/hybrid_acceleration_v1/raw/r1_scenario_2_MPC_HGS_compiled_cpu_v1.json.gz",
+      "sha256": "af1cebcec77732ac139def45da400517404200810994667749129d66b7232dd4"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\.venv-accel\\Scripts\\python.exe",
+          "-u",
+          "-m",
+          "scripts.hybrid_acceleration_worker",
+          "scenario",
+          "2",
+          "MPC_HGS",
+          "original"
+        ],
+        "cpu_seconds": 0.0,
+        "cpu_to_wall": 0.0,
+        "elapsed_seconds": 151.55735610006377,
+        "id": "r1_scenario_2_MPC_HGS_original",
+        "log": "results/desaulniers/hybrid_acceleration_v1/logs/r1_scenario_2_MPC_HGS_original.log",
+        "pid": 33104,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T18:53:33.802053+00:00",
+        "status": "complete",
+        "upper_seconds": 294.5251003099605
+      },
+      "id": "r1_scenario_2_MPC_HGS_original",
+      "kind": "scenario",
+      "raw": "results/desaulniers/hybrid_acceleration_v1/raw/r1_scenario_2_MPC_HGS_original.json.gz",
+      "sha256": "f873ca77d9eac5a7ec22c2a50d707e4f5e22ffbdbbdd4fd113bb6f223f825e99"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\.venv-accel\\Scripts\\python.exe",
+          "-u",
+          "-m",
+          "scripts.hybrid_acceleration_worker",
+          "scenario",
+          "2",
+          "MPC_ACS",
+          "original"
+        ],
+        "cpu_seconds": 0.0,
+        "cpu_to_wall": 0.0,
+        "elapsed_seconds": 275.8475732000079,
+        "id": "r1_scenario_2_MPC_ACS_original",
+        "log": "results/desaulniers/hybrid_acceleration_v1/logs/r1_scenario_2_MPC_ACS_original.log",
+        "pid": 1816,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T18:56:05.405235+00:00",
+        "status": "complete",
+        "upper_seconds": 500.58440875016385
+      },
+      "id": "r1_scenario_2_MPC_ACS_original",
+      "kind": "scenario",
+      "raw": "results/desaulniers/hybrid_acceleration_v1/raw/r1_scenario_2_MPC_ACS_original.json.gz",
+      "sha256": "b360b35ebe4ef08b280a129b29452171117adb8cf2cd37f7cc201fa8bc86d623"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\.venv-accel\\Scripts\\python.exe",
+          "-u",
+          "-m",
+          "scripts.hybrid_acceleration_worker",
+          "scenario",
+          "2",
+          "MPC_ACS",
+          "compiled_cpu_v1"
+        ],
+        "cpu_seconds": 0.0,
+        "cpu_to_wall": 0.0,
+        "elapsed_seconds": 260.19998909998685,
+        "id": "r1_scenario_2_MPC_ACS_compiled_cpu_v1",
+        "log": "results/desaulniers/hybrid_acceleration_v1/logs/r1_scenario_2_MPC_ACS_compiled_cpu_v1.log",
+        "pid": 10036,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T19:00:41.309431+00:00",
+        "status": "complete",
+        "upper_seconds": 500.58440875016385
+      },
+      "id": "r1_scenario_2_MPC_ACS_compiled_cpu_v1",
+      "kind": "scenario",
+      "raw": "results/desaulniers/hybrid_acceleration_v1/raw/r1_scenario_2_MPC_ACS_compiled_cpu_v1.json.gz",
+      "sha256": "55001023dba8aa63c588e859d45b2f564c0062d793beb0c42d34482c40f8ddb6"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\.venv-accel\\Scripts\\python.exe",
+          "-u",
+          "-m",
+          "scripts.hybrid_acceleration_worker",
+          "scenario",
+          "3",
+          "MPC_COMPLETION",
+          "quality_recovery_v1"
+        ],
+        "cpu_seconds": 0.0,
+        "cpu_to_wall": 0.0,
+        "elapsed_seconds": 1.3162697998341173,
+        "id": "r1_scenario_3_MPC_COMPLETION_quality_recovery_v1",
+        "log": "results/desaulniers/hybrid_acceleration_v1/logs/r1_scenario_3_MPC_COMPLETION_quality_recovery_v1.log",
+        "pid": 26316,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T19:05:01.544820+00:00",
+        "status": "complete",
+        "upper_seconds": 45
+      },
+      "id": "r1_scenario_3_MPC_COMPLETION_quality_recovery_v1",
+      "kind": "scenario",
+      "raw": "results/desaulniers/hybrid_acceleration_v1/raw/r1_scenario_3_MPC_COMPLETION_quality_recovery_v1.json.gz",
+      "sha256": "b6d8851482375f3ce2fa2fafdfe344651c6a8f82b7c0823494119fc9cc514009"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\.venv-accel\\Scripts\\python.exe",
+          "-u",
+          "-m",
+          "scripts.hybrid_acceleration_worker",
+          "scenario",
+          "3",
+          "MPC_COMPLETION",
+          "original"
+        ],
+        "cpu_seconds": 0.0,
+        "cpu_to_wall": 0.0,
+        "elapsed_seconds": 1.1153333000838757,
+        "id": "r1_scenario_3_MPC_COMPLETION_original",
+        "log": "results/desaulniers/hybrid_acceleration_v1/logs/r1_scenario_3_MPC_COMPLETION_original.log",
+        "pid": 23364,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T19:05:02.881796+00:00",
+        "status": "complete",
+        "upper_seconds": 45
+      },
+      "id": "r1_scenario_3_MPC_COMPLETION_original",
+      "kind": "scenario",
+      "raw": "results/desaulniers/hybrid_acceleration_v1/raw/r1_scenario_3_MPC_COMPLETION_original.json.gz",
+      "sha256": "ba7f0ca682c77cd34c2d9c7fab18f9f93975e4640f45b048ea37644005b6894f"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\.venv-accel\\Scripts\\python.exe",
+          "-u",
+          "-m",
+          "scripts.hybrid_acceleration_worker",
+          "scenario",
+          "3",
+          "MPC_MCTS",
+          "original"
+        ],
+        "cpu_seconds": 0.0,
+        "cpu_to_wall": 0.0,
+        "elapsed_seconds": 33.23643420008011,
+        "id": "r1_scenario_3_MPC_MCTS_original",
+        "log": "results/desaulniers/hybrid_acceleration_v1/logs/r1_scenario_3_MPC_MCTS_original.log",
+        "pid": 25668,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T19:05:04.012920+00:00",
+        "status": "complete",
+        "upper_seconds": 81.24378699010703
+      },
+      "id": "r1_scenario_3_MPC_MCTS_original",
+      "kind": "scenario",
+      "raw": "results/desaulniers/hybrid_acceleration_v1/raw/r1_scenario_3_MPC_MCTS_original.json.gz",
+      "sha256": "9aab0dd417c739f5324e97e46b347d3f9fe25ad5c52433ede10c2aaf4bbd0f8f"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\.venv-accel\\Scripts\\python.exe",
+          "-u",
+          "-m",
+          "scripts.hybrid_acceleration_worker",
+          "scenario",
+          "3",
+          "MPC_MCTS",
+          "quality_recovery_v1"
+        ],
+        "cpu_seconds": 0.0,
+        "cpu_to_wall": 0.0,
+        "elapsed_seconds": 33.08405409986153,
+        "id": "r1_scenario_3_MPC_MCTS_quality_recovery_v1",
+        "log": "results/desaulniers/hybrid_acceleration_v1/logs/r1_scenario_3_MPC_MCTS_quality_recovery_v1.log",
+        "pid": 35688,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T19:05:37.276864+00:00",
+        "status": "complete",
+        "upper_seconds": 81.24378699010703
+      },
+      "id": "r1_scenario_3_MPC_MCTS_quality_recovery_v1",
+      "kind": "scenario",
+      "raw": "results/desaulniers/hybrid_acceleration_v1/raw/r1_scenario_3_MPC_MCTS_quality_recovery_v1.json.gz",
+      "sha256": "39ee30a496ac5552d9e6b0ebc6d7d59261392a34131d6b3e946f7e365dfa9017"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\.venv-accel\\Scripts\\python.exe",
+          "-u",
+          "-m",
+          "scripts.hybrid_acceleration_worker",
+          "scenario",
+          "3",
+          "MPC_ALNS",
+          "quality_recovery_v1"
+        ],
+        "cpu_seconds": 0.0,
+        "cpu_to_wall": 0.0,
+        "elapsed_seconds": 33.994651600020006,
+        "id": "r1_scenario_3_MPC_ALNS_quality_recovery_v1",
+        "log": "results/desaulniers/hybrid_acceleration_v1/logs/r1_scenario_3_MPC_ALNS_quality_recovery_v1.log",
+        "pid": 34136,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T19:06:10.379059+00:00",
+        "status": "complete",
+        "upper_seconds": 79.0373962199781
+      },
+      "id": "r1_scenario_3_MPC_ALNS_quality_recovery_v1",
+      "kind": "scenario",
+      "raw": "results/desaulniers/hybrid_acceleration_v1/raw/r1_scenario_3_MPC_ALNS_quality_recovery_v1.json.gz",
+      "sha256": "61ce041950c91a4f84e9663293bdd84d7d0ab2944923276f4852016e3f565285"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\.venv-accel\\Scripts\\python.exe",
+          "-u",
+          "-m",
+          "scripts.hybrid_acceleration_worker",
+          "scenario",
+          "3",
+          "MPC_ALNS",
+          "original"
+        ],
+        "cpu_seconds": 0.0,
+        "cpu_to_wall": 0.0,
+        "elapsed_seconds": 34.11668620002456,
+        "id": "r1_scenario_3_MPC_ALNS_original",
+        "log": "results/desaulniers/hybrid_acceleration_v1/logs/r1_scenario_3_MPC_ALNS_original.log",
+        "pid": 28116,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T19:06:44.400121+00:00",
+        "status": "complete",
+        "upper_seconds": 79.0373962199781
+      },
+      "id": "r1_scenario_3_MPC_ALNS_original",
+      "kind": "scenario",
+      "raw": "results/desaulniers/hybrid_acceleration_v1/raw/r1_scenario_3_MPC_ALNS_original.json.gz",
+      "sha256": "6f3626f25f616b94af621e8279119f899c0ad50b9f8941764e9e6d47eab49fb3"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\.venv-accel\\Scripts\\python.exe",
+          "-u",
+          "-m",
+          "scripts.hybrid_acceleration_worker",
+          "scenario",
+          "3",
+          "MPC_HGS",
+          "original"
+        ],
+        "cpu_seconds": 0.015625,
+        "cpu_to_wall": 0.00045491151439592793,
+        "elapsed_seconds": 34.34733900008723,
+        "id": "r1_scenario_3_MPC_HGS_original",
+        "log": "results/desaulniers/hybrid_acceleration_v1/logs/r1_scenario_3_MPC_HGS_original.log",
+        "pid": 25136,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T19:07:18.541560+00:00",
+        "status": "complete",
+        "upper_seconds": 80.67487929993075
+      },
+      "id": "r1_scenario_3_MPC_HGS_original",
+      "kind": "scenario",
+      "raw": "results/desaulniers/hybrid_acceleration_v1/raw/r1_scenario_3_MPC_HGS_original.json.gz",
+      "sha256": "59cf94f5b51022f23112524a2454f1930313d74768c34984a884a6b470284271"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\.venv-accel\\Scripts\\python.exe",
+          "-u",
+          "-m",
+          "scripts.hybrid_acceleration_worker",
+          "scenario",
+          "3",
+          "MPC_HGS",
+          "quality_recovery_v1"
+        ],
+        "cpu_seconds": 0.0,
+        "cpu_to_wall": 0.0,
+        "elapsed_seconds": 33.53885750006884,
+        "id": "r1_scenario_3_MPC_HGS_quality_recovery_v1",
+        "log": "results/desaulniers/hybrid_acceleration_v1/logs/r1_scenario_3_MPC_HGS_quality_recovery_v1.log",
+        "pid": 28060,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T19:07:52.910733+00:00",
+        "status": "complete",
+        "upper_seconds": 80.67487929993075
+      },
+      "id": "r1_scenario_3_MPC_HGS_quality_recovery_v1",
+      "kind": "scenario",
+      "raw": "results/desaulniers/hybrid_acceleration_v1/raw/r1_scenario_3_MPC_HGS_quality_recovery_v1.json.gz",
+      "sha256": "cdd40b07becb9e81c87f5c8f6b836e0b9ee954b9f5c0f1138be96df03590bdfa"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\.venv-accel\\Scripts\\python.exe",
+          "-u",
+          "-m",
+          "scripts.hybrid_acceleration_worker",
+          "scenario",
+          "3",
+          "MPC_ACS",
+          "quality_recovery_v1"
+        ],
+        "cpu_seconds": 0.0,
+        "cpu_to_wall": 0.0,
+        "elapsed_seconds": 11.799661399796605,
+        "id": "r1_scenario_3_MPC_ACS_quality_recovery_v1",
+        "log": "results/desaulniers/hybrid_acceleration_v1/logs/r1_scenario_3_MPC_ACS_quality_recovery_v1.log",
+        "pid": 30944,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T19:08:26.474663+00:00",
+        "status": "complete",
+        "upper_seconds": 52.85627915001241
+      },
+      "id": "r1_scenario_3_MPC_ACS_quality_recovery_v1",
+      "kind": "scenario",
+      "raw": "results/desaulniers/hybrid_acceleration_v1/raw/r1_scenario_3_MPC_ACS_quality_recovery_v1.json.gz",
+      "sha256": "3c8731ca9d421164a02057d37ab56f6dfae336f437c0f652946c66cdac7221fc"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\.venv-accel\\Scripts\\python.exe",
+          "-u",
+          "-m",
+          "scripts.hybrid_acceleration_worker",
+          "scenario",
+          "3",
+          "MPC_ACS",
+          "original"
+        ],
+        "cpu_seconds": 0.015625,
+        "cpu_to_wall": 0.0008154584876350967,
+        "elapsed_seconds": 19.160999899962917,
+        "id": "r1_scenario_3_MPC_ACS_original",
+        "log": "results/desaulniers/hybrid_acceleration_v1/logs/r1_scenario_3_MPC_ACS_original.log",
+        "pid": 20088,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T19:08:38.294215+00:00",
+        "status": "complete",
+        "upper_seconds": 52.85627915001241
+      },
+      "id": "r1_scenario_3_MPC_ACS_original",
+      "kind": "scenario",
+      "raw": "results/desaulniers/hybrid_acceleration_v1/raw/r1_scenario_3_MPC_ACS_original.json.gz",
+      "sha256": "9b96774af775e4a1ce5a4a677f11d838dcf90fc2a72b0cfcfff423c096e57e39"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\.venv-accel\\Scripts\\python.exe",
+          "-u",
+          "-m",
+          "scripts.hybrid_acceleration_worker",
+          "scenario",
+          "4",
+          "MPC_COMPLETION",
+          "original"
+        ],
+        "cpu_seconds": 0.0,
+        "cpu_to_wall": 0.0,
+        "elapsed_seconds": 1.7208102999720722,
+        "id": "r1_scenario_4_MPC_COMPLETION_original",
+        "log": "results/desaulniers/hybrid_acceleration_v1/logs/r1_scenario_4_MPC_COMPLETION_original.log",
+        "pid": 536,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T19:08:57.482263+00:00",
+        "status": "complete",
+        "upper_seconds": 45
+      },
+      "id": "r1_scenario_4_MPC_COMPLETION_original",
+      "kind": "scenario",
+      "raw": "results/desaulniers/hybrid_acceleration_v1/raw/r1_scenario_4_MPC_COMPLETION_original.json.gz",
+      "sha256": "bd6b5e21d247333ed61cf25b7d1c4889c31ff1eaf85a4646d0752bca3177e50e"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\.venv-accel\\Scripts\\python.exe",
+          "-u",
+          "-m",
+          "scripts.hybrid_acceleration_worker",
+          "scenario",
+          "4",
+          "MPC_COMPLETION",
+          "quality_recovery_v1"
+        ],
+        "cpu_seconds": 0.0,
+        "cpu_to_wall": 0.0,
+        "elapsed_seconds": 1.8192507000640035,
+        "id": "r1_scenario_4_MPC_COMPLETION_quality_recovery_v1",
+        "log": "results/desaulniers/hybrid_acceleration_v1/logs/r1_scenario_4_MPC_COMPLETION_quality_recovery_v1.log",
+        "pid": 14840,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T19:08:59.227591+00:00",
+        "status": "complete",
+        "upper_seconds": 45
+      },
+      "id": "r1_scenario_4_MPC_COMPLETION_quality_recovery_v1",
+      "kind": "scenario",
+      "raw": "results/desaulniers/hybrid_acceleration_v1/raw/r1_scenario_4_MPC_COMPLETION_quality_recovery_v1.json.gz",
+      "sha256": "4a5097eb8ddaf7c0f9cd168b6886b4ecb1516bab3400d25381dec9d54822b7fa"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\.venv-accel\\Scripts\\python.exe",
+          "-u",
+          "-m",
+          "scripts.hybrid_acceleration_worker",
+          "scenario",
+          "4",
+          "MPC_MCTS",
+          "quality_recovery_v1"
+        ],
+        "cpu_seconds": 0.0,
+        "cpu_to_wall": 0.0,
+        "elapsed_seconds": 18.4120680000633,
+        "id": "r1_scenario_4_MPC_MCTS_quality_recovery_v1",
+        "log": "results/desaulniers/hybrid_acceleration_v1/logs/r1_scenario_4_MPC_MCTS_quality_recovery_v1.log",
+        "pid": 26412,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T19:09:01.071873+00:00",
+        "status": "complete",
+        "upper_seconds": 75.27943391001318
+      },
+      "id": "r1_scenario_4_MPC_MCTS_quality_recovery_v1",
+      "kind": "scenario",
+      "raw": "results/desaulniers/hybrid_acceleration_v1/raw/r1_scenario_4_MPC_MCTS_quality_recovery_v1.json.gz",
+      "sha256": "c075d50b369af59944d5348fe4b34ca22d19da9463e34a4ad9860cd4f09b23b3"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\.venv-accel\\Scripts\\python.exe",
+          "-u",
+          "-m",
+          "scripts.hybrid_acceleration_worker",
+          "scenario",
+          "4",
+          "MPC_MCTS",
+          "original"
+        ],
+        "cpu_seconds": 0.0,
+        "cpu_to_wall": 0.0,
+        "elapsed_seconds": 17.061312400037423,
+        "id": "r1_scenario_4_MPC_MCTS_original",
+        "log": "results/desaulniers/hybrid_acceleration_v1/logs/r1_scenario_4_MPC_MCTS_original.log",
+        "pid": 34320,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T19:09:19.537046+00:00",
+        "status": "complete",
+        "upper_seconds": 75.27943391001318
+      },
+      "id": "r1_scenario_4_MPC_MCTS_original",
+      "kind": "scenario",
+      "raw": "results/desaulniers/hybrid_acceleration_v1/raw/r1_scenario_4_MPC_MCTS_original.json.gz",
+      "sha256": "18361f16a01e9f481e49a98f6ec2d831f87a5dac4cae482096f4d7041f54cd7f"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\.venv-accel\\Scripts\\python.exe",
+          "-u",
+          "-m",
+          "scripts.hybrid_acceleration_worker",
+          "scenario",
+          "4",
+          "MPC_ALNS",
+          "original"
+        ],
+        "cpu_seconds": 0.0,
+        "cpu_to_wall": 0.0,
+        "elapsed_seconds": 7.9172451000195,
+        "id": "r1_scenario_4_MPC_ALNS_original",
+        "log": "results/desaulniers/hybrid_acceleration_v1/logs/r1_scenario_4_MPC_ALNS_original.log",
+        "pid": 2800,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T19:09:36.657702+00:00",
+        "status": "complete",
+        "upper_seconds": 45
+      },
+      "id": "r1_scenario_4_MPC_ALNS_original",
+      "kind": "scenario",
+      "raw": "results/desaulniers/hybrid_acceleration_v1/raw/r1_scenario_4_MPC_ALNS_original.json.gz",
+      "sha256": "972439110b751d767e608d5c3559cd9ddd5eff9799ebe49073b87e3c30f59fbc"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\.venv-accel\\Scripts\\python.exe",
+          "-u",
+          "-m",
+          "scripts.hybrid_acceleration_worker",
+          "scenario",
+          "4",
+          "MPC_ALNS",
+          "quality_recovery_v1"
+        ],
+        "cpu_seconds": 0.0,
+        "cpu_to_wall": 0.0,
+        "elapsed_seconds": 7.167382600018755,
+        "id": "r1_scenario_4_MPC_ALNS_quality_recovery_v1",
+        "log": "results/desaulniers/hybrid_acceleration_v1/logs/r1_scenario_4_MPC_ALNS_quality_recovery_v1.log",
+        "pid": 35088,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T19:09:44.603019+00:00",
+        "status": "complete",
+        "upper_seconds": 45
+      },
+      "id": "r1_scenario_4_MPC_ALNS_quality_recovery_v1",
+      "kind": "scenario",
+      "raw": "results/desaulniers/hybrid_acceleration_v1/raw/r1_scenario_4_MPC_ALNS_quality_recovery_v1.json.gz",
+      "sha256": "78b2ba6c44929cdf130aecc5c76976b0cd0ee5bdbf415a4c8cd4870d620b4583"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\.venv-accel\\Scripts\\python.exe",
+          "-u",
+          "-m",
+          "scripts.hybrid_acceleration_worker",
+          "scenario",
+          "4",
+          "MPC_HGS",
+          "quality_recovery_v1"
+        ],
+        "cpu_seconds": 0.0,
+        "cpu_to_wall": 0.0,
+        "elapsed_seconds": 32.67865310003981,
+        "id": "r1_scenario_4_MPC_HGS_quality_recovery_v1",
+        "log": "results/desaulniers/hybrid_acceleration_v1/logs/r1_scenario_4_MPC_HGS_quality_recovery_v1.log",
+        "pid": 8028,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T19:09:51.799067+00:00",
+        "status": "complete",
+        "upper_seconds": 105.8545109300292
+      },
+      "id": "r1_scenario_4_MPC_HGS_quality_recovery_v1",
+      "kind": "scenario",
+      "raw": "results/desaulniers/hybrid_acceleration_v1/raw/r1_scenario_4_MPC_HGS_quality_recovery_v1.json.gz",
+      "sha256": "616b3fe5c998abd8a87e67853e4453ec7925474558aabace7d3979f8b3a1f561"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\.venv-accel\\Scripts\\python.exe",
+          "-u",
+          "-m",
+          "scripts.hybrid_acceleration_worker",
+          "scenario",
+          "4",
+          "MPC_HGS",
+          "original"
+        ],
+        "cpu_seconds": 0.0,
+        "cpu_to_wall": 0.0,
+        "elapsed_seconds": 27.488890199922025,
+        "id": "r1_scenario_4_MPC_HGS_original",
+        "log": "results/desaulniers/hybrid_acceleration_v1/logs/r1_scenario_4_MPC_HGS_original.log",
+        "pid": 2948,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T19:10:24.505818+00:00",
+        "status": "complete",
+        "upper_seconds": 105.8545109300292
+      },
+      "id": "r1_scenario_4_MPC_HGS_original",
+      "kind": "scenario",
+      "raw": "results/desaulniers/hybrid_acceleration_v1/raw/r1_scenario_4_MPC_HGS_original.json.gz",
+      "sha256": "0ca8809639e5947436db85a5f0fbe70ba0719d336c95c1a4b2ee776fa43c8426"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\.venv-accel\\Scripts\\python.exe",
+          "-u",
+          "-m",
+          "scripts.hybrid_acceleration_worker",
+          "scenario",
+          "4",
+          "MPC_ACS",
+          "original"
+        ],
+        "cpu_seconds": 0.015625,
+        "cpu_to_wall": 0.0007290087244898972,
+        "elapsed_seconds": 21.433214000193402,
+        "id": "r1_scenario_4_MPC_ACS_original",
+        "log": "results/desaulniers/hybrid_acceleration_v1/logs/r1_scenario_4_MPC_ACS_original.log",
+        "pid": 16712,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T19:10:52.011180+00:00",
+        "status": "complete",
+        "upper_seconds": 83.8545574199874
+      },
+      "id": "r1_scenario_4_MPC_ACS_original",
+      "kind": "scenario",
+      "raw": "results/desaulniers/hybrid_acceleration_v1/raw/r1_scenario_4_MPC_ACS_original.json.gz",
+      "sha256": "8a26a6f28958bb8e06559eb55e871d31fe20c432a1a27f38e9ebace4d14c3ba9"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\.venv-accel\\Scripts\\python.exe",
+          "-u",
+          "-m",
+          "scripts.hybrid_acceleration_worker",
+          "scenario",
+          "4",
+          "MPC_ACS",
+          "quality_recovery_v1"
+        ],
+        "cpu_seconds": 0.0,
+        "cpu_to_wall": 0.0,
+        "elapsed_seconds": 21.33653109986335,
+        "id": "r1_scenario_4_MPC_ACS_quality_recovery_v1",
+        "log": "results/desaulniers/hybrid_acceleration_v1/logs/r1_scenario_4_MPC_ACS_quality_recovery_v1.log",
+        "pid": 26588,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T19:11:13.488139+00:00",
+        "status": "complete",
+        "upper_seconds": 83.8545574199874
+      },
+      "id": "r1_scenario_4_MPC_ACS_quality_recovery_v1",
+      "kind": "scenario",
+      "raw": "results/desaulniers/hybrid_acceleration_v1/raw/r1_scenario_4_MPC_ACS_quality_recovery_v1.json.gz",
+      "sha256": "498ff134cca9bd10b9c87895d70a2cf087fc3507f4f4e36b9fc0d0945e3fff77"
+    }
+  ],
+  "status": "complete"
+}
