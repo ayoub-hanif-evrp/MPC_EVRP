@@ -149,6 +149,14 @@ def main():
                      "This is an estimate, not an authorized run.")
     path = writable_path(OUTPUT / "FINAL_REPORT.md")
     path.write_text("\n".join(lines), encoding="utf-8")
+    summary = ["# Fast framework v1", "",
+               "The initial micro worker failed before any scenario simulation because the frozen "
+               "protocol omitted the archived corpus-selection fields. Its log and 2.1-second "
+               "budget charge remain in this directory; no result was overwritten.", "",
+               "The corrected, separately frozen revision and full evidence are in "
+               "[revision_1/FINAL_REPORT.md](revision_1/FINAL_REPORT.md).", "",
+               *lines[2:]]
+    writable_path(OUTPUT.parent / "FINAL_REPORT.md").write_text("\n".join(summary), encoding="utf-8")
 
 
 if __name__ == "__main__":

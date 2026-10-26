@@ -2,6 +2,9 @@ study: fast_framework_v1
 maximum_total_seconds: 7200
 report_reserve_seconds: 120
 cases: [0, 1, 2]
+micro_root_index: 0
+micro_max_service_prefix: 8
+micro_max_sequences: 12
 methods: [MPC_COMPLETION, MPC_MCTS, MPC_ALNS, MPC_HGS, MPC_ACS]
 variants: [original, enhanced]
 enhanced:

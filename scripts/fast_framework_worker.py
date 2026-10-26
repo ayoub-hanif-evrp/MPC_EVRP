@@ -15,7 +15,7 @@ from evrp.simulator import EventDrivenSimulator
 from evrp.storage import ROOT, identifier, load_json, save_json
 from scripts.performance_engineering_worker import corpus, load_case
 
-OUTPUT = ROOT / "results/desaulniers/fast_framework_v1"
+OUTPUT = ROOT / "results/desaulniers/fast_framework_v1/revision_1"
 
 
 def options(protocol, index, method, variant):

@@ -168,6 +168,13 @@ def main():
         return print(f"Frozen {sum(len(b['jobs']) for b in protocol['blocks'])} jobs; "
                      f"upper bound {protocol['estimated_upper_seconds_including_report']:.1f}/7200 seconds")
     budget = HardBudget(OUTPUT, 7200)
+    if not budget.path.exists():
+        failed = load_json(OUTPUT.parent / "budget.json")
+        if failed["jobs"][0]["status"] != "failed":
+            raise ValueError("Revision requires preserved failed preflight evidence")
+        budget.data["charged_seconds"] = failed["charged_seconds"]
+        budget.data["prior_revision_charge_seconds"] = failed["charged_seconds"]
+        budget.flush()
     manifest_path = OUTPUT / "manifest.json"
     manifest = load_json(manifest_path) if manifest_path.exists() else dict(
         protocol_identifier=identifier(protocol), records=[], status="partial")
