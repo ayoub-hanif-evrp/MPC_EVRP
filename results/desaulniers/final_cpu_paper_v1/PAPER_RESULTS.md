@@ -30,6 +30,8 @@ The 100%-service offline reference is physically feasible with the same referenc
 
 The opt-in compiled CPU and quality/recovery pilots are development evidence only: 0 service gains and 3 service losses in 25 matched cases. Their service losses prevented promotion. The replication therefore tests the original methods, not an improved controller.
 
+A separate, later 120-run balanced development ablation tested recovery, first-action protection, route quality, CPU caching, and their combination. The combination changed served customers by +3 over 30 paired method-runs, with 4 gains and 1 loss. It failed the service-preservation gate, so no enhanced independent claim follows. See [development update](DEVELOPMENT_UPDATE.md).
+
 ### Descriptive heterogeneity
 
 The highest observed customer-weighted service in each primary-cohort stratum is shown below. Ties are retained; each family has only one underlying parent and should not be interpreted as a general family-level winner.

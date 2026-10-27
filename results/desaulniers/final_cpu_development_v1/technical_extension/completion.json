@@ -1,0 +1,9 @@
+{
+  "completed_runs": 120,
+  "correction_charged_wall_seconds": 1382.0713484999724,
+  "correction_worker_cpu_seconds": 1357.671875,
+  "original_charged_wall_seconds": 6002.7626650002785,
+  "original_worker_cpu_seconds": 5639.53125,
+  "status": "complete",
+  "total_charged_wall_seconds": 7384.834013500251
+}

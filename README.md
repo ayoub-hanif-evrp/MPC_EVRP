@@ -8,6 +8,16 @@ enhancements did not pass the development service-preservation gate, so no
 enhanced method is claimed. See the [repository status](docs/REPOSITORY_STATUS.md)
 for active versus preserved historical workflows.
 
+The latest [balanced CPU development ablation](results/desaulniers/final_cpu_paper_v1/DEVELOPMENT_UPDATE.md)
+completed 120/120 audited runs across six benchmark families and three customer
+sizes. Its combined policy gained four paired customer-service counts but lost
+one ACS count, so it was not promoted. A whole-worker timeout and the explicit
+technical continuation are preserved with the raw evidence. The five-second
+MPC decision budget and original independent results are unchanged.
+The separate [two-worker CPU probe](results/desaulniers/two_worker_probe_v1/RESULTS.md)
+observed 1.50x throughput on two small scenarios with unchanged service, but
+does not replace the paper's sequential runtime measurements.
+
 This project evaluates a common event-triggered MPC controller with five
 interchangeable optimization modes: Completion, MCTS, ALNS, HGS, and ACS.
 All modes use the same feasible constructor, plant physics, service-first

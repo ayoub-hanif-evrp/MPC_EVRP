@@ -7,6 +7,7 @@ import json
 from math import sqrt
 from pathlib import Path
 import re
+from shutil import copyfile
 from statistics import mean
 import subprocess
 import xml.etree.ElementTree as ET
@@ -31,6 +32,73 @@ COLORS = {"MPC_COMPLETION": "#666d76", "MPC_MCTS": "#216e83", "MPC_ALNS": "#2184
           "MPC_HGS": "#c07932", "MPC_ACS": "#995c82"}
 PLT = OUTPUT / "figures"
 TABLES = OUTPUT / "tables"
+
+
+def integrate_balanced_development():
+    from scripts.analyze_final_cpu_development import analyze
+    from scripts.run_final_cpu_development import OUTPUT as DEV
+
+    analyze()
+    manifest = load_json(DEV / "manifest.json")
+    correction = load_json(DEV / "technical_extension" / "completion.json")
+    if (manifest["status"] != "complete" or manifest["completed_runs"] != 120 or
+            correction["status"] != "complete" or correction["completed_runs"] != 120 or
+            correction["total_charged_wall_seconds"] > 21600 or
+            correction["original_worker_cpu_seconds"] +
+            correction["correction_worker_cpu_seconds"] > 36000):
+        raise ValueError("Balanced development study is incomplete or exceeded its hard allowance")
+    for name in ("paired_cases", "variant_summary"):
+        for suffix in (".md", ".csv", ".tex"):
+            copyfile(DEV / "tables" / f"{name}{suffix}",
+                     writable_path(TABLES / f"balanced_development_{name}{suffix}"))
+    for old, new in (("development_service_changes", "13_balanced_development_service_changes"),
+                     ("development_cpu_ratio", "14_balanced_development_cpu_ratio")):
+        for suffix in (".png", ".svg"):
+            copyfile(DEV / "figures" / f"{old}{suffix}", writable_path(PLT / f"{new}{suffix}"))
+    with (DEV / "tables" / "paired_cases.csv").open(newline="", encoding="utf-8") as stream:
+        pairs = list(csv.DictReader(stream))
+    combined = [row for row in pairs if row["variant"] == "combined"]
+    if len(combined) != 30:
+        raise ValueError("Balanced development combined comparison must have 30 pairs")
+    probe_dir = ROOT / "results/desaulniers/two_worker_probe_v1"
+    probe_protocol = load_json(probe_dir / "protocol.json")
+    probe = load_json(probe_dir / "manifest.json")
+    if probe["status"] != "complete" or probe["protocol_identifier"] != identifier(probe_protocol):
+        raise ValueError("Two-worker technical probe is incomplete")
+    from scripts.run_desaulniers_campaign import CONFIG as DEV_CONFIG, options as dev_options
+    config = load_config(DEV_CONFIG)
+    for mode in probe_protocol["modes"]:
+        rows = probe["modes"][mode]["results"]
+        if len(rows) != 2:
+            raise ValueError("Two-worker technical probe is unpaired")
+        for row in rows:
+            info = probe_protocol["cases"][row["index"]]
+            path = ROOT / row["raw"]
+            if sha256(path.read_bytes()).hexdigest() != row["sha256"]:
+                raise ValueError("Two-worker raw hash drift")
+            raw = load_json(path)
+            instance, reference, scenario, _ = prepare(
+                info["instance"], dev_options(config, info["instance"], .5, 3, info["method"]))
+            if (raw["source_sha256"] != probe_protocol["source_sha256"] or
+                    scenario.identifier != info["scenario_id"] or
+                    reference.fleet_size != info["k_ref"] or
+                    not all(audit_result(decode_result(raw["result"]), instance, scenario).values()) or
+                    raw["result"]["metrics"]["max_optimization_latency"] > 5.0 + 1e-6):
+                raise ValueError("Two-worker technical probe replay failed")
+    return dict(records=120, service_delta=sum(int(row["served_delta"]) for row in combined),
+                gains=sum(int(row["served_delta"]) > 0 for row in combined),
+                losses=sum(int(row["served_delta"]) < 0 for row in combined),
+                harmed_parents=len({row["case"] for row in combined
+                                    if int(row["served_delta"]) < 0}),
+                charged_wall_seconds=correction["total_charged_wall_seconds"],
+                worker_cpu_seconds=correction["original_worker_cpu_seconds"] +
+                                   correction["correction_worker_cpu_seconds"],
+                correction_protocol_sha256=sha256((DEV / "technical_extension" /
+                                                    "protocol.json").read_bytes()).hexdigest(),
+                protocol_sha256=sha256((DEV / "protocol.json").read_bytes()).hexdigest(),
+                two_worker_probe=dict(records=4, same_service=probe["same_service"],
+                                      throughput_ratio=probe["throughput_ratio"],
+                                      protocol_sha256=sha256((probe_dir / "protocol.json").read_bytes()).hexdigest()))
 
 
 def fmt(value, digits=2):
@@ -67,7 +135,7 @@ def save_figure(name, figure):
     figure.tight_layout()
     figure.savefig(writable_path(PLT / f"{name}.png"), dpi=300, facecolor="white")
     vector = writable_path(PLT / f"{name}.svg")
-    figure.savefig(vector, facecolor="white")
+    figure.savefig(vector, facecolor="white", metadata={"Date": None})
     vector.write_text("\n".join(line.rstrip() for line in
                                 vector.read_text(encoding="utf-8").splitlines()) + "\n",
                       encoding="utf-8")
@@ -79,7 +147,7 @@ def configure_figures():
         "axes.spines.top": False, "axes.spines.right": False,
         "axes.grid": True, "axes.axisbelow": True,
         "grid.color": "#d5d9dc", "grid.linewidth": .55,
-        "svg.fonttype": "none"})
+        "svg.fonttype": "none", "svg.hashsalt": "mpc-evrp-final-cpu-paper-v1"})
 
 
 def physical_features(raw, instance, worker_wall, worker_cpu):
@@ -689,7 +757,7 @@ def service_loss_diagnosis():
 
 
 def render_documents(primary, replication, dev, output, diagnosis, primary_protocol,
-                     replication_protocol):
+                     replication_protocol, balanced):
     p = output["primary"]
     r = {method: aggregate([row for row in replication if row["method"] == method])
          for method in METHODS}
@@ -790,6 +858,13 @@ def render_documents(primary, replication, dev, output, diagnosis, primary_proto
             f"only: {dev_gains} service gains and {dev_losses} service losses in 25 "
             "matched cases. Their service losses prevented promotion. The replication "
             "therefore tests the original methods, not an improved controller.", "",
+            f"A separate, later 120-run balanced development ablation tested recovery, "
+            f"first-action protection, route quality, CPU caching, and their combination. "
+            f"The combination changed served customers by {balanced['service_delta']:+d} "
+            f"over 30 paired method-runs, with {balanced['gains']} gains and "
+            f"{balanced['losses']} loss. It failed the service-preservation gate, "
+            "so no enhanced independent claim follows. See "
+            "[development update](DEVELOPMENT_UPDATE.md).", "",
             "### Descriptive heterogeneity", "",
             "The highest observed customer-weighted service in each primary-cohort "
             "stratum is shown below. Ties are retained; each family has only one "
@@ -921,6 +996,15 @@ def render_documents(primary, replication, dev, output, diagnosis, primary_proto
             "The hybrid GPU branch was slower on its actual transfer-inclusive "
             "batches. No performance or service gain from it is claimed. "
             "A new independent enhanced holdout was not opened.", "",
+            f"The later 120-run balanced development ablation was exploratory and "
+            f"also failed promotion: combined service changed by "
+            f"{balanced['service_delta']:+d} customers over 30 paired method-runs, "
+            f"including {balanced['losses']} service loss. One 100-customer worker "
+            "exceeded its initially prespecified whole-worker watchdog without "
+            "producing raw output; the failed attempt was retained, and all eight "
+            "remaining frozen jobs were completed under a separately documented "
+            "900-second technical correction. No optimization-decision limit changed. "
+            "See DEVELOPMENT_UPDATE.md.", "",
             "Unconditional distance, time, EV and energy summaries are not "
             "comparative efficiency measures when methods serve different "
             "customer sets. Conditional comparisons use only jointly complete "
@@ -933,7 +1017,8 @@ def render_documents(primary, replication, dev, output, diagnosis, primary_proto
             "observation, not a controlled hardware benchmark. The five-second limit is "
             "per optimization decision, not per whole scenario.", "",
             "The historical 270-run corrected holdout, 450-run robustness cohort, "
-            "60-run replication and 25-pair negative development study have "
+            "60-run replication, 25-pair negative development study and 120-run "
+            "balanced development ablation have "
             "different protocols and are never pooled."
         ]),
         "REPRODUCE.md": "\n".join([
@@ -952,6 +1037,9 @@ def render_documents(primary, replication, dev, output, diagnosis, primary_proto
             "   python -u -m scripts.run_final_cpu_replication",
             "4. Rebuild this paper package from saved raw evidence without running "
             "an optimizer:",
+            "   python -m scripts.run_final_cpu_development --freeze",
+            "   python -m scripts.complete_final_cpu_development --freeze",
+            "   python -m scripts.analyze_final_cpu_development",
             "   python -m scripts.render_final_cpu_paper",
             "5. Run the complete CPU test suite:",
             "   New-Item -ItemType Directory -Force "
@@ -966,13 +1054,52 @@ def render_documents(primary, replication, dev, output, diagnosis, primary_proto
             "recoverable at Git tag archive/hybrid-gpu-negative-v1."
         ])
     }
+    files["DEVELOPMENT_UPDATE.md"] = "\n".join([
+        "# Balanced development update", "",
+        "This is exploratory development evidence, not part of the independent "
+        "510-run primary-plus-replication cohort. Six underlying parents, one per "
+        "benchmark family and two at each customer size, were paired on original "
+        "versus combined. Four component ablations used a prespecified three-parent "
+        "subset. All five methods used the same scenarios, fleet, physics, objective "
+        "and five-second decision limit.", "",
+        f"All {balanced['records']} saved raw records passed independent physical "
+        f"replay and source/scenario/hash checks. The combined variant yielded "
+        f"{balanced['service_delta']:+d} served customers across 30 paired "
+        f"method-runs ({balanced['gains']} gains, {balanced['losses']} "
+        f"{'loss' if balanced['losses'] == 1 else 'losses'}; "
+        f"{balanced['harmed_parents']} harmed parent). The ACS loss rejects "
+        "promotion under the service-preservation gate. No enhanced independent "
+        "holdout was opened.", "",
+        f"Cumulative charged wall time: {balanced['charged_wall_seconds']/3600:.3f} h "
+        f"of the six-hour development allowance; worker CPU time: "
+        f"{balanced['worker_cpu_seconds']/3600:.3f} h. One original whole-worker "
+        "timeout was preserved and the remaining eight jobs used a separately "
+        "frozen 900-second technical correction. The five-second MPC decision "
+        "budget did not change.", "",
+        f"A separate two-scenario/two-method technical probe found "
+        f"{balanced['two_worker_probe']['throughput_ratio']:.2f}x sequential-to-two-worker "
+        f"throughput with identical served counts. This is a small shared-machine "
+        "engineering result, not controlled paper timing. See the "
+        "[probe report](../two_worker_probe_v1/RESULTS.md).", "",
+        "See the [paired cases](tables/balanced_development_paired_cases.md), "
+        "[variant summary](tables/balanced_development_variant_summary.md), "
+        "[service changes](figures/13_balanced_development_service_changes.png), "
+        "[CPU ratios](figures/14_balanced_development_cpu_ratio.png), "
+        "[source protocol](../final_cpu_development_v1/protocol.json), "
+        "[technical correction](../final_cpu_development_v1/technical_extension/protocol.json), "
+        "[raw manifest](../final_cpu_development_v1/manifest.json), and "
+        "[independent replay inventory](../final_cpu_development_v1/audit/independent_replay.md)."
+    ])
     files["FINAL_REPORT.md"] = "\n".join([
         "# Final CPU paper package", "",
         "**Status: complete, provided audit/verification.json reports 510/510 passed.**",
         "", "The original five-method MPC system remains the publication configuration. "
         "The 450-run independent primary cohort and 60-run prospective replication "
         "are complete and separately reported. No opt-in enhancement satisfied "
-        "the development service-preservation rule; no enhanced final claim is made.",
+        "the development service-preservation rule; no enhanced final claim is made. "
+        f"The later balanced development ablation also failed promotion "
+        f"({balanced['service_delta']:+d} net served customers, "
+        f"{balanced['losses']} paired service loss).",
         "", cohort_methods, "",
         f"Primary ALNS-HGS paired difference: {fmt(alns_hgs['effect'])} pp "
         f"(95% parent-cluster interval [{fmt(alns_hgs['low'])}, "
@@ -984,6 +1111,7 @@ def render_documents(primary, replication, dev, output, diagnosis, primary_proto
         "Read [paper results](PAPER_RESULTS.md), [methods](METHODS.md), "
         "[statistics](STATISTICAL_ANALYSIS.md), [limitations](LIMITATIONS.md), "
         "[reproduction](REPRODUCE.md), "
+        "[balanced development update](DEVELOPMENT_UPDATE.md), "
         "[service-loss diagnosis](audit/SERVICE_LOSS_DIAGNOSIS.md), "
         "[all audited runs](tables/all_audited_runs.md), and "
         "[the verification inventory](audit/verification.json). "
@@ -1010,12 +1138,12 @@ def render_documents(primary, replication, dev, output, diagnosis, primary_proto
 
 
 def verify_package(primary, replication, primary_protocol, replication_protocol,
-                   diagnosis):
+                   diagnosis, balanced):
     from_m = lambda path: sha256(path.read_bytes()).hexdigest()
     figures = sorted(PLT.glob("*.png"))
     vectors = sorted(PLT.glob("*.svg"))
     tables = sorted(TABLES.glob("*.md"))
-    if (len(figures) != 12 or len(vectors) != 12 or len(tables) < 9 or
+    if (len(figures) != 14 or len(vectors) != 14 or len(tables) < 11 or
             len(list(TABLES.glob("*.csv"))) != len(tables) or
             len(list(TABLES.glob("*.tex"))) != len(tables)):
         raise ValueError("Paper figure/table inventory incomplete")
@@ -1038,6 +1166,11 @@ def verify_package(primary, replication, primary_protocol, replication_protocol,
     inventory = {path.relative_to(OUTPUT).as_posix(): from_m(path) for path in files}
     audit = dict(status="complete", primary_records=len(primary),
                  replication_records=len(replication), total_records=len(primary)+len(replication),
+                 separately_audited_development_records=balanced["records"],
+                 development_protocol_sha256=balanced["protocol_sha256"],
+                 development_correction_protocol_sha256=balanced["correction_protocol_sha256"],
+                 two_worker_probe_records=balanced["two_worker_probe"]["records"],
+                 two_worker_probe_protocol_sha256=balanced["two_worker_probe"]["protocol_sha256"],
                  independent_disk_replay_passed=True, five_second_limit_passed=True,
                  primary_protocol_sha256=from_m(PRIMARY / "protocol.json"),
                  primary_manifest_sha256=from_m(PRIMARY / "manifest.json"),
@@ -1061,11 +1194,12 @@ def build():
     dev = archived_development()
     output = render_tables(primary, replication, dev)
     render_figures(primary, dev, output)
+    balanced = integrate_balanced_development()
     diagnosis = service_loss_diagnosis()
     render_documents(primary, replication, dev, output, diagnosis, primary_protocol,
-                     replication_protocol)
+                     replication_protocol, balanced)
     audit = verify_package(primary, replication, primary_protocol,
-                           replication_protocol, diagnosis)
+                           replication_protocol, diagnosis, balanced)
     print(f"Final CPU paper: {audit['total_records']}/{audit['total_records']} "
           f"independently replayed; {audit['png_figures']} PNG/SVG figures; "
           f"{audit['markdown_tables']} Markdown tables. "

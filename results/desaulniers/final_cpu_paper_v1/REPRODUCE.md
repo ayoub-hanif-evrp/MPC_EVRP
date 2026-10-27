@@ -10,6 +10,9 @@ From the repository root, install requirements.txt in a CPU-only Python environm
 3. To resume an interrupted, partial study, run the frozen launcher. It verifies and reuses existing raw files byte-for-byte:
    python -u -m scripts.run_final_cpu_replication
 4. Rebuild this paper package from saved raw evidence without running an optimizer:
+   python -m scripts.run_final_cpu_development --freeze
+   python -m scripts.complete_final_cpu_development --freeze
+   python -m scripts.analyze_final_cpu_development
    python -m scripts.render_final_cpu_paper
 5. Run the complete CPU test suite:
    New-Item -ItemType Directory -Force results/desaulniers/final_cpu_paper_v1/tmp_tests_reproduce

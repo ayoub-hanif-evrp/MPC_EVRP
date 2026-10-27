@@ -1,0 +1,82 @@
+{
+  "change": "Only whole-worker supervisor timeout; same source, scenarios, fleet, objective, five-second decision cap and fixed pending jobs",
+  "failed_job_id": "dev_5_MPC_ALNS_original",
+  "failed_log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "original_budget_sha256": "c8d98c702ae4043e2fadd3b5cb4091052a7736642d1b6309cbdb5cf2e0b72f97",
+  "original_charged_cpu_seconds": 5639.53125,
+  "original_charged_wall_seconds": 6002.7626650002785,
+  "original_manifest_sha256": "29f90a8d2dfe4afce03e51f24884f47a308bb4847d5a563ad17953a6fbaf94c0",
+  "original_protocol_identifier": "d815bbb6810bf0cabb0d2f0d53a93144a251862d66dd8992e5dd128e4c9bdb2a",
+  "original_source_sha256": "2b99d574d0182641d4aa1dc9e9f129a4665726c1b3989a4f7895dfff26d907a9",
+  "pending": [
+    {
+      "corrected_upper_seconds": 900.0,
+      "id": "dev_5_MPC_ALNS_original",
+      "index": 5,
+      "method": "MPC_ALNS",
+      "upper_seconds": 219.03631287495955,
+      "variant": "original"
+    },
+    {
+      "corrected_upper_seconds": 900.0,
+      "id": "dev_5_MPC_MCTS_original",
+      "index": 5,
+      "method": "MPC_MCTS",
+      "upper_seconds": 163.49336462502833,
+      "variant": "original"
+    },
+    {
+      "corrected_upper_seconds": 900.0,
+      "id": "dev_5_MPC_COMPLETION_original",
+      "index": 5,
+      "method": "MPC_COMPLETION",
+      "upper_seconds": 30,
+      "variant": "original"
+    },
+    {
+      "corrected_upper_seconds": 900.0,
+      "id": "dev_5_MPC_ACS_combined",
+      "index": 5,
+      "method": "MPC_ACS",
+      "upper_seconds": 395.53977487506927,
+      "variant": "combined"
+    },
+    {
+      "corrected_upper_seconds": 900.0,
+      "id": "dev_5_MPC_HGS_combined",
+      "index": 5,
+      "method": "MPC_HGS",
+      "upper_seconds": 446.74849250004627,
+      "variant": "combined"
+    },
+    {
+      "corrected_upper_seconds": 900.0,
+      "id": "dev_5_MPC_ALNS_combined",
+      "index": 5,
+      "method": "MPC_ALNS",
+      "upper_seconds": 219.03631287495955,
+      "variant": "combined"
+    },
+    {
+      "corrected_upper_seconds": 900.0,
+      "id": "dev_5_MPC_MCTS_combined",
+      "index": 5,
+      "method": "MPC_MCTS",
+      "upper_seconds": 163.49336462502833,
+      "variant": "combined"
+    },
+    {
+      "corrected_upper_seconds": 900.0,
+      "id": "dev_5_MPC_COMPLETION_combined",
+      "index": 5,
+      "method": "MPC_COMPLETION",
+      "upper_seconds": 30,
+      "variant": "combined"
+    }
+  ],
+  "purpose": "technical_timeout_correction_no_scientific_changes",
+  "remaining_cpu_seconds": 30360.46875,
+  "remaining_wall_seconds": 15597.237334999721,
+  "source_commit": "d1a4666052c56c355fdc081a1ef79d845d5a3dc4",
+  "watchdog_seconds": 900.0
+}

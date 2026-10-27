@@ -1,0 +1,59 @@
+{
+  "modes": {
+    "sequential": {
+      "elapsed_seconds": 62.57432790007442,
+      "results": [
+        {
+          "cpu_seconds": 12.71875,
+          "index": 0,
+          "max_latency": 2.0712912001181394,
+          "peak_working_set_bytes": 139911168,
+          "raw": "results/desaulniers/two_worker_probe_v1/raw/sequential_0.json.gz",
+          "served": 25,
+          "sha256": "68fe63366fe83c3bf267bcc31d07e6cb09138652a5ebde9079d03f37e35cdf76",
+          "wall_seconds": 12.657934100134298
+        },
+        {
+          "cpu_seconds": 47.78125,
+          "index": 1,
+          "max_latency": 4.750692799920216,
+          "peak_working_set_bytes": 148393984,
+          "raw": "results/desaulniers/two_worker_probe_v1/raw/sequential_1.json.gz",
+          "served": 25,
+          "sha256": "9fd68d7b146784ed0225a0cb0f72ef458b33290e6fce0823ddf41c55f68f7894",
+          "wall_seconds": 48.11526500014588
+        }
+      ]
+    },
+    "two_workers": {
+      "elapsed_seconds": 41.75321840005927,
+      "results": [
+        {
+          "cpu_seconds": 10.546875,
+          "index": 0,
+          "max_latency": 1.6969717000611126,
+          "peak_working_set_bytes": 138997760,
+          "raw": "results/desaulniers/two_worker_probe_v1/raw/two_workers_0.json.gz",
+          "served": 25,
+          "sha256": "4a4dfd86230ff3813ca7002e95bbcaf0d623beee45aeab84a4dcbc241b2b8dc7",
+          "wall_seconds": 10.506994900060818
+        },
+        {
+          "cpu_seconds": 40.390625,
+          "index": 1,
+          "max_latency": 4.750880900071934,
+          "peak_working_set_bytes": 148406272,
+          "raw": "results/desaulniers/two_worker_probe_v1/raw/two_workers_1.json.gz",
+          "served": 25,
+          "sha256": "0ab68c47194c8d8ae3eb0d6d24f5b1b3bb972a2a663d1549d57c84053b91f139",
+          "wall_seconds": 40.66230780002661
+        }
+      ]
+    }
+  },
+  "protocol_identifier": "3bbc0fd66cb28195e1679d6c715713dd8bb3f738d4be6de8a1324622e30772d9",
+  "same_service": true,
+  "status": "complete",
+  "throughput_ratio": 1.498670768334965,
+  "total_elapsed_seconds": 104.33240840001963
+}

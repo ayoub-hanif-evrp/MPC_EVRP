@@ -1,0 +1,30 @@
+{
+  "campaign_limit_seconds": 1800.0,
+  "cases": [
+    {
+      "instance": "c101_21_25",
+      "instance_sha256": "9f40aeeee1afb96fb479b6164f9ce8185a0328dd032a25bbf75ddc8e60dc72b0",
+      "k_ref": 7,
+      "method": "MPC_MCTS",
+      "reference_id": "5c392c359dbbd3aea760eb275cb6613e014a067b481eac6b05e81f2506471880",
+      "scenario_id": "6f6d118209804a25bc525343769ceed1ef14636ee7a96469e263499f3526adc8"
+    },
+    {
+      "instance": "r201_21_25",
+      "instance_sha256": "1eaf04b1da5f99c7d3a77bfa56baeebb50dbcf02ac4f4107696541ca944a9b2f",
+      "k_ref": 4,
+      "method": "MPC_HGS",
+      "reference_id": "8d3f3287f23873e397c3346034a972807d8a51739830796a26c4549de412e8ab",
+      "scenario_id": "7af2d491b546ce7abea171d03f2193358b8c0cb1039be56fbe92c7cd348d3527"
+    }
+  ],
+  "five_second_decision_limit": 5.0,
+  "machine_load": "shared workstation; background processes not suspended",
+  "modes": [
+    "sequential",
+    "two_workers"
+  ],
+  "purpose": "technical_two_worker_probe_not_paper_timing",
+  "source_sha256": "6b6a800c2ed3b1c71d791a514024a85a7349ce0fdf12e3593662d474b4c1504f",
+  "watchdog_seconds": 600.0
+}

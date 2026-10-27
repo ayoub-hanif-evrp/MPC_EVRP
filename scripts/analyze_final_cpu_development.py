@@ -39,9 +39,14 @@ def _table(name, rows):
 
 
 def _figure(name, fig):
+    plt.rcParams["svg.hashsalt"] = "mpc-evrp-balanced-development-v1"
     fig.tight_layout()
     fig.savefig(writable_path(OUTPUT / "figures" / f"{name}.png"), dpi=300, facecolor="white")
-    fig.savefig(writable_path(OUTPUT / "figures" / f"{name}.svg"), facecolor="white")
+    vector = writable_path(OUTPUT / "figures" / f"{name}.svg")
+    fig.savefig(vector, facecolor="white", metadata={"Date": None})
+    vector.write_text("\n".join(line.rstrip() for line in
+                                vector.read_text(encoding="utf-8").splitlines()) + "\n",
+                      encoding="utf-8")
     plt.close(fig)
 
 
@@ -104,14 +109,14 @@ def analyze():
             "No variant selection or independent confirmation is permitted.\n", encoding="utf-8")
         return
     methods = protocol["config"]["methods"]
-    variants = tuple(protocol["variants"])
+    variants = ("recovery", "first_action", "quality", "cpu", "combined")
+    if set(protocol["variants"]) != {*variants, "original"}:
+        raise ValueError("Frozen development variant set changed")
     paired = []
     for index in range(6):
         for method in methods:
             base = data[index, method, "original"]
-            for variant in (variants if index in (0, 2, 4) else ("original", "combined")):
-                if variant == "original":
-                    continue
+            for variant in (variants if index in (0, 2, 4) else ("combined",)):
                 other = data[index, method, variant]
                 matched = base["unserved"] == other["unserved"]
                 paired.append(dict(case=index, family=base["family"], size=base["size"],
@@ -139,7 +144,7 @@ def analyze():
                                    cpu_ratio=round(other["cpu"] / base["cpu"], 3) if base["cpu"] else "NA"))
     _table("tables/paired_cases", paired)
     summary = []
-    for variant in variants[1:]:
+    for variant in variants:
         for method in methods:
             values = [row for row in paired if row["variant"] == variant and row["method"] == method]
             matched = [row["distance_delta_if_matched"] for row in values if row["same_served_set"]]
@@ -156,20 +161,20 @@ def analyze():
     short = {method: method.removeprefix("MPC_") for method in methods}
     colors = {"recovery": "#237f64", "first_action": "#416c98", "quality": "#a66741",
               "cpu": "#7c6697", "combined": "#39444a"}
-    fig, ax = plt.subplots(figsize=(8, 4.4))
+    fig, ax = plt.subplots(figsize=(10, 4.4))
     xs = list(range(len(methods)))
     width = .15
-    for i, variant in enumerate(variants[1:]):
+    for i, variant in enumerate(variants):
         vals = [next(row["served_delta"] for row in summary
                      if row["variant"] == variant and row["method"] == method) for method in methods]
         ax.bar([x + (i - 2) * width for x in xs], vals, width,
-               label=f"{variant} (n={6 if variant == 'combined' else 3} parents)",
+               label=f"{variant.replace('_', ' ')} (n={6 if variant == 'combined' else 3} parents)",
                color=colors[variant])
     ax.axhline(0, color="#333333", linewidth=.8)
     ax.set_xticks(xs, [short[method] for method in methods])
     ax.set(ylabel="Paired served-customer change (development cases)",
            title="Exploratory service changes by optimizer")
-    ax.legend(ncol=3, fontsize=8)
+    ax.legend(loc="center left", bbox_to_anchor=(1.01, .5), fontsize=8)
     _figure("development_service_changes", fig)
     fig, ax = plt.subplots(figsize=(7.5, 4.2))
     cpu = [next(row["cpu_ratio_mean"] for row in summary
