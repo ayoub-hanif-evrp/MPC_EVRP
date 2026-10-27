@@ -1,0 +1,757 @@
+{
+  "blocks": [
+    {
+      "case_index": 0,
+      "jobs": [
+        {
+          "historical_max_seconds": 8.501934999949299,
+          "id": "original_0_MPC_COMPLETION",
+          "index": 0,
+          "method": "MPC_COMPLETION",
+          "upper_seconds": 60.0
+        },
+        {
+          "historical_max_seconds": 149.83158729993738,
+          "id": "original_0_MPC_MCTS",
+          "index": 0,
+          "method": "MPC_MCTS",
+          "upper_seconds": 254.74738094990607
+        },
+        {
+          "historical_max_seconds": 165.41477469995152,
+          "id": "original_0_MPC_ALNS",
+          "index": 0,
+          "method": "MPC_ALNS",
+          "upper_seconds": 278.1221620499273
+        },
+        {
+          "historical_max_seconds": 397.32814919995144,
+          "id": "original_0_MPC_HGS",
+          "index": 0,
+          "method": "MPC_HGS",
+          "upper_seconds": 625.9922237999272
+        },
+        {
+          "historical_max_seconds": 348.796837800066,
+          "id": "original_0_MPC_ACS",
+          "index": 0,
+          "method": "MPC_ACS",
+          "upper_seconds": 553.195256700099
+        }
+      ]
+    },
+    {
+      "case_index": 1,
+      "jobs": [
+        {
+          "historical_max_seconds": 348.796837800066,
+          "id": "original_1_MPC_ACS",
+          "index": 1,
+          "method": "MPC_ACS",
+          "upper_seconds": 553.195256700099
+        },
+        {
+          "historical_max_seconds": 397.32814919995144,
+          "id": "original_1_MPC_HGS",
+          "index": 1,
+          "method": "MPC_HGS",
+          "upper_seconds": 625.9922237999272
+        },
+        {
+          "historical_max_seconds": 165.41477469995152,
+          "id": "original_1_MPC_ALNS",
+          "index": 1,
+          "method": "MPC_ALNS",
+          "upper_seconds": 278.1221620499273
+        },
+        {
+          "historical_max_seconds": 149.83158729993738,
+          "id": "original_1_MPC_MCTS",
+          "index": 1,
+          "method": "MPC_MCTS",
+          "upper_seconds": 254.74738094990607
+        },
+        {
+          "historical_max_seconds": 8.501934999949299,
+          "id": "original_1_MPC_COMPLETION",
+          "index": 1,
+          "method": "MPC_COMPLETION",
+          "upper_seconds": 60.0
+        }
+      ]
+    },
+    {
+      "case_index": 2,
+      "jobs": [
+        {
+          "historical_max_seconds": 11.758744599996135,
+          "id": "original_2_MPC_COMPLETION",
+          "index": 2,
+          "method": "MPC_COMPLETION",
+          "upper_seconds": 60.0
+        },
+        {
+          "historical_max_seconds": 188.07885479996912,
+          "id": "original_2_MPC_MCTS",
+          "index": 2,
+          "method": "MPC_MCTS",
+          "upper_seconds": 312.1182821999537
+        },
+        {
+          "historical_max_seconds": 178.16223579994403,
+          "id": "original_2_MPC_ALNS",
+          "index": 2,
+          "method": "MPC_ALNS",
+          "upper_seconds": 297.24335369991604
+        },
+        {
+          "historical_max_seconds": 188.59758160007186,
+          "id": "original_2_MPC_HGS",
+          "index": 2,
+          "method": "MPC_HGS",
+          "upper_seconds": 312.8963724001078
+        },
+        {
+          "historical_max_seconds": 150.65167149994522,
+          "id": "original_2_MPC_ACS",
+          "index": 2,
+          "method": "MPC_ACS",
+          "upper_seconds": 255.97750724991783
+        }
+      ]
+    },
+    {
+      "case_index": 3,
+      "jobs": [
+        {
+          "historical_max_seconds": 150.65167149994522,
+          "id": "original_3_MPC_ACS",
+          "index": 3,
+          "method": "MPC_ACS",
+          "upper_seconds": 255.97750724991783
+        },
+        {
+          "historical_max_seconds": 188.59758160007186,
+          "id": "original_3_MPC_HGS",
+          "index": 3,
+          "method": "MPC_HGS",
+          "upper_seconds": 312.8963724001078
+        },
+        {
+          "historical_max_seconds": 178.16223579994403,
+          "id": "original_3_MPC_ALNS",
+          "index": 3,
+          "method": "MPC_ALNS",
+          "upper_seconds": 297.24335369991604
+        },
+        {
+          "historical_max_seconds": 188.07885479996912,
+          "id": "original_3_MPC_MCTS",
+          "index": 3,
+          "method": "MPC_MCTS",
+          "upper_seconds": 312.1182821999537
+        },
+        {
+          "historical_max_seconds": 11.758744599996135,
+          "id": "original_3_MPC_COMPLETION",
+          "index": 3,
+          "method": "MPC_COMPLETION",
+          "upper_seconds": 60.0
+        }
+      ]
+    },
+    {
+      "case_index": 4,
+      "jobs": [
+        {
+          "historical_max_seconds": 8.501934999949299,
+          "id": "original_4_MPC_COMPLETION",
+          "index": 4,
+          "method": "MPC_COMPLETION",
+          "upper_seconds": 60.0
+        },
+        {
+          "historical_max_seconds": 149.83158729993738,
+          "id": "original_4_MPC_MCTS",
+          "index": 4,
+          "method": "MPC_MCTS",
+          "upper_seconds": 254.74738094990607
+        },
+        {
+          "historical_max_seconds": 165.41477469995152,
+          "id": "original_4_MPC_ALNS",
+          "index": 4,
+          "method": "MPC_ALNS",
+          "upper_seconds": 278.1221620499273
+        },
+        {
+          "historical_max_seconds": 397.32814919995144,
+          "id": "original_4_MPC_HGS",
+          "index": 4,
+          "method": "MPC_HGS",
+          "upper_seconds": 625.9922237999272
+        },
+        {
+          "historical_max_seconds": 348.796837800066,
+          "id": "original_4_MPC_ACS",
+          "index": 4,
+          "method": "MPC_ACS",
+          "upper_seconds": 553.195256700099
+        }
+      ]
+    },
+    {
+      "case_index": 5,
+      "jobs": [
+        {
+          "historical_max_seconds": 348.796837800066,
+          "id": "original_5_MPC_ACS",
+          "index": 5,
+          "method": "MPC_ACS",
+          "upper_seconds": 553.195256700099
+        },
+        {
+          "historical_max_seconds": 397.32814919995144,
+          "id": "original_5_MPC_HGS",
+          "index": 5,
+          "method": "MPC_HGS",
+          "upper_seconds": 625.9922237999272
+        },
+        {
+          "historical_max_seconds": 165.41477469995152,
+          "id": "original_5_MPC_ALNS",
+          "index": 5,
+          "method": "MPC_ALNS",
+          "upper_seconds": 278.1221620499273
+        },
+        {
+          "historical_max_seconds": 149.83158729993738,
+          "id": "original_5_MPC_MCTS",
+          "index": 5,
+          "method": "MPC_MCTS",
+          "upper_seconds": 254.74738094990607
+        },
+        {
+          "historical_max_seconds": 8.501934999949299,
+          "id": "original_5_MPC_COMPLETION",
+          "index": 5,
+          "method": "MPC_COMPLETION",
+          "upper_seconds": 60.0
+        }
+      ]
+    },
+    {
+      "case_index": 6,
+      "jobs": [
+        {
+          "historical_max_seconds": 4.491701400023885,
+          "id": "original_6_MPC_COMPLETION",
+          "index": 6,
+          "method": "MPC_COMPLETION",
+          "upper_seconds": 60.0
+        },
+        {
+          "historical_max_seconds": 78.61313840001822,
+          "id": "original_6_MPC_MCTS",
+          "index": 6,
+          "method": "MPC_MCTS",
+          "upper_seconds": 147.91970760002732
+        },
+        {
+          "historical_max_seconds": 65.68360029999167,
+          "id": "original_6_MPC_ALNS",
+          "index": 6,
+          "method": "MPC_ALNS",
+          "upper_seconds": 128.5254004499875
+        },
+        {
+          "historical_max_seconds": 73.3072493999498,
+          "id": "original_6_MPC_HGS",
+          "index": 6,
+          "method": "MPC_HGS",
+          "upper_seconds": 139.9608740999247
+        },
+        {
+          "historical_max_seconds": 49.60496430005878,
+          "id": "original_6_MPC_ACS",
+          "index": 6,
+          "method": "MPC_ACS",
+          "upper_seconds": 104.40744645008817
+        }
+      ]
+    },
+    {
+      "case_index": 7,
+      "jobs": [
+        {
+          "historical_max_seconds": 49.60496430005878,
+          "id": "original_7_MPC_ACS",
+          "index": 7,
+          "method": "MPC_ACS",
+          "upper_seconds": 104.40744645008817
+        },
+        {
+          "historical_max_seconds": 73.3072493999498,
+          "id": "original_7_MPC_HGS",
+          "index": 7,
+          "method": "MPC_HGS",
+          "upper_seconds": 139.9608740999247
+        },
+        {
+          "historical_max_seconds": 65.68360029999167,
+          "id": "original_7_MPC_ALNS",
+          "index": 7,
+          "method": "MPC_ALNS",
+          "upper_seconds": 128.5254004499875
+        },
+        {
+          "historical_max_seconds": 78.61313840001822,
+          "id": "original_7_MPC_MCTS",
+          "index": 7,
+          "method": "MPC_MCTS",
+          "upper_seconds": 147.91970760002732
+        },
+        {
+          "historical_max_seconds": 4.491701400023885,
+          "id": "original_7_MPC_COMPLETION",
+          "index": 7,
+          "method": "MPC_COMPLETION",
+          "upper_seconds": 60.0
+        }
+      ]
+    },
+    {
+      "case_index": 8,
+      "jobs": [
+        {
+          "historical_max_seconds": 4.491701400023885,
+          "id": "original_8_MPC_COMPLETION",
+          "index": 8,
+          "method": "MPC_COMPLETION",
+          "upper_seconds": 60.0
+        },
+        {
+          "historical_max_seconds": 78.61313840001822,
+          "id": "original_8_MPC_MCTS",
+          "index": 8,
+          "method": "MPC_MCTS",
+          "upper_seconds": 147.91970760002732
+        },
+        {
+          "historical_max_seconds": 65.68360029999167,
+          "id": "original_8_MPC_ALNS",
+          "index": 8,
+          "method": "MPC_ALNS",
+          "upper_seconds": 128.5254004499875
+        },
+        {
+          "historical_max_seconds": 73.3072493999498,
+          "id": "original_8_MPC_HGS",
+          "index": 8,
+          "method": "MPC_HGS",
+          "upper_seconds": 139.9608740999247
+        },
+        {
+          "historical_max_seconds": 49.60496430005878,
+          "id": "original_8_MPC_ACS",
+          "index": 8,
+          "method": "MPC_ACS",
+          "upper_seconds": 104.40744645008817
+        }
+      ]
+    },
+    {
+      "case_index": 9,
+      "jobs": [
+        {
+          "historical_max_seconds": 49.60496430005878,
+          "id": "original_9_MPC_ACS",
+          "index": 9,
+          "method": "MPC_ACS",
+          "upper_seconds": 104.40744645008817
+        },
+        {
+          "historical_max_seconds": 73.3072493999498,
+          "id": "original_9_MPC_HGS",
+          "index": 9,
+          "method": "MPC_HGS",
+          "upper_seconds": 139.9608740999247
+        },
+        {
+          "historical_max_seconds": 65.68360029999167,
+          "id": "original_9_MPC_ALNS",
+          "index": 9,
+          "method": "MPC_ALNS",
+          "upper_seconds": 128.5254004499875
+        },
+        {
+          "historical_max_seconds": 78.61313840001822,
+          "id": "original_9_MPC_MCTS",
+          "index": 9,
+          "method": "MPC_MCTS",
+          "upper_seconds": 147.91970760002732
+        },
+        {
+          "historical_max_seconds": 4.491701400023885,
+          "id": "original_9_MPC_COMPLETION",
+          "index": 9,
+          "method": "MPC_COMPLETION",
+          "upper_seconds": 60.0
+        }
+      ]
+    },
+    {
+      "case_index": 10,
+      "jobs": [
+        {
+          "historical_max_seconds": 11.758744599996135,
+          "id": "original_10_MPC_COMPLETION",
+          "index": 10,
+          "method": "MPC_COMPLETION",
+          "upper_seconds": 60.0
+        },
+        {
+          "historical_max_seconds": 188.07885479996912,
+          "id": "original_10_MPC_MCTS",
+          "index": 10,
+          "method": "MPC_MCTS",
+          "upper_seconds": 312.1182821999537
+        },
+        {
+          "historical_max_seconds": 178.16223579994403,
+          "id": "original_10_MPC_ALNS",
+          "index": 10,
+          "method": "MPC_ALNS",
+          "upper_seconds": 297.24335369991604
+        },
+        {
+          "historical_max_seconds": 188.59758160007186,
+          "id": "original_10_MPC_HGS",
+          "index": 10,
+          "method": "MPC_HGS",
+          "upper_seconds": 312.8963724001078
+        },
+        {
+          "historical_max_seconds": 150.65167149994522,
+          "id": "original_10_MPC_ACS",
+          "index": 10,
+          "method": "MPC_ACS",
+          "upper_seconds": 255.97750724991783
+        }
+      ]
+    },
+    {
+      "case_index": 11,
+      "jobs": [
+        {
+          "historical_max_seconds": 150.65167149994522,
+          "id": "original_11_MPC_ACS",
+          "index": 11,
+          "method": "MPC_ACS",
+          "upper_seconds": 255.97750724991783
+        },
+        {
+          "historical_max_seconds": 188.59758160007186,
+          "id": "original_11_MPC_HGS",
+          "index": 11,
+          "method": "MPC_HGS",
+          "upper_seconds": 312.8963724001078
+        },
+        {
+          "historical_max_seconds": 178.16223579994403,
+          "id": "original_11_MPC_ALNS",
+          "index": 11,
+          "method": "MPC_ALNS",
+          "upper_seconds": 297.24335369991604
+        },
+        {
+          "historical_max_seconds": 188.07885479996912,
+          "id": "original_11_MPC_MCTS",
+          "index": 11,
+          "method": "MPC_MCTS",
+          "upper_seconds": 312.1182821999537
+        },
+        {
+          "historical_max_seconds": 11.758744599996135,
+          "id": "original_11_MPC_COMPLETION",
+          "index": 11,
+          "method": "MPC_COMPLETION",
+          "upper_seconds": 60.0
+        }
+      ]
+    }
+  ],
+  "config": {
+    "analysis_reserve_seconds": 600,
+    "base_controller": "configs/paper_controller.yaml",
+    "charging_policy": "MP",
+    "dynamicity": 0.5,
+    "engineering_watchdog_seconds": 900.0,
+    "instances": [
+      "c102_21_100",
+      "c202_21_50",
+      "r102_21_100",
+      "r202_21_25",
+      "rc102_21_25",
+      "rc202_21_50"
+    ],
+    "maximum_wall_seconds": 28800,
+    "maximum_worker_cpu_seconds": 43200,
+    "methods": [
+      "MPC_COMPLETION",
+      "MPC_MCTS",
+      "MPC_ALNS",
+      "MPC_HGS",
+      "MPC_ACS"
+    ],
+    "no_enhanced_holdout": true,
+    "scenario_seeds": [
+      6,
+      7
+    ],
+    "setup_charge_seconds": 600,
+    "study": "final_cpu_replication_v1",
+    "total_planning_time_limit": 5.0
+  },
+  "conservative_wall_upper_seconds": 15564.42387059913,
+  "historical_cost_rule": "1.5 x maximum matching size/method robustness worker + 30 s; floor 60, cap 900",
+  "hypothesis": "Independent replication of original five-method service ranking; no enhanced-method claim",
+  "no_post_outcome_exclusions": true,
+  "primary_endpoints": [
+    "customer-weighted service",
+    "complete-service scenarios"
+  ],
+  "selected": [
+    {
+      "dynamicity": 0.5,
+      "family": "C1",
+      "instance": "c102_21_100",
+      "instance_sha256": "73f1507e83e065b41b2631b72c0f9321cf723b87505298fc769393f1fe5a8587",
+      "k_ref": 12,
+      "reference": {
+        "path": "results/desaulniers/final_cpu_paper_v1/inputs/references/c102_21_100.json",
+        "sha256": "49e61b2dc18fdc6e6b3bd7276c880d58acb86692a6330745be1c67925660cbe4"
+      },
+      "reference_id": "707b2469cc396e8206a02dcaef39d4539422200999d90e50a1ff2b0dc0803c78",
+      "scenario": {
+        "path": "results/desaulniers/final_cpu_paper_v1/inputs/scenarios/c102_21_100_6.json",
+        "sha256": "05e9b0810b01f163a78c83b8963e39eb35d1596b58b7575c46d7f7c8e00ff5fa"
+      },
+      "scenario_id": "e54bb256a8898d47c10501e5441daf6e415acbe55cb08c8ff2a1b4156e259da3",
+      "seed": 6,
+      "size": 100
+    },
+    {
+      "dynamicity": 0.5,
+      "family": "C1",
+      "instance": "c102_21_100",
+      "instance_sha256": "73f1507e83e065b41b2631b72c0f9321cf723b87505298fc769393f1fe5a8587",
+      "k_ref": 12,
+      "reference": {
+        "path": "results/desaulniers/final_cpu_paper_v1/inputs/references/c102_21_100.json",
+        "sha256": "49e61b2dc18fdc6e6b3bd7276c880d58acb86692a6330745be1c67925660cbe4"
+      },
+      "reference_id": "707b2469cc396e8206a02dcaef39d4539422200999d90e50a1ff2b0dc0803c78",
+      "scenario": {
+        "path": "results/desaulniers/final_cpu_paper_v1/inputs/scenarios/c102_21_100_7.json",
+        "sha256": "a7783906fee49eece111425b681daf9803b8e9a991ae02398801dc506611a5db"
+      },
+      "scenario_id": "8f1173a4b0c5f92b44dd74bd74ee787ede3d08054fba680235cc200b8cce7033",
+      "seed": 7,
+      "size": 100
+    },
+    {
+      "dynamicity": 0.5,
+      "family": "C2",
+      "instance": "c202_21_50",
+      "instance_sha256": "28ac6e9d70b80a14f57c5cc6a298bb55e230df7cb330da42c0ecc002087e5e4c",
+      "k_ref": 4,
+      "reference": {
+        "path": "results/desaulniers/final_cpu_paper_v1/inputs/references/c202_21_50.json",
+        "sha256": "c9c8e3a515fa6544f24a2f62cb014e885aae04d79be420de8a1e31b99f1656ab"
+      },
+      "reference_id": "72c363d611981c79a284cb112c8ec65047f848124eaa9b00418576b0f0a85f94",
+      "scenario": {
+        "path": "results/desaulniers/final_cpu_paper_v1/inputs/scenarios/c202_21_50_6.json",
+        "sha256": "9fbd5bc4ab888ce23f77d631022a3646084ae732b88e1fd91f7e2995ff7efccc"
+      },
+      "scenario_id": "84497c90c1841bb692429a38f6970adea1b6bb649d6a0e6930ebfa5ba5cc9bc6",
+      "seed": 6,
+      "size": 50
+    },
+    {
+      "dynamicity": 0.5,
+      "family": "C2",
+      "instance": "c202_21_50",
+      "instance_sha256": "28ac6e9d70b80a14f57c5cc6a298bb55e230df7cb330da42c0ecc002087e5e4c",
+      "k_ref": 4,
+      "reference": {
+        "path": "results/desaulniers/final_cpu_paper_v1/inputs/references/c202_21_50.json",
+        "sha256": "c9c8e3a515fa6544f24a2f62cb014e885aae04d79be420de8a1e31b99f1656ab"
+      },
+      "reference_id": "72c363d611981c79a284cb112c8ec65047f848124eaa9b00418576b0f0a85f94",
+      "scenario": {
+        "path": "results/desaulniers/final_cpu_paper_v1/inputs/scenarios/c202_21_50_7.json",
+        "sha256": "73fe0b35f4e585ace326a45c81748bdeef53fb0c0024f607a21d347607579ef2"
+      },
+      "scenario_id": "e0feeb090771e2a9b62547376580669569465d3dbff8f455dca0b6b974245db9",
+      "seed": 7,
+      "size": 50
+    },
+    {
+      "dynamicity": 0.5,
+      "family": "R1",
+      "instance": "r102_21_100",
+      "instance_sha256": "c1e77d7f528e39d64d539ffe32c78d2747b6bfb6fcb37c7c7a905d72896fef7d",
+      "k_ref": 18,
+      "reference": {
+        "path": "results/desaulniers/final_cpu_paper_v1/inputs/references/r102_21_100.json",
+        "sha256": "c95bbddb983aa29d9c492469ea0476b3f85545f8fbdb291b5d3dce4a0bac927a"
+      },
+      "reference_id": "49de79231a0d78c778733139e020022f0407d6e3aa1b34765312efe9b9b9e0a8",
+      "scenario": {
+        "path": "results/desaulniers/final_cpu_paper_v1/inputs/scenarios/r102_21_100_6.json",
+        "sha256": "9b080e6bf6e761d9abb99cbcb52efe1e3df076c6f2e52d16dfd5728a15290c93"
+      },
+      "scenario_id": "7bc493234d85d2a8175ae4cfa033cbe48aba8222500190476f0a3d40477c518e",
+      "seed": 6,
+      "size": 100
+    },
+    {
+      "dynamicity": 0.5,
+      "family": "R1",
+      "instance": "r102_21_100",
+      "instance_sha256": "c1e77d7f528e39d64d539ffe32c78d2747b6bfb6fcb37c7c7a905d72896fef7d",
+      "k_ref": 18,
+      "reference": {
+        "path": "results/desaulniers/final_cpu_paper_v1/inputs/references/r102_21_100.json",
+        "sha256": "c95bbddb983aa29d9c492469ea0476b3f85545f8fbdb291b5d3dce4a0bac927a"
+      },
+      "reference_id": "49de79231a0d78c778733139e020022f0407d6e3aa1b34765312efe9b9b9e0a8",
+      "scenario": {
+        "path": "results/desaulniers/final_cpu_paper_v1/inputs/scenarios/r102_21_100_7.json",
+        "sha256": "76e236e67bfcb20221843c10e6a1a8b0dd81a44df5343ab23da009225cab4158"
+      },
+      "scenario_id": "d1e1051cd60458e087f9bb49e92117f69b38110a7b9504cfb7c19e0da8c95c03",
+      "seed": 7,
+      "size": 100
+    },
+    {
+      "dynamicity": 0.5,
+      "family": "R2",
+      "instance": "r202_21_25",
+      "instance_sha256": "4677806492c041dd490e161dc153fc4a0ed35da70ddd66e12e057dcb6960002f",
+      "k_ref": 3,
+      "reference": {
+        "path": "results/desaulniers/final_cpu_paper_v1/inputs/references/r202_21_25.json",
+        "sha256": "0708fe404e37fef2dd17b5188015e721fb555b83ff172509f7144886e31e3f34"
+      },
+      "reference_id": "0232a9c361477501af9bdaa80013c0efce33b9d32a26fc296ace200cb6142fd1",
+      "scenario": {
+        "path": "results/desaulniers/final_cpu_paper_v1/inputs/scenarios/r202_21_25_6.json",
+        "sha256": "f3932406415fb7a77fbee9b6992190c57ff009281b3b017fca6c32745fbf072b"
+      },
+      "scenario_id": "fd6ceee3c7347b218ce00c6cec9732e939d1f33c06477de0eb6c012817168174",
+      "seed": 6,
+      "size": 25
+    },
+    {
+      "dynamicity": 0.5,
+      "family": "R2",
+      "instance": "r202_21_25",
+      "instance_sha256": "4677806492c041dd490e161dc153fc4a0ed35da70ddd66e12e057dcb6960002f",
+      "k_ref": 3,
+      "reference": {
+        "path": "results/desaulniers/final_cpu_paper_v1/inputs/references/r202_21_25.json",
+        "sha256": "0708fe404e37fef2dd17b5188015e721fb555b83ff172509f7144886e31e3f34"
+      },
+      "reference_id": "0232a9c361477501af9bdaa80013c0efce33b9d32a26fc296ace200cb6142fd1",
+      "scenario": {
+        "path": "results/desaulniers/final_cpu_paper_v1/inputs/scenarios/r202_21_25_7.json",
+        "sha256": "edacc6cb519786f25f04fb0e7ae305718da2d09d00b13ab4b5573c94c40e2067"
+      },
+      "scenario_id": "affa1aae9c63d05adb4b467d77bf895321c2e792b8afa3004dfe2254a354da3e",
+      "seed": 7,
+      "size": 25
+    },
+    {
+      "dynamicity": 0.5,
+      "family": "RC1",
+      "instance": "rc102_21_25",
+      "instance_sha256": "b4d87f8b33476b60c9d6964c08bdb875585e5cf3cb0193b29a319b3e4dcaa779",
+      "k_ref": 7,
+      "reference": {
+        "path": "results/desaulniers/final_cpu_paper_v1/inputs/references/rc102_21_25.json",
+        "sha256": "fd31c72a7093dde027f908740dd25113a149d23729dea19043ff5821da68f8f2"
+      },
+      "reference_id": "73e4675cf2a0f242f3a532f440ef62348dc7ec4a68134c37863c6eaa6ec702fd",
+      "scenario": {
+        "path": "results/desaulniers/final_cpu_paper_v1/inputs/scenarios/rc102_21_25_6.json",
+        "sha256": "4c3e4169e89942b210dfc687e0d3cfa72cb2e12b96d024e5a5dd2966bd30bc4d"
+      },
+      "scenario_id": "d751a0c76145431e6be5cfae03a3de42339b4c2925d006df78576599148fcfa7",
+      "seed": 6,
+      "size": 25
+    },
+    {
+      "dynamicity": 0.5,
+      "family": "RC1",
+      "instance": "rc102_21_25",
+      "instance_sha256": "b4d87f8b33476b60c9d6964c08bdb875585e5cf3cb0193b29a319b3e4dcaa779",
+      "k_ref": 7,
+      "reference": {
+        "path": "results/desaulniers/final_cpu_paper_v1/inputs/references/rc102_21_25.json",
+        "sha256": "fd31c72a7093dde027f908740dd25113a149d23729dea19043ff5821da68f8f2"
+      },
+      "reference_id": "73e4675cf2a0f242f3a532f440ef62348dc7ec4a68134c37863c6eaa6ec702fd",
+      "scenario": {
+        "path": "results/desaulniers/final_cpu_paper_v1/inputs/scenarios/rc102_21_25_7.json",
+        "sha256": "0463bea0d15741471c150a5d7e726d36ed0b8178d1beead39b6b649dd9ca111f"
+      },
+      "scenario_id": "9b789dc22697aee9716ece7999f0a44ac6eed3f86037e1f508f24b701fca051c",
+      "seed": 7,
+      "size": 25
+    },
+    {
+      "dynamicity": 0.5,
+      "family": "RC2",
+      "instance": "rc202_21_50",
+      "instance_sha256": "829ceb4ac5573f80ec7053cd3aa0ef5246efb18730016c8b97a59f9ce3e68484",
+      "k_ref": 5,
+      "reference": {
+        "path": "results/desaulniers/final_cpu_paper_v1/inputs/references/rc202_21_50.json",
+        "sha256": "d9a5611dd44696d89b2543dfa14559d56cc48870b666685c0dc8cd78ca8c1f10"
+      },
+      "reference_id": "cc106d0d6633aab5bf6a8e2d2117b94b67e4017e1721f12dd4a68f9b7a267282",
+      "scenario": {
+        "path": "results/desaulniers/final_cpu_paper_v1/inputs/scenarios/rc202_21_50_6.json",
+        "sha256": "f6d3e325ac6fd6e2913123ea4234a8a988961e463ce54289160158af32b3ce03"
+      },
+      "scenario_id": "67d5e43757bbf3232db7b77b33fadc8fbe047bb903906032c1935cebfa618301",
+      "seed": 6,
+      "size": 50
+    },
+    {
+      "dynamicity": 0.5,
+      "family": "RC2",
+      "instance": "rc202_21_50",
+      "instance_sha256": "829ceb4ac5573f80ec7053cd3aa0ef5246efb18730016c8b97a59f9ce3e68484",
+      "k_ref": 5,
+      "reference": {
+        "path": "results/desaulniers/final_cpu_paper_v1/inputs/references/rc202_21_50.json",
+        "sha256": "d9a5611dd44696d89b2543dfa14559d56cc48870b666685c0dc8cd78ca8c1f10"
+      },
+      "reference_id": "cc106d0d6633aab5bf6a8e2d2117b94b67e4017e1721f12dd4a68f9b7a267282",
+      "scenario": {
+        "path": "results/desaulniers/final_cpu_paper_v1/inputs/scenarios/rc202_21_50_7.json",
+        "sha256": "7f16d2d815074a92ce2ec79a6b2fbf8b74f44f7325eb7c28e427695a09bc48e4"
+      },
+      "scenario_id": "22bf9e7fbc2d6f4d65ef2f8eee3a9cef45f5592524221fe834dd18f1301393af",
+      "seed": 7,
+      "size": 50
+    }
+  ],
+  "selection_rule": "lexicographically first as-yet-unrun published-full-reference parent in each family, with two each at sizes 25/50/100; DoD 0.50 and unused seeds 6,7",
+  "source_commit": "7b7b7060c7a22225701f19aa57f54380b9b1c254",
+  "source_sha256": "451039c10bdbb7e84edf19a761cda0eecaf999218afb5b5d37ac1bf9cee29a71"
+}

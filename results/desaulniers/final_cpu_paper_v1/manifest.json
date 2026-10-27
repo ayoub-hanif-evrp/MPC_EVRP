@@ -1,0 +1,1748 @@
+{
+  "completed_runs": 60,
+  "planned_runs": 60,
+  "protocol_identifier": "18176953ef0cc3d1408e223ee7e6b7ed55dc9bfaa8ac638257023ee49cf14590",
+  "records": [
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.run_final_cpu_replication",
+          "--worker",
+          "0",
+          "MPC_COMPLETION"
+        ],
+        "cpu_seconds": 5.9375,
+        "cpu_to_wall": 0.9574343938010844,
+        "elapsed_seconds": 6.201469300081953,
+        "id": "original_0_MPC_COMPLETION",
+        "log": "results/desaulniers/final_cpu_paper_v1/logs/original_0_MPC_COMPLETION.log",
+        "pid": 20072,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T20:11:50.768850+00:00",
+        "status": "complete",
+        "upper_seconds": 60.0
+      },
+      "id": "original_0_MPC_COMPLETION",
+      "index": 0,
+      "method": "MPC_COMPLETION",
+      "raw": "results/desaulniers/final_cpu_paper_v1/raw/original_0_MPC_COMPLETION.json.gz",
+      "sha256": "27513126cfbf16cbd0f36d9465fba0023ddb4d9b959b11eb8a6b58e683deabcb"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.run_final_cpu_replication",
+          "--worker",
+          "0",
+          "MPC_MCTS"
+        ],
+        "cpu_seconds": 182.125,
+        "cpu_to_wall": 0.9851931466419679,
+        "elapsed_seconds": 184.86222789995372,
+        "id": "original_0_MPC_MCTS",
+        "log": "results/desaulniers/final_cpu_paper_v1/logs/original_0_MPC_MCTS.log",
+        "pid": 22692,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T20:11:57.005940+00:00",
+        "status": "complete",
+        "upper_seconds": 254.74738094990607
+      },
+      "id": "original_0_MPC_MCTS",
+      "index": 0,
+      "method": "MPC_MCTS",
+      "raw": "results/desaulniers/final_cpu_paper_v1/raw/original_0_MPC_MCTS.json.gz",
+      "sha256": "11c34d91df9caa7ba11fa4c6f4d625060aaad586a7196cb459bb90593a531eba"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.run_final_cpu_replication",
+          "--worker",
+          "0",
+          "MPC_ALNS"
+        ],
+        "cpu_seconds": 180.65625,
+        "cpu_to_wall": 0.99016291908664,
+        "elapsed_seconds": 182.45103559992276,
+        "id": "original_0_MPC_ALNS",
+        "log": "results/desaulniers/final_cpu_paper_v1/logs/original_0_MPC_ALNS.log",
+        "pid": 30476,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T20:15:01.910605+00:00",
+        "status": "complete",
+        "upper_seconds": 278.1221620499273
+      },
+      "id": "original_0_MPC_ALNS",
+      "index": 0,
+      "method": "MPC_ALNS",
+      "raw": "results/desaulniers/final_cpu_paper_v1/raw/original_0_MPC_ALNS.json.gz",
+      "sha256": "b7ca7d56e5c9823d101820812aef0210557682435356fa6f2ad86fe7c0ddd158"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.run_final_cpu_replication",
+          "--worker",
+          "0",
+          "MPC_HGS"
+        ],
+        "cpu_seconds": 400.625,
+        "cpu_to_wall": 0.9883361285751374,
+        "elapsed_seconds": 405.35298509988934,
+        "id": "original_0_MPC_HGS",
+        "log": "results/desaulniers/final_cpu_paper_v1/logs/original_0_MPC_HGS.log",
+        "pid": 24112,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T20:18:04.393616+00:00",
+        "status": "complete",
+        "upper_seconds": 625.9922237999272
+      },
+      "id": "original_0_MPC_HGS",
+      "index": 0,
+      "method": "MPC_HGS",
+      "raw": "results/desaulniers/final_cpu_paper_v1/raw/original_0_MPC_HGS.json.gz",
+      "sha256": "78655cf0f58fce2a618014e4f6a14be96b474702efc4cacf627954be44149b7e"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.run_final_cpu_replication",
+          "--worker",
+          "0",
+          "MPC_ACS"
+        ],
+        "cpu_seconds": 185.203125,
+        "cpu_to_wall": 0.9881334621854403,
+        "elapsed_seconds": 187.4272374000866,
+        "id": "original_0_MPC_ACS",
+        "log": "results/desaulniers/final_cpu_paper_v1/logs/original_0_MPC_ACS.log",
+        "pid": 19148,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T20:24:49.774035+00:00",
+        "status": "complete",
+        "upper_seconds": 553.195256700099
+      },
+      "id": "original_0_MPC_ACS",
+      "index": 0,
+      "method": "MPC_ACS",
+      "raw": "results/desaulniers/final_cpu_paper_v1/raw/original_0_MPC_ACS.json.gz",
+      "sha256": "2a701347f6ce1c648e5516a02d3e482f471a20d759aa7b513f54e88f3cafa178"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.run_final_cpu_replication",
+          "--worker",
+          "1",
+          "MPC_ACS"
+        ],
+        "cpu_seconds": 364.703125,
+        "cpu_to_wall": 0.9889095597325946,
+        "elapsed_seconds": 368.7932039999869,
+        "id": "original_1_MPC_ACS",
+        "log": "results/desaulniers/final_cpu_paper_v1/logs/original_1_MPC_ACS.log",
+        "pid": 19268,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T20:27:57.233553+00:00",
+        "status": "complete",
+        "upper_seconds": 553.195256700099
+      },
+      "id": "original_1_MPC_ACS",
+      "index": 1,
+      "method": "MPC_ACS",
+      "raw": "results/desaulniers/final_cpu_paper_v1/raw/original_1_MPC_ACS.json.gz",
+      "sha256": "30376168b8e2eda58260e93a83e664ae654a3ce2516fea68f424712a72fb8e6b"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.run_final_cpu_replication",
+          "--worker",
+          "1",
+          "MPC_HGS"
+        ],
+        "cpu_seconds": 399.578125,
+        "cpu_to_wall": 0.9891297325605063,
+        "elapsed_seconds": 403.96938020014204,
+        "id": "original_1_MPC_HGS",
+        "log": "results/desaulniers/final_cpu_paper_v1/logs/original_1_MPC_HGS.log",
+        "pid": 25044,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T20:34:06.058349+00:00",
+        "status": "complete",
+        "upper_seconds": 625.9922237999272
+      },
+      "id": "original_1_MPC_HGS",
+      "index": 1,
+      "method": "MPC_HGS",
+      "raw": "results/desaulniers/final_cpu_paper_v1/raw/original_1_MPC_HGS.json.gz",
+      "sha256": "b98fe9e73b4ca84e7d928b3ec1d8563c3797412c9b338d1f0dfb3ac1c795ab1e"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.run_final_cpu_replication",
+          "--worker",
+          "1",
+          "MPC_ALNS"
+        ],
+        "cpu_seconds": 180.53125,
+        "cpu_to_wall": 0.9868979255105781,
+        "elapsed_seconds": 182.92798610008322,
+        "id": "original_1_MPC_ALNS",
+        "log": "results/desaulniers/final_cpu_paper_v1/logs/original_1_MPC_ALNS.log",
+        "pid": 14204,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T20:40:50.065257+00:00",
+        "status": "complete",
+        "upper_seconds": 278.1221620499273
+      },
+      "id": "original_1_MPC_ALNS",
+      "index": 1,
+      "method": "MPC_ALNS",
+      "raw": "results/desaulniers/final_cpu_paper_v1/raw/original_1_MPC_ALNS.json.gz",
+      "sha256": "e23fdcb9e8583080142632c8e2b0d5d4d2d601d2d4b0d602763b276f8dd4caaf"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.run_final_cpu_replication",
+          "--worker",
+          "1",
+          "MPC_MCTS"
+        ],
+        "cpu_seconds": 106.875,
+        "cpu_to_wall": 0.9903250583758262,
+        "elapsed_seconds": 107.91911110002548,
+        "id": "original_1_MPC_MCTS",
+        "log": "results/desaulniers/final_cpu_paper_v1/logs/original_1_MPC_MCTS.log",
+        "pid": 21760,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T20:43:53.028680+00:00",
+        "status": "complete",
+        "upper_seconds": 254.74738094990607
+      },
+      "id": "original_1_MPC_MCTS",
+      "index": 1,
+      "method": "MPC_MCTS",
+      "raw": "results/desaulniers/final_cpu_paper_v1/raw/original_1_MPC_MCTS.json.gz",
+      "sha256": "c5c877cecae062090f69f5d0a12946c800454d4cb1d713ae0d91c932fd13592e"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.run_final_cpu_replication",
+          "--worker",
+          "1",
+          "MPC_COMPLETION"
+        ],
+        "cpu_seconds": 17.109375,
+        "cpu_to_wall": 0.9773383124879944,
+        "elapsed_seconds": 17.506092600058764,
+        "id": "original_1_MPC_COMPLETION",
+        "log": "results/desaulniers/final_cpu_paper_v1/logs/original_1_MPC_COMPLETION.log",
+        "pid": 21700,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T20:45:40.997583+00:00",
+        "status": "complete",
+        "upper_seconds": 60.0
+      },
+      "id": "original_1_MPC_COMPLETION",
+      "index": 1,
+      "method": "MPC_COMPLETION",
+      "raw": "results/desaulniers/final_cpu_paper_v1/raw/original_1_MPC_COMPLETION.json.gz",
+      "sha256": "6ac4becd437e870b6e5a25ff185566bdabfd07df3af0e70391380b1d8451097b"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.run_final_cpu_replication",
+          "--worker",
+          "2",
+          "MPC_COMPLETION"
+        ],
+        "cpu_seconds": 5.234375,
+        "cpu_to_wall": 0.9692811909858597,
+        "elapsed_seconds": 5.400264699943364,
+        "id": "original_2_MPC_COMPLETION",
+        "log": "results/desaulniers/final_cpu_paper_v1/logs/original_2_MPC_COMPLETION.log",
+        "pid": 21412,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T20:45:58.531094+00:00",
+        "status": "complete",
+        "upper_seconds": 60.0
+      },
+      "id": "original_2_MPC_COMPLETION",
+      "index": 2,
+      "method": "MPC_COMPLETION",
+      "raw": "results/desaulniers/final_cpu_paper_v1/raw/original_2_MPC_COMPLETION.json.gz",
+      "sha256": "5613d56d365a43a09848055fb82c3935ec4ddd9122cd62709a4448aa1e29c13b"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.run_final_cpu_replication",
+          "--worker",
+          "2",
+          "MPC_MCTS"
+        ],
+        "cpu_seconds": 31.421875,
+        "cpu_to_wall": 0.9810088672009967,
+        "elapsed_seconds": 32.03016409999691,
+        "id": "original_2_MPC_MCTS",
+        "log": "results/desaulniers/final_cpu_paper_v1/logs/original_2_MPC_MCTS.log",
+        "pid": 30796,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T20:46:03.963249+00:00",
+        "status": "complete",
+        "upper_seconds": 312.1182821999537
+      },
+      "id": "original_2_MPC_MCTS",
+      "index": 2,
+      "method": "MPC_MCTS",
+      "raw": "results/desaulniers/final_cpu_paper_v1/raw/original_2_MPC_MCTS.json.gz",
+      "sha256": "6469974ae5d160af5456d2713f877e4b3bd80da56d22dd6bd6f54f5e2145e9ba"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.run_final_cpu_replication",
+          "--worker",
+          "2",
+          "MPC_ALNS"
+        ],
+        "cpu_seconds": 262.578125,
+        "cpu_to_wall": 0.9874844559921241,
+        "elapsed_seconds": 265.90608430001885,
+        "id": "original_2_MPC_ALNS",
+        "log": "results/desaulniers/final_cpu_paper_v1/logs/original_2_MPC_ALNS.log",
+        "pid": 11968,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T20:46:36.011345+00:00",
+        "status": "complete",
+        "upper_seconds": 297.24335369991604
+      },
+      "id": "original_2_MPC_ALNS",
+      "index": 2,
+      "method": "MPC_ALNS",
+      "raw": "results/desaulniers/final_cpu_paper_v1/raw/original_2_MPC_ALNS.json.gz",
+      "sha256": "b2dacecaea0188166c3d5addeeee378ea22d0cf85dd19f420abbd39d5d2f13cd"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.run_final_cpu_replication",
+          "--worker",
+          "2",
+          "MPC_HGS"
+        ],
+        "cpu_seconds": 305.390625,
+        "cpu_to_wall": 0.9892531555533194,
+        "elapsed_seconds": 308.7082647001371,
+        "id": "original_2_MPC_HGS",
+        "log": "results/desaulniers/final_cpu_paper_v1/logs/original_2_MPC_HGS.log",
+        "pid": 31984,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T20:51:01.961712+00:00",
+        "status": "complete",
+        "upper_seconds": 312.8963724001078
+      },
+      "id": "original_2_MPC_HGS",
+      "index": 2,
+      "method": "MPC_HGS",
+      "raw": "results/desaulniers/final_cpu_paper_v1/raw/original_2_MPC_HGS.json.gz",
+      "sha256": "c831786181b316a852406f2899c0bb431c6c1af23a62bc98caba86967227a35b"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.run_final_cpu_replication",
+          "--worker",
+          "2",
+          "MPC_ACS"
+        ],
+        "cpu_seconds": 74.28125,
+        "cpu_to_wall": 0.9853605844333526,
+        "elapsed_seconds": 75.38484000018798,
+        "id": "original_2_MPC_ACS",
+        "log": "results/desaulniers/final_cpu_paper_v1/logs/original_2_MPC_ACS.log",
+        "pid": 17628,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T20:56:10.696119+00:00",
+        "status": "complete",
+        "upper_seconds": 255.97750724991783
+      },
+      "id": "original_2_MPC_ACS",
+      "index": 2,
+      "method": "MPC_ACS",
+      "raw": "results/desaulniers/final_cpu_paper_v1/raw/original_2_MPC_ACS.json.gz",
+      "sha256": "946d5c4bd231c80c40b3eb2c9f936e3047d7bb6042f31e563d7b5b1f81d1d093"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.run_final_cpu_replication",
+          "--worker",
+          "3",
+          "MPC_ACS"
+        ],
+        "cpu_seconds": 60.046875,
+        "cpu_to_wall": 0.9896088742357577,
+        "elapsed_seconds": 60.677381300134584,
+        "id": "original_3_MPC_ACS",
+        "log": "results/desaulniers/final_cpu_paper_v1/logs/original_3_MPC_ACS.log",
+        "pid": 33620,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T20:57:26.111503+00:00",
+        "status": "complete",
+        "upper_seconds": 255.97750724991783
+      },
+      "id": "original_3_MPC_ACS",
+      "index": 3,
+      "method": "MPC_ACS",
+      "raw": "results/desaulniers/final_cpu_paper_v1/raw/original_3_MPC_ACS.json.gz",
+      "sha256": "25e4835d4801e89657f3c97f50028646a59320c1f4dc2159dee2a78a024f4f39"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.run_final_cpu_replication",
+          "--worker",
+          "3",
+          "MPC_HGS"
+        ],
+        "cpu_seconds": 121.84375,
+        "cpu_to_wall": 0.9888951346442764,
+        "elapsed_seconds": 123.21200270019472,
+        "id": "original_3_MPC_HGS",
+        "log": "results/desaulniers/final_cpu_paper_v1/logs/original_3_MPC_HGS.log",
+        "pid": 18016,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T20:58:26.815508+00:00",
+        "status": "complete",
+        "upper_seconds": 312.8963724001078
+      },
+      "id": "original_3_MPC_HGS",
+      "index": 3,
+      "method": "MPC_HGS",
+      "raw": "results/desaulniers/final_cpu_paper_v1/raw/original_3_MPC_HGS.json.gz",
+      "sha256": "b09587c3ae466a3d1c9b861e0aa8499413f4626b22da871a20d1a8f614af2e0e"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.run_final_cpu_replication",
+          "--worker",
+          "3",
+          "MPC_ALNS"
+        ],
+        "cpu_seconds": 121.125,
+        "cpu_to_wall": 0.9854755411768851,
+        "elapsed_seconds": 122.91020419984125,
+        "id": "original_3_MPC_ALNS",
+        "log": "results/desaulniers/final_cpu_paper_v1/logs/original_3_MPC_ALNS.log",
+        "pid": 28528,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T21:00:30.065090+00:00",
+        "status": "complete",
+        "upper_seconds": 297.24335369991604
+      },
+      "id": "original_3_MPC_ALNS",
+      "index": 3,
+      "method": "MPC_ALNS",
+      "raw": "results/desaulniers/final_cpu_paper_v1/raw/original_3_MPC_ALNS.json.gz",
+      "sha256": "fa5dcf0225ec37c8781d9b21796a287b27a406218e9026216af4e2ea27080055"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.run_final_cpu_replication",
+          "--worker",
+          "3",
+          "MPC_MCTS"
+        ],
+        "cpu_seconds": 137.140625,
+        "cpu_to_wall": 0.9922108051806842,
+        "elapsed_seconds": 138.21722589991987,
+        "id": "original_3_MPC_MCTS",
+        "log": "results/desaulniers/final_cpu_paper_v1/logs/original_3_MPC_MCTS.log",
+        "pid": 35556,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T21:02:32.997225+00:00",
+        "status": "complete",
+        "upper_seconds": 312.1182821999537
+      },
+      "id": "original_3_MPC_MCTS",
+      "index": 3,
+      "method": "MPC_MCTS",
+      "raw": "results/desaulniers/final_cpu_paper_v1/raw/original_3_MPC_MCTS.json.gz",
+      "sha256": "77bdb6c0d381b5f0a35166e7eb8ad9035c2fee0926e895d45f18dd234c44f4b8"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.run_final_cpu_replication",
+          "--worker",
+          "3",
+          "MPC_COMPLETION"
+        ],
+        "cpu_seconds": 2.8125,
+        "cpu_to_wall": 0.9765491063331263,
+        "elapsed_seconds": 2.8800395000725985,
+        "id": "original_3_MPC_COMPLETION",
+        "log": "results/desaulniers/final_cpu_paper_v1/logs/original_3_MPC_COMPLETION.log",
+        "pid": 26236,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T21:04:51.253669+00:00",
+        "status": "complete",
+        "upper_seconds": 60.0
+      },
+      "id": "original_3_MPC_COMPLETION",
+      "index": 3,
+      "method": "MPC_COMPLETION",
+      "raw": "results/desaulniers/final_cpu_paper_v1/raw/original_3_MPC_COMPLETION.json.gz",
+      "sha256": "e3add488cd7ec3e7005b76532a28a533e416b8c84a79cbeae2e3788d9993c4ed"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.run_final_cpu_replication",
+          "--worker",
+          "4",
+          "MPC_COMPLETION"
+        ],
+        "cpu_seconds": 6.296875,
+        "cpu_to_wall": 0.9905007721990584,
+        "elapsed_seconds": 6.357264099875465,
+        "id": "original_4_MPC_COMPLETION",
+        "log": "results/desaulniers/final_cpu_paper_v1/logs/original_4_MPC_COMPLETION.log",
+        "pid": 23276,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T21:04:54.150983+00:00",
+        "status": "complete",
+        "upper_seconds": 60.0
+      },
+      "id": "original_4_MPC_COMPLETION",
+      "index": 4,
+      "method": "MPC_COMPLETION",
+      "raw": "results/desaulniers/final_cpu_paper_v1/raw/original_4_MPC_COMPLETION.json.gz",
+      "sha256": "47279a400f057311938a424009e48074bb97618483f2e7021751e7d006e1c158"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.run_final_cpu_replication",
+          "--worker",
+          "4",
+          "MPC_MCTS"
+        ],
+        "cpu_seconds": 76.84375,
+        "cpu_to_wall": 0.9952758514106252,
+        "elapsed_seconds": 77.20849439990707,
+        "id": "original_4_MPC_MCTS",
+        "log": "results/desaulniers/final_cpu_paper_v1/logs/original_4_MPC_MCTS.log",
+        "pid": 14144,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T21:05:00.545272+00:00",
+        "status": "complete",
+        "upper_seconds": 254.74738094990607
+      },
+      "id": "original_4_MPC_MCTS",
+      "index": 4,
+      "method": "MPC_MCTS",
+      "raw": "results/desaulniers/final_cpu_paper_v1/raw/original_4_MPC_MCTS.json.gz",
+      "sha256": "3b3a461069afecf8ab278de4eeef156c331a14e2f743473022b6fc11716447f6"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.run_final_cpu_replication",
+          "--worker",
+          "4",
+          "MPC_ALNS"
+        ],
+        "cpu_seconds": 143.140625,
+        "cpu_to_wall": 0.9948484900356289,
+        "elapsed_seconds": 143.88183369999751,
+        "id": "original_4_MPC_ALNS",
+        "log": "results/desaulniers/final_cpu_paper_v1/logs/original_4_MPC_ALNS.log",
+        "pid": 12792,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T21:06:17.813602+00:00",
+        "status": "complete",
+        "upper_seconds": 278.1221620499273
+      },
+      "id": "original_4_MPC_ALNS",
+      "index": 4,
+      "method": "MPC_ALNS",
+      "raw": "results/desaulniers/final_cpu_paper_v1/raw/original_4_MPC_ALNS.json.gz",
+      "sha256": "a17584bf089ccf03078d9e6a6235adb573fc6b07fafd57f58b9f0b14344e2f33"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.run_final_cpu_replication",
+          "--worker",
+          "4",
+          "MPC_HGS"
+        ],
+        "cpu_seconds": 406.59375,
+        "cpu_to_wall": 0.9955480351627245,
+        "elapsed_seconds": 408.41198579990305,
+        "id": "original_4_MPC_HGS",
+        "log": "results/desaulniers/final_cpu_paper_v1/logs/original_4_MPC_HGS.log",
+        "pid": 30796,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T21:08:41.733873+00:00",
+        "status": "complete",
+        "upper_seconds": 625.9922237999272
+      },
+      "id": "original_4_MPC_HGS",
+      "index": 4,
+      "method": "MPC_HGS",
+      "raw": "results/desaulniers/final_cpu_paper_v1/raw/original_4_MPC_HGS.json.gz",
+      "sha256": "2dac00d842b410f03fdf1b502de102ca680fb523a5153940795446986e6c2535"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.run_final_cpu_replication",
+          "--worker",
+          "4",
+          "MPC_ACS"
+        ],
+        "cpu_seconds": 391.4375,
+        "cpu_to_wall": 0.995893188746543,
+        "elapsed_seconds": 393.0516890999861,
+        "id": "original_4_MPC_ACS",
+        "log": "results/desaulniers/final_cpu_paper_v1/logs/original_4_MPC_ACS.log",
+        "pid": 27716,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T21:15:30.182548+00:00",
+        "status": "complete",
+        "upper_seconds": 553.195256700099
+      },
+      "id": "original_4_MPC_ACS",
+      "index": 4,
+      "method": "MPC_ACS",
+      "raw": "results/desaulniers/final_cpu_paper_v1/raw/original_4_MPC_ACS.json.gz",
+      "sha256": "4c4e58e16fe8cb260279233b2786662b4c604fec4fc804fe62d44cee729518a5"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.run_final_cpu_replication",
+          "--worker",
+          "5",
+          "MPC_ACS"
+        ],
+        "cpu_seconds": 361.78125,
+        "cpu_to_wall": 0.9958433006190579,
+        "elapsed_seconds": 363.2913429001346,
+        "id": "original_5_MPC_ACS",
+        "log": "results/desaulniers/final_cpu_paper_v1/logs/original_5_MPC_ACS.log",
+        "pid": 23776,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T21:22:03.286562+00:00",
+        "status": "complete",
+        "upper_seconds": 553.195256700099
+      },
+      "id": "original_5_MPC_ACS",
+      "index": 5,
+      "method": "MPC_ACS",
+      "raw": "results/desaulniers/final_cpu_paper_v1/raw/original_5_MPC_ACS.json.gz",
+      "sha256": "2eb4d72691e6e6296d3d3fab1d08b075d17f3d788ec125218cd0486f098caecf"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.run_final_cpu_replication",
+          "--worker",
+          "5",
+          "MPC_HGS"
+        ],
+        "cpu_seconds": 372.65625,
+        "cpu_to_wall": 0.9956948722072952,
+        "elapsed_seconds": 374.2675195001066,
+        "id": "original_5_MPC_HGS",
+        "log": "results/desaulniers/final_cpu_paper_v1/logs/original_5_MPC_HGS.log",
+        "pid": 26036,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T21:28:06.631756+00:00",
+        "status": "complete",
+        "upper_seconds": 625.9922237999272
+      },
+      "id": "original_5_MPC_HGS",
+      "index": 5,
+      "method": "MPC_HGS",
+      "raw": "results/desaulniers/final_cpu_paper_v1/raw/original_5_MPC_HGS.json.gz",
+      "sha256": "afa4510794a2b3349653919e4dd9e6fb3f30c1b3904cdc630701db6e817265fb"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.run_final_cpu_replication",
+          "--worker",
+          "5",
+          "MPC_ALNS"
+        ],
+        "cpu_seconds": 169.703125,
+        "cpu_to_wall": 0.9964362283694947,
+        "elapsed_seconds": 170.31007120013237,
+        "id": "original_5_MPC_ALNS",
+        "log": "results/desaulniers/final_cpu_paper_v1/logs/original_5_MPC_ALNS.log",
+        "pid": 19844,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T21:34:20.952164+00:00",
+        "status": "complete",
+        "upper_seconds": 278.1221620499273
+      },
+      "id": "original_5_MPC_ALNS",
+      "index": 5,
+      "method": "MPC_ALNS",
+      "raw": "results/desaulniers/final_cpu_paper_v1/raw/original_5_MPC_ALNS.json.gz",
+      "sha256": "d1e91f72c7a2ecf7ea0ac7bbb133222a0e5b2261f3923d934a3f286683071d51"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.run_final_cpu_replication",
+          "--worker",
+          "5",
+          "MPC_MCTS"
+        ],
+        "cpu_seconds": 55.390625,
+        "cpu_to_wall": 0.9931988521873356,
+        "elapsed_seconds": 55.76992450002581,
+        "id": "original_5_MPC_MCTS",
+        "log": "results/desaulniers/final_cpu_paper_v1/logs/original_5_MPC_MCTS.log",
+        "pid": 34476,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T21:37:11.300714+00:00",
+        "status": "complete",
+        "upper_seconds": 254.74738094990607
+      },
+      "id": "original_5_MPC_MCTS",
+      "index": 5,
+      "method": "MPC_MCTS",
+      "raw": "results/desaulniers/final_cpu_paper_v1/raw/original_5_MPC_MCTS.json.gz",
+      "sha256": "05e0e2d31652a31f84ed29b1f4487dbd3c3f0acbd1bd8bdd7143b1f51b6d67be"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.run_final_cpu_replication",
+          "--worker",
+          "5",
+          "MPC_COMPLETION"
+        ],
+        "cpu_seconds": 5.484375,
+        "cpu_to_wall": 0.9973623714799547,
+        "elapsed_seconds": 5.498879000078887,
+        "id": "original_5_MPC_COMPLETION",
+        "log": "results/desaulniers/final_cpu_paper_v1/logs/original_5_MPC_COMPLETION.log",
+        "pid": 32292,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T21:38:07.136319+00:00",
+        "status": "complete",
+        "upper_seconds": 60.0
+      },
+      "id": "original_5_MPC_COMPLETION",
+      "index": 5,
+      "method": "MPC_COMPLETION",
+      "raw": "results/desaulniers/final_cpu_paper_v1/raw/original_5_MPC_COMPLETION.json.gz",
+      "sha256": "c07495d1905d1aa6c1842a6f4675ff2039c7aac7eb010d78d4acbd23135e30f5"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.run_final_cpu_replication",
+          "--worker",
+          "6",
+          "MPC_COMPLETION"
+        ],
+        "cpu_seconds": 1.265625,
+        "cpu_to_wall": 0.962498583633519,
+        "elapsed_seconds": 1.3149369999300689,
+        "id": "original_6_MPC_COMPLETION",
+        "log": "results/desaulniers/final_cpu_paper_v1/logs/original_6_MPC_COMPLETION.log",
+        "pid": 9256,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T21:38:12.673018+00:00",
+        "status": "complete",
+        "upper_seconds": 60.0
+      },
+      "id": "original_6_MPC_COMPLETION",
+      "index": 6,
+      "method": "MPC_COMPLETION",
+      "raw": "results/desaulniers/final_cpu_paper_v1/raw/original_6_MPC_COMPLETION.json.gz",
+      "sha256": "4e98a63ad4f5c00b9846b2def0dfbb5b3768f591f684888f54ebc4a0a042545c"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.run_final_cpu_replication",
+          "--worker",
+          "6",
+          "MPC_MCTS"
+        ],
+        "cpu_seconds": 58.65625,
+        "cpu_to_wall": 0.9955135145269673,
+        "elapsed_seconds": 58.920596399810165,
+        "id": "original_6_MPC_MCTS",
+        "log": "results/desaulniers/final_cpu_paper_v1/logs/original_6_MPC_MCTS.log",
+        "pid": 20364,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T21:38:13.995941+00:00",
+        "status": "complete",
+        "upper_seconds": 147.91970760002732
+      },
+      "id": "original_6_MPC_MCTS",
+      "index": 6,
+      "method": "MPC_MCTS",
+      "raw": "results/desaulniers/final_cpu_paper_v1/raw/original_6_MPC_MCTS.json.gz",
+      "sha256": "27132458d2aa4c6838c352c1aa31bc0e3ca47e034b90c20312de63acfe6b79ff"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.run_final_cpu_replication",
+          "--worker",
+          "6",
+          "MPC_ALNS"
+        ],
+        "cpu_seconds": 39.78125,
+        "cpu_to_wall": 0.993000894122068,
+        "elapsed_seconds": 40.06164569989778,
+        "id": "original_6_MPC_ALNS",
+        "log": "results/desaulniers/final_cpu_paper_v1/logs/original_6_MPC_ALNS.log",
+        "pid": 31012,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T21:39:12.954346+00:00",
+        "status": "complete",
+        "upper_seconds": 128.5254004499875
+      },
+      "id": "original_6_MPC_ALNS",
+      "index": 6,
+      "method": "MPC_ALNS",
+      "raw": "results/desaulniers/final_cpu_paper_v1/raw/original_6_MPC_ALNS.json.gz",
+      "sha256": "67b0d828425372635ea033ae8ae73363d92cc237efb4a6a0a6f49bdced740054"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.run_final_cpu_replication",
+          "--worker",
+          "6",
+          "MPC_HGS"
+        ],
+        "cpu_seconds": 54.65625,
+        "cpu_to_wall": 0.9917599777045586,
+        "elapsed_seconds": 55.110360600054264,
+        "id": "original_6_MPC_HGS",
+        "log": "results/desaulniers/final_cpu_paper_v1/logs/original_6_MPC_HGS.log",
+        "pid": 11204,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T21:39:53.036520+00:00",
+        "status": "complete",
+        "upper_seconds": 139.9608740999247
+      },
+      "id": "original_6_MPC_HGS",
+      "index": 6,
+      "method": "MPC_HGS",
+      "raw": "results/desaulniers/final_cpu_paper_v1/raw/original_6_MPC_HGS.json.gz",
+      "sha256": "1bc2ef397e7fa6108ee5a910254029b3a08fa53698f6b80131715a3af893c369"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.run_final_cpu_replication",
+          "--worker",
+          "6",
+          "MPC_ACS"
+        ],
+        "cpu_seconds": 17.375,
+        "cpu_to_wall": 0.9897213775073144,
+        "elapsed_seconds": 17.55544580006972,
+        "id": "original_6_MPC_ACS",
+        "log": "results/desaulniers/final_cpu_paper_v1/logs/original_6_MPC_ACS.log",
+        "pid": 32564,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T21:40:48.171234+00:00",
+        "status": "complete",
+        "upper_seconds": 104.40744645008817
+      },
+      "id": "original_6_MPC_ACS",
+      "index": 6,
+      "method": "MPC_ACS",
+      "raw": "results/desaulniers/final_cpu_paper_v1/raw/original_6_MPC_ACS.json.gz",
+      "sha256": "545399f2435d05c322dcce93234322d0d71a04eb6fb036f34df335cc85c75a67"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.run_final_cpu_replication",
+          "--worker",
+          "7",
+          "MPC_ACS"
+        ],
+        "cpu_seconds": 12.078125,
+        "cpu_to_wall": 0.9897690911056557,
+        "elapsed_seconds": 12.202972499886528,
+        "id": "original_7_MPC_ACS",
+        "log": "results/desaulniers/final_cpu_paper_v1/logs/original_7_MPC_ACS.log",
+        "pid": 1700,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T21:41:05.754646+00:00",
+        "status": "complete",
+        "upper_seconds": 104.40744645008817
+      },
+      "id": "original_7_MPC_ACS",
+      "index": 7,
+      "method": "MPC_ACS",
+      "raw": "results/desaulniers/final_cpu_paper_v1/raw/original_7_MPC_ACS.json.gz",
+      "sha256": "dd35e43749a2b26b87f40283918bc0e1a3f03fcf16c2dbd5cc84726193007da0"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.run_final_cpu_replication",
+          "--worker",
+          "7",
+          "MPC_HGS"
+        ],
+        "cpu_seconds": 48.03125,
+        "cpu_to_wall": 0.9962438870144721,
+        "elapsed_seconds": 48.21234100009315,
+        "id": "original_7_MPC_HGS",
+        "log": "results/desaulniers/final_cpu_paper_v1/logs/original_7_MPC_HGS.log",
+        "pid": 15216,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T21:41:17.987158+00:00",
+        "status": "complete",
+        "upper_seconds": 139.9608740999247
+      },
+      "id": "original_7_MPC_HGS",
+      "index": 7,
+      "method": "MPC_HGS",
+      "raw": "results/desaulniers/final_cpu_paper_v1/raw/original_7_MPC_HGS.json.gz",
+      "sha256": "b6555f2a884590a22b811ce0a6f628cba3a1ce379c388a4373d4de620d725696"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.run_final_cpu_replication",
+          "--worker",
+          "7",
+          "MPC_ALNS"
+        ],
+        "cpu_seconds": 45.234375,
+        "cpu_to_wall": 0.9945426939337964,
+        "elapsed_seconds": 45.48258740012534,
+        "id": "original_7_MPC_ALNS",
+        "log": "results/desaulniers/final_cpu_paper_v1/logs/original_7_MPC_ALNS.log",
+        "pid": 28940,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T21:42:06.227688+00:00",
+        "status": "complete",
+        "upper_seconds": 128.5254004499875
+      },
+      "id": "original_7_MPC_ALNS",
+      "index": 7,
+      "method": "MPC_ALNS",
+      "raw": "results/desaulniers/final_cpu_paper_v1/raw/original_7_MPC_ALNS.json.gz",
+      "sha256": "f4198a74d3e7a9d584aa2f189624a9387911f1c3affc641bc6ca616fb4e9fe4e"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.run_final_cpu_replication",
+          "--worker",
+          "7",
+          "MPC_MCTS"
+        ],
+        "cpu_seconds": 65.8125,
+        "cpu_to_wall": 0.9933100340939075,
+        "elapsed_seconds": 66.25574869988486,
+        "id": "original_7_MPC_MCTS",
+        "log": "results/desaulniers/final_cpu_paper_v1/logs/original_7_MPC_MCTS.log",
+        "pid": 27940,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T21:42:51.727239+00:00",
+        "status": "complete",
+        "upper_seconds": 147.91970760002732
+      },
+      "id": "original_7_MPC_MCTS",
+      "index": 7,
+      "method": "MPC_MCTS",
+      "raw": "results/desaulniers/final_cpu_paper_v1/raw/original_7_MPC_MCTS.json.gz",
+      "sha256": "7f21c5b3d25814ff8828b3e55c6427b9ca2427eefdf576fcff3f9ae1587eb626"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.run_final_cpu_replication",
+          "--worker",
+          "7",
+          "MPC_COMPLETION"
+        ],
+        "cpu_seconds": 1.25,
+        "cpu_to_wall": 0.8828529683354522,
+        "elapsed_seconds": 1.4158642999827862,
+        "id": "original_7_MPC_COMPLETION",
+        "log": "results/desaulniers/final_cpu_paper_v1/logs/original_7_MPC_COMPLETION.log",
+        "pid": 24552,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T21:43:58.005226+00:00",
+        "status": "complete",
+        "upper_seconds": 60.0
+      },
+      "id": "original_7_MPC_COMPLETION",
+      "index": 7,
+      "method": "MPC_COMPLETION",
+      "raw": "results/desaulniers/final_cpu_paper_v1/raw/original_7_MPC_COMPLETION.json.gz",
+      "sha256": "f09227407a5e2d9e8dcec54e6d3401df559dd3daa2481c53fdf84d771c8512b1"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.run_final_cpu_replication",
+          "--worker",
+          "8",
+          "MPC_COMPLETION"
+        ],
+        "cpu_seconds": 0.859375,
+        "cpu_to_wall": 0.9975053514843145,
+        "elapsed_seconds": 0.8615242000669241,
+        "id": "original_8_MPC_COMPLETION",
+        "log": "results/desaulniers/final_cpu_paper_v1/logs/original_8_MPC_COMPLETION.log",
+        "pid": 25912,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T21:43:59.445137+00:00",
+        "status": "complete",
+        "upper_seconds": 60.0
+      },
+      "id": "original_8_MPC_COMPLETION",
+      "index": 8,
+      "method": "MPC_COMPLETION",
+      "raw": "results/desaulniers/final_cpu_paper_v1/raw/original_8_MPC_COMPLETION.json.gz",
+      "sha256": "fa2793aca7fa65644da9773ec2c96c03af395b7bd63bbb14bd9aae2fecd390fd"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.run_final_cpu_replication",
+          "--worker",
+          "8",
+          "MPC_MCTS"
+        ],
+        "cpu_seconds": 12.28125,
+        "cpu_to_wall": 0.9940160416327842,
+        "elapsed_seconds": 12.355182900093496,
+        "id": "original_8_MPC_MCTS",
+        "log": "results/desaulniers/final_cpu_paper_v1/logs/original_8_MPC_MCTS.log",
+        "pid": 16936,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T21:44:00.314792+00:00",
+        "status": "complete",
+        "upper_seconds": 147.91970760002732
+      },
+      "id": "original_8_MPC_MCTS",
+      "index": 8,
+      "method": "MPC_MCTS",
+      "raw": "results/desaulniers/final_cpu_paper_v1/raw/original_8_MPC_MCTS.json.gz",
+      "sha256": "6f837ac1c63748a2571a8c4f9d4029696fd009777dc2936197829d05fb960b97"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.run_final_cpu_replication",
+          "--worker",
+          "8",
+          "MPC_ALNS"
+        ],
+        "cpu_seconds": 1.578125,
+        "cpu_to_wall": 0.9429911401553334,
+        "elapsed_seconds": 1.6735310999210924,
+        "id": "original_8_MPC_ALNS",
+        "log": "results/desaulniers/final_cpu_paper_v1/logs/original_8_MPC_ALNS.log",
+        "pid": 8452,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T21:44:12.705170+00:00",
+        "status": "complete",
+        "upper_seconds": 128.5254004499875
+      },
+      "id": "original_8_MPC_ALNS",
+      "index": 8,
+      "method": "MPC_ALNS",
+      "raw": "results/desaulniers/final_cpu_paper_v1/raw/original_8_MPC_ALNS.json.gz",
+      "sha256": "de16b592026ec83cc97031022ee8ca5a3a52f28890f9bea4de97875adae72a2e"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.run_final_cpu_replication",
+          "--worker",
+          "8",
+          "MPC_HGS"
+        ],
+        "cpu_seconds": 9.203125,
+        "cpu_to_wall": 0.9964060793320404,
+        "elapsed_seconds": 9.236319599905983,
+        "id": "original_8_MPC_HGS",
+        "log": "results/desaulniers/final_cpu_paper_v1/logs/original_8_MPC_HGS.log",
+        "pid": 33908,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T21:44:14.409051+00:00",
+        "status": "complete",
+        "upper_seconds": 139.9608740999247
+      },
+      "id": "original_8_MPC_HGS",
+      "index": 8,
+      "method": "MPC_HGS",
+      "raw": "results/desaulniers/final_cpu_paper_v1/raw/original_8_MPC_HGS.json.gz",
+      "sha256": "88d020c7509486cef0fd9310b4b63c2f71dbde56ac119587588ac477882ff568"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.run_final_cpu_replication",
+          "--worker",
+          "8",
+          "MPC_ACS"
+        ],
+        "cpu_seconds": 2.046875,
+        "cpu_to_wall": 0.9636930142347796,
+        "elapsed_seconds": 2.1239907001145184,
+        "id": "original_8_MPC_ACS",
+        "log": "results/desaulniers/final_cpu_paper_v1/logs/original_8_MPC_ACS.log",
+        "pid": 14840,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T21:44:23.662571+00:00",
+        "status": "complete",
+        "upper_seconds": 104.40744645008817
+      },
+      "id": "original_8_MPC_ACS",
+      "index": 8,
+      "method": "MPC_ACS",
+      "raw": "results/desaulniers/final_cpu_paper_v1/raw/original_8_MPC_ACS.json.gz",
+      "sha256": "1dd50f6a590887054ec9306c9ba4fc730ee263b723d27ba85cacb5dc1ad12018"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.run_final_cpu_replication",
+          "--worker",
+          "9",
+          "MPC_ACS"
+        ],
+        "cpu_seconds": 2.265625,
+        "cpu_to_wall": 0.9762172893580716,
+        "elapsed_seconds": 2.3208204000256956,
+        "id": "original_9_MPC_ACS",
+        "log": "results/desaulniers/final_cpu_paper_v1/logs/original_9_MPC_ACS.log",
+        "pid": 26964,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T21:44:25.809018+00:00",
+        "status": "complete",
+        "upper_seconds": 104.40744645008817
+      },
+      "id": "original_9_MPC_ACS",
+      "index": 9,
+      "method": "MPC_ACS",
+      "raw": "results/desaulniers/final_cpu_paper_v1/raw/original_9_MPC_ACS.json.gz",
+      "sha256": "340735adaf66d5d5693d26447ce7509ff2cf3e0ed53fc4cfd7cbc28c0ca77a37"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.run_final_cpu_replication",
+          "--worker",
+          "9",
+          "MPC_HGS"
+        ],
+        "cpu_seconds": 8.078125,
+        "cpu_to_wall": 0.9753125153277884,
+        "elapsed_seconds": 8.282601600047201,
+        "id": "original_9_MPC_HGS",
+        "log": "results/desaulniers/final_cpu_paper_v1/logs/original_9_MPC_HGS.log",
+        "pid": 14764,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T21:44:28.150477+00:00",
+        "status": "complete",
+        "upper_seconds": 139.9608740999247
+      },
+      "id": "original_9_MPC_HGS",
+      "index": 9,
+      "method": "MPC_HGS",
+      "raw": "results/desaulniers/final_cpu_paper_v1/raw/original_9_MPC_HGS.json.gz",
+      "sha256": "2e5053914e8e173a3e0138a6b5374440ab360273a717f5fd9b87164630e1d01f"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.run_final_cpu_replication",
+          "--worker",
+          "9",
+          "MPC_ALNS"
+        ],
+        "cpu_seconds": 1.65625,
+        "cpu_to_wall": 0.9097607926202913,
+        "elapsed_seconds": 1.8205335000529885,
+        "id": "original_9_MPC_ALNS",
+        "log": "results/desaulniers/final_cpu_paper_v1/logs/original_9_MPC_ALNS.log",
+        "pid": 24520,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T21:44:36.463867+00:00",
+        "status": "complete",
+        "upper_seconds": 128.5254004499875
+      },
+      "id": "original_9_MPC_ALNS",
+      "index": 9,
+      "method": "MPC_ALNS",
+      "raw": "results/desaulniers/final_cpu_paper_v1/raw/original_9_MPC_ALNS.json.gz",
+      "sha256": "d57537df1c28fff99663f1c784c568d5e26b1c654967adb2f221ccdd63c2ed58"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.run_final_cpu_replication",
+          "--worker",
+          "9",
+          "MPC_MCTS"
+        ],
+        "cpu_seconds": 8.109375,
+        "cpu_to_wall": 0.985942009512304,
+        "elapsed_seconds": 8.22500199987553,
+        "id": "original_9_MPC_MCTS",
+        "log": "results/desaulniers/final_cpu_paper_v1/logs/original_9_MPC_MCTS.log",
+        "pid": 25816,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T21:44:38.310697+00:00",
+        "status": "complete",
+        "upper_seconds": 147.91970760002732
+      },
+      "id": "original_9_MPC_MCTS",
+      "index": 9,
+      "method": "MPC_MCTS",
+      "raw": "results/desaulniers/final_cpu_paper_v1/raw/original_9_MPC_MCTS.json.gz",
+      "sha256": "d269e52aea9335dc5d8ecaac27efd91e81b4571fc270782a818afb093845dc11"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.run_final_cpu_replication",
+          "--worker",
+          "9",
+          "MPC_COMPLETION"
+        ],
+        "cpu_seconds": 0.84375,
+        "cpu_to_wall": 0.9768044399208511,
+        "elapsed_seconds": 0.8637860000599176,
+        "id": "original_9_MPC_COMPLETION",
+        "log": "results/desaulniers/final_cpu_paper_v1/logs/original_9_MPC_COMPLETION.log",
+        "pid": 33352,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T21:44:46.567372+00:00",
+        "status": "complete",
+        "upper_seconds": 60.0
+      },
+      "id": "original_9_MPC_COMPLETION",
+      "index": 9,
+      "method": "MPC_COMPLETION",
+      "raw": "results/desaulniers/final_cpu_paper_v1/raw/original_9_MPC_COMPLETION.json.gz",
+      "sha256": "5803286ff7153a1c1e9156cd9e5b866d53fc8c7bda380b929637c9baacd38529"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.run_final_cpu_replication",
+          "--worker",
+          "10",
+          "MPC_COMPLETION"
+        ],
+        "cpu_seconds": 7.140625,
+        "cpu_to_wall": 0.9897579277692771,
+        "elapsed_seconds": 7.214516600128263,
+        "id": "original_10_MPC_COMPLETION",
+        "log": "results/desaulniers/final_cpu_paper_v1/logs/original_10_MPC_COMPLETION.log",
+        "pid": 6904,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T21:44:47.447803+00:00",
+        "status": "complete",
+        "upper_seconds": 60.0
+      },
+      "id": "original_10_MPC_COMPLETION",
+      "index": 10,
+      "method": "MPC_COMPLETION",
+      "raw": "results/desaulniers/final_cpu_paper_v1/raw/original_10_MPC_COMPLETION.json.gz",
+      "sha256": "70d7244b60f1666e6c018d977940f7795afc41ecdf0f7d584207923f0c8e9cfa"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.run_final_cpu_replication",
+          "--worker",
+          "10",
+          "MPC_MCTS"
+        ],
+        "cpu_seconds": 118.984375,
+        "cpu_to_wall": 0.996044681064813,
+        "elapsed_seconds": 119.45686500007287,
+        "id": "original_10_MPC_MCTS",
+        "log": "results/desaulniers/final_cpu_paper_v1/logs/original_10_MPC_MCTS.log",
+        "pid": 9596,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T21:44:54.696047+00:00",
+        "status": "complete",
+        "upper_seconds": 312.1182821999537
+      },
+      "id": "original_10_MPC_MCTS",
+      "index": 10,
+      "method": "MPC_MCTS",
+      "raw": "results/desaulniers/final_cpu_paper_v1/raw/original_10_MPC_MCTS.json.gz",
+      "sha256": "bdae222db4b35e4641fbfe180128d86168ccde5f5c28cb3fe11d6409895eca0f"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.run_final_cpu_replication",
+          "--worker",
+          "10",
+          "MPC_ALNS"
+        ],
+        "cpu_seconds": 115.375,
+        "cpu_to_wall": 0.9950792852820473,
+        "elapsed_seconds": 115.94553490006365,
+        "id": "original_10_MPC_ALNS",
+        "log": "results/desaulniers/final_cpu_paper_v1/logs/original_10_MPC_ALNS.log",
+        "pid": 17168,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T21:46:54.175405+00:00",
+        "status": "complete",
+        "upper_seconds": 297.24335369991604
+      },
+      "id": "original_10_MPC_ALNS",
+      "index": 10,
+      "method": "MPC_ALNS",
+      "raw": "results/desaulniers/final_cpu_paper_v1/raw/original_10_MPC_ALNS.json.gz",
+      "sha256": "99e9567faf0e51c8bf7be91e5ec2f4d7264894ed1a7ca9cc5cc6ee27db1886a5"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.run_final_cpu_replication",
+          "--worker",
+          "10",
+          "MPC_HGS"
+        ],
+        "cpu_seconds": 119.015625,
+        "cpu_to_wall": 0.9942914345515781,
+        "elapsed_seconds": 119.69893419998698,
+        "id": "original_10_MPC_HGS",
+        "log": "results/desaulniers/final_cpu_paper_v1/logs/original_10_MPC_HGS.log",
+        "pid": 21408,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T21:48:50.176160+00:00",
+        "status": "complete",
+        "upper_seconds": 312.8963724001078
+      },
+      "id": "original_10_MPC_HGS",
+      "index": 10,
+      "method": "MPC_HGS",
+      "raw": "results/desaulniers/final_cpu_paper_v1/raw/original_10_MPC_HGS.json.gz",
+      "sha256": "4a7bdef9dd7814f6a12b4350cf82d33d12ba61e926b5d4896debb565675c4c81"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.run_final_cpu_replication",
+          "--worker",
+          "10",
+          "MPC_ACS"
+        ],
+        "cpu_seconds": 93.09375,
+        "cpu_to_wall": 0.9961119514894387,
+        "elapsed_seconds": 93.4571157998871,
+        "id": "original_10_MPC_ACS",
+        "log": "results/desaulniers/final_cpu_paper_v1/logs/original_10_MPC_ACS.log",
+        "pid": 28232,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T21:50:49.898594+00:00",
+        "status": "complete",
+        "upper_seconds": 255.97750724991783
+      },
+      "id": "original_10_MPC_ACS",
+      "index": 10,
+      "method": "MPC_ACS",
+      "raw": "results/desaulniers/final_cpu_paper_v1/raw/original_10_MPC_ACS.json.gz",
+      "sha256": "482c83c7cf4b8aa15f15ae20d1130d0dcd7f8db7db9b93304df006589cf0485f"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.run_final_cpu_replication",
+          "--worker",
+          "11",
+          "MPC_ACS"
+        ],
+        "cpu_seconds": 93.421875,
+        "cpu_to_wall": 0.9959643008152829,
+        "elapsed_seconds": 93.80042529990897,
+        "id": "original_11_MPC_ACS",
+        "log": "results/desaulniers/final_cpu_paper_v1/logs/original_11_MPC_ACS.log",
+        "pid": 16824,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T21:52:23.385104+00:00",
+        "status": "complete",
+        "upper_seconds": 255.97750724991783
+      },
+      "id": "original_11_MPC_ACS",
+      "index": 11,
+      "method": "MPC_ACS",
+      "raw": "results/desaulniers/final_cpu_paper_v1/raw/original_11_MPC_ACS.json.gz",
+      "sha256": "01a8ad71f0ece4ffa97a09a8f69cfd77dcdcbc13ef722941947d197fa0ed0f42"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.run_final_cpu_replication",
+          "--worker",
+          "11",
+          "MPC_HGS"
+        ],
+        "cpu_seconds": 118.9375,
+        "cpu_to_wall": 0.9951058970541725,
+        "elapsed_seconds": 119.52245520008728,
+        "id": "original_11_MPC_HGS",
+        "log": "results/desaulniers/final_cpu_paper_v1/logs/original_11_MPC_HGS.log",
+        "pid": 23840,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T21:53:57.217522+00:00",
+        "status": "complete",
+        "upper_seconds": 312.8963724001078
+      },
+      "id": "original_11_MPC_HGS",
+      "index": 11,
+      "method": "MPC_HGS",
+      "raw": "results/desaulniers/final_cpu_paper_v1/raw/original_11_MPC_HGS.json.gz",
+      "sha256": "c4a2ba007278e1d208936c99d3feb16d730572d23425c968ea238158b53a62c4"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.run_final_cpu_replication",
+          "--worker",
+          "11",
+          "MPC_ALNS"
+        ],
+        "cpu_seconds": 113.84375,
+        "cpu_to_wall": 0.9941447102262838,
+        "elapsed_seconds": 114.51426420011558,
+        "id": "original_11_MPC_ALNS",
+        "log": "results/desaulniers/final_cpu_paper_v1/logs/original_11_MPC_ALNS.log",
+        "pid": 30268,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T21:55:56.780057+00:00",
+        "status": "complete",
+        "upper_seconds": 297.24335369991604
+      },
+      "id": "original_11_MPC_ALNS",
+      "index": 11,
+      "method": "MPC_ALNS",
+      "raw": "results/desaulniers/final_cpu_paper_v1/raw/original_11_MPC_ALNS.json.gz",
+      "sha256": "70676ccadc8004f464d09c4f5bd0bfa675668507036ce7887470de8dd034708d"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.run_final_cpu_replication",
+          "--worker",
+          "11",
+          "MPC_MCTS"
+        ],
+        "cpu_seconds": 119.296875,
+        "cpu_to_wall": 0.9962943918002515,
+        "elapsed_seconds": 119.74058669991791,
+        "id": "original_11_MPC_MCTS",
+        "log": "results/desaulniers/final_cpu_paper_v1/logs/original_11_MPC_MCTS.log",
+        "pid": 31508,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T21:57:51.333688+00:00",
+        "status": "complete",
+        "upper_seconds": 312.1182821999537
+      },
+      "id": "original_11_MPC_MCTS",
+      "index": 11,
+      "method": "MPC_MCTS",
+      "raw": "results/desaulniers/final_cpu_paper_v1/raw/original_11_MPC_MCTS.json.gz",
+      "sha256": "acf05c45fcf57fee9b43a1f5a98cd066c41d5a3dea5de522d5ac75e2b51a821f"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.run_final_cpu_replication",
+          "--worker",
+          "11",
+          "MPC_COMPLETION"
+        ],
+        "cpu_seconds": 9.671875,
+        "cpu_to_wall": 0.9834202476501616,
+        "elapsed_seconds": 9.834935799939558,
+        "id": "original_11_MPC_COMPLETION",
+        "log": "results/desaulniers/final_cpu_paper_v1/logs/original_11_MPC_COMPLETION.log",
+        "pid": 12984,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-26T21:59:51.110700+00:00",
+        "status": "complete",
+        "upper_seconds": 60.0
+      },
+      "id": "original_11_MPC_COMPLETION",
+      "index": 11,
+      "method": "MPC_COMPLETION",
+      "raw": "results/desaulniers/final_cpu_paper_v1/raw/original_11_MPC_COMPLETION.json.gz",
+      "sha256": "e7ad61499baa2553b8de2794ca7ecc97d2d7cd2eac8af6f9e61b8a162e823cba"
+    }
+  ],
+  "status": "complete"
+}

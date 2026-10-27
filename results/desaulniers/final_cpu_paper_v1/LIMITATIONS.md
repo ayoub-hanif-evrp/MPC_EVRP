@@ -1,0 +1,13 @@
+# Limitations and negative findings
+
+The benchmark subset has only six independent parents in each cohort. Repeating DoD and seed does not create 90 independent benchmark files. The replication has only two seeds and one DoD, so it is a check of direction and feasibility, not a broad new population estimate.
+
+The general reference-inventory audit reports 166/168 physical witnesses. A separate targeted follow-up independently reported witnesses for the remaining two, but did not retroactively change historical fleets or releases. All 12 replication scenarios have their own archived, physically validated full-service references.
+
+The generator preserves a feasible full-service clairvoyant reference under the same fleet. This is not an online competitor and cannot diagnose which online decision lost a customer. Retrospective timing diagnosis classified 15 losses as direct-time unreachable at first reveal and 113 as becoming direct-time unreachable later under observed commitments. These conditional bounds ignore energy, load, and other obligations. They are not a partition of causal mechanisms or a proof of offline infeasibility. See audit/SERVICE_LOSS_DIAGNOSIS.md.
+
+Optional CPU screening and quality/recovery pilots were not promoted. Among 25 archived development pairs, 0 enhanced runs served more and 3 served fewer than the original. The hybrid GPU branch was slower on its actual transfer-inclusive batches. No performance or service gain from it is claimed. A new independent enhanced holdout was not opened.
+
+Unconditional distance, time, EV and energy summaries are not comparative efficiency measures when methods serve different customer sets. Conditional comparisons use only jointly complete scenarios; this introduces a restricted, high-feasibility subset. Fleet end time includes a scheduled common depot-return horizon, so last customer-service completion is the useful timing comparison; the horizon-censored end time is shown only for transparency. Sequential worker wall time is machine-specific; other Python processes were present and left running. Runtime is a shared-machine observation, not a controlled hardware benchmark. The five-second limit is per optimization decision, not per whole scenario.
+
+The historical 270-run corrected holdout, 450-run robustness cohort, 60-run replication and 25-pair negative development study have different protocols and are never pooled.

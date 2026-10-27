@@ -1,0 +1,11 @@
+# Independent CPU Replication
+
+New independently preregistered CPU-only replication on six previously unused underlying parents, DoD 0.50, seeds 6 and 7. Do not pool with robustness v3.
+
+| Method | Runs | Served/total | Service % | Complete/runs | Complete % | Mean wall s | Mean CPU s | Common-complete distance | Common-complete n |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| COMPLETION | 12 | 634/700 | 90.57 | 4/12 | 33.33 | 5.45 | 5.33 | 1052.74 | 4 |
+| MCTS | 12 | 657/700 | 93.86 | 7/12 | 58.33 | 81.75 | 81.08 | 1073.55 | 4 |
+| ALNS | 12 | 691/700 | 98.71 | 6/12 | 50.00 | 115.66 | 114.60 | 1012.97 | 4 |
+| HGS | 12 | 680/700 | 97.14 | 6/12 | 50.00 | 198.67 | 197.05 | 1146.74 | 4 |
+| ACS | 12 | 680/700 | 97.14 | 7/12 | 58.33 | 139.17 | 138.14 | 820.41 | 4 |

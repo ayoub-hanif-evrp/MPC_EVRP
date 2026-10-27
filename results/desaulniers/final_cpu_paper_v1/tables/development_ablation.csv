@@ -1,0 +1,11 @@
+Development stage,Method,Pairs,Service delta,Wins,Ties,Losses,Equal-served-set pairs,Shorter distance on equal service
+B: compiled CPU screen/cache,COMPLETION,3,0,0,3,0,3,0
+B: compiled CPU screen/cache,MCTS,3,0,0,3,0,3,1
+B: compiled CPU screen/cache,ALNS,3,0,0,3,0,3,1
+B: compiled CPU screen/cache,HGS,3,-1,0,2,1,2,0
+B: compiled CPU screen/cache,ACS,3,-1,0,2,1,2,0
+C: quality/recovery policy,COMPLETION,2,0,0,2,0,2,1
+C: quality/recovery policy,MCTS,2,0,0,2,0,2,1
+C: quality/recovery policy,ALNS,2,0,0,2,0,1,0
+C: quality/recovery policy,HGS,2,-1,0,1,1,1,1
+C: quality/recovery policy,ACS,2,0,0,2,0,2,1

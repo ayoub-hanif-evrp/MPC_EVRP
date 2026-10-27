@@ -1,5 +1,13 @@
 # Event-Triggered MPC for Dynamic EVRPTW
 
+**Current publication result:** The CPU-only [final paper package](results/desaulniers/final_cpu_paper_v1/FINAL_REPORT.md)
+contains the independently audited 450-run Desaulniers MP robustness study
+and a separately preregistered 60-run replication of the five original
+methods. The cohorts are reported separately. Opt-in service and speed
+enhancements did not pass the development service-preservation gate, so no
+enhanced method is claimed. See the [repository status](docs/REPOSITORY_STATUS.md)
+for active versus preserved historical workflows.
+
 This project evaluates a common event-triggered MPC controller with five
 interchangeable optimization modes: Completion, MCTS, ALNS, HGS, and ACS.
 All modes use the same feasible constructor, plant physics, service-first

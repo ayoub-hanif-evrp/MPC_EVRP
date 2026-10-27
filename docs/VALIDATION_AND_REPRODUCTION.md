@@ -1,8 +1,18 @@
 # Desaulniers MP validation and reproduction
 
-## Current development branch
+## Current CPU publication package
 
-Use `python -m scripts.audit_frozen_studies` on this branch to independently
+The current five-method paper result is
+[final_cpu_paper_v1](../results/desaulniers/final_cpu_paper_v1/FINAL_REPORT.md).
+Its [reproduction guide](../results/desaulniers/final_cpu_paper_v1/REPRODUCE.md)
+replays the 450-run primary cohort and separately frozen 60-run CPU replication
+from saved raw evidence, then regenerates every table and figure. No GPU
+backend or enhanced-method promotion is part of that result. The commands
+below remain useful for auditing earlier, scientifically preserved cohorts.
+
+## Historical development audits
+
+Use `python -m scripts.audit_frozen_studies` on the current branch to independently
 replay the 990 original development/final/robustness records. It reconstructs
 each frozen source fingerprint from historical Git blobs and checks that the
 physical/scenario engine still matches. The old study-specific commands
