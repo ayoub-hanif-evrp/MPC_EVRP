@@ -1,0 +1,167 @@
+{
+  "analysis": "Report all 30 original/cache pairs across six parents, all five methods, customer-weighted service, complete service, paired service losses, same-served-set distance and CPU ratios. Original raw is reused byte-for-byte.",
+  "execution": "Sequential workers; one numerical thread; shared-machine timings; five-second MPC limit; no optimizer changes; whole-block admission; no automatic retry; all failed attempts retained.",
+  "hypothesis": "The existing incremental CPU cache saves worker CPU while preserving service on the three families omitted from the component ablation.",
+  "interpretation": "Exploratory coverage only. Existing historical cache service regressions remain part of the evidence and preclude a universal safety or promotion claim. No outcome-driven selection, rerun, or new holdout follows.",
+  "jobs": [
+    {
+      "baseline": "results/desaulniers/final_cpu_development_v1/raw/dev_1_MPC_COMPLETION_original.json.gz",
+      "baseline_sha256": "166aa3b44da60907a00d38130d735c714838330d5ece8dfe75628db7fe438d0f",
+      "id": "cpu_1_MPC_COMPLETION",
+      "index": 1,
+      "method": "MPC_COMPLETION",
+      "upper_seconds": 60.0
+    },
+    {
+      "baseline": "results/desaulniers/final_cpu_development_v1/raw/dev_1_MPC_MCTS_original.json.gz",
+      "baseline_sha256": "e3ea328c87125e9a573c8528527adc4adcba72b041683875bb2d9b769ce1d6e4",
+      "id": "cpu_1_MPC_MCTS",
+      "index": 1,
+      "method": "MPC_MCTS",
+      "upper_seconds": 271.6602303995751
+    },
+    {
+      "baseline": "results/desaulniers/final_cpu_development_v1/raw/dev_1_MPC_ALNS_original.json.gz",
+      "baseline_sha256": "5d475f9948b29bf446a0651a2a206f21c32ab00419ac20f92232b5e8fa8a0319",
+      "id": "cpu_1_MPC_ALNS",
+      "index": 1,
+      "method": "MPC_ALNS",
+      "upper_seconds": 261.02924499986693
+    },
+    {
+      "baseline": "results/desaulniers/final_cpu_development_v1/raw/dev_1_MPC_HGS_original.json.gz",
+      "baseline_sha256": "0ee1db533c4ab887669844cbff49df8ca204baf9c1ba141d60ed3635a0584762",
+      "id": "cpu_1_MPC_HGS",
+      "index": 1,
+      "method": "MPC_HGS",
+      "upper_seconds": 280.64871519990265
+    },
+    {
+      "baseline": "results/desaulniers/final_cpu_development_v1/raw/dev_1_MPC_ACS_original.json.gz",
+      "baseline_sha256": "8e47ed7cf10ed89de06b1723b206afcbaf1f0d3ce3cac4c97c07ebb4edbe6400",
+      "id": "cpu_1_MPC_ACS",
+      "index": 1,
+      "method": "MPC_ACS",
+      "upper_seconds": 155.47210319992155
+    },
+    {
+      "baseline": "results/desaulniers/final_cpu_development_v1/raw/dev_3_MPC_COMPLETION_original.json.gz",
+      "baseline_sha256": "15e3fa8e03e685ec12138a88f649f8c1e6fa091101046ec81fcb1784679b11c2",
+      "id": "cpu_3_MPC_COMPLETION",
+      "index": 3,
+      "method": "MPC_COMPLETION",
+      "upper_seconds": 60.0
+    },
+    {
+      "baseline": "results/desaulniers/final_cpu_development_v1/raw/dev_3_MPC_MCTS_original.json.gz",
+      "baseline_sha256": "4a44116ac3f1b01b1343ea7f890e50c94f2ea23b16efbaf8b1ea640c2379011b",
+      "id": "cpu_3_MPC_MCTS",
+      "index": 3,
+      "method": "MPC_MCTS",
+      "upper_seconds": 88.88570340024307
+    },
+    {
+      "baseline": "results/desaulniers/final_cpu_development_v1/raw/dev_3_MPC_ALNS_original.json.gz",
+      "baseline_sha256": "488ced73321e66c8965ef1c2ee17d4e07a50ad97c2400e6aa99ba9707dd89061",
+      "id": "cpu_3_MPC_ALNS",
+      "index": 3,
+      "method": "MPC_ALNS",
+      "upper_seconds": 99.04015380004421
+    },
+    {
+      "baseline": "results/desaulniers/final_cpu_development_v1/raw/dev_3_MPC_HGS_original.json.gz",
+      "baseline_sha256": "ca9c129cb0e509cf73a048fc0a7645e0eaadce516f182e5505a166db38f425c1",
+      "id": "cpu_3_MPC_HGS",
+      "index": 3,
+      "method": "MPC_HGS",
+      "upper_seconds": 109.34419979993254
+    },
+    {
+      "baseline": "results/desaulniers/final_cpu_development_v1/raw/dev_3_MPC_ACS_original.json.gz",
+      "baseline_sha256": "d6abccbf9063000a0859bfd2b3fe329a549371bacd3d8dd77330af37f1d63cd0",
+      "id": "cpu_3_MPC_ACS",
+      "index": 3,
+      "method": "MPC_ACS",
+      "upper_seconds": 60.0
+    },
+    {
+      "baseline": "results/desaulniers/final_cpu_development_v1/raw/dev_5_MPC_COMPLETION_original.json.gz",
+      "baseline_sha256": "18cfc138c645caa44764b05b598f8d2e3341c3d6a3750557fade5baebe9d35d5",
+      "id": "cpu_5_MPC_COMPLETION",
+      "index": 5,
+      "method": "MPC_COMPLETION",
+      "upper_seconds": 60.0
+    },
+    {
+      "baseline": "results/desaulniers/final_cpu_development_v1/raw/dev_5_MPC_MCTS_original.json.gz",
+      "baseline_sha256": "0f0cbc2b6d62e9ec29764b6c341627c41a0a12cda6a1a47e8ec9273467a43439",
+      "id": "cpu_5_MPC_MCTS",
+      "index": 5,
+      "method": "MPC_MCTS",
+      "upper_seconds": 507.5642113997601
+    },
+    {
+      "baseline": "results/desaulniers/final_cpu_development_v1/raw/dev_5_MPC_ALNS_original.json.gz",
+      "baseline_sha256": "d630907d5f794d1859eb5638a27483326727e4cf5d1587d05fe0b431cb7d0323",
+      "id": "cpu_5_MPC_ALNS",
+      "index": 5,
+      "method": "MPC_ALNS",
+      "upper_seconds": 485.1138627999462
+    },
+    {
+      "baseline": "results/desaulniers/final_cpu_development_v1/raw/dev_5_MPC_HGS_original.json.gz",
+      "baseline_sha256": "5c816756356f42b0d7c1668df7f529a871c240479ea82a3abd7f840bedf06311",
+      "id": "cpu_5_MPC_HGS",
+      "index": 5,
+      "method": "MPC_HGS",
+      "upper_seconds": 494.0257534002885
+    },
+    {
+      "baseline": "results/desaulniers/final_cpu_development_v1/raw/dev_5_MPC_ACS_original.json.gz",
+      "baseline_sha256": "e8c2f2859c1b74a70dbef510e046ed5f08073f9c7c29020bebc0da2e8cc98a0d",
+      "id": "cpu_5_MPC_ACS",
+      "index": 5,
+      "method": "MPC_ACS",
+      "upper_seconds": 465.6317513999529
+    }
+  ],
+  "maximum_charged_seconds": 4200.0,
+  "mission_cpu_limit_seconds": 43200,
+  "mission_wall_limit_seconds": 28800,
+  "parent_manifest_sha256": "db5d16cee86fdaddc4899fd97c7354aba86f92cbdd91a85e0488c403dc295d4c",
+  "parent_protocol": "d815bbb6810bf0cabb0d2f0d53a93144a251862d66dd8992e5dd128e4c9bdb2a",
+  "prior_accounting": [
+    {
+      "attempts": 60,
+      "charged_seconds": 7100.173880000832,
+      "path": "results/desaulniers/final_cpu_paper_v1/budget.json",
+      "sha256": "69a4db88a6ab944c1c054d360f0b9f40abe8be6cb7f88ead4ef98c6439150c50",
+      "worker_cpu_seconds": 6434.390625
+    },
+    {
+      "attempts": 113,
+      "charged_seconds": 6002.7626650002785,
+      "path": "results/desaulniers/final_cpu_development_v1/budget.json",
+      "sha256": "c8d98c702ae4043e2fadd3b5cb4091052a7736642d1b6309cbdb5cf2e0b72f97",
+      "worker_cpu_seconds": 5911.109375
+    },
+    {
+      "attempts": 8,
+      "charged_seconds": 1382.0713484999724,
+      "path": "results/desaulniers/final_cpu_development_v1/technical_extension/budget.json",
+      "sha256": "7febf2d2d0e69a462035b0fcf3dbabcb55aff1b8889fe29be8c5cdbd5447ef19",
+      "worker_cpu_seconds": 1363.03125
+    },
+    {
+      "attempts": 4,
+      "charged_seconds": 104.33240840001963,
+      "path": "results/desaulniers/two_worker_probe_v1/manifest.json",
+      "sha256": "a36953647dcf005201d8dcf94f36feb489957173b433f9ee9b8d8a06c70b71df",
+      "worker_cpu_seconds": 111.4375
+    }
+  ],
+  "source_commit": "37e711de98840374d29208cf80dd7a1d780983ab",
+  "source_sha256": "4e61a7aa106b26c61d00fb990841670454ff7d361e73d71568c007f215a3625f",
+  "stage": "exploratory_development",
+  "study": "final_cpu_missing_family_coverage_v1"
+}
