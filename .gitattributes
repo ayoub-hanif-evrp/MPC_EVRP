@@ -17,3 +17,9 @@ configs/reliability_*.yaml text eol=lf
 configs/performance_engineering_*.yaml text eol=lf
 results/desaulniers/reliability_v2/** -text whitespace=cr-at-eol
 results/desaulniers/performance_engineering_v1/** -text whitespace=cr-at-eol
+# Preserve the exact executed bytes used by frozen CPU-study fingerprints.
+configs/final_cpu_*.yaml -text whitespace=cr-at-eol
+results/desaulniers/final_cpu_paper_v1/** -text whitespace=cr-at-eol
+results/desaulniers/final_cpu_development_v1/** -text whitespace=cr-at-eol
+results/desaulniers/two_worker_probe_v1/** -text whitespace=cr-at-eol
+results/desaulniers/fast_framework_v1/** -text whitespace=cr-at-eol

@@ -1,0 +1,17 @@
+{
+  "axes": [
+    {
+      "bars": [
+        995.3582051282051,
+        1001.4133333333333,
+        1017.6671794871795,
+        1044.9902564102565,
+        772.3423076923077
+      ],
+      "lines": [],
+      "scatter": [],
+      "title": "Matched complete-service distance (n=39 scenarios)"
+    }
+  ],
+  "png_sha256": "c2341a8dcef456a4d59d202966ef8e4b660c3f163c8243907d32adc545927d27"
+}

@@ -4,7 +4,7 @@ from collections import Counter, defaultdict
 import csv
 from hashlib import sha256
 import json
-from math import sqrt
+from math import isfinite, sqrt
 from pathlib import Path
 import re
 from shutil import copyfile
@@ -32,6 +32,34 @@ COLORS = {"MPC_COMPLETION": "#666d76", "MPC_MCTS": "#216e83", "MPC_ALNS": "#2184
           "MPC_HGS": "#c07932", "MPC_ACS": "#995c82"}
 PLT = OUTPUT / "figures"
 TABLES = OUTPUT / "tables"
+OPERATIONAL_FIELDS = (
+    "distance", "travel_time", "last_service_completion_time", "completion_time",
+    "charging_time", "charged_energy", "travel_energy", "waiting_time", "vehicles",
+    "workload_std", "tw_margin_min", "battery_min")
+OPERATIONAL_HEADERS = (
+    "Distance", "Travel time", "Last service completion time",
+    "Fleet end time (horizon-censored)", "Charging time", "Energy charged",
+    "Energy consumed", "Waiting time", "Active EVs", "Load SD", "Min TW slack",
+    "Min battery")
+REQUIRED_FIGURES = {
+    "01_customer_service", "02_complete_service", "03_service_by_size",
+    "04_service_by_family", "05_service_by_dod", "06_matched_service_distance",
+    "07_worker_runtime", "08_decision_latency_ecdf", "09_service_runtime_tradeoff",
+    "10_energy_charging_fleet", "11_development_paired_differences",
+    "12_development_ablation", "13_balanced_development_service_changes",
+    "14_balanced_development_cpu_ratio"}
+
+
+def attempted_cpu_seconds(*ledgers):
+    """Count all supervised attempts, including failed jobs and retries."""
+    total = 0.0
+    for ledger in ledgers:
+        for job in ledger["jobs"]:
+            value = job.get("cpu_seconds")
+            if value is None or not isfinite(value) or value < 0:
+                raise ValueError("Attempted worker CPU time is missing or invalid")
+            total += value
+    return total
 
 
 def integrate_balanced_development():
@@ -41,11 +69,13 @@ def integrate_balanced_development():
     analyze()
     manifest = load_json(DEV / "manifest.json")
     correction = load_json(DEV / "technical_extension" / "completion.json")
+    attempted_cpu = attempted_cpu_seconds(
+        load_json(DEV / "budget.json"),
+        load_json(DEV / "technical_extension" / "budget.json"))
     if (manifest["status"] != "complete" or manifest["completed_runs"] != 120 or
             correction["status"] != "complete" or correction["completed_runs"] != 120 or
             correction["total_charged_wall_seconds"] > 21600 or
-            correction["original_worker_cpu_seconds"] +
-            correction["correction_worker_cpu_seconds"] > 36000):
+            attempted_cpu > 36000):
         raise ValueError("Balanced development study is incomplete or exceeded its hard allowance")
     for name in ("paired_cases", "variant_summary"):
         for suffix in (".md", ".csv", ".tex"):
@@ -55,6 +85,8 @@ def integrate_balanced_development():
                      ("development_cpu_ratio", "14_balanced_development_cpu_ratio")):
         for suffix in (".png", ".svg"):
             copyfile(DEV / "figures" / f"{old}{suffix}", writable_path(PLT / f"{new}{suffix}"))
+        copyfile(DEV / "audit/figure_data" / f"{old}.json",
+                 writable_path(OUTPUT / "audit/figure_data" / f"{new}.json"))
     with (DEV / "tables" / "paired_cases.csv").open(newline="", encoding="utf-8") as stream:
         pairs = list(csv.DictReader(stream))
     combined = [row for row in pairs if row["variant"] == "combined"]
@@ -91,8 +123,7 @@ def integrate_balanced_development():
                 harmed_parents=len({row["case"] for row in combined
                                     if int(row["served_delta"]) < 0}),
                 charged_wall_seconds=correction["total_charged_wall_seconds"],
-                worker_cpu_seconds=correction["original_worker_cpu_seconds"] +
-                                   correction["correction_worker_cpu_seconds"],
+                worker_cpu_seconds=attempted_cpu,
                 correction_protocol_sha256=sha256((DEV / "technical_extension" /
                                                     "protocol.json").read_bytes()).hexdigest(),
                 protocol_sha256=sha256((DEV / "protocol.json").read_bytes()).hexdigest(),
@@ -139,6 +170,8 @@ def save_figure(name, figure):
     vector.write_text("\n".join(line.rstrip() for line in
                                 vector.read_text(encoding="utf-8").splitlines()) + "\n",
                       encoding="utf-8")
+    from scripts.paper_plot_audit import record_figure
+    record_figure(figure, PLT / f"{name}.png", OUTPUT / "audit/figure_data" / f"{name}.json")
     plt.close(figure)
 
 
@@ -167,7 +200,8 @@ def physical_features(raw, instance, worker_wall, worker_cpu):
     for step in raw["steps"]:
         before, after = step["before"], step["after"]
         final_time[after["id"]] = max(final_time.get(after["id"], 0.0), after["time"])
-        batteries.append(after["battery"])
+        batteries.extend((before["battery"], after["battery"],
+                          after["battery"] - step["energy_charged"]))
         if step["distance"]:
             a = instance.geometry.by_id[before["location"]["id"]]
             b = instance.geometry.by_id[after["location"]["id"]]
@@ -318,28 +352,46 @@ def paired(rows):
     return groups
 
 
-def cluster_ci(groups, left, right, seed=20261026):
+def cluster_ci(groups, left, right, seed=20261026, *, endpoint="parent_equal_service"):
+    if endpoint not in ("parent_equal_service", "customer_weighted_service", "complete_service"):
+        raise ValueError(f"Unknown paired endpoint: {endpoint}")
+    if not groups:
+        raise ValueError("Empty paired comparison")
     parent_groups = defaultdict(list)
     for group in groups.values():
+        if (group[left]["parent"] != group[right]["parent"] or
+                group[left]["features"]["total"] != group[right]["features"]["total"]):
+            raise ValueError("Paired parent or customer denominator mismatch")
         parent_groups[group[left]["parent"]].append(group)
     parents = sorted(parent_groups)
-    effects = []
+    numerators, denominators = [], []
     for parent in parents:
-        effects.append(mean(100 * (group[left]["features"]["served"] -
-                                   group[right]["features"]["served"]) /
-                            group[left]["features"]["total"] for group in parent_groups[parent]))
-    observed = mean(effects)
+        cases = parent_groups[parent]
+        if endpoint == "parent_equal_service":
+            numerators.append(mean(100 * (group[left]["features"]["served"] -
+                                         group[right]["features"]["served"]) /
+                                   group[left]["features"]["total"] for group in cases))
+            denominators.append(1)
+        else:
+            field = "complete" if endpoint == "complete_service" else "served"
+            numerators.append(100 * sum(group[left]["features"][field] -
+                                        group[right]["features"][field] for group in cases))
+            denominators.append(len(cases) if endpoint == "complete_service" else
+                                sum(group[left]["features"]["total"] for group in cases))
+    observed = sum(numerators) / sum(denominators)
     rng = np.random.default_rng(seed)
     draw = rng.integers(0, len(parents), size=(10000, len(parents)))
-    sampled = np.asarray(effects)[draw].mean(axis=1)
+    sampled = (np.asarray(numerators)[draw].sum(axis=1) /
+               np.asarray(denominators)[draw].sum(axis=1))
     low, high = np.percentile(sampled, [2.5, 97.5])
-    changes = [group[left]["features"]["served"] - group[right]["features"]["served"]
+    field = "complete" if endpoint == "complete_service" else "served"
+    changes = [group[left]["features"][field] - group[right]["features"][field]
                for group in groups.values()]
     return dict(effect=observed, low=float(low), high=float(high),
                 wins=sum(change > 0 for change in changes),
                 ties=sum(change == 0 for change in changes),
                 losses=sum(change < 0 for change in changes), parents=len(parents),
-                scenarios=len(changes), seed=seed)
+                scenarios=len(changes), seed=seed, endpoint=endpoint)
 
 
 def archived_development():
@@ -397,6 +449,24 @@ def group_table(rows, field, values, note, name):
     return output
 
 
+def unconditional_operations(cohorts):
+    output = []
+    for cohort, rows in cohorts:
+        for method in METHODS:
+            selected = [row for row in rows if row["method"] == method]
+            stats = aggregate(selected)
+            features = [row["features"] for row in selected]
+            values, counts = [], []
+            for field in OPERATIONAL_FIELDS:
+                observed = [f[field] for f in features if f[field] is not None]
+                values.append(fmt(mean(observed)) if observed else "NA")
+                counts.append(len(observed))
+            output.append([cohort, LABELS[method], stats["runs"],
+                           f"{stats['served']}/{stats['total']}", stats["complete"],
+                           *values, *counts])
+    return output
+
+
 def render_tables(primary, replication, dev):
     pg, rg = paired(primary), paired(replication)
     common = [key for key, group in pg.items() if all(group[m]["features"]["complete"] for m in METHODS)]
@@ -446,22 +516,29 @@ def render_tables(primary, replication, dev):
     for method in METHODS:
         f = [pg[key][method]["features"] for key in common]
         operational.append([LABELS[method], len(f),
-            *[fmt(mean(r[field] for r in f)) for field in
-              ("distance", "travel_time", "last_service_completion_time",
-               "completion_time", "charging_time",
-               "charged_energy", "travel_energy", "waiting_time", "vehicles",
-               "workload_std", "tw_margin_min", "battery_min")]])
+            *[fmt(mean(r[field] for r in f)) for field in OPERATIONAL_FIELDS]])
     write_table("operational_matched_service",
-        ["Method", "Common complete n", "Distance", "Travel time",
-         "Last service completion time", "Fleet end time (horizon-censored)",
-         "Charging time", "Energy charged", "Energy consumed", "Waiting time",
-         "Active EVs", "Load SD", "Min TW slack", "Min battery"], operational,
+        ["Method", "Common complete n", *OPERATIONAL_HEADERS], operational,
         "Independent robustness v3 only, restricted to the same fully served "
         f"{len(common)} scenarios for every method. Distance is benchmark units; "
         "times are benchmark time units; energy is benchmark battery units. "
         "The fleet end is censored by the scheduled depot-return horizon and "
         "should not be ranked as a routing-quality metric. "
         "Load SD is across vehicles represented in the trace.")
+    unconditional = unconditional_operations((
+        ("independent primary robustness v3", primary),
+        ("independent CPU replication", replication)))
+    write_table("operational_unconditional_by_cohort",
+        ["Cohort", "Method", "Runs", "Served/total", "Complete runs",
+         *OPERATIONAL_HEADERS, *[f"{header} n" for header in OPERATIONAL_HEADERS]],
+        unconditional,
+        "Unconditional descriptive means over all runs, separately by independent cohort. "
+        "Different served-customer sets preclude efficiency rankings. Each metric has its "
+        "own nonmissing run denominator; undefined margins are excluded, not set to zero. "
+        "Distance is in benchmark distance units, times in benchmark time units, energy "
+        "and battery in benchmark battery units, active EVs in vehicles, and load SD in "
+        "customers across traced vehicles. TW slack and battery are means of run minima. "
+        "Fleet end time is horizon-censored. Use matched-service tables for comparisons.")
     computation = []
     for cohort, rows in (("primary v3", primary), ("new replication", replication)):
         for method in METHODS:
@@ -551,6 +628,7 @@ def render_tables(primary, replication, dev):
     contrasts = [(method, METHODS[0]) for method in METHODS[1:]] + [
         ("MPC_ALNS", "MPC_HGS")]
     statistics = []
+    endpoint_statistics = []
     ci = {}
     for cohort, groups in (("primary v3", pg), ("new replication", rg)):
         for left, right in contrasts:
@@ -560,12 +638,29 @@ def render_tables(primary, replication, dev):
                 result["parents"], result["scenarios"], fmt(result["effect"], 3),
                 fmt(result["low"], 3), fmt(result["high"], 3),
                 result["wins"], result["ties"], result["losses"]])
+            for endpoint, label in (("customer_weighted_service", "Customer-weighted service"),
+                                    ("complete_service", "Complete-service scenario rate")):
+                estimate = cluster_ci(groups, left, right, endpoint=endpoint)
+                endpoint_statistics.append([
+                    cohort, label, LABELS[left] + " vs " + LABELS[right],
+                    estimate["parents"], estimate["scenarios"], fmt(estimate["effect"], 3),
+                    fmt(estimate["low"], 3), fmt(estimate["high"], 3),
+                    estimate["wins"], estimate["ties"], estimate["losses"]])
     write_table("parent_clustered_paired_statistics",
-        ["Cohort", "Contrast", "Parents", "Paired scenarios", "Mean difference pp",
+        ["Cohort", "Contrast", "Parents", "Paired scenarios", "Parent-equal service difference pp",
          "95% lower pp", "95% upper pp", "Wins", "Ties", "Losses"], statistics,
         "Exploratory parent-cluster bootstrap, 10,000 resamples, fixed seed 20261026. "
         "Parent-level scenario differences are averaged equally. Intervals are not "
         "multiplicity-adjusted; six independent parent clusters per cohort.")
+    write_table("primary_endpoint_paired_statistics",
+        ["Cohort", "Endpoint", "Contrast", "Parents", "Paired scenarios", "Difference pp",
+         "95% lower pp", "95% upper pp", "Wins", "Ties", "Losses"], endpoint_statistics,
+        "Exploratory paired parent-cluster percentile bootstrap, 10,000 resamples, seed "
+        "20261026. Each draw retains all matched scenarios for sampled parents, including "
+        "multiplicity, and recomputes total service difference / total customers or total "
+        "completion difference / total scenarios. Wins/ties/losses refer to the named "
+        "endpoint. Six parent clusters per cohort; intervals are not multiplicity-adjusted. "
+        "Cohorts are not pooled; these analyses do not establish benchmark-wide superiority.")
     details = []
     for row in primary + replication:
         f = row["features"]
@@ -585,8 +680,10 @@ def render_tables(primary, replication, dev):
                 common_primary=common, common_replication=rcommon,
                 main_rows=main_rows, size_rows=size_rows, family_rows=family_rows,
                 strata_rows=strata, operational_rows=operational, computation_rows=computation,
+                 unconditional_operational_rows=unconditional,
                 replication_rows=replica_rows, development_rows=dev_rows,
-                ablation_rows=ablation, statistics_rows=statistics, ci=ci)
+                 ablation_rows=ablation, statistics_rows=statistics,
+                 endpoint_statistics_rows=endpoint_statistics, ci=ci)
 
 
 def grouped_bars(name, groups, values, ylabel, title, *, ylim=None):
@@ -773,7 +870,7 @@ def render_documents(primary, replication, dev, output, diagnosis, primary_proto
           f"{fmt(r[method]['service'])}%", f"{r[method]['complete']}/12"]
          for method in METHODS])
     ci_rows = [row for row in output["statistics_rows"] if row[0] == "primary v3"]
-    ci_table = markdown(["Contrast", "Difference pp", "95% cluster interval pp",
+    ci_table = markdown(["Contrast", "Parent-equal service difference pp", "95% cluster interval pp",
                          "Win/tie/loss"],
         [[row[1], row[4], f"[{row[5]}, {row[6]}]",
           f"{row[7]}/{row[8]}/{row[9]}"] for row in ci_rows])
@@ -818,7 +915,7 @@ def render_documents(primary, replication, dev, output, diagnosis, primary_proto
                                operating_winners)
     replication_budget = load_json(OUTPUT / "budget.json")
     replica_worker_wall = sum(job.get("elapsed_seconds", 0) for job in replication_budget["jobs"])
-    replica_worker_cpu = sum(job.get("cpu_seconds", 0) for job in replication_budget["jobs"])
+    replica_worker_cpu = attempted_cpu_seconds(replication_budget)
     primary_worker_wall = sum(row["features"]["wall"] for row in primary)
     max_latency = max(row["features"]["lat_max"] for row in primary+replication)
     audit_caption = ("Every saved record used here was SHA-256 checked against its frozen "
@@ -856,14 +953,16 @@ def render_documents(primary, replication, dev, output, diagnosis, primary_proto
             "unconditional efficiency rankings.", "",
             "The opt-in compiled CPU and quality/recovery pilots are development evidence "
             f"only: {dev_gains} service gains and {dev_losses} service losses in 25 "
-            "matched cases. Their service losses prevented promotion. The replication "
+            "matched cases. These regressions do not justify enhanced promotion. The replication "
             "therefore tests the original methods, not an improved controller.", "",
             f"A separate, later 120-run balanced development ablation tested recovery, "
             f"first-action protection, route quality, CPU caching, and their combination. "
             f"The combination changed served customers by {balanced['service_delta']:+d} "
             f"over 30 paired method-runs, with {balanced['gains']} gains and "
-            f"{balanced['losses']} loss. It failed the service-preservation gate, "
-            "so no enhanced independent claim follows. See "
+            f"{balanced['losses']} {'loss' if balanced['losses'] == 1 else 'losses'}. "
+            "A stricter post hoc service-preservation gate "
+            "was applied; this is not the frozen selection rule. No enhanced promotion "
+            "is justified by this exploratory evidence. See "
             "[development update](DEVELOPMENT_UPDATE.md).", "",
             "### Descriptive heterogeneity", "",
             "The highest observed customer-weighted service in each primary-cohort "
@@ -873,7 +972,9 @@ def render_documents(primary, replication, dev, output, diagnosis, primary_proto
             f"Total recorded sequential-worker wall time was "
             f"{fmt(primary_worker_wall/3600)} h in the primary study and "
             f"{fmt(replica_worker_wall/3600)} h in the new replication. "
-            f"The replication recorded {fmt(replica_worker_cpu/3600)} worker CPU-hours; "
+            f"The replication recorded {fmt(replica_worker_cpu/3600)} attempted-worker "
+            "CPU-hours from all supervisor ledger entries, including failed attempts "
+            "and process overhead; "
             f"its persistent charged wall allowance was "
             f"{fmt(replication_budget['charged_seconds']/3600)} h, including setup "
             "and analysis reserves. No historical child CPU time is inferred. "
@@ -887,14 +988,16 @@ def render_documents(primary, replication, dev, output, diagnosis, primary_proto
             "superior on a metric.", "", operating_table, "",
             audit_caption, "",
             "## Figures and tables", "",
-            "The 12 numbered figures in figures/ are 300 dpi PNG with matching SVG. "
+            f"The {len(list(PLT.glob('*.png')))} figures in figures/ are 300 dpi PNG with matching SVG. "
             "Tables in tables/ are Markdown with CSV and LaTeX companions. Key displays: "
             "[five-method results](tables/main_five_methods.md), "
             "[independent CPU replication](tables/independent_cpu_replication.md), "
             "[25/50/100-customer results](tables/by_size.md), "
             "[family results](tables/by_family.md), "
             "[paired intervals](tables/parent_clustered_paired_statistics.md), "
+            "[primary-endpoint paired intervals](tables/primary_endpoint_paired_statistics.md), "
             "[conditional operations](tables/operational_matched_service.md), "
+            "[unconditional operations by cohort](tables/operational_unconditional_by_cohort.md), "
             "[service figure](figures/01_customer_service.png), "
             "[runtime ECDF](figures/08_decision_latency_ecdf.png).",
             ""]),
@@ -942,8 +1045,8 @@ def render_documents(primary, replication, dev, output, diagnosis, primary_proto
             "constructor telemetry, and decision latency. Historical child CPU "
             "time was not recorded and is NA, not inferred.", "",
             "No algorithm was retuned to these prospective scenarios. The archived "
-            "opt-in enhancement screen failed its no-service-loss gate; consequently "
-            "there is no enhanced-method independent final contrast.", ""
+            "opt-in enhancement evidence includes service regressions; no enhanced promotion "
+            "is justified and there is no enhanced-method independent final contrast.", ""
         ]),
         "STATISTICAL_ANALYSIS.md": "\n".join([
             "# Statistical analysis", "",
@@ -958,6 +1061,16 @@ def render_documents(primary, replication, dev, output, diagnosis, primary_proto
             "losses count matched scenarios. Customer-weighted overall service "
             "uses total served divided by total available, so it need not equal "
             "the equally parent-weighted paired difference.", "",
+            "The separate primary-endpoint paired table estimates customer-weighted service "
+            "and complete-service scenario rate differences in percentage points. For each "
+            "of 10,000 paired parent-cluster resamples (seed 20261026), all scenarios of each "
+            "sampled parent are retained with multiplicity. The service contrast divides "
+            "the summed paired served-count differences by summed customer opportunities; "
+            "the completion contrast divides summed paired completion-indicator differences "
+            "by the number of sampled scenarios. Percentile intervals use the 2.5th and "
+            "97.5th percentiles. These are exploratory analyses, without multiplicity "
+            "adjustment, separately for each cohort. The parent-equal contrast below "
+            "remains a distinct secondary estimand.", "",
             "Primary-cohort contrasts are listed below. Replication contrasts "
             "are in the linked table; no pooling or retrospective reweighting "
             "was performed.", "", ci_table, "",
@@ -967,7 +1080,8 @@ def render_documents(primary, replication, dev, output, diagnosis, primary_proto
             "A displayed interval excluding zero is descriptive, not a blanket "
             "claim of benchmark-wide superiority. Size and family breakdowns "
             "are descriptive strata, not independent confirmatory tests.",
-            "", "[Complete paired table](tables/parent_clustered_paired_statistics.md)."
+            "", "[Parent-equal paired table](tables/parent_clustered_paired_statistics.md). "
+            "[Primary-endpoint paired table](tables/primary_endpoint_paired_statistics.md)."
         ]),
         "LIMITATIONS.md": "\n".join([
             "# Limitations and negative findings", "",
@@ -997,13 +1111,16 @@ def render_documents(primary, replication, dev, output, diagnosis, primary_proto
             "batches. No performance or service gain from it is claimed. "
             "A new independent enhanced holdout was not opened.", "",
             f"The later 120-run balanced development ablation was exploratory and "
-            f"also failed promotion: combined service changed by "
+            f"does not justify enhanced promotion: combined service changed by "
             f"{balanced['service_delta']:+d} customers over 30 paired method-runs, "
             f"including {balanced['losses']} service loss. One 100-customer worker "
             "exceeded its initially prespecified whole-worker watchdog without "
             "producing raw output; the failed attempt was retained, and all eight "
             "remaining frozen jobs were completed under a separately documented "
             "900-second technical correction. No optimization-decision limit changed. "
+            "The stricter service-preservation gate is post hoc and must not be described "
+            "as the registered selection rule. Historical regressions remain disqualifying "
+            "for deployment; this reporting correction does not retroactively promote a variant. "
             "See DEVELOPMENT_UPDATE.md.", "",
             "Unconditional distance, time, EV and energy summaries are not "
             "comparative efficiency measures when methods serve different "
@@ -1025,30 +1142,26 @@ def render_documents(primary, replication, dev, output, diagnosis, primary_proto
             "# Reproduce and verify", "",
             "From the repository root, install requirements.txt in a CPU-only Python "
             "environment. The original five methods require no CUDA stack.", "",
-            "1. Verify the existing frozen primary cohort:",
-            "   python -m scripts.analyze_desaulniers_robustness --v3",
-            "2. Inspect the new replication's frozen protocol and progress:",
-            "   python -m scripts.run_final_cpu_replication --freeze",
-            "   python -c \"from evrp.storage import ROOT,load_json; "
-            "m=load_json(ROOT/'results/desaulniers/final_cpu_paper_v1/manifest.json'); "
-            "print(m['status'],m['completed_runs'],m['planned_runs'])\"",
-            "3. To resume an interrupted, partial study, run the frozen launcher. "
-            "It verifies and reuses existing raw files byte-for-byte:",
-            "   python -u -m scripts.run_final_cpu_replication",
-            "4. Rebuild this paper package from saved raw evidence without running "
+            "1. Restore exact historical inputs and audit the frozen primary cohort:",
+            "   python -m scripts.archive_frozen_inputs --restore",
+            "   python -m scripts.audit_frozen_studies",
+            "   python -m scripts.audit_enhancement_studies",
+            "   python -m scripts.audit_reference_inventory",
+            "2. Run the full CPU regression suite and record its outcome:",
+            "   python -m pytest -q --basetemp results/.pytest_cpu_reproduce "
+            "--junitxml results/desaulniers/final_cpu_paper_v1/audit/final_tests.xml",
+            "3. Rebuild this paper package from saved raw evidence without running "
             "an optimizer:",
             "   python -m scripts.run_final_cpu_development --freeze",
             "   python -m scripts.complete_final_cpu_development --freeze",
             "   python -m scripts.analyze_final_cpu_development",
             "   python -m scripts.render_final_cpu_paper",
-            "5. Run the complete CPU test suite:",
-            "   New-Item -ItemType Directory -Force "
-            "results/desaulniers/final_cpu_paper_v1/tmp_tests_reproduce",
-            "   python -m pytest -q --basetemp results/desaulniers/final_cpu_paper_v1/tmp_tests_reproduce",
+            "4. Verify cumulative execution, tests, evidence and delivery:",
+            "   python -m scripts.audit_final_cpu_completion",
             "",
             "Do not delete or overwrite a saved raw record to force a rerun. "
-            "The command in step 3 is the prospective experiment launcher, "
-            "not required for paper rendering. Every saved record has a "
+            "All experiment manifests are complete; reproducing the package does not "
+            "require another optimization campaign. Every saved record has a "
             "manifest SHA-256; audit/verification.json lists the verified "
             "protocols and generated outputs. The negative hybrid study is "
             "recoverable at Git tag archive/hybrid-gpu-negative-v1."
@@ -1067,12 +1180,19 @@ def render_documents(primary, replication, dev, output, diagnosis, primary_proto
         f"{balanced['service_delta']:+d} served customers across 30 paired "
         f"method-runs ({balanced['gains']} gains, {balanced['losses']} "
         f"{'loss' if balanced['losses'] == 1 else 'losses'}; "
-        f"{balanced['harmed_parents']} harmed parent). The ACS loss rejects "
-        "promotion under the service-preservation gate. No enhanced independent "
-        "holdout was opened.", "",
+        f"{balanced['harmed_parents']} harmed parents). The frozen selection rule requires "
+        "no aggregate service loss, no repeated family harm, and a useful service or "
+        "conditional-quality gain. The stricter gate requiring positive aggregate service, "
+        "at least two improving parents, no harmed parent, and no method-level aggregate "
+        "service loss is post hoc. A single ACS loss is not, by itself, a demonstrated "
+        "failure of the frozen rule. No enhanced promotion is justified by this exploratory "
+        "evidence; historical regressions remain disqualifying for deployment. No variant "
+        "is retroactively promoted and no enhanced independent holdout was opened.", "",
         f"Cumulative charged wall time: {balanced['charged_wall_seconds']/3600:.3f} h "
-        f"of the six-hour development allowance; worker CPU time: "
-        f"{balanced['worker_cpu_seconds']/3600:.3f} h. One original whole-worker "
+        f"of the six-hour development allowance; attempted-worker CPU time: "
+        f"{balanced['worker_cpu_seconds']/3600:.3f} h, summed over all original and "
+        "technical-correction supervisor ledger entries, including failures and process "
+        "overhead. One original whole-worker "
         "timeout was preserved and the remaining eight jobs used a separately "
         "frozen 900-second technical correction. The five-second MPC decision "
         "budget did not change.", "",
@@ -1095,11 +1215,12 @@ def render_documents(primary, replication, dev, output, diagnosis, primary_proto
         "**Status: complete, provided audit/verification.json reports 510/510 passed.**",
         "", "The original five-method MPC system remains the publication configuration. "
         "The 450-run independent primary cohort and 60-run prospective replication "
-        "are complete and separately reported. No opt-in enhancement satisfied "
-        "the development service-preservation rule; no enhanced final claim is made. "
-        f"The later balanced development ablation also failed promotion "
-        f"({balanced['service_delta']:+d} net served customers, "
-        f"{balanced['losses']} paired service loss).",
+        "are complete and separately reported. No enhanced promotion is justified; "
+        "no enhanced final claim is made. The stricter development service-preservation "
+        "gate was post hoc, not the frozen selection rule. "
+        f"The later balanced development ablation observed "
+        f"{balanced['service_delta']:+d} net served customers and "
+        f"{balanced['losses']} paired service loss(es).",
         "", cohort_methods, "",
         f"Primary ALNS-HGS paired difference: {fmt(alns_hgs['effect'])} pp "
         f"(95% parent-cluster interval [{fmt(alns_hgs['low'])}, "
@@ -1107,11 +1228,13 @@ def render_documents(primary, replication, dev, output, diagnosis, primary_proto
         "superiority across parents. All raw traces were independently "
         f"replayed and decision latencies checked. The new replication recorded "
         f"{fmt(replica_worker_wall/3600)} worker wall-hours and "
-        f"{fmt(replica_worker_cpu/3600)} worker CPU-hours.", "",
+        f"{fmt(replica_worker_cpu/3600)} attempted-worker CPU-hours, including all "
+        "supervised attempts and process overhead.", "",
         "Read [paper results](PAPER_RESULTS.md), [methods](METHODS.md), "
         "[statistics](STATISTICAL_ANALYSIS.md), [limitations](LIMITATIONS.md), "
         "[reproduction](REPRODUCE.md), "
         "[balanced development update](DEVELOPMENT_UPDATE.md), "
+        "[six-family CPU coverage](CPU_COVERAGE.md), "
         "[service-loss diagnosis](audit/SERVICE_LOSS_DIAGNOSIS.md), "
         "[all audited runs](tables/all_audited_runs.md), and "
         "[the verification inventory](audit/verification.json). "
@@ -1139,11 +1262,18 @@ def render_documents(primary, replication, dev, output, diagnosis, primary_proto
 
 def verify_package(primary, replication, primary_protocol, replication_protocol,
                    diagnosis, balanced):
+    from scripts.paper_plot_audit import verify_figures
+    graph_audit = verify_figures(OUTPUT)
     from_m = lambda path: sha256(path.read_bytes()).hexdigest()
     figures = sorted(PLT.glob("*.png"))
     vectors = sorted(PLT.glob("*.svg"))
     tables = sorted(TABLES.glob("*.md"))
-    if (len(figures) != 14 or len(vectors) != 14 or len(tables) < 11 or
+    figure_stems = {path.stem for path in figures}
+    required_tables = {"primary_endpoint_paired_statistics", "parent_clustered_paired_statistics",
+                       "operational_unconditional_by_cohort", "operational_matched_service"}
+    if (not REQUIRED_FIGURES <= figure_stems or
+            figure_stems != {path.stem for path in vectors} or len(tables) < 11 or
+            not required_tables <= {path.stem for path in tables} or
             len(list(TABLES.glob("*.csv"))) != len(tables) or
             len(list(TABLES.glob("*.tex"))) != len(tables)):
         raise ValueError("Paper figure/table inventory incomplete")
@@ -1162,11 +1292,14 @@ def verify_package(primary, replication, primary_protocol, replication_protocol,
     files = sorted(path for path in OUTPUT.rglob("*") if path.is_file() and
                    not any(part.startswith("tmp_tests") or part == "__pycache__"
                            for part in path.relative_to(OUTPUT).parts) and
-                   path.name != "verification.json")
+                   path.name not in {"verification.json", "MISSION_COMPLETION.json", "MISSION_COMPLETION.md",
+                                     "repository_inventory.json"})
     inventory = {path.relative_to(OUTPUT).as_posix(): from_m(path) for path in files}
     audit = dict(status="complete", primary_records=len(primary),
+                 figure_table_verification=graph_audit,
                  replication_records=len(replication), total_records=len(primary)+len(replication),
                  separately_audited_development_records=balanced["records"],
+                 cpu_coverage=balanced["cpu_coverage"],
                  development_protocol_sha256=balanced["protocol_sha256"],
                  development_correction_protocol_sha256=balanced["correction_protocol_sha256"],
                  two_worker_probe_records=balanced["two_worker_probe"]["records"],
@@ -1195,6 +1328,12 @@ def build():
     output = render_tables(primary, replication, dev)
     render_figures(primary, dev, output)
     balanced = integrate_balanced_development()
+    from scripts.analyze_cpu_coverage import analyze as analyze_coverage
+    coverage = analyze_coverage()
+    balanced["cpu_coverage"] = dict(new_runs=coverage["new_runs"],
+                                   raw_records=coverage["raw_records"],
+                                   protocol_sha256=coverage["protocol_sha256"],
+                                   manifest_sha256=coverage["manifest_sha256"])
     diagnosis = service_loss_diagnosis()
     render_documents(primary, replication, dev, output, diagnosis, primary_protocol,
                      replication_protocol, balanced)

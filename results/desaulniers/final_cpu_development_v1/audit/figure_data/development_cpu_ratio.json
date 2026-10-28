@@ -1,0 +1,29 @@
+{
+  "axes": [
+    {
+      "bars": [
+        1.237,
+        0.909,
+        0.75,
+        0.797,
+        0.874
+      ],
+      "lines": [
+        {
+          "label": "_child5",
+          "x": [
+            0,
+            1
+          ],
+          "y": [
+            1,
+            1
+          ]
+        }
+      ],
+      "scatter": [],
+      "title": "Paired combined-policy CPU cost"
+    }
+  ],
+  "png_sha256": "af2e1cf1546cbfa4ffd0db1dcfe9ec407dd51562e5f79b560554c48ad478122f"
+}

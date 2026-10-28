@@ -1,0 +1,428 @@
+{
+  "completed_runs": 15,
+  "planned_runs": 15,
+  "protocol_identifier": "64b85fb31d41955361bb0059fa2359f8d686312a14ce5a11dc3be6ae9032506f",
+  "records": [
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.complete_cpu_coverage",
+          "--worker",
+          "cpu_1_MPC_COMPLETION"
+        ],
+        "cpu_seconds": 2.078125,
+        "cpu_to_wall": 0.9144047620130772,
+        "elapsed_seconds": 2.272653300082311,
+        "id": "cpu_1_MPC_COMPLETION",
+        "log": "results/desaulniers/final_cpu_development_v1/cpu_coverage/logs/cpu_1_MPC_COMPLETION.log",
+        "pid": 14716,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-28T10:59:36.849567+00:00",
+        "status": "complete",
+        "upper_seconds": 60.0
+      },
+      "id": "cpu_1_MPC_COMPLETION",
+      "index": 1,
+      "method": "MPC_COMPLETION",
+      "raw": "results/desaulniers/final_cpu_development_v1/cpu_coverage/raw/cpu_1_MPC_COMPLETION.json.gz",
+      "sha256": "5d8a5e262f0c1920fbf30c5096bafbbec78d97573c6caa43f3023a7921fedc59"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.complete_cpu_coverage",
+          "--worker",
+          "cpu_1_MPC_MCTS"
+        ],
+        "cpu_seconds": 110.03125,
+        "cpu_to_wall": 0.9852923280178713,
+        "elapsed_seconds": 111.67371030012146,
+        "id": "cpu_1_MPC_MCTS",
+        "log": "results/desaulniers/final_cpu_development_v1/cpu_coverage/logs/cpu_1_MPC_MCTS.log",
+        "pid": 22768,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-28T10:59:39.172800+00:00",
+        "status": "complete",
+        "upper_seconds": 271.6602303995751
+      },
+      "id": "cpu_1_MPC_MCTS",
+      "index": 1,
+      "method": "MPC_MCTS",
+      "raw": "results/desaulniers/final_cpu_development_v1/cpu_coverage/raw/cpu_1_MPC_MCTS.json.gz",
+      "sha256": "6eeb6561c47c1291a13b8f9701bd648492e83568fda028674c02f4f46a07f8f2"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.complete_cpu_coverage",
+          "--worker",
+          "cpu_1_MPC_ALNS"
+        ],
+        "cpu_seconds": 96.96875,
+        "cpu_to_wall": 0.9856729998156248,
+        "elapsed_seconds": 98.37821470014751,
+        "id": "cpu_1_MPC_ALNS",
+        "log": "results/desaulniers/final_cpu_development_v1/cpu_coverage/logs/cpu_1_MPC_ALNS.log",
+        "pid": 3852,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-28T11:01:30.895120+00:00",
+        "status": "complete",
+        "upper_seconds": 261.02924499986693
+      },
+      "id": "cpu_1_MPC_ALNS",
+      "index": 1,
+      "method": "MPC_ALNS",
+      "raw": "results/desaulniers/final_cpu_development_v1/cpu_coverage/raw/cpu_1_MPC_ALNS.json.gz",
+      "sha256": "c7e340ecc8941eb4e938661071f618214656af02be8c330f26db72528664975c"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.complete_cpu_coverage",
+          "--worker",
+          "cpu_1_MPC_HGS"
+        ],
+        "cpu_seconds": 118.75,
+        "cpu_to_wall": 0.9893127653610735,
+        "elapsed_seconds": 120.0328188999556,
+        "id": "cpu_1_MPC_HGS",
+        "log": "results/desaulniers/final_cpu_development_v1/cpu_coverage/logs/cpu_1_MPC_HGS.log",
+        "pid": 27996,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-28T11:03:09.333413+00:00",
+        "status": "complete",
+        "upper_seconds": 280.64871519990265
+      },
+      "id": "cpu_1_MPC_HGS",
+      "index": 1,
+      "method": "MPC_HGS",
+      "raw": "results/desaulniers/final_cpu_development_v1/cpu_coverage/raw/cpu_1_MPC_HGS.json.gz",
+      "sha256": "c84b8ddbf5e1da49ca669b1d862d7f68e10b52eea3fa37f6c9a94c784efc0298"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.complete_cpu_coverage",
+          "--worker",
+          "cpu_1_MPC_ACS"
+        ],
+        "cpu_seconds": 21.890625,
+        "cpu_to_wall": 0.9898025530592404,
+        "elapsed_seconds": 22.116153299808502,
+        "id": "cpu_1_MPC_ACS",
+        "log": "results/desaulniers/final_cpu_development_v1/cpu_coverage/logs/cpu_1_MPC_ACS.log",
+        "pid": 15120,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-28T11:05:09.411202+00:00",
+        "status": "complete",
+        "upper_seconds": 155.47210319992155
+      },
+      "id": "cpu_1_MPC_ACS",
+      "index": 1,
+      "method": "MPC_ACS",
+      "raw": "results/desaulniers/final_cpu_development_v1/cpu_coverage/raw/cpu_1_MPC_ACS.json.gz",
+      "sha256": "bd0b77fe2958dcf5b379e363a7f8f1162f021a603d2a7654866f0470cb9ed792"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.complete_cpu_coverage",
+          "--worker",
+          "cpu_3_MPC_COMPLETION"
+        ],
+        "cpu_seconds": 1.359375,
+        "cpu_to_wall": 0.7909974525453397,
+        "elapsed_seconds": 1.7185579999350011,
+        "id": "cpu_3_MPC_COMPLETION",
+        "log": "results/desaulniers/final_cpu_development_v1/cpu_coverage/logs/cpu_3_MPC_COMPLETION.log",
+        "pid": 11016,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-28T11:05:31.570671+00:00",
+        "status": "complete",
+        "upper_seconds": 60.0
+      },
+      "id": "cpu_3_MPC_COMPLETION",
+      "index": 3,
+      "method": "MPC_COMPLETION",
+      "raw": "results/desaulniers/final_cpu_development_v1/cpu_coverage/raw/cpu_3_MPC_COMPLETION.json.gz",
+      "sha256": "fba2a47fdfd270fa30a397c196dc074de9c613e6fd93ce0f14308fc7b4245a7c"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.complete_cpu_coverage",
+          "--worker",
+          "cpu_3_MPC_MCTS"
+        ],
+        "cpu_seconds": 19.90625,
+        "cpu_to_wall": 0.9895614902285754,
+        "elapsed_seconds": 20.116233499953523,
+        "id": "cpu_3_MPC_MCTS",
+        "log": "results/desaulniers/final_cpu_development_v1/cpu_coverage/logs/cpu_3_MPC_MCTS.log",
+        "pid": 8220,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-28T11:05:33.318260+00:00",
+        "status": "complete",
+        "upper_seconds": 88.88570340024307
+      },
+      "id": "cpu_3_MPC_MCTS",
+      "index": 3,
+      "method": "MPC_MCTS",
+      "raw": "results/desaulniers/final_cpu_development_v1/cpu_coverage/raw/cpu_3_MPC_MCTS.json.gz",
+      "sha256": "f8a0b92feeae71a23a6f5a34141380192a8551e955ec37ff8af7a35d8333ea52"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.complete_cpu_coverage",
+          "--worker",
+          "cpu_3_MPC_ALNS"
+        ],
+        "cpu_seconds": 20.359375,
+        "cpu_to_wall": 0.9913797807034819,
+        "elapsed_seconds": 20.536403300007805,
+        "id": "cpu_3_MPC_ALNS",
+        "log": "results/desaulniers/final_cpu_development_v1/cpu_coverage/logs/cpu_3_MPC_ALNS.log",
+        "pid": 17048,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-28T11:05:53.469735+00:00",
+        "status": "complete",
+        "upper_seconds": 99.04015380004421
+      },
+      "id": "cpu_3_MPC_ALNS",
+      "index": 3,
+      "method": "MPC_ALNS",
+      "raw": "results/desaulniers/final_cpu_development_v1/cpu_coverage/raw/cpu_3_MPC_ALNS.json.gz",
+      "sha256": "2bded2fe6c680265c76cd66f5b0895947d5eb73f62aa57ddf48fe21cc67773e7"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.complete_cpu_coverage",
+          "--worker",
+          "cpu_3_MPC_HGS"
+        ],
+        "cpu_seconds": 28.71875,
+        "cpu_to_wall": 0.9869853207332635,
+        "elapsed_seconds": 29.097443899838254,
+        "id": "cpu_3_MPC_HGS",
+        "log": "results/desaulniers/final_cpu_development_v1/cpu_coverage/logs/cpu_3_MPC_HGS.log",
+        "pid": 27248,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-28T11:06:14.035859+00:00",
+        "status": "complete",
+        "upper_seconds": 109.34419979993254
+      },
+      "id": "cpu_3_MPC_HGS",
+      "index": 3,
+      "method": "MPC_HGS",
+      "raw": "results/desaulniers/final_cpu_development_v1/cpu_coverage/raw/cpu_3_MPC_HGS.json.gz",
+      "sha256": "061a35aa20a430917508a96cd50ef826d39d6c8a6183688e66fe958264ab4450"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.complete_cpu_coverage",
+          "--worker",
+          "cpu_3_MPC_ACS"
+        ],
+        "cpu_seconds": 3.296875,
+        "cpu_to_wall": 0.9894672514918413,
+        "elapsed_seconds": 3.331969799939543,
+        "id": "cpu_3_MPC_ACS",
+        "log": "results/desaulniers/final_cpu_development_v1/cpu_coverage/logs/cpu_3_MPC_ACS.log",
+        "pid": 18204,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-28T11:06:43.160495+00:00",
+        "status": "complete",
+        "upper_seconds": 60.0
+      },
+      "id": "cpu_3_MPC_ACS",
+      "index": 3,
+      "method": "MPC_ACS",
+      "raw": "results/desaulniers/final_cpu_development_v1/cpu_coverage/raw/cpu_3_MPC_ACS.json.gz",
+      "sha256": "a97c2f8edde557b4ae40a8033e030bed286876bb44638da583c86dbedc7f3b20"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.complete_cpu_coverage",
+          "--worker",
+          "cpu_5_MPC_COMPLETION"
+        ],
+        "cpu_seconds": 3.140625,
+        "cpu_to_wall": 0.9430203000833601,
+        "elapsed_seconds": 3.330389600014314,
+        "id": "cpu_5_MPC_COMPLETION",
+        "log": "results/desaulniers/final_cpu_development_v1/cpu_coverage/logs/cpu_5_MPC_COMPLETION.log",
+        "pid": 31120,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-28T11:06:46.519692+00:00",
+        "status": "complete",
+        "upper_seconds": 60.0
+      },
+      "id": "cpu_5_MPC_COMPLETION",
+      "index": 5,
+      "method": "MPC_COMPLETION",
+      "raw": "results/desaulniers/final_cpu_development_v1/cpu_coverage/raw/cpu_5_MPC_COMPLETION.json.gz",
+      "sha256": "57aaecb93f7a1d521ec1413f85f24611d5b01f93720b509cf3028ea5ede2d8aa"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.complete_cpu_coverage",
+          "--worker",
+          "cpu_5_MPC_MCTS"
+        ],
+        "cpu_seconds": 234.140625,
+        "cpu_to_wall": 0.9943311094199618,
+        "elapsed_seconds": 235.47550989990123,
+        "id": "cpu_5_MPC_MCTS",
+        "log": "results/desaulniers/final_cpu_development_v1/cpu_coverage/logs/cpu_5_MPC_MCTS.log",
+        "pid": 21880,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-28T11:06:49.994297+00:00",
+        "status": "complete",
+        "upper_seconds": 507.5642113997601
+      },
+      "id": "cpu_5_MPC_MCTS",
+      "index": 5,
+      "method": "MPC_MCTS",
+      "raw": "results/desaulniers/final_cpu_development_v1/cpu_coverage/raw/cpu_5_MPC_MCTS.json.gz",
+      "sha256": "b4bc94fe313ed03aa7537ad73090feb745081821760297e596d46c519743a705"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.complete_cpu_coverage",
+          "--worker",
+          "cpu_5_MPC_ALNS"
+        ],
+        "cpu_seconds": 221.84375,
+        "cpu_to_wall": 0.9961583334462483,
+        "elapsed_seconds": 222.69928640010767,
+        "id": "cpu_5_MPC_ALNS",
+        "log": "results/desaulniers/final_cpu_development_v1/cpu_coverage/logs/cpu_5_MPC_ALNS.log",
+        "pid": 24364,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-28T11:10:45.604293+00:00",
+        "status": "complete",
+        "upper_seconds": 485.1138627999462
+      },
+      "id": "cpu_5_MPC_ALNS",
+      "index": 5,
+      "method": "MPC_ALNS",
+      "raw": "results/desaulniers/final_cpu_development_v1/cpu_coverage/raw/cpu_5_MPC_ALNS.json.gz",
+      "sha256": "90a6664ee36e641ce901bc16636f01b12d373b498fdcdf8a11ea1cbf792825de"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.complete_cpu_coverage",
+          "--worker",
+          "cpu_5_MPC_HGS"
+        ],
+        "cpu_seconds": 227.734375,
+        "cpu_to_wall": 0.9964962402928899,
+        "elapsed_seconds": 228.5351070999168,
+        "id": "cpu_5_MPC_HGS",
+        "log": "results/desaulniers/final_cpu_development_v1/cpu_coverage/logs/cpu_5_MPC_HGS.log",
+        "pid": 31948,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-28T11:14:28.462150+00:00",
+        "status": "complete",
+        "upper_seconds": 494.0257534002885
+      },
+      "id": "cpu_5_MPC_HGS",
+      "index": 5,
+      "method": "MPC_HGS",
+      "raw": "results/desaulniers/final_cpu_development_v1/cpu_coverage/raw/cpu_5_MPC_HGS.json.gz",
+      "sha256": "2b18d93f0682561d7f340b70ea864137b37084148c9da1efb35d698b4e0e1837"
+    },
+    {
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.complete_cpu_coverage",
+          "--worker",
+          "cpu_5_MPC_ACS"
+        ],
+        "cpu_seconds": 203.046875,
+        "cpu_to_wall": 0.9963639648656786,
+        "elapsed_seconds": 203.7878548000008,
+        "id": "cpu_5_MPC_ACS",
+        "log": "results/desaulniers/final_cpu_development_v1/cpu_coverage/logs/cpu_5_MPC_ACS.log",
+        "pid": 27044,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-10-28T11:18:17.117121+00:00",
+        "status": "complete",
+        "upper_seconds": 465.6317513999529
+      },
+      "id": "cpu_5_MPC_ACS",
+      "index": 5,
+      "method": "MPC_ACS",
+      "raw": "results/desaulniers/final_cpu_development_v1/cpu_coverage/raw/cpu_5_MPC_ACS.json.gz",
+      "sha256": "d8bd0e1eb573bb47c75110f42502dabadfd325908af0451cd375cb9e71dce876"
+    }
+  ],
+  "status": "complete"
+}

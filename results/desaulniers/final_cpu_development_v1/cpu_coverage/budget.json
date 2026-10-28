@@ -1,0 +1,323 @@
+{
+  "charged_seconds": 1325.9773067997303,
+  "jobs": [
+    {
+      "command": [
+        "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "-u",
+        "-m",
+        "scripts.complete_cpu_coverage",
+        "--worker",
+        "cpu_1_MPC_COMPLETION"
+      ],
+      "cpu_seconds": 2.078125,
+      "cpu_to_wall": 0.9144047620130772,
+      "elapsed_seconds": 2.272653300082311,
+      "id": "cpu_1_MPC_COMPLETION",
+      "log": "results/desaulniers/final_cpu_development_v1/cpu_coverage/logs/cpu_1_MPC_COMPLETION.log",
+      "pid": 14716,
+      "reason": null,
+      "returncode": 0,
+      "started_utc": "2026-10-28T10:59:36.849567+00:00",
+      "status": "complete",
+      "upper_seconds": 60.0
+    },
+    {
+      "command": [
+        "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "-u",
+        "-m",
+        "scripts.complete_cpu_coverage",
+        "--worker",
+        "cpu_1_MPC_MCTS"
+      ],
+      "cpu_seconds": 110.03125,
+      "cpu_to_wall": 0.9852923280178713,
+      "elapsed_seconds": 111.67371030012146,
+      "id": "cpu_1_MPC_MCTS",
+      "log": "results/desaulniers/final_cpu_development_v1/cpu_coverage/logs/cpu_1_MPC_MCTS.log",
+      "pid": 22768,
+      "reason": null,
+      "returncode": 0,
+      "started_utc": "2026-10-28T10:59:39.172800+00:00",
+      "status": "complete",
+      "upper_seconds": 271.6602303995751
+    },
+    {
+      "command": [
+        "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "-u",
+        "-m",
+        "scripts.complete_cpu_coverage",
+        "--worker",
+        "cpu_1_MPC_ALNS"
+      ],
+      "cpu_seconds": 96.96875,
+      "cpu_to_wall": 0.9856729998156248,
+      "elapsed_seconds": 98.37821470014751,
+      "id": "cpu_1_MPC_ALNS",
+      "log": "results/desaulniers/final_cpu_development_v1/cpu_coverage/logs/cpu_1_MPC_ALNS.log",
+      "pid": 3852,
+      "reason": null,
+      "returncode": 0,
+      "started_utc": "2026-10-28T11:01:30.895120+00:00",
+      "status": "complete",
+      "upper_seconds": 261.02924499986693
+    },
+    {
+      "command": [
+        "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "-u",
+        "-m",
+        "scripts.complete_cpu_coverage",
+        "--worker",
+        "cpu_1_MPC_HGS"
+      ],
+      "cpu_seconds": 118.75,
+      "cpu_to_wall": 0.9893127653610735,
+      "elapsed_seconds": 120.0328188999556,
+      "id": "cpu_1_MPC_HGS",
+      "log": "results/desaulniers/final_cpu_development_v1/cpu_coverage/logs/cpu_1_MPC_HGS.log",
+      "pid": 27996,
+      "reason": null,
+      "returncode": 0,
+      "started_utc": "2026-10-28T11:03:09.333413+00:00",
+      "status": "complete",
+      "upper_seconds": 280.64871519990265
+    },
+    {
+      "command": [
+        "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "-u",
+        "-m",
+        "scripts.complete_cpu_coverage",
+        "--worker",
+        "cpu_1_MPC_ACS"
+      ],
+      "cpu_seconds": 21.890625,
+      "cpu_to_wall": 0.9898025530592404,
+      "elapsed_seconds": 22.116153299808502,
+      "id": "cpu_1_MPC_ACS",
+      "log": "results/desaulniers/final_cpu_development_v1/cpu_coverage/logs/cpu_1_MPC_ACS.log",
+      "pid": 15120,
+      "reason": null,
+      "returncode": 0,
+      "started_utc": "2026-10-28T11:05:09.411202+00:00",
+      "status": "complete",
+      "upper_seconds": 155.47210319992155
+    },
+    {
+      "command": [
+        "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "-u",
+        "-m",
+        "scripts.complete_cpu_coverage",
+        "--worker",
+        "cpu_3_MPC_COMPLETION"
+      ],
+      "cpu_seconds": 1.359375,
+      "cpu_to_wall": 0.7909974525453397,
+      "elapsed_seconds": 1.7185579999350011,
+      "id": "cpu_3_MPC_COMPLETION",
+      "log": "results/desaulniers/final_cpu_development_v1/cpu_coverage/logs/cpu_3_MPC_COMPLETION.log",
+      "pid": 11016,
+      "reason": null,
+      "returncode": 0,
+      "started_utc": "2026-10-28T11:05:31.570671+00:00",
+      "status": "complete",
+      "upper_seconds": 60.0
+    },
+    {
+      "command": [
+        "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "-u",
+        "-m",
+        "scripts.complete_cpu_coverage",
+        "--worker",
+        "cpu_3_MPC_MCTS"
+      ],
+      "cpu_seconds": 19.90625,
+      "cpu_to_wall": 0.9895614902285754,
+      "elapsed_seconds": 20.116233499953523,
+      "id": "cpu_3_MPC_MCTS",
+      "log": "results/desaulniers/final_cpu_development_v1/cpu_coverage/logs/cpu_3_MPC_MCTS.log",
+      "pid": 8220,
+      "reason": null,
+      "returncode": 0,
+      "started_utc": "2026-10-28T11:05:33.318260+00:00",
+      "status": "complete",
+      "upper_seconds": 88.88570340024307
+    },
+    {
+      "command": [
+        "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "-u",
+        "-m",
+        "scripts.complete_cpu_coverage",
+        "--worker",
+        "cpu_3_MPC_ALNS"
+      ],
+      "cpu_seconds": 20.359375,
+      "cpu_to_wall": 0.9913797807034819,
+      "elapsed_seconds": 20.536403300007805,
+      "id": "cpu_3_MPC_ALNS",
+      "log": "results/desaulniers/final_cpu_development_v1/cpu_coverage/logs/cpu_3_MPC_ALNS.log",
+      "pid": 17048,
+      "reason": null,
+      "returncode": 0,
+      "started_utc": "2026-10-28T11:05:53.469735+00:00",
+      "status": "complete",
+      "upper_seconds": 99.04015380004421
+    },
+    {
+      "command": [
+        "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "-u",
+        "-m",
+        "scripts.complete_cpu_coverage",
+        "--worker",
+        "cpu_3_MPC_HGS"
+      ],
+      "cpu_seconds": 28.71875,
+      "cpu_to_wall": 0.9869853207332635,
+      "elapsed_seconds": 29.097443899838254,
+      "id": "cpu_3_MPC_HGS",
+      "log": "results/desaulniers/final_cpu_development_v1/cpu_coverage/logs/cpu_3_MPC_HGS.log",
+      "pid": 27248,
+      "reason": null,
+      "returncode": 0,
+      "started_utc": "2026-10-28T11:06:14.035859+00:00",
+      "status": "complete",
+      "upper_seconds": 109.34419979993254
+    },
+    {
+      "command": [
+        "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "-u",
+        "-m",
+        "scripts.complete_cpu_coverage",
+        "--worker",
+        "cpu_3_MPC_ACS"
+      ],
+      "cpu_seconds": 3.296875,
+      "cpu_to_wall": 0.9894672514918413,
+      "elapsed_seconds": 3.331969799939543,
+      "id": "cpu_3_MPC_ACS",
+      "log": "results/desaulniers/final_cpu_development_v1/cpu_coverage/logs/cpu_3_MPC_ACS.log",
+      "pid": 18204,
+      "reason": null,
+      "returncode": 0,
+      "started_utc": "2026-10-28T11:06:43.160495+00:00",
+      "status": "complete",
+      "upper_seconds": 60.0
+    },
+    {
+      "command": [
+        "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "-u",
+        "-m",
+        "scripts.complete_cpu_coverage",
+        "--worker",
+        "cpu_5_MPC_COMPLETION"
+      ],
+      "cpu_seconds": 3.140625,
+      "cpu_to_wall": 0.9430203000833601,
+      "elapsed_seconds": 3.330389600014314,
+      "id": "cpu_5_MPC_COMPLETION",
+      "log": "results/desaulniers/final_cpu_development_v1/cpu_coverage/logs/cpu_5_MPC_COMPLETION.log",
+      "pid": 31120,
+      "reason": null,
+      "returncode": 0,
+      "started_utc": "2026-10-28T11:06:46.519692+00:00",
+      "status": "complete",
+      "upper_seconds": 60.0
+    },
+    {
+      "command": [
+        "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "-u",
+        "-m",
+        "scripts.complete_cpu_coverage",
+        "--worker",
+        "cpu_5_MPC_MCTS"
+      ],
+      "cpu_seconds": 234.140625,
+      "cpu_to_wall": 0.9943311094199618,
+      "elapsed_seconds": 235.47550989990123,
+      "id": "cpu_5_MPC_MCTS",
+      "log": "results/desaulniers/final_cpu_development_v1/cpu_coverage/logs/cpu_5_MPC_MCTS.log",
+      "pid": 21880,
+      "reason": null,
+      "returncode": 0,
+      "started_utc": "2026-10-28T11:06:49.994297+00:00",
+      "status": "complete",
+      "upper_seconds": 507.5642113997601
+    },
+    {
+      "command": [
+        "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "-u",
+        "-m",
+        "scripts.complete_cpu_coverage",
+        "--worker",
+        "cpu_5_MPC_ALNS"
+      ],
+      "cpu_seconds": 221.84375,
+      "cpu_to_wall": 0.9961583334462483,
+      "elapsed_seconds": 222.69928640010767,
+      "id": "cpu_5_MPC_ALNS",
+      "log": "results/desaulniers/final_cpu_development_v1/cpu_coverage/logs/cpu_5_MPC_ALNS.log",
+      "pid": 24364,
+      "reason": null,
+      "returncode": 0,
+      "started_utc": "2026-10-28T11:10:45.604293+00:00",
+      "status": "complete",
+      "upper_seconds": 485.1138627999462
+    },
+    {
+      "command": [
+        "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "-u",
+        "-m",
+        "scripts.complete_cpu_coverage",
+        "--worker",
+        "cpu_5_MPC_HGS"
+      ],
+      "cpu_seconds": 227.734375,
+      "cpu_to_wall": 0.9964962402928899,
+      "elapsed_seconds": 228.5351070999168,
+      "id": "cpu_5_MPC_HGS",
+      "log": "results/desaulniers/final_cpu_development_v1/cpu_coverage/logs/cpu_5_MPC_HGS.log",
+      "pid": 31948,
+      "reason": null,
+      "returncode": 0,
+      "started_utc": "2026-10-28T11:14:28.462150+00:00",
+      "status": "complete",
+      "upper_seconds": 494.0257534002885
+    },
+    {
+      "command": [
+        "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "-u",
+        "-m",
+        "scripts.complete_cpu_coverage",
+        "--worker",
+        "cpu_5_MPC_ACS"
+      ],
+      "cpu_seconds": 203.046875,
+      "cpu_to_wall": 0.9963639648656786,
+      "elapsed_seconds": 203.7878548000008,
+      "id": "cpu_5_MPC_ACS",
+      "log": "results/desaulniers/final_cpu_development_v1/cpu_coverage/logs/cpu_5_MPC_ACS.log",
+      "pid": 27044,
+      "reason": null,
+      "returncode": 0,
+      "started_utc": "2026-10-28T11:18:17.117121+00:00",
+      "status": "complete",
+      "upper_seconds": 465.6317513999529
+    }
+  ],
+  "limit_seconds": 4200.0,
+  "orchestration_cpu_seconds": 2.875,
+  "policy": "Charge max(worker elapsed, worker CPU); no automatic retry; hard per-job and campaign limits"
+}

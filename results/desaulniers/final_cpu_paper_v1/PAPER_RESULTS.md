@@ -18,7 +18,7 @@ The primary cohort has 5250 customer opportunities per method. ALNS had the high
 
 ### Paired primary contrasts
 
-| Contrast | Difference pp | 95% cluster interval pp | Win/tie/loss |
+| Contrast | Parent-equal service difference pp | 95% cluster interval pp | Win/tie/loss |
 | --- | --- | --- | --- |
 | MCTS vs COMPLETION | 4.067 | [1.178, 7.244] | 45/43/2 |
 | ALNS vs COMPLETION | 8.333 | [2.156, 15.267] | 50/40/0 |
@@ -28,9 +28,9 @@ The primary cohort has 5250 customer opportunities per method. ALNS had the high
 
 The 100%-service offline reference is physically feasible with the same reference fleet on each generated scenario. The online methods do not know unreleased requests; the service gap is therefore an offline-reference gap, not a claim of an online oracle optimum. Distance and energy comparisons use only the 39 primary scenarios where all five methods served everyone. They are conditional comparisons, not unconditional efficiency rankings.
 
-The opt-in compiled CPU and quality/recovery pilots are development evidence only: 0 service gains and 3 service losses in 25 matched cases. Their service losses prevented promotion. The replication therefore tests the original methods, not an improved controller.
+The opt-in compiled CPU and quality/recovery pilots are development evidence only: 0 service gains and 3 service losses in 25 matched cases. These regressions do not justify enhanced promotion. The replication therefore tests the original methods, not an improved controller.
 
-A separate, later 120-run balanced development ablation tested recovery, first-action protection, route quality, CPU caching, and their combination. The combination changed served customers by +3 over 30 paired method-runs, with 4 gains and 1 loss. It failed the service-preservation gate, so no enhanced independent claim follows. See [development update](DEVELOPMENT_UPDATE.md).
+A separate, later 120-run balanced development ablation tested recovery, first-action protection, route quality, CPU caching, and their combination. The combination changed served customers by +3 over 30 paired method-runs, with 4 gains and 1 loss. A stricter post hoc service-preservation gate was applied; this is not the frozen selection rule. No enhanced promotion is justified by this exploratory evidence. See [development update](DEVELOPMENT_UPDATE.md).
 
 ### Descriptive heterogeneity
 
@@ -51,7 +51,7 @@ The highest observed customer-weighted service in each primary-cohort stratum is
 | RC1 | HGS | 98.67 |
 | RC2 | COMPLETION/MCTS/ALNS/HGS/ACS | 100.00 |
 
-Total recorded sequential-worker wall time was 10.04 h in the primary study and 1.80 h in the new replication. The replication recorded 1.79 worker CPU-hours; its persistent charged wall allowance was 1.97 h, including setup and analysis reserves. No historical child CPU time is inferred. The maximum recorded decision latency across both cohorts was 4.796 s.
+Total recorded sequential-worker wall time was 10.04 h in the primary study and 1.80 h in the new replication. The replication recorded 1.79 attempted-worker CPU-hours from all supervisor ledger entries, including failed attempts and process overhead; its persistent charged wall allowance was 1.97 h, including setup and analysis reserves. No historical child CPU time is inferred. The maximum recorded decision latency across both cohorts was 4.796 s.
 
 ### Operational trade-offs
 
@@ -69,10 +69,10 @@ On the 39 jointly complete primary scenarios only, the lowest observed cost or l
 | Active EVs | ALNS/HGS | 2.90 |
 | Vehicle load SD (customers) | HGS | 6.64 |
 | Minimum TW margin (benchmark time units) | ACS | 3.91 |
-| Minimum battery (battery units) | ALNS | 3.23 |
+| Minimum battery (battery units) | ALNS | 0.93 |
 
 Every saved record used here was SHA-256 checked against its frozen manifest and independently replayed for physical feasibility, information boundaries, duplicate service, and deadline compliance. All recorded optimization decisions met the five-second limit.
 
 ## Figures and tables
 
-The 12 numbered figures in figures/ are 300 dpi PNG with matching SVG. Tables in tables/ are Markdown with CSV and LaTeX companions. Key displays: [five-method results](tables/main_five_methods.md), [independent CPU replication](tables/independent_cpu_replication.md), [25/50/100-customer results](tables/by_size.md), [family results](tables/by_family.md), [paired intervals](tables/parent_clustered_paired_statistics.md), [conditional operations](tables/operational_matched_service.md), [service figure](figures/01_customer_service.png), [runtime ECDF](figures/08_decision_latency_ecdf.png).
+The 15 figures in figures/ are 300 dpi PNG with matching SVG. Tables in tables/ are Markdown with CSV and LaTeX companions. Key displays: [five-method results](tables/main_five_methods.md), [independent CPU replication](tables/independent_cpu_replication.md), [25/50/100-customer results](tables/by_size.md), [family results](tables/by_family.md), [paired intervals](tables/parent_clustered_paired_statistics.md), [primary-endpoint paired intervals](tables/primary_endpoint_paired_statistics.md), [conditional operations](tables/operational_matched_service.md), [unconditional operations by cohort](tables/operational_unconditional_by_cohort.md), [service figure](figures/01_customer_service.png), [runtime ECDF](figures/08_decision_latency_ecdf.png).

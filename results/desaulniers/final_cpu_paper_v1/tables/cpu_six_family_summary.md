@@ -1,0 +1,11 @@
+# CPU Six Family Summary
+
+Exploratory development: six parents, one per family, two per size, DoD 0.5 seed 3; 30 original/cache pairs. Original raw and 15 earlier CPU runs are reused; 15 missing-family CPU runs were preregistered separately. Sequential shared-machine timings were obtained at different dates; ratios are observations, not controlled hardware speedups. CPU intervals resample six parent blocks (10,000 draws, seed 20261028). Distance differences use identical served-customer sets only. Historical cache regressions remain evidence against a universal service-preservation claim.
+
+| Method | Pairs | Original served/total | Cache served/total | Original complete | Cache complete | Gains | Losses | Cache/original CPU ratio | 95% parent interval | Identical-set n | Mean conditional distance delta |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| COMPLETION | 6 | 322/350 | 322/350 | 2 | 2 | 0 | 0 | 0.628 | [0.482, 0.859] | 6 | 0.000 |
+| MCTS | 6 | 340/350 | 340/350 | 5 | 5 | 0 | 0 | 0.910 | [0.673, 0.964] | 6 | 59.595 |
+| ALNS | 6 | 346/350 | 346/350 | 4 | 4 | 0 | 0 | 0.867 | [0.645, 0.952] | 6 | -38.687 |
+| HGS | 6 | 345/350 | 345/350 | 4 | 4 | 0 | 0 | 0.912 | [0.805, 0.961] | 5 | -80.802 |
+| ACS | 6 | 336/350 | 336/350 | 4 | 4 | 0 | 0 | 0.854 | [0.435, 0.933] | 6 | 58.422 |

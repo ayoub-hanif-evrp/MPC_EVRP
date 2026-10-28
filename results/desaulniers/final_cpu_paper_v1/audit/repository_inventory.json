@@ -1,0 +1,1964 @@
+{
+  "counts": {
+    "active_source_tests_or_documentation": 114,
+    "current_workflow": 13,
+    "frozen_experiment_configuration": 16,
+    "historical_archive": 9,
+    "historical_reproduction": 70,
+    "preserved_benchmark": 813,
+    "preserved_evidence": 3409,
+    "regenerable_report": 286
+  },
+  "retention": "Historical launchers and opt-in policies remain execution-source dependencies of frozen studies. They are unsupported for the selected publication configuration. No unreferenced result directory or user environment is deleted.",
+  "source_files": [
+    {
+      "category": "frozen_experiment_configuration",
+      "path": "configs/desaulniers_mp_development.yaml",
+      "reference_files": [
+        "scripts/run_desaulniers_campaign.py"
+      ]
+    },
+    {
+      "category": "frozen_experiment_configuration",
+      "path": "configs/desaulniers_mp_final.yaml",
+      "reference_files": [
+        "scripts/run_desaulniers_final.py"
+      ]
+    },
+    {
+      "category": "frozen_experiment_configuration",
+      "path": "configs/desaulniers_mp_pilot.yaml",
+      "reference_files": [
+        "tests/test_fleet_mcts.py"
+      ]
+    },
+    {
+      "category": "frozen_experiment_configuration",
+      "path": "configs/desaulniers_mp_robustness_v2.yaml",
+      "reference_files": [
+        "scripts/run_desaulniers_robustness.py"
+      ]
+    },
+    {
+      "category": "frozen_experiment_configuration",
+      "path": "configs/desaulniers_mp_robustness_v3.yaml",
+      "reference_files": [
+        "scripts/run_desaulniers_robustness_v3.py"
+      ]
+    },
+    {
+      "category": "frozen_experiment_configuration",
+      "path": "configs/fast_framework_v1.yaml",
+      "reference_files": [
+        "scripts/run_fast_framework.py"
+      ]
+    },
+    {
+      "category": "frozen_experiment_configuration",
+      "path": "configs/final_cpu_development_v1.yaml",
+      "reference_files": [
+        "scripts/audit_final_cpu_completion.py",
+        "scripts/run_final_cpu_development.py"
+      ]
+    },
+    {
+      "category": "frozen_experiment_configuration",
+      "path": "configs/final_cpu_replication_v1.yaml",
+      "reference_files": [
+        "scripts/audit_final_cpu_completion.py",
+        "scripts/run_final_cpu_replication.py"
+      ]
+    },
+    {
+      "category": "frozen_experiment_configuration",
+      "path": "configs/paper_controller.yaml",
+      "reference_files": [
+        "configs/desaulniers_mp_development.yaml",
+        "configs/desaulniers_mp_final.yaml",
+        "configs/desaulniers_mp_pilot.yaml",
+        "configs/desaulniers_mp_robustness_v2.yaml",
+        "configs/desaulniers_mp_robustness_v3.yaml",
+        "configs/final_cpu_development_v1.yaml",
+        "configs/final_cpu_replication_v1.yaml",
+        "scripts/run_final_cpu_development.py",
+        "scripts/run_final_cpu_replication.py",
+        "scripts/run_performance_engineering.py",
+        "scripts/run_reliability_study.py",
+        "scripts/run_targeted_service.py",
+        "tests/test_experiments.py",
+        "tests/test_final_fleet.py"
+      ]
+    },
+    {
+      "category": "frozen_experiment_configuration",
+      "path": "configs/performance_engineering_v1.yaml",
+      "reference_files": [
+        "scripts/run_performance_engineering.py"
+      ]
+    },
+    {
+      "category": "frozen_experiment_configuration",
+      "path": "configs/publication_diagnosis_v1.yaml",
+      "reference_files": [
+        "scripts/analyze_planning_losses.py"
+      ]
+    },
+    {
+      "category": "frozen_experiment_configuration",
+      "path": "configs/publication_runtime_validation_v1.yaml",
+      "reference_files": [
+        "scripts/analyze_runtime_validation.py"
+      ]
+    },
+    {
+      "category": "frozen_experiment_configuration",
+      "path": "configs/publication_stable_pilot_v1.yaml",
+      "reference_files": []
+    },
+    {
+      "category": "frozen_experiment_configuration",
+      "path": "configs/publication_stable_screen_v1.yaml",
+      "reference_files": [
+        "docs/VALIDATION_AND_REPRODUCTION.md",
+        "results/desaulniers/publication_development/STATUS.md",
+        "results/desaulniers/publication_package_v1/REPRODUCTION.md",
+        "scripts/render_publication_package.py"
+      ]
+    },
+    {
+      "category": "frozen_experiment_configuration",
+      "path": "configs/reliability_v2.yaml",
+      "reference_files": [
+        "results/desaulniers/reliability_v2/PREREGISTRATION.md",
+        "scripts/run_reliability_study.py"
+      ]
+    },
+    {
+      "category": "frozen_experiment_configuration",
+      "path": "configs/targeted_service_v1.yaml",
+      "reference_files": [
+        "scripts/run_targeted_service.py"
+      ]
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "evrp/__init__.py",
+      "reference_files": []
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "evrp/agent.py",
+      "reference_files": []
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "evrp/analysis.py",
+      "reference_files": [
+        "tests/test_experiments.py"
+      ]
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "evrp/audit.py",
+      "reference_files": [
+        "archive/v1/scripts/final_control_horizon_analysis.py",
+        "archive/v1/scripts/final_performance_patch_campaign.py",
+        "archive/v1/scripts/final_risk_aware_analysis.py",
+        "archive/v1/scripts/final_structural_mcts_campaign.py",
+        "archive/v1/scripts/final_structural_mcts_evidence.py",
+        "archive/v1/scripts/final_terminal_completion_campaign.py",
+        "scripts/analyze_cpu_coverage.py",
+        "scripts/analyze_desaulniers_robustness.py",
+        "scripts/analyze_final_cpu_development.py",
+        "scripts/analyze_planning_losses.py",
+        "scripts/analyze_publication_pair.py",
+        "scripts/analyze_reliability_study.py",
+        "scripts/analyze_reserve_dispatch_pilot.py",
+        "scripts/analyze_runtime_validation.py",
+        "scripts/analyze_targeted_service.py",
+        "scripts/audit_enhancement_studies.py",
+        "scripts/audit_frozen_studies.py",
+        "scripts/benchmark_two_worker_throughput.py",
+        "scripts/complete_cpu_coverage.py",
+        "scripts/diagnose_desaulniers_service.py",
+        "scripts/diagnose_mpc_enhancement.py",
+        "scripts/probe_development_insertions.py",
+        "scripts/probe_enhanced_decoder.py",
+        "scripts/render_final_cpu_paper.py",
+        "scripts/report_performance_engineering.py",
+        "scripts/verify_desaulniers_final.py"
+      ]
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "evrp/baselines.py",
+      "reference_files": []
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "evrp/cli.py",
+      "reference_files": [
+        "pyproject.toml"
+      ]
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "evrp/compiled_screen.py",
+      "reference_files": [
+        "tests/test_fast_framework.py"
+      ]
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "evrp/compute_policy.py",
+      "reference_files": [
+        "tests/test_fast_framework.py"
+      ]
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "evrp/continuity.py",
+      "reference_files": [
+        "scripts/probe_retained_coordination.py",
+        "tests/test_final_fleet.py"
+      ]
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "evrp/coordinator.py",
+      "reference_files": [
+        "scripts/probe_retained_coordination.py",
+        "tests/test_final_fleet.py",
+        "tests/test_forced_coordination.py",
+        "tests/test_hierarchy.py",
+        "tests/test_planning.py",
+        "tests/test_regressions.py"
+      ]
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "evrp/diagnostics.py",
+      "reference_files": []
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "evrp/enhanced_decoder.py",
+      "reference_files": [
+        "scripts/probe_station_skeleton_recovery.py"
+      ]
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "evrp/evaluation_cache.py",
+      "reference_files": [
+        "tests/test_exact_evaluation_cache.py"
+      ]
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "evrp/experiments.py",
+      "reference_files": [
+        "archive/v1/scripts/final_performance_patch_analysis.py",
+        "archive/v1/scripts/final_performance_patch_campaign.py",
+        "archive/v1/scripts/final_performance_patch_diagnostics.py",
+        "archive/v1/scripts/final_structural_mcts_campaign.py",
+        "archive/v1/scripts/final_structural_mcts_evidence.py",
+        "archive/v1/scripts/final_terminal_completion_campaign.py",
+        "scripts/analyze_cpu_coverage.py",
+        "scripts/analyze_desaulniers_campaign.py",
+        "scripts/analyze_desaulniers_final.py",
+        "scripts/analyze_desaulniers_robustness.py",
+        "scripts/analyze_final_cpu_development.py",
+        "scripts/analyze_planning_losses.py",
+        "scripts/analyze_publication_pair.py",
+        "scripts/analyze_reliability_study.py",
+        "scripts/analyze_reserve_dispatch_pilot.py",
+        "scripts/analyze_runtime_validation.py",
+        "scripts/analyze_targeted_service.py",
+        "scripts/audit_enhancement_studies.py",
+        "scripts/audit_frozen_studies.py",
+        "scripts/benchmark_two_worker_throughput.py",
+        "scripts/complete_cpu_coverage.py",
+        "scripts/complete_targeted_study.py",
+        "scripts/diagnose_desaulniers_service.py",
+        "scripts/diagnose_mpc_enhancement.py",
+        "scripts/diagnose_reliability_events.py",
+        "scripts/fast_framework_worker.py",
+        "scripts/performance_engineering_worker.py",
+        "scripts/probe_development_insertions.py",
+        "scripts/probe_enhanced_decoder.py",
+        "scripts/profile_reliability_pipeline.py",
+        "scripts/render_final_cpu_paper.py",
+        "scripts/report_performance_engineering.py",
+        "scripts/run_alns_recovery_development.py",
+        "scripts/run_alns_recovery_screen.py",
+        "scripts/run_decoder_development.py",
+        "scripts/run_desaulniers_campaign.py",
+        "scripts/run_desaulniers_final.py",
+        "scripts/run_desaulniers_pilot.py",
+        "scripts/run_desaulniers_robustness.py",
+        "scripts/run_desaulniers_robustness_v3.py",
+        "scripts/run_enhancement_development.py",
+        "scripts/run_fast_ablation.py",
+        "scripts/run_fast_framework.py",
+        "scripts/run_final_cpu_development.py",
+        "scripts/run_final_cpu_replication.py",
+        "scripts/run_performance_engineering.py",
+        "scripts/run_publication_campaign.py",
+        "scripts/run_reliability_study.py",
+        "scripts/run_reserve_dispatch_pilot.py",
+        "scripts/run_targeted_mp_holdout.py",
+        "scripts/run_targeted_service.py",
+        "scripts/verify_desaulniers_final.py",
+        "tests/test_alns.py",
+        "tests/test_audit_dispatch_time.py",
+        "tests/test_desaulniers_campaign.py",
+        "tests/test_desaulniers_dataset.py",
+        "tests/test_desaulniers_final.py",
+        "tests/test_desaulniers_paper_protocol.py",
+        "tests/test_exact_evaluation_cache.py",
+        "tests/test_experiments.py",
+        "tests/test_final_cpu_development.py",
+        "tests/test_final_fleet.py",
+        "tests/test_fleet_lns.py",
+        "tests/test_fleet_mcts.py",
+        "tests/test_hgs.py",
+        "tests/test_mpc_optimizer_fairness.py",
+        "tests/test_optimizer_initialization.py",
+        "tests/test_optimizer_interface.py",
+        "tests/test_performance.py",
+        "tests/test_reliability_controls.py",
+        "tests/test_reliability_design.py",
+        "tests/test_targeted_campaign.py",
+        "tests/test_targeted_mp_holdout.py",
+        "tests/test_targeted_simulator.py"
+      ]
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "evrp/external/__init__.py",
+      "reference_files": []
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "evrp/external/replay.py",
+      "reference_files": [
+        "scripts/audit_desaulniers_partial_solutions.py",
+        "scripts/construct_partial_reference_witnesses.py",
+        "tests/test_desaulniers_partial_solutions.py"
+      ]
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "evrp/fleet_lns.py",
+      "reference_files": [
+        "tests/test_fleet_lns.py"
+      ]
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "evrp/fleet_mcts.py",
+      "reference_files": [
+        "archive/v1/scripts/final_performance_patch_diagnostics.py",
+        "scripts/analyze_planning_losses.py",
+        "scripts/diagnose_reliability_events.py",
+        "scripts/fast_framework_worker.py",
+        "scripts/performance_engineering_worker.py",
+        "scripts/portfolio_runtime.py",
+        "scripts/probe_development_insertions.py",
+        "tests/test_alns.py",
+        "tests/test_common_objective.py",
+        "tests/test_exact_evaluation_cache.py",
+        "tests/test_fast_framework.py",
+        "tests/test_fleet_mcts.py",
+        "tests/test_hgs.py",
+        "tests/test_optimizer_interface.py",
+        "tests/test_reliability_controls.py",
+        "tests/test_targeted_recovery.py"
+      ]
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "evrp/flex_exchange.py",
+      "reference_files": [
+        "scripts/probe_reliability_roots.py"
+      ]
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "evrp/instance.py",
+      "reference_files": [
+        "evrp/external/replay.py",
+        "scripts/analyze_final_cpu_development.py",
+        "scripts/analyze_planning_losses.py",
+        "scripts/archive_frozen_inputs.py",
+        "scripts/audit_desaulniers_partial_solutions.py",
+        "scripts/audit_frozen_studies.py",
+        "scripts/audit_reference_inventory.py",
+        "scripts/audit_targeted_inventory.py",
+        "scripts/construct_partial_reference_witnesses.py",
+        "scripts/diagnose_reliability_events.py",
+        "scripts/diagnose_targeted_controls.py",
+        "scripts/extend_mp_reference_coverage.py",
+        "scripts/investigate_targeted_references.py",
+        "scripts/performance_engineering_worker.py",
+        "scripts/preflight_desaulniers_robustness.py",
+        "scripts/probe_local_reordering.py",
+        "scripts/probe_reliability_roots.py",
+        "scripts/probe_retained_coordination.py",
+        "scripts/probe_station_skeleton_recovery.py",
+        "scripts/profile_reliability_pipeline.py",
+        "scripts/render_desaulniers_paper.py",
+        "scripts/render_final_cpu_paper.py",
+        "scripts/report_targeted_losses.py",
+        "scripts/reproduce_optimizer_start_timeout.py",
+        "scripts/run_desaulniers_campaign.py",
+        "scripts/run_desaulniers_final.py",
+        "scripts/run_desaulniers_pilot.py",
+        "scripts/run_desaulniers_robustness.py",
+        "scripts/run_desaulniers_robustness_v3.py",
+        "scripts/run_final_cpu_replication.py",
+        "scripts/run_reliability_study.py",
+        "scripts/validate_desaulniers_coverage.py",
+        "scripts/verify_publication_package.py",
+        "tests/test_desaulniers_dataset.py",
+        "tests/test_desaulniers_paper_protocol.py",
+        "tests/test_desaulniers_partial_solutions.py",
+        "tests/test_exact_evaluation_cache.py",
+        "tests/test_experiments.py",
+        "tests/test_final_mcts.py",
+        "tests/test_observation.py",
+        "tests/test_performance.py",
+        "tests/test_physics.py",
+        "tests/test_planning.py",
+        "tests/test_reference_scenario.py",
+        "tests/test_regressions.py",
+        "tests/test_repair.py",
+        "tests/test_resource_decoder.py",
+        "tests/test_simulator.py"
+      ]
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "evrp/mcts.py",
+      "reference_files": [
+        "tests/test_final_fleet.py",
+        "tests/test_final_mcts.py",
+        "tests/test_performance.py",
+        "tests/test_planning.py"
+      ]
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "evrp/model.py",
+      "reference_files": [
+        "archive/v1/scripts/final_performance_patch_diagnostics.py",
+        "evrp/external/replay.py",
+        "results/desaulniers/performance_engineering_v1/FINAL_REPORT.md",
+        "scripts/analyze_planning_losses.py",
+        "scripts/audit_frozen_studies.py",
+        "scripts/construct_partial_reference_witnesses.py",
+        "scripts/diagnose_desaulniers_service.py",
+        "scripts/diagnose_mpc_enhancement.py",
+        "scripts/diagnose_reliability_events.py",
+        "scripts/extend_mp_reference_coverage.py",
+        "scripts/fast_framework_worker.py",
+        "scripts/performance_engineering_worker.py",
+        "scripts/probe_development_insertions.py",
+        "scripts/probe_enhanced_decoder.py",
+        "scripts/probe_local_reordering.py",
+        "scripts/probe_station_skeleton_recovery.py",
+        "scripts/report_performance_engineering.py",
+        "scripts/report_targeted_losses.py",
+        "scripts/reproduce_optimizer_start_timeout.py",
+        "scripts/verify_publication_package.py",
+        "tests/test_alns.py",
+        "tests/test_audit_dispatch_time.py",
+        "tests/test_desaulniers_dataset.py",
+        "tests/test_exact_evaluation_cache.py",
+        "tests/test_final_fleet.py",
+        "tests/test_final_mcts.py",
+        "tests/test_fleet_lns.py",
+        "tests/test_fleet_mcts.py",
+        "tests/test_forced_coordination.py",
+        "tests/test_hgs.py",
+        "tests/test_hierarchy.py",
+        "tests/test_optimizer_interface.py",
+        "tests/test_performance.py",
+        "tests/test_physics.py",
+        "tests/test_planning.py",
+        "tests/test_regressions.py",
+        "tests/test_reliability_controls.py",
+        "tests/test_repair.py",
+        "tests/test_resource_decoder.py",
+        "tests/test_simulator.py",
+        "tests/test_targeted_recovery.py"
+      ]
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "evrp/mpc.py",
+      "reference_files": [
+        "scripts/analyze_planning_losses.py",
+        "scripts/diagnose_mpc_enhancement.py",
+        "scripts/diagnose_targeted_controls.py",
+        "scripts/extend_mp_reference_coverage.py",
+        "scripts/investigate_targeted_references.py",
+        "scripts/probe_development_insertions.py",
+        "scripts/probe_enhanced_decoder.py",
+        "scripts/probe_local_reordering.py",
+        "scripts/probe_reliability_roots.py",
+        "scripts/probe_retained_coordination.py",
+        "scripts/probe_station_skeleton_recovery.py",
+        "scripts/reproduce_optimizer_start_timeout.py",
+        "tests/test_final_fleet.py",
+        "tests/test_final_mcts.py",
+        "tests/test_fleet_lns.py",
+        "tests/test_fleet_mcts.py",
+        "tests/test_forced_coordination.py",
+        "tests/test_hierarchy.py",
+        "tests/test_performance.py",
+        "tests/test_planning.py",
+        "tests/test_regressions.py",
+        "tests/test_repair.py",
+        "tests/test_simulator.py"
+      ]
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "evrp/observation.py",
+      "reference_files": [
+        "archive/v1/scripts/final_performance_patch_diagnostics.py",
+        "scripts/audit_frozen_studies.py",
+        "scripts/verify_publication_package.py",
+        "tests/test_fleet_lns.py",
+        "tests/test_observation.py"
+      ]
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "evrp/optimizers/__init__.py",
+      "reference_files": []
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "evrp/optimizers/acs.py",
+      "reference_files": [
+        "scripts/reproduce_optimizer_start_timeout.py",
+        "tests/test_optimizer_initialization.py"
+      ]
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "evrp/optimizers/alns.py",
+      "reference_files": [
+        "scripts/reproduce_optimizer_start_timeout.py",
+        "tests/test_alns.py",
+        "tests/test_optimizer_initialization.py"
+      ]
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "evrp/optimizers/base.py",
+      "reference_files": [
+        "scripts/reproduce_optimizer_start_timeout.py",
+        "tests/test_alns.py",
+        "tests/test_hgs.py",
+        "tests/test_optimizer_initialization.py"
+      ]
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "evrp/optimizers/completion.py",
+      "reference_files": []
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "evrp/optimizers/hgs.py",
+      "reference_files": [
+        "scripts/reproduce_optimizer_start_timeout.py",
+        "tests/test_hgs.py",
+        "tests/test_optimizer_initialization.py"
+      ]
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "evrp/optimizers/mcts.py",
+      "reference_files": []
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "evrp/optimizers/objective.py",
+      "reference_files": [
+        "docs/methodology.md",
+        "results/desaulniers/performance_engineering_v1/FINAL_REPORT.md",
+        "results/desaulniers/publication_package_v1/METHODS.md",
+        "scripts/render_publication_package.py",
+        "scripts/report_performance_engineering.py",
+        "tests/test_common_objective.py"
+      ]
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "evrp/optimizers/registry.py",
+      "reference_files": []
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "evrp/oracle.py",
+      "reference_files": []
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "evrp/performance.py",
+      "reference_files": [
+        "scripts/fast_framework_worker.py",
+        "scripts/performance_engineering_worker.py"
+      ]
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "evrp/planning_budget.py",
+      "reference_files": [
+        "scripts/analyze_planning_losses.py",
+        "scripts/diagnose_reliability_events.py",
+        "scripts/extend_mp_reference_coverage.py",
+        "scripts/investigate_targeted_references.py",
+        "scripts/probe_development_insertions.py",
+        "scripts/probe_enhanced_decoder.py",
+        "scripts/probe_local_reordering.py",
+        "scripts/probe_station_skeleton_recovery.py",
+        "tests/test_exact_evaluation_cache.py",
+        "tests/test_fleet_mcts.py",
+        "tests/test_optimizer_initialization.py",
+        "tests/test_reliability_controls.py",
+        "tests/test_repair.py",
+        "tests/test_resource_decoder.py",
+        "tests/test_targeted_recovery.py"
+      ]
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "evrp/planning_trace.py",
+      "reference_files": [
+        "tests/test_planning_trace.py"
+      ]
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "evrp/plotting.py",
+      "reference_files": []
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "evrp/proposal_memo.py",
+      "reference_files": []
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "evrp/quality_policy.py",
+      "reference_files": [
+        "tests/test_fast_framework.py"
+      ]
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "evrp/reference.py",
+      "reference_files": [
+        "evrp/external/replay.py",
+        "scripts/archive_frozen_inputs.py",
+        "scripts/audit_frozen_studies.py",
+        "scripts/audit_reference_inventory.py",
+        "scripts/audit_targeted_inventory.py",
+        "scripts/construct_partial_reference_witnesses.py",
+        "scripts/diagnose_desaulniers_service.py",
+        "scripts/diagnose_mpc_enhancement.py",
+        "scripts/extend_mp_reference_coverage.py",
+        "scripts/investigate_targeted_references.py",
+        "scripts/preflight_desaulniers_robustness.py",
+        "scripts/reproduce_optimizer_start_timeout.py",
+        "scripts/run_desaulniers_robustness.py",
+        "scripts/run_desaulniers_robustness_v3.py",
+        "scripts/run_final_cpu_replication.py",
+        "scripts/run_reliability_study.py",
+        "scripts/run_targeted_mp_holdout.py",
+        "scripts/run_targeted_service.py",
+        "scripts/validate_desaulniers_coverage.py",
+        "scripts/verify_publication_package.py",
+        "tests/test_desaulniers_dataset.py",
+        "tests/test_desaulniers_paper_protocol.py",
+        "tests/test_experiments.py",
+        "tests/test_mp_reference_extension.py",
+        "tests/test_observation.py",
+        "tests/test_performance.py",
+        "tests/test_planning.py",
+        "tests/test_reference_scenario.py",
+        "tests/test_reference_witness_loading.py",
+        "tests/test_simulator.py"
+      ]
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "evrp/reference_extensions.py",
+      "reference_files": [
+        "scripts/run_targeted_mp_holdout.py"
+      ]
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "evrp/repair.py",
+      "reference_files": [
+        "archive/v1/scripts/final_performance_patch_diagnostics.py",
+        "scripts/diagnose_mpc_enhancement.py",
+        "scripts/extend_mp_reference_coverage.py",
+        "scripts/fast_framework_worker.py",
+        "scripts/performance_engineering_worker.py",
+        "scripts/probe_development_insertions.py",
+        "scripts/probe_enhanced_decoder.py",
+        "scripts/probe_local_reordering.py",
+        "scripts/probe_reliability_roots.py",
+        "scripts/probe_station_skeleton_recovery.py",
+        "tests/test_exact_evaluation_cache.py",
+        "tests/test_fast_framework.py",
+        "tests/test_final_fleet.py",
+        "tests/test_fleet_lns.py",
+        "tests/test_fleet_mcts.py",
+        "tests/test_optimizer_interface.py",
+        "tests/test_reliability_controls.py",
+        "tests/test_repair.py",
+        "tests/test_resource_decoder.py"
+      ]
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "evrp/resource_decoder.py",
+      "reference_files": []
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "evrp/runtime.py",
+      "reference_files": []
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "evrp/scenario.py",
+      "reference_files": [
+        "scripts/analyze_final_cpu_development.py",
+        "scripts/archive_frozen_inputs.py",
+        "scripts/audit_frozen_studies.py",
+        "scripts/audit_reference_inventory.py",
+        "scripts/audit_targeted_inventory.py",
+        "scripts/performance_engineering_worker.py",
+        "scripts/profile_reliability_pipeline.py",
+        "scripts/run_desaulniers_robustness.py",
+        "scripts/run_desaulniers_robustness_v3.py",
+        "scripts/run_final_cpu_replication.py",
+        "scripts/run_reliability_study.py",
+        "scripts/run_targeted_service.py",
+        "scripts/validate_desaulniers_coverage.py",
+        "scripts/verify_publication_package.py",
+        "tests/test_desaulniers_dataset.py",
+        "tests/test_desaulniers_paper_protocol.py",
+        "tests/test_experiments.py",
+        "tests/test_observation.py",
+        "tests/test_reference_scenario.py",
+        "tests/test_simulator.py"
+      ]
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "evrp/simulator.py",
+      "reference_files": [
+        "scripts/benchmark_two_worker_throughput.py",
+        "scripts/complete_cpu_coverage.py",
+        "scripts/fast_framework_worker.py",
+        "scripts/performance_engineering_worker.py",
+        "scripts/portfolio_runtime.py",
+        "scripts/probe_retained_coordination.py",
+        "scripts/profile_reliability_pipeline.py",
+        "scripts/run_alns_recovery_development.py",
+        "scripts/run_alns_recovery_screen.py",
+        "scripts/run_decoder_development.py",
+        "scripts/run_desaulniers_campaign.py",
+        "scripts/run_desaulniers_final.py",
+        "scripts/run_desaulniers_pilot.py",
+        "scripts/run_desaulniers_robustness.py",
+        "scripts/run_enhancement_development.py",
+        "scripts/run_fast_ablation.py",
+        "scripts/run_final_cpu_development.py",
+        "scripts/run_final_cpu_replication.py",
+        "scripts/run_publication_campaign.py",
+        "scripts/run_reliability_study.py",
+        "scripts/run_reserve_dispatch_pilot.py",
+        "scripts/run_targeted_mp_holdout.py",
+        "scripts/run_targeted_service.py",
+        "tests/test_alns.py",
+        "tests/test_audit_dispatch_time.py",
+        "tests/test_desaulniers_dataset.py",
+        "tests/test_exact_evaluation_cache.py",
+        "tests/test_final_fleet.py",
+        "tests/test_fleet_lns.py",
+        "tests/test_fleet_mcts.py",
+        "tests/test_hgs.py",
+        "tests/test_mpc_optimizer_fairness.py",
+        "tests/test_optimizer_initialization.py",
+        "tests/test_optimizer_interface.py",
+        "tests/test_performance.py",
+        "tests/test_planning_trace.py",
+        "tests/test_portfolio_runtime.py",
+        "tests/test_reliability_controls.py",
+        "tests/test_simulator.py",
+        "tests/test_targeted_simulator.py"
+      ]
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "evrp/storage.py",
+      "reference_files": [
+        "archive/v1/scripts/final_control_horizon_analysis.py",
+        "archive/v1/scripts/final_performance_patch_analysis.py",
+        "archive/v1/scripts/final_performance_patch_campaign.py",
+        "archive/v1/scripts/final_performance_patch_diagnostics.py",
+        "archive/v1/scripts/final_risk_aware_analysis.py",
+        "archive/v1/scripts/final_structural_mcts_campaign.py",
+        "archive/v1/scripts/final_structural_mcts_evidence.py",
+        "archive/v1/scripts/final_terminal_completion_campaign.py",
+        "scripts/analyze_alns_recovery_development.py",
+        "scripts/analyze_alns_recovery_screen.py",
+        "scripts/analyze_cpu_coverage.py",
+        "scripts/analyze_decoder_development.py",
+        "scripts/analyze_desaulniers_campaign.py",
+        "scripts/analyze_desaulniers_final.py",
+        "scripts/analyze_desaulniers_pilot.py",
+        "scripts/analyze_desaulniers_robustness.py",
+        "scripts/analyze_enhancement_development.py",
+        "scripts/analyze_final_cpu_development.py",
+        "scripts/analyze_planning_losses.py",
+        "scripts/analyze_publication_pair.py",
+        "scripts/analyze_reliability_study.py",
+        "scripts/analyze_reserve_dispatch_pilot.py",
+        "scripts/analyze_runtime_validation.py",
+        "scripts/analyze_targeted_service.py",
+        "scripts/archive_frozen_inputs.py",
+        "scripts/audit_desaulniers_partial_solutions.py",
+        "scripts/audit_enhancement_studies.py",
+        "scripts/audit_final_cpu_completion.py",
+        "scripts/audit_frozen_studies.py",
+        "scripts/audit_reference_inventory.py",
+        "scripts/audit_targeted_inventory.py",
+        "scripts/benchmark_two_worker_throughput.py",
+        "scripts/complete_cpu_coverage.py",
+        "scripts/complete_final_cpu_development.py",
+        "scripts/construct_partial_reference_witnesses.py",
+        "scripts/diagnose_desaulniers_service.py",
+        "scripts/diagnose_mpc_enhancement.py",
+        "scripts/diagnose_reliability_events.py",
+        "scripts/diagnose_targeted_controls.py",
+        "scripts/extend_mp_reference_coverage.py",
+        "scripts/fast_framework_worker.py",
+        "scripts/investigate_targeted_references.py",
+        "scripts/launch_reliability_study.py",
+        "scripts/paper_plot_audit.py",
+        "scripts/performance_budget.py",
+        "scripts/performance_engineering_worker.py",
+        "scripts/preflight_desaulniers_robustness.py",
+        "scripts/probe_development_insertions.py",
+        "scripts/probe_enhanced_decoder.py",
+        "scripts/probe_local_reordering.py",
+        "scripts/probe_reliability_roots.py",
+        "scripts/probe_retained_coordination.py",
+        "scripts/probe_station_skeleton_recovery.py",
+        "scripts/profile_reliability_pipeline.py",
+        "scripts/record_desaulniers_environment.py",
+        "scripts/render_desaulniers_paper.py",
+        "scripts/render_final_cpu_paper.py",
+        "scripts/render_publication_package.py",
+        "scripts/render_targeted_supplement.py",
+        "scripts/report_fast_framework.py",
+        "scripts/report_performance_engineering.py",
+        "scripts/report_reliability_compute.py",
+        "scripts/report_targeted_losses.py",
+        "scripts/reproduce_optimizer_start_timeout.py",
+        "scripts/run_alns_recovery_development.py",
+        "scripts/run_alns_recovery_screen.py",
+        "scripts/run_decoder_development.py",
+        "scripts/run_desaulniers_all.py",
+        "scripts/run_desaulniers_campaign.py",
+        "scripts/run_desaulniers_final.py",
+        "scripts/run_desaulniers_pilot.py",
+        "scripts/run_desaulniers_robustness.py",
+        "scripts/run_desaulniers_robustness_v3.py",
+        "scripts/run_enhancement_development.py",
+        "scripts/run_fast_ablation.py",
+        "scripts/run_fast_framework.py",
+        "scripts/run_final_cpu_development.py",
+        "scripts/run_final_cpu_replication.py",
+        "scripts/run_performance_engineering.py",
+        "scripts/run_publication_campaign.py",
+        "scripts/run_reliability_study.py",
+        "scripts/run_reserve_dispatch_pilot.py",
+        "scripts/run_targeted_mp_holdout.py",
+        "scripts/run_targeted_service.py",
+        "scripts/validate_desaulniers_coverage.py",
+        "scripts/verify_desaulniers_final.py",
+        "scripts/verify_publication_package.py",
+        "tests/test_desaulniers_campaign.py",
+        "tests/test_desaulniers_dataset.py",
+        "tests/test_desaulniers_paper_protocol.py",
+        "tests/test_desaulniers_partial_solutions.py",
+        "tests/test_experiments.py",
+        "tests/test_final_fleet.py",
+        "tests/test_fleet_mcts.py",
+        "tests/test_frozen_input_archive.py",
+        "tests/test_observation.py",
+        "tests/test_performance.py",
+        "tests/test_physics.py",
+        "tests/test_planning.py",
+        "tests/test_reference_scenario.py",
+        "tests/test_reference_witness_loading.py",
+        "tests/test_reliability_design.py",
+        "tests/test_simulator.py",
+        "tests/test_targeted_campaign.py",
+        "tests/test_targeted_mp_holdout.py"
+      ]
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "evrp/targeted_recovery.py",
+      "reference_files": [
+        "scripts/diagnose_targeted_controls.py",
+        "tests/test_fast_framework.py"
+      ]
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "evrp/versions.py",
+      "reference_files": []
+    },
+    {
+      "category": "historical_reproduction",
+      "path": "scripts/analyze_alns_recovery_development.py",
+      "reference_files": [
+        "results/desaulniers/enhancement_development/STATUS.md"
+      ]
+    },
+    {
+      "category": "historical_reproduction",
+      "path": "scripts/analyze_alns_recovery_screen.py",
+      "reference_files": [
+        "results/desaulniers/enhancement_development/STATUS.md",
+        "scripts/analyze_publication_pair.py",
+        "scripts/analyze_targeted_service.py",
+        "scripts/audit_frozen_studies.py"
+      ]
+    },
+    {
+      "category": "current_workflow",
+      "path": "scripts/analyze_cpu_coverage.py",
+      "reference_files": [
+        "scripts/render_final_cpu_paper.py",
+        "tests/test_cpu_coverage.py"
+      ]
+    },
+    {
+      "category": "historical_reproduction",
+      "path": "scripts/analyze_decoder_development.py",
+      "reference_files": []
+    },
+    {
+      "category": "historical_reproduction",
+      "path": "scripts/analyze_desaulniers_campaign.py",
+      "reference_files": [
+        "scripts/analyze_desaulniers_final.py",
+        "scripts/run_desaulniers_all.py"
+      ]
+    },
+    {
+      "category": "historical_reproduction",
+      "path": "scripts/analyze_desaulniers_final.py",
+      "reference_files": [
+        "scripts/run_desaulniers_all.py"
+      ]
+    },
+    {
+      "category": "historical_reproduction",
+      "path": "scripts/analyze_desaulniers_pilot.py",
+      "reference_files": [
+        "evrp/cli.py",
+        "results/desaulniers/development_pilot_final_source/SUMMARY.md"
+      ]
+    },
+    {
+      "category": "historical_reproduction",
+      "path": "scripts/analyze_desaulniers_robustness.py",
+      "reference_files": [
+        "docs/VALIDATION_AND_REPRODUCTION.md",
+        "results/desaulniers/robustness_v3/RESULTS.md"
+      ]
+    },
+    {
+      "category": "historical_reproduction",
+      "path": "scripts/analyze_enhancement_development.py",
+      "reference_files": []
+    },
+    {
+      "category": "current_workflow",
+      "path": "scripts/analyze_final_cpu_development.py",
+      "reference_files": [
+        "results/desaulniers/final_cpu_paper_v1/REPRODUCE.md",
+        "results/desaulniers/final_cpu_paper_v1/audit/VALIDATION.md",
+        "scripts/render_final_cpu_paper.py"
+      ]
+    },
+    {
+      "category": "historical_reproduction",
+      "path": "scripts/analyze_planning_losses.py",
+      "reference_files": [
+        "results/desaulniers/publication_package_v1/REPRODUCTION.md",
+        "scripts/diagnose_reliability_events.py",
+        "scripts/diagnose_targeted_controls.py",
+        "scripts/probe_local_reordering.py",
+        "scripts/probe_reliability_roots.py",
+        "scripts/probe_retained_coordination.py",
+        "scripts/probe_station_skeleton_recovery.py",
+        "scripts/render_publication_package.py",
+        "scripts/report_targeted_losses.py"
+      ]
+    },
+    {
+      "category": "historical_reproduction",
+      "path": "scripts/analyze_publication_pair.py",
+      "reference_files": [
+        "docs/VALIDATION_AND_REPRODUCTION.md",
+        "results/desaulniers/publication_development/STATUS.md",
+        "results/desaulniers/publication_package_v1/REPRODUCTION.md",
+        "scripts/render_publication_package.py"
+      ]
+    },
+    {
+      "category": "historical_reproduction",
+      "path": "scripts/analyze_reliability_study.py",
+      "reference_files": [
+        "results/desaulniers/reliability_v2/REPRODUCE.md",
+        "scripts/launch_reliability_study.py",
+        "scripts/run_reliability_study.py",
+        "tests/test_reliability_design.py"
+      ]
+    },
+    {
+      "category": "historical_reproduction",
+      "path": "scripts/analyze_reserve_dispatch_pilot.py",
+      "reference_files": []
+    },
+    {
+      "category": "historical_reproduction",
+      "path": "scripts/analyze_runtime_validation.py",
+      "reference_files": [
+        "docs/VALIDATION_AND_REPRODUCTION.md",
+        "results/desaulniers/publication_development/STATUS.md",
+        "results/desaulniers/publication_package_v1/REPRODUCTION.md",
+        "scripts/render_publication_package.py"
+      ]
+    },
+    {
+      "category": "historical_reproduction",
+      "path": "scripts/analyze_targeted_service.py",
+      "reference_files": [
+        "results/desaulniers/targeted_service_v1/FINAL_REPORT.md",
+        "scripts/complete_targeted_study.py",
+        "scripts/run_targeted_mp_holdout.py",
+        "scripts/run_targeted_service.py"
+      ]
+    },
+    {
+      "category": "current_workflow",
+      "path": "scripts/archive_frozen_inputs.py",
+      "reference_files": [
+        "README.md",
+        "docs/VALIDATION_AND_REPRODUCTION.md",
+        "results/desaulniers/final_cpu_paper_v1/REPRODUCE.md",
+        "results/desaulniers/publication_development/STATUS.md",
+        "results/desaulniers/publication_development/frozen_inputs_v1/RESULTS.md",
+        "results/desaulniers/publication_package_v1/FROZEN_INPUTS.md",
+        "results/desaulniers/publication_package_v1/REPRODUCTION.md",
+        "scripts/render_final_cpu_paper.py",
+        "scripts/render_publication_package.py"
+      ]
+    },
+    {
+      "category": "historical_reproduction",
+      "path": "scripts/audit_desaulniers_partial_solutions.py",
+      "reference_files": [
+        "docs/DESAULNIERS_MIGRATION.md",
+        "docs/VALIDATION_AND_REPRODUCTION.md",
+        "scripts/construct_partial_reference_witnesses.py",
+        "tests/test_desaulniers_partial_solutions.py"
+      ]
+    },
+    {
+      "category": "current_workflow",
+      "path": "scripts/audit_enhancement_studies.py",
+      "reference_files": [
+        "README.md",
+        "docs/VALIDATION_AND_REPRODUCTION.md",
+        "results/desaulniers/final_cpu_paper_v1/REPRODUCE.md",
+        "results/desaulniers/final_cpu_paper_v1/audit/VALIDATION.md",
+        "results/desaulniers/publication_development/STATUS.md",
+        "results/desaulniers/publication_package_v1/REPRODUCTION.md",
+        "scripts/render_final_cpu_paper.py",
+        "scripts/render_publication_package.py"
+      ]
+    },
+    {
+      "category": "current_workflow",
+      "path": "scripts/audit_final_cpu_completion.py",
+      "reference_files": [
+        "README.md",
+        "docs/FINAL_MISSION_OBJECTIVES.md",
+        "docs/REPOSITORY_STATUS.md",
+        "results/desaulniers/final_cpu_paper_v1/REPRODUCE.md",
+        "results/desaulniers/final_cpu_paper_v1/audit/VALIDATION.md",
+        "scripts/render_final_cpu_paper.py"
+      ]
+    },
+    {
+      "category": "current_workflow",
+      "path": "scripts/audit_frozen_studies.py",
+      "reference_files": [
+        "README.md",
+        "docs/REPOSITORY_STATUS.md",
+        "docs/VALIDATION_AND_REPRODUCTION.md",
+        "results/desaulniers/final_cpu_paper_v1/REPRODUCE.md",
+        "results/desaulniers/final_cpu_paper_v1/audit/VALIDATION.md",
+        "results/desaulniers/publication_development/STATUS.md",
+        "results/desaulniers/publication_package_v1/REPRODUCTION.md",
+        "scripts/render_final_cpu_paper.py",
+        "scripts/render_publication_package.py",
+        "tests/test_publication_statistics.py"
+      ]
+    },
+    {
+      "category": "current_workflow",
+      "path": "scripts/audit_reference_inventory.py",
+      "reference_files": [
+        "README.md",
+        "docs/VALIDATION_AND_REPRODUCTION.md",
+        "results/desaulniers/final_cpu_paper_v1/REPRODUCE.md",
+        "results/desaulniers/final_cpu_paper_v1/audit/VALIDATION.md",
+        "results/desaulniers/publication_development/STATUS.md",
+        "results/desaulniers/publication_package_v1/REPRODUCTION.md",
+        "scripts/render_final_cpu_paper.py",
+        "scripts/render_publication_package.py"
+      ]
+    },
+    {
+      "category": "historical_reproduction",
+      "path": "scripts/audit_targeted_inventory.py",
+      "reference_files": [
+        "results/desaulniers/targeted_service_v1/REPORTING_NOTES.md",
+        "scripts/complete_targeted_study.py"
+      ]
+    },
+    {
+      "category": "historical_reproduction",
+      "path": "scripts/benchmark_two_worker_throughput.py",
+      "reference_files": []
+    },
+    {
+      "category": "current_workflow",
+      "path": "scripts/complete_cpu_coverage.py",
+      "reference_files": [
+        "scripts/analyze_cpu_coverage.py",
+        "scripts/audit_final_cpu_completion.py"
+      ]
+    },
+    {
+      "category": "current_workflow",
+      "path": "scripts/complete_final_cpu_development.py",
+      "reference_files": [
+        "results/desaulniers/final_cpu_paper_v1/REPRODUCE.md",
+        "scripts/render_final_cpu_paper.py"
+      ]
+    },
+    {
+      "category": "historical_reproduction",
+      "path": "scripts/complete_targeted_study.py",
+      "reference_files": [
+        "results/desaulniers/targeted_service_v1/REPORTING_NOTES.md",
+        "scripts/run_targeted_mp_holdout.py"
+      ]
+    },
+    {
+      "category": "historical_reproduction",
+      "path": "scripts/construct_partial_reference_witnesses.py",
+      "reference_files": [
+        "results/desaulniers/enhancement_development/STATUS.md",
+        "tests/test_desaulniers_partial_solutions.py"
+      ]
+    },
+    {
+      "category": "historical_reproduction",
+      "path": "scripts/diagnose_desaulniers_service.py",
+      "reference_files": [
+        "docs/VALIDATION_AND_REPRODUCTION.md"
+      ]
+    },
+    {
+      "category": "historical_reproduction",
+      "path": "scripts/diagnose_mpc_enhancement.py",
+      "reference_files": [
+        "results/desaulniers/enhancement_development/STATUS.md",
+        "scripts/probe_development_insertions.py",
+        "scripts/probe_enhanced_decoder.py"
+      ]
+    },
+    {
+      "category": "historical_reproduction",
+      "path": "scripts/diagnose_reliability_events.py",
+      "reference_files": [
+        "scripts/performance_engineering_worker.py",
+        "scripts/probe_reliability_roots.py",
+        "tests/test_reliability_controls.py"
+      ]
+    },
+    {
+      "category": "historical_reproduction",
+      "path": "scripts/diagnose_targeted_controls.py",
+      "reference_files": []
+    },
+    {
+      "category": "historical_reproduction",
+      "path": "scripts/extend_mp_reference_coverage.py",
+      "reference_files": [
+        "results/desaulniers/publication_package_v1/REPRODUCTION.md",
+        "scripts/render_publication_package.py",
+        "tests/test_frozen_input_archive.py",
+        "tests/test_mp_reference_extension.py",
+        "tests/test_reference_witness_loading.py"
+      ]
+    },
+    {
+      "category": "historical_reproduction",
+      "path": "scripts/fast_framework_worker.py",
+      "reference_files": [
+        "scripts/report_fast_framework.py",
+        "scripts/run_fast_ablation.py",
+        "scripts/run_fast_framework.py"
+      ]
+    },
+    {
+      "category": "historical_reproduction",
+      "path": "scripts/investigate_targeted_references.py",
+      "reference_files": [
+        "results/desaulniers/targeted_service_v1/FINAL_REPORT.md",
+        "scripts/analyze_targeted_service.py"
+      ]
+    },
+    {
+      "category": "historical_reproduction",
+      "path": "scripts/keep_targeted_study_awake.ps1",
+      "reference_files": []
+    },
+    {
+      "category": "historical_reproduction",
+      "path": "scripts/launch_reliability_study.py",
+      "reference_files": [
+        "results/desaulniers/reliability_v2/REPRODUCE.md"
+      ]
+    },
+    {
+      "category": "historical_reproduction",
+      "path": "scripts/paper_plot_audit.py",
+      "reference_files": [
+        "scripts/analyze_final_cpu_development.py",
+        "scripts/render_final_cpu_paper.py"
+      ]
+    },
+    {
+      "category": "current_workflow",
+      "path": "scripts/performance_budget.py",
+      "reference_files": [
+        "scripts/complete_cpu_coverage.py",
+        "scripts/complete_final_cpu_development.py",
+        "scripts/run_fast_ablation.py",
+        "scripts/run_fast_framework.py",
+        "scripts/run_final_cpu_development.py",
+        "scripts/run_final_cpu_replication.py",
+        "scripts/run_performance_engineering.py"
+      ]
+    },
+    {
+      "category": "historical_reproduction",
+      "path": "scripts/performance_engineering_worker.py",
+      "reference_files": [
+        "scripts/fast_framework_worker.py",
+        "scripts/report_performance_engineering.py",
+        "scripts/run_fast_ablation.py",
+        "scripts/run_fast_framework.py",
+        "scripts/run_performance_engineering.py"
+      ]
+    },
+    {
+      "category": "historical_reproduction",
+      "path": "scripts/portfolio_runtime.py",
+      "reference_files": [
+        "tests/test_portfolio_runtime.py"
+      ]
+    },
+    {
+      "category": "historical_reproduction",
+      "path": "scripts/preflight_desaulniers_robustness.py",
+      "reference_files": []
+    },
+    {
+      "category": "historical_reproduction",
+      "path": "scripts/probe_development_insertions.py",
+      "reference_files": []
+    },
+    {
+      "category": "historical_reproduction",
+      "path": "scripts/probe_enhanced_decoder.py",
+      "reference_files": []
+    },
+    {
+      "category": "historical_reproduction",
+      "path": "scripts/probe_local_reordering.py",
+      "reference_files": []
+    },
+    {
+      "category": "historical_reproduction",
+      "path": "scripts/probe_reliability_roots.py",
+      "reference_files": []
+    },
+    {
+      "category": "historical_reproduction",
+      "path": "scripts/probe_retained_coordination.py",
+      "reference_files": []
+    },
+    {
+      "category": "historical_reproduction",
+      "path": "scripts/probe_station_skeleton_recovery.py",
+      "reference_files": []
+    },
+    {
+      "category": "historical_reproduction",
+      "path": "scripts/profile_reliability_pipeline.py",
+      "reference_files": []
+    },
+    {
+      "category": "historical_reproduction",
+      "path": "scripts/record_desaulniers_environment.py",
+      "reference_files": []
+    },
+    {
+      "category": "historical_reproduction",
+      "path": "scripts/render_desaulniers_paper.py",
+      "reference_files": [
+        "docs/VALIDATION_AND_REPRODUCTION.md",
+        "scripts/analyze_desaulniers_robustness.py",
+        "tests/test_desaulniers_paper_protocol.py"
+      ]
+    },
+    {
+      "category": "current_workflow",
+      "path": "scripts/render_final_cpu_paper.py",
+      "reference_files": [
+        "README.md",
+        "results/desaulniers/final_cpu_paper_v1/REPRODUCE.md",
+        "results/desaulniers/final_cpu_paper_v1/audit/VALIDATION.md",
+        "scripts/analyze_cpu_coverage.py",
+        "tests/test_final_cpu_paper.py"
+      ]
+    },
+    {
+      "category": "historical_reproduction",
+      "path": "scripts/render_publication_package.py",
+      "reference_files": [
+        "docs/VALIDATION_AND_REPRODUCTION.md",
+        "results/desaulniers/publication_development/STATUS.md",
+        "results/desaulniers/publication_package_v1/REPRODUCTION.md",
+        "scripts/verify_publication_package.py"
+      ]
+    },
+    {
+      "category": "historical_reproduction",
+      "path": "scripts/render_targeted_supplement.py",
+      "reference_files": [
+        "results/desaulniers/targeted_service_v1/REPORTING_NOTES.md",
+        "scripts/complete_targeted_study.py"
+      ]
+    },
+    {
+      "category": "historical_reproduction",
+      "path": "scripts/report_fast_framework.py",
+      "reference_files": [
+        "scripts/run_fast_framework.py"
+      ]
+    },
+    {
+      "category": "historical_reproduction",
+      "path": "scripts/report_performance_engineering.py",
+      "reference_files": [
+        "results/desaulniers/performance_engineering_v1/FINAL_REPORT.md",
+        "scripts/run_performance_engineering.py"
+      ]
+    },
+    {
+      "category": "historical_reproduction",
+      "path": "scripts/report_reliability_compute.py",
+      "reference_files": [
+        "tests/test_reliability_stop.py"
+      ]
+    },
+    {
+      "category": "historical_reproduction",
+      "path": "scripts/report_targeted_losses.py",
+      "reference_files": [
+        "results/desaulniers/targeted_service_v1/REPORTING_NOTES.md",
+        "scripts/complete_targeted_study.py",
+        "scripts/diagnose_reliability_events.py",
+        "tests/test_targeted_loss_bounds.py"
+      ]
+    },
+    {
+      "category": "historical_reproduction",
+      "path": "scripts/reproduce_optimizer_start_timeout.py",
+      "reference_files": []
+    },
+    {
+      "category": "historical_reproduction",
+      "path": "scripts/run_alns_recovery_development.py",
+      "reference_files": [
+        "scripts/analyze_alns_recovery_development.py"
+      ]
+    },
+    {
+      "category": "historical_reproduction",
+      "path": "scripts/run_alns_recovery_screen.py",
+      "reference_files": [
+        "scripts/analyze_alns_recovery_screen.py"
+      ]
+    },
+    {
+      "category": "historical_reproduction",
+      "path": "scripts/run_decoder_development.py",
+      "reference_files": [
+        "scripts/analyze_decoder_development.py"
+      ]
+    },
+    {
+      "category": "historical_reproduction",
+      "path": "scripts/run_desaulniers_all.py",
+      "reference_files": []
+    },
+    {
+      "category": "historical_reproduction",
+      "path": "scripts/run_desaulniers_campaign.py",
+      "reference_files": [
+        "scripts/analyze_desaulniers_campaign.py",
+        "scripts/audit_frozen_studies.py",
+        "scripts/benchmark_two_worker_throughput.py",
+        "scripts/render_final_cpu_paper.py",
+        "scripts/run_alns_recovery_development.py",
+        "scripts/run_alns_recovery_screen.py",
+        "scripts/run_decoder_development.py",
+        "scripts/run_desaulniers_all.py",
+        "scripts/run_desaulniers_final.py",
+        "scripts/run_enhancement_development.py",
+        "scripts/run_fast_framework.py",
+        "scripts/run_final_cpu_development.py",
+        "scripts/run_performance_engineering.py",
+        "scripts/run_publication_campaign.py",
+        "scripts/run_reliability_study.py",
+        "scripts/run_reserve_dispatch_pilot.py",
+        "tests/test_desaulniers_campaign.py"
+      ]
+    },
+    {
+      "category": "historical_reproduction",
+      "path": "scripts/run_desaulniers_final.py",
+      "reference_files": [
+        "scripts/analyze_desaulniers_final.py",
+        "scripts/audit_frozen_studies.py",
+        "scripts/diagnose_desaulniers_service.py",
+        "scripts/run_desaulniers_all.py",
+        "scripts/verify_desaulniers_final.py",
+        "tests/test_audit_dispatch_time.py"
+      ]
+    },
+    {
+      "category": "historical_reproduction",
+      "path": "scripts/run_desaulniers_pilot.py",
+      "reference_files": [
+        "evrp/cli.py",
+        "results/desaulniers/development_pilot_final_source/SUMMARY.md",
+        "scripts/analyze_alns_recovery_screen.py",
+        "scripts/analyze_desaulniers_campaign.py",
+        "scripts/analyze_desaulniers_pilot.py",
+        "scripts/analyze_desaulniers_robustness.py",
+        "scripts/analyze_publication_pair.py",
+        "scripts/analyze_targeted_service.py",
+        "scripts/audit_frozen_studies.py",
+        "scripts/benchmark_two_worker_throughput.py",
+        "scripts/preflight_desaulniers_robustness.py",
+        "scripts/render_desaulniers_paper.py",
+        "scripts/run_alns_recovery_development.py",
+        "scripts/run_alns_recovery_screen.py",
+        "scripts/run_decoder_development.py",
+        "scripts/run_desaulniers_campaign.py",
+        "scripts/run_desaulniers_final.py",
+        "scripts/run_desaulniers_robustness.py",
+        "scripts/run_desaulniers_robustness_v3.py",
+        "scripts/run_enhancement_development.py",
+        "scripts/run_final_cpu_development.py",
+        "scripts/run_final_cpu_replication.py",
+        "scripts/run_performance_engineering.py",
+        "scripts/run_reliability_study.py",
+        "scripts/run_targeted_service.py",
+        "scripts/validate_desaulniers_coverage.py",
+        "scripts/verify_desaulniers_final.py",
+        "tests/test_final_cpu_development.py",
+        "tests/test_fleet_mcts.py"
+      ]
+    },
+    {
+      "category": "historical_reproduction",
+      "path": "scripts/run_desaulniers_robustness.py",
+      "reference_files": [
+        "docs/VALIDATION_AND_REPRODUCTION.md",
+        "scripts/analyze_desaulniers_robustness.py",
+        "scripts/audit_frozen_studies.py",
+        "scripts/render_final_cpu_paper.py",
+        "scripts/run_desaulniers_robustness_v3.py",
+        "tests/test_desaulniers_paper_protocol.py"
+      ]
+    },
+    {
+      "category": "historical_reproduction",
+      "path": "scripts/run_desaulniers_robustness_v3.py",
+      "reference_files": [
+        "docs/VALIDATION_AND_REPRODUCTION.md",
+        "scripts/analyze_desaulniers_robustness.py",
+        "scripts/audit_frozen_studies.py",
+        "scripts/render_final_cpu_paper.py",
+        "tests/test_desaulniers_paper_protocol.py"
+      ]
+    },
+    {
+      "category": "historical_reproduction",
+      "path": "scripts/run_desaulniers_robustness_v3_unattended.ps1",
+      "reference_files": [
+        "docs/VALIDATION_AND_REPRODUCTION.md"
+      ]
+    },
+    {
+      "category": "historical_reproduction",
+      "path": "scripts/run_enhancement_development.py",
+      "reference_files": [
+        "scripts/analyze_enhancement_development.py"
+      ]
+    },
+    {
+      "category": "historical_reproduction",
+      "path": "scripts/run_fast_ablation.py",
+      "reference_files": []
+    },
+    {
+      "category": "historical_reproduction",
+      "path": "scripts/run_fast_framework.py",
+      "reference_files": [
+        "scripts/fast_framework_worker.py",
+        "scripts/report_fast_framework.py"
+      ]
+    },
+    {
+      "category": "current_workflow",
+      "path": "scripts/run_final_cpu_development.py",
+      "reference_files": [
+        "results/desaulniers/final_cpu_paper_v1/REPRODUCE.md",
+        "scripts/analyze_cpu_coverage.py",
+        "scripts/analyze_final_cpu_development.py",
+        "scripts/complete_cpu_coverage.py",
+        "scripts/complete_final_cpu_development.py",
+        "scripts/render_final_cpu_paper.py",
+        "tests/test_final_cpu_development.py"
+      ]
+    },
+    {
+      "category": "current_workflow",
+      "path": "scripts/run_final_cpu_replication.py",
+      "reference_files": [
+        "scripts/analyze_cpu_coverage.py",
+        "scripts/complete_cpu_coverage.py",
+        "scripts/render_final_cpu_paper.py"
+      ]
+    },
+    {
+      "category": "historical_reproduction",
+      "path": "scripts/run_performance_engineering.py",
+      "reference_files": [
+        "results/desaulniers/performance_engineering_v1/FINAL_REPORT.md",
+        "scripts/performance_engineering_worker.py",
+        "scripts/report_performance_engineering.py"
+      ]
+    },
+    {
+      "category": "historical_reproduction",
+      "path": "scripts/run_publication_campaign.py",
+      "reference_files": [
+        "results/desaulniers/publication_package_v1/REPRODUCTION.md",
+        "scripts/analyze_planning_losses.py",
+        "scripts/analyze_publication_pair.py",
+        "scripts/analyze_runtime_validation.py",
+        "scripts/render_publication_package.py",
+        "tests/test_publication_campaign.py"
+      ]
+    },
+    {
+      "category": "historical_reproduction",
+      "path": "scripts/run_reliability_study.py",
+      "reference_files": [
+        "results/desaulniers/reliability_v2/FINAL_REPORT.md",
+        "scripts/analyze_reliability_study.py",
+        "scripts/launch_reliability_study.py",
+        "scripts/profile_reliability_pipeline.py",
+        "scripts/report_reliability_compute.py",
+        "tests/test_reliability_design.py"
+      ]
+    },
+    {
+      "category": "historical_reproduction",
+      "path": "scripts/run_reserve_dispatch_pilot.py",
+      "reference_files": []
+    },
+    {
+      "category": "historical_reproduction",
+      "path": "scripts/run_targeted_mp_holdout.py",
+      "reference_files": []
+    },
+    {
+      "category": "historical_reproduction",
+      "path": "scripts/run_targeted_service.py",
+      "reference_files": [
+        "results/desaulniers/targeted_service_v1/FINAL_REPORT.md",
+        "scripts/analyze_targeted_service.py",
+        "tests/test_targeted_mp_holdout.py"
+      ]
+    },
+    {
+      "category": "historical_reproduction",
+      "path": "scripts/validate_desaulniers_coverage.py",
+      "reference_files": [
+        "docs/DESAULNIERS_MIGRATION.md",
+        "docs/VALIDATION_AND_REPRODUCTION.md",
+        "tests/test_desaulniers_paper_protocol.py"
+      ]
+    },
+    {
+      "category": "historical_reproduction",
+      "path": "scripts/verify_desaulniers_final.py",
+      "reference_files": [
+        "docs/VALIDATION_AND_REPRODUCTION.md",
+        "scripts/diagnose_desaulniers_service.py",
+        "scripts/render_desaulniers_paper.py"
+      ]
+    },
+    {
+      "category": "historical_reproduction",
+      "path": "scripts/verify_publication_package.py",
+      "reference_files": []
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "tests/__init__.py",
+      "reference_files": []
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "tests/test_alns.py",
+      "reference_files": []
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "tests/test_audit_dispatch_time.py",
+      "reference_files": []
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "tests/test_common_objective.py",
+      "reference_files": []
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "tests/test_cpu_coverage.py",
+      "reference_files": []
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "tests/test_desaulniers_campaign.py",
+      "reference_files": []
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "tests/test_desaulniers_dataset.py",
+      "reference_files": []
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "tests/test_desaulniers_final.py",
+      "reference_files": []
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "tests/test_desaulniers_paper_protocol.py",
+      "reference_files": []
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "tests/test_desaulniers_partial_solutions.py",
+      "reference_files": []
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "tests/test_exact_evaluation_cache.py",
+      "reference_files": []
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "tests/test_experiments.py",
+      "reference_files": []
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "tests/test_fast_framework.py",
+      "reference_files": []
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "tests/test_final_cpu_completion.py",
+      "reference_files": []
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "tests/test_final_cpu_development.py",
+      "reference_files": []
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "tests/test_final_cpu_paper.py",
+      "reference_files": []
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "tests/test_final_fleet.py",
+      "reference_files": []
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "tests/test_final_mcts.py",
+      "reference_files": []
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "tests/test_fleet_lns.py",
+      "reference_files": []
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "tests/test_fleet_mcts.py",
+      "reference_files": []
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "tests/test_forced_coordination.py",
+      "reference_files": []
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "tests/test_frozen_input_archive.py",
+      "reference_files": []
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "tests/test_hgs.py",
+      "reference_files": []
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "tests/test_hierarchy.py",
+      "reference_files": []
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "tests/test_mp_reference_extension.py",
+      "reference_files": []
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "tests/test_mpc_optimizer_fairness.py",
+      "reference_files": []
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "tests/test_observation.py",
+      "reference_files": []
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "tests/test_optimizer_initialization.py",
+      "reference_files": []
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "tests/test_optimizer_interface.py",
+      "reference_files": []
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "tests/test_performance.py",
+      "reference_files": []
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "tests/test_performance_budget.py",
+      "reference_files": []
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "tests/test_physics.py",
+      "reference_files": []
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "tests/test_planning.py",
+      "reference_files": [
+        "tests/test_final_fleet.py",
+        "tests/test_hierarchy.py",
+        "tests/test_performance.py"
+      ]
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "tests/test_planning_trace.py",
+      "reference_files": []
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "tests/test_portfolio_runtime.py",
+      "reference_files": []
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "tests/test_publication_campaign.py",
+      "reference_files": []
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "tests/test_publication_statistics.py",
+      "reference_files": []
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "tests/test_reference_scenario.py",
+      "reference_files": []
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "tests/test_reference_witness_loading.py",
+      "reference_files": []
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "tests/test_regressions.py",
+      "reference_files": []
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "tests/test_reliability_controls.py",
+      "reference_files": []
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "tests/test_reliability_design.py",
+      "reference_files": []
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "tests/test_reliability_stop.py",
+      "reference_files": []
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "tests/test_repair.py",
+      "reference_files": [
+        "tests/test_alns.py",
+        "tests/test_common_objective.py",
+        "tests/test_exact_evaluation_cache.py",
+        "tests/test_fast_framework.py",
+        "tests/test_final_fleet.py",
+        "tests/test_fleet_lns.py",
+        "tests/test_fleet_mcts.py",
+        "tests/test_forced_coordination.py",
+        "tests/test_hgs.py",
+        "tests/test_optimizer_initialization.py",
+        "tests/test_optimizer_interface.py",
+        "tests/test_reliability_controls.py",
+        "tests/test_resource_decoder.py",
+        "tests/test_targeted_loss_bounds.py",
+        "tests/test_targeted_recovery.py"
+      ]
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "tests/test_resource_decoder.py",
+      "reference_files": []
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "tests/test_simulator.py",
+      "reference_files": [
+        "tests/test_alns.py",
+        "tests/test_exact_evaluation_cache.py",
+        "tests/test_final_fleet.py",
+        "tests/test_fleet_lns.py",
+        "tests/test_fleet_mcts.py",
+        "tests/test_frozen_input_archive.py",
+        "tests/test_hgs.py",
+        "tests/test_mp_reference_extension.py",
+        "tests/test_mpc_optimizer_fairness.py",
+        "tests/test_optimizer_initialization.py",
+        "tests/test_optimizer_interface.py",
+        "tests/test_performance.py",
+        "tests/test_planning_trace.py",
+        "tests/test_reference_witness_loading.py",
+        "tests/test_reliability_controls.py",
+        "tests/test_targeted_simulator.py"
+      ]
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "tests/test_targeted_campaign.py",
+      "reference_files": []
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "tests/test_targeted_loss_bounds.py",
+      "reference_files": []
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "tests/test_targeted_mp_holdout.py",
+      "reference_files": []
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "tests/test_targeted_recovery.py",
+      "reference_files": []
+    },
+    {
+      "category": "active_source_tests_or_documentation",
+      "path": "tests/test_targeted_simulator.py",
+      "reference_files": []
+    }
+  ]
+}

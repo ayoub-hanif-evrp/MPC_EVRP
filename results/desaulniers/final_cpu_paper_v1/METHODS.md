@@ -19,4 +19,4 @@ Frozen source commit: 7b7b7060c7a22225701f19aa57f54380b9b1c254. Frozen source fi
 
 Primary endpoints are customer-weighted service and the fraction of scenarios serving all customers. Secondary measures include matched complete-service distance, travel/completion/charging/waiting time, energy charged/consumed, active EVs, workload balance, time-window margin, minimum observed battery, worker wall/CPU time, replans, constructor telemetry, and decision latency. Historical child CPU time was not recorded and is NA, not inferred.
 
-No algorithm was retuned to these prospective scenarios. The archived opt-in enhancement screen failed its no-service-loss gate; consequently there is no enhanced-method independent final contrast.
+No algorithm was retuned to these prospective scenarios. The archived opt-in enhancement evidence includes service regressions; no enhanced promotion is justified and there is no enhanced-method independent final contrast.

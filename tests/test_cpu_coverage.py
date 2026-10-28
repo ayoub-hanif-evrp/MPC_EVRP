@@ -34,3 +34,17 @@ def test_accounting_refuses_an_active_campaign(monkeypatch):
     monkeypatch.setattr(coverage, "load_json", lambda path: dict(jobs=[dict(status="running")]))
     with pytest.raises(ValueError, match="still running"):
         coverage.prior_accounting()
+
+
+def test_cpu_ratio_reweights_whole_parents_instead_of_averaging_ratios():
+    from scripts.analyze_cpu_coverage import bootstrap_ratio
+
+    rows = [dict(parent="small", old=10, new=5), dict(parent="large", old=100, new=90)]
+    result = bootstrap_ratio(rows, "new", "old")
+    assert result["value"] == pytest.approx(95 / 110)
+    assert result["parents"] == 2
+    assert result["low"] == .5
+    assert result["high"] == .9
+    assert result == bootstrap_ratio(rows, "new", "old")
+    with pytest.raises(ValueError, match="positive denominators"):
+        bootstrap_ratio([dict(parent="p", old=0, new=1)], "new", "old")

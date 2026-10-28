@@ -1,0 +1,18 @@
+{
+  "commit": "cff13c21fa0947cbc988d80802a8a8b7301a74b7",
+  "exact_raw_hashes_passed": true,
+  "raw_records": 53,
+  "remote_refs": [
+    "3a84d4a367934c2e8520870b66e8afce9b5cce98\trefs/tags/archive/hybrid-gpu-negative-v1",
+    "cff13c21fa0947cbc988d80802a8a8b7301a74b7\trefs/tags/archive/hybrid-gpu-negative-v1^{}"
+  ],
+  "remote_verified": true,
+  "removed_gpu_paths": [
+    "scripts/benchmark_hybrid_acceleration.py",
+    "scripts/run_hybrid_acceleration.py",
+    "scripts/hybrid_acceleration_worker.py",
+    "scripts/report_hybrid_acceleration.py",
+    "configs/hybrid_acceleration_v1.yaml"
+  ],
+  "tag": "archive/hybrid-gpu-negative-v1"
+}

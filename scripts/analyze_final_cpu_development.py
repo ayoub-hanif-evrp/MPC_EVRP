@@ -47,6 +47,8 @@ def _figure(name, fig):
     vector.write_text("\n".join(line.rstrip() for line in
                                 vector.read_text(encoding="utf-8").splitlines()) + "\n",
                       encoding="utf-8")
+    from scripts.paper_plot_audit import record_figure
+    record_figure(fig, OUTPUT / "figures" / f"{name}.png", OUTPUT / "audit/figure_data" / f"{name}.json")
     plt.close(fig)
 
 
@@ -191,7 +193,7 @@ def analyze():
                     for method in methods}
     positive = len({row["case"] for row in combined if row["served_delta"] > 0})
     harmed = len({row["case"] for row in combined if row["served_delta"] < 0})
-    promote = delta > 0 and positive >= 2 and harmed == 0 and all(
+    conservative_screen = delta > 0 and positive >= 2 and harmed == 0 and all(
         value >= 0 for value in method_delta.values())
     lines = ["# Balanced CPU development ablation", "",
              "Exploratory source-frozen development evidence, not independent confirmation. "
@@ -206,7 +208,16 @@ def analyze():
              f"positive parents {positive}/6, harmed parents {harmed}/6.",
              "Method-specific service changes: " + ", ".join(
                  f"{key} {value:+d}" for key, value in method_delta.items()) + ".",
-             f"Development promotion gate: {'PASS' if promote else 'FAIL'}.", "",
+             f"Post hoc conservative service screen: {'PASS' if conservative_screen else 'FAIL'}.", "",
+             "The frozen protocol states: " + protocol["selection_rule"] + ". "
+             "It does not define numerical thresholds for useful gains or repeated family harm. "
+             "The analysis implementation subsequently required a positive aggregate gain, "
+             "two improving parents, zero harmed parents and no harmed method. That is a "
+             "stricter, post hoc screen, not the preregistered acceptance rule. A single ACS "
+             "loss therefore does not by itself establish failure of the registered rule. "
+             "The original methods are retained because the limited development evidence "
+             "and earlier regressions do not establish a repeatable improvement. No variant "
+             "is retrospectively promoted from this analysis.", "",
              "See [paired cases](tables/paired_cases.md), [variant summary](tables/variant_summary.md), "
              "[independent replay](audit/independent_replay.md), "
              "[service figure](figures/development_service_changes.png), and "

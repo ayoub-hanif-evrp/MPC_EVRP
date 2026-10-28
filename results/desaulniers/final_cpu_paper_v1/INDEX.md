@@ -18,6 +18,7 @@ Each figure is 300 dpi PNG plus editable SVG. Tables are Markdown, CSV and LaTeX
 - [12 Development Ablation](figures/12_development_ablation.png) ([SVG](figures/12_development_ablation.svg))
 - [13 Balanced Development Service Changes](figures/13_balanced_development_service_changes.png) ([SVG](figures/13_balanced_development_service_changes.svg))
 - [14 Balanced Development Cpu Ratio](figures/14_balanced_development_cpu_ratio.png) ([SVG](figures/14_balanced_development_cpu_ratio.svg))
+- [15 Cpu Six Family Coverage](figures/15_cpu_six_family_coverage.png) ([SVG](figures/15_cpu_six_family_coverage.svg))
 
 ## Tables
 
@@ -27,10 +28,14 @@ Each figure is 300 dpi PNG plus editable SVG. Tables are Markdown, CSV and LaTeX
 - [By Family](tables/by_family.md) ([CSV](tables/by_family.csv), [LaTeX](tables/by_family.tex))
 - [By Size](tables/by_size.md) ([CSV](tables/by_size.csv), [LaTeX](tables/by_size.tex))
 - [Computational Performance](tables/computational_performance.md) ([CSV](tables/computational_performance.csv), [LaTeX](tables/computational_performance.tex))
+- [Cpu Six Family Pairs](tables/cpu_six_family_pairs.md) ([CSV](tables/cpu_six_family_pairs.csv), [LaTeX](tables/cpu_six_family_pairs.tex))
+- [Cpu Six Family Summary](tables/cpu_six_family_summary.md) ([CSV](tables/cpu_six_family_summary.csv), [LaTeX](tables/cpu_six_family_summary.tex))
 - [Development Ablation](tables/development_ablation.md) ([CSV](tables/development_ablation.csv), [LaTeX](tables/development_ablation.tex))
 - [Development Original Vs Enhanced](tables/development_original_vs_enhanced.md) ([CSV](tables/development_original_vs_enhanced.csv), [LaTeX](tables/development_original_vs_enhanced.tex))
 - [Dynamism Seed](tables/dynamism_seed.md) ([CSV](tables/dynamism_seed.csv), [LaTeX](tables/dynamism_seed.tex))
 - [Independent Cpu Replication](tables/independent_cpu_replication.md) ([CSV](tables/independent_cpu_replication.csv), [LaTeX](tables/independent_cpu_replication.tex))
 - [Main Five Methods](tables/main_five_methods.md) ([CSV](tables/main_five_methods.csv), [LaTeX](tables/main_five_methods.tex))
 - [Operational Matched Service](tables/operational_matched_service.md) ([CSV](tables/operational_matched_service.csv), [LaTeX](tables/operational_matched_service.tex))
+- [Operational Unconditional By Cohort](tables/operational_unconditional_by_cohort.md) ([CSV](tables/operational_unconditional_by_cohort.csv), [LaTeX](tables/operational_unconditional_by_cohort.tex))
 - [Parent Clustered Paired Statistics](tables/parent_clustered_paired_statistics.md) ([CSV](tables/parent_clustered_paired_statistics.csv), [LaTeX](tables/parent_clustered_paired_statistics.tex))
+- [Primary Endpoint Paired Statistics](tables/primary_endpoint_paired_statistics.md) ([CSV](tables/primary_endpoint_paired_statistics.csv), [LaTeX](tables/primary_endpoint_paired_statistics.tex))

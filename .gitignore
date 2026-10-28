@@ -178,6 +178,7 @@ logs/
 !/results/desaulniers/final_cpu_paper_v1/**/*.png
 !/results/desaulniers/final_cpu_paper_v1/**/*.svg
 !/results/desaulniers/final_cpu_paper_v1/**/*.log
+!/results/desaulniers/final_cpu_paper_v1/audit/*.xml
 /results/desaulniers/final_cpu_paper_v1/tmp_*/
 !/results/desaulniers/final_cpu_development_v1/**/*.json
 !/results/desaulniers/final_cpu_development_v1/**/*.json.gz
@@ -195,6 +196,7 @@ logs/
 /results/.pytest_work/
 /results/t[0-9]*/
 /results/.pytest_*/
+/results/.cpu_checkout/
 /results/paper/
 
 # Interrupted writes

@@ -1,0 +1,249 @@
+{
+  "axes": [
+    {
+      "bars": [],
+      "lines": [
+        {
+          "label": "_child25",
+          "x": [
+            0,
+            1
+          ],
+          "y": [
+            0,
+            0
+          ]
+        }
+      ],
+      "scatter": [
+        {
+          "label": "Compiled CPU",
+          "points": [
+            [
+              -0.125,
+              0.0
+            ]
+          ]
+        },
+        {
+          "label": "_child1",
+          "points": [
+            [
+              -0.1,
+              0.0
+            ]
+          ]
+        },
+        {
+          "label": "_child2",
+          "points": [
+            [
+              -0.07500000000000001,
+              0.0
+            ]
+          ]
+        },
+        {
+          "label": "_child3",
+          "points": [
+            [
+              0.875,
+              0.0
+            ]
+          ]
+        },
+        {
+          "label": "_child4",
+          "points": [
+            [
+              0.9,
+              0.0
+            ]
+          ]
+        },
+        {
+          "label": "_child5",
+          "points": [
+            [
+              0.925,
+              0.0
+            ]
+          ]
+        },
+        {
+          "label": "_child6",
+          "points": [
+            [
+              1.875,
+              0.0
+            ]
+          ]
+        },
+        {
+          "label": "_child7",
+          "points": [
+            [
+              1.9,
+              0.0
+            ]
+          ]
+        },
+        {
+          "label": "_child8",
+          "points": [
+            [
+              1.9249999999999998,
+              0.0
+            ]
+          ]
+        },
+        {
+          "label": "_child9",
+          "points": [
+            [
+              2.875,
+              0.0
+            ]
+          ]
+        },
+        {
+          "label": "_child10",
+          "points": [
+            [
+              2.9,
+              0.0
+            ]
+          ]
+        },
+        {
+          "label": "_child11",
+          "points": [
+            [
+              2.925,
+              -1.0
+            ]
+          ]
+        },
+        {
+          "label": "_child12",
+          "points": [
+            [
+              3.875,
+              0.0
+            ]
+          ]
+        },
+        {
+          "label": "_child13",
+          "points": [
+            [
+              3.9,
+              0.0
+            ]
+          ]
+        },
+        {
+          "label": "_child14",
+          "points": [
+            [
+              3.925,
+              -1.0
+            ]
+          ]
+        },
+        {
+          "label": "Quality/recovery",
+          "points": [
+            [
+              0.08750000000000001,
+              0.0
+            ]
+          ]
+        },
+        {
+          "label": "_child16",
+          "points": [
+            [
+              0.1125,
+              0.0
+            ]
+          ]
+        },
+        {
+          "label": "_child17",
+          "points": [
+            [
+              1.0875000000000001,
+              0.0
+            ]
+          ]
+        },
+        {
+          "label": "_child18",
+          "points": [
+            [
+              1.1125,
+              0.0
+            ]
+          ]
+        },
+        {
+          "label": "_child19",
+          "points": [
+            [
+              2.0875,
+              0.0
+            ]
+          ]
+        },
+        {
+          "label": "_child20",
+          "points": [
+            [
+              2.1125000000000003,
+              0.0
+            ]
+          ]
+        },
+        {
+          "label": "_child21",
+          "points": [
+            [
+              3.0875,
+              0.0
+            ]
+          ]
+        },
+        {
+          "label": "_child22",
+          "points": [
+            [
+              3.1125000000000003,
+              -1.0
+            ]
+          ]
+        },
+        {
+          "label": "_child23",
+          "points": [
+            [
+              4.0874999999999995,
+              0.0
+            ]
+          ]
+        },
+        {
+          "label": "_child24",
+          "points": [
+            [
+              4.1125,
+              0.0
+            ]
+          ]
+        }
+      ],
+      "title": "Archived development paired service differences"
+    }
+  ],
+  "png_sha256": "d0a5ac310cc3ab10b161a6f022742b303e208d1395ecf144640bb6931a10023e"
+}
