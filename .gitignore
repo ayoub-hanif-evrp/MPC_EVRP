@@ -28,6 +28,8 @@ logs/
 !/results/README.md
 !/results/INDEX.md
 !/results/**/.gitkeep
+!/results/research_v2/slad_feasibility_v1/validation/report.json
+!/results/research_v2/slad_feasibility_v1/validation/RESULTS.md
 !/results/desaulniers/development_pilot_final_source/protocol.json
 !/results/desaulniers/development_pilot_final_source/manifest.json
 !/results/desaulniers/development_pilot_final_source/SUMMARY.md
