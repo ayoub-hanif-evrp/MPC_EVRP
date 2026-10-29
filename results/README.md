@@ -2,12 +2,11 @@
 
 ## Future active layout and retention
 
-The current `desaulniers/` tree contains distinct frozen studies. A future
-compact layout may use `baseline/` for new five-method runs, `proposed/` for a
-future method, `ablations/` for component studies, `validation/` for physical
-and integrity audits, and `paper/` for final figures and tables. These are
-conceptual destinations; this milestone creates no empty directories or new
-campaigns. Do not mix those future outputs with the historical studies below.
+The current `desaulniers/` tree contains distinct frozen studies. The reserved
+`research_v2/<study_id>/` workspace separates future `baseline/`, `proposed/`,
+`ablations/`, `validation/`, and `paper/` outputs from those historical runs.
+`scripts.experiments.inspect_study` previews these paths without creating
+directories or starting a campaign. No new runner or study has been migrated.
 
 Keep each study's protocol, source/configuration hashes, seeds, raw manifest,
 failure evidence, and independent audit together. Generated plots and logs

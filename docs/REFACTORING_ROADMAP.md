@@ -1,12 +1,12 @@
 # Incremental refactoring roadmap
 
-This milestone establishes documentation and a read-only results inventory.
+The first milestone established documentation and a read-only results inventory.
 No operational module has moved. The target is a small set of clear boundaries,
 not an immediate package tree of empty directories.
 
 | Order | Narrow change | Completion check |
 | --- | --- | --- |
-| 1. Configuration and output paths | Introduce an explicit path/configuration helper for new runs; migrate one nonfrozen launcher first. | YAML values, output identity, resume and benchmark write protection agree; all five methods still import. |
+| 1. Configuration and output paths | Add a read-only path/configuration preview for new runs; migrate a nonfrozen launcher later. | Preview resolves root-relative YAML and isolated output paths without writes; all five methods still import. Writer and resume behavior remain future work. |
 | 2. Physics and benchmark loading | Clarify parsing separately from physical transitions; preserve loader imports. | Published-arc and charge/return tests, identical reference and scenario hashes, independent replay. |
 | 3. MPC decision control | Extract one pure event-trigger or dispatch-decision helper from `simulator.py`. | Identical trigger trace, first actions, fallback and five-second latency on fixed seeds. |
 | 4. Route/charging decoder | Give `repair.py` and both decoders a small shared interface. | Route/action parity and feasible MP charging, including deadline cases. |
@@ -18,7 +18,16 @@ Each step should have a small source change, targeted tests, and a full
 regression run when a shared contract changes. Historical outputs stay in
 place until the [retention plan](RESULTS_RETENTION_PLAN.md) has file-level
 references, an accessible authoritative copy, and verified hashes. The first
-implementation task after this milestone is order 1.
+implementation task after the first milestone was order 1.
+
+## Milestone 2: path preview
+
+`scripts/experiments/paths.py` reserves `results/research_v2/<study_id>/` and
+its five output areas for future studies. `python -m scripts.experiments.inspect_study`
+prints a read-only JSON preview with setting provenance. It does not create
+directories, run a study, provide an artifact writer, or migrate historical
+launchers. Future writers must retain benchmark protection and use exclusive
+creation; path preflight alone cannot prevent a concurrent overwrite.
 
 ## Milestone 1 validation (2026-10-29)
 
