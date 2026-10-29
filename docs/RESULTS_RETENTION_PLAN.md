@@ -1,8 +1,10 @@
 # Results retention and cleanup plan
 
-This plan governs historical scientific evidence; no historical migration or
-deletion has been executed. A separate cache-only cleanup was performed on
-2026-10-29; see [the measured cleanup report](RESULTS_CLEANUP_2026-10-29.md).
+This plan governs historical scientific evidence. The original inventory below
+predates the verified [Reliability V2 archival and partial pruning](RELIABILITY_V2_ARCHIVE_2026-10-29.md):
+312 of its 689 tracked files (13,653,695 logical bytes) were removed from
+the active tree, with 377 retained. A separate cache-only cleanup was performed on 2026-10-29;
+see [the measured cleanup report](RESULTS_CLEANUP_2026-10-29.md).
 The earlier read-only scan
 on 2026-10-29 found 100,798 local files under `results/`: 3,696 Git-tracked
 and 97,102 untracked. The inventory utility records every relative path,
@@ -20,10 +22,10 @@ Local counts will change as temporary tests and research runs create files.
 
 ## Tracked Desaulniers campaign inventory
 
-The following 3,694 files are tracked under `results/desaulniers/`; the two
-tracked root index files make 3,696. MiB values are working-tree sizes rounded
-to two decimals. `A` means retain active; `H` means propose historical archive
-only after the gates below pass.
+The following 3,694 files were tracked under `results/desaulniers/` in the
+original snapshot; the two tracked root index files made 3,696. MiB values
+are original working-tree sizes rounded to two decimals. `A` means retain
+active; `H` means propose historical archive only after the gates below pass.
 
 | Directory under `results/desaulniers/` | Files | MiB | Plan and dependency |
 | --- | ---: | ---: | --- |
@@ -49,7 +51,8 @@ only after the gates below pass.
 | `service_diagnosis_v2/` | 3 | 0.11 | H: older customer-level diagnosis output |
 | `validation/` | 1 | <0.01 | H: historical integrity report |
 
-`H` is deliberately conditional. `scripts/audit_frozen_studies.py` reads the
+`H` is deliberately conditional; the Reliability V2 row is the pre-pruning
+inventory, not its current worktree count. `scripts/audit_frozen_studies.py` reads the
 historical development and corrected-final manifests and reconstructs their
 source hashes from Git revisions. `scripts/render_final_cpu_paper.py` reads
 `robustness_v3`, the current replication, `reliability_v2/diagnosis/events.json`,
@@ -92,11 +95,12 @@ Untracked files cannot be recovered merely by naming a Git commit or tag.
    `results/.pytest_*/`, `results/**/__pycache__/`, and `results/**/*.tmp`
    candidates. No `REVIEW` path is on the deletion list.
 
-Archiving all currently proposed `H` directories could shrink the active
+Archiving all originally proposed `H` directories could shrink the active
 tracked results tree by about 232 MiB. Confirmed disposable local test/temp
 artifacts could release up to about 258 MiB more, but their safe subset is not
 yet measured. These were conditional estimates, not achieved savings from the
 original inventory milestone. The later cache-only cleanup is measured in the
-linked report. The broad `.gitignore` rules already protect
+linked report. The separate Reliability V2 milestone achieved a measured
+13,653,695-byte active-tree reduction, not Git-history reduction. The broad `.gitignore` rules already protect
 many generated files, but new study manifests and validation evidence will
 need explicit exceptions before new output paths are used.

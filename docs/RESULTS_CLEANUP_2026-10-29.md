@@ -1,5 +1,10 @@
 # Generated-results cleanup, 2026-10-29
 
+This report is the earlier cache-only snapshot. The later, separate
+[Reliability V2 archival milestone](RELIABILITY_V2_ARCHIVE_2026-10-29.md)
+verified a remote annotated tag and proposed 312 tracked-file deletions;
+its measured reduction is not included in the table below.
+
 This cleanup removed disposable local test artifacts only. The before/after
 table is a consistent PowerShell `Get-ChildItem -Recurse -File` snapshot of
 logical byte lengths, taken before this report was written. It excludes
