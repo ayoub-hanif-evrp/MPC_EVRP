@@ -8,7 +8,7 @@ new routing experiments.
 | Frozen CPU replication | 60/60 planned method runs, 12 matched scenarios, no failed worker |
 | Paper renderer disk replay | 510/510 raw records (450 primary, 60 replication), all protocol/hash and physical/information audits passed |
 | Balanced development ablation | 120/120 saved raw records independently replayed; six parents, five methods, six variants on the fixed three-parent ablation subset |
-| Technical correction | Original RC2 ALNS whole-worker timeout retained; eight pending jobs completed under frozen 900 s correction; total 2.051 charged wall h and 1.944 worker CPU h |
+| Technical correction | Original RC2 ALNS whole-worker timeout retained; eight pending jobs completed under frozen 900 s correction; total 2.051 charged wall h and 2.021 attempted worker CPU h, including the failed attempt |
 | Two-worker technical probe | 4/4 original-method trajectories independently replayed; same service in sequential/two-worker modes; 1.50x small-case throughput on shared machine |
 | Decision budget | Maximum recorded latency 4.796 s, below 5 s |
 | Full CPU test suite | 419/419 passed; machine-readable final_tests.xml retained |
@@ -19,6 +19,7 @@ new routing experiments.
 | Paper outputs | 15 PNG at 300 dpi, 15 SVG, 17 Markdown tables with CSV and LaTeX exports |
 | Plot/table agreement | Actual plotted coordinates captured and checked against numerical tables for every figure |
 | Remote GPU archive | Tag resolved to cff13c21; all 53 raw hashes verified |
+| Fresh LF checkout | 419/419 tests passed; 248 frozen cache inputs restored; exact committed evidence bytes verified; renderer independently replayed 510/510 records and regenerated all 15 figure and 17 table sets; see [fresh-checkout evidence](FRESH_CHECKOUT.md) |
 
 The local pytest attempt could not access its Windows sandbox temporary
 directory; the same full suite then passed outside that filesystem restriction.

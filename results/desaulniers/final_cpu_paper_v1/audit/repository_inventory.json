@@ -7,7 +7,7 @@
     "historical_reproduction": 70,
     "preserved_benchmark": 813,
     "preserved_evidence": 3409,
-    "regenerable_report": 286
+    "regenerable_report": 287
   },
   "retention": "Historical launchers and opt-in policies remain execution-source dependencies of frozen studies. They are unsupported for the selected publication configuration. No unreferenced result directory or user environment is deleted.",
   "source_files": [
@@ -1077,6 +1077,7 @@
         "README.md",
         "docs/VALIDATION_AND_REPRODUCTION.md",
         "results/desaulniers/final_cpu_paper_v1/REPRODUCE.md",
+        "results/desaulniers/final_cpu_paper_v1/audit/FRESH_CHECKOUT.md",
         "results/desaulniers/publication_development/STATUS.md",
         "results/desaulniers/publication_development/frozen_inputs_v1/RESULTS.md",
         "results/desaulniers/publication_package_v1/FROZEN_INPUTS.md",
@@ -1117,6 +1118,7 @@
         "docs/FINAL_MISSION_OBJECTIVES.md",
         "docs/REPOSITORY_STATUS.md",
         "results/desaulniers/final_cpu_paper_v1/REPRODUCE.md",
+        "results/desaulniers/final_cpu_paper_v1/audit/FRESH_CHECKOUT.md",
         "results/desaulniers/final_cpu_paper_v1/audit/VALIDATION.md",
         "scripts/render_final_cpu_paper.py"
       ]
@@ -1168,6 +1170,7 @@
       "category": "current_workflow",
       "path": "scripts/complete_cpu_coverage.py",
       "reference_files": [
+        "results/desaulniers/final_cpu_paper_v1/audit/FRESH_CHECKOUT.md",
         "scripts/analyze_cpu_coverage.py",
         "scripts/audit_final_cpu_completion.py"
       ]
@@ -1365,6 +1368,7 @@
       "reference_files": [
         "README.md",
         "results/desaulniers/final_cpu_paper_v1/REPRODUCE.md",
+        "results/desaulniers/final_cpu_paper_v1/audit/FRESH_CHECKOUT.md",
         "results/desaulniers/final_cpu_paper_v1/audit/VALIDATION.md",
         "scripts/analyze_cpu_coverage.py",
         "tests/test_final_cpu_paper.py"

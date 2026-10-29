@@ -61,10 +61,10 @@
   "enhanced_method_promoted": false,
   "exact_git_transport": {
     "all_exact": true,
-    "exact_files": 574,
+    "exact_files": 575,
     "revision": "index"
   },
-  "git_head": "e8535fc9f86c12332bb57b099422658d5cffec77",
+  "git_head": "cd53d47deaf7098e0cf60edbac8cf43cb37f06ad",
   "implementation_source_hashes": {
     "evrp/__init__.py": "67c55ea82ddca01f74b28634cff024a87ff03d8d9127277fb3b53d37bdffaaab",
     "evrp/agent.py": "eafed7dbf790a613ad69144ae789cf2567f4b5cf24d8c3652f54c6caf3b51f8c",
@@ -258,7 +258,7 @@
     "historical_reproduction": 70,
     "preserved_benchmark": 813,
     "preserved_evidence": 3409,
-    "regenerable_report": 286
+    "regenerable_report": 287
   },
   "local_links_checked": 140,
   "markdown_tables": 17,
