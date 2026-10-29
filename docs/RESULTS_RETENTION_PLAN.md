@@ -1,6 +1,9 @@
 # Results retention and cleanup plan
 
-This is a proposal, not an executed migration or deletion. The read-only scan
+This plan governs historical scientific evidence; no historical migration or
+deletion has been executed. A separate cache-only cleanup was performed on
+2026-10-29; see [the measured cleanup report](RESULTS_CLEANUP_2026-10-29.md).
+The earlier read-only scan
 on 2026-10-29 found 100,798 local files under `results/`: 3,696 Git-tracked
 and 97,102 untracked. The inventory utility records every relative path,
 size, type, Git status, nearest protocol/manifest metadata, disposition and
@@ -92,7 +95,8 @@ Untracked files cannot be recovered merely by naming a Git commit or tag.
 Archiving all currently proposed `H` directories could shrink the active
 tracked results tree by about 232 MiB. Confirmed disposable local test/temp
 artifacts could release up to about 258 MiB more, but their safe subset is not
-yet measured. These are conditional estimates, not achieved savings; this
-milestone removes zero bytes. The broad `.gitignore` rules already protect
+yet measured. These were conditional estimates, not achieved savings from the
+original inventory milestone. The later cache-only cleanup is measured in the
+linked report. The broad `.gitignore` rules already protect
 many generated files, but new study manifests and validation evidence will
 need explicit exceptions before new output paths are used.

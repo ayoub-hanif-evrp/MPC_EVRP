@@ -22,6 +22,12 @@ Use `--summary` to print compact disposition and campaign totals.
 Archive and removal candidates require the dependency and recovery checks in
 the [retention plan](../docs/RESULTS_RETENTION_PLAN.md).
 
+`python -m scripts.maintenance.clean_generated_results` previews only approved
+pytest fixture trees and Python caches under `results/`; `--apply` removes
+verified untracked, link-free candidates. See the
+[measured cleanup report](../docs/RESULTS_CLEANUP_2026-10-29.md). Historical
+research evidence is outside this cleanup utility's scope.
+
 ## Historical Desaulniers studies
 
 The active benchmark is Desaulniers et al. (2016), using multiple partial
