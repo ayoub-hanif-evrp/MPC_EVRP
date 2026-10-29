@@ -1,5 +1,30 @@
 # Desaulniers research outputs
 
+## Future active layout and retention
+
+The current `desaulniers/` tree contains distinct frozen studies. A future
+compact layout may use `baseline/` for new five-method runs, `proposed/` for a
+future method, `ablations/` for component studies, `validation/` for physical
+and integrity audits, and `paper/` for final figures and tables. These are
+conceptual destinations; this milestone creates no empty directories or new
+campaigns. Do not mix those future outputs with the historical studies below.
+
+Keep each study's protocol, source/configuration hashes, seeds, raw manifest,
+failure evidence, and independent audit together. Generated plots and logs
+should be committed only when an identified study requires them as evidence.
+Before using a new output path, review `.gitignore`: its broad results rule
+needs an explicit exception for essential manifests and validation records.
+
+`python -m scripts.maintenance.inventory_results` prints a deterministic JSON
+inventory to stdout and does not write, move, or delete files. Its advisory
+dispositions are `KEEP_ACTIVE`, `ARCHIVE`, `REMOVE_CANDIDATE`, and `REVIEW`.
+`--output PATH` creates a JSON file only when that path does not yet exist.
+Use `--summary` to print compact disposition and campaign totals.
+Archive and removal candidates require the dependency and recovery checks in
+the [retention plan](../docs/RESULTS_RETENTION_PLAN.md).
+
+## Historical Desaulniers studies
+
 The active benchmark is Desaulniers et al. (2016), using multiple partial
 recharges. `desaulniers/development_pilot_final_source/` contains source- and
 dataset-bound pilot records, an independent physical audit, a manifest, and

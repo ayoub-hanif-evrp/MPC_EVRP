@@ -6,6 +6,11 @@ All methods share the physical constraints, fixed reference fleet, released
 requests, risk-aware lexicographic objective and five-second planning budget.
 CPU is the active backend.
 
+The [architecture](docs/ARCHITECTURE.md) and [refactoring roadmap](docs/REFACTORING_ROADMAP.md)
+describe a planned research direction centered on a separate MPC-ALNS-SLAD
+proposal. That method is not implemented or validated. The tested five-method
+framework and the results below remain the current scientific evidence.
+
 ## Current paper results
 
 The [final package](results/desaulniers/final_cpu_paper_v1/FINAL_REPORT.md)
