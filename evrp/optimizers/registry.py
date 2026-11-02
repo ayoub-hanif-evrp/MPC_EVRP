@@ -3,6 +3,7 @@
 from .completion import CompletionOptimizer
 from .mcts import FleetMCTSOptimizer
 from .alns import ALNSOptimizer, ALNSRecoveryV2, ALNSStableV3
+from .alns_safe_init import ALNSSafeInitV1
 from .hgs import HGSOptimizer
 from .acs import ACSOptimizer
 
@@ -23,6 +24,9 @@ def create_optimizer(name, config):
         return ALNSOptimizer(iterations=config.lns_iterations,
                              destroy_fraction=config.lns_destroy_fraction,
                              initialization_fallback=initialization_fallback)
+    if name == "MPC_ALNS_SAFE_INIT_V1":
+        return ALNSSafeInitV1(iterations=config.lns_iterations,
+                              destroy_fraction=config.lns_destroy_fraction)
     if name == "MPC_ALNS_RECOVERY_V2":
         return ALNSRecoveryV2(iterations=config.lns_iterations,
                               destroy_fraction=config.lns_destroy_fraction,

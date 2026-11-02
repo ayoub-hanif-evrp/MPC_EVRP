@@ -1,0 +1,91 @@
+{
+  "correction": "MPC_ALNS_SAFE_INIT_V1 enables existing validated initialization handoff only",
+  "correction_in_original_pilot": false,
+  "original_source_commit": "b44f2636adcd5fbab38027a45b5c84e23e790c25",
+  "scientific_source_identifier": "a2d45c9617bdff72f40782374c739e37dde9dbd2ed5a4812429f0b1722db24ef",
+  "timeout_reproduction": [
+    {
+      "expired_initialization": "UnboundLocalError",
+      "method": "MPC_ALNS"
+    },
+    {
+      "expired_initialization": "AttributeError",
+      "method": "MPC_HGS"
+    },
+    {
+      "expired_initialization": "UnboundLocalError",
+      "method": "MPC_ACS"
+    },
+    {
+      "expired_initialization": "OptimizerInitializationDeadline",
+      "method": "MPC_ALNS_SAFE_INIT_V1"
+    }
+  ],
+  "unchanged_original_and_physical_files": [
+    {
+      "path": "evrp/optimizers/alns.py",
+      "sha256": "07589f5ddf749da43f4ef5d7cf9c3c9a8f5388ea9fa2b56e6e452141a11c694e",
+      "unchanged": true
+    },
+    {
+      "path": "evrp/optimizers/hgs.py",
+      "sha256": "30c1c95e998260cf09005b854fc3d08e56758299143cf2127d3fd7fe3a883232",
+      "unchanged": true
+    },
+    {
+      "path": "evrp/optimizers/acs.py",
+      "sha256": "00cd79f0bf527875a33b7108dafd72e43ee2ebda6983b9a6d144536f60bcfef8",
+      "unchanged": true
+    },
+    {
+      "path": "evrp/optimizers/mcts.py",
+      "sha256": "0a02365a602eb0ae745181e9c48ff0db639361b2573da205b21918e6c18bc493",
+      "unchanged": true
+    },
+    {
+      "path": "evrp/optimizers/completion.py",
+      "sha256": "4114bf8688a68e48819bf6bf5b81881880886c91f000c0647ade7fa1bcab1d3c",
+      "unchanged": true
+    },
+    {
+      "path": "evrp/optimizers/objective.py",
+      "sha256": "eac0aa1c54dd3a3f67763450811c699779bcb6578bb55ba36cb5f8abb89d91c8",
+      "unchanged": true
+    },
+    {
+      "path": "evrp/instance.py",
+      "sha256": "8d86094b4bd46c889002b6676c6e760a0339ffb0e4f11a9fb8cb821a0b60a458",
+      "unchanged": true
+    },
+    {
+      "path": "evrp/model.py",
+      "sha256": "164cd9964da01732dc9e10550de510c00e844e4e57dfdfb0d1f7f714dbf794a8",
+      "unchanged": true
+    },
+    {
+      "path": "evrp/reference.py",
+      "sha256": "6ea3ef2e7ad1ed3f86980fe0d1d334881f36f0275272eb257c447d665d2e8607",
+      "unchanged": true
+    },
+    {
+      "path": "evrp/scenario.py",
+      "sha256": "1d9c1e1772aed2bfcd488968fdbe600ecd6dc1ba215c9329d40acf9ad600a96a",
+      "unchanged": true
+    },
+    {
+      "path": "evrp/observation.py",
+      "sha256": "d4638557084258d44d55129361e6064899fcc7bad482d1f00b539adc07582cee",
+      "unchanged": true
+    },
+    {
+      "path": "evrp/repair.py",
+      "sha256": "2ea9db8b3bbd95901337f0c8dcb259d77dc8e2f43b65ce86207ed01bb5a63e75",
+      "unchanged": true
+    },
+    {
+      "path": "evrp/fleet_mcts.py",
+      "sha256": "3ebf5c809bd458d125a5085ffa8587130e2bd97b04e0af2f2fa7b0b1dba0f019",
+      "unchanged": true
+    }
+  ]
+}

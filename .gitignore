@@ -34,6 +34,14 @@ logs/
 !/results/research_v2/slad_feasibility_v2/validation/RESULTS.md
 !/results/research_v2/balanced_evaluation_v1/validation/exposure_inventory_final.json
 !/results/research_v2/balanced_evaluation_v1/validation/protocol.json
+!/results/research_v2/mpc_reliability_v1/validation/*.json
+!/results/research_v2/mpc_reliability_v1/validation/*.xml
+!/results/research_v2/mpc_reliability_v1/validation/*.md
+!/results/research_v2/mpc_reliability_v1/raw/*.json.gz
+!/results/research_v2/mpc_reliability_v1/failures/*.json
+!/results/research_v2/mpc_reliability_v1/logs/*.log
+!/results/research_v2/mpc_reliability_v1/manifest.json
+!/results/research_v2/mpc_reliability_v1/budget.json
 !/results/desaulniers/development_pilot_final_source/protocol.json
 !/results/desaulniers/development_pilot_final_source/manifest.json
 !/results/desaulniers/development_pilot_final_source/SUMMARY.md

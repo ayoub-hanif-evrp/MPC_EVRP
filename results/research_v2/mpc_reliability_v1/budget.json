@@ -1,0 +1,229 @@
+{
+  "charged_seconds": 819.9148679000209,
+  "jobs": [
+    {
+      "command": [
+        "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "-u",
+        "-m",
+        "scripts.experiments.run_mpc_reliability_pilot",
+        "--worker",
+        "0",
+        "MPC_COMPLETION"
+      ],
+      "cpu_seconds": 0.96875,
+      "cpu_to_wall": 0.8703610765390851,
+      "elapsed_seconds": 1.113043799996376,
+      "id": "pilot_0_MPC_COMPLETION",
+      "log": "results/research_v2/mpc_reliability_v1/logs/pilot_0_MPC_COMPLETION.log",
+      "pid": 18156,
+      "reason": null,
+      "returncode": 0,
+      "started_utc": "2026-11-02T20:17:22.953752+00:00",
+      "status": "complete",
+      "upper_seconds": 69
+    },
+    {
+      "command": [
+        "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "-u",
+        "-m",
+        "scripts.experiments.run_mpc_reliability_pilot",
+        "--worker",
+        "0",
+        "MPC_MCTS"
+      ],
+      "cpu_seconds": 5.734375,
+      "cpu_to_wall": 0.9724381005363263,
+      "elapsed_seconds": 5.8969049000006635,
+      "id": "pilot_0_MPC_MCTS",
+      "log": "results/research_v2/mpc_reliability_v1/logs/pilot_0_MPC_MCTS.log",
+      "pid": 30124,
+      "reason": null,
+      "returncode": 0,
+      "started_utc": "2026-11-02T20:17:24.084767+00:00",
+      "status": "complete",
+      "upper_seconds": 218
+    },
+    {
+      "command": [
+        "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "-u",
+        "-m",
+        "scripts.experiments.run_mpc_reliability_pilot",
+        "--worker",
+        "0",
+        "MPC_ALNS"
+      ],
+      "cpu_seconds": 1.578125,
+      "cpu_to_wall": 0.8922485460556169,
+      "elapsed_seconds": 1.768705599999521,
+      "id": "pilot_0_MPC_ALNS",
+      "log": "results/research_v2/mpc_reliability_v1/logs/pilot_0_MPC_ALNS.log",
+      "pid": 12240,
+      "reason": null,
+      "returncode": 0,
+      "started_utc": "2026-11-02T20:17:30.029054+00:00",
+      "status": "complete",
+      "upper_seconds": 192
+    },
+    {
+      "command": [
+        "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "-u",
+        "-m",
+        "scripts.experiments.run_mpc_reliability_pilot",
+        "--worker",
+        "0",
+        "MPC_HGS"
+      ],
+      "cpu_seconds": 3.65625,
+      "cpu_to_wall": 0.9660890011513058,
+      "elapsed_seconds": 3.7845892000041204,
+      "id": "pilot_0_MPC_HGS",
+      "log": "results/research_v2/mpc_reliability_v1/logs/pilot_0_MPC_HGS.log",
+      "pid": 29340,
+      "reason": null,
+      "returncode": 0,
+      "started_utc": "2026-11-02T20:17:31.823783+00:00",
+      "status": "complete",
+      "upper_seconds": 207
+    },
+    {
+      "command": [
+        "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "-u",
+        "-m",
+        "scripts.experiments.run_mpc_reliability_pilot",
+        "--worker",
+        "0",
+        "MPC_ACS"
+      ],
+      "cpu_seconds": 1.71875,
+      "cpu_to_wall": 1.000915105745986,
+      "elapsed_seconds": 1.7171785999962594,
+      "id": "pilot_0_MPC_ACS",
+      "log": "results/research_v2/mpc_reliability_v1/logs/pilot_0_MPC_ACS.log",
+      "pid": 16048,
+      "reason": null,
+      "returncode": 0,
+      "started_utc": "2026-11-02T20:17:35.629026+00:00",
+      "status": "complete",
+      "upper_seconds": 160
+    },
+    {
+      "command": [
+        "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "-u",
+        "-m",
+        "scripts.experiments.run_mpc_reliability_pilot",
+        "--worker",
+        "1",
+        "MPC_ACS"
+      ],
+      "cpu_seconds": 185.515625,
+      "cpu_to_wall": 0.9849599367547831,
+      "elapsed_seconds": 188.34839680000732,
+      "id": "pilot_1_MPC_ACS",
+      "log": "results/research_v2/mpc_reliability_v1/logs/pilot_1_MPC_ACS.log",
+      "pid": 2100,
+      "reason": null,
+      "returncode": 0,
+      "started_utc": "2026-11-02T20:17:37.373778+00:00",
+      "status": "complete",
+      "upper_seconds": 845
+    },
+    {
+      "command": [
+        "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "-u",
+        "-m",
+        "scripts.experiments.run_mpc_reliability_pilot",
+        "--worker",
+        "1",
+        "MPC_HGS"
+      ],
+      "cpu_seconds": 233.78125,
+      "cpu_to_wall": 0.9874112359033671,
+      "elapsed_seconds": 236.76178830000572,
+      "id": "pilot_1_MPC_HGS",
+      "log": "results/research_v2/mpc_reliability_v1/logs/pilot_1_MPC_HGS.log",
+      "pid": 20652,
+      "reason": null,
+      "returncode": 0,
+      "started_utc": "2026-11-02T20:20:45.773573+00:00",
+      "status": "complete",
+      "upper_seconds": 876
+    },
+    {
+      "command": [
+        "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "-u",
+        "-m",
+        "scripts.experiments.run_mpc_reliability_pilot",
+        "--worker",
+        "1",
+        "MPC_ALNS"
+      ],
+      "cpu_seconds": 61.640625,
+      "cpu_to_wall": 0.9809683096657005,
+      "elapsed_seconds": 62.836510000008275,
+      "id": "pilot_1_MPC_ALNS",
+      "log": "results/research_v2/mpc_reliability_v1/logs/pilot_1_MPC_ALNS.log",
+      "pid": 30524,
+      "reason": null,
+      "returncode": 0,
+      "started_utc": "2026-11-02T20:24:42.607833+00:00",
+      "status": "complete",
+      "upper_seconds": 425
+    },
+    {
+      "command": [
+        "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "-u",
+        "-m",
+        "scripts.experiments.run_mpc_reliability_pilot",
+        "--worker",
+        "1",
+        "MPC_MCTS"
+      ],
+      "cpu_seconds": 12.421875,
+      "cpu_to_wall": 0.9780727150132442,
+      "elapsed_seconds": 12.700359399997978,
+      "id": "pilot_1_MPC_MCTS",
+      "log": "results/research_v2/mpc_reliability_v1/logs/pilot_1_MPC_MCTS.log",
+      "pid": 7516,
+      "reason": null,
+      "returncode": 0,
+      "started_utc": "2026-11-02T20:25:45.494205+00:00",
+      "status": "complete",
+      "upper_seconds": 429
+    },
+    {
+      "command": [
+        "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "-u",
+        "-m",
+        "scripts.experiments.run_mpc_reliability_pilot",
+        "--worker",
+        "1",
+        "MPC_COMPLETION"
+      ],
+      "cpu_seconds": 3.546875,
+      "cpu_to_wall": 0.9738624181812355,
+      "elapsed_seconds": 3.6420699000009336,
+      "id": "pilot_1_MPC_COMPLETION",
+      "log": "results/research_v2/mpc_reliability_v1/logs/pilot_1_MPC_COMPLETION.log",
+      "pid": 13328,
+      "reason": null,
+      "returncode": 0,
+      "started_utc": "2026-11-02T20:25:58.264307+00:00",
+      "status": "complete",
+      "upper_seconds": 94
+    }
+  ],
+  "limit_seconds": 7200,
+  "orchestration_cpu_seconds": 1.34375,
+  "policy": "Charge max(worker elapsed, worker CPU); no automatic retry; hard per-job and campaign limits",
+  "worker_cpu_charged_seconds": 503.0
+}

@@ -1,0 +1,8 @@
+{
+  "error_type": "KeyError",
+  "executed_runner_sha256": "9bc728bc557ee3b445480722470c799f0e3683700f7f036977b58a09fcb99c03",
+  "message": "'deadline_fallback_count'",
+  "resolution": "separate analyze_mpc_reliability_pilot helper; no rerun or raw/protocol mutation",
+  "stage": "analysis_only",
+  "traceback": "Traceback (most recent call last):\n  File \"<string>\", line 2, in <module>\n  File \"C:\\Users\\AYOUB\\OneDrive - EMSI\\Bureau\\PHD_WORK\\MPC_MCTS_Multi_agents_EVRP\\scripts\\experiments\\run_mpc_reliability_pilot.py\", line 443, in report\n    validated_fallbacks=metrics[\"deadline_fallback_count\"],\n                        ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^\nKeyError: 'deadline_fallback_count'\n"
+}

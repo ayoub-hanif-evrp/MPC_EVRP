@@ -1,0 +1,298 @@
+{
+  "completed_runs": 10,
+  "planned_runs": 10,
+  "protocol_identifier": "e0ba42be852b1b0ae79377899f1f62d18f3dd97543ac88789ec2b959e28fa418",
+  "records": [
+    {
+      "case_index": 0,
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.experiments.run_mpc_reliability_pilot",
+          "--worker",
+          "0",
+          "MPC_COMPLETION"
+        ],
+        "cpu_seconds": 0.96875,
+        "cpu_to_wall": 0.8703610765390851,
+        "elapsed_seconds": 1.113043799996376,
+        "id": "pilot_0_MPC_COMPLETION",
+        "log": "results/research_v2/mpc_reliability_v1/logs/pilot_0_MPC_COMPLETION.log",
+        "pid": 18156,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-11-02T20:17:22.953752+00:00",
+        "status": "complete",
+        "upper_seconds": 69
+      },
+      "id": "pilot_0_MPC_COMPLETION",
+      "method": "MPC_COMPLETION",
+      "raw": "results/research_v2/mpc_reliability_v1/raw/pilot_0_MPC_COMPLETION.json.gz",
+      "sha256": "6023ab0ed5f2f4ced7b5bf1322b1b6e788277cd59cb39d02b4b5b6b5693c5534"
+    },
+    {
+      "case_index": 0,
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.experiments.run_mpc_reliability_pilot",
+          "--worker",
+          "0",
+          "MPC_MCTS"
+        ],
+        "cpu_seconds": 5.734375,
+        "cpu_to_wall": 0.9724381005363263,
+        "elapsed_seconds": 5.8969049000006635,
+        "id": "pilot_0_MPC_MCTS",
+        "log": "results/research_v2/mpc_reliability_v1/logs/pilot_0_MPC_MCTS.log",
+        "pid": 30124,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-11-02T20:17:24.084767+00:00",
+        "status": "complete",
+        "upper_seconds": 218
+      },
+      "id": "pilot_0_MPC_MCTS",
+      "method": "MPC_MCTS",
+      "raw": "results/research_v2/mpc_reliability_v1/raw/pilot_0_MPC_MCTS.json.gz",
+      "sha256": "e29dd7970cf5ef669a19515414b29c07a9c84241aefd6058258bce9005a67f89"
+    },
+    {
+      "case_index": 0,
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.experiments.run_mpc_reliability_pilot",
+          "--worker",
+          "0",
+          "MPC_ALNS"
+        ],
+        "cpu_seconds": 1.578125,
+        "cpu_to_wall": 0.8922485460556169,
+        "elapsed_seconds": 1.768705599999521,
+        "id": "pilot_0_MPC_ALNS",
+        "log": "results/research_v2/mpc_reliability_v1/logs/pilot_0_MPC_ALNS.log",
+        "pid": 12240,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-11-02T20:17:30.029054+00:00",
+        "status": "complete",
+        "upper_seconds": 192
+      },
+      "id": "pilot_0_MPC_ALNS",
+      "method": "MPC_ALNS",
+      "raw": "results/research_v2/mpc_reliability_v1/raw/pilot_0_MPC_ALNS.json.gz",
+      "sha256": "505c390be3030103f4e36a25c4f884f2d24c4548fd1d34582db17fb86cf65993"
+    },
+    {
+      "case_index": 0,
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.experiments.run_mpc_reliability_pilot",
+          "--worker",
+          "0",
+          "MPC_HGS"
+        ],
+        "cpu_seconds": 3.65625,
+        "cpu_to_wall": 0.9660890011513058,
+        "elapsed_seconds": 3.7845892000041204,
+        "id": "pilot_0_MPC_HGS",
+        "log": "results/research_v2/mpc_reliability_v1/logs/pilot_0_MPC_HGS.log",
+        "pid": 29340,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-11-02T20:17:31.823783+00:00",
+        "status": "complete",
+        "upper_seconds": 207
+      },
+      "id": "pilot_0_MPC_HGS",
+      "method": "MPC_HGS",
+      "raw": "results/research_v2/mpc_reliability_v1/raw/pilot_0_MPC_HGS.json.gz",
+      "sha256": "becae33b89a547826b9d6c4991916ab71619da2ff6b36adf9fb9c11c684bedf0"
+    },
+    {
+      "case_index": 0,
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.experiments.run_mpc_reliability_pilot",
+          "--worker",
+          "0",
+          "MPC_ACS"
+        ],
+        "cpu_seconds": 1.71875,
+        "cpu_to_wall": 1.000915105745986,
+        "elapsed_seconds": 1.7171785999962594,
+        "id": "pilot_0_MPC_ACS",
+        "log": "results/research_v2/mpc_reliability_v1/logs/pilot_0_MPC_ACS.log",
+        "pid": 16048,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-11-02T20:17:35.629026+00:00",
+        "status": "complete",
+        "upper_seconds": 160
+      },
+      "id": "pilot_0_MPC_ACS",
+      "method": "MPC_ACS",
+      "raw": "results/research_v2/mpc_reliability_v1/raw/pilot_0_MPC_ACS.json.gz",
+      "sha256": "9308b7f24fdcc21ce8feb498b98b36d5cd3fee1e642889632630e6489e779a13"
+    },
+    {
+      "case_index": 1,
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.experiments.run_mpc_reliability_pilot",
+          "--worker",
+          "1",
+          "MPC_ACS"
+        ],
+        "cpu_seconds": 185.515625,
+        "cpu_to_wall": 0.9849599367547831,
+        "elapsed_seconds": 188.34839680000732,
+        "id": "pilot_1_MPC_ACS",
+        "log": "results/research_v2/mpc_reliability_v1/logs/pilot_1_MPC_ACS.log",
+        "pid": 2100,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-11-02T20:17:37.373778+00:00",
+        "status": "complete",
+        "upper_seconds": 845
+      },
+      "id": "pilot_1_MPC_ACS",
+      "method": "MPC_ACS",
+      "raw": "results/research_v2/mpc_reliability_v1/raw/pilot_1_MPC_ACS.json.gz",
+      "sha256": "887092f4b67ab274f1b3753330aa01d51c606bcc21d5e0c57b09ba4dd1a4f152"
+    },
+    {
+      "case_index": 1,
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.experiments.run_mpc_reliability_pilot",
+          "--worker",
+          "1",
+          "MPC_HGS"
+        ],
+        "cpu_seconds": 233.78125,
+        "cpu_to_wall": 0.9874112359033671,
+        "elapsed_seconds": 236.76178830000572,
+        "id": "pilot_1_MPC_HGS",
+        "log": "results/research_v2/mpc_reliability_v1/logs/pilot_1_MPC_HGS.log",
+        "pid": 20652,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-11-02T20:20:45.773573+00:00",
+        "status": "complete",
+        "upper_seconds": 876
+      },
+      "id": "pilot_1_MPC_HGS",
+      "method": "MPC_HGS",
+      "raw": "results/research_v2/mpc_reliability_v1/raw/pilot_1_MPC_HGS.json.gz",
+      "sha256": "7e7ef220755c58bdbefc6354a055375bac32b7b09b087173fcabb0708922b88d"
+    },
+    {
+      "case_index": 1,
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.experiments.run_mpc_reliability_pilot",
+          "--worker",
+          "1",
+          "MPC_ALNS"
+        ],
+        "cpu_seconds": 61.640625,
+        "cpu_to_wall": 0.9809683096657005,
+        "elapsed_seconds": 62.836510000008275,
+        "id": "pilot_1_MPC_ALNS",
+        "log": "results/research_v2/mpc_reliability_v1/logs/pilot_1_MPC_ALNS.log",
+        "pid": 30524,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-11-02T20:24:42.607833+00:00",
+        "status": "complete",
+        "upper_seconds": 425
+      },
+      "id": "pilot_1_MPC_ALNS",
+      "method": "MPC_ALNS",
+      "raw": "results/research_v2/mpc_reliability_v1/raw/pilot_1_MPC_ALNS.json.gz",
+      "sha256": "f021dc826b75faf3164bfe97735a17d06b1cda8f7db2cd768ee1d8dad3d114f6"
+    },
+    {
+      "case_index": 1,
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.experiments.run_mpc_reliability_pilot",
+          "--worker",
+          "1",
+          "MPC_MCTS"
+        ],
+        "cpu_seconds": 12.421875,
+        "cpu_to_wall": 0.9780727150132442,
+        "elapsed_seconds": 12.700359399997978,
+        "id": "pilot_1_MPC_MCTS",
+        "log": "results/research_v2/mpc_reliability_v1/logs/pilot_1_MPC_MCTS.log",
+        "pid": 7516,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-11-02T20:25:45.494205+00:00",
+        "status": "complete",
+        "upper_seconds": 429
+      },
+      "id": "pilot_1_MPC_MCTS",
+      "method": "MPC_MCTS",
+      "raw": "results/research_v2/mpc_reliability_v1/raw/pilot_1_MPC_MCTS.json.gz",
+      "sha256": "60483e338a0cd26511855cb3f56d6360c68fe73a9dd2416f5516d138e084ce21"
+    },
+    {
+      "case_index": 1,
+      "execution": {
+        "command": [
+          "C:\\Users\\AYOUB\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-u",
+          "-m",
+          "scripts.experiments.run_mpc_reliability_pilot",
+          "--worker",
+          "1",
+          "MPC_COMPLETION"
+        ],
+        "cpu_seconds": 3.546875,
+        "cpu_to_wall": 0.9738624181812355,
+        "elapsed_seconds": 3.6420699000009336,
+        "id": "pilot_1_MPC_COMPLETION",
+        "log": "results/research_v2/mpc_reliability_v1/logs/pilot_1_MPC_COMPLETION.log",
+        "pid": 13328,
+        "reason": null,
+        "returncode": 0,
+        "started_utc": "2026-11-02T20:25:58.264307+00:00",
+        "status": "complete",
+        "upper_seconds": 94
+      },
+      "id": "pilot_1_MPC_COMPLETION",
+      "method": "MPC_COMPLETION",
+      "raw": "results/research_v2/mpc_reliability_v1/raw/pilot_1_MPC_COMPLETION.json.gz",
+      "sha256": "41d41ddafb679e8a9c64e2531ed39827a9d6d5d7b8f26af2e67ef00fe1cd7e8c"
+    }
+  ],
+  "status": "complete"
+}

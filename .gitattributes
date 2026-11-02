@@ -23,3 +23,8 @@ results/desaulniers/final_cpu_paper_v1/** -text whitespace=cr-at-eol
 results/desaulniers/final_cpu_development_v1/** -text whitespace=cr-at-eol
 results/desaulniers/two_worker_probe_v1/** -text whitespace=cr-at-eol
 results/desaulniers/fast_framework_v1/** -text whitespace=cr-at-eol
+# Keep this pilot's executed source and evidence hashes portable across checkouts.
+scripts/experiments/run_mpc_reliability_pilot.py text eol=lf
+scripts/experiments/analyze_mpc_reliability_pilot.py text eol=lf
+scripts/experiments/paths.py text eol=lf
+results/research_v2/mpc_reliability_v1/** -text whitespace=cr-at-eol

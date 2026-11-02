@@ -1,0 +1,10 @@
+{
+  "all_pilot_physical_information_and_deadline_checks": true,
+  "git_clean_filter_byte_checks": 86,
+  "historical_raw_hashes_unchanged": 510,
+  "pilot_raw_hashes_verified": 10,
+  "pre_pilot_validation_hashes_unchanged": true,
+  "protocol_identifier": "e0ba42be852b1b0ae79377899f1f62d18f3dd97543ac88789ec2b959e28fa418",
+  "source_files_match_frozen": true,
+  "study_bytes_before_this_report": 3425109
+}
