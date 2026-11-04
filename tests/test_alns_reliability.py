@@ -28,7 +28,7 @@ def context(state, observation, config, routes=None, deadline=None):
 def test_original_timeout_defect_is_preserved_and_explicit_variant_corrects_it():
     state, obs, config = setup((customer("A", 1),))
     expired = context(state, obs, config, deadline=perf_counter() - 1)
-    with pytest.raises(UnboundLocalError):
+    with pytest.raises(NameError, match=r"(?:best|local variable)"):
         ALNSOptimizer().optimize(expired)
     with pytest.raises(OptimizerInitializationDeadline):
         ALNSSafeInitV1().optimize(expired)
