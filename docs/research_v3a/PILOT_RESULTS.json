@@ -1,0 +1,608 @@
+{
+  "schema": "v3a-pilot-1",
+  "dataset_commit": "c79f4c53a4b18f722a1047f089f811a3bb1ffaa0",
+  "source_hashes": {
+    "evrp/research_v3a/benchmark.py": "11ca07dd90e64db1c2029a05a5bd768ca896943bdec2df4a152909186e526a45",
+    "evrp/research_v3a/simulator.py": "c9b463fd47a13678ee5c6a87d22bef178f08825ae02d7812f13901138eea3da8",
+    "evrp/research_v3a/policies.py": "935e56f40a1e3ddfe605937477055b09766760971ef4203ce716e3d0031be21a",
+    "evrp/research_v3a/replay.py": "b0d7a3e34e029b1208f1eddebe9d779f3aeda4f3fb7cd9d6999b7858a64c1c25"
+  },
+  "protocol": "docs/research_v3a/PILOT_PROTOCOL.md",
+  "case_order": [
+    "c101_25_2_independent",
+    "c101_25_2_endogenous",
+    "c101_25_2_derived_1ch_independent",
+    "c101_25_2_derived_1ch_endogenous",
+    "r101_25_2_independent",
+    "r101_25_2_endogenous",
+    "r101_25_2_derived_1ch_independent",
+    "r101_25_2_derived_1ch_endogenous"
+  ],
+  "records": [
+    {
+      "case": "c101_25_2",
+      "policy": "independent",
+      "announced": 25,
+      "accepted": 25,
+      "served": 19,
+      "broken_accepted": 6,
+      "rejected": 0,
+      "charging_wait": 0.0,
+      "resource_conflicts": 0,
+      "physical_violations": 0,
+      "distance": 531.0,
+      "charging_cost": 159.3,
+      "wall_seconds": 0.005291400011628866,
+      "cpu_seconds": 0.015625,
+      "timed_out": false,
+      "failure": null,
+      "source_sha256": "8e6827bdb39e1ef99452ce3fd4b52d344cbedf8314ec8707928a09fb7b325264",
+      "replay": {
+        "events_verified": 118,
+        "customers_verified": 19,
+        "chargers_active_at_end": 0,
+        "physical_violations": 0
+      },
+      "decision_count": 84,
+      "decision_median": 4.999979864805937e-06,
+      "decision_p95": 1.0800024028867483e-05,
+      "decision_max": 1.4699995517730713e-05,
+      "raw_path": "results/research_v3a/pilot_v1/raw/c101_25_2_independent.json.gz",
+      "raw_sha256": "9e5282007ecab7b095c41a242c6da291f40f7826e828aadb7cce5fb76514a4df",
+      "first_actions": [
+        {
+          "time": 0.0,
+          "vehicle": 0,
+          "action": {
+            "kind": "customer",
+            "target": 0,
+            "charge_to": 0.0
+          },
+          "latency": 5.599984433501959e-06
+        },
+        {
+          "time": 0.0,
+          "vehicle": 1,
+          "action": {
+            "kind": "customer",
+            "target": 19,
+            "charge_to": 0.0
+          },
+          "latency": 3.3999676816165447e-06
+        },
+        {
+          "time": 0.0,
+          "vehicle": 2,
+          "action": {
+            "kind": "customer",
+            "target": 20,
+            "charge_to": 0.0
+          },
+          "latency": 2.300017513334751e-06
+        },
+        {
+          "time": 0.0,
+          "vehicle": 3,
+          "action": {
+            "kind": "customer",
+            "target": 21,
+            "charge_to": 0.0
+          },
+          "latency": 1.500011421740055e-06
+        }
+      ]
+    },
+    {
+      "case": "c101_25_2",
+      "policy": "endogenous",
+      "announced": 25,
+      "accepted": 25,
+      "served": 19,
+      "broken_accepted": 6,
+      "rejected": 0,
+      "charging_wait": 0.0,
+      "resource_conflicts": 0,
+      "physical_violations": 0,
+      "distance": 531.0,
+      "charging_cost": 159.3,
+      "wall_seconds": 0.005005899991374463,
+      "cpu_seconds": 0.0,
+      "timed_out": false,
+      "failure": null,
+      "source_sha256": "8e6827bdb39e1ef99452ce3fd4b52d344cbedf8314ec8707928a09fb7b325264",
+      "replay": {
+        "events_verified": 118,
+        "customers_verified": 19,
+        "chargers_active_at_end": 0,
+        "physical_violations": 0
+      },
+      "decision_count": 84,
+      "decision_median": 5.599984433501959e-06,
+      "decision_p95": 1.2200034689158201e-05,
+      "decision_max": 2.41999514400959e-05,
+      "raw_path": "results/research_v3a/pilot_v1/raw/c101_25_2_endogenous.json.gz",
+      "raw_sha256": "296ffaddc14f191cedd5a2a05198bab6fc267d6615c627feed00e2bd712f9ddf",
+      "first_actions": [
+        {
+          "time": 0.0,
+          "vehicle": 0,
+          "action": {
+            "kind": "customer",
+            "target": 0,
+            "charge_to": 0.0
+          },
+          "latency": 4.00003045797348e-06
+        },
+        {
+          "time": 0.0,
+          "vehicle": 1,
+          "action": {
+            "kind": "customer",
+            "target": 19,
+            "charge_to": 0.0
+          },
+          "latency": 2.00001522898674e-06
+        },
+        {
+          "time": 0.0,
+          "vehicle": 2,
+          "action": {
+            "kind": "customer",
+            "target": 20,
+            "charge_to": 0.0
+          },
+          "latency": 1.5999539755284786e-06
+        },
+        {
+          "time": 0.0,
+          "vehicle": 3,
+          "action": {
+            "kind": "customer",
+            "target": 21,
+            "charge_to": 0.0
+          },
+          "latency": 1.600012183189392e-06
+        }
+      ]
+    },
+    {
+      "case": "c101_25_2_derived_1ch",
+      "policy": "independent",
+      "announced": 25,
+      "accepted": 25,
+      "served": 19,
+      "broken_accepted": 6,
+      "rejected": 0,
+      "charging_wait": 0.0,
+      "resource_conflicts": 0,
+      "physical_violations": 0,
+      "distance": 531.0,
+      "charging_cost": 159.3,
+      "wall_seconds": 0.004790999984834343,
+      "cpu_seconds": 0.0,
+      "timed_out": false,
+      "failure": null,
+      "source_sha256": "8e6827bdb39e1ef99452ce3fd4b52d344cbedf8314ec8707928a09fb7b325264",
+      "replay": {
+        "events_verified": 118,
+        "customers_verified": 19,
+        "chargers_active_at_end": 0,
+        "physical_violations": 0
+      },
+      "decision_count": 84,
+      "decision_median": 4.099973011761904e-06,
+      "decision_p95": 9.700015652924776e-06,
+      "decision_max": 8.020002860575914e-05,
+      "raw_path": "results/research_v3a/pilot_v1/raw/c101_25_2_derived_1ch_independent.json.gz",
+      "raw_sha256": "d732e7686f335f30d80ce73f77890de132f39a22d1d79c2e411733e02fd7dd94",
+      "first_actions": [
+        {
+          "time": 0.0,
+          "vehicle": 0,
+          "action": {
+            "kind": "customer",
+            "target": 0,
+            "charge_to": 0.0
+          },
+          "latency": 3.8000289350748062e-06
+        },
+        {
+          "time": 0.0,
+          "vehicle": 1,
+          "action": {
+            "kind": "customer",
+            "target": 19,
+            "charge_to": 0.0
+          },
+          "latency": 2.00001522898674e-06
+        },
+        {
+          "time": 0.0,
+          "vehicle": 2,
+          "action": {
+            "kind": "customer",
+            "target": 20,
+            "charge_to": 0.0
+          },
+          "latency": 1.600012183189392e-06
+        },
+        {
+          "time": 0.0,
+          "vehicle": 3,
+          "action": {
+            "kind": "customer",
+            "target": 21,
+            "charge_to": 0.0
+          },
+          "latency": 1.400010660290718e-06
+        }
+      ]
+    },
+    {
+      "case": "c101_25_2_derived_1ch",
+      "policy": "endogenous",
+      "announced": 25,
+      "accepted": 25,
+      "served": 19,
+      "broken_accepted": 6,
+      "rejected": 0,
+      "charging_wait": 0.0,
+      "resource_conflicts": 0,
+      "physical_violations": 0,
+      "distance": 531.0,
+      "charging_cost": 159.3,
+      "wall_seconds": 0.0045001000398769975,
+      "cpu_seconds": 0.015625,
+      "timed_out": false,
+      "failure": null,
+      "source_sha256": "8e6827bdb39e1ef99452ce3fd4b52d344cbedf8314ec8707928a09fb7b325264",
+      "replay": {
+        "events_verified": 118,
+        "customers_verified": 19,
+        "chargers_active_at_end": 0,
+        "physical_violations": 0
+      },
+      "decision_count": 84,
+      "decision_median": 4.099973011761904e-06,
+      "decision_p95": 9.300012607127428e-06,
+      "decision_max": 9.600014891475439e-06,
+      "raw_path": "results/research_v3a/pilot_v1/raw/c101_25_2_derived_1ch_endogenous.json.gz",
+      "raw_sha256": "2c5633c42d5953f93abbd810e1faebf3eb14d37303d2b4b54c8d4853dcc1262e",
+      "first_actions": [
+        {
+          "time": 0.0,
+          "vehicle": 0,
+          "action": {
+            "kind": "customer",
+            "target": 0,
+            "charge_to": 0.0
+          },
+          "latency": 4.099973011761904e-06
+        },
+        {
+          "time": 0.0,
+          "vehicle": 1,
+          "action": {
+            "kind": "customer",
+            "target": 19,
+            "charge_to": 0.0
+          },
+          "latency": 2.100015990436077e-06
+        },
+        {
+          "time": 0.0,
+          "vehicle": 2,
+          "action": {
+            "kind": "customer",
+            "target": 20,
+            "charge_to": 0.0
+          },
+          "latency": 1.500011421740055e-06
+        },
+        {
+          "time": 0.0,
+          "vehicle": 3,
+          "action": {
+            "kind": "customer",
+            "target": 21,
+            "charge_to": 0.0
+          },
+          "latency": 1.4999532140791416e-06
+        }
+      ]
+    },
+    {
+      "case": "r101_25_2",
+      "policy": "independent",
+      "announced": 25,
+      "accepted": 25,
+      "served": 14,
+      "broken_accepted": 11,
+      "rejected": 0,
+      "charging_wait": 0.0,
+      "resource_conflicts": 0,
+      "physical_violations": 0,
+      "distance": 323.0,
+      "charging_cost": 96.89999999999999,
+      "wall_seconds": 0.0031954999431036413,
+      "cpu_seconds": 0.0,
+      "timed_out": false,
+      "failure": null,
+      "source_sha256": "d24f204bb7b9fc3334de1ce9a1a62e8402aacd51010c2ec1f827b3ef4272317d",
+      "replay": {
+        "events_verified": 79,
+        "customers_verified": 14,
+        "chargers_active_at_end": 0,
+        "physical_violations": 0
+      },
+      "decision_count": 37,
+      "decision_median": 3.2999669201672077e-06,
+      "decision_p95": 1.2800039257854223e-05,
+      "decision_max": 2.2899999748915434e-05,
+      "raw_path": "results/research_v3a/pilot_v1/raw/r101_25_2_independent.json.gz",
+      "raw_sha256": "48fd14b2ae6baea9c1895d4210a9b524af22b188ff333293b8a7192465e8332b",
+      "first_actions": [
+        {
+          "time": 0.0,
+          "vehicle": 0,
+          "action": {
+            "kind": "customer",
+            "target": 0,
+            "charge_to": 0.0
+          },
+          "latency": 4.199973773211241e-06
+        },
+        {
+          "time": 0.0,
+          "vehicle": 1,
+          "action": {
+            "kind": "customer",
+            "target": 1,
+            "charge_to": 0.0
+          },
+          "latency": 2.00001522898674e-06
+        },
+        {
+          "time": 0.0,
+          "vehicle": 2,
+          "action": {
+            "kind": "customer",
+            "target": 2,
+            "charge_to": 0.0
+          },
+          "latency": 1.500011421740055e-06
+        },
+        {
+          "time": 0.0,
+          "vehicle": 3,
+          "action": {
+            "kind": "customer",
+            "target": 3,
+            "charge_to": 0.0
+          },
+          "latency": 1.4999532140791416e-06
+        }
+      ]
+    },
+    {
+      "case": "r101_25_2",
+      "policy": "endogenous",
+      "announced": 25,
+      "accepted": 25,
+      "served": 14,
+      "broken_accepted": 11,
+      "rejected": 0,
+      "charging_wait": 0.0,
+      "resource_conflicts": 0,
+      "physical_violations": 0,
+      "distance": 323.0,
+      "charging_cost": 96.89999999999999,
+      "wall_seconds": 0.0032156999805010855,
+      "cpu_seconds": 0.0,
+      "timed_out": false,
+      "failure": null,
+      "source_sha256": "d24f204bb7b9fc3334de1ce9a1a62e8402aacd51010c2ec1f827b3ef4272317d",
+      "replay": {
+        "events_verified": 79,
+        "customers_verified": 14,
+        "chargers_active_at_end": 0,
+        "physical_violations": 0
+      },
+      "decision_count": 37,
+      "decision_median": 3.3999676816165447e-06,
+      "decision_p95": 1.3899989426136017e-05,
+      "decision_max": 2.4900014977902174e-05,
+      "raw_path": "results/research_v3a/pilot_v1/raw/r101_25_2_endogenous.json.gz",
+      "raw_sha256": "b1d4137b0c723b34e8e64a21317cb6d59eb5dd80558262d79107059d3ec68d23",
+      "first_actions": [
+        {
+          "time": 0.0,
+          "vehicle": 0,
+          "action": {
+            "kind": "customer",
+            "target": 0,
+            "charge_to": 0.0
+          },
+          "latency": 3.999972250312567e-06
+        },
+        {
+          "time": 0.0,
+          "vehicle": 1,
+          "action": {
+            "kind": "customer",
+            "target": 1,
+            "charge_to": 0.0
+          },
+          "latency": 1.700012944638729e-06
+        },
+        {
+          "time": 0.0,
+          "vehicle": 2,
+          "action": {
+            "kind": "customer",
+            "target": 2,
+            "charge_to": 0.0
+          },
+          "latency": 1.4999532140791416e-06
+        },
+        {
+          "time": 0.0,
+          "vehicle": 3,
+          "action": {
+            "kind": "customer",
+            "target": 3,
+            "charge_to": 0.0
+          },
+          "latency": 1.5999539755284786e-06
+        }
+      ]
+    },
+    {
+      "case": "r101_25_2_derived_1ch",
+      "policy": "independent",
+      "announced": 25,
+      "accepted": 25,
+      "served": 14,
+      "broken_accepted": 11,
+      "rejected": 0,
+      "charging_wait": 0.0,
+      "resource_conflicts": 0,
+      "physical_violations": 0,
+      "distance": 323.0,
+      "charging_cost": 96.89999999999999,
+      "wall_seconds": 0.0031588000128977,
+      "cpu_seconds": 0.015625,
+      "timed_out": false,
+      "failure": null,
+      "source_sha256": "d24f204bb7b9fc3334de1ce9a1a62e8402aacd51010c2ec1f827b3ef4272317d",
+      "replay": {
+        "events_verified": 79,
+        "customers_verified": 14,
+        "chargers_active_at_end": 0,
+        "physical_violations": 0
+      },
+      "decision_count": 37,
+      "decision_median": 3.200024366378784e-06,
+      "decision_p95": 1.1299969628453255e-05,
+      "decision_max": 2.080004196614027e-05,
+      "raw_path": "results/research_v3a/pilot_v1/raw/r101_25_2_derived_1ch_independent.json.gz",
+      "raw_sha256": "c1ce9e64ce6629e0b6b26706ef2e655ba6690bb4c25797e9db638dc507c445d1",
+      "first_actions": [
+        {
+          "time": 0.0,
+          "vehicle": 0,
+          "action": {
+            "kind": "customer",
+            "target": 0,
+            "charge_to": 0.0
+          },
+          "latency": 4.299974534660578e-06
+        },
+        {
+          "time": 0.0,
+          "vehicle": 1,
+          "action": {
+            "kind": "customer",
+            "target": 1,
+            "charge_to": 0.0
+          },
+          "latency": 2.0999577827751637e-06
+        },
+        {
+          "time": 0.0,
+          "vehicle": 2,
+          "action": {
+            "kind": "customer",
+            "target": 2,
+            "charge_to": 0.0
+          },
+          "latency": 1.700012944638729e-06
+        },
+        {
+          "time": 0.0,
+          "vehicle": 3,
+          "action": {
+            "kind": "customer",
+            "target": 3,
+            "charge_to": 0.0
+          },
+          "latency": 1.600012183189392e-06
+        }
+      ]
+    },
+    {
+      "case": "r101_25_2_derived_1ch",
+      "policy": "endogenous",
+      "announced": 25,
+      "accepted": 25,
+      "served": 14,
+      "broken_accepted": 11,
+      "rejected": 0,
+      "charging_wait": 0.0,
+      "resource_conflicts": 0,
+      "physical_violations": 0,
+      "distance": 323.0,
+      "charging_cost": 96.89999999999999,
+      "wall_seconds": 0.003235100011806935,
+      "cpu_seconds": 0.0,
+      "timed_out": false,
+      "failure": null,
+      "source_sha256": "d24f204bb7b9fc3334de1ce9a1a62e8402aacd51010c2ec1f827b3ef4272317d",
+      "replay": {
+        "events_verified": 79,
+        "customers_verified": 14,
+        "chargers_active_at_end": 0,
+        "physical_violations": 0
+      },
+      "decision_count": 37,
+      "decision_median": 3.200024366378784e-06,
+      "decision_p95": 1.379998866468668e-05,
+      "decision_max": 2.1799991372972727e-05,
+      "raw_path": "results/research_v3a/pilot_v1/raw/r101_25_2_derived_1ch_endogenous.json.gz",
+      "raw_sha256": "cc127b50035a1b53b0bf90f1a68b5645ad3e29f746469f249c90a7cf929ee956",
+      "first_actions": [
+        {
+          "time": 0.0,
+          "vehicle": 0,
+          "action": {
+            "kind": "customer",
+            "target": 0,
+            "charge_to": 0.0
+          },
+          "latency": 4.400033503770828e-06
+        },
+        {
+          "time": 0.0,
+          "vehicle": 1,
+          "action": {
+            "kind": "customer",
+            "target": 1,
+            "charge_to": 0.0
+          },
+          "latency": 2.100015990436077e-06
+        },
+        {
+          "time": 0.0,
+          "vehicle": 2,
+          "action": {
+            "kind": "customer",
+            "target": 2,
+            "charge_to": 0.0
+          },
+          "latency": 1.700012944638729e-06
+        },
+        {
+          "time": 0.0,
+          "vehicle": 3,
+          "action": {
+            "kind": "customer",
+            "target": 3,
+            "charge_to": 0.0
+          },
+          "latency": 1.600012183189392e-06
+        }
+      ]
+    }
+  ],
+  "aggregate_wall_seconds": 0.0993725000298582
+}

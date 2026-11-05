@@ -6,10 +6,9 @@ All methods share the physical constraints, fixed reference fleet, released
 requests, risk-aware lexicographic objective and five-second planning budget.
 CPU is the active backend.
 
-The [architecture](docs/ARCHITECTURE.md) and [refactoring roadmap](docs/REFACTORING_ROADMAP.md)
-describe a planned research direction centered on a separate MPC-ALNS-SLAD
-proposal. That method is not implemented or validated. The tested five-method
-framework and the results below remain the current scientific evidence.
+The [architecture](docs/ARCHITECTURE.md) describes the five-method framework.
+The separate V3A branch study below investigates finite public-charger
+contention. It does not replace the tested methods or their paper evidence.
 
 ## Current paper results
 
@@ -80,9 +79,26 @@ See [migration details](docs/DESAULNIERS_MIGRATION.md),
 [limitations](results/desaulniers/final_cpu_paper_v1/LIMITATIONS.md), and the
 [repository inventory](docs/REPOSITORY_STATUS.md).
 
-Historical primary, robustness, targeted-service, performance-engineering and
-fast-framework evidence is preserved. The [GPU archive](docs/CPU_BACKEND_DECISION.md)
+Historical primary, robustness and targeted-service evidence remains in the
+active tree. Performance-engineering and fast-framework studies are recoverable
+from the verified `archive/pre-v3a-cleanup-2026-11-05` Git tag; see the
+[cleanup inventory](docs/maintenance/REPOSITORY_CLEANUP_INVENTORY.md).
+The [GPU archive](docs/CPU_BACKEND_DECISION.md)
 contains exact source and 53 raw records on a verified remote tag. The
 [Reliability V2 campaign](results/desaulniers/reliability_v2/FINAL_REPORT.md)
 remains stopped at the user's request. Old launchers require their frozen source
 revisions; do not restart campaigns merely to regenerate reports.
+
+## Isolated V3A charging study
+
+[`evrp/research_v3a/`](evrp/research_v3a/) contains a Dataset A adapter,
+finite-capacity charging plant, independent event-log replayer, and paired
+independent-versus-endogenous charging planners. Download Dataset A to the
+ignored third-party directory and run
+`python -m scripts.research_v3a.verify_dataset`; see the
+[provenance and reproduction notes](docs/research_v3a/DATASET_PROVENANCE.md).
+The [prespecified pilot](docs/research_v3a/PILOT_REPORT.md) found no public
+charging in its eight development episodes and therefore no exposed comparison
+effect. Exact toy cases do show charger-contention mechanisms. The
+[research decision](docs/research_v3a/RESEARCH_DECISION.md) does not claim a
+new optimization method or a final holdout.

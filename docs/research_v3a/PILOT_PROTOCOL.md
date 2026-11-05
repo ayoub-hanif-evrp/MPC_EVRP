@@ -1,0 +1,11 @@
+# V3A development pilot protocol (frozen before execution)
+
+This is a modeling and correctness study, not an ALNS comparison or final holdout. The plant always enforces finite shared-charger capacity. Two deterministic greedy controllers use identical customer ranking, acceptance, travel, fleet, charging targets, and five-second decision budget. They differ only in whether charger planning uses observed busy-until times and queue lengths (`endogenous`) or assumes each charge independently starts on arrival (`independent`). Both see only announced requests.
+
+## Prespecified cases
+
+Use exactly `c101_25_2.json` and `r101_25_2.json` from Dataset A commit `c79f4c53a4b18f722a1047f089f811a3bb1ffaa0`. For each geometry, run the original two-charger case and a *derived* one-charger case retaining charger index 0 at each station. The source JSON files are unchanged. The deterministic dynamic release of customer `i` is `max(0, customer_starts[i] - 120)`. This is a derived online protocol, not a native dynamic benchmark label. Four vehicles start full and fully loaded at the depot. Depot reload/recharge is instantaneous at the source depot energy cost; this modeling assumption needs sensitivity work before any external validity claim.
+
+Order: C original independent, C original endogenous, C derived independent, C derived endogenous, R original independent, R original endogenous, R derived independent, R derived endogenous. No additional seeds, replacement cases, or retries. Each episode has a ten-minute watchdog, each policy decision a five-second deadline, and the eight episodes share a four-hour wall-time cap. Run sequentially. Record all failures, timeouts, fallbacks (if any), complete trajectories, replay verdicts, CPU/wall time, decision latency, service, commitments, queue time, resource contention, distance and charging cost. Raw trajectories are kept in ignored local `results/research_v3a/pilot_v1/`; a compact summary is committed to `docs/research_v3a/`.
+
+The pilot succeeds as a *correctness gate* only if all completed trajectories replay without violations and decision deadlines hold. A performance difference alone does not establish population superiority. If either controller fails, report the failure rather than silently changing the cases or physics.
